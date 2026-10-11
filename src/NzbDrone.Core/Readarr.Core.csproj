@@ -27,10 +27,10 @@
     <PackageReference Include="Npgsql" />
     <PackageReference Include="RestSharp" />
     <PackageReference Include="System.IO.Abstractions" />
-    <PackageReference Include="SixLabors.ImageSharp" />
+    <PackageReference Include="SkiaSharp" />
     <PackageReference Include="Equ" />
     <PackageReference Include="MonoTorrent" />
-    <PackageReference Include="PdfSharpCore" />
+    <PackageReference Include="PDFsharp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NzbDrone.Common\Readarr.Common.csproj" />
