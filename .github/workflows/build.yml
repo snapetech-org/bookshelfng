@@ -133,10 +133,25 @@ jobs:
           find _tests -name "Readarr.Test.Dummy" -exec chmod a+x {} \;
 
       - name: Test
+        id: validation
         shell: bash
         env:
           DIRECT_DOWNLOAD_REQUIRE_PLAYWRIGHT: "true"
-        run: ./test.sh Linux Unit Test
+          VALIDATION_NODE_ID: bookshelf-linux-x64-unit
+          VALIDATION_RECEIPT_EXPORT: ${{ runner.temp }}/bookshelf-validation/receipt.json
+          VALIDATION_NUNIT_EXPORT: ${{ runner.temp }}/bookshelf-validation/TestResult.xml
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/bookshelf-validation"
+          echo "started=true" >> "$GITHUB_OUTPUT"
+          set +e
+          node scripts/validation-engine/engine.mjs --tests-only
+          status=$?
+          set -e
+          if [[ -s "$VALIDATION_NUNIT_EXPORT" ]]; then
+            cp "$VALIDATION_NUNIT_EXPORT" ./TestResult.xml
+          fi
+          exit "$status"
 
       - name: Report test results
         uses: dorny/test-reporter@2bf7bc7bba0f63da7f183274c61b24c27fb03989 # v3
@@ -147,6 +162,15 @@ jobs:
           list-tests: "failed"
           reporter: dotnet-nunit
           fail-on-error: true
+
+      - name: Upload validation receipt
+        if: always() && steps.validation.outputs.started == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: bookshelf-validation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bookshelf-validation/receipt.json
+          retention-days: 7
+          if-no-files-found: error
 
       - name: Upload container build output
         if: github.event_name == 'push'
