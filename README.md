@@ -99,6 +99,9 @@ Per-format profiles are on the
 - **Tune edition matching and series names.** Metadata profiles can rank
   edition title, format, and publisher terms, and choose preferred series for
   filenames and metadata. See [import matching and format support](docs/import-matching-and-formats.md).
+- **Organize books for Jellyfin.** Jellyfin's Books library expects each book
+  in its own folder. Enable **Rename Books** and use a book-title folder in
+  **Standard Book Format**; see the [Jellyfin folder layout guide](docs/import-matching-and-formats.md#folder-layout-for-jellyfin-books-libraries).
 - **Import books from the lists you use.** BookshelfNG supports Goodreads
   shelves, owned books, series, and Listopia lists, plus native Hardcover list
   imports. Hardcover imports honor the lists selected in configuration.
