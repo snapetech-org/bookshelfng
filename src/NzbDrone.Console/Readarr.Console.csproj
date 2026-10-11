@@ -9,6 +9,7 @@
     <AssemblyName>Readarr</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" />
     <ProjectReference Include="..\NzbDrone.Host\Readarr.Host.csproj" />
   </ItemGroup>
 </Project>

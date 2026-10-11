@@ -6,6 +6,7 @@
     <PackageReference Include="NBuilder" />
     <PackageReference Include="System.IO.Abstractions.TestingHelpers" />
     <PackageReference Include="AutoFixture" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NzbDrone.Test.Common\Readarr.Test.Common.csproj" />
