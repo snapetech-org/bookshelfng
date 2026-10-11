@@ -749,7 +749,7 @@
           "PDFsharp": "[6.2.4, )",
           "Polly": "[8.8.0, )",
           "Readarr.Common": "[1.0.0, )",
-          "RestSharp": "[106.15.0, )",
+          "RestSharp": "[114.0.0, )",
           "Servarr.FluentMigrator.Runner": "[3.3.2.9, )",
           "Servarr.FluentMigrator.Runner.Postgres": "[3.3.2.9, )",
           "Servarr.FluentMigrator.Runner.SQLite": "[3.3.2.9, )",
@@ -800,7 +800,7 @@
           "Newtonsoft.Json": "[13.0.4, )",
           "Readarr.Common": "[1.0.0, )",
           "Readarr.Core": "[1.0.0, )",
-          "RestSharp": "[106.15.0, )",
+          "RestSharp": "[114.0.0, )",
           "RestSharp.Serializers.SystemTextJson": "[106.15.0, )",
           "System.IO.Abstractions": "[17.2.26, )",
           "System.IO.Abstractions.TestingHelpers": "[17.2.26, )"
@@ -1096,9 +1096,9 @@
       },
       "RestSharp": {
         "type": "CentralTransitive",
-        "requested": "[106.15.0, )",
-        "resolved": "106.15.0",
-        "contentHash": "HM7ohR6AscxedNenrrl93DSZG6hvdnA7O+NHyCl/6ZKTfn8psQ9rRmUpcb9eWr+140vmfxoVemql0bUoeGEW3A=="
+        "requested": "[114.0.0, )",
+        "resolved": "114.0.0",
+        "contentHash": "8pDO4q+K8nIqXbvGCb9ciKcngj36pCXGRDzOYPEPoS2IvBIL+mejmUMAtSNALt/NkDc9LQmHvM95kdniLSbGtg=="
       },
       "RestSharp.Serializers.SystemTextJson": {
         "type": "CentralTransitive",
