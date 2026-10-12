@@ -380,14 +380,17 @@ export function formatValidationProgress(repository, tasks, results, currentTask
   return `[validation] ${repository}: ${completed}/${tasks.length} selected tasks complete (${passed} passed, ${failed} failed, ${blocked} blocked, ${pending} pending)${active}`;
 }
 
-function writeValidationProgress(tasks, results, currentTask = null, startedAt = 0) {
-  process.stderr.write(`${formatValidationProgress(
+function writeValidationProgress(tasks, results, currentTask = null, startedAt = 0, state = null) {
+  const summary = formatValidationProgress(
     validation.repository,
     tasks,
     results,
     currentTask,
     currentTask ? Date.now() - startedAt : 0,
-  )}\n`);
+  );
+  if (state?.last === summary) return;
+  if (state) state.last = summary;
+  process.stderr.write(`${summary}\n`);
 }
 
 export function stableJson(value) {
@@ -410,6 +413,7 @@ async function execute(plan) {
     const missingRuntimes = plan.runtimes.filter((runtime) => !runtime.available || !runtime.compatible);
     const missingArtifacts = plan.missingArtifacts;
     const selected = plan.tasks.filter((task) => task.selected);
+    const progressState = {};
     if (missingRuntimes.length || missingArtifacts.length || (plan.executionContext.github && plan.executionContext.github.sha !== plan.candidate.commit)) {
       for (const task of selected) taskReceipts.set(task.id, {
         taskId: task.id, status: 'not-run', reason: 'required runtime, build artifact, or GitHub SHA is unavailable', required: true,
@@ -423,9 +427,9 @@ async function execute(plan) {
           break;
         }
         const taskStartedAt = Date.now();
-        writeValidationProgress(selected, taskReceipts, task, taskStartedAt);
+        writeValidationProgress(selected, taskReceipts, task, taskStartedAt, progressState);
         const heartbeat = setInterval(
-          () => writeValidationProgress(selected, taskReceipts, task, taskStartedAt),
+          () => writeValidationProgress(selected, taskReceipts, task, taskStartedAt, progressState),
           PROGRESS_INTERVAL_MS,
         );
         heartbeat.unref();
@@ -436,7 +440,7 @@ async function execute(plan) {
           clearInterval(heartbeat);
         }
         taskReceipts.set(task.id, receipt);
-        writeValidationProgress(selected, taskReceipts);
+        writeValidationProgress(selected, taskReceipts, null, 0, progressState);
         const after = captureCandidate(discoverInventory());
         if (after.sourceSha256 !== plan.candidate.sourceSha256) {
           sourceChanged = true;
@@ -454,7 +458,7 @@ async function execute(plan) {
         required: true,
       });
     }
-    writeValidationProgress(selected, taskReceipts);
+    writeValidationProgress(selected, taskReceipts, null, 0, progressState);
     const tasks = plan.tasks.map((task) => taskReceipts.get(task.id));
     const totals = {
       planned: plan.tasks.filter((task) => task.selected).length,
