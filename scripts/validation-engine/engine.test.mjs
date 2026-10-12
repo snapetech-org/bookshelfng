@@ -1,7 +1,7 @@
 // Copyright (C) BookshelfNG contributors.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { discoverInventory, globRegex, parseNUnitSummary, stableJson } from './engine.mjs';
+import { discoverInventory, formatValidationProgress, globRegex, parseNUnitSummary, stableJson } from './engine.mjs';
 
 test('the C# project glob includes nested test sources but not sibling trees', () => {
   const match = globRegex('src/NzbDrone.*.Test/**/*.cs');
@@ -44,6 +44,22 @@ test('failed NUnit summaries retain the measured case counts for the receipt', (
   assert.deepEqual(parseNUnitSummary(
     '<test-run total="3" passed="2" failed="1" skipped="0" inconclusive="0" result="Failed"/>',
   ), { total: 3, passed: 2, failed: 1, skipped: 0, inconclusive: 0, result: 'Failed' });
+});
+
+test('live progress summary reports completed, blocked, pending, and running tasks', () => {
+  const tasks = [
+    { id: 'passed', name: 'Passed task' },
+    { id: 'blocked', name: 'Blocked task' },
+    { id: 'running', name: 'Long task' },
+  ];
+  const results = new Map([
+    ['passed', { status: 'passed', startedAt: '2026-10-12T00:00:00.000Z' }],
+    ['blocked', { status: 'blocked' }],
+  ]);
+  assert.equal(
+    formatValidationProgress('sample', tasks, results, tasks[2], 65_000),
+    '[validation] sample: 1/3 selected tasks complete (1 passed, 0 failed, 1 blocked, 1 pending); running Long task (1m05s)',
+  );
 });
 
 test('plan identity serialization is stable across object insertion order', () => {
