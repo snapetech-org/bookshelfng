@@ -99,6 +99,9 @@ Per-format profiles are on the
 - **Tune edition matching and series names.** Metadata profiles can rank
   edition title, format, and publisher terms, and choose preferred series for
   filenames and metadata. See [import matching and format support](docs/import-matching-and-formats.md).
+- **Organize books for Jellyfin.** Jellyfin's Books library expects each book
+  in its own folder. Enable **Rename Books** and use a book-title folder in
+  **Standard Book Format**; see the [Jellyfin folder layout guide](docs/import-matching-and-formats.md#folder-layout-for-jellyfin-books-libraries).
 - **Import books from the lists you use.** BookshelfNG supports Goodreads
   shelves, owned books, series, and Listopia lists, plus native Hardcover list
   imports. Hardcover imports honor the lists selected in configuration.
@@ -546,16 +549,16 @@ you can also authenticate with package read access.
 Please file a GitHub issue or start a discussion for help. Contributions are
 welcome, especially fixes and quality-of-life improvements.
 
-After cloning, maintainers must run `scripts/install-yunohost-sync-hook.sh` to
-install the post-commit and pre-push package sync hooks. Commits sync the
-YunoHost and Unraid package repositories immediately. Before a BookshelfNG
-push, both syncs run again and a failure blocks that push. GitHub protects
-`main` with a required pull request and package sync check, so a local hook
-bypass cannot merge package changes that are missing from either repository.
-Release workflows run the same check before publishing. Missing package
-sources or companion checkouts are errors. Set `BOOKSHELFNG_UNRAID_REPO` or
-`BOOKSHELFNG_YNH_REPO` if a companion checkout is outside the sibling-repository
-layout.
+After cloning, maintainers can run `scripts/install-package-sync-hook.sh` to
+install the post-commit and pre-push Unraid package sync hooks. They mirror
+`packaging/unraid/` to the companion repository; a failed sync blocks a push.
+GitHub workflows verify the Unraid package before release. Missing package
+sources or the companion checkout are errors. Set `BOOKSHELFNG_UNRAID_REPO` if
+that checkout is outside the sibling-repository layout.
+
+BookshelfNG no longer maintains, publishes, or updates a YunoHost package.
+Existing installations remain on their last published version; operators
+should move to a supported deployment or maintain their own package updates.
 
 ## Optional diagnostics
 

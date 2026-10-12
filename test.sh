@@ -6,7 +6,8 @@ WHERE="Category!=ManualTest"
 TEST_PATTERN="*Test.dll"
 FILES=( "Readarr.Api.Test.dll" "Readarr.Automation.Test.dll" "Readarr.Common.Test.dll" "Readarr.Core.Test.dll" "Readarr.Host.Test.dll" "Readarr.Integration.Test.dll" "Readarr.Libraries.Test.dll" "Readarr.Mono.Test.dll" "Readarr.Update.Test.dll" "Readarr.Windows.Test.dll" )
 ASSMEBLIES=""
-TEST_LOG_FILE="TestLog.txt"
+TEST_LOG_FILE="${TEST_LOG_FILE:-TestLog.txt}"
+TEST_RESULTS_FILE="${TEST_RESULTS_FILE:-TestResult.xml}"
 
 echo "test dir: $TEST_DIR"
 if [ -z "$TEST_DIR" ]; then
@@ -22,7 +23,7 @@ rm -f "$TEST_LOG_FILE"
 # Uncomment to log test output to a file instead of the console
 # export READARR_TESTS_LOG_OUTPUT="File"
 
-VSTEST_PARAMS="--logger:nunit;LogFilePath=TestResult.xml"
+VSTEST_PARAMS="--logger:nunit;LogFilePath=$TEST_RESULTS_FILE"
 
 if [ "$PLATFORM" = "Mac" ]; then
 
