@@ -11,6 +11,8 @@ disposable worktree when those directories contain artifacts you need to keep.
 
 ```sh
 ./build.sh --backend --frontend
+export PLAYWRIGHT_BROWSERS_PATH="$HOME/.cache/ms-playwright"
+pwsh ./_tests/net10.0/linux-x64/playwright.ps1 install chromium
 node scripts/validation-engine/engine.mjs --plan
 node scripts/validation-engine/engine.mjs --tests-only
 ```
@@ -49,6 +51,6 @@ Playwright installation, and artifact packaging remain separate existing CI
 steps; the test engine does not claim those steps passed unless their workflow
 steps pass.
 
-The suite uses local fixtures and does not connect to live services or mutate
+The unit-test task requires the separately installed Chromium cache. Set PLAYWRIGHT_BROWSERS_PATH for both the install command and engine invocation; the engine passes that path only to this task while keeping its home, temporary, and XDG directories private. The suite uses local fixtures and does not connect to live services or mutate
 provider data. Results describe local or GitHub-hosted test execution only; they
 do not claim that a live deployment was verified.

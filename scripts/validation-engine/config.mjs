@@ -19,6 +19,7 @@ export const validation = {
     'release-notes/README.md',
     'release-notes/20261011-validation-engine.md',
     'release-notes/20261012-validation-environment-isolation.md',
+    'release-notes/20261012-validation-playwright-cache.md',
   ],
   runtimes: [
     {
@@ -72,6 +73,7 @@ export const validation = {
       name: 'BookshelfNG Linux unit test selection',
       kind: 'test',
       command: ['bash', './test.sh', 'Linux', 'Unit', 'Test'],
+      passEnv: ['PLAYWRIGHT_BROWSERS_PATH'],
       env: {
         TEST_DIR: './_tests/net10.0/linux-x64',
         DIRECT_DOWNLOAD_REQUIRE_PLAYWRIGHT: 'true',

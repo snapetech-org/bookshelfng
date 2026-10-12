@@ -45,6 +45,23 @@ test('task environments use an allowlist and run-owned user and temporary direct
   }
 });
 
+test('only the .NET unit task receives its explicit Playwright browser cache path', (t) => {
+  const root = mkdtempSync(path.join(os.tmpdir(), 'bookshelf-playwright-env-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const cache = '/toolchain/playwright-browsers';
+  const env = isolatedChildEnvironment({
+    id: 'dotnet-unit-tests',
+    kind: 'test',
+    passEnv: ['PLAYWRIGHT_BROWSERS_PATH'],
+  }, root, { PATH: '/toolchain/bin', PLAYWRIGHT_BROWSERS_PATH: cache });
+  assert.equal(env.PLAYWRIGHT_BROWSERS_PATH, cache);
+  assert.equal(env.HOME, path.join(root, 'dotnet-unit-tests-environment', 'home'));
+  assert.throws(() => isolatedChildEnvironment({
+    id: 'engine-contract-tests',
+    passEnv: ['PLAYWRIGHT_BROWSERS_PATH'],
+  }, root, { PLAYWRIGHT_BROWSERS_PATH: cache }), /unapproved inherited environment variable/);
+});
+
 test('runtime probes do not inherit credentials or loader options', () => {
   const previous = new Map(['GITHUB_TOKEN', 'NODE_OPTIONS'].map((name) => [name, process.env[name]]));
   process.env.GITHUB_TOKEN = 'synthetic-runtime-token';
