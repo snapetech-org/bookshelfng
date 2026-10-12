@@ -23,6 +23,12 @@ category filters as CI and requires the test runner's NUnit XML summary. It
 reports total, passed, failed, skipped, and inconclusive cases; a missing or
 zero-case result cannot pass.
 
+The engine writes task progress to stderr as tasks start and finish, with a
+once-per-minute heartbeat during long tasks. Counts describe completed tasks;
+the current task and its elapsed time are reported separately. GitHub displays
+step summaries after the workflow step finishes, so live updates appear in the
+step log.
+
 ## Evidence and CI
 
 Every run has a private temporary evidence directory with task logs and a
