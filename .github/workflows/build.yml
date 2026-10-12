@@ -6,6 +6,8 @@ permissions:
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     tags:
       - "main-*"
     paths-ignore:
@@ -29,16 +31,62 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Only main pushes and manual runs on main use the local runner; PRs, tags,
+    # and manual runs targeting other refs stay on GitHub-hosted runners.
+    runs-on: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && fromJSON('["self-hosted","Linux","X64","host"]') || fromJSON('["ubuntu-latest"]') }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
+      - name: Configure private runner temp and mise directories
+        if: runner.environment == 'self-hosted'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
+            printf 'RUNNER_TEMP must be an absolute, readable, writable directory without line breaks\n' >&2
+            exit 1
+          fi
+
+          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
+          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
+            printf 'RUNNER_TEMP must not resolve to a path containing line breaks\n' >&2
+            exit 1
+          fi
+          case "$runner_temp_resolved" in
+            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*|/dev/shm|/dev/shm/*)
+              printf 'RUNNER_TEMP must not resolve to a shared or root temporary directory\n' >&2
+              exit 1
+              ;;
+          esac
+
+          if [[ ! -O "$runner_temp_resolved" ]]; then
+            printf 'RUNNER_TEMP must be owned by the workflow runner user\n' >&2
+            exit 1
+          fi
+          runner_temp_mode="$(stat -c '%a' -- "$runner_temp_resolved")"
+          if [[ ! "$runner_temp_mode" =~ ^[0-7]{3,4}$ ]]; then
+            printf 'Could not determine RUNNER_TEMP directory permissions\n' >&2
+            exit 1
+          fi
+          runner_temp_permissions=$((8#$runner_temp_mode))
+          if (( runner_temp_permissions & 0022 )); then
+            printf 'RUNNER_TEMP must not be writable by group or other users\n' >&2
+            exit 1
+          fi
+
+          : "${GITHUB_ENV:?GITHUB_ENV is required}"
+          umask 077
+          job_temp="$(mktemp -d -- "$runner_temp_resolved/bookshelfng-job.XXXXXX")"
+          mkdir -m 700 -- "$job_temp/mise-data" "$job_temp/mise-cache" "$job_temp/mise-tmp"
+          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\nMISE_DATA_DIR=%s/mise-data\nMISE_CACHE_DIR=%s/mise-cache\nMISE_TMP_DIR=%s/mise-tmp\n' \
+            "$job_temp" "$job_temp" "$job_temp" "$job_temp" "$job_temp" "$job_temp" >> "$GITHUB_ENV"
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
       - name: Require main release tag
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
         shell: bash
         run: |
           set -euo pipefail
@@ -54,7 +102,7 @@ jobs:
           fi
 
       - name: Verify Unraid package is synced
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
         run: bash scripts/verify-package-sync.sh
 
       - name: Validate Discord webhook before publishing images
@@ -176,7 +224,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload container build output
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: bookshelfng-publish-output
@@ -186,7 +234,7 @@ jobs:
 
   publish-images:
     name: Publish container images
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -300,7 +348,7 @@ jobs:
 
   container-scan:
     name: Scan published container images
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
     needs: publish-images
     runs-on: ubuntu-latest
     permissions:
