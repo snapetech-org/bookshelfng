@@ -556,10 +556,9 @@ GitHub workflows verify the Unraid package before release. Missing package
 sources or the companion checkout are errors. Set `BOOKSHELFNG_UNRAID_REPO` if
 that checkout is outside the sibling-repository layout.
 
-The YunoHost package source remains for reference, but BookshelfNG no longer
-publishes or updates it. Existing installations remain on their last published
-package; operators must move to a supported deployment or maintain package
-updates independently.
+BookshelfNG no longer maintains, publishes, or updates a YunoHost package.
+Existing installations remain on their last published version; operators
+should move to a supported deployment or maintain their own package updates.
 
 ## Optional diagnostics
 
