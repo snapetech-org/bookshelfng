@@ -580,4 +580,13 @@ a revival of [Readarr](https://github.com/Readarr/Readarr), and
 under GPLv3, and BookshelfNG is distributed under the terms of GPLv3. See
 [LICENSE](LICENSE.md).
 
+BookshelfNG is maintained as a fork because its standalone library model and
+SeerrNG integration go beyond the current Bookshelf parent API. The upstream
+Bookshelf README describes one type of a book per instance; BookshelfNG can
+keep ebooks and audiobooks on the same book in one database, and exposes
+format-specific availability and restricted SeerrNG access. Its parent is
+reviewed in the [capability and compatibility guide](docs/capabilities-and-compatibility.md),
+which records what is shared, what this fork maintains, and what would need to
+be available before SeerrNG could replace it.
+
 Copyright 2025–2026.

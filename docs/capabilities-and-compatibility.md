@@ -10,8 +10,10 @@ For upstream descriptions, see the [Bookshelf README](https://github.com/pennydr
 and [Readarr README](https://github.com/Readarr/Readarr/blob/develop/README.md).
 Bookshelf presents itself as a revival of Readarr. Readarr's repository now
 announces retirement, while its book-automation workflow remains the base
-BookshelfNG maintains. This comparison reflects the linked README content
-checked on 2026-10-04.
+BookshelfNG maintains. This comparison was checked against the linked parent
+README and its `develop` commit `3ac41f7e3` on 2026-10-12. That parent commit is
+in the BookshelfNG `main` history; the code comparison below separates shared
+behavior from features this fork still maintains.
 
 ## Product scope
 
@@ -33,6 +35,34 @@ Separate instances are optional when you need isolated databases or
 settings for the same author. Persist `/config`; that volume contains
 the database, application settings, and provider identities needed to keep an
 existing library usable across container replacement.
+
+## Why BookshelfNG remains a fork
+
+The original Readarr repository is archived. The direct parent,
+[Bookshelf](https://github.com/pennydreadful/bookshelf), is a separate Readarr
+revival, not the archived Readarr project itself. Its current README supports
+Goodreads and Hardcover metadata but says a book has one type per instance.
+That does not provide the single-library ebook/audiobook model and
+format-aware service behavior SeerrNG uses.
+
+BookshelfNG keeps the standalone Readarr-style manager and extends it with one
+database for multiple formats, native and selectable metadata providers,
+direct downloads, safer identity/matching, and maintained platform releases.
+For SeerrNG it exposes a capability contract, ebook/audiobook API aliases and
+availability counts, and a restricted credential. The BookshelfNG
+[SeerrNG integration guide](seerrng-integration.md) documents the routes and
+access boundary. These changes let SeerrNG route one format without making a
+second database or broad administrator key necessary.
+
+### What would allow replacement
+
+The direct parent or another supported upstream could replace BookshelfNG if
+it ships both formats on the same book and library, keeps the requested format
+visible in lookup/search/status APIs, exposes format-specific availability and
+a restricted integration credential, and provides equivalent catalog and
+download behavior for the standalone features operators still rely on. SeerrNG
+would then need an adapter and compatibility checks against the released
+upstream API. Similar code in an unreleased branch is not enough.
 
 ## Supported file formats
 
@@ -318,8 +348,8 @@ schema](../src/Bookshelf.Diagnostics/README.md).
 This feature-level inventory covers work added or maintained in BookshelfNG
 from its May 18, 2026 fork from
 [pennydreadful/bookshelf](https://github.com/pennydreadful/bookshelf) through
-the [`main-v0.4.21.63` release](https://github.com/snapetech/bookshelfng/releases/tag/main-v0.4.21.63)
-published on October 4, 2026. Bookshelf itself is a Readarr revival. The table
+the [`main-v0.4.21.69` release](https://github.com/snapetech/bookshelfng/releases/tag/main-v0.4.21.69)
+published on October 12, 2026. Bookshelf itself is a Readarr revival. The table
 groups related changes rather than listing every bug fix, dependency bump, or
 routine maintenance commit. The sections below distinguish fork-maintained
 work from capabilities already shared with the Bookshelf and Readarr lineage.
@@ -338,6 +368,7 @@ has the patch-level record.
 | September 24, 2026 | Added field-level metadata source preferences, multiple formats per book, weighted edition and preferred-series matching, configurable automatic import title matching, manual Add searches and series-pack search, existing-torrent adoption, BookLore BookDrop uploads, and narrator search and audio tags. Added queue ignore behavior and safety fixes for metadata refresh and cross-origin redirects. |
 | September 26, 2026 | Added audiobook narrator credits from file tags to edition import scoring so matching narrators help rank audiobook editions when both local and provider metadata include them. |
 | September 27–October 4, 2026 | Added cross-catalog recovery for unmapped files, optional ebook/audiobook author folders, previewable per-author and bulk media moves, and SeerrNG format-scoped routes and availability counts. Hardened the SeerrNG credential and trusted-proxy boundaries, restored Readarr API and Docker compatibility, and added a built-in direct-download indexer/client with ordered source URLs, API-key downloads, optional headless-Chromium resolution, durable transfer state, and validated redirects. |
+| October 5–12, 2026 | Added format-specific author quality and metadata-profile overrides, authenticated encryption for full backups, first-run authentication recovery, and Jellyfin book-folder guidance; retired YunoHost publishing and patched a selector-parser denial-of-service dependency. |
 
 BookshelfNG retains ebook identification behavior from the Readarr lineage:
 EPUB ISBN normalization and checksum checks, ISBN-13 preference, ASIN matching,
@@ -350,7 +381,7 @@ newer provider mapping.
 
 ## What is shared with upstream
 
-The upstream Bookshelf README snapshot checked on 2026-10-04 describes its
+The upstream Bookshelf README checked on 2026-10-12 describes its
 Readarr revival, one-format-per-book-per-instance model, Goodreads and
 Hardcover modes,
 native MyAnonamouse support, Hardcover list imports, self-hosted metadata
@@ -364,8 +395,9 @@ GraphQL client and request controls, supplemental runtime catalogs and stable
 IDs, durable author refresh policy, optional diagnostics module, richer book
 lookup API response, qBittorrent 5.2 authentication, SeerrNG format-specific
 availability, the Direct Download indexer/client, and current image/release
-automation. The October 4 comparison found no commits from the direct parent's
-then-current `develop` branch missing from BookshelfNG `main`.
+automation. The October 12 comparison found the direct parent's `develop`
+commit `3ac41f7e3` in BookshelfNG `main`'s ancestry, with no parent-only commits
+at that snapshot.
 
 BookshelfNG also retains workflow features from Readarr that the brief
 Bookshelf README does not enumerate: existing-library scans, quality-based
