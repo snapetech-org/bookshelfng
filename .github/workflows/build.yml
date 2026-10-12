@@ -36,9 +36,21 @@ jobs:
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
-      - name: Use runner temp for local temporary files
+      - name: Isolate local runner temp and mise directories
         if: runner.environment == 'self-hosted'
-        run: echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${RUNNER_TEMP:?RUNNER_TEMP is required}"
+          if [[ "$RUNNER_TEMP" != /* || ! -d "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" ]]; then
+            echo "RUNNER_TEMP must be an absolute, writable directory" >&2
+            exit 1
+          fi
+          umask 077
+          job_temp="$(mktemp -d "$RUNNER_TEMP/bookshelfng-job.XXXXXX")"
+          mkdir -m 700 -- "$job_temp/mise-data" "$job_temp/mise-cache" "$job_temp/mise-tmp"
+          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\nMISE_DATA_DIR=%s/mise-data\nMISE_CACHE_DIR=%s/mise-cache\nMISE_TMP_DIR=%s/mise-tmp\n' \
+            "$job_temp" "$job_temp" "$job_temp" "$job_temp" "$job_temp" "$job_temp" >> "$GITHUB_ENV"
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
