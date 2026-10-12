@@ -18,6 +18,8 @@ export const validation = {
     'docs/development/validation-engine.md',
     'release-notes/README.md',
     'release-notes/20261011-validation-engine.md',
+    'release-notes/20261012-validation-environment-isolation.md',
+    'release-notes/20261012-validation-playwright-cache.md',
   ],
   runtimes: [
     {
@@ -75,6 +77,7 @@ export const validation = {
         TEST_DIR: './_tests/net10.0/linux-x64',
         DIRECT_DOWNLOAD_REQUIRE_PLAYWRIGHT: 'true',
       },
+      passEnv: ['PLAYWRIGHT_BROWSERS_PATH'],
       inventory: ['csharp-unit-test-sources'],
       runtimes: [{ command: 'dotnet', args: ['--version'], versionPattern: '^10\\.0\\.401$' }],
       timeoutSeconds: 5400,

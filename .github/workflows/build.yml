@@ -123,6 +123,8 @@ jobs:
           READARRVERSION: ${{ steps.variables.outputs.build_version }}
 
       - name: Install Chromium for direct-download browser tests
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
         run: pwsh ./_tests/net10.0/linux-x64/playwright.ps1 install --with-deps chromium
 
       - name: Prepare tests
@@ -137,6 +139,7 @@ jobs:
         shell: bash
         env:
           DIRECT_DOWNLOAD_REQUIRE_PLAYWRIGHT: "true"
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
           VALIDATION_NODE_ID: bookshelf-linux-x64-unit
           VALIDATION_RECEIPT_EXPORT: ${{ runner.temp }}/bookshelf-validation/receipt.json
           VALIDATION_NUNIT_EXPORT: ${{ runner.temp }}/bookshelf-validation/TestResult.xml

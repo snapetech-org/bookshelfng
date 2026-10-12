@@ -20,7 +20,15 @@ import { validation } from './config.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const ENGINE_VERSION = 1;
-const SECRET_ENV = /(?:TOKEN|PASSWORD|SECRET|API[_-]?KEY|CREDENTIAL|COOKIE|AUTH|DATABASE_URL|DB_PASS)/i;
+const INHERITED_ENVIRONMENT_KEYS = new Set([
+  'ASDF_DATA_DIR', 'ASDF_DIR', 'COMSPEC', 'DOTNET_ROOT', 'DOTNET_ROOT_X64',
+  'DOTNET_ROOT_X86', 'LANG', 'LC_ALL', 'LC_CTYPE', 'MISE_DATA_DIR',
+  'MISE_HOME', 'NVM_DIR', 'PATH', 'PATHEXT', 'VOLTA_HOME', 'SYSTEMROOT',
+  'TZ', 'WINDIR',
+]);
+const APPROVED_TASK_PASS_ENVIRONMENT = new Map([
+  ['dotnet-unit-tests', new Set(['PLAYWRIGHT_BROWSERS_PATH'])],
+]);
 const MAX_CAPTURED_OUTPUT = 1024 * 1024;
 const PROGRESS_INTERVAL_MS = 60_000;
 
@@ -130,7 +138,7 @@ function inspectRuntime(runtime) {
     encoding: 'utf8',
     timeout: 10000,
     maxBuffer: 1024 * 1024,
-    env: { ...process.env, NO_COLOR: '1' },
+    env: { ...inheritedToolchainEnvironment(), NO_COLOR: '1' },
   });
   const text = `${result.stdout ?? ''}${result.stderr ?? ''}`.trim();
   const version = text.split(/\r?\n/, 1)[0] ?? '';
@@ -140,6 +148,16 @@ function inspectRuntime(runtime) {
     : runtime.versionPattern;
   const compatible = available && new RegExp(expected).test(version);
   return { command: runtime.command, expected, available, compatible, version, exitCode: result.status };
+}
+
+function inheritedToolchainEnvironment(inherited = process.env) {
+  const values = new Map();
+  for (const [key, value] of Object.entries(inherited)) {
+    const normalized = key.toUpperCase();
+    if (!INHERITED_ENVIRONMENT_KEYS.has(normalized) || typeof value !== 'string') continue;
+    if (!values.has(normalized) || key === normalized) values.set(normalized, value);
+  }
+  return Object.fromEntries(values);
 }
 
 function executionContext(candidate) {
@@ -161,6 +179,16 @@ function executionContext(candidate) {
 }
 
 function expandTasks(selection, inventory, candidate) {
+  for (const task of validation.tasks) {
+    if (typeof task.id !== 'string' || !/^[a-z0-9][a-z0-9-]*$/.test(task.id)) {
+      throw new Error('Validation task ID must be a safe lowercase identifier.');
+    }
+    const passEnv = task.passEnv ?? [];
+    if (!Array.isArray(passEnv) || passEnv.some((name) =>
+      typeof name !== 'string' || !APPROVED_TASK_PASS_ENVIRONMENT.get(task.id)?.has(name))) {
+      throw new Error('Task requests an unapproved inherited environment variable: ' + task.id);
+    }
+  }
   const selectedIds = new Set(validation.tasks.filter((task) => selection.task
     ? task.id === selection.task
     : task.kind === 'test').map((task) => task.id));
@@ -205,14 +233,51 @@ function currentCandidate(inventoryRules) {
   return captureCandidate(discoverInventory(allRepositoryFiles(), inventoryRules));
 }
 
-function secretFilteredEnv(additional = {}) {
-  const output = {};
-  for (const [key, value] of Object.entries(process.env)) {
-    if (!SECRET_ENV.test(key) && !['NODE_TEST_CONTEXT', 'VALIDATION_RECEIPT_EXPORT', 'VALIDATION_NUNIT_EXPORT'].includes(key)) {
-      output[key] = value;
-    }
+export function isolatedChildEnvironment(task, runRoot, inherited = process.env) {
+  if (typeof task?.id !== 'string' || !/^[a-z0-9][a-z0-9-]*$/.test(task.id)) {
+    throw new Error('Validation task ID must be a safe lowercase identifier.');
   }
-  return { ...output, CI: output.CI ?? 'true', NO_COLOR: '1', ...additional };
+  const output = inheritedToolchainEnvironment(inherited);
+  const approvedPassEnv = APPROVED_TASK_PASS_ENVIRONMENT.get(task.id) ?? new Set();
+  const passEnv = task.passEnv ?? [];
+  if (!Array.isArray(passEnv) || passEnv.some((name) =>
+    typeof name !== 'string' || !approvedPassEnv.has(name))) {
+    throw new Error('Task requests an unapproved inherited environment variable: ' + task.id);
+  }
+  for (const name of passEnv) {
+    const match = Object.entries(inherited).find(([key]) => key.toUpperCase() === name.toUpperCase());
+    if (match && typeof match[1] === 'string') output[name] = match[1];
+  }
+  for (const [key, value] of Object.entries(task.env ?? {})) {
+    if (typeof value === 'string') output[key] = value;
+  }
+
+  const environmentRoot = path.join(runRoot, `${task.id}-environment`);
+  const directories = {
+    HOME: path.join(environmentRoot, 'home'),
+    USERPROFILE: path.join(environmentRoot, 'home'),
+    TMPDIR: path.join(environmentRoot, 'tmp'),
+    TMP: path.join(environmentRoot, 'tmp'),
+    TEMP: path.join(environmentRoot, 'tmp'),
+    XDG_CONFIG_HOME: path.join(environmentRoot, 'xdg-config'),
+    XDG_CACHE_HOME: path.join(environmentRoot, 'xdg-cache'),
+    APPDATA: path.join(environmentRoot, 'AppData', 'Roaming'),
+    LOCALAPPDATA: path.join(environmentRoot, 'AppData', 'Local'),
+    DOTNET_CLI_HOME: path.join(environmentRoot, 'dotnet-home'),
+    NUGET_PACKAGES: path.join(runRoot, 'nuget-packages'),
+  };
+  for (const directory of new Set(Object.values(directories))) {
+    mkdirSync(directory, { recursive: true, mode: 0o700 });
+  }
+  Object.assign(output, directories, {
+    CI: 'true',
+    NO_COLOR: '1',
+    DOTNET_CLI_TELEMETRY_OPTOUT: '1',
+    DOTNET_NOLOGO: '1',
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: '1',
+  });
+  if (task.kind === 'test') output.NODE_ENV = 'test';
+  return output;
 }
 
 function killChild(child) {
@@ -238,11 +303,14 @@ async function runCommand(task, runRoot) {
   };
   const testResults = path.join(runRoot, 'TestResult.xml');
   const taskConfig = validation.tasks.find((item) => item.id === task.id);
-  const env = secretFilteredEnv({
-    ...taskConfig.env,
-    TEST_LOG_FILE: path.join(runRoot, 'TestLog.txt'),
-    ...(task.id === 'dotnet-unit-tests' ? { TEST_RESULTS_FILE: testResults } : {}),
-  });
+  const env = isolatedChildEnvironment({
+    ...taskConfig,
+    env: {
+      ...taskConfig.env,
+      TEST_LOG_FILE: path.join(runRoot, 'TestLog.txt'),
+      ...(task.id === 'dotnet-unit-tests' ? { TEST_RESULTS_FILE: testResults } : {}),
+    },
+  }, runRoot);
   const child = spawn(taskConfig.command[0], taskConfig.command.slice(1), {
     cwd: ROOT,
     env,
