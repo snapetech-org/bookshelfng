@@ -1,7 +1,66 @@
 // Copyright (C) BookshelfNG contributors.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { discoverInventory, formatValidationProgress, globRegex, parseNUnitSummary, stableJson } from './engine.mjs';
+import { mkdtempSync, rmSync, statSync } from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { createPlan, discoverInventory, formatValidationProgress, globRegex, isolatedChildEnvironment, parseNUnitSummary, stableJson } from './engine.mjs';
+
+test('task environments use an allowlist and run-owned user and temporary directories', (t) => {
+  const root = mkdtempSync(path.join(os.tmpdir(), 'bookshelf-validation-env-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  assert.throws(() => isolatedChildEnvironment({ id: 'fixture', passEnv: ['GITHUB_TOKEN'] }, root, {
+    GITHUB_TOKEN: 'synthetic-token',
+  }), /unapproved inherited environment variable/);
+  assert.throws(() => isolatedChildEnvironment({ id: '../outside' }, root), /safe lowercase identifier/);
+  const env = isolatedChildEnvironment({
+    id: 'fixture',
+    kind: 'test',
+    env: { FIXTURE_SETTING: 'expected' },
+  }, root, {
+    PATH: '/toolchain/bin',
+    DOTNET_ROOT: '/toolchain/dotnet',
+    HOME: '/operator/home',
+    TMP: '/operator/tmp',
+    NODE_OPTIONS: '--require=/operator/injected.cjs',
+    NUGET_AUTH_TOKEN: 'synthetic-token',
+    RANDOM_PRIVATE_VALUE: 'synthetic-private-value',
+    XDG_CONFIG_HOME: '/operator/config',
+  });
+  const environmentRoot = path.join(root, 'fixture-environment');
+  assert.equal(env.PATH, '/toolchain/bin');
+  assert.equal(env.DOTNET_ROOT, '/toolchain/dotnet');
+  assert.equal(env.HOME, path.join(environmentRoot, 'home'));
+  assert.equal(env.USERPROFILE, env.HOME);
+  assert.equal(env.TMP, path.join(environmentRoot, 'tmp'));
+  assert.equal(env.XDG_CONFIG_HOME, path.join(environmentRoot, 'xdg-config'));
+  assert.equal(env.XDG_CACHE_HOME, path.join(environmentRoot, 'xdg-cache'));
+  assert.equal(env.NODE_ENV, 'test');
+  assert.equal(env.CI, 'true');
+  assert.equal(env.FIXTURE_SETTING, 'expected');
+  for (const key of ['GITHUB_TOKEN', 'NODE_OPTIONS', 'NUGET_AUTH_TOKEN', 'RANDOM_PRIVATE_VALUE']) assert.equal(env[key], undefined);
+  if (process.platform !== 'win32') {
+    assert.equal(statSync(env.HOME).mode & 0o777, 0o700);
+    assert.equal(statSync(env.TMP).mode & 0o777, 0o700);
+  }
+});
+
+test('runtime probes do not inherit credentials or loader options', () => {
+  const previous = new Map(['GITHUB_TOKEN', 'NODE_OPTIONS'].map((name) => [name, process.env[name]]));
+  process.env.GITHUB_TOKEN = 'synthetic-runtime-token';
+  process.env.NODE_OPTIONS = '--require=/nonexistent-bookshelf-runtime-module.cjs';
+  try {
+    const plan = createPlan({ testsOnly: true });
+    const nodeRuntime = plan.runtimes.find((runtime) => runtime.command === process.execPath);
+    assert.ok(nodeRuntime);
+    assert.equal(nodeRuntime.version, process.version);
+  } finally {
+    for (const [name, value] of previous) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+  }
+});
 
 test('the C# project glob includes nested test sources but not sibling trees', () => {
   const match = globRegex('src/NzbDrone.*.Test/**/*.cs');
