@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - "**"
     tags:
       - "main-*"
     paths-ignore:
@@ -31,8 +31,9 @@ env:
 
 jobs:
   build:
-    # Keep the complete build and test job on a GitHub-hosted Linux runner.
-    runs-on: ubuntu-latest
+    # Use the server-local runner for trusted branch pushes and manual main runs.
+    # Keep .NET builds off the desktop NFS workspace after its SIGBUS failure.
+    runs-on: ${{ ((github.event_name == 'push' && startsWith(github.ref, 'refs/heads/')) || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && fromJSON('["self-hosted","Linux","X64","host","kspls0"]') || fromJSON('["ubuntu-latest"]') }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
