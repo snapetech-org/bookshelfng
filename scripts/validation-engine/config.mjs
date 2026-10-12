@@ -1,0 +1,83 @@
+// Copyright (C) BookshelfNG contributors.
+export const validation = {
+  repository: 'bookshelfng',
+  inputs: [
+    'AGENTS.md',
+    '.github/workflows/build.yml',
+    'build.sh',
+    'test.sh',
+    'mise.toml',
+    'package.json',
+    'yarn.lock',
+    'src/Directory.Build.props',
+    'src/Directory.Packages.props',
+    'src/NuGet.config',
+    'scripts/validation-engine/config.mjs',
+    'scripts/validation-engine/engine.mjs',
+    'scripts/validation-engine/engine.test.mjs',
+    'docs/development/validation-engine.md',
+    'release-notes/README.md',
+    'release-notes/20261011-validation-engine.md',
+  ],
+  runtimes: [
+    {
+      command: process.execPath,
+      args: ['--version'],
+      versionPattern: '^v20\\.(?:11\\.1|19\\.4)$',
+      githubVersionPattern: '^v20\\.19\\.4$',
+    },
+  ],
+  inventory: [
+    {
+      id: 'csharp-unit-test-sources',
+      patterns: [
+        'src/NzbDrone.*.Test/**/*.cs',
+        'src/NzbDrone.Test.Common/**/*.cs',
+        'src/NzbDrone.Test.Dummy/**/*.cs',
+      ],
+      framework: 'nunit',
+      owner: 'dotnet-unit-tests',
+    },
+    {
+      id: 'validation-engine-contracts',
+      pattern: 'scripts/validation-engine/engine.test.mjs',
+      framework: 'node:test',
+      owner: 'engine-contract-tests',
+    },
+  ],
+  testAssemblies: [
+    'Readarr.Api.Test.dll',
+    'Readarr.Automation.Test.dll',
+    'Readarr.Common.Test.dll',
+    'Readarr.Core.Test.dll',
+    'Readarr.Host.Test.dll',
+    'Readarr.Integration.Test.dll',
+    'Readarr.Libraries.Test.dll',
+    'Readarr.Mono.Test.dll',
+    'Readarr.Update.Test.dll',
+    'Readarr.Windows.Test.dll',
+  ].map((name) => `_tests/net10.0/linux-x64/${name}`),
+  tasks: [
+    {
+      id: 'engine-contract-tests',
+      name: 'Validation engine contract tests',
+      kind: 'test',
+      command: [process.execPath, '--test', 'scripts/validation-engine/engine.test.mjs'],
+      inventory: ['validation-engine-contracts'],
+      timeoutSeconds: 180,
+    },
+    {
+      id: 'dotnet-unit-tests',
+      name: 'BookshelfNG Linux unit test selection',
+      kind: 'test',
+      command: ['bash', './test.sh', 'Linux', 'Unit', 'Test'],
+      env: {
+        TEST_DIR: './_tests/net10.0/linux-x64',
+        DIRECT_DOWNLOAD_REQUIRE_PLAYWRIGHT: 'true',
+      },
+      inventory: ['csharp-unit-test-sources'],
+      runtimes: [{ command: 'dotnet', args: ['--version'], versionPattern: '^10\\.0\\.401$' }],
+      timeoutSeconds: 5400,
+    },
+  ],
+};

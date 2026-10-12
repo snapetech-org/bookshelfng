@@ -15,6 +15,32 @@ both formats. Generated book sidecars follow their media files; author-wide
 metadata and extras remain under the default `Path`. Separate format profiles are tracked in the
 [parity roadmap](maintainers/bookshelfng-parity-roadmap.md).
 
+## Folder layout for Jellyfin Books libraries
+
+Jellyfin's Books library expects each book to be in its own folder. Grouping
+those book folders under an author is optional. For example:
+
+~~~text
+Books/
+└── Author/
+    └── Book Title/
+        └── Author - Book Title.epub
+~~~
+
+See [Jellyfin's Books library documentation](https://jellyfin.org/docs/general/server/media/books/)
+for its supported directory structure.
+
+BookshelfNG's **Rename Books** setting is off by default. When it is off,
+BookshelfNG keeps the imported file's existing name instead of applying the
+**Standard Book Format**. Enable **Rename Books** under **Settings > Media
+Management > Naming** and make sure **Standard Book Format** uses `{Book
+Title}` as a directory component. The default format already creates a
+book-title folder, followed by an author-and-title filename.
+
+For files already in the library, enable renaming and run **Rename Files** for
+the author. BookshelfNG will move tracked book files into the configured
+folder layout. Then rescan the Jellyfin library.
+
 ## Formats on one book
 
 Different ebook formats can coexist on the same book. An EPUB import does not
