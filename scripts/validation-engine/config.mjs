@@ -18,6 +18,7 @@ export const validation = {
     'docs/development/validation-engine.md',
     'release-notes/README.md',
     'release-notes/20261011-validation-engine.md',
+    'release-notes/20261012-validation-environment-isolation.md',
   ],
   runtimes: [
     {
