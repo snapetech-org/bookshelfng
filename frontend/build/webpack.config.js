@@ -223,6 +223,8 @@ module.exports = (env) => {
               options: {
                 importLoaders: 1,
                 modules: {
+                  namedExport: false,
+                  exportLocalsConvention: 'as-is',
                   localIdentName: isProduction
                     ? '[name]/[local]/[hash:base64:5]'
                     : '[name]/[local]',
