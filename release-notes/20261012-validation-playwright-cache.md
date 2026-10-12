@@ -1,8 +1,9 @@
 ---
-category: fixed
+category: security
 audience: operators
-area: testing
+area: validation
 action: none
 breaking: false
 ---
-Linux direct-download browser tests now use their installed Chromium cache inside the isolated validation task, so required browser cases run consistently without sharing the task's home directory.
+
+The isolated NUnit task now receives the run-specific Playwright browser cache it needs for Linux direct-download tests, without restoring access to the operator's home or unrelated environment variables.

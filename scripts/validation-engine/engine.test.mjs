@@ -45,21 +45,29 @@ test('task environments use an allowlist and run-owned user and temporary direct
   }
 });
 
-test('only the .NET unit task receives its explicit Playwright browser cache path', (t) => {
-  const root = mkdtempSync(path.join(os.tmpdir(), 'bookshelf-playwright-env-'));
+test('only the NUnit task receives its explicit Playwright cache path', (t) => {
+  const root = mkdtempSync(path.join(os.tmpdir(), 'bookshelf-validation-browser-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  const cache = '/toolchain/playwright-browsers';
   const env = isolatedChildEnvironment({
     id: 'dotnet-unit-tests',
     kind: 'test',
     passEnv: ['PLAYWRIGHT_BROWSERS_PATH'],
-  }, root, { PATH: '/toolchain/bin', PLAYWRIGHT_BROWSERS_PATH: cache });
-  assert.equal(env.PLAYWRIGHT_BROWSERS_PATH, cache);
+  }, root, {
+    PATH: '/toolchain/bin',
+    HOME: '/operator/home',
+    PLAYWRIGHT_BROWSERS_PATH: '/runner/temp/playwright-browsers',
+    GITHUB_TOKEN: 'synthetic-token',
+    NODE_OPTIONS: '--require=/operator/injected.cjs',
+  });
+  assert.equal(env.PLAYWRIGHT_BROWSERS_PATH, '/runner/temp/playwright-browsers');
   assert.equal(env.HOME, path.join(root, 'dotnet-unit-tests-environment', 'home'));
+  assert.equal(env.GITHUB_TOKEN, undefined);
+  assert.equal(env.NODE_OPTIONS, undefined);
   assert.throws(() => isolatedChildEnvironment({
     id: 'engine-contract-tests',
     passEnv: ['PLAYWRIGHT_BROWSERS_PATH'],
-  }, root, { PLAYWRIGHT_BROWSERS_PATH: cache }), /unapproved inherited environment variable/);
+  }, root, { PLAYWRIGHT_BROWSERS_PATH: '/runner/temp/playwright-browsers' }),
+  /unapproved inherited environment variable/);
 });
 
 test('runtime probes do not inherit credentials or loader options', () => {

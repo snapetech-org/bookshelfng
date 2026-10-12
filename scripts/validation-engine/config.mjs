@@ -73,11 +73,11 @@ export const validation = {
       name: 'BookshelfNG Linux unit test selection',
       kind: 'test',
       command: ['bash', './test.sh', 'Linux', 'Unit', 'Test'],
-      passEnv: ['PLAYWRIGHT_BROWSERS_PATH'],
       env: {
         TEST_DIR: './_tests/net10.0/linux-x64',
         DIRECT_DOWNLOAD_REQUIRE_PLAYWRIGHT: 'true',
       },
+      passEnv: ['PLAYWRIGHT_BROWSERS_PATH'],
       inventory: ['csharp-unit-test-sources'],
       runtimes: [{ command: 'dotnet', args: ['--version'], versionPattern: '^10\\.0\\.401$' }],
       timeoutSeconds: 5400,
