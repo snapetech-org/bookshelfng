@@ -6,6 +6,8 @@ permissions:
 on:
   workflow_dispatch:
   push:
+    branches:
+      - "**"
     tags:
       - "main-*"
     paths-ignore:
@@ -29,16 +31,21 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Trusted branch pushes, release tags and manual runs use the local runner; pull requests stay hosted.
+    runs-on: ${{ (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && fromJSON('["self-hosted","Linux","X64","host"]') || fromJSON('["ubuntu-latest"]') }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
+      - name: Use runner temp for local temporary files
+        if: runner.environment == 'self-hosted'
+        run: echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
       - name: Require main release tag
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
         shell: bash
         run: |
           set -euo pipefail
@@ -54,7 +61,7 @@ jobs:
           fi
 
       - name: Verify Unraid package is synced
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
         run: bash scripts/verify-package-sync.sh
 
       - name: Validate Discord webhook before publishing images
@@ -176,7 +183,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload container build output
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: bookshelfng-publish-output
@@ -186,7 +193,7 @@ jobs:
 
   publish-images:
     name: Publish container images
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -300,7 +307,7 @@ jobs:
 
   container-scan:
     name: Scan published container images
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
     needs: publish-images
     runs-on: ubuntu-latest
     permissions:
