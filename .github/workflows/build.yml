@@ -31,9 +31,8 @@ env:
 
 jobs:
   build:
-    # Only main pushes and manual runs on main use the local runner; PRs, tags,
-    # and manual runs targeting other refs stay on GitHub-hosted runners.
-    runs-on: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && fromJSON('["self-hosted","Linux","X64","host"]') || fromJSON('["ubuntu-latest"]') }}
+    # Keep the complete build and test job on a GitHub-hosted Linux runner.
+    runs-on: ubuntu-latest
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
