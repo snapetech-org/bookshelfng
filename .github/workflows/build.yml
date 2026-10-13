@@ -31,8 +31,8 @@ env:
 
 jobs:
   build:
-    # Use either local Linux runner for trusted main pushes and manual main runs.
-    runs-on: ${{ ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && fromJSON('["self-hosted","Linux","X64","host","linux-build","linux-amd64"]') || fromJSON('["ubuntu-latest"]') }}
+    # Pull-request builds stay hosted; local runners are reserved for main.
+    runs-on: ${{ ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && fromJSON('["self-hosted","Linux","X64","host"]') || fromJSON('["ubuntu-latest"]') }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
@@ -148,7 +148,14 @@ jobs:
         env:
           READARRVERSION: ${{ steps.variables.outputs.build_version }}
 
-      - name: Install Chromium for direct-download browser tests
+      - name: Install Chromium on self-hosted Linux
+        if: runner.os == 'Linux' && runner.environment == 'self-hosted'
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/playwright-browsers
+        run: pwsh ./_tests/net10.0/linux-x64/playwright.ps1 install chromium
+
+      - name: Install Chromium and system dependencies on GitHub-hosted Linux
+        if: runner.os == 'Linux' && runner.environment != 'self-hosted'
         env:
           PLAYWRIGHT_BROWSERS_PATH: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/playwright-browsers
         run: pwsh ./_tests/net10.0/linux-x64/playwright.ps1 install --with-deps chromium
