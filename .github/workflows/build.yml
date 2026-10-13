@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "**"
+      - main
     tags:
       - "main-*"
     paths-ignore:
@@ -31,15 +31,18 @@ env:
 
 jobs:
   build:
-    # Use the server-local runner for trusted branch pushes and manual main runs.
+    # Use the server-local runner for main pushes and manual main runs.
     # Keep .NET builds off the desktop NFS workspace after its SIGBUS failure.
-    runs-on: ${{ ((github.event_name == 'push' && startsWith(github.ref, 'refs/heads/')) || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && fromJSON('["self-hosted","Linux","X64","host","kspls0"]') || fromJSON('["ubuntu-latest"]') }}
+    runs-on: ${{ ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && fromJSON('["self-hosted","Linux","X64","host","kspls0"]') || fromJSON('["ubuntu-latest"]') }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+
+      - name: Test self-hosted runner trust boundary
+        run: python3 scripts/test_workflow_runner_policy.py
 
       - name: Test private runner temp setup
         if: runner.os == 'Linux'
