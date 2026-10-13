@@ -1,8 +1,11 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
 **Reviewed:** 2026-10-13. **Status:** the BookshelfNG-to-ChaptarrNG
-consolidation is in progress; BookshelfNG is not ready to retire. The candidate
-has no populated-library converter or release bridge. This is a feature-level
+consolidation is in progress; BookshelfNG is not ready to retire. The local
+ChaptarrNG integration candidate has an uncommitted staged importer for the
+exact migration-158 SQLite schema and passes a deterministic populated fixture.
+No converter or channel bridge has been released, and real user databases and
+the full settings/identity surface remain unverified. This is a feature-level
 matrix, not a claim that similarly named features are equivalent.
 
 **Confidence:** high for the listed BookshelfNG behavior at the pinned
@@ -65,7 +68,7 @@ is the commit/path audit that must be fully dispositioned.
 | Vendored TagLibSharp MPEG-4 `chpl` handling | Patch includes byte-preserving chapter-list writes | The local Chaptarr candidate vendors this fork and passes a synthetic version-1 `chpl` fixture that checks exact atom preservation during a title write. The vendor includes its LGPL-2.1 `COPYING` file; its strong-name key matches the key already committed with the BookshelfNG vendor source. | **Local port and focused regression pass; broader compatibility remains an open blocker.** Validate representative M4B files, tag edits, conversion outputs, and failure cases; review continued use of the vendor signing identity and upstream the supported implementation. |
 | Existing torrent adoption and safe seeding | Can adopt tracked torrent data without removing the seed | Native adoption/continuation work exists | **Open blocker.** Prove same-category, wrong-category, completed-download, and seeding-data preservation cases. |
 | Direct Download with ordered sources and browser-assisted links | Ebook search, API-key downloads, optional browser fallback, durable transfer state, and redirect validation | A built-in direct-download implementation exists | **Open blocker.** Preserve URL order, configuration aliases, staged-state recovery, architecture limits, and redirect/private-network protections. |
-| BookLore BookDrop uploads | Uploads imported books through BookLore's BookDrop API | Ported in the current ChaptarrNG candidate | **Open blocker.** Core tests pass; convert stored notification settings and verify a service-level upload and recovery path. |
+| BookLore BookDrop uploads | Uploads imported books through BookLore's BookDrop API | Optional external app integration ported in the current ChaptarrNG candidate; seven proxy tests and one live BookLore v2.4.0 upload-contract test pass, including exact-byte file placement in BookDrop | **Open blocker.** Convert stored notification settings and credentials; preserve streaming, redirects, supported-format and size handling; test rejected files, recovery, and partial batches. The live contract proves API upload and file placement, not BookLore processing of a valid production book. BookLore [identifies BookOrbit as its official successor and says it is entering maintenance mode](https://github.com/booklore-app/booklore/blob/develop/README.md); test the successor path or record a legacy-user transition. |
 | Calibre, MyAnonamouse, Audiobookshelf sidecars, and SeerrNG integration | These standalone service and metadata workflows are present | Some native integrations and the SeerrNG contract exist; the full set is not proven equivalent | **Open blocker.** Disposition each integration and preserve its settings, API behavior, and stored associations. |
 | Previewable media moves, bulk moves, and extra-file handling | Preview, collision checks, registered sidecars, and format-aware paths | Chaptarr has different folder and organization behavior | **Open blocker.** Prove equivalent previews, collision and cross-device behavior, and that unknown/external files remain untouched. |
 | Optional privacy-preserving diagnostics | Separate module, explicit opt-in, aggregate-only event schema | No equivalent optional module identified | **Open blocker.** Retain its install/opt-in and data-minimization contract or record a reviewed replacement with the same operator choice. |
@@ -79,12 +82,24 @@ is the commit/path audit that must be fully dispositioned.
 
 The [consolidation report](chaptarr-consolidation.md) records exact source and
 target revisions, current implementation findings, the data-conversion
-contract, release-channel matrix, test results, and open gates. After the
-latest row-accounting change, the integrated Linux Core suite passed 4,038
-tests with 0 failures and 3 browser skips (4,041 total) in 9m37s. The separate
-opt-in Chromium run passed 3/3 on the earlier candidate snapshot. The focused
-converter fixture passes 5/5 and the Release console build has zero warnings or
-errors.
+contract, release-channel matrix, test results, and open gates. The integrated
+Linux Core suite passed 4,047 tests with 0 failures and 3 skipped (4,050 total)
+in 9m44s on a candidate snapshot before the final edition cover/link fix; the
+current importer fixture then passed 5/5 with that fix. The separate opt-in
+Chromium run passed 3/3 on an earlier candidate snapshot. The focused converter
+coordinator fixture passes 5/5, and the populated importer/startup fixture
+passes 5/5, including profile mapping, notification/config/user rows,
+file-specific history, edition image/link metadata, narrator names, orphan-ID
+reservation, restart idempotence, and safe refusal cases. A self-contained
+Linux x64 artifact with the production UI and updater converted the populated
+synthetic fixture on the isolated agentic VM through normal startup, reached
+v119, served the root/JavaScript/CSS successfully, and restarted without
+duplicating records. The retained backup matched all 39 source table
+definitions and rows; the promoted database passed integrity and foreign-key
+checks. Seven
+BookLore proxy tests pass, and the explicit live BookLore v2.4.0
+upload-contract fixture passes 1/1.
+The Release console build has zero warnings or errors.
 Additional focused reruns on the current candidate passed 16 migration-safety
 cases, 29 metadata/ranking/series cases, 29 rename/path cases, and 6
 BookLore/TagLib cases, alongside the 5 converter-coordinator cases.
@@ -92,18 +107,21 @@ The synthetic TagLib chapter-preservation fixture passed; focused
 migration-lineage tests passed 2/2, and 29 rename/path-portability tests
 passed. Hosted Windows reported three path-sensitive fixture failures on the
 older PR head; the fixture paths are corrected locally and still need a fresh
-hosted run. Populated BookshelfNG conversion, full feature-by-feature semantic
-acceptance, populated-library SeerrNG request/identity/history probes, and a
-tested old-channel bridge remain open. The
-released BookshelfNG `.69` database samples inspected were empty; a separate
-synthetic populated fixture has only been tested for safe rejection before
-migration, not successful conversion.
+hosted run. Conversion of real user databases, older BookshelfNG schemas, full
+feature-by-feature semantic acceptance, populated-library SeerrNG
+request/identity/history probes, and a tested old-channel bridge remain open.
+The released BookshelfNG `.69` database samples inspected were empty; the
+local deterministic fixture now converts through the normal Chaptarr startup
+path and verifies a retained Bookshelf backup, but it does not replace testing
+representative production data.
 
 The BookshelfNG and ChaptarrNG databases have different schemas and identity
-models. Never point ChaptarrNG at a BookshelfNG database and assume startup will
-convert it. The current ChaptarrNG lineage guard rejects the inspected
-BookshelfNG databases before migration. A separate converter must preserve the
-source and produce a new native ChaptarrNG database.
+models. The local converter handles only the exact BookshelfNG migration-158
+SQLite schema; unsupported schemas and provider identities fail closed with
+the source intact. Do not assume older schemas or a production database will
+convert. The converter stages a native ChaptarrNG database, validates it,
+retains a Bookshelf backup, and promotes only after its row-accounting checks.
+This local candidate is not a released migration tool.
 
 Retirement also has a separate distribution gate. BookshelfNG's installed
 updater checks the Readarr-owned update service, so changing Snapetech release

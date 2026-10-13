@@ -71,12 +71,18 @@ migration status.
 ### ChaptarrNG consolidation status
 
 The planned retirement of BookshelfNG carries its enhanced features into
-ChaptarrNG. That transition is still in progress: no populated-library
-converter or BookshelfNG channel bridge has been released. Existing
-BookshelfNG installations still need their own backups and upgrade path. Do
-not mount a BookshelfNG `/config` directory as a ChaptarrNG configuration
+ChaptarrNG. That transition is still in progress: no converter or BookshelfNG
+channel bridge has been released. The local ChaptarrNG integration candidate
+now has a staged startup converter for the exact BookshelfNG migration-158
+SQLite schema and passes a deterministic populated-library fixture. A
+self-contained Linux release candidate also converted that fixture on the
+isolated agentic VM through normal startup, retained a row-for-row source
+backup, served the UI, and restarted without duplicating records. It is not
+yet proven against real user databases, older schemas, every provider or
+setting, or any published upgrade path. Keep a verified backup and do not
+mount a BookshelfNG `/config` directory as a ChaptarrNG configuration
 directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
-tracks feature, database, and distribution blockers.
+tracks the remaining feature, database, and distribution blockers.
 
 Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
 ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG
@@ -156,8 +162,9 @@ snapshot and individual gates. See the
   separate from authors, appear in book search and filtering, and can be
   written to audio files when audio tag writing is enabled. See
   [audiobook metadata](docs/audiobookshelf-metadata.md).
-- **Send imports to BookLore.** Add BookLore as a notification destination to
-  upload imported files to its BookDrop review queue. See the
+- **Send imports to BookLore.** BookLore is an optional supported app. Add it
+  as a notification destination to upload imported files to its BookDrop
+  review queue; BookshelfNG runs without BookLore. See the
   [BookLore integration guide](docs/booklore-integration.md).
 - **Connect a Calibre Content Server.** Configure a Calibre library as a root
   folder to add imported books to the library, sync metadata, and convert into
