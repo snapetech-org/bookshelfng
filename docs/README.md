@@ -7,7 +7,7 @@ metadata provider configuration.
 
 | Guide | Covers |
 | --- | --- |
-| [Fork changes, capabilities, and compatibility](capabilities-and-compatibility.md) | BookshelfNG feature inventory, supported formats, metadata providers, upstream comparison, and compatibility limits |
+| [Fork rationale, capabilities, and compatibility](capabilities-and-compatibility.md) | Why BookshelfNG is maintained, its standalone and SeerrNG features, upstream comparison, and replacement criteria |
 | [Import matching and formats](import-matching-and-formats.md) | Coexisting ebook and audiobook files, import thresholds, weighted edition terms, and preferred series |
 | [Catalog metadata and unmapped files](catalog-metadata-and-unmapped-files.md) | Combining metadata, covers, and author images across catalogs; retrying unmapped files with the UI, API, or CLI |
 | [Moving existing media](media-storage.md) | Per-author and bulk moves, preview behavior, API/CLI usage, permissions, and the legacy two-instance consolidation runbook |
