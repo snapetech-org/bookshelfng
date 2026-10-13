@@ -62,7 +62,7 @@ is the commit/path audit that must be fully dispositioned.
 | Cross-catalog recovery and import matching | Retry unmapped files across configured catalogs; ISBN/ASIN/provider-ID and normalized-name matching; configurable title threshold | Different resolver, FTS, and matching architecture | **Open blocker.** Port the observed cases and no-false-match/no-delete guarantees; do not transplant the old matching engine blindly. |
 | Weighted edition terms, preferred series, and narrator-aware matching | Profile terms and series preferences; narrator tags and edition evidence affect audiobook ranking | The consolidation branch adds profile-based weighted edition scoring and preferred-series selection for filenames, ebook tags, Calibre, and AudioBookShelf metadata; stronger match evidence remains authoritative | **Partial candidate port; retirement blocker remains open.** Preserve weights and series choices, neutral handling of missing data, tie behavior, and manual-review boundaries; test the full Bookshelf edge-case set after profile/database conversion. |
 | Audiobook M4B merge and chapter metadata | Opt-in multi-track merge with track ordering and chapter creation | Native conversion and multipart workflows exist | **Open blocker.** Verify opt-in policy, chapter offsets and source chapters, part order, tags, failure recovery, and source retention. |
-| Vendored TagLibSharp MPEG-4 `chpl` handling | Patch includes byte-preserving chapter-list writes | Chaptarr uses a different TagLibSharp package | **Open blocker.** Compare exact patch behavior and prove chapter preservation on representative files before selecting a native patch or dependency update. |
+| Vendored TagLibSharp MPEG-4 `chpl` handling | Patch includes byte-preserving chapter-list writes | The local Chaptarr candidate vendors this fork and passes a synthetic version-1 `chpl` fixture that checks exact atom preservation during a title write | **Local port and focused regression pass; broader compatibility remains an open blocker.** Validate representative M4B files, tag edits, conversion outputs, and failure cases; review licensing and upstream the supported implementation. |
 | Existing torrent adoption and safe seeding | Can adopt tracked torrent data without removing the seed | Native adoption/continuation work exists | **Open blocker.** Prove same-category, wrong-category, completed-download, and seeding-data preservation cases. |
 | Direct Download with ordered sources and browser-assisted links | Ebook search, API-key downloads, optional browser fallback, durable transfer state, and redirect validation | A built-in direct-download implementation exists | **Open blocker.** Preserve URL order, configuration aliases, staged-state recovery, architecture limits, and redirect/private-network protections. |
 | BookLore BookDrop uploads | Uploads imported books through BookLore's BookDrop API | Ported in the current ChaptarrNG candidate | **Open blocker.** Core tests pass; convert stored notification settings and verify a service-level upload and recovery path. |
@@ -80,10 +80,11 @@ is the commit/path audit that must be fully dispositioned.
 The [consolidation report](chaptarr-consolidation.md) records exact source and
 target revisions, current implementation findings, the data-conversion
 contract, release-channel matrix, test results, and open gates. The local
-integrated Linux Core suite passed 4,034 tests with 0 failures and 3 browser
-skips; the opt-in Chromium run passed those 3/3, so all 4,037 unique Core cases
-passed across the two runs. Focused migration-lineage tests passed 2/2, and 29
-rename/path-portability tests passed. Hosted Windows reported three
+integrated Linux Core suite passed 4,035 tests with 0 failures and 3 browser
+skips; the opt-in Chromium run on the current candidate passed those 3/3, so
+all 4,038 unique Core cases passed across the two runs. The synthetic TagLib
+chapter-preservation fixture passed; focused migration-lineage tests passed
+2/2, and 29 rename/path-portability tests passed. Hosted Windows reported three
 path-sensitive fixture failures; the fixture paths are corrected locally and
 still need a fresh hosted run. Populated BookshelfNG conversion, full
 feature-by-feature semantic acceptance, SeerrNG before/after probes, and a

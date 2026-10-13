@@ -5,8 +5,12 @@ Date: 2026-10-13. AI-assisted investigation and implementation by Codex.
 Confidence: high for cited source findings; moderate for the implementation plan;
 unknown for end-to-end migration until the matrix below passes.
 
-The pins below identify the exact source and candidate revisions used for the
-current comparison and Linux proof. They describe a tested candidate, not a
+The pins below identify the exact source and remote candidate revisions used
+for the generated comparison and Linux proof. The local ChaptarrNG worktree
+based on `683924d` has additional uncommitted integration changes, including
+the TagLibSharp port and its regression fixture; those changes are documented
+below but are not represented in the generated inventory until a new candidate
+revision is pinned. These revisions describe a tested candidate, not a
 released converter or a retirement-ready transition.
 
 ## Pinned evidence and preservation
@@ -23,11 +27,12 @@ released converter or a retirement-ready transition.
   security, and release-note checks, but its hosted Windows Core run failed
   three path-sensitive rename tests. The local integration worktree, based on
   `683924d` plus uncommitted changes, uses OS-rooted paths and normalized
-  filesystem/event expectations. Its full Core suite passed 4,034 tests and
-  skipped the 3 explicit browser cases; the opt-in Chromium run passed those
-  3/3 separately, so all 4,037 unique Core cases passed across the two runs.
-  The 29 rename and path-portability tests also pass locally. A fresh hosted
-  Windows run is still required; PR #73 remains a draft.
+  filesystem/event expectations. Its full Core suite passed 4,035 tests with
+  3 explicit browser cases skipped; the opt-in Chromium run passed those 3/3
+  on the current candidate, so all 4,038 unique Core cases passed across the
+  two runs. The new MPEG-4 chapter-preservation fixture also passes, as do the
+  29 rename and path-portability tests. A fresh hosted Windows run is still
+  required; PR #73 remains a draft.
 - ChaptarrNG feature snapshot: `24b340fffc43eb0883995a21665d3d051eb66abe`,
   317 commits ahead and 1 behind `origin/main` at
   `02d38e1`, with 703 changed paths. Main now includes merged CI PR #69. The
@@ -289,7 +294,7 @@ individual blocker. Those active capabilities count before merge or release.
 | Multiple ebook/audio formats; per-format folders and profile overrides | Native media-specific models, roots, and profiles exist | **Open blocker — conversion and isolation unproven** | Convert all rows and references; verify fallback rules, sibling-format isolation, monitoring, imports, upgrades, scans, and renames. |
 | Weighted edition terms, preferred series, narrator evidence, and publisher/dramatized cases | The consolidation branch adds profile-based weighted edition scoring and preferred-series selection for filenames, ebook tags, Calibre, and AudioBookShelf metadata; Chaptarr's stronger match evidence stays ahead of the preference signal | **Partial candidate port; retirement blocker remains open** | Preserve weights, series choices, missing-evidence neutrality, tie behavior, and manual-review boundaries; verify the full Bookshelf edge-case set after profile/database conversion. |
 | Optional M4B merge, chapters, part order, and completion state | Native conversion and multipart handling exist | **Open blocker — media parity unproven** | Map opt-in policy; test chapter offsets and preservation, ordering, metadata, source retention, and failure recovery. |
-| Vendored TagLibSharp patch (253 changed source paths; byte-preserving MPEG-4 `chpl` handling) | Chaptarr uses the `TagLibSharp-Lidarr` package | **Open blocker — patch behavior unreviewed** | Compare the exact fork patch and package version; prove chapter preservation on representative M4B files before selecting a native patch or dependency update. |
+| Vendored TagLibSharp patch (253 changed source paths; byte-preserving MPEG-4 `chpl` handling) | The local candidate vendors the BookshelfNG TagLibSharp fork as a project and passes a synthetic version-1 `chpl` fixture that verifies exact atom preservation while writing a title | **Local port and focused regression pass; broader compatibility remains an open blocker** | Prove behavior on representative existing M4B files and across tag edits, conversion outputs, and failure cases; review licensing and upstream the supported implementation. |
 | Existing-torrent adoption and seeding preservation | Native continuation/adoption work exists | **Open blocker — edge cases unproven** | Test same-category and wrong-category cases, seeding-data preservation, and completed-download import. |
 | Direct Download and browser-assisted grab | Native direct-download implementation and fixtures exist | **Open blocker — settings and recovery parity unproven** | Map settings and durable transfer state; test ordered URLs, interrupted recovery, architecture limits, and redirect/private-network safety. |
 | BookLore BookDrop connection | Ported in PR #73; proxy, settings, streaming, and schema-lineage fixtures are present | **Open blocker — stored configuration and service probe pending** | The full Linux Core suite passes on the candidate; convert stored Bookshelf notification settings and verify an upload and recovery path against a disposable service. |
@@ -406,7 +411,7 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | Area | Current evidence | Remaining blocker |
 | --- | --- | --- |
 | BookshelfNG source inventory | Source `48e0eca` compared with the PR #73 candidate `6fa426c`: 409 reachable commits, 400 absent from upstream history, and 1,037 changed paths. The generated inventory categorizes every path. | Path classification is not feature equivalence; review and disposition every path. |
-| ChaptarrNG Bookshelf feature port | PR #73 at `6fa426c` has successful hosted Linux/macOS/PostgreSQL/security checks and a failed hosted Windows Core run with three path-sensitive rename tests. The local integration worktree based on `683924d` passed 4,034 Core tests with 3 browser skips; a separate opt-in Chromium run passed all 3, so all 4,037 unique Core cases passed across those runs. The 29 rename/path-portability cases pass locally. | Run hosted Windows again on the corrected integration tree; keep PR #73 a draft until that and review pass. No full semantic parity or populated-data conversion is proven. |
+| ChaptarrNG Bookshelf feature port | PR #73 at `6fa426c` has successful hosted Linux/macOS/PostgreSQL/security checks and a failed hosted Windows Core run with three path-sensitive rename tests. The local integration worktree based on `683924d` passed 4,035 Core tests with 3 browser skips; the opt-in Chromium run passed those 3, so all 4,038 unique Core cases passed across those runs. The TagLib chapter-preservation fixture and 29 rename/path-portability cases also pass locally. | Run hosted Windows again on the corrected integration tree; keep PR #73 a draft until that and review pass. No full semantic parity, representative M4B matrix, or populated-data conversion is proven. |
 | ChaptarrNG maintained and active features | The separate `codex/upstream-backlog-20261012` snapshot at `24b340f` is 317 commits ahead and 1 behind `origin/main` at `02d38e1`, across 703 paths. PR #69 has since merged into main. The local integration Core and opt-in browser results are listed above; migration-lineage reconciliation passed 2/2. | Every released and unreleased capability remains an individual ChaptarrNG-to-upstream blocker; see the itemized table linked above. |
 | Bookshelf database compatibility | A populated synthetic Bookshelf database was selected by the shared resolver, rejected by the actual Chaptarr runtime before numbered migrations, and left byte-for-byte unchanged. The SQLite staging coordinator passes synthetic promotion and import-failure rollback unit tests. | The row importer, startup conversion wiring, configuration/identity/reference mapping, PostgreSQL path, and populated conversion proof are not implemented. |
 | Candidate runtime and SeerrNG | The current Release output served `/ping` and the frontend in the pinned ASP.NET 10 runtime. A fresh SQLite database reached migration v119 with 79 tables, `integrity_check=ok`, and no foreign-key violations. SeerrNG PR #203 passed full hosted validation on code head `6ac0be1`; documentation head `861c0b0` passed 25 checks with 6 skipped. Its further wording update at `dc6fe6e` is awaiting exact-head checks. | No latest-candidate populated-library request, identity, history, or availability probe has run. The VM smoke did not build the complete production image. |
