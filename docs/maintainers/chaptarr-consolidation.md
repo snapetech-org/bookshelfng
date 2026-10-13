@@ -5,18 +5,22 @@ Date: 2026-10-13. AI-assisted investigation and implementation by Codex.
 Confidence: high for cited source findings; moderate for the implementation plan;
 unknown for end-to-end migration until the matrix below passes.
 
-The generated comparison uses the latest committed BookshelfNG source tree
-and the committed base of the local ChaptarrNG integration worktree. The
-ChaptarrNG worktree also has uncommitted changes; those are not represented in
-the generated inventory. The remote PR #73 head is a separate, older tree.
-These pins describe audited source trees, not a released converter or a
+The generated source comparison is pinned to BookshelfNG code at
+`9b0847973610f166523e155d3977049566d40745` and the committed base of the local
+ChaptarrNG integration worktree. BookshelfNG has since added documentation-only
+commits through `d14acd9`; those do not change the code inventory. The
+ChaptarrNG worktree also has uncommitted changes, which are not represented in
+the generated inventory. Remote PR #73 remains a separate, older tree. These
+pins describe audited source trees, not a released converter or a
 retirement-ready transition.
 
 ## Pinned evidence and preservation
 
-- BookshelfNG source: `9b0847973610f166523e155d3977049566d40745`, branch
-  `codex/bookshelf-chaptarr-consolidation-20261012`; 30 commits ahead and zero
-  behind `origin/main` at `ace06bc2766d26c8c5951563dd22679a486870bb`.
+- BookshelfNG code inventory: `9b0847973610f166523e155d3977049566d40745`,
+  which was 30 commits ahead and zero behind `origin/main` at
+  `ace06bc2766d26c8c5951563dd22679a486870bb`. The current documentation branch
+  head is `d14acd930dde0d9308ee6dfc4084a3a052cd1b0b` (32 commits ahead); the two
+  commits after the inventory pin only refreshed evidence and documentation.
 - ChaptarrNG integration base: `683924daadf3201a467913c2ac4207eda6e61ea8`,
   branch `codex/bookshelf-consolidation-integrated-20261014`; 318 commits
   ahead and 3 behind current `origin/main` at `660cc0341934513a411bd40d42c781f1313c08be`.
@@ -30,9 +34,13 @@ retirement-ready transition.
   Windows Core run fails three rename/path cases. The earlier local full Core
   baseline passed 4,035 cases with 3 browser cases skipped, and the opt-in
   Chromium run passed those 3; 29 rename/path portability cases and the M4B
-  chapter fixture also passed. The current Bookshelf PR #112 build, release-note,
-  package-sync, dependency-review, and all CodeQL checks pass; release publisher
-  jobs are skipped for this PR.
+  chapter fixture also passed. Bookshelf PR #112 at its earlier `9b08479` head
+  passed its required checks, with release publisher jobs skipped. After the
+  documentation refresh to head `d14acd9`, Dependency review and NuGet
+  submission passed; build, release-note, package-sync, and four CodeQL checks
+  were queued at the time of this report update. Those results apply only to
+  that exact head.
+
   After the latest row-accounting change, the focused converter fixture passes
   5/5 and the Release console build has zero warnings or errors. The complete
   Core suite then passed on the current candidate: 4,038 passed, 0 failed, and
@@ -435,6 +443,6 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | Candidate runtime and SeerrNG | The native Release artifact was produced with `dotnet publish` and the workflow's `_output/UI` copy. On the isolated `agent-gui` VM it migrated a fresh database through v119, returned `OK` from `/ping`, served `/` and a JavaScript asset with HTTP 200, and listened only on `127.0.0.1`. The database had 79 tables, `integrity_check=ok`, and no foreign-key violations. SeerrNG PR #203 at `dc6fe6e` is merged into its `main` at `97aa148`; its full hosted checks passed, with image/deployment jobs skipped for the PR. | No latest-candidate populated-library request, identity, history, or availability probe has run. The VM smoke did not build the complete production container image. |
 | Frontend build and static checks | `yarn typecheck` and the production webpack bundle pass; targeted ESLint reports no errors in changed JavaScript files. The bundle emitted 18 CSS-order warnings. Whole-tree ESLint reports 862 errors and 17 warnings across the inherited frontend tree. | Keep the inherited lint debt visible; resolve any candidate-caused lint error before merge. |
 | Cross-project secrets | All three repositories ignore `.env`; BookshelfNG and SeerrNG have local ignored, untracked `.env` files, while this ChaptarrNG worktree has no `.env` file. No `.env` or `.lic` file is tracked. BookshelfNG's Docker ignore excludes `.env`/`.env.*`, the SixLabors license, and signing files while retaining `.env.example`; a disposable Docker build-context check confirmed `.env.example` stayed in the context and `.env` did not. The license file remains outside repository trees. | Keep Git and Docker-context checks in release validation; no secret may enter a commit, build log, or published artifact. |
-| Hosted PR checks | BookshelfNG PR #112 is at `9b08479`; all required checks pass, with publisher jobs skipped for the PR. ChaptarrNG PR #73 at `6fa426c` remains a draft and fails the hosted Windows job with three path-sensitive rename cases; #72 and #74 pass their current checks; #75 merged on October 13. SeerrNG PR #203 at `dc6fe6e` merged as `97aa148` after its final hosted checks passed; image/deployment jobs were skipped. | Rerun hosted Windows on the corrected Chaptarr integration tree. PR #74's YunoHost removal does not supply a tested BookshelfNG compatibility bridge. |
+| Hosted PR checks | BookshelfNG PR #112's earlier `9b08479` head passed its required checks, with publisher jobs skipped. On its documentation-only `d14acd9` head, Dependency review and NuGet submission passed while build, release-note, package-sync, and four CodeQL checks were queued at this report snapshot. ChaptarrNG PR #73 at `6fa426c` remains a draft and fails the hosted Windows job with three path-sensitive rename cases; #72 and #74 pass their current checks; #75 merged on October 13. SeerrNG PR #203 at `dc6fe6e` merged as `97aa148` after its final hosted checks passed; image/deployment jobs were skipped. | Rerun hosted Windows on the corrected Chaptarr integration tree; complete the exact-head BookshelfNG #112 run before merging its documentation refresh. PR #74's YunoHost removal does not supply a tested BookshelfNG compatibility bridge. |
 | Distribution and migration | The channel-by-channel bridge plan covers registries, Unraid, apt/PPA, RPM/COPR, AUR, Chocolatey, Windows, archives, AppImage, Flatpak, Helm, YunoHost, and catalog packages. | No legacy image/package bridge or converter is published or tested. Pinned, offline, manual, and updater-disabled installs cannot be silently redirected; the Readarr-owned updater endpoint is outside Snapetech control. |
 | Release decisions | The BookshelfNG enhanced feature set blocks BookshelfNG retirement as a whole and row by row. The later ChaptarrNG gate includes that retained set plus every ChaptarrNG maintained and actively developed capability, including unpublished work; each channel is a separate blocker too. | Current evidence does not support a main merge that claims parity, BookshelfNG retirement, or release redirection. |
