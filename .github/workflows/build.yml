@@ -31,59 +31,34 @@ env:
 
 jobs:
   build:
-    # Only main pushes and manual runs on main use the local runner; PRs, tags,
-    # and manual runs targeting other refs stay on GitHub-hosted runners.
-    runs-on: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && fromJSON('["self-hosted","Linux","X64","host"]') || fromJSON('["ubuntu-latest"]') }}
+    # Keep the complete build and test job on a GitHub-hosted Linux runner.
+    runs-on: ubuntu-latest
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
-      - name: Configure private runner temp and mise directories
-        if: runner.environment == 'self-hosted'
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
-            printf 'RUNNER_TEMP must be an absolute, readable, writable directory without line breaks\n' >&2
-            exit 1
-          fi
-
-          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
-          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
-            printf 'RUNNER_TEMP must not resolve to a path containing line breaks\n' >&2
-            exit 1
-          fi
-          case "$runner_temp_resolved" in
-            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*|/dev/shm|/dev/shm/*)
-              printf 'RUNNER_TEMP must not resolve to a shared or root temporary directory\n' >&2
-              exit 1
-              ;;
-          esac
-
-          if [[ ! -O "$runner_temp_resolved" ]]; then
-            printf 'RUNNER_TEMP must be owned by the workflow runner user\n' >&2
-            exit 1
-          fi
-          runner_temp_mode="$(stat -c '%a' -- "$runner_temp_resolved")"
-          if [[ ! "$runner_temp_mode" =~ ^[0-7]{3,4}$ ]]; then
-            printf 'Could not determine RUNNER_TEMP directory permissions\n' >&2
-            exit 1
-          fi
-          runner_temp_permissions=$((8#$runner_temp_mode))
-          if (( runner_temp_permissions & 0022 )); then
-            printf 'RUNNER_TEMP must not be writable by group or other users\n' >&2
-            exit 1
-          fi
-
-          : "${GITHUB_ENV:?GITHUB_ENV is required}"
-          umask 077
-          job_temp="$(mktemp -d -- "$runner_temp_resolved/bookshelfng-job.XXXXXX")"
-          mkdir -m 700 -- "$job_temp/mise-data" "$job_temp/mise-cache" "$job_temp/mise-tmp"
-          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\nMISE_DATA_DIR=%s/mise-data\nMISE_CACHE_DIR=%s/mise-cache\nMISE_TMP_DIR=%s/mise-tmp\n' \
-            "$job_temp" "$job_temp" "$job_temp" "$job_temp" "$job_temp" "$job_temp" >> "$GITHUB_ENV"
-
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+
+      - name: Test private runner temp setup
+        if: runner.os == 'Linux'
+        run: ./scripts/test-private-runner-temp.sh
+
+      - name: Configure private runner temporary storage
+        id: private-runner-temp
+        if: runner.os == 'Linux'
+        env:
+          PRIVATE_RUNNER_TEMP_PREFIX: bookshelf
+        run: ./scripts/prepare-private-runner-temp.sh
+
+      - name: Configure private mise directories
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -m 700 -- "$PRIVATE_RUNNER_TEMP/mise-data" "$PRIVATE_RUNNER_TEMP/mise-cache" "$PRIVATE_RUNNER_TEMP/mise-tmp"
+          printf 'MISE_DATA_DIR=%s/mise-data\nMISE_CACHE_DIR=%s/mise-cache\nMISE_TMP_DIR=%s/mise-tmp\n' \
+            "$PRIVATE_RUNNER_TEMP" "$PRIVATE_RUNNER_TEMP" "$PRIVATE_RUNNER_TEMP" >> "$GITHUB_ENV"
 
       - name: Require main release tag
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
@@ -172,7 +147,7 @@ jobs:
 
       - name: Install Chromium for direct-download browser tests
         env:
-          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
+          PLAYWRIGHT_BROWSERS_PATH: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/playwright-browsers
         run: pwsh ./_tests/net10.0/linux-x64/playwright.ps1 install --with-deps chromium
 
       - name: Prepare tests
@@ -187,13 +162,13 @@ jobs:
         shell: bash
         env:
           DIRECT_DOWNLOAD_REQUIRE_PLAYWRIGHT: "true"
-          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
+          PLAYWRIGHT_BROWSERS_PATH: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/playwright-browsers
           VALIDATION_NODE_ID: bookshelf-linux-x64-unit
-          VALIDATION_RECEIPT_EXPORT: ${{ runner.temp }}/bookshelf-validation/receipt.json
-          VALIDATION_NUNIT_EXPORT: ${{ runner.temp }}/bookshelf-validation/TestResult.xml
+          VALIDATION_RECEIPT_EXPORT: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/bookshelf-validation/receipt.json
+          VALIDATION_NUNIT_EXPORT: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/bookshelf-validation/TestResult.xml
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/bookshelf-validation"
+          mkdir -p "${{ steps.private-runner-temp.outputs.path || runner.temp }}/bookshelf-validation"
           echo "started=true" >> "$GITHUB_OUTPUT"
           set +e
           node scripts/validation-engine/engine.mjs --tests-only
@@ -219,12 +194,12 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: bookshelf-validation-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/bookshelf-validation/receipt.json
+          path: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/bookshelf-validation/receipt.json
           retention-days: 7
           if-no-files-found: error
 
       - name: Upload container build output
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-'))
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: bookshelfng-publish-output
