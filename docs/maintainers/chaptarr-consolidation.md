@@ -5,31 +5,27 @@ Date: 2026-10-12. AI-assisted investigation and implementation by Codex.
 Confidence: high for cited source findings; moderate for the implementation plan;
 unknown for end-to-end migration until the matrix below passes.
 
-The commit pins and test results below are a dated evidence snapshot from
-2026-10-12. They do not claim that those revisions are still the current
-branches; refresh the pins and rerun the applicable checks before acting on the
-report.
+The pins below identify the exact source and candidate revisions used for the
+current comparison and Linux proof. They describe a tested candidate, not a
+released converter or a retirement-ready transition.
 
 ## Pinned evidence and preservation
 
-- BookshelfNG comparison source: `8476774e58e5eb9faaf63e797bc438956c0dc0c0`,
-  branch `codex/bookshelf-chaptarr-consolidation-20261012`. This includes the
-  dependency-maintenance work and the merge of current BookshelfNG `origin/main`
-  at `c544972b28dba48593e8fb7394780bf3f225c131`. The checkout also has the
-  untracked audit scripts and this report; those are not part of the pinned
-  source inventory yet.
-- ChaptarrNG comparison base: `dc53d0a9120f97bfff636b867aa4f64ed339a1ba`,
-  branch `codex/bookshelf-consolidation-final-20261012` in the
-  pinned candidate checkout. This merges ChaptarrNG main at
-  `39a20c68a8962fbaca6843f1cd5fb2faaaccd8be`; the current task branch has
-  changes across 15 tracked files (5 source files, 8 tests, and 2 docs/readmes)
-  under review, which are not represented by that commit pin.
-- SeerrNG: `4706b2429f7bb3d7d82df2b67c2cd0308c85352c`, branch
-  `codex/library-stale-availability-20261012`, four commits ahead of its PR
-  head `67d9bdb98`; `origin/main` is `bb2de2116829de54da101bc3b6ecfca647b53d01`.
-  The checkout contains additional dirty validation-engine, lockfile and
-  `CachedImage` changes plus two new launcher files. Its focused working-tree
-  tooling suite passed 77/77; an isolated security suite passed 10/10.
+- BookshelfNG source: `f3183f8f0d2a2b09811243ab6d0a85932cff5f1a`, branch
+  `codex/bookshelf-chaptarr-consolidation-20261012`. It includes the current
+  BookshelfNG `origin/main` merge at `5cdb0a95b02040ede4ea74e5ce8b5645ade19d90`.
+  The report and audit tools are committed at this source pin; this report's
+  evidence refresh is a follow-up documentation commit.
+- ChaptarrNG product candidate: `4582c13317d0d0c4574e2f968a3e78f9baa96821`,
+  branch `codex/bookshelf-consolidation-final-20261012`. It includes the merge
+  of ChaptarrNG `origin/main` at `a6be38dd5551b513b22e2efd4504a5ee3e73895b`
+  and the task commit with six product files, eight Core test fixtures, and two
+  docs/readmes. A later docs-only count refresh is committed at `af3be47`.
+  The executable and tests below were built from this product candidate.
+- SeerrNG: `22a73b78cc30facab29259ee6462a0cf7a6215b6`, branch
+  `codex/library-stale-availability-20261012`, open PR [#203](https://github.com/snapetech/seerrng/pull/203);
+  `origin/main` is `0701b65d972822952bf2c360ed96d1d20cdd7042`. Its hosted
+  validation is pending. Focused post-merge Node tests passed 38/38.
 - Unraid companion: `bookshelfng-unraid` is clean on `main` at `d96e097`; its
   template still uses `ghcr.io/snapetech/bookshelfng:latest`, which is the
   compatibility identity a bridge image would need to retain.
@@ -40,21 +36,23 @@ report.
 - The generated [inventory](chaptarr-consolidation-inventory.json) records
   every reachable commit after the parent of the first fork commit
   `bde894431`, and every net-changed path. It includes upstream merges and
-  maintenance. At the pinned revisions it contains 376 commits (367 absent
-  from Bookshelf's upstream history) and 1,024 net-changed paths: 334 different
-  mapped files, 672 paths without a mapped target, 12 identical files, four
+  maintenance. At the pinned revisions it contains 386 commits (377 absent
+  from Bookshelf's upstream history) and 1,034 net-changed paths: 335 different
+  mapped files, 679 paths without a mapped target, 14 identical files, four
   text-equivalent files after branding/newline normalization, and two deleted
   source paths. These are path-level review states, not feature-parity counts.
-- Hindsight pages still return `Generating content...` placeholders. No
-  architectural claims here are derived from those placeholders.
+- The consolidation initiative memory page was updated with the cumulative
+  retirement rule. Relevant architecture and feature pages still returned
+  `Generating content...`; no repository or migration claims here are derived
+  from those placeholders.
 
 Regenerate the tracked-source inventory with:
 
 ```sh
 python3 scripts/audit-chaptarr-consolidation.py \
   --chaptarr /path/to/chaptarrng-candidate \
-  --source 8476774e58e5eb9faaf63e797bc438956c0dc0c0 \
-  --target dc53d0a9120f97bfff636b867aa4f64ed339a1ba \
+  --source f3183f8f0d2a2b09811243ab6d0a85932cff5f1a \
+  --target 4582c13317d0d0c4574e2f968a3e78f9baa96821 \
   --output docs/maintainers/chaptarr-consolidation-inventory.json
 ```
 
@@ -202,7 +200,7 @@ can itself be retired. The combined matrix is maintained in the ChaptarrNG
 | Encrypted backups and format-scoped profiles | Target encrypted backup support and native profile models exist | **Open blocker — old-data recovery unproven** | Test Bookshelf archive restore where supported, secret aliases, profile conversion, and rollback; never log credentials. |
 | .NET 10, platform builds, ImageSharp removal, and security/dependency fixes | .NET 10 is present; target has different dependencies and still uses licensed ImageSharp | **Open blocker — patch-by-patch review pending** | Review each security and dependency change; retain compatible fixes and prove supported OS/architecture builds. |
 | Release notes, announcements, package sync, and validation workflow | ChaptarrNG has separate release and validation workflows | **Open blocker — legacy identities not bridged** | Preserve old package/container IDs through tested compatibility artifacts; complete required per-repository validation without duplicate publication. |
-| Every remaining fork change in the pinned source inventory | 376 reachable post-fork commits and 1,024 net-changed paths are recorded | **Open blocker — exhaustive disposition pending** | Mark every path retained, ported, proven equivalent, or explicitly retired after impact review. |
+| Every remaining fork change in the pinned source inventory | 386 reachable post-fork commits and 1,034 net-changed paths are recorded | **Open blocker — exhaustive disposition pending** | Mark every path retained, ported, proven equivalent, or explicitly retired after impact review. |
 
 The commit/path inventory remains the exhaustive review ledger. Every
 behavioral change must be retained, ported, or proven equivalent; packaging
@@ -311,14 +309,15 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | Complete reachable fork commit and net path enumeration | Generated; semantic review still pending |
 | Existing database/app/API source compatibility | Investigated; incompatible schema and upstream-owned updater confirmed |
 | Published BookshelfNG source fixtures | Released `main-v0.4.21.69` Linux x64 archive SHA-256 `6ff5613524c34719820b2c1805079c5c08c1fe785a678b2a2dda0a1401a280c6`; the real binary started in Hardcover and Softcover modes and created integrity-checked empty databases. Their SHA-256 values are Hardcover `1b170993945f096457c0610014e638ebe5b2f9e4757748f1aeeb09a445663610` and Softcover `22b7d8e581b439302b47a9d9d9ce447877239a5efe97f8c7e353f20716c37418`. Both have 46 migration rows, ending at 158 with 34 absent. The generator's `--populate-bookshelf` run added linked synthetic rows; SQLite integrity and foreign-key checks passed, and the released API returned the seeded author plus book. |
-| ChaptarrNG candidate startup | A self-contained Linux x64 publish of the current `dc53d0a` task tree and all 15 tracked working-tree changes succeeded with .NET SDK 10.0.112. The candidate reported version `0.9.969.0-Release-chaptarr-dev-chaptarr`, binary SHA-256 `dfdaae95b9cbd6a4cfe44cfe042f7e6ef87ca60402be00fa8376dc1d9fea1194`, and was used for the populated lineage probe below. |
-| ChaptarrNG lineage guard | The pinned candidate rejected a populated synthetic `.69` database before the migration runner. Its hash was unchanged (`093d842908b2ceb21521f92da54eb91e9af7c386797be4fa8426b953683481db` before and after); the log contained the lineage error and no main migration start. This proves fail-closed behavior on linked records only; no converter exists. |
-| ChaptarrNG test state | The pinned product and test changes compiled with .NET SDK 10.0.112; the complete `Chaptarr.Core.Test` suite passed **3,953, failed 0, skipped 3** (3,956 total, 9m40s). The 28 targeted matcher cases also passed. |
-| `.env` and license handling | The root `.gitignore` excludes `.env`; no `.env` file is tracked, and the safe Coop Cloud `.env.sample` remains tracked. SeerrNG's example environment file remains tracked while local environment files are ignored. The required SixLabors community license remains operator-managed outside the repository. |
-| Build prerequisite | The build received the required community license through a secure input path; no `.lic` file was stored in the repository or task scratch. The pinned .NET 10.0.112 SDK lacks ASP.NET Core prune metadata, so the full Core build/test used the SDK-provided `AllowMissingPrunePackageData=true` restore override and passed. Desktop attempts terminated with `SIGBUS` and are not counted as a successful build. |
-| Install smoke test | The candidate ran in an isolated disposable VM through a reverse SSH tunnel and served the first-boot authentication setup page; no credentials were entered. This was UI/startup proof only, not a bridge install or migration. |
-| Validation engine | The latest Chaptarr main validation-engine changes are merged at `dc53d0a`; its Node contract suite passed 21/21 on Node 24.21.0. SeerrNG declares Node `^24.15.0`; these checks used Node 24.21.0. The full tests-only lane results were Vitest 498/498; Native TypeScript 3,187 passed, 5 skipped, 0 failed (including the `CertificationSelector.tsx` TS7031 fix); and Node JavaScript 482/482. Platform tooling passed 916 with 5 skipped and 0 failures in a clean Git worktree carrying the candidate changes. Its combined run first hit the Linux AF_UNIX path-length limit because the task scratch prefix was too long; rerunning that lane with a short task-scoped `TMPDIR` passed. A sandboxed tooling attempt lacked `pnpm`, Git tags and the expected temp-mount layout; a direct run in the shared checkout encountered an ignored Cypress runtime symlink, which was preserved. The clean worktree avoided those unrelated inputs. These local tests-only lanes do not complete the full CodeQL/build/browser and hosted GitHub gate. |
+| ChaptarrNG product build | The product candidate at `4582c13` published on `kspls0` with the workflow-pinned .NET SDK 10.0.401. The Linux x64 apphost SHA-256 is `dfdaae95b9cbd6a4cfe44cfe042f7e6ef87ca60402be00fa8376dc1d9fea1194`; the rebuilt `Chaptarr.dll` is `bc47fa2a4586569825839367fe3af4aaab7b1ea4377905ed55ab81fc93d550d9`, and `Chaptarr.Core.dll` is `68b891404a16247140de7cb1e1a3d098d5b3efb3b5cf0e3fdc8c684f2db1ac8e`. The disposable copy omitted `.git`, producing expected SourceLink warnings. |
+| ChaptarrNG empty startup | The final candidate started with a fresh, explicit task-scoped data path, created `chaptarr.db`, and ran native migrations through version 114 (version 103 is absent). The fixture reported app version `0.9.969.0` and passed its SQLite schema and integrity checks. This is an empty-library startup proof, not a BookshelfNG conversion. |
+| ChaptarrNG lineage guard | The candidate rejected the populated synthetic BookshelfNG `.69` database before the main migration runner. The source DB SHA-256 was unchanged (`5fab03dfae22f3ac36bdde92d8f784d0864fbc1f4a54016453b36ccb3415076a` before and after); the expected lineage error was present and `migrationRunnerStarted` was false. The probe terminated the candidate after observing the error (exit `-15`). This proves fail-closed behavior on linked records only; no converter exists. |
+| ChaptarrNG Core tests | The first full run exposed an `ObjectDisposedException` race when cancellation overlapped worker cleanup. `ConversionJobService.Cancel` now signals the active token while holding the same lock used to remove the job. The isolated regression passed, and the final full Linux run passed **3,956, failed 0, skipped 0** in 9m57s; its TRX result was retained in task scratch. |
+| `.env` and license handling | BookshelfNG's root `.gitignore` excludes `.env`; no `.env` file is tracked, and the safe Coop Cloud `.env.sample` remains tracked. SeerrNG's example environment file remains tracked while local environment files are ignored. The SixLabors community license remained at `~/Downloads/sixlabors.lic`, mode `0600`, and was streamed to the build over SSH stdin; no license file or content was copied into a repository or task scratch. |
+| Accidental default-path launch and cleanup | An initial smoke command used unsupported `--version`, which started the app at its default `~/.config/Chaptarr` path. The process was stopped; directory birth and file timestamps showed that the entire 1.8 MB directory was created during that run, and no process referenced it. The task-created directory was removed. All later runs used an explicit disposable data path. |
+| SeerrNG validation | Focused post-merge Node tests passed 38/38, and the release-note preview completed. Hosted Mode 2 validation for PR #203 is pending; no full hosted pass is claimed. |
+| Hosted repository gates | BookshelfNG PR #112, ChaptarrNG PR #73, and SeerrNG PR #203 are open; their required hosted checks are pending. No main merge is claimed. |
 | Distribution upgrade tests | Not run; compatibility converter and legacy launchers are not implemented |
 | Populated BookshelfNG library conversion | Not implemented or tested |
 | SeerrNG service contract probes | Not run |
-| Final validation / review / merges / release redirection | Not run |
+| Final validation / main merges / release redirection | Not complete; PR checks and all migration/channel gates remain open |

@@ -6,19 +6,19 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "8476774e58e5eb9faaf63e797bc438956c0dc0c0",
-  "targetCommit": "dc53d0a9120f97bfff636b867aa4f64ed339a1ba",
+  "sourceCommit": "f3183f8f0d2a2b09811243ab6d0a85932cff5f1a",
+  "targetCommit": "4582c13317d0d0c4574e2f968a3e78f9baa96821",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 376,
-    "commitsNotInUpstreamHistory": 367,
-    "netChangedPaths": 1024,
+    "commits": 386,
+    "commitsNotInUpstreamHistory": 377,
+    "netChangedPaths": 1034,
     "fileStates": {
-      "no-mapped-target-file": 672,
-      "different-review-required": 334,
+      "no-mapped-target-file": 679,
+      "different-review-required": 335,
+      "identical": 14,
       "deleted-in-bookshelf": 2,
-      "identical": 12,
       "text-equivalent-after-brand-and-newline-normalization": 4
     }
   },
@@ -7338,6 +7338,117 @@
         "scripts/validation-engine/engine.mjs",
         "scripts/validation-engine/engine.test.mjs"
       ]
+    },
+    {
+      "commit": "82afca54bf12caeb171e0c064788abdf107ddf40",
+      "date": "2026-10-12",
+      "subject": "Use local runner for branch build validation (#107)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml"
+      ]
+    },
+    {
+      "commit": "30d1d0d2cc8db520ed775d92b48688ecf557b3ba",
+      "date": "2026-10-12",
+      "subject": "fix(ci): make self-hosted runner temp private",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        "scripts/prepare-private-runner-temp.sh",
+        "scripts/test-private-runner-temp.sh"
+      ]
+    },
+    {
+      "commit": "0e615382141a07ff93fc9c518108745662165385",
+      "date": "2026-10-12",
+      "subject": "fix(ci): upload validation receipt from private temp",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml"
+      ]
+    },
+    {
+      "commit": "77b2a94259b8379501ce7a8dc032998552fb9347",
+      "date": "2026-10-12",
+      "subject": "ci: retain manual test build artifacts",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml"
+      ]
+    },
+    {
+      "commit": "01f7c5b4626ad7b28782ba6325cb4878891c3b99",
+      "date": "2026-10-12",
+      "subject": "ci: keep Bookshelf validation on hosted runners",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml"
+      ]
+    },
+    {
+      "commit": "077655aebd3a627397aacc62f186b66a6b48ebb5",
+      "date": "2026-10-12",
+      "subject": "Merge pull request #108 from snapetech/codex/fix-runner-temp-permissions-20261012",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        "scripts/prepare-private-runner-temp.sh",
+        "scripts/test-private-runner-temp.sh"
+      ]
+    },
+    {
+      "commit": "f376c6c864589379e159a1ae070eb72c0ba670a9",
+      "date": "2026-10-12",
+      "subject": "Merge remote-tracking branch 'origin/main' into codex/bookshelf-chaptarr-consolidation-20261012",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        "scripts/prepare-private-runner-temp.sh",
+        "scripts/test-private-runner-temp.sh",
+        "scripts/validation-engine/engine.test.mjs"
+      ]
+    },
+    {
+      "commit": "5cdb0a95b02040ede4ea74e5ce8b5645ade19d90",
+      "date": "2026-10-12",
+      "subject": "Add Ko-fi sponsor link (#110)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/FUNDING.yml",
+        "release-notes/added-github-sponsor-button.md"
+      ]
+    },
+    {
+      "commit": "a332d795303e9af4305245de29e8d0f4c27da202",
+      "date": "2026-10-12",
+      "subject": "Merge remote-tracking branch 'origin/main' into codex/bookshelf-chaptarr-consolidation-20261012",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/FUNDING.yml",
+        "release-notes/added-github-sponsor-button.md",
+        "scripts/validation-engine/engine.test.mjs"
+      ]
+    },
+    {
+      "commit": "f3183f8f0d2a2b09811243ab6d0a85932cff5f1a",
+      "date": "2026-10-12",
+      "subject": "docs(consolidation): document BookshelfNG retirement gates",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".gitignore",
+        "README.md",
+        "docs/README.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "release-notes/2026-10-13-bookshelf-chaptarr-transition-guidance.md",
+        "scripts/audit-chaptarr-consolidation.py",
+        "scripts/create-consolidation-fixture.py",
+        "scripts/probe-lineage-guard.py"
+      ]
     }
   ],
   "files": [
@@ -7385,6 +7496,19 @@
       "targetBlob": null
     },
     {
+      "sourcePath": ".github/FUNDING.yml",
+      "targetPath": ".github/FUNDING.yml",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "b4675729eab8201ea2ad84c0ace73c46aeba6ee1"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "b4675729eab8201ea2ad84c0ace73c46aeba6ee1"
+      }
+    },
+    {
       "sourcePath": ".github/PULL_REQUEST_TEMPLATE.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -7426,11 +7550,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "3252909675d4b17f2a1b6fd27360221e3361335f"
+        "oid": "9c9345965ad89374d91089b96e21357f6c25e45a"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "1d9f324732f032e1e5d1ae77ae3da3fe3f53b7f7"
+        "oid": "384bfa313712a037ac36bdc3ae003b10959d40fb"
       }
     },
     {
@@ -7492,7 +7616,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "60fe190b4888ae837510798cb006b04390978696"
+        "oid": "0f3d00de9b0cd31f785c5050f54c5e934bee0493"
       },
       "targetBlob": {
         "mode": "100644",
@@ -7704,11 +7828,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "15ce19db8deed2323ec45fc4f20920b80f0895c1"
+        "oid": "0ae77be075da8281297384040fb94d51360fc110"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "6f0da0d4a175261bc4c8ceb3e90b03457a667b1a"
+        "oid": "cac7e0ee44a68263c9a53b7d3d22117576f3b88e"
       }
     },
     {
@@ -8117,7 +8241,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "918f9ccfdb302402be239ffd687cbfae4018eaf4"
+        "oid": "be66ebdc5474c1567804a3c6bcd0cc66dd356b96"
       },
       "targetBlob": null
     },
@@ -8167,7 +8291,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "c30ccc69d78fc6179d5cb1176b9bb2b2f233b6d3"
+        "oid": "7f30ff4a02f1f8ec91a760ef907e5f45998d7d49"
       },
       "targetBlob": null
     },
@@ -8191,7 +8315,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "2bafe3e327f493e89a4307a759b683462070d28f"
+        "oid": "eb2be18dd0236b4090de8a4931cad971c7204389"
       }
     },
     {
@@ -8200,7 +8324,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "658a9c5489b08839770e513dd068ba057639dab9"
+        "oid": "a3f21840e2563cf4708a8aad11324641c2db4a28"
       },
       "targetBlob": null
     },
@@ -8240,7 +8364,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "34526c9a50011783c820ca10a48beda841a49ac6"
+        "oid": "29b0665ac3d6a21f8f9ed3013671e8d42cfaf8b6"
       },
       "targetBlob": null
     },
@@ -8256,6 +8380,26 @@
         "mode": "100644",
         "oid": "7979ab44a864d1a7194941ad6c130b4475842bd3"
       }
+    },
+    {
+      "sourcePath": "docs/maintainers/chaptarr-consolidation-inventory.json",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "7e724edf073a5ab7f8e37695a020b8db2e9a8f5d"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "docs/maintainers/chaptarr-consolidation.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "b0f58c9a342edeb6f3ebb785417fdd312608f646"
+      },
+      "targetBlob": null
     },
     {
       "sourcePath": "docs/media-storage.md",
@@ -9821,6 +9965,16 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "release-notes/2026-10-13-bookshelf-chaptarr-transition-guidance.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "f3eebb775039637c009e4268e1ffb680e892ba9b"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "release-notes/20260925-catalog-packaging.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -10019,6 +10173,16 @@
       "sourceBlob": {
         "mode": "100644",
         "oid": "534d91af7d7d30f237be4328435ba424a2c6c198"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "release-notes/added-github-sponsor-button.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "8b5cafc43aa001aad6f357c64c7ca04c50ea6c02"
       },
       "targetBlob": null
     },
@@ -11026,6 +11190,16 @@
       }
     },
     {
+      "sourcePath": "scripts/audit-chaptarr-consolidation.py",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "58aa94d0af5e89e1547645c1c1a39d9174cff346"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "scripts/bookshelf-bulk-move-media.sh",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -11089,6 +11263,16 @@
       }
     },
     {
+      "sourcePath": "scripts/create-consolidation-fixture.py",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "8678e5fa248a937cf8b1c9a350ddba1f56c00372"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "scripts/create-release-archives.sh",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -11122,6 +11306,19 @@
       }
     },
     {
+      "sourcePath": "scripts/prepare-private-runner-temp.sh",
+      "targetPath": "scripts/prepare-private-runner-temp.sh",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100755",
+        "oid": "de93030e2006e7861e89acb8483164fef8d82cd6"
+      },
+      "targetBlob": {
+        "mode": "100755",
+        "oid": "de93030e2006e7861e89acb8483164fef8d82cd6"
+      }
+    },
+    {
       "sourcePath": "scripts/preview-release-notes.mjs",
       "targetPath": "scripts/preview-release-notes.mjs",
       "state": "different-review-required",
@@ -11133,6 +11330,16 @@
         "mode": "100644",
         "oid": "39532e97da401b1489fd1444dd81c1dc55136c6f"
       }
+    },
+    {
+      "sourcePath": "scripts/probe-lineage-guard.py",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "e5e995257269cd53d5d3e8c4a52c51ba29b3939f"
+      },
+      "targetBlob": null
     },
     {
       "sourcePath": "scripts/release-notes.mjs",
@@ -11168,6 +11375,19 @@
       "targetBlob": {
         "mode": "100755",
         "oid": "cca59034719689c0a4ec5f316606f0a8a2979a3e"
+      }
+    },
+    {
+      "sourcePath": "scripts/test-private-runner-temp.sh",
+      "targetPath": "scripts/test-private-runner-temp.sh",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100755",
+        "oid": "5d97c8059156ed6d632ff4af257ddf6cdc4feb3f"
+      },
+      "targetBlob": {
+        "mode": "100755",
+        "oid": "c7afb027f5d0c014942fd5c992465d7b4af44c38"
       }
     },
     {
@@ -14351,7 +14571,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "d421c42e51dad87ea96b8adc3d0eae41951acaeb"
+        "oid": "47cf75078ab9915caa9344ba2cb665fd46d744ce"
       }
     },
     {
