@@ -10,10 +10,13 @@ These workflows currently publish BookshelfNG. The proposed move to
 ChaptarrNG does not yet change any installed package, image, or updater, and no
 compatibility bridge has been released. A safe transition must keep each old
 channel's package or image identity and install paths while delivering a
-tested ChaptarrNG payload and data converter. There is no universal automatic
-redirect: the BookshelfNG updater checks the Readarr-owned update service, and
-fixed tags/digests, offline installations, manual archives, and disabled
-updaters require an explicit update. See the
+tested ChaptarrNG payload and data converter. The local uncommitted converter
+now passes a synthetic populated-library startup test on an isolated VM, but
+no compatibility package or image has been built or tested for an existing
+channel. There is no universal automatic redirect: the BookshelfNG updater
+checks the Readarr-owned update service, and fixed tags/digests, offline
+installations, manual archives, and disabled updaters require an explicit
+update. See the
 [BookshelfNG-to-ChaptarrNG distribution bridge matrix](maintainers/chaptarr-consolidation.md#distribution-bridge-matrix)
 for the per-channel requirements and current release gates.
 

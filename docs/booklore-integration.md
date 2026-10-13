@@ -1,5 +1,6 @@
 # BookLore integration
 
+BookLore is an optional supported external app, not a BookshelfNG dependency.
 BookshelfNG can send newly imported book files to BookLore's BookDrop queue.
 BookDrop provides a review step in BookLore before files are added to its
 library.
