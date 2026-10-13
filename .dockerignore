@@ -3,3 +3,13 @@ _artifacts
 _temp
 _tests
 distribution
+
+# Keep local credentials and signing material out of Docker build contexts.
+.env
+.env.*
+!.env.example
+sixlabors.lic
+*.pem
+*.key
+*.pfx
+*.secret

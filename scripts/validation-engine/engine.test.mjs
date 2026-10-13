@@ -77,7 +77,6 @@ test('only the NUnit task receives its explicit Playwright cache path', (t) => {
   }, root, { PLAYWRIGHT_BROWSERS_PATH: '/runner/temp/playwright-browsers' }),
   /unapproved inherited environment variable/);
 });
-
 test('runtime probes do not inherit credentials or loader options', () => {
   const previous = new Map(['GITHUB_TOKEN', 'NODE_OPTIONS'].map((name) => [name, process.env[name]]));
   process.env.GITHUB_TOKEN = 'synthetic-runtime-token';

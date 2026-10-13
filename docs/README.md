@@ -34,3 +34,10 @@ metadata provider configuration.
 | [.NET 10 source builds](dotnet-10-platform-builds.md) | Complete backend and UI builds, plus Linux x86 and FreeBSD runtime packs |
 | [Release-note fragments](../release-notes/README.md) | User-facing release-note format and preview command |
 | [Optional diagnostics module](../src/Bookshelf.Diagnostics/README.md) | Installation, configuration, and exported data |
+
+## Fork consolidation and retirement
+
+| Guide | Covers |
+| --- | --- |
+| [BookshelfNG feature inventory and ChaptarrNG retirement matrix](maintainers/bookshelfng-parity-roadmap.md) | BookshelfNG enhancements that must be ported or replaced before this fork can retire |
+| [BookshelfNG to ChaptarrNG consolidation report](maintainers/chaptarr-consolidation.md) | Full source inventory, database conversion contract, distribution bridge, evidence, and release gates |
