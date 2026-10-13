@@ -6,6 +6,17 @@ normal BookshelfNG build succeeds. It prepares the GitHub Release as a draft,
 builds platform archives and packages, attaches checksums, then publishes the
 release and sends the existing Discord announcement.
 
+These workflows currently publish BookshelfNG. The proposed move to
+ChaptarrNG does not yet change any installed package, image, or updater, and no
+compatibility bridge has been released. A safe transition must keep each old
+channel's package or image identity and install paths while delivering a
+tested ChaptarrNG payload and data converter. There is no universal automatic
+redirect: the BookshelfNG updater checks the Readarr-owned update service, and
+fixed tags/digests, offline installations, manual archives, and disabled
+updaters require an explicit update. See the
+[BookshelfNG-to-ChaptarrNG distribution bridge matrix](maintainers/chaptarr-consolidation.md#distribution-bridge-matrix)
+for the per-channel requirements and current release gates.
+
 ## Published artifacts
 
 | Channel | Distribution | Notes |

@@ -61,10 +61,31 @@ files have been moved and verified: BookshelfNG does not merge their author,
 book, profile, monitoring, or history records. The full
 [legacy consolidation runbook](docs/media-storage.md#consolidating-a-legacy-two-instance-library)
 covers destination mounts, backups, the UI/API/CLI steps, and follow-up import.
-Quality and metadata profiles remain shared by both formats in each instance;
-separate instances remain an option for isolated databases or settings.
-Per-format profiles are on the
-[parity roadmap](docs/maintainers/bookshelfng-parity-roadmap.md).
+Quality and metadata profiles have optional ebook and audiobook overrides;
+each format falls back to the author's shared profile when its override is
+unset. Separate instances remain an option for isolated databases or settings.
+See the [feature inventory and ChaptarrNG retirement
+matrix](docs/maintainers/bookshelfng-parity-roadmap.md) for current parity and
+migration status.
+
+### ChaptarrNG consolidation status
+
+The planned retirement of BookshelfNG carries its enhanced features into
+ChaptarrNG. That transition is still in progress: no populated-library
+converter or BookshelfNG channel bridge has been released. Existing
+BookshelfNG installations still need their own backups and upgrade path. Do
+not mount a BookshelfNG `/config` directory as a ChaptarrNG configuration
+directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
+tracks feature, database, and distribution blockers.
+
+Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
+ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG
+then joins the upstream blocker set alongside all features ChaptarrNG maintains
+or is actively adding, including unpublished work in progress. That complete
+union blocks ChaptarrNG retirement as a whole. Active ChaptarrNG branch and
+pull-request features count before release; the matrix records the current
+snapshot and individual gates. See the
+[combined ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
 ## Capabilities
 

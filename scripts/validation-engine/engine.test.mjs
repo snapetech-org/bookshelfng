@@ -1,9 +1,17 @@
 // Copyright (C) BookshelfNG contributors.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, rmSync, statSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+
+test('validation receipt export and artifact upload share the private temp root', () => {
+  const workflow = readFileSync('.github/workflows/build.yml', 'utf8');
+  const receiptPath = '$' + '{{ steps.private-runner-temp.outputs.path || runner.temp }}' +
+    '/bookshelf-validation/receipt.json';
+  assert.ok(workflow.includes('VALIDATION_RECEIPT_EXPORT: ' + receiptPath));
+  assert.ok(workflow.includes('path: ' + receiptPath));
+});
 import { createPlan, discoverInventory, formatValidationProgress, globRegex, isolatedChildEnvironment, parseNUnitSummary, stableJson } from './engine.mjs';
 
 test('task environments use an allowlist and run-owned user and temporary directories', (t) => {
@@ -69,7 +77,6 @@ test('only the NUnit task receives its explicit Playwright cache path', (t) => {
   }, root, { PLAYWRIGHT_BROWSERS_PATH: '/runner/temp/playwright-browsers' }),
   /unapproved inherited environment variable/);
 });
-
 test('runtime probes do not inherit credentials or loader options', () => {
   const previous = new Map(['GITHUB_TOKEN', 'NODE_OPTIONS'].map((name) => [name, process.env[name]]));
   process.env.GITHUB_TOKEN = 'synthetic-runtime-token';
