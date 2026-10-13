@@ -37,11 +37,11 @@ ChaptarrNG branches and open feature PRs count before release; the combined
 pins the current snapshot and tracks those blockers.
 
 The maintained ChaptarrNG backlog branch is pinned at `24b340f`: 317 commits
-ahead and 1 behind `origin/main` at `02d38e1`, across 703 changed paths. The
-newer `main` includes merged CI PR #69. Open PRs include #71 (maintainer
-guidance), #72 (Indonesian and Traditional Chinese choices, AudioBookShelf
-mapping and audiobook-mode translations, and locale direction metadata),
-draft #73 (the metadata-preference port), and #74 (proposed YunoHost removal).
+ahead and 4 behind `origin/main` at `660cc03`, across 703 changed paths. Main
+includes merged CI PRs #69 and #75. Open PRs include #71 (maintainer guidance),
+#72 (Indonesian and Traditional Chinese choices, AudioBookShelf mapping and
+audiobook-mode translations, and locale direction metadata), draft #73 (the
+metadata-preference port), and #74 (proposed YunoHost removal).
 Each capability and proposed distribution change remains a blocker before it
 merges or ships and is tracked in the ChaptarrNG matrix.
 
@@ -62,7 +62,7 @@ is the commit/path audit that must be fully dispositioned.
 | Cross-catalog recovery and import matching | Retry unmapped files across configured catalogs; ISBN/ASIN/provider-ID and normalized-name matching; configurable title threshold | Different resolver, FTS, and matching architecture | **Open blocker.** Port the observed cases and no-false-match/no-delete guarantees; do not transplant the old matching engine blindly. |
 | Weighted edition terms, preferred series, and narrator-aware matching | Profile terms and series preferences; narrator tags and edition evidence affect audiobook ranking | The consolidation branch adds profile-based weighted edition scoring and preferred-series selection for filenames, ebook tags, Calibre, and AudioBookShelf metadata; stronger match evidence remains authoritative | **Partial candidate port; retirement blocker remains open.** Preserve weights and series choices, neutral handling of missing data, tie behavior, and manual-review boundaries; test the full Bookshelf edge-case set after profile/database conversion. |
 | Audiobook M4B merge and chapter metadata | Opt-in multi-track merge with track ordering and chapter creation | Native conversion and multipart workflows exist | **Open blocker.** Verify opt-in policy, chapter offsets and source chapters, part order, tags, failure recovery, and source retention. |
-| Vendored TagLibSharp MPEG-4 `chpl` handling | Patch includes byte-preserving chapter-list writes | The local Chaptarr candidate vendors this fork and passes a synthetic version-1 `chpl` fixture that checks exact atom preservation during a title write | **Local port and focused regression pass; broader compatibility remains an open blocker.** Validate representative M4B files, tag edits, conversion outputs, and failure cases; review licensing and upstream the supported implementation. |
+| Vendored TagLibSharp MPEG-4 `chpl` handling | Patch includes byte-preserving chapter-list writes | The local Chaptarr candidate vendors this fork and passes a synthetic version-1 `chpl` fixture that checks exact atom preservation during a title write. The vendor includes its LGPL-2.1 `COPYING` file; its strong-name key matches the key already committed with the BookshelfNG vendor source. | **Local port and focused regression pass; broader compatibility remains an open blocker.** Validate representative M4B files, tag edits, conversion outputs, and failure cases; review continued use of the vendor signing identity and upstream the supported implementation. |
 | Existing torrent adoption and safe seeding | Can adopt tracked torrent data without removing the seed | Native adoption/continuation work exists | **Open blocker.** Prove same-category, wrong-category, completed-download, and seeding-data preservation cases. |
 | Direct Download with ordered sources and browser-assisted links | Ebook search, API-key downloads, optional browser fallback, durable transfer state, and redirect validation | A built-in direct-download implementation exists | **Open blocker.** Preserve URL order, configuration aliases, staged-state recovery, architecture limits, and redirect/private-network protections. |
 | BookLore BookDrop uploads | Uploads imported books through BookLore's BookDrop API | Ported in the current ChaptarrNG candidate | **Open blocker.** Core tests pass; convert stored notification settings and verify a service-level upload and recovery path. |
@@ -73,23 +73,32 @@ is the commit/path audit that must be fully dispositioned.
 | Encrypted backups and restore | Passphrase-protected portable archives and per-format profiles | ChaptarrNG has encrypted backup support | **Open blocker.** Prove legacy archive recovery, secret handling, rollback, and profile conversion; never expose secrets in logs. |
 | .NET 10, dependency/security fixes, and platform builds | .NET 10 releases, broad native/package matrix, and maintained security/dependency patches | ChaptarrNG uses .NET 10 and has a different dependency/build matrix | **Open blocker.** Review every patch and supported platform; retain compatible fixes and run the target's required build and security checks. |
 | Release, package, and update channels | Containers, Unraid, Debian/RPM, AUR, PPA, Windows, macOS/Linux/FreeBSD, AppImage, Flatpak, Chocolatey, and Helm; YunoHost publishing retired | ChaptarrNG has its own release and package identities | **Open blocker.** Preserve old channel identities with tested bridge packages/images and migration instructions; no universal automatic redirect exists. |
-| All other fork changes | 409 reachable post-fork commits and 1,037 net-changed paths at the pinned audit revisions | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, or proven equivalent. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
+| All other fork changes | 412 reachable post-fork commits and 1,039 net-changed paths at the committed audit pins; current dirty integration work is listed separately and still needs a regenerated inventory | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, or proven equivalent. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
 
 ## Evidence and limits
 
 The [consolidation report](chaptarr-consolidation.md) records exact source and
 target revisions, current implementation findings, the data-conversion
-contract, release-channel matrix, test results, and open gates. The local
-integrated Linux Core suite passed 4,035 tests with 0 failures and 3 browser
-skips; the opt-in Chromium run on the current candidate passed those 3/3, so
-all 4,038 unique Core cases passed across the two runs. The synthetic TagLib
-chapter-preservation fixture passed; focused migration-lineage tests passed
-2/2, and 29 rename/path-portability tests passed. Hosted Windows reported three
-path-sensitive fixture failures; the fixture paths are corrected locally and
-still need a fresh hosted run. Populated BookshelfNG conversion, full
-feature-by-feature semantic acceptance, SeerrNG before/after probes, and a
-tested old-channel bridge remain open. The real BookshelfNG `.69` databases
-inspected were empty; they prove schema lineage only.
+contract, release-channel matrix, test results, and open gates. Before the
+latest row-accounting changes, the integrated Linux Core suite passed 4,035
+tests with 0 failures and 3 browser skips; the opt-in Chromium run passed those
+3/3, for 4,038 unique cases across the two runs. After the accounting change,
+the focused converter fixture passes 5/5 and the Release console build passes,
+but two post-accounting full Core attempts produced no summary after six
+minutes and were stopped. The earlier full-suite baseline does not validate
+the current dirty candidate.
+Additional focused reruns on the current candidate passed 16 migration-safety
+cases, 29 metadata/ranking/series cases, 29 rename/path cases, and 6
+BookLore/TagLib cases, alongside the 5 converter-coordinator cases.
+The synthetic TagLib chapter-preservation fixture passed; focused
+migration-lineage tests passed 2/2, and 29 rename/path-portability tests
+passed. Hosted Windows reported three path-sensitive fixture failures; the
+fixture paths are corrected locally and still need a fresh hosted run.
+Populated BookshelfNG conversion, full feature-by-feature semantic acceptance,
+SeerrNG before/after probes, and a tested old-channel bridge remain open. The
+released BookshelfNG `.69` database samples inspected were empty; a separate
+synthetic populated fixture has only been tested for safe rejection before
+migration, not successful conversion.
 
 The BookshelfNG and ChaptarrNG databases have different schemas and identity
 models. Never point ChaptarrNG at a BookshelfNG database and assume startup will
