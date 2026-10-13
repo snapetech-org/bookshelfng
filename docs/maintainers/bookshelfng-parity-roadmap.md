@@ -79,23 +79,22 @@ is the commit/path audit that must be fully dispositioned.
 
 The [consolidation report](chaptarr-consolidation.md) records exact source and
 target revisions, current implementation findings, the data-conversion
-contract, release-channel matrix, test results, and open gates. Before the
-latest row-accounting changes, the integrated Linux Core suite passed 4,035
-tests with 0 failures and 3 browser skips; the opt-in Chromium run passed those
-3/3, for 4,038 unique cases across the two runs. After the accounting change,
-the focused converter fixture passes 5/5 and the Release console build passes,
-but two post-accounting full Core attempts produced no summary after six
-minutes and were stopped. The earlier full-suite baseline does not validate
-the current dirty candidate.
+contract, release-channel matrix, test results, and open gates. After the
+latest row-accounting change, the integrated Linux Core suite passed 4,038
+tests with 0 failures and 3 browser skips (4,041 total) in 9m37s. The separate
+opt-in Chromium run passed 3/3 on the earlier candidate snapshot. The focused
+converter fixture passes 5/5 and the Release console build has zero warnings or
+errors.
 Additional focused reruns on the current candidate passed 16 migration-safety
 cases, 29 metadata/ranking/series cases, 29 rename/path cases, and 6
 BookLore/TagLib cases, alongside the 5 converter-coordinator cases.
 The synthetic TagLib chapter-preservation fixture passed; focused
 migration-lineage tests passed 2/2, and 29 rename/path-portability tests
-passed. Hosted Windows reported three path-sensitive fixture failures; the
-fixture paths are corrected locally and still need a fresh hosted run.
-Populated BookshelfNG conversion, full feature-by-feature semantic acceptance,
-SeerrNG before/after probes, and a tested old-channel bridge remain open. The
+passed. Hosted Windows reported three path-sensitive fixture failures on the
+older PR head; the fixture paths are corrected locally and still need a fresh
+hosted run. Populated BookshelfNG conversion, full feature-by-feature semantic
+acceptance, populated-library SeerrNG request/identity/history probes, and a
+tested old-channel bridge remain open. The
 released BookshelfNG `.69` database samples inspected were empty; a separate
 synthetic populated fixture has only been tested for safe rejection before
 migration, not successful conversion.
