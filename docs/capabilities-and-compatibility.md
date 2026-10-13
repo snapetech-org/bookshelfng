@@ -391,14 +391,16 @@ and the linked operator docs.
 
 ## BookshelfNG-to-ChaptarrNG consolidation
 
-This feature inventory is one input to the BookshelfNG retirement decision.
+This feature inventory gates retirement of BookshelfNG into ChaptarrNG.
 Every BookshelfNG enhancement in the
 [feature inventory and ChaptarrNG retirement matrix](maintainers/bookshelfng-parity-roadmap.md)
-is a blocker until ChaptarrNG retains it or has a tested replacement. The
-combined feature set blocks retirement, with each capability tracked as its
-own acceptance gate. ChaptarrNG's existing maintained features and active
-changes remain separate blockers to any later ChaptarrNG-to-Chaptarr
-retirement; they are tracked in the
+must be retained in ChaptarrNG or have a tested replacement, with each
+capability tracked as its own acceptance gate. A separate, later gate governs
+retirement of ChaptarrNG into upstream Chaptarr: it includes every BookshelfNG
+capability retained in ChaptarrNG plus every feature ChaptarrNG maintains or
+actively develops, including unreleased work. That full union blocks
+ChaptarrNG retirement as a whole, with each capability and distribution
+channel tracked individually. Those blockers are tracked in the
 [ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
 The published BookshelfNG `.69` database is not compatible with ChaptarrNG's

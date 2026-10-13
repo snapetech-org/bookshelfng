@@ -196,10 +196,15 @@ the converter can claim complete data preservation:
   to avoid collisions. Rows without a resolvable provider identity need a
   stable, collision-safe legacy identity representation and matching rules;
   they cannot be dropped or matched by title alone.
-- Bookshelf extra-file records allow a null `BookFileId`, while Chaptarr's
-  `ExtraFiles` schema requires one. Conversion must preserve unassociated
-  files through a semantically correct target representation or an explicit
-  schema change; assigning an unrelated book file is invalid.
+- The BookshelfNG `ExtraFile` model declares `BookFileId` nullable, but its
+  database migration creates `ExtraFiles.BookFileId` as `NOT NULL`; the
+  generated `.69` database has the same constraint. Do not infer persisted
+  nullability from the model. `MetadataFiles.BookFileId` is separately
+  nullable in both schemas. Because the source `ExtraFiles` table has no
+  foreign-key constraint, conversion must still detect references to missing
+  `BookFiles` rows and preserve them through a semantically correct target
+  representation or an explicit schema change; assigning an unrelated book
+  file is invalid.
 
 These are implementation gates, not cleanup details. Add populated fixtures
 for dual-format books, author-level download history, unresolved blocklist
