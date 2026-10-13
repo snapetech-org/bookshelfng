@@ -122,7 +122,7 @@ python3 scripts/audit-chaptarr-consolidation.py \
    the old Bookshelf installation allowed them; do not change Chaptarr's global
    default for unrelated installs.
 
-## Database conversion contract — required, not implemented
+## Database conversion contract — required, incomplete
 
 The released `.69` baseline databases are real application-created but empty.
 The fixture generator also seeds one linked synthetic author, book, ebook and
@@ -147,6 +147,11 @@ and library checks.
 
 Every one of the source's 39 tables needs an explicit preserve, transform,
 rebuild, or deliberate-reset disposition; no table may disappear by omission.
+
+The coordinator is currently SQLite-only. PostgreSQL import, configuration
+conversion, and automatic discovery of a Bookshelf data directory are not
+implemented. Its small unit fixture uses synthetic tables and a synthetic
+import callback; it does not validate any of the table dispositions above.
 
 The first-pass disposition below names every table in the released `.69`
 schema. These are conversion requirements, not proof that the converter exists;
@@ -173,6 +178,14 @@ and `ForeignBookId`. Chaptarr folds provider metadata into `Authors` and uses
 media-scoped `Books`/`Editions` relationships. A row copy or table rename
 cannot preserve those relationships; conversion needs explicit entity and
 foreign-key maps.
+
+ChaptarrNG now has a staging coordinator that snapshots a file-backed source,
+migrates a separate target, invokes an importer, validates SQLite integrity,
+and only then promotes the target while retaining a source backup. Synthetic
+unit tests cover successful promotion and importer-failure rollback. This is
+coordinator plumbing only: no Bookshelf row importer is implemented, the
+coordinator is not wired into startup, and no populated conversion has passed.
+The tests do not establish configuration, identity, or feature parity.
 
 Several target-model gaps are already concrete and must be resolved before
 the converter can claim complete data preservation:
@@ -213,10 +226,11 @@ identities, and unassociated extra files before enabling automatic promotion.
 Chaptarr's app-folder resolver prefers `chaptarr.db`, then opens an existing
 `readarr.db` or `audioarr.db` when the new filename is absent. Its main
 migration controller runs the lineage guard before numbered migrations, so a
-Bookshelf install is rejected before schema mutation. A completed converter
-can stage and verify a new `chaptarr.db` beside the preserved source; Chaptarr
-will prefer the native file on its next start. This startup-path behavior is
-proven by code inspection; successful populated conversion is still pending.
+Bookshelf install is rejected before schema mutation. The coordinator stages a
+native database beside its input, retains the source as a backup, and promotes
+the native database at the input path. Startup does not call the coordinator,
+and it does not yet select `readarr.db` when an empty `chaptarr.db` already
+exists. Successful populated conversion is still pending.
 
 The converter must identify the exact Bookshelf database family and supported
 schema version before writing. It must stop both applications, checkpoint
@@ -385,9 +399,9 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | BookshelfNG source inventory | Source `102de16` compared with the PR #73 candidate `6fa426c`: 402 reachable commits, 393 absent from upstream history, and 1,036 changed paths. The generated inventory categorizes every path. | Path classification is not feature equivalence; review and disposition every path. |
 | ChaptarrNG Bookshelf feature port | PR #73 at `6fa426c` passes hosted Linux Core with 3,972 passed and 0 failed. Its hosted Windows Core run failed three path-sensitive rename tests. The local integrated tree now normalizes OS-rooted fixture paths and filesystem/event expectations; 29 rename and path-portability tests pass locally. The full integrated Linux Core suite passed 4,026, with 0 failures and 3 skips. | Run hosted Windows again on the corrected integration tree; keep the PR a draft until that and review pass. No full semantic parity or populated-data conversion is proven. |
 | ChaptarrNG maintained and active features | The separate `codex/upstream-backlog-20261012` snapshot at `24b340f` is 317 commits ahead and 1 behind `origin/main` at `02d38e1`, across 703 paths. PR #69 has since merged into main. The local integrated Linux Core suite passed 4,026, with 0 failures and 3 skips; migration-lineage reconciliation passed 2/2. | Every released and unreleased capability remains an individual ChaptarrNG-to-upstream blocker; see the itemized table linked above. |
-| Bookshelf database compatibility | A populated synthetic Bookshelf database was rejected by the Chaptarr lineage guard before numbered migrations and its source bytes remained unchanged. This proves safe rejection only. | A supported converter for populated SQLite and PostgreSQL data, configuration, identities, references, and rollback is not implemented. |
+| Bookshelf database compatibility | A populated synthetic Bookshelf database was rejected by the Chaptarr lineage guard before numbered migrations and its source bytes remained unchanged. The new SQLite staging coordinator passes synthetic promotion and import-failure rollback unit tests. | The row importer, startup wiring, configuration/identity/reference mapping, PostgreSQL path, and populated conversion proof are not implemented. |
 | Candidate runtime and SeerrNG | An earlier ancestor candidate started with a fresh database and passed an empty-library SeerrNG capability/key smoke. SeerrNG PR #203 passed local and full hosted validation on its preceding code head; subsequent documentation-only commits passed local formatting. | No latest-candidate populated-library request, identity, history, or availability probe has run. |
-| Cross-project secrets | Root `.env` is ignored and untracked in BookshelfNG, ChaptarrNG, and SeerrNG. The SixLabors license remains in `~/Downloads` outside all repository trees and is supplied to builds through an environment variable. | Keep both checks in release validation; no secret may enter a commit, build log, or published artifact. |
+| Cross-project secrets | Root `.env` is ignored and untracked in BookshelfNG, ChaptarrNG, and SeerrNG. The SixLabors license remains in `~/Downloads` outside all repository trees. ChaptarrNG reads its value from `SIXLABORS_LICENSE_KEY` and passes it to ImageSharp as an MSBuild property. | Keep both checks in release validation; no secret may enter a commit, build log, or published artifact. |
 | Hosted PR checks | BookshelfNG PR #112 at `1c0edb7` is mergeable and its build, security, package-sync, and release-note checks passed. ChaptarrNG PR #73 at `6fa426c` has passing Linux/macOS/PostgreSQL and security checks but its hosted Windows Core run failed three path tests; local fixtures are corrected and need a fresh run. PR #72 and #74 checks pass. SeerrNG PR #203 at `1b6b31b` has title/label checks passed while the validation plan remains queued; its prior code head passed full validation. | Rerun hosted Windows and SeerrNG validation after final source changes. PR #74's YunoHost removal does not supply a tested BookshelfNG compatibility bridge. |
 | Distribution and migration | The channel-by-channel bridge plan covers registries, Unraid, apt/PPA, RPM/COPR, AUR, Chocolatey, Windows, archives, AppImage, Flatpak, Helm, YunoHost, and catalog packages. | No legacy image/package bridge or converter is published or tested. Pinned, offline, manual, and updater-disabled installs cannot be silently redirected; the Readarr-owned updater endpoint is outside Snapetech control. |
 | Release decisions | The BookshelfNG enhanced feature set blocks BookshelfNG retirement as a whole and row by row. The later ChaptarrNG gate includes that retained set plus every ChaptarrNG maintained and actively developed capability, including unpublished work; each channel is a separate blocker too. | Current evidence does not support a main merge that claims parity, BookshelfNG retirement, or release redirection. |
