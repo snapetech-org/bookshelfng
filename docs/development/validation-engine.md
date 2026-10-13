@@ -52,8 +52,11 @@ separate existing CI steps; the test engine does not claim those steps passed
 unless their workflow steps pass.
 
 The Linux CI job installs Chromium into a run-specific Playwright cache and
-passes only that cache path to the NUnit task. Local Linux runs that need direct
-download browser tests should set `PLAYWRIGHT_BROWSERS_PATH` to the installed
-browser directory. The suite uses local fixtures and does not connect to live
-services or mutate provider data. Results describe local or GitHub-hosted test
-execution only; they do not claim that a live deployment was verified.
+passes only that cache path to the NUnit task. GitHub-hosted Linux installs its
+system dependencies with Playwright; self-hosted Linux uses the browser-only
+installer because its system dependencies are managed on the host. Local Linux
+runs that need direct-download browser tests should set `PLAYWRIGHT_BROWSERS_PATH`
+to the installed browser directory. The suite uses local fixtures and does not
+connect to live services or mutate provider data. Results describe local or
+GitHub-hosted test execution only; they do not claim that a live deployment was
+verified.
