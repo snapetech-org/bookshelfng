@@ -6,6 +6,8 @@ permissions:
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     tags:
       - "main-*"
     paths-ignore:
@@ -29,6 +31,7 @@ env:
 
 jobs:
   build:
+    # Keep the complete build and test job on a GitHub-hosted Linux runner.
     runs-on: ubuntu-latest
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
@@ -37,8 +40,28 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Test private runner temp setup
+        if: runner.os == 'Linux'
+        run: ./scripts/test-private-runner-temp.sh
+
+      - name: Configure private runner temporary storage
+        id: private-runner-temp
+        if: runner.os == 'Linux'
+        env:
+          PRIVATE_RUNNER_TEMP_PREFIX: bookshelf
+        run: ./scripts/prepare-private-runner-temp.sh
+
+      - name: Configure private mise directories
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -m 700 -- "$PRIVATE_RUNNER_TEMP/mise-data" "$PRIVATE_RUNNER_TEMP/mise-cache" "$PRIVATE_RUNNER_TEMP/mise-tmp"
+          printf 'MISE_DATA_DIR=%s/mise-data\nMISE_CACHE_DIR=%s/mise-cache\nMISE_TMP_DIR=%s/mise-tmp\n' \
+            "$PRIVATE_RUNNER_TEMP" "$PRIVATE_RUNNER_TEMP" "$PRIVATE_RUNNER_TEMP" >> "$GITHUB_ENV"
+
       - name: Require main release tag
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
         shell: bash
         run: |
           set -euo pipefail
@@ -54,7 +77,7 @@ jobs:
           fi
 
       - name: Verify Unraid package is synced
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
         run: bash scripts/verify-package-sync.sh
 
       - name: Validate Discord webhook before publishing images
@@ -124,7 +147,7 @@ jobs:
 
       - name: Install Chromium for direct-download browser tests
         env:
-          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
+          PLAYWRIGHT_BROWSERS_PATH: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/playwright-browsers
         run: pwsh ./_tests/net10.0/linux-x64/playwright.ps1 install --with-deps chromium
 
       - name: Prepare tests
@@ -139,13 +162,13 @@ jobs:
         shell: bash
         env:
           DIRECT_DOWNLOAD_REQUIRE_PLAYWRIGHT: "true"
-          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
+          PLAYWRIGHT_BROWSERS_PATH: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/playwright-browsers
           VALIDATION_NODE_ID: bookshelf-linux-x64-unit
-          VALIDATION_RECEIPT_EXPORT: ${{ runner.temp }}/bookshelf-validation/receipt.json
-          VALIDATION_NUNIT_EXPORT: ${{ runner.temp }}/bookshelf-validation/TestResult.xml
+          VALIDATION_RECEIPT_EXPORT: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/bookshelf-validation/receipt.json
+          VALIDATION_NUNIT_EXPORT: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/bookshelf-validation/TestResult.xml
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/bookshelf-validation"
+          mkdir -p "${{ steps.private-runner-temp.outputs.path || runner.temp }}/bookshelf-validation"
           echo "started=true" >> "$GITHUB_OUTPUT"
           set +e
           node scripts/validation-engine/engine.mjs --tests-only
@@ -171,12 +194,12 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: bookshelf-validation-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/bookshelf-validation/receipt.json
+          path: ${{ steps.private-runner-temp.outputs.path || runner.temp }}/bookshelf-validation/receipt.json
           retention-days: 7
           if-no-files-found: error
 
       - name: Upload container build output
-        if: github.event_name == 'push'
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-'))
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: bookshelfng-publish-output
@@ -186,7 +209,7 @@ jobs:
 
   publish-images:
     name: Publish container images
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -300,7 +323,7 @@ jobs:
 
   container-scan:
     name: Scan published container images
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
     needs: publish-images
     runs-on: ubuntu-latest
     permissions:
