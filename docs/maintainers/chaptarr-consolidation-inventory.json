@@ -6,16 +6,16 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "102de16fe60e60eb94e6b599a826fe0779b02286",
+  "sourceCommit": "48e0eca7f46a1382cdf540504de553bde465bac3",
   "targetCommit": "6fa426ca8461e28ac343a111939108c7a04b794c",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 402,
-    "commitsNotInUpstreamHistory": 393,
-    "netChangedPaths": 1036,
+    "commits": 409,
+    "commitsNotInUpstreamHistory": 400,
+    "netChangedPaths": 1037,
     "fileStates": {
-      "no-mapped-target-file": 681,
+      "no-mapped-target-file": 682,
       "different-review-required": 336,
       "identical": 13,
       "deleted-in-bookshelf": 2,
@@ -7640,6 +7640,75 @@
         "scripts/test_workflow_runner_policy.py",
         "scripts/validation-engine/engine.test.mjs"
       ]
+    },
+    {
+      "commit": "8e6588c6964e196f1f05d6b52b8bf1fe15cfb557",
+      "date": "2026-10-13",
+      "subject": "docs: refresh consolidation inventory after main update",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "df6d675054714182fee6cc34769ae02a962f1ef1",
+      "date": "2026-10-13",
+      "subject": "docs: align evidence ledger with current pins",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "1c0edb7f07f6f275f58b7f6946f7b4e2c6b13551",
+      "date": "2026-10-13",
+      "subject": "docs: clarify cumulative ChaptarrNG retirement gate",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "28fcb891e160d2b9a3b2c51832b55554478e9e2c",
+      "date": "2026-10-13",
+      "subject": "docs: refresh fork integration evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "4ee411108e200bf6dbdb84205b99cc60c4f0f92a",
+      "date": "2026-10-13",
+      "subject": "docs: clarify BookshelfNG transition status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "release-notes/20261013-chaptarr-transition-status.md"
+      ]
+    },
+    {
+      "commit": "cd0581469e6f3ba4ea61399261e20a2ec46bad97",
+      "date": "2026-10-13",
+      "subject": "docs: clarify staged Chaptarr retirement gates",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "48e0eca7f46a1382cdf540504de553bde465bac3",
+      "date": "2026-10-13",
+      "subject": "docs: clarify conversion coordinator limits",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
     }
   ],
   "files": [
@@ -8019,7 +8088,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "40361a24a567905085bc7f108559ae3408500f6e"
+        "oid": "5cc5a1273e0304619413edb4c277a426cb2edfa1"
       },
       "targetBlob": {
         "mode": "100644",
@@ -8482,7 +8551,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "7f30ff4a02f1f8ec91a760ef907e5f45998d7d49"
+        "oid": "0b7ddc0116dc45fb5350c612a85fea0fd3601b91"
       },
       "targetBlob": null
     },
@@ -8555,7 +8624,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5267e414ed15712ac79f50c5aec12f3a6468fbf6"
+        "oid": "bb7422b522ebe31527bc154e2fa8f8891cfbad1b"
       },
       "targetBlob": null
     },
@@ -8578,7 +8647,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "87cea12f1821a7788b92ce6c4f2d5d2910179753"
+        "oid": "1e5eaa7c56234cce6ef22dddf37b31fcfa0ec3b1"
       },
       "targetBlob": null
     },
@@ -8588,7 +8657,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "0d483af61b24e0ddc3a9feeb8442cf1a958b383f"
+        "oid": "179bc94ecf3276c1101bb2645ead03d259151370"
       },
       "targetBlob": null
     },
@@ -10223,6 +10292,16 @@
         "mode": "100644",
         "oid": "2da009b6ea7fac2947d02b9e72446d27b1c7efe1"
       }
+    },
+    {
+      "sourcePath": "release-notes/20261013-chaptarr-transition-status.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "64c060b28144a46e966ea6bfbfe8440d29d5b738"
+      },
+      "targetBlob": null
     },
     {
       "sourcePath": "release-notes/20261013-pr-runner-isolation.md",

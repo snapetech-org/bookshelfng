@@ -29,7 +29,9 @@ BookshelfNG capability is retained in the consolidated ChaptarrNG product, it
 also joins ChaptarrNG's cumulative upstream-retirement blocker set. Every
 ChaptarrNG feature it maintains or is actively adding—including work not yet
 in a published release—joins that same set. The union blocks retirement as a
-whole, with each capability and channel as an individual gate. Active
+whole, with each capability, sub-capability, data path, and channel as an
+individual gate. A composite row closes only when every item it covers passes
+its acceptance checks. Active
 ChaptarrNG branches and open feature PRs count before release; the combined
 [ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers)
 pins the current snapshot and tracks those blockers.
@@ -71,21 +73,22 @@ is the commit/path audit that must be fully dispositioned.
 | Encrypted backups and restore | Passphrase-protected portable archives and per-format profiles | ChaptarrNG has encrypted backup support | **Open blocker.** Prove legacy archive recovery, secret handling, rollback, and profile conversion; never expose secrets in logs. |
 | .NET 10, dependency/security fixes, and platform builds | .NET 10 releases, broad native/package matrix, and maintained security/dependency patches | ChaptarrNG uses .NET 10 and has a different dependency/build matrix | **Open blocker.** Review every patch and supported platform; retain compatible fixes and run the target's required build and security checks. |
 | Release, package, and update channels | Containers, Unraid, Debian/RPM, AUR, PPA, Windows, macOS/Linux/FreeBSD, AppImage, Flatpak, Chocolatey, and Helm; YunoHost publishing retired | ChaptarrNG has its own release and package identities | **Open blocker.** Preserve old channel identities with tested bridge packages/images and migration instructions; no universal automatic redirect exists. |
-| All other fork changes | 402 reachable post-fork commits and 1,036 net-changed paths at the pinned audit revisions | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, or proven equivalent. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
+| All other fork changes | 409 reachable post-fork commits and 1,037 net-changed paths at the pinned audit revisions | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, or proven equivalent. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
 
 ## Evidence and limits
 
 The [consolidation report](chaptarr-consolidation.md) records exact source and
 target revisions, current implementation findings, the data-conversion
 contract, release-channel matrix, test results, and open gates. The local
-integrated Linux Core suite passed 4,026 tests with 0 failures and 3 skips;
-focused migration-lineage tests passed 2/2, and 29 rename/path-portability
-tests passed. Hosted Windows previously reported three path-sensitive fixture
-failures; the fixture paths are corrected locally and still need a fresh
-hosted run. Populated BookshelfNG conversion, full feature-by-feature semantic
-acceptance, SeerrNG before/after probes, and a tested old-channel bridge remain
-open. The real BookshelfNG `.69` databases inspected were empty; they prove
-schema lineage only.
+integrated Linux Core suite passed 4,034 tests with 0 failures and 3 browser
+skips; the opt-in Chromium run passed those 3/3, so all 4,037 unique Core cases
+passed across the two runs. Focused migration-lineage tests passed 2/2, and 29
+rename/path-portability tests passed. Hosted Windows reported three
+path-sensitive fixture failures; the fixture paths are corrected locally and
+still need a fresh hosted run. Populated BookshelfNG conversion, full
+feature-by-feature semantic acceptance, SeerrNG before/after probes, and a
+tested old-channel bridge remain open. The real BookshelfNG `.69` databases
+inspected were empty; they prove schema lineage only.
 
 The BookshelfNG and ChaptarrNG databases have different schemas and identity
 models. Never point ChaptarrNG at a BookshelfNG database and assume startup will
