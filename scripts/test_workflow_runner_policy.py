@@ -37,10 +37,11 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             for line in source.splitlines()
             if line.lstrip().startswith("runs-on:") and "self-hosted" in line
         )
+        self.assertIn("github.event_name == 'pull_request' && github.event.pull_request.user.login == 'snapetech'", runner)
         self.assertIn("github.event_name == 'push' && github.ref == 'refs/heads/main'", runner)
         self.assertIn("(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')", runner)
         self.assertNotIn("startsWith(github.ref, 'refs/heads/')", runner)
-        self.assertIn("fromJSON('[\"self-hosted\",\"Linux\",\"X64\",\"host\",\"linux-build\",\"linux-amd64\"]')", runner)
+        self.assertIn("fromJSON('[\"self-hosted\",\"Linux\",\"X64\",\"host\"]')", runner)
         self.assertIn("fromJSON('[\"ubuntu-latest\"]')", runner)
 
 

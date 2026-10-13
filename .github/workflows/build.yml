@@ -32,7 +32,7 @@ env:
 jobs:
   build:
     # Use either local Linux runner for trusted main pushes and manual main runs.
-    runs-on: ${{ ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && fromJSON('["self-hosted","Linux","X64","host","linux-build","linux-amd64"]') || fromJSON('["ubuntu-latest"]') }}
+    runs-on: ${{ ((github.event_name == 'pull_request' && github.event.pull_request.user.login == 'snapetech') || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && fromJSON('["self-hosted","Linux","X64","host"]') || fromJSON('["ubuntu-latest"]') }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
