@@ -40,7 +40,7 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn("github.event_name == 'push' && github.ref == 'refs/heads/main'", runner)
         self.assertIn("(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')", runner)
         self.assertNotIn("startsWith(github.ref, 'refs/heads/')", runner)
-        self.assertIn("fromJSON('[\"self-hosted\",\"Linux\",\"X64\",\"host\",\"kspls0\"]')", runner)
+        self.assertIn("fromJSON('[\"self-hosted\",\"Linux\",\"X64\",\"host\",\"linux-build\",\"linux-amd64\"]')", runner)
         self.assertIn("fromJSON('[\"ubuntu-latest\"]')", runner)
 
 

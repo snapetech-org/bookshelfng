@@ -31,9 +31,8 @@ env:
 
 jobs:
   build:
-    # Use the server-local runner for main pushes and manual main runs.
-    # Keep .NET builds off the desktop NFS workspace after its SIGBUS failure.
-    runs-on: ${{ ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && fromJSON('["self-hosted","Linux","X64","host","kspls0"]') || fromJSON('["ubuntu-latest"]') }}
+    # Use either local Linux runner for trusted main pushes and manual main runs.
+    runs-on: ${{ ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && fromJSON('["self-hosted","Linux","X64","host","linux-build","linux-amd64"]') || fromJSON('["ubuntu-latest"]') }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
