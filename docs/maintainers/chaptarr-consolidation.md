@@ -118,10 +118,15 @@ python3 scripts/audit-chaptarr-consolidation.py \
    `VersionInfo` into a Chaptarr database or run its numbered migrations
    against BookshelfNG's schema.
 2. **Filename detection is not schema conversion.** Chaptarr's
-   `PathExtensions.GetDatabase()` accepts `readarr.db` and `audioarr.db` when
-   `chaptarr.db` is absent. Its restoration validator rejects databases without
-   the Chaptarr dual-root columns. Startup needs a lineage check before any
-   migration or maintenance modifies an old database.
+   `PathExtensions.GetDatabase()` returns an existing `chaptarr.db`; if it is
+   absent, it chooses the first existing legacy file in `readarr.db`, then
+   `audioarr.db` order. The resolver does not inspect file size or schema, or
+   reject multiple legacy files. `DatabaseRestorationService.Validate()` checks
+   SQLite integrity and Chaptarr's dual-root columns for backup restore
+   candidates; that restore check does not validate the path selected for
+   ordinary startup. A startup lineage check is still needed before migrations
+   or maintenance can modify an old database. Separate-directory discovery and
+   populated conversion remain open.
 3. **Identity changes.** BookshelfNG has one book row with multiple formats;
    Chaptarr has provider-scoped identity and media-type-specific behavior.
    Bare Hardcover and Goodreads IDs must not collide. Conversion needs durable
@@ -259,14 +264,17 @@ These are implementation gates, not cleanup details. Add populated fixtures
 for dual-format books, author-level download history, unresolved blocklist
 identities, and unassociated extra files before enabling automatic promotion.
 
-Chaptarr's app-folder resolver prefers `chaptarr.db`, then opens an existing
-`readarr.db` or `audioarr.db` when the new filename is absent. Its main
-migration controller runs the lineage guard before numbered migrations, so a
-Bookshelf install is rejected before schema mutation. The coordinator stages a
-native database beside its input, retains the source as a backup, and promotes
-the native database at the input path. Startup does not call the coordinator,
-and it does not yet select `readarr.db` when an empty `chaptarr.db` already
-exists. Successful populated conversion is still pending.
+Chaptarr's app-folder resolver returns an existing `chaptarr.db`; if it is
+absent, it selects the first existing legacy file in `readarr.db`, then
+`audioarr.db` order. It does not inspect file size or schema, or reject multiple
+legacy candidates. The backup restore service separately validates SQLite
+integrity and the Chaptarr dual-root columns for restore candidates; that check
+does not establish lineage safety for the ordinary startup database path. The
+resolver does not discover a separate Bookshelf data directory or mount. The
+staging coordinator can migrate a separate native target and retain the source
+backup, but startup does not call it and the actual Bookshelf row/configuration
+importer is not implemented. Successful populated conversion is still
+pending.
 
 The converter must identify the exact Bookshelf database family and supported
 schema version before writing. It must stop both applications, checkpoint
