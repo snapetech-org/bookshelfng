@@ -202,6 +202,17 @@ ChaptarrNG retirement as a whole, with each capability and channel tracked as
 an individual gate. The combined matrix is maintained in the ChaptarrNG
 [fork feature guide](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
+The current ChaptarrNG scope includes work outside `main`: the pushed,
+unreleased `codex/upstream-backlog-20261012` branch at `c26dd7f` has 306 commits
+ahead of and 13 behind `main`, across 680 changed paths. Its active feature
+families include RanobeDB and Audible metadata, audiobook processing,
+import/matching safety, Calibre and library-sync connectors, MQTT events,
+Prometheus metrics, import-list history, and large-library/UI work. Open PR #72
+adds Indonesian and Traditional Chinese; PR #73 adds metadata preferences.
+These active capabilities join the later cumulative gate before they merge or
+ship. The detailed snapshot and individual blockers are in the ChaptarrNG
+matrix linked above.
+
 | BookshelfNG capability or change | ChaptarrNG candidate finding | Retirement status | Required disposition and evidence |
 | --- | --- | --- | --- |
 | Rich book lookup; SeerrNG capabilities; paged books; format availability | Capability resource and Readarr facade exist | **Open blocker — integration parity unproven** | Test unchanged SeerrNG settings, IDs, keys, requests, pending work, and availability links against the exact candidate. |

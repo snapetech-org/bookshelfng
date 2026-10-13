@@ -81,7 +81,9 @@ Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
 ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG
 then joins the upstream blocker set alongside all features ChaptarrNG maintains
 or is actively adding, including unpublished work in progress. That complete
-union blocks ChaptarrNG retirement as a whole; see the
+union blocks ChaptarrNG retirement as a whole. Active ChaptarrNG branch and
+pull-request features count before release; the matrix records the current
+snapshot and individual gates. See the
 [combined ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
 ## Capabilities

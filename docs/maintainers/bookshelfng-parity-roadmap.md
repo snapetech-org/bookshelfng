@@ -29,8 +29,10 @@ BookshelfNG capability is retained in the consolidated ChaptarrNG product, it
 also joins ChaptarrNG's cumulative upstream-retirement blocker set. Every
 ChaptarrNG feature it maintains or is actively adding—including work not yet
 in a published release—joins that same set. The union blocks retirement as a
-whole, with each capability and channel as an individual gate; see the combined
-[ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
+whole, with each capability and channel as an individual gate. Active
+ChaptarrNG branches and open feature PRs count before release; the combined
+[ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers)
+pins the current snapshot and tracks those blockers.
 
 ## Feature matrix
 
