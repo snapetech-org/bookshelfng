@@ -166,6 +166,33 @@ media-scoped `Books`/`Editions` relationships. A row copy or table rename
 cannot preserve those relationships; conversion needs explicit entity and
 foreign-key maps.
 
+Several target-model gaps are already concrete and must be resolved before
+the converter can claim complete data preservation:
+
+- One Bookshelf `Books` row can have audiobook and ebook editions. Chaptarr
+  stores a media type on each book row, so conversion can produce multiple
+  target book IDs for one source ID. Every dependent edition, file, series
+  link, blocklist entry, history item, and legacy API ID needs an explicit
+  one-to-many alias; choosing one target row silently loses a format.
+- Bookshelf `DownloadHistory` is author/download-scoped and has no `BookId`,
+  while Chaptarr requires `BookId`. The converter cannot truthfully invent a
+  book association. Chaptarr needs an author-level history representation or
+  a compatible legacy-history store and reader before these rows can be
+  migrated without loss.
+- Bookshelf blocklist rows use local `AuthorId` and `BookIds`; Chaptarr's
+  blocklist stores provider-qualified IDs and deliberately excludes local IDs
+  to avoid collisions. Rows without a resolvable provider identity need a
+  stable, collision-safe legacy identity representation and matching rules;
+  they cannot be dropped or matched by title alone.
+- Bookshelf extra-file records allow a null `BookFileId`, while Chaptarr's
+  `ExtraFiles` schema requires one. Conversion must preserve unassociated
+  files through a semantically correct target representation or an explicit
+  schema change; assigning an unrelated book file is invalid.
+
+These are implementation gates, not cleanup details. Add populated fixtures
+for dual-format books, author-level download history, unresolved blocklist
+identities, and unassociated extra files before enabling automatic promotion.
+
 Chaptarr's app-folder resolver prefers `chaptarr.db`, then opens an existing
 `readarr.db` or `audioarr.db` when the new filename is absent. Its main
 migration controller runs the lineage guard before numbered migrations, so a
