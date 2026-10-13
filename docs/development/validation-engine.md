@@ -42,12 +42,14 @@ packages use a private cache shared only within the validation run. Test tasks
 use `CI=true` and `NODE_ENV=test` regardless of the invoking shell's values.
 Previous results are not reused.
 
-The current CI topology has one Linux x64 unit-test runner. CI retains the
-normal NUnit report for pull-request feedback and uploads the machine-readable
-validation receipt from that same runner. The build, frontend compilation,
-Playwright installation, and artifact packaging remain separate existing CI
-steps; the test engine does not claim those steps passed unless their workflow
-steps pass.
+The current CI topology has one Linux x64 unit-test runner for main-branch
+validation. All pull-request validation uses GitHub-hosted runners; main pushes
+and manual runs on `main` may use the local runner pool. CI retains the normal
+NUnit report for pull-request feedback and uploads the machine-readable
+validation receipt from the runner that performed the tests. The build,
+frontend compilation, Playwright installation, and artifact packaging remain
+separate existing CI steps; the test engine does not claim those steps passed
+unless their workflow steps pass.
 
 The Linux CI job installs Chromium into a run-specific Playwright cache and
 passes only that cache path to the NUnit task. Local Linux runs that need direct
