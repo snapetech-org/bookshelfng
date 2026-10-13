@@ -34,8 +34,8 @@ ChaptarrNG branches and open feature PRs count before release; the combined
 [ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers)
 pins the current snapshot and tracks those blockers.
 
-The current ChaptarrNG active-work pin is `46fa890`: its pushed
-`codex/upstream-backlog-20261012` branch is 313 commits ahead and zero behind
+The current ChaptarrNG active-work pin is `066258f`: its pushed
+`codex/upstream-backlog-20261012` branch is 314 commits ahead and zero behind
 `origin/main` at `a6be38d`, across 703 changed paths. Draft PR #73 contains the
 separate metadata-preference port; PR #72 adds Indonesian and Traditional
 Chinese; PR #74 proposes removing YunoHost publishing. Each capability and
@@ -70,7 +70,7 @@ is the commit/path audit that must be fully dispositioned.
 | Encrypted backups and restore | Passphrase-protected portable archives and per-format profiles | ChaptarrNG has encrypted backup support | **Open blocker.** Prove legacy archive recovery, secret handling, rollback, and profile conversion; never expose secrets in logs. |
 | .NET 10, dependency/security fixes, and platform builds | .NET 10 releases, broad native/package matrix, and maintained security/dependency patches | ChaptarrNG uses .NET 10 and has a different dependency/build matrix | **Open blocker.** Review every patch and supported platform; retain compatible fixes and run the target's required build and security checks. |
 | Release, package, and update channels | Containers, Unraid, Debian/RPM, AUR, PPA, Windows, macOS/Linux/FreeBSD, AppImage, Flatpak, Chocolatey, and Helm; YunoHost publishing retired | ChaptarrNG has its own release and package identities | **Open blocker.** Preserve old channel identities with tested bridge packages/images and migration instructions; no universal automatic redirect exists. |
-| All other fork changes | 399 reachable post-fork commits and 1,035 net-changed paths at the pinned audit revisions | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, or proven equivalent. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
+| All other fork changes | 402 reachable post-fork commits and 1,036 net-changed paths at the pinned audit revisions | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, or proven equivalent. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
 
 ## Evidence and limits
 

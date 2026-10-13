@@ -11,9 +11,9 @@ released converter or a retirement-ready transition.
 
 ## Pinned evidence and preservation
 
-- BookshelfNG source: `abe72896ab80b70c62ccbc41edab92a7509bb225`, branch
+- BookshelfNG source: `102de16fe60e60eb94e6b599a826fe0779b02286`, branch
   `codex/bookshelf-chaptarr-consolidation-20261012`. At this snapshot the
-  branch is 18 commits ahead and one behind BookshelfNG `origin/main` at
+  branch is 20 commits ahead and zero behind BookshelfNG `origin/main` at
   `ace06bc2766d26c8c5951563dd22679a486870bb`.
 - ChaptarrNG product candidate: `6fa426ca8461e28ac343a111939108c7a04b794c`,
   branch `codex/bookshelf-consolidation-final-20261012`, draft PR [#73](https://github.com/snapetech/chaptarrng/pull/73). It is based on ChaptarrNG
@@ -23,17 +23,17 @@ released converter or a retirement-ready transition.
   previous hosted Windows run failed 12 file-path fixture tests; commit
   `6fa426c` normalizes paths only at three fake-filesystem test boundaries.
   Fresh hosted checks, including Windows, are queued; the PR remains a draft.
-- ChaptarrNG active-work snapshot: `46fa8908a81df4093801c29b6edb4f45fb7e4f53`,
-  branch `codex/upstream-backlog-20261012`, is 313 commits ahead and zero
+- ChaptarrNG active-work snapshot: `066258f6f96d20dd5ab2552ce1b16437c541a971`,
+  branch `codex/upstream-backlog-20261012`, is 314 commits ahead and zero
   behind `origin/main` at `a6be38dd5551b513b22e2efd4504a5ee3e73895b`, with
   703 changed paths. This is separate from PR #73. Open PR #72 adds Indonesian
   and Traditional Chinese; PR #74 proposes removing YunoHost publishing.
   ChaptarrNG's itemized cumulative blocker table is in its
   [fork feature guide](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#itemized-active-and-unreleased-chaptarrng-blockers).
-- SeerrNG: `6ac0be1b856afbdd68da276e6dfa75652985c66d`, branch
+- SeerrNG: `e8971c458192fae5a0ef8399d8b13ff41fc96cf1`, branch
   `codex/library-stale-availability-20261012`, open PR [#203](https://github.com/snapetech/seerrng/pull/203);
   `origin/main` is `0701b65d972822952bf2c360ed96d1d20cdd7042` and the branch
-  is 11 commits ahead with no local-behind commits. The affected component
+  is 12 commits ahead with no local-behind commits. The affected component
   tests and `pnpm build:all` passed; the current hosted unit, browser, Cypress,
   documentation, build, security, and validation checks pass. Its VM smoke
   used an empty Chaptarr library, so it does not prove populated Bookshelf
@@ -60,9 +60,9 @@ released converter or a retirement-ready transition.
 - The generated [inventory](chaptarr-consolidation-inventory.json) records
   every reachable commit after the parent of the first fork commit
   `bde894431`, and every net-changed path. It includes upstream merges and
-  maintenance. At the pinned revisions it contains 399 commits (390 absent
-  from Bookshelf's upstream history) and 1,035 net-changed paths compared with
-  the PR #73 candidate: 336 different mapped files, 680 paths without a mapped
+  maintenance. At the pinned revisions it contains 402 commits (393 absent
+  from Bookshelf's upstream history) and 1,036 net-changed paths compared with
+  the PR #73 candidate: 336 different mapped files, 681 paths without a mapped
   target, 13 identical files, four text-equivalent files after branding/newline
   normalization, and two deleted source paths. These are path-level review
   states, not feature-parity counts.
@@ -72,7 +72,7 @@ Regenerate the tracked-source inventory with:
 ```sh
 python3 scripts/audit-chaptarr-consolidation.py \
   --chaptarr /path/to/chaptarrng-candidate \
-  --source abe72896ab80b70c62ccbc41edab92a7509bb225 \
+  --source 102de16fe60e60eb94e6b599a826fe0779b02286 \
   --target 6fa426ca8461e28ac343a111939108c7a04b794c \
   --output docs/maintainers/chaptarr-consolidation-inventory.json
 ```
@@ -374,6 +374,6 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | Bookshelf database compatibility | A populated synthetic Bookshelf database was rejected by the Chaptarr lineage guard before numbered migrations and its source bytes remained unchanged. This proves safe rejection only. | A supported converter for populated SQLite and PostgreSQL data, configuration, identities, references, and rollback is not implemented. |
 | Candidate runtime and SeerrNG | An earlier ancestor candidate started with a fresh database and passed an empty-library SeerrNG capability/key smoke. Current SeerrNG PR #203 has passing local and hosted validation. | No latest-candidate populated-library request, identity, history, or availability probe has run. |
 | Cross-project secrets | Root `.env` is ignored and untracked in BookshelfNG, ChaptarrNG, and SeerrNG. The SixLabors license remains in `~/Downloads` outside all repository trees and is supplied to builds through an environment variable. | Keep both checks in release validation; no secret may enter a commit, build log, or published artifact. |
-| Hosted PR checks | BookshelfNG PR #112's listed checks pass but GitHub reports it behind its base. ChaptarrNG PR #73 at `6fa426c` has fresh checks queued; PR #72 and PR #74 had passing checks. SeerrNG PR #203 at `6ac0be1` has passing build, unit, Playwright, Cypress, docs, security, and validation checks and is not merged. | Refresh checks after base updates. PR #74's YunoHost removal does not supply a tested BookshelfNG compatibility bridge. |
+| Hosted PR checks | BookshelfNG PR #112's previous listed checks passed; the updated branch now includes the latest `origin/main` commit and has fresh checks queued. ChaptarrNG PR #73 at `6fa426c` has fresh checks queued; PR #72 and PR #74 had passing checks. SeerrNG PR #203 at `6ac0be1` has passing build, unit, Playwright, Cypress, docs, security, and validation checks and is not merged. | Refresh checks after base updates. PR #74's YunoHost removal does not supply a tested BookshelfNG compatibility bridge. |
 | Distribution and migration | The channel-by-channel bridge plan covers registries, Unraid, apt/PPA, RPM/COPR, AUR, Chocolatey, Windows, archives, AppImage, Flatpak, Helm, YunoHost, and catalog packages. | No legacy image/package bridge or converter is published or tested. Pinned, offline, manual, and updater-disabled installs cannot be silently redirected; the Readarr-owned updater endpoint is outside Snapetech control. |
 | Release decisions | The BookshelfNG enhanced feature set blocks BookshelfNG retirement as a whole and row by row. The later ChaptarrNG gate includes that retained set plus every ChaptarrNG maintained and actively developed capability, including unpublished work; each channel is a separate blocker too. | Current evidence does not support a main merge that claims parity, BookshelfNG retirement, or release redirection. |
