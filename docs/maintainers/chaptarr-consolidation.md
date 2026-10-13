@@ -7,8 +7,8 @@ unknown for end-to-end migration until the matrix below passes.
 
 The generated source comparison is pinned to BookshelfNG code at
 `9b0847973610f166523e155d3977049566d40745` and the committed base of the local
-ChaptarrNG integration worktree. BookshelfNG has since added documentation-only
-commits through `d14acd9`; those do not change the code inventory. The
+ChaptarrNG integration worktree. Follow-up documentation-only revisions were
+published through `9a70dc4`; they do not change the code inventory. The
 ChaptarrNG worktree also has uncommitted changes, which are not represented in
 the generated inventory. Remote PR #73 remains a separate, older tree. These
 pins describe audited source trees, not a released converter or a
@@ -18,9 +18,9 @@ retirement-ready transition.
 
 - BookshelfNG code inventory: `9b0847973610f166523e155d3977049566d40745`,
   which was 30 commits ahead and zero behind `origin/main` at
-  `ace06bc2766d26c8c5951563dd22679a486870bb`. The current documentation branch
-  head is `d14acd930dde0d9308ee6dfc4084a3a052cd1b0b` (32 commits ahead); the two
-  commits after the inventory pin only refreshed evidence and documentation.
+  `ace06bc2766d26c8c5951563dd22679a486870bb`. At the documentation snapshot
+  `9a70dc4`, the branch was 33 commits ahead; the three commits after the
+  inventory pin only refreshed evidence and documentation.
 - ChaptarrNG integration base: `683924daadf3201a467913c2ac4207eda6e61ea8`,
   branch `codex/bookshelf-consolidation-integrated-20261014`; 318 commits
   ahead and 3 behind current `origin/main` at `660cc0341934513a411bd40d42c781f1313c08be`.
