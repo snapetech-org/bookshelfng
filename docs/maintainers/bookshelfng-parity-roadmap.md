@@ -34,13 +34,14 @@ ChaptarrNG branches and open feature PRs count before release; the combined
 [ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers)
 pins the current snapshot and tracks those blockers.
 
-The current ChaptarrNG active-work pin is `066258f`: its pushed
-`codex/upstream-backlog-20261012` branch is 314 commits ahead and zero behind
-`origin/main` at `a6be38d`, across 703 changed paths. Draft PR #73 contains the
-separate metadata-preference port; PR #72 adds Indonesian and Traditional
-Chinese; PR #74 proposes removing YunoHost publishing. Each capability and
-proposed distribution change is individually tracked in the ChaptarrNG matrix,
-including work that has not merged or shipped.
+The current ChaptarrNG feature snapshot is pinned at `22078e0`: it records 315
+commits ahead and zero behind `origin/main` at `a6be38d`, across 703 changed
+paths. Later branch commits only update documentation. Draft PR #73 contains
+the separate metadata-preference port; PR #72 adds Indonesian and Traditional
+Chinese choices, AudioBookShelf mapping and audiobook-mode translations, and
+locale direction metadata; PR #74 proposes removing YunoHost publishing. Each
+capability and proposed distribution change is individually tracked in the
+ChaptarrNG matrix, including work that has not merged or shipped.
 
 ## Feature matrix
 
