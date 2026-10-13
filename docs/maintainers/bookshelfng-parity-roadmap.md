@@ -1,145 +1,85 @@
-# BookshelfNG parity and differentiation roadmap
+# BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
-**Status:** active planning document, reviewed 2026-09-26. This is a working
-roadmap, not a promise that every item is scheduled or will ship.
+**Reviewed:** 2026-10-12. **Status:** the BookshelfNG-to-ChaptarrNG
+consolidation is in progress; BookshelfNG is not ready to retire. The candidate
+has no populated-library converter or release bridge. This is a feature-level
+matrix, not a claim that similarly named features are equivalent.
 
-## Goal
+**Confidence:** high for the listed BookshelfNG behavior at the pinned
+released source; moderate for whether ChaptarrNG contains a related
+implementation; unknown for semantic equivalence until the listed acceptance
+checks pass.
 
-Make BookshelfNG a complete single-instance ebook and audiobook manager with
-the capabilities users expect from Chaptarr, while improving compatibility,
-metadata transparency, import safety, privacy, and integrations.
+## Retirement rule
 
-Compare the current code with Chaptarr's [README](https://github.com/Chaptarr/chaptarr)
-and feature descriptions, rather than using older BookshelfNG documentation.
-This checkout already supports formats and workflows missing from previous
-public BookshelfNG snapshots.
+Every capability BookshelfNG added or materially extended is a blocker to
+retiring BookshelfNG until ChaptarrNG contains the behavior or a tested,
+documented replacement. The set is conjunctive: closing one row does not close
+the others. The whole enhanced BookshelfNG feature set blocks retirement, and
+each row remains an independent blocker until its own evidence passes. A row
+does not become optional because upstream documentation is silent or ChaptarrNG
+has a feature with a similar name.
 
-## Verified current capabilities
+The default is to retain every capability. Calling a feature obsolete does not
+close its blocker; any proposed removal requires an explicit maintainer
+decision about the user impact.
 
-| Capability | BookshelfNG status | Evidence / boundary |
-| --- | --- | --- |
-| Ebook and audiobook in one instance and on one book record | Implemented | Multiple ebook formats and audiobook files coexist; imports and upgrades compare compatible format groups. Optional per-format author folders route imports, upgrades, and renames; format-specific profile overrides fall back to the author defaults. A previewable move for existing files remains. |
-| Standard book automation | Implemented | Author/book monitoring, RSS, indexers, download clients, quality profiles, imports, renaming, search, and upgrades are carried from the Readarr lineage. |
-| Narrator metadata | Implemented, now used in identification | Narrators are stored separately, searchable, taggable, and used to rank audio imports when both file and edition metadata provide a narrator. |
-| Publisher and edition preferences | Partial | Publisher and format influence matching; metadata profiles support weighted edition terms. There is no dedicated dramatized-audio or publisher-specific release model. |
-| Series workflows | Implemented | Series metadata, preferred-series selection, and series-pack search exist. Independent series monitoring is not currently modeled; treat it as a possible extension, not a claimed Chaptarr parity gap. |
-| Audiobook conversion | Partial | Completed multi-track downloads can be merged into chaptered M4B. The current flow runs only for two or more tracks, creates one chapter per source track, and does not preserve source chapter maps or convert existing/manual-import files. |
-| Metadata providers | Implemented with a different model | Native Hardcover, Readarr-compatible metadata, and supplemental catalogs have qualified identities and per-field preferences. Chaptarr uses its own resolver and consensus pipeline; BookshelfNG should keep improving provider provenance and disagreement handling. |
-| Readarr continuity | BookshelfNG advantage | Softcover mode retains Goodreads-compatible identity for existing Readarr-style databases; migration tooling can rebuild metadata against Hardcover. Chaptarr documents that its metadata sources are not Readarr-compatible. |
-| Built-in integrations | Strong capability in this checkout | Native MyAnonamouse, Calibre Content Server, BookLore BookDrop, Audiobookshelf sidecars, and SeerrNG's Readarr-compatible API are supported. Chaptarr's README does not document equivalent integrations; that is not proof they are absent. |
+This gate is separate from the later ChaptarrNG-to-Chaptarr gate. Once a
+BookshelfNG capability is retained in the consolidated ChaptarrNG product, it
+also joins ChaptarrNG's upstream-retirement blocker set. ChaptarrNG's own
+maintained features and active changes remain blockers too; see the combined
+[ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
-## Remaining parity work
+## Feature matrix
 
-### 1. Format-specific library policy and storage
+“Present” means the target code has a related implementation. It does not
+close the row until behavior, data, configuration, and client compatibility
+are tested. The current code-level findings and acceptance cases are recorded
+in the [consolidation report](chaptarr-consolidation.md); the linked inventory
+is the commit/path audit that must be fully dispositioned.
 
-BookshelfNG can store an ebook and audiobook under one book. `Author.Path`
-remains the backwards-compatible default, and authors can now set optional
-ebook and audiobook folder overrides for future imports and renames. Generated
-book sidecars follow their media files; author-wide metadata and extras remain
-under `Author.Path`. Optional format-specific quality and metadata profiles
-now override author-level choices for matching ebook and audiobook formats.
-Unset overrides continue to use the author-level profile. Existing files need
-a previewable move workflow before a path change can relocate them.
+| BookshelfNG capability | BookshelfNG has | ChaptarrNG candidate has | Retirement disposition and status |
+| --- | --- | --- | --- |
+| One instance for ebooks and audiobooks; multiple compatible formats per book | Single book records can retain multiple ebook and audiobook files | Media-specific book and edition models exist | **Open blocker.** Convert records and all relationships; prove format isolation, monitoring, upgrades, and existing client behavior. |
+| Format-specific author paths, quality profiles, and metadata profiles | Optional per-format paths and profile overrides, with author defaults as fallback | Native media roots and profiles exist | **Open blocker.** Preserve override/fallback rules and prove imports, upgrades, renames, scans, and moves for both formats. |
+| Native Hardcover metadata and request controls | Direct GraphQL provider, per-process pacing/cache, batched lookups, rate-limit recovery, and identity routing | Chaptarr has a separate resolver and consensus pipeline | **Open blocker.** Keep the configured behavior and identity boundaries or provide a tested replacement; a provider name alone is not parity. |
+| Selectable supplemental catalogs and per-field source preferences | Hardcover, Readarr-compatible API, Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and optional Apify adapters | No matching Bookshelf catalog set or source-selection model identified | **Open blocker.** Port adapters, settings, qualified identities, field choices, and fallback rules, or replace each with tested behavior. |
+| Cross-catalog recovery and import matching | Retry unmapped files across configured catalogs; ISBN/ASIN/provider-ID and normalized-name matching; configurable title threshold | Different resolver, FTS, and matching architecture | **Open blocker.** Port the observed cases and no-false-match/no-delete guarantees; do not transplant the old matching engine blindly. |
+| Weighted edition terms, preferred series, and narrator-aware matching | Profile terms and series preferences; narrator tags and edition evidence affect audiobook ranking | Narrator and publisher-aware behavior exists, with a different preference/scoring model | **Open blocker.** Preserve the weights, neutral handling of missing data, tie behavior, and manual-review boundaries. |
+| Audiobook M4B merge and chapter metadata | Opt-in multi-track merge with track ordering and chapter creation | Native conversion and multipart workflows exist | **Open blocker.** Verify opt-in policy, chapter offsets and source chapters, part order, tags, failure recovery, and source retention. |
+| Vendored TagLibSharp MPEG-4 `chpl` handling | Patch includes byte-preserving chapter-list writes | Chaptarr uses a different TagLibSharp package | **Open blocker.** Compare exact patch behavior and prove chapter preservation on representative files before selecting a native patch or dependency update. |
+| Existing torrent adoption and safe seeding | Can adopt tracked torrent data without removing the seed | Native adoption/continuation work exists | **Open blocker.** Prove same-category, wrong-category, completed-download, and seeding-data preservation cases. |
+| Direct Download with ordered sources and browser-assisted links | Ebook search, API-key downloads, optional browser fallback, durable transfer state, and redirect validation | A built-in direct-download implementation exists | **Open blocker.** Preserve URL order, configuration aliases, staged-state recovery, architecture limits, and redirect/private-network protections. |
+| BookLore BookDrop uploads | Uploads imported books through BookLore's BookDrop API | Ported in the current ChaptarrNG candidate | **Open blocker.** Core tests pass; convert stored notification settings and verify a service-level upload and recovery path. |
+| Calibre, MyAnonamouse, Audiobookshelf sidecars, and SeerrNG integration | These standalone service and metadata workflows are present | Some native integrations and the SeerrNG contract exist; the full set is not proven equivalent | **Open blocker.** Disposition each integration and preserve its settings, API behavior, and stored associations. |
+| Previewable media moves, bulk moves, and extra-file handling | Preview, collision checks, registered sidecars, and format-aware paths | Chaptarr has different folder and organization behavior | **Open blocker.** Prove equivalent previews, collision and cross-device behavior, and that unknown/external files remain untouched. |
+| Optional privacy-preserving diagnostics | Separate module, explicit opt-in, aggregate-only event schema | No equivalent optional module identified | **Open blocker.** Retain its install/opt-in and data-minimization contract or record a reviewed replacement with the same operator choice. |
+| Scoped SeerrNG access, API aliases, proxy and request controls | Restricted key, compatibility routes, format-specific availability, and hardened proxy/auth boundaries | ChaptarrNG has its own facade and scoped key | **Open blocker.** Preserve existing permissions and configuration semantics; test unchanged SeerrNG settings, IDs, keys, and proxy deployments. |
+| Encrypted backups and restore | Passphrase-protected portable archives and per-format profiles | ChaptarrNG has encrypted backup support | **Open blocker.** Prove legacy archive recovery, secret handling, rollback, and profile conversion; never expose secrets in logs. |
+| .NET 10, dependency/security fixes, and platform builds | .NET 10 releases, broad native/package matrix, and maintained security/dependency patches | ChaptarrNG uses .NET 10 and has a different dependency/build matrix | **Open blocker.** Review every patch and supported platform; retain compatible fixes and run the target's required build and security checks. |
+| Release, package, and update channels | Containers, Unraid, Debian/RPM, AUR, PPA, Windows, macOS/Linux/FreeBSD, AppImage, Flatpak, Chocolatey, and Helm; YunoHost publishing retired | ChaptarrNG has its own release and package identities | **Open blocker.** Preserve old channel identities with tested bridge packages/images and migration instructions; no universal automatic redirect exists. |
+| All other fork changes | 376 reachable post-fork commits and 1,024 net-changed paths at the pinned audit revisions | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, or proven equivalent. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
 
-This is a cross-cutting storage change. The first increment adds optional
-`EbookPath` and `AudiobookPath` overrides and routes file destinations, root
-checks, rename/upgrade, and deletion through the selected location. `Author.Path`
-remains the fallback and legacy API field. Disk scanning still enumerates
-configured Root Folders. Extra-file discovery now scans every configured
-author location, media sidecars follow their book files, and author-wide extras
-remain in `Author.Path`. Implement the remaining work in these stages:
+## Evidence and limits
 
-1. Keep the current location resolver and optional API/UI path overrides as
-   the backwards-compatible base. Existing files remain where they are when an
-   override changes.
-2. Completed: scan configured author locations for extra files and keep
-   generated book sidecars beside their media; retain `Author.Path` as the
-   shared location for author-wide metadata and extras.
-3. **Completed:** add format-specific quality and metadata profile overrides.
-   Existing author settings remain effective whenever a format-specific value
-   is unset.
-4. Audit full-library scans, root-folder removal, bulk edit, and moves across
-   every configured location. Keep same-path and overlap safeguards for all
-   authors and all format paths.
-5. Add a previewable, reversible move workflow for existing files. Changing a
-   format path continues to control future imports only until that workflow is
-   available.
+The [consolidation report](chaptarr-consolidation.md) records exact source and
+target revisions, current implementation findings, the data-conversion
+contract, release-channel matrix, test results, and open gates. At the reviewed
+revisions, ChaptarrNG's Core suite passes, but the following decisive evidence
+does not exist yet: populated BookshelfNG conversion, full feature-by-feature
+semantic acceptance, SeerrNG before/after probes, and a tested old-channel
+bridge. The real BookshelfNG `.69` databases inspected were empty; they prove
+schema lineage only.
 
-The implementation inventory has confirmed the single-path assumptions in
-`AuthorPathBuilder`, `DiskScanService`, `ImportApprovedBooks`,
-`BookFileMovingService`, `UpgradeMediaFileService`,
-`MediaFileDeletionService`, and the extras/metadata services. Treat this list as
-the minimum audit set and search for additional direct `Author.Path` usage
-before each storage phase.
+The BookshelfNG and ChaptarrNG databases have different schemas and identity
+models. Never point ChaptarrNG at a BookshelfNG database and assume startup will
+convert it. The current ChaptarrNG lineage guard rejects the inspected
+BookshelfNG databases before migration. A separate converter must preserve the
+source and produce a new native ChaptarrNG database.
 
-### 2. Audiobook matching and editions
-
-- Keep narrator-aware scoring reliable and expose concise match reasons in
-  Manual Import. The first increment now logs the score contribution.
-- Model dramatized, multi-part, and publisher-specific releases without
-  collapsing distinct editions into a false duplicate.
-- Expand audiobook naming and metadata tokens where the underlying provider
-  supplies reliable values.
-
-### 3. Complete chapter-aware audio processing
-
-- Preserve valid source chapters when converting or merging audio.
-- Generate useful chapters when sources have none, with track titles and
-  duration-based boundaries.
-- Support a single MP3 source as well as multi-file releases.
-- Offer processing for manual imports and existing library files, with an
-  explicit preview, output validation, and source-retention policy.
-- Keep conversion opt-in and make FFmpeg availability, CPU cost, codec changes,
-  and failure fallback clear to operators.
-
-## Ways to go beyond feature parity
-
-### Explainable, correct imports
-
-Show which identifiers and fields drove an edition match, retain alternate
-candidates, and make ambiguous decisions reviewable. Use corrections as
-explicit local preferences; never silently train from a mistaken automatic
-match.
-
-### Provider provenance and recovery
-
-Make it clear which catalog supplied each value, why conflicting values were
-kept or replaced, and whether the saved provider identity can still resolve.
-Offer safe re-identification and reconciliation with a report and rollback
-path rather than changing IDs in place without review.
-
-### Library and media health
-
-Add scans for duplicate files, broken or missing chapters, invalid identifiers,
-unmatched narrator/edition details, and files outside configured format roots.
-Every proposed repair should be previewable and reversible.
-
-### Operator trust
-
-Preserve the current no-telemetry default, bounded upstream request behavior,
-stable IDs, and conservative import fallbacks. Chaptarr also states that it
-does not collect telemetry, so privacy is a shared expectation rather than a
-differentiator. Keep backup, migration, and release behavior explicit and
-repeatable.
-
-## Delivery order
-
-1. **Completed increment:** use narrator tags as optional audiobook identity
-   evidence. Missing narrator data remains neutral.
-2. **Current storage increment:** optional format-specific author folders
-   route future imports, upgrades, and renames while `Author.Path` remains the
-   fallback. Existing files stay in place when an override changes.
-3. **Completed:** add format-specific quality and metadata profiles, keeping
-   author-level choices as fallbacks.
-4. **Storage move workflow:** scan, move, and delete safely across roots with
-   explicit previews and reversible operations.
-5. **Audio processing milestone:** richer chapter preservation and single-file
-   conversion, with validation and rollback-safe imports.
-6. **Matching milestone:** publisher/dramatized/multipart handling plus
-   explainable Manual Import decisions.
-7. **Differentiation:** provider provenance, explicit conflict resolution,
-   safe reconciliation, and library health reports.
-
-Each user-visible change should ship independently with a release-note
-fragment and should keep the existing database and API usable unless a
-versioned migration is explicitly designed.
+Retirement also has a separate distribution gate. BookshelfNG's installed
+updater checks the Readarr-owned update service, so changing Snapetech release
+assets cannot redirect every existing installation. Pinned images, disabled
+updaters, offline hosts, and manual archives also need an explicit upgrade
+action. A channel-by-channel compatibility bridge can reduce effort, but a
+frictionless automatic update for every historical install cannot be promised.

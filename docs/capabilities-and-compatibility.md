@@ -28,7 +28,8 @@ Each author can optionally override the default path for ebooks and
 audiobooks. These settings affect future imports, upgrades, and renames;
 existing files are not moved automatically. Generated book metadata sidecars
 follow their media files, while author-wide metadata and extras remain under
-the default `Path`. Quality and metadata profiles are shared by both formats.
+the default `Path`. Each format can override the author's quality and metadata
+profiles; an unset override falls back to the author-level profile.
 Separate instances are optional when you need isolated databases or
 settings for the same author. Persist `/config`; that volume contains
 the database, application settings, and provider identities needed to keep an
@@ -318,13 +319,16 @@ schema](../src/Bookshelf.Diagnostics/README.md).
 This feature-level inventory covers work added or maintained in BookshelfNG
 from its May 18, 2026 fork from
 [pennydreadful/bookshelf](https://github.com/pennydreadful/bookshelf) through
-the [`main-v0.4.21.63` release](https://github.com/snapetech/bookshelfng/releases/tag/main-v0.4.21.63)
-published on October 4, 2026. Bookshelf itself is a Readarr revival. The table
+the [`main-v0.4.21.69` release](https://github.com/snapetech/bookshelfng/releases/tag/main-v0.4.21.69)
+published on October 12, 2026. Bookshelf itself is a Readarr revival. The table
 groups related changes rather than listing every bug fix, dependency bump, or
-routine maintenance commit. The sections below distinguish fork-maintained
-work from capabilities already shared with the Bookshelf and Readarr lineage.
-At this snapshot, BookshelfNG `main` included the direct parent's then-current
-`develop` history. For release-by-release entries see the
+routine maintenance commit. The exhaustive commit and changed-path accounting
+for the ChaptarrNG consolidation is in the
+[retirement matrix](maintainers/bookshelfng-parity-roadmap.md) and its linked
+inventory. The sections below distinguish fork-maintained work from
+capabilities already shared with the Bookshelf and Readarr lineage. At the
+October 4 upstream comparison, BookshelfNG `main` included the direct parent's
+then-current `develop` history. For release-by-release entries see the
 [BookshelfNG releases](https://github.com/snapetech/bookshelfng/releases); the
 [main commit history](https://github.com/snapetech/bookshelfng/commits/main/)
 has the patch-level record.
@@ -338,6 +342,7 @@ has the patch-level record.
 | September 24, 2026 | Added field-level metadata source preferences, multiple formats per book, weighted edition and preferred-series matching, configurable automatic import title matching, manual Add searches and series-pack search, existing-torrent adoption, BookLore BookDrop uploads, and narrator search and audio tags. Added queue ignore behavior and safety fixes for metadata refresh and cross-origin redirects. |
 | September 26, 2026 | Added audiobook narrator credits from file tags to edition import scoring so matching narrators help rank audiobook editions when both local and provider metadata include them. |
 | September 27–October 4, 2026 | Added cross-catalog recovery for unmapped files, optional ebook/audiobook author folders, previewable per-author and bulk media moves, and SeerrNG format-scoped routes and availability counts. Hardened the SeerrNG credential and trusted-proxy boundaries, restored Readarr API and Docker compatibility, and added a built-in direct-download indexer/client with ordered source URLs, API-key downloads, optional headless-Chromium resolution, durable transfer state, and validated redirects. |
+| October 5–12, 2026 | Added format-specific quality and metadata profiles and encrypted backups; repaired first-run authentication setup; removed the vulnerable ImageSharp dependency; patched selector-parser CPU exhaustion; retired YunoHost publishing; and expanded source-bound validation. See the release history and the consolidation path inventory for the complete patch-level record. |
 
 BookshelfNG retains ebook identification behavior from the Readarr lineage:
 EPUB ISBN normalization and checksum checks, ISBN-13 preference, ASIN matching,
@@ -383,6 +388,25 @@ code. In particular, BookshelfNG's direct Hardcover client, provider-specific
 detail routes, migration boundary, author reuse rules, optional-module
 installation, and current rate-limit behavior are documented in this guide
 and the linked operator docs.
+
+## BookshelfNG-to-ChaptarrNG consolidation
+
+This feature inventory is one input to the BookshelfNG retirement decision.
+Every BookshelfNG enhancement in the
+[feature inventory and ChaptarrNG retirement matrix](maintainers/bookshelfng-parity-roadmap.md)
+is a blocker until ChaptarrNG retains it or has a tested replacement. The
+combined feature set blocks retirement, with each capability tracked as its
+own acceptance gate. ChaptarrNG's existing maintained features and active
+changes remain separate blockers to any later ChaptarrNG-to-Chaptarr
+retirement; they are tracked in the
+[ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
+
+The published BookshelfNG `.69` database is not compatible with ChaptarrNG's
+native schema. The candidate's lineage guard rejects it before migrations, and
+there is not yet a populated-data converter or release bridge. Keep the source
+database and current installation until the migration and channel-specific
+upgrade tests in the [consolidation report](maintainers/chaptarr-consolidation.md)
+pass.
 
 ## Release and deployment workflow
 
