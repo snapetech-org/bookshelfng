@@ -77,6 +77,13 @@ backups and upgrade path. Do not mount a BookshelfNG `/config` directory as a
 ChaptarrNG configuration directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
 tracks feature, database, and distribution blockers.
 
+Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
+ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG
+then joins the upstream blocker set alongside all features ChaptarrNG maintains
+or is actively adding, including unpublished work in progress. That complete
+union blocks ChaptarrNG retirement as a whole; see the
+[combined ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
+
 ## Capabilities
 
 - **Choose how book metadata is served.** The `hardcover` image includes a

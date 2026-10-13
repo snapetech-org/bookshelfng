@@ -27,8 +27,20 @@ released converter or a retirement-ready transition.
   `origin/main` is `0701b65d972822952bf2c360ed96d1d20cdd7042`. Its hosted
   validation is pending. Focused post-merge Node tests passed 38/38.
 - Unraid companion: `bookshelfng-unraid` is clean on `main` at `d96e097`; its
-  template still uses `ghcr.io/snapetech/bookshelfng:latest`, which is the
-  compatibility identity a bridge image would need to retain.
+  template uses `ghcr.io/snapetech/bookshelfng:latest`, internal/host port
+  `8787`, `/config`, `/data`, `/download`, and PUID/PGID/TZ variables. The
+  ChaptarrNG template uses a separate image identity, port `8789`, and
+  `/audiobooks`, `/ebooks`, and `/downloads`; an old-template bridge must keep
+  the Bookshelf container contract while adapting the Chaptarr process.
+- YunoHost companion repos are separate package identities: BookshelfNG uses
+  app id `bookshelfng` and port `8787`; ChaptarrNG uses `chaptarrng` and port
+  `8789`. The Bookshelf package is on its historical `testing` branch, so its
+  installed-app update path must be proven rather than inferred from the
+  Chaptarr package.
+- The BookshelfNG Helm chart is `charts/bookshelfng` and serves port `8787`;
+  ChaptarrNG has no matching chart. A bridge must preserve the Helm release,
+  service, StatefulSet, and PVC identities and use a single writer during
+  SQLite conversion.
 - BookshelfNG branch: `codex/bookshelf-chaptarr-consolidation-20261012`.
 - The latest published BookshelfNG release is `main-v0.4.21.69` (not a draft);
   ChaptarrNG candidate version is `0.9.969`. The `.69` archive is the source
@@ -175,9 +187,11 @@ feature rows do not replace it.
 
 This gate answers whether BookshelfNG can be retired into ChaptarrNG. It is
 separate from the later ChaptarrNG-to-Chaptarr gate. ChaptarrNG's existing
-fork-maintained features, its active changes, and every BookshelfNG feature
-retained by this consolidation must all be carried upstream before ChaptarrNG
-can itself be retired. The combined matrix is maintained in the ChaptarrNG
+fork-maintained features, its features actively being added (including work
+not yet in a published release), and every BookshelfNG feature retained by
+this consolidation form one cumulative blocker set. The union blocks
+ChaptarrNG retirement as a whole, with each capability and channel tracked as
+an individual gate. The combined matrix is maintained in the ChaptarrNG
 [fork feature guide](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
 | BookshelfNG capability or change | ChaptarrNG candidate finding | Retirement status | Required disposition and evidence |
@@ -187,7 +201,7 @@ can itself be retired. The combined matrix is maintained in the ChaptarrNG
 | Supplemental catalogs: Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and Apify; per-field preferences | Provider-ID columns exist, but the BookshelfNG adapter and settings set is not present | **Open blocker — port or replace** | Preserve adapters, source selection/fallback, qualified IDs, field choices, and provider-specific request constraints. |
 | Cross-catalog unmapped recovery; normalized title and identifier matching | FTS and matching architectures differ | **Open blocker — behavioral cases unproven** | Port the cases rather than the old engine wholesale; retain no-false-match, ambiguity, and no-delete constraints. |
 | Multiple ebook/audio formats; per-format folders and profile overrides | Native media-specific models, roots, and profiles exist | **Open blocker — conversion and isolation unproven** | Convert all rows and references; verify fallback rules, sibling-format isolation, monitoring, imports, upgrades, scans, and renames. |
-| Weighted edition terms, preferred series, narrator evidence, and publisher/dramatized cases | Narrator and publisher-aware behavior exists with a different preference/scoring model | **Open blocker — scoring parity unproven** | Preserve weights, series choices, missing-evidence neutrality, tie behavior, and manual-review boundaries. |
+| Weighted edition terms, preferred series, narrator evidence, and publisher/dramatized cases | The consolidation branch adds profile-based weighted edition scoring and preferred-series selection for filenames, ebook tags, Calibre, and AudioBookShelf metadata; Chaptarr's stronger match evidence stays ahead of the preference signal | **Partial candidate port; retirement blocker remains open** | Preserve weights, series choices, missing-evidence neutrality, tie behavior, and manual-review boundaries; verify the full Bookshelf edge-case set after profile/database conversion. |
 | Optional M4B merge, chapters, part order, and completion state | Native conversion and multipart handling exist | **Open blocker — media parity unproven** | Map opt-in policy; test chapter offsets and preservation, ordering, metadata, source retention, and failure recovery. |
 | Vendored TagLibSharp patch (253 changed source paths; byte-preserving MPEG-4 `chpl` handling) | Chaptarr uses the `TagLibSharp-Lidarr` package | **Open blocker — patch behavior unreviewed** | Compare the exact fork patch and package version; prove chapter preservation on representative M4B files before selecting a native patch or dependency update. |
 | Existing-torrent adoption and seeding preservation | Native continuation/adoption work exists | **Open blocker — edge cases unproven** | Test same-category and wrong-category cases, seeding-data preservation, and completed-download import. |
@@ -256,9 +270,9 @@ needs its own tested bridge while retaining its existing identity.
 
 | Existing channel | Bridge needed | Automatic reach / acceptance |
 | --- | --- | --- |
-| GHCR and Docker Hub `latest`, `hardcover`, `softcover`, existing edge aliases | Publish tested compatibility images under the old repositories/tags, with lineage, 8787, `/config`, PUID/PGID, UMASK, TZ and env aliases retained | Next pull/recreate or configured updater; each flavor and amd64/arm64 tested separately; no registry HTTP redirect assumption |
+| GHCR and Docker Hub `latest`, `hardcover`, `softcover`, existing edge aliases | Existing images expose port 8787 with `/config`, `/data`, `/download`, PUID/PGID, TZ, and flavor variables. Publish tested Chaptarr compatibility images under those old mutable identities; configure Chaptarr to retain the old port and translate old settings. | Next pull/recreate or configured updater if Snapetech can publish to both old packages; test each flavor and architecture. Registry names do not redirect by themselves, and immutable pins remain unchanged. |
 | Version/digest-pinned containers | New versioned bridge image and migration instructions | Explicit update needed; old pins remain recoverable |
-| Unraid | Keep old template ID/repository tag/volume keys; update description and support links; sync companion `bookshelfng-unraid` | Existing containers update through old image alias; changing template alone does not rewrite installed containers |
+| Unraid | Keep the BookshelfNG template identity, `:latest` image alias, port 8787, `/config`, `/data`, `/download`, PUID/PGID, and TZ. The ChaptarrNG template currently uses port 8789 and different media/download mount names, so the bridge image must honor the old in-container paths. Update and sync companion `bookshelfng-unraid`. | Existing containers can pull the old image alias on their next update; changing the CA template alone does not rewrite an already-created container. Validate the installed template update plus stop, backup, conversion, restart, and rollback. |
 | Debian/Ubuntu direct package and PPA | Higher-version `bookshelfng` compatibility package, same user/unit/data/env paths; Chaptarr payload and migrator | Configured apt repositories update normally; downloaded `.deb` files have no automatic subscription |
 | Fedora/RPM/COPR | Higher-EVR compatibility RPM under existing project/package and signing trust; same service/user/data | Configured repository update; verify service stop, migration failure and transaction retry |
 | AUR `bookshelfng-bin` | Update PKGBUILD/checksums to bridge release, retain package identity and hooks | User's AUR helper upgrade; AUR has no push installation mechanism |
@@ -267,8 +281,8 @@ needs its own tested bridge while retaining its existing identity.
 | macOS/Linux/FreeBSD archives | Legacy named wrapper/payload and migration-aware launcher in new bridge assets | Manual replacement unless an existing owned updater is subscribed; verify each platform rather than assuming Linux proof |
 | AppImage | Legacy desktop/launcher/data identity and new bridge asset; inspect existing embedded update metadata | No blanket automatic update promise; demonstrate actual existing updater if any |
 | Flatpak bundle | Retain `com.snapetech.BookshelfNG` and its sandbox data; bridge build | A standalone bundle is not a subscribed Flathub remote; one-time bundle install may be needed |
-| Helm OCI chart | Keep chart/release/resource/PVC/service identities; publish bridge version/digest and single-writer migration hook | Helm/GitOps upgrade; never default to two concurrent SQLite replicas |
-| YunoHost historical installs | BookshelfNG publishing was retired; inspect installed package identity and companion repository, provide tested package upgrade into compatibility payload | Main app repository changes alone cannot update retired package subscribers |
+| Helm OCI chart | The current chart is named `bookshelfng`, exposes port 8787, and persists `/config`; ChaptarrNG has no matching chart. Publish a bridge chart under the existing OCI identity while preserving release, Service, StatefulSet, labels, and PVC names; add media paths only when existing values provide them. | Helm/GitOps upgrades only when configured; a chart update does not force clients to upgrade. Test PVC retention, service selectors, rollback, and one writer for SQLite. |
+| YunoHost historical installs | BookshelfNG app id `bookshelfng` and port 8787 differ from ChaptarrNG app id `chaptarrng` and port 8789. BookshelfNG publishing is retired; inspect installed catalog identity and companion repo branch, then provide a tested upgrade under the old app id with its existing service, URL path, data directory, and rollback. | The ChaptarrNG app listing cannot update an installed BookshelfNG app. Existing installs are reachable only if the old package's configured repository still delivers the compatibility upgrade. |
 | Cloudron / Coop Cloud / StartOS catalog files | Verify which were actually accepted/published, then retain installed catalog IDs and data contract | A repository recipe/submission is not proof of an installed distribution channel |
 
 Verify registry/package ownership, configured publisher state and signatures with
@@ -310,10 +324,9 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | Existing database/app/API source compatibility | Investigated; incompatible schema and upstream-owned updater confirmed |
 | Published BookshelfNG source fixtures | Released `main-v0.4.21.69` Linux x64 archive SHA-256 `6ff5613524c34719820b2c1805079c5c08c1fe785a678b2a2dda0a1401a280c6`; the real binary started in Hardcover and Softcover modes and created integrity-checked empty databases. Their SHA-256 values are Hardcover `1b170993945f096457c0610014e638ebe5b2f9e4757748f1aeeb09a445663610` and Softcover `22b7d8e581b439302b47a9d9d9ce447877239a5efe97f8c7e353f20716c37418`. Both have 46 migration rows, ending at 158 with 34 absent. The generator's `--populate-bookshelf` run added linked synthetic rows; SQLite integrity and foreign-key checks passed, and the released API returned the seeded author plus book. |
 | ChaptarrNG product build | The product candidate at `4582c13` published on `kspls0` with the workflow-pinned .NET SDK 10.0.401. The Linux x64 apphost SHA-256 is `dfdaae95b9cbd6a4cfe44cfe042f7e6ef87ca60402be00fa8376dc1d9fea1194`; the rebuilt `Chaptarr.dll` is `bc47fa2a4586569825839367fe3af4aaab7b1ea4377905ed55ab81fc93d550d9`, and `Chaptarr.Core.dll` is `68b891404a16247140de7cb1e1a3d098d5b3efb3b5cf0e3fdc8c684f2db1ac8e`. The disposable copy omitted `.git`, producing expected SourceLink warnings. |
-| ChaptarrNG empty startup | The final candidate started with a fresh, explicit task-scoped data path, created `chaptarr.db`, and ran native migrations through version 114 (version 103 is absent). The fixture reported app version `0.9.969.0` and passed its SQLite schema and integrity checks. This is an empty-library startup proof, not a BookshelfNG conversion. |
-| ChaptarrNG lineage guard | The candidate rejected the populated synthetic BookshelfNG `.69` database before the main migration runner. The source DB SHA-256 was unchanged (`5fab03dfae22f3ac36bdde92d8f784d0864fbc1f4a54016453b36ccb3415076a` before and after); the expected lineage error was present and `migrationRunnerStarted` was false. The probe terminated the candidate after observing the error (exit `-15`). This proves fail-closed behavior on linked records only; no converter exists. |
-| ChaptarrNG Core tests | The first full run exposed an `ObjectDisposedException` race when cancellation overlapped worker cleanup. `ConversionJobService.Cancel` now signals the active token while holding the same lock used to remove the job. The isolated regression passed, and the final full Linux run passed **3,956, failed 0, skipped 0** in 9m57s; its TRX result was retained in task scratch. |
-| `.env` and license handling | BookshelfNG's root `.gitignore` excludes `.env`; no `.env` file is tracked, and the safe Coop Cloud `.env.sample` remains tracked. SeerrNG's example environment file remains tracked while local environment files are ignored. The SixLabors community license remained at `~/Downloads/sixlabors.lic`, mode `0600`, and was streamed to the build over SSH stdin; no license file or content was copied into a repository or task scratch. |
+| ChaptarrNG startup and lineage guard | The pinned product build started with a fresh task-scoped data path and migrated through version 114. The later unpublished worktree was published on `kspls0`, answered `/ping` with HTTP 200, created `chaptarr.db`, migrated through version 115, and passed `PRAGMA integrity_check`. Against a populated database generated by the released `main-v0.4.21.69` BookshelfNG binary, the candidate emitted the lineage error before any SQLite migration, created no `chaptarr.db`, and left source SHA-256 `09b495e49b586550bae1b5570671854c7d6f98732adbea2fd06640dd7d915187` unchanged. The guard probe stopped the process after 35 seconds (timeout exit 124); this proves fail-closed behavior, not conversion. |
+| ChaptarrNG Core tests | At the pinned product revision `4582c13`, the full Linux run passed **3,956, failed 0, skipped 0** in 9m57s; its TRX result was retained in task scratch. The later unpublished working tree, including migration 115 and weighted edition/preferred-series work, passed **3,966, failed 0, skipped 3** (3,969 total) in 11m24s on `kspls0`; the 36 focused preference, API, migration, and matching tests also passed. The VM build used .NET SDK 10.0.112 and `AllowMissingPrunePackageData=true` after restore reported NETSDK1226 for missing pruning metadata. Core tests do not prove parity, populated conversion, or release-channel continuity. |
+| `.env` and license handling | BookshelfNG's root `.gitignore` excludes `.env`; no `.env` file is tracked, and the safe Coop Cloud `.env.sample` remains tracked. SeerrNG's example environment file remains tracked while local environment files are ignored. The SixLabors Community license is a required build input and stays outside Git-tracked source; builds receive it through protected local or CI configuration. Any temporary copy is limited to task-scoped scratch and removed during cleanup. No license file or `.env` is committed. |
 | Accidental default-path launch and cleanup | An initial smoke command used unsupported `--version`, which started the app at its default `~/.config/Chaptarr` path. The process was stopped; directory birth and file timestamps showed that the entire 1.8 MB directory was created during that run, and no process referenced it. The task-created directory was removed. All later runs used an explicit disposable data path. |
 | SeerrNG validation | Focused post-merge Node tests passed 38/38, and the release-note preview completed. Hosted Mode 2 validation for PR #203 is pending; no full hosted pass is claimed. |
 | Hosted repository gates | BookshelfNG PR #112, ChaptarrNG PR #73, and SeerrNG PR #203 are open; their required hosted checks are pending. No main merge is claimed. |

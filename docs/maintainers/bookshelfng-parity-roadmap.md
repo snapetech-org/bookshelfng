@@ -26,8 +26,10 @@ decision about the user impact.
 
 This gate is separate from the later ChaptarrNG-to-Chaptarr gate. Once a
 BookshelfNG capability is retained in the consolidated ChaptarrNG product, it
-also joins ChaptarrNG's upstream-retirement blocker set. ChaptarrNG's own
-maintained features and active changes remain blockers too; see the combined
+also joins ChaptarrNG's cumulative upstream-retirement blocker set. Every
+ChaptarrNG feature it maintains or is actively adding—including work not yet
+in a published release—joins that same set. The union blocks retirement as a
+whole, with each capability and channel as an individual gate; see the combined
 [ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
 ## Feature matrix
@@ -45,7 +47,7 @@ is the commit/path audit that must be fully dispositioned.
 | Native Hardcover metadata and request controls | Direct GraphQL provider, per-process pacing/cache, batched lookups, rate-limit recovery, and identity routing | Chaptarr has a separate resolver and consensus pipeline | **Open blocker.** Keep the configured behavior and identity boundaries or provide a tested replacement; a provider name alone is not parity. |
 | Selectable supplemental catalogs and per-field source preferences | Hardcover, Readarr-compatible API, Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and optional Apify adapters | No matching Bookshelf catalog set or source-selection model identified | **Open blocker.** Port adapters, settings, qualified identities, field choices, and fallback rules, or replace each with tested behavior. |
 | Cross-catalog recovery and import matching | Retry unmapped files across configured catalogs; ISBN/ASIN/provider-ID and normalized-name matching; configurable title threshold | Different resolver, FTS, and matching architecture | **Open blocker.** Port the observed cases and no-false-match/no-delete guarantees; do not transplant the old matching engine blindly. |
-| Weighted edition terms, preferred series, and narrator-aware matching | Profile terms and series preferences; narrator tags and edition evidence affect audiobook ranking | Narrator and publisher-aware behavior exists, with a different preference/scoring model | **Open blocker.** Preserve the weights, neutral handling of missing data, tie behavior, and manual-review boundaries. |
+| Weighted edition terms, preferred series, and narrator-aware matching | Profile terms and series preferences; narrator tags and edition evidence affect audiobook ranking | The consolidation branch adds profile-based weighted edition scoring and preferred-series selection for filenames, ebook tags, Calibre, and AudioBookShelf metadata; stronger match evidence remains authoritative | **Partial candidate port; retirement blocker remains open.** Preserve weights and series choices, neutral handling of missing data, tie behavior, and manual-review boundaries; test the full Bookshelf edge-case set after profile/database conversion. |
 | Audiobook M4B merge and chapter metadata | Opt-in multi-track merge with track ordering and chapter creation | Native conversion and multipart workflows exist | **Open blocker.** Verify opt-in policy, chapter offsets and source chapters, part order, tags, failure recovery, and source retention. |
 | Vendored TagLibSharp MPEG-4 `chpl` handling | Patch includes byte-preserving chapter-list writes | Chaptarr uses a different TagLibSharp package | **Open blocker.** Compare exact patch behavior and prove chapter preservation on representative files before selecting a native patch or dependency update. |
 | Existing torrent adoption and safe seeding | Can adopt tracked torrent data without removing the seed | Native adoption/continuation work exists | **Open blocker.** Prove same-category, wrong-category, completed-download, and seeding-data preservation cases. |
