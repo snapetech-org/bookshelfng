@@ -1,5 +1,15 @@
 # Standalone installation
 
+**Legacy BookshelfNG installation path.** New deployments should use
+[ChaptarrNG](https://github.com/snapetech/chaptarrng) and a distribution
+supported there. This guide remains for maintaining existing BookshelfNG
+installations while the channel-specific migration bridges are built. The
+current ChaptarrNG converter is limited to BookshelfNG migration-158 SQLite;
+native package, Windows setup, archive, Flatpak, AppImage, and Helm handoffs
+are not available yet. See the
+[migration status and recovery guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
+before changing an existing installation.
+
 BookshelfNG is a web application that can run directly on a supported host. It
 does not need SeerrNG or another service to launch, search catalogs, manage a
 library, or provide its web interface. The container edition remains available

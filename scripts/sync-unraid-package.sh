@@ -3,6 +3,12 @@ set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(git -C "$script_dir/.." rev-parse --show-toplevel)"
+source_branch="$(git -C "$repo_root" branch --show-current)"
+if [[ "$source_branch" != "main" ]]; then
+	echo "Skipping Unraid package sync from '$source_branch'; only main may update the companion repository."
+	exit 0
+fi
+
 # Worktree directory names are arbitrary, so identify the product from its Git remote.
 origin_url="$(git -C "$repo_root" remote get-url origin 2>/dev/null || true)"
 source_repo="${origin_url%/}"

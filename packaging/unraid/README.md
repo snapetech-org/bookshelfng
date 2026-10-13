@@ -1,31 +1,31 @@
-# BookshelfNG for Unraid
+# BookshelfNG legacy template for Unraid
 
-This repository publishes the standalone BookshelfNG Unraid Docker template.
-**Built on .NET 10 LTS**, BookshelfNG is a Snapetech NG fork of Bookshelf for
-ebook and audiobook library management and acquisition. It works independently;
-SeerrNG integration is optional.
+This legacy listing is being retired in favor of ChaptarrNG. The updated
+template switches the image to ChaptarrNG's standard build while preserving
+the BookshelfNG appdata, media/download mount targets, and default web port.
+Back up appdata before applying the update. New installations should use the
+[ChaptarrNG Unraid listing](https://github.com/snapetech/chaptarrng-unraid).
 
-## Installation and setup
+## Existing installations
 
-In Unraid, open **Apps**, search for **BookshelfNG**, and select **Install** on
-[the BookshelfNG listing](https://ca.unraid.net/apps/bookshelfng-1fdcqrv18pja7r).
-For a manual install, use [the template XML](templates/bookshelfng.xml) with Unraid's Docker
-template workflow. The image is `ghcr.io/snapetech/bookshelfng:latest`; this
-moving tag tracks the Hardcover image used by the Community Apps template.
+Open **Apps > Previous Apps** and apply the updated BookshelfNG template using
+the standard ChaptarrNG image. Read the [migration
+guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
+before upgrading. For a manual install, use [the template XML](templates/bookshelfng.xml).
 
-- Map persistent appdata to `/config` and your media to `/data`.
-- Map downloads to `/download`, matching your download client's container paths.
-- Set a personal Hardcover API token in `HARDCOVER_AUTH` or BookshelfNG settings.
-- Open the web interface on port 8787 and configure indexers and download clients.
-- One instance can manage ebooks and audiobooks. SeerrNG can use two service
-  entries with the same URL and API key when requesting both formats.
-- Existing Readarr or softcover databases require migration before using the
-  Hardcover image; changing the image tag alone is not a migration.
+- Keep the existing `/config`, `/data`, and `/download` mappings, PUID/PGID,
+  timezone, Hardcover variables, and port 8787.
+- The first ChaptarrNG startup converts only the supported BookshelfNG
+  migration-158 SQLite schema and retains a source backup in `/config`.
+- Unsupported databases fail closed. Restore the independent appdata backup and
+  previous image if startup does not complete.
+- A template update does not change containers pinned to another image/tag or
+  installed outside this Community Applications listing.
 
 ## Source and support
 
-- [BookshelfNG application source and documentation](https://github.com/snapetech/bookshelfng)
-- [Unraid package and SeerrNG integration support](https://github.com/snapetech/seerrng/issues)
+- [ChaptarrNG migration guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
+- [ChaptarrNG application source](https://github.com/snapetech/chaptarrng)
+- [Unraid package support](https://github.com/snapetech/seerrng/issues)
 
-BookshelfNG is derived from Bookshelf and Readarr and distributed under GPLv3.
-This template repository uses the same GPLv3 license.
+This template repository is distributed under GPLv3.

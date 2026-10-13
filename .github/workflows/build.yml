@@ -167,6 +167,10 @@ jobs:
           chmod +x _tests/bin/Readarr
           find _tests -name "Readarr.Test.Dummy" -exec chmod a+x {} \;
 
+      - name: Verify Unraid package sync stays off feature branches
+        shell: bash
+        run: bash scripts/test-sync-unraid-package.sh
+
       - name: Test
         id: validation
         shell: bash

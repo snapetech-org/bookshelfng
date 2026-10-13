@@ -72,14 +72,14 @@ migration status.
 
 The planned retirement of BookshelfNG carries its enhanced features into
 ChaptarrNG. That transition is still in progress: no converter or BookshelfNG
-channel bridge has been released. The local ChaptarrNG integration candidate
-now has a staged startup converter for the exact BookshelfNG migration-158
-SQLite schema and passes a deterministic populated-library fixture. A
-self-contained Linux release candidate also converted that fixture on the
-isolated agentic VM through normal startup, retained a row-for-row source
-backup, served the UI, and restarted without duplicating records. It is not
-yet proven against real user databases, older schemas, every provider or
-setting, or any published upgrade path. Keep a verified backup and do not
+channel bridge has been released. The ordinary ChaptarrNG Linux/amd64 image
+passed preview, explicit apply, and normal startup on separate copies of one
+real, populated BookshelfNG migration-158 SQLite database. The retained backup
+matched all 39 source table definitions and every source row. Eighty-one books
+needed explicit media choices; test choices exercised conversion mechanics
+and were not reviewed as correct library classifications. Older schemas,
+PostgreSQL, complete provider/settings/client behavior, rollback restoration,
+and published upgrade paths remain open. Keep a verified backup and do not
 mount a BookshelfNG `/config` directory as a ChaptarrNG configuration
 directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
 tracks the remaining feature, database, and distribution blockers.

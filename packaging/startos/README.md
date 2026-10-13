@@ -1,5 +1,10 @@
 # StartOS submission packet
 
+This is a legacy BookshelfNG submission, not a ChaptarrNG upgrade. The StartOS
+package identity, data contract, and rollback path still need a tested bridge;
+the current migration candidate does not cover StartOS. See the
+[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
+
 The compiled StartOS wrapper is published at
 https://github.com/snapetech/bookshelfng-startos.
 
