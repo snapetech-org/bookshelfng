@@ -70,11 +70,12 @@ migration status.
 
 ### ChaptarrNG consolidation status
 
-The proposed consolidation carries BookshelfNG's enhanced features into
-ChaptarrNG, but no populated-library converter or BookshelfNG channel bridge
-has been released. Existing BookshelfNG installations still need their own
-backups and upgrade path. Do not mount a BookshelfNG `/config` directory as a
-ChaptarrNG configuration directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
+The planned retirement of BookshelfNG carries its enhanced features into
+ChaptarrNG. That transition is still in progress: no populated-library
+converter or BookshelfNG channel bridge has been released. Existing
+BookshelfNG installations still need their own backups and upgrade path. Do
+not mount a BookshelfNG `/config` directory as a ChaptarrNG configuration
+directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
 tracks feature, database, and distribution blockers.
 
 Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
