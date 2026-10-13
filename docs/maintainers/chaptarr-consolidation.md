@@ -19,18 +19,21 @@ released converter or a retirement-ready transition.
   branch `codex/bookshelf-consolidation-final-20261012`, draft PR [#73](https://github.com/snapetech/chaptarrng/pull/73). It is based on ChaptarrNG
   `main` at `a6be38dd5551b513b22e2efd4504a5ee3e73895b` and contains the
   metadata-profile, weighted-edition, preferred-series, and migration-115
-  port. The Linux Core suite passed **3,972/3,972** on .NET 10.0.401. The
-  previous hosted Windows run failed 12 file-path fixture tests; commit
-  `6fa426c` normalizes paths only at three fake-filesystem test boundaries.
-  Fresh hosted checks, including Windows, are queued; the PR remains a draft.
-- ChaptarrNG feature snapshot: `22078e0289949dbc41ee603cd10b80c2510f1e78`,
-  315 commits ahead and zero behind `origin/main` at
-  `a6be38dd5551b513b22e2efd4504a5ee3e73895b`, with 703 changed paths. The
-  active branch has since advanced with documentation-only commits. This
-  snapshot is separate from PR #73. Open PR #72 adds Indonesian and Traditional
-  Chinese language choices, AudioBookShelf mapping and audiobook-mode
-  translations, and locale direction metadata; PR #74 proposes removing
-  YunoHost publishing.
+  port. The hosted candidate `4bb1dd514435af06aa7a57c0e363329041fd853a`
+  passed Linux Core with 3,972 passed and 0 failed, but its Windows Core run
+  failed three path-sensitive rename tests. The local integration now uses
+  OS-rooted test paths and normalized disk/event expectations; 29 rename and
+  path-portability tests pass locally. The full integrated Linux Core suite
+  passed 4,026 tests with 0 failures and 3 skips. A fresh hosted Windows run is
+  still required; PR #73 remains a draft.
+- ChaptarrNG feature snapshot: `24b340fffc43eb0883995a21665d3d051eb66abe`,
+  317 commits ahead and 1 behind `origin/main` at
+  `02d38e1`, with 703 changed paths. Main now includes merged CI PR #69. The
+  maintained backlog includes all unreleased ChaptarrNG features and is
+  separate from PR #73. Open PR #71 adds maintainer guidance; PR #72 adds
+  Indonesian and Traditional Chinese language choices, AudioBookShelf mapping
+  and audiobook-mode translations, and locale direction metadata; PR #74
+  proposes removing YunoHost publishing.
   ChaptarrNG's itemized cumulative blocker table is in its
   [fork feature guide](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#itemized-active-and-unreleased-chaptarrng-blockers).
 - SeerrNG: `1b6b31b6d0977934abf0691912059ca5ccfc21df`, branch
@@ -238,10 +241,12 @@ ChaptarrNG retirement as a whole, with each capability and channel tracked as
 an individual gate. The combined matrix is maintained in the ChaptarrNG
 [fork feature guide](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
-The current ChaptarrNG scope includes work outside `main`: the pinned feature
-snapshot `22078e0` is 315 commits ahead of and zero behind `origin/main` at
-`a6be38d`, across 703 changed paths. Later branch commits update documentation
-only. The active capabilities, open feature work, proposed channel changes,
+The current ChaptarrNG scope includes work outside `main`: the maintained
+backlog snapshot `24b340f` is 317 commits ahead of and 1 behind
+`origin/main` at `02d38e1`, across 703 changed paths. Main now includes merged
+CI PR #69. Open PRs include #71 (maintainer guidance), #72 (localization),
+draft #73 (BookshelfNG metadata preferences), and #74 (proposed YunoHost
+removal). The active capabilities, open feature work, proposed channel changes,
 and acceptance evidence are listed in the ChaptarrNG
 [itemized cumulative blocker matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#itemized-active-and-unreleased-chaptarrng-blockers).
 Draft PR #73's metadata-preference port is on a separate branch and remains an
@@ -373,11 +378,11 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | Area | Current evidence | Remaining blocker |
 | --- | --- | --- |
 | BookshelfNG source inventory | Source `102de16` compared with the PR #73 candidate `6fa426c`: 402 reachable commits, 393 absent from upstream history, and 1,036 changed paths. The generated inventory categorizes every path. | Path classification is not feature equivalence; review and disposition every path. |
-| ChaptarrNG Bookshelf feature port | PR #73 at `6fa426c` passes the Linux Core suite: 3,972 passed, 0 failed, 0 skipped, on .NET 10.0.401. The three Windows-failing fake-filesystem fixtures now normalize separators at the test boundary; all 35 tests in those fixtures pass locally. | Fresh hosted Windows, macOS, security, and release checks are still running. The PR is a draft. No full semantic parity or populated-data conversion is proven. |
-| ChaptarrNG maintained and active features | The separate `codex/upstream-backlog-20261012` feature snapshot at `22078e0` is 315 commits ahead of and zero behind `origin/main` at `a6be38d` across 703 paths. The full Core suite at code commit `fa9e26e` passed 3,997/3,997 in 9m35s; the following commits `46fa890`, `066258f`, and `22078e0` are documentation-only. Later branch commits also update documentation only. | Each released and unreleased capability remains an individual ChaptarrNG-to-upstream blocker; see the itemized table linked above. |
+| ChaptarrNG Bookshelf feature port | PR #73 at `6fa426c` passes hosted Linux Core with 3,972 passed and 0 failed. Its hosted Windows Core run failed three path-sensitive rename tests. The local integrated tree now normalizes OS-rooted fixture paths and filesystem/event expectations; 29 rename and path-portability tests pass locally. The full integrated Linux Core suite passed 4,026, with 0 failures and 3 skips. | Run hosted Windows again on the corrected integration tree; keep the PR a draft until that and review pass. No full semantic parity or populated-data conversion is proven. |
+| ChaptarrNG maintained and active features | The separate `codex/upstream-backlog-20261012` snapshot at `24b340f` is 317 commits ahead and 1 behind `origin/main` at `02d38e1`, across 703 paths. PR #69 has since merged into main. The local integrated Linux Core suite passed 4,026, with 0 failures and 3 skips; migration-lineage reconciliation passed 2/2. | Every released and unreleased capability remains an individual ChaptarrNG-to-upstream blocker; see the itemized table linked above. |
 | Bookshelf database compatibility | A populated synthetic Bookshelf database was rejected by the Chaptarr lineage guard before numbered migrations and its source bytes remained unchanged. This proves safe rejection only. | A supported converter for populated SQLite and PostgreSQL data, configuration, identities, references, and rollback is not implemented. |
 | Candidate runtime and SeerrNG | An earlier ancestor candidate started with a fresh database and passed an empty-library SeerrNG capability/key smoke. SeerrNG PR #203 passed local and full hosted validation on its preceding code head; subsequent documentation-only commits passed local formatting. | No latest-candidate populated-library request, identity, history, or availability probe has run. |
 | Cross-project secrets | Root `.env` is ignored and untracked in BookshelfNG, ChaptarrNG, and SeerrNG. The SixLabors license remains in `~/Downloads` outside all repository trees and is supplied to builds through an environment variable. | Keep both checks in release validation; no secret may enter a commit, build log, or published artifact. |
-| Hosted PR checks | BookshelfNG PR #112 now includes the latest `origin/main` commit; checks for its refreshed head are queued. ChaptarrNG PR #73 at `6fa426c` has fresh checks queued; PR #72 and PR #74 have passing checks. SeerrNG PR #203 at `1b6b31b` has title/label checks queued and GitGuardian in progress; full code validation passed on `6ac0be1`. | Wait for refreshed checks before merging. PR #74's YunoHost removal does not supply a tested BookshelfNG compatibility bridge. |
+| Hosted PR checks | BookshelfNG PR #112 at `1c0edb7` is mergeable and its build, security, package-sync, and release-note checks passed. ChaptarrNG PR #73 at `6fa426c` has passing Linux/macOS/PostgreSQL and security checks but its hosted Windows Core run failed three path tests; local fixtures are corrected and need a fresh run. PR #72 and #74 checks pass. SeerrNG PR #203 at `1b6b31b` has title/label checks passed while the validation plan remains queued; its prior code head passed full validation. | Rerun hosted Windows and SeerrNG validation after final source changes. PR #74's YunoHost removal does not supply a tested BookshelfNG compatibility bridge. |
 | Distribution and migration | The channel-by-channel bridge plan covers registries, Unraid, apt/PPA, RPM/COPR, AUR, Chocolatey, Windows, archives, AppImage, Flatpak, Helm, YunoHost, and catalog packages. | No legacy image/package bridge or converter is published or tested. Pinned, offline, manual, and updater-disabled installs cannot be silently redirected; the Readarr-owned updater endpoint is outside Snapetech control. |
 | Release decisions | The BookshelfNG enhanced feature set blocks BookshelfNG retirement as a whole and row by row. The later ChaptarrNG gate includes that retained set plus every ChaptarrNG maintained and actively developed capability, including unpublished work; each channel is a separate blocker too. | Current evidence does not support a main merge that claims parity, BookshelfNG retirement, or release redirection. |

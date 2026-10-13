@@ -34,14 +34,14 @@ ChaptarrNG branches and open feature PRs count before release; the combined
 [ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers)
 pins the current snapshot and tracks those blockers.
 
-The current ChaptarrNG feature snapshot is pinned at `22078e0`: it records 315
-commits ahead and zero behind `origin/main` at `a6be38d`, across 703 changed
-paths. Later branch commits only update documentation. Draft PR #73 contains
-the separate metadata-preference port; PR #72 adds Indonesian and Traditional
-Chinese choices, AudioBookShelf mapping and audiobook-mode translations, and
-locale direction metadata; PR #74 proposes removing YunoHost publishing. Each
-capability and proposed distribution change is individually tracked in the
-ChaptarrNG matrix, including work that has not merged or shipped.
+The maintained ChaptarrNG backlog branch is pinned at `24b340f`: 317 commits
+ahead and 1 behind `origin/main` at `02d38e1`, across 703 changed paths. The
+newer `main` includes merged CI PR #69. Open PRs include #71 (maintainer
+guidance), #72 (Indonesian and Traditional Chinese choices, AudioBookShelf
+mapping and audiobook-mode translations, and locale direction metadata),
+draft #73 (the metadata-preference port), and #74 (proposed YunoHost removal).
+Each capability and proposed distribution change remains a blocker before it
+merges or ships and is tracked in the ChaptarrNG matrix.
 
 ## Feature matrix
 
@@ -77,11 +77,14 @@ is the commit/path audit that must be fully dispositioned.
 
 The [consolidation report](chaptarr-consolidation.md) records exact source and
 target revisions, current implementation findings, the data-conversion
-contract, release-channel matrix, test results, and open gates. At the reviewed
-revisions, ChaptarrNG's Core suite passes, but the following decisive evidence
-does not exist yet: populated BookshelfNG conversion, full feature-by-feature
-semantic acceptance, SeerrNG before/after probes, and a tested old-channel
-bridge. The real BookshelfNG `.69` databases inspected were empty; they prove
+contract, release-channel matrix, test results, and open gates. The local
+integrated Linux Core suite passed 4,026 tests with 0 failures and 3 skips;
+focused migration-lineage tests passed 2/2, and 29 rename/path-portability
+tests passed. Hosted Windows previously reported three path-sensitive fixture
+failures; the fixture paths are corrected locally and still need a fresh
+hosted run. Populated BookshelfNG conversion, full feature-by-feature semantic
+acceptance, SeerrNG before/after probes, and a tested old-channel bridge remain
+open. The real BookshelfNG `.69` databases inspected were empty; they prove
 schema lineage only.
 
 The BookshelfNG and ChaptarrNG databases have different schemas and identity
