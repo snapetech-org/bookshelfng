@@ -45,25 +45,22 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
 
     def test_pull_requests_never_select_the_persistent_runner(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
-        runner_match = re.search(
-            r"(?m)^    runs-on:\n(?P<runner>      group: [^\n]+\n      labels: [^\n]+)",
-            source,
-        )
+        runner_match = re.search(r"(?m)^    runs-on: (?P<runner>[^\n]+)$", source)
         self.assertIsNotNone(runner_match)
         runner = runner_match.group("runner")
+        main_condition = (
+            "((github.event_name == 'push' && github.ref == 'refs/heads/main') "
+            "|| (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'))"
+        )
+        expected = (
+            "$" + "{{ (" + main_condition
+            + " && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true') "
+            + "&& 'trusted-main' || 'ubuntu-latest' }}"
+        )
+        self.assertEqual(runner, expected)
         self.assertNotIn("github.event_name == 'pull_request'", runner)
-        self.assertIn(
-            "github.event_name == 'push' && github.ref == 'refs/heads/main'",
-            runner,
-        )
-        self.assertIn(
-            "(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')",
-            runner,
-        )
         self.assertNotIn("startsWith(github.ref, 'refs/heads/')", runner)
-        self.assertIn("fromJSON('[\"self-hosted\",\"Linux\",\"X64\",\"host\"]')", runner)
-        self.assertIn("&& 'trusted-main' || ''", runner)
-        self.assertIn("fromJSON('[\"ubuntu-latest\"]')", runner)
+        self.assertNotIn("fromJSON", runner)
 
     def test_playwright_installer_matches_runner_environment(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
