@@ -24,10 +24,13 @@ reports total, passed, failed, skipped, and inconclusive cases; a missing or
 zero-case result cannot pass.
 
 The engine writes task progress to stderr as tasks start and finish, with a
-once-per-minute heartbeat during long tasks. Counts describe completed tasks;
-the current task and its elapsed time are reported separately. GitHub displays
-step summaries after the workflow step finishes, so live updates appear in the
-step log.
+once-per-minute heartbeat during long tasks. It runs up to two independent
+tasks at a time within a stage, respecting task dependencies and shared-output
+groups. The engine contract suite can now run alongside the native NUnit test
+process. NUnit still owns all ten test assemblies in one invocation so its
+filters and native result accounting stay intact. Progress lists each active
+task and its elapsed time. GitHub displays step summaries after the workflow
+step finishes, so live updates appear in the step log.
 
 ## Evidence and CI
 
@@ -35,8 +38,11 @@ Every run has a private temporary evidence directory with task logs and a
 receipt. The candidate identity binds the Git commit and diff, explicit build
 and workflow inputs, source test inventory, and SHA-256 digests of the ten
 compiled test assemblies. The engine checks that identity before and after each
-task, refuses overlapping runs for the same checkout, and gives runtime probes
-and children an explicit environment allowlist and each task's declared settings.
+task batch and rejects successful results if source or compiled artifacts
+change while concurrent tasks are running. Each task owns separate logs and
+NUnit result paths. It refuses overlapping runs for the same checkout and gives
+runtime probes and children an explicit environment allowlist and each task's
+declared settings.
 Every task gets run-owned home, temporary, XDG, and .NET CLI directories. NuGet
 packages use a private cache shared only within the validation run. Test tasks
 use `CI=true` and `NODE_ENV=test` regardless of the invoking shell's values.
