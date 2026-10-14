@@ -42,11 +42,11 @@
       },
       "Selenium.Support": {
         "type": "Direct",
-        "requested": "[3.141.0, )",
-        "resolved": "3.141.0",
-        "contentHash": "F4sxMCXGyqWtbw5qsniJRgza2UsBnslHwFgNA2p7hPxvJhqg73lyXu/ZscJ7FSfRvq3eJrosysv92+4sZ3vWsg==",
+        "requested": "[4.51.0, )",
+        "resolved": "4.51.0",
+        "contentHash": "S0OQkNLgW0RLOWTrQCphdF4VNSi6lCZyEZdviLAoMHEYcyfv6Vya0P9YbzMM58YRfGdXgSjmORNSQA2o08gXbw==",
         "dependencies": {
-          "Selenium.WebDriver": "3.141.0"
+          "Selenium.WebDriver": "4.51.0"
         }
       },
       "Selenium.WebDriver.ChromeDriver": {
@@ -479,11 +479,8 @@
       },
       "Selenium.WebDriver": {
         "type": "Transitive",
-        "resolved": "3.141.0",
-        "contentHash": "wPqzXO3f79DzqauTZSzLMKiaBCN0Z2Mv7KvWP+hnV6EL88zh/pJJnFtdIR1X5wa3hsTOpF/bBJs45rz7kArsiA==",
-        "dependencies": {
-          "Newtonsoft.Json": "10.0.3"
-        }
+        "resolved": "4.51.0",
+        "contentHash": "pKs73tJtvaBaJPnroew0DQ+k2ZucsenFjIh2RIXSWnA4RJb7lUq7Ygx560EsJodEyfB5s9SWz/dJT5bx+LAN2g=="
       },
       "Servarr.FluentMigrator": {
         "type": "Transitive",
@@ -1147,6 +1144,11 @@
         "resolved": "7.1.0",
         "contentHash": "rWunOb6Dby0lcI82PohARcRbF+4x4wNKxnKRSHXhuwZMu8/cCS68DCfhceq4bv1gUEfoL5dWXHYnfxVvLQUN+Q=="
       },
+      "Selenium.WebDriver": {
+        "type": "Transitive",
+        "resolved": "4.51.0",
+        "contentHash": "pKs73tJtvaBaJPnroew0DQ+k2ZucsenFjIh2RIXSWnA4RJb7lUq7Ygx560EsJodEyfB5s9SWz/dJT5bx+LAN2g=="
+      },
       "SkiaSharp.NativeAssets.macOS": {
         "type": "Transitive",
         "resolved": "4.153.1",
@@ -1214,6 +1216,11 @@
         "resolved": "7.1.0",
         "contentHash": "rWunOb6Dby0lcI82PohARcRbF+4x4wNKxnKRSHXhuwZMu8/cCS68DCfhceq4bv1gUEfoL5dWXHYnfxVvLQUN+Q=="
       },
+      "Selenium.WebDriver": {
+        "type": "Transitive",
+        "resolved": "4.51.0",
+        "contentHash": "pKs73tJtvaBaJPnroew0DQ+k2ZucsenFjIh2RIXSWnA4RJb7lUq7Ygx560EsJodEyfB5s9SWz/dJT5bx+LAN2g=="
+      },
       "SkiaSharp.NativeAssets.macOS": {
         "type": "Transitive",
         "resolved": "4.153.1",
@@ -1280,6 +1287,11 @@
         "type": "Transitive",
         "resolved": "7.1.0",
         "contentHash": "rWunOb6Dby0lcI82PohARcRbF+4x4wNKxnKRSHXhuwZMu8/cCS68DCfhceq4bv1gUEfoL5dWXHYnfxVvLQUN+Q=="
+      },
+      "Selenium.WebDriver": {
+        "type": "Transitive",
+        "resolved": "4.51.0",
+        "contentHash": "pKs73tJtvaBaJPnroew0DQ+k2ZucsenFjIh2RIXSWnA4RJb7lUq7Ygx560EsJodEyfB5s9SWz/dJT5bx+LAN2g=="
       },
       "SkiaSharp.NativeAssets.macOS": {
         "type": "Transitive",
