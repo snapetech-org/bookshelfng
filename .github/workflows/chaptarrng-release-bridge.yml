@@ -217,6 +217,7 @@ jobs:
         VERSION: ${{ needs.discover-release.outputs.version }}
         DOCKERHUB_CONFIGURED: 'false'
         PUBLISH_GHCR_ALIASES: 'true'
+        PUBLISH_LEGACY_ALIASES: 'true'
       run: bash chaptarrng-source/packaging/scripts/publish-image-aliases.sh
 
     - name: Mark this release redirected in GHCR
@@ -293,6 +294,7 @@ jobs:
         VERSION: ${{ needs.discover-release.outputs.version }}
         DOCKERHUB_CONFIGURED: 'true'
         PUBLISH_GHCR_ALIASES: 'false'
+        PUBLISH_LEGACY_ALIASES: 'true'
       run: bash chaptarrng-source/packaging/scripts/publish-image-aliases.sh
 
     - name: Mark this release redirected on Docker Hub

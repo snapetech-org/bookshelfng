@@ -8,6 +8,18 @@ with checksummed Linux x64, Linux arm64, Windows x64, and both new and legacy
 RPM source packages. Every publish path uses the ordinary ChaptarrNG release
 payload; there is no compatibility image or second ChaptarrNG build.
 
+The ChaptarrNG release workflows use the same variable as a second gate before
+publishing old BookshelfNG AUR, COPR, Chocolatey, GHCR, or Docker Hub
+identities. Normal releases still publish the new ChaptarrNG image and package
+identities while the flag is unset.
+
+Repository variables are scoped per repository. After every acceptance gate
+below passes, prefer one organization Actions variable named
+`CHAPTARRNG_MIGRATION_BRIDGE_ENABLED` scoped to both repositories. If that is
+not available, set the same repository variable in both ChaptarrNG and
+BookshelfNG; setting it in only one repository bridges only that repository's
+release paths.
+
 The stable container identity is `ghcr.io/snapetech/chaptarrng`. The GitHub
 repository now lives at `snapetech-org/chaptarrng`, but the public package
 remains under the original `snapetech` account namespace. The `chaptarrng` and

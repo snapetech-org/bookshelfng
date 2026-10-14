@@ -9,6 +9,8 @@ workflow="$repo_root/.github/workflows/chaptarrng-release-bridge.yml"
 required_lines=(
   "TARGET_REPOSITORY: snapetech-org/chaptarrng"
   'BRIDGE_ENABLED: ${{ vars.CHAPTARRNG_MIGRATION_BRIDGE_ENABLED || '\''false'\'' }}'
+  "PUBLISH_GHCR_ALIASES: 'true'"
+  "PUBLISH_LEGACY_ALIASES: 'true'"
   'source_tag="ghcr.io/snapetech/chaptarrng:${VERSION}"'
   'SOURCE_IMAGE: ghcr.io/snapetech/chaptarrng@'
   'image="ghcr.io/snapetech/chaptarrng:${VERSION}"'
@@ -22,6 +24,9 @@ for expected in "${required_lines[@]}"; do
     exit 1
   fi
 done
+
+[[ "$(grep -Fc "PUBLISH_LEGACY_ALIASES: 'true'" "$workflow")" -eq 2 ]]
+grep -Fq "PUBLISH_GHCR_ALIASES: 'false'" "$workflow"
 
 if grep -Fq 'ghcr.io/snapetech-org/chaptarrng' "$workflow"; then
   echo 'The bridge must use the existing public ChaptarrNG package namespace.' >&2
