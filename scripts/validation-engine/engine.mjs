@@ -179,9 +179,21 @@ function executionContext(candidate) {
 }
 
 function expandTasks(selection, inventory, candidate) {
+  const maxConcurrentTasks = validation.maxConcurrentTasks ?? 1;
+  if (!Number.isInteger(maxConcurrentTasks) || maxConcurrentTasks < 1 || maxConcurrentTasks > 8) {
+    throw new Error('Validation maxConcurrentTasks must be an integer from 1 through 8');
+  }
+  const taskById = new Map();
   for (const task of validation.tasks) {
     if (typeof task.id !== 'string' || !/^[a-z0-9][a-z0-9-]*$/.test(task.id)) {
       throw new Error('Validation task ID must be a safe lowercase identifier.');
+    }
+    if (taskById.has(task.id)) throw new Error(`Duplicate validation task ID: ${task.id}`);
+    taskById.set(task.id, task);
+    const stage = task.stage ?? 'default';
+    const concurrencyGroup = task.concurrencyGroup ?? task.id;
+    if (typeof stage !== 'string' || stage.trim() === '' || typeof concurrencyGroup !== 'string' || concurrencyGroup.trim() === '') {
+      throw new Error(`Validation task stage and concurrency group must be nonempty strings: ${task.id}`);
     }
     const passEnv = task.passEnv ?? [];
     if (!Array.isArray(passEnv) || passEnv.some((name) =>
@@ -189,12 +201,34 @@ function expandTasks(selection, inventory, candidate) {
       throw new Error('Task requests an unapproved inherited environment variable: ' + task.id);
     }
   }
+  for (const task of validation.tasks) {
+    if (!Array.isArray(task.dependsOn ?? []) || (task.dependsOn ?? []).some((dependency) => typeof dependency !== 'string' || !taskById.has(dependency))) {
+      throw new Error(`Validation task has an invalid dependency list: ${task.id}`);
+    }
+  }
+  const visiting = new Set();
+  const visited = new Set();
+  const visit = (taskId) => {
+    if (visiting.has(taskId)) throw new Error(`Validation task dependency cycle includes ${taskId}`);
+    if (visited.has(taskId)) return;
+    visiting.add(taskId);
+    for (const dependency of taskById.get(taskId).dependsOn ?? []) visit(dependency);
+    visiting.delete(taskId);
+    visited.add(taskId);
+  };
+  for (const task of validation.tasks) visit(task.id);
+
   const selectedIds = new Set(validation.tasks.filter((task) => selection.task
     ? task.id === selection.task
     : task.kind === 'test').map((task) => task.id));
-  for (const task of validation.tasks) {
-    if (!selectedIds.has(task.id)) continue;
-    for (const dependency of task.dependsOn ?? []) selectedIds.add(dependency);
+  const dependencyQueue = [...selectedIds];
+  while (dependencyQueue.length) {
+    const task = taskById.get(dependencyQueue.pop());
+    for (const dependency of task.dependsOn ?? []) {
+      if (selectedIds.has(dependency)) continue;
+      selectedIds.add(dependency);
+      dependencyQueue.push(dependency);
+    }
   }
   const runtimeMap = new Map();
   for (const runtime of [
@@ -209,6 +243,8 @@ function expandTasks(selection, inventory, candidate) {
     id: task.id,
     name: task.name,
     kind: task.kind,
+    stage: task.stage ?? 'default',
+    concurrencyGroup: task.concurrencyGroup ?? task.id,
     selected: selectedIds.has(task.id),
     dependsOn: task.dependsOn ?? [],
     inventory: (task.inventory ?? []).map((lane) => ({ lane, count: inventory.counts[lane] })),
@@ -223,6 +259,7 @@ function expandTasks(selection, inventory, candidate) {
     inventorySha256: inventory.digest,
     runtimes,
     missingArtifacts,
+    maxConcurrentTasks,
     executionContext: executionContext(candidate),
     tasks,
   };
@@ -287,10 +324,22 @@ function killChild(child) {
   child.kill('SIGTERM');
 }
 
+export function taskOutputFiles(runRoot, taskId) {
+  if (typeof taskId !== 'string' || !/^[a-z0-9][a-z0-9-]*$/.test(taskId)) {
+    throw new Error('Validation task ID must be a safe lowercase identifier.');
+  }
+  return {
+    logFile: path.join(runRoot, `${taskId}.log`),
+    testLogFile: path.join(runRoot, `${taskId}-TestLog.txt`),
+    nunitResultsFile: path.join(runRoot, `${taskId}-TestResult.xml`),
+  };
+}
+
 async function runCommand(task, runRoot) {
   const startedAt = new Date().toISOString();
   const started = Date.now();
-  const logPath = path.join(runRoot, `${task.id}.log`);
+  const outputFiles = taskOutputFiles(runRoot, task.id);
+  const logPath = outputFiles.logFile;
   const logFd = openSync(logPath, 'wx', 0o600);
   const stdoutParts = [];
   const stderrParts = [];
@@ -301,13 +350,13 @@ async function runCommand(task, runRoot) {
     parts.push(chunk.toString('utf8'));
     while (parts.reduce((size, part) => size + part.length, 0) > MAX_CAPTURED_OUTPUT) parts.shift();
   };
-  const testResults = path.join(runRoot, 'TestResult.xml');
+  const testResults = outputFiles.nunitResultsFile;
   const taskConfig = validation.tasks.find((item) => item.id === task.id);
   const env = isolatedChildEnvironment({
     ...taskConfig,
     env: {
       ...taskConfig.env,
-      TEST_LOG_FILE: path.join(runRoot, 'TestLog.txt'),
+      TEST_LOG_FILE: outputFiles.testLogFile,
       ...(task.id === 'dotnet-unit-tests' ? { TEST_RESULTS_FILE: testResults } : {}),
     },
   }, runRoot);
@@ -407,11 +456,12 @@ function exportEvidence(receipt, runRoot) {
     closeSync(fd);
   }
   const nunitTarget = process.env.VALIDATION_NUNIT_EXPORT;
-  if (nunitTarget && existsSync(path.join(runRoot, 'TestResult.xml'))) {
+  const nunitResults = path.join(runRoot, 'dotnet-unit-tests-TestResult.xml');
+  if (nunitTarget && existsSync(nunitResults)) {
     const target = safeExportPath(nunitTarget);
     mkdirSync(path.dirname(target), { recursive: true });
     const fd = openSync(target, 'w', 0o600);
-    writeSync(fd, readFileSync(path.join(runRoot, 'TestResult.xml')));
+    writeSync(fd, readFileSync(nunitResults));
     closeSync(fd);
   }
 }
@@ -435,30 +485,141 @@ function formatElapsed(milliseconds) {
   return `${Math.floor(seconds / 60)}m${String(seconds % 60).padStart(2, '0')}s`;
 }
 
-export function formatValidationProgress(repository, tasks, results, currentTask = null, elapsedMs = 0) {
+export function formatValidationProgress(repository, tasks, results, runningTasks = new Map(), now = Date.now()) {
   const receipts = tasks.map((task) => results.get(task.id)).filter(Boolean);
   const passed = receipts.filter((receipt) => receipt.status === 'passed').length;
   const failed = receipts.filter((receipt) => ['failed', 'incomplete'].includes(receipt.status)).length;
   const blocked = receipts.filter((receipt) => ['blocked', 'not-run'].includes(receipt.status)).length;
   const completed = passed + failed;
   const pending = Math.max(0, tasks.length - completed - blocked);
-  const active = currentTask
-    ? `; running ${currentTask.name ?? currentTask.id} (${formatElapsed(elapsedMs)})`
-    : '';
+  const activeTasks = [...runningTasks].map(([taskId, startedAt]) => {
+    const task = tasks.find((item) => item.id === taskId);
+    return `${task?.name ?? taskId} (${formatElapsed(now - startedAt)})`;
+  });
+  const active = activeTasks.length ? `; running ${activeTasks.join(', ')}` : '';
   return `[validation] ${repository}: ${completed}/${tasks.length} selected tasks complete (${passed} passed, ${failed} failed, ${blocked} blocked, ${pending} pending)${active}`;
 }
 
-function writeValidationProgress(tasks, results, currentTask = null, startedAt = 0, state = null) {
+function writeValidationProgress(tasks, results, runningTasks = new Map(), state = null) {
   const summary = formatValidationProgress(
     validation.repository,
     tasks,
     results,
-    currentTask,
-    currentTask ? Date.now() - startedAt : 0,
+    runningTasks,
   );
   if (state?.last === summary) return;
   if (state) state.last = summary;
   process.stderr.write(`${summary}\n`);
+}
+
+export async function runTaskPool(tasks, {
+  maxConcurrentTasks = 1,
+  results = new Map(),
+  runTask,
+  checkSource = () => true,
+  onTaskStart = () => {},
+  onTaskFinish = () => {},
+  onProgress = () => {},
+} = {}) {
+  if (!Number.isInteger(maxConcurrentTasks) || maxConcurrentTasks < 1 || maxConcurrentTasks > 8) {
+    throw new Error('maxConcurrentTasks must be an integer from 1 through 8');
+  }
+  if (typeof runTask !== 'function' || typeof checkSource !== 'function') {
+    throw new Error('runTask and checkSource must be functions');
+  }
+
+  const pending = [...tasks];
+  const taskMetadata = (task) => ({
+    stage: task.stage ?? 'default',
+    concurrencyGroup: task.concurrencyGroup ?? task.id,
+    dependsOn: task.dependsOn ?? [],
+  });
+  const blockedReceipt = (task, reason) => ({
+    taskId: task.id,
+    ...taskMetadata(task),
+    status: 'blocked',
+    reason,
+    required: true,
+  });
+  let sourceChanged = false;
+  while (pending.length) {
+    const sourceMatches = checkSource();
+    if (!sourceMatches) {
+      sourceChanged = true;
+      for (const task of pending.splice(0)) {
+        results.set(task.id, blockedReceipt(task, 'candidate changed before task stage started'));
+      }
+      onProgress();
+      break;
+    }
+
+    const stage = pending[0].stage ?? 'default';
+    const batch = [];
+    const groups = new Set();
+    for (const task of pending) {
+      if ((task.stage ?? 'default') !== stage) continue;
+      if ((task.dependsOn ?? []).some((dependency) => results.get(dependency)?.status !== 'passed')) continue;
+      const group = task.concurrencyGroup ?? task.id;
+      if (groups.has(group)) continue;
+      batch.push(task);
+      groups.add(group);
+      if (batch.length === maxConcurrentTasks) break;
+    }
+    if (batch.length === 0) {
+      for (const task of pending.splice(0)) {
+        results.set(task.id, blockedReceipt(task, 'required dependency did not pass or task stage is not runnable'));
+      }
+      onProgress();
+      break;
+    }
+
+    for (const task of batch) pending.splice(pending.indexOf(task), 1);
+    const startedAt = new Map(batch.map((task) => [task.id, Date.now()]));
+    for (const task of batch) onTaskStart(task, startedAt.get(task.id));
+    onProgress();
+
+    await Promise.all(batch.map(async (task) => {
+      let result;
+      try {
+        result = await runTask(task);
+        if (!result || result.taskId !== task.id || !['passed', 'failed', 'blocked', 'not-run'].includes(result.status)) {
+          throw new Error('task runner returned an invalid receipt');
+        }
+      } catch (error) {
+        result = { taskId: task.id, status: 'failed', error: error.message, required: true };
+      }
+      results.set(task.id, { ...result, ...taskMetadata(task) });
+      onTaskFinish(task, result);
+      onProgress();
+    }));
+
+    const sourceStillMatches = checkSource();
+    if (!sourceStillMatches) {
+      sourceChanged = true;
+      for (const task of batch) {
+        const result = results.get(task.id);
+        if (result.status === 'passed') results.set(task.id, {
+          ...result,
+          status: 'blocked',
+          error: 'candidate source or compiled test artifact changed during concurrent execution',
+        });
+      }
+      for (const task of pending.splice(0)) {
+        results.set(task.id, blockedReceipt(task, 'candidate changed during task stage'));
+      }
+      onProgress();
+      break;
+    }
+
+    if (batch.some((task) => results.get(task.id)?.status !== 'passed')) {
+      for (const task of pending.splice(0)) {
+        results.set(task.id, blockedReceipt(task, 'an earlier required task did not pass'));
+      }
+      onProgress();
+      break;
+    }
+  }
+  return { results, sourceChanged };
 }
 
 export function stableJson(value) {
@@ -487,35 +648,23 @@ async function execute(plan) {
         taskId: task.id, status: 'not-run', reason: 'required runtime, build artifact, or GitHub SHA is unavailable', required: true,
       });
     } else {
-      for (const task of selected) {
-        const before = captureCandidate(discoverInventory());
-        if (before.sourceSha256 !== plan.candidate.sourceSha256) {
-          sourceChanged = true;
-          taskReceipts.set(task.id, { taskId: task.id, status: 'blocked', reason: 'candidate changed after planning', required: true });
-          break;
-        }
-        const taskStartedAt = Date.now();
-        writeValidationProgress(selected, taskReceipts, task, taskStartedAt, progressState);
-        const heartbeat = setInterval(
-          () => writeValidationProgress(selected, taskReceipts, task, taskStartedAt, progressState),
-          PROGRESS_INTERVAL_MS,
-        );
-        heartbeat.unref();
-        let receipt;
-        try {
-          receipt = await runCommand(task, runRoot);
-        } finally {
-          clearInterval(heartbeat);
-        }
-        taskReceipts.set(task.id, receipt);
-        writeValidationProgress(selected, taskReceipts, null, 0, progressState);
-        const after = captureCandidate(discoverInventory());
-        if (after.sourceSha256 !== plan.candidate.sourceSha256) {
-          sourceChanged = true;
-          taskReceipts.set(task.id, { ...receipt, status: 'blocked', error: 'candidate source or compiled test artifact changed during execution' });
-          break;
-        }
-        if (receipt.status !== 'passed') break;
+      const runningTasks = new Map();
+      const updateProgress = () => writeValidationProgress(selected, taskReceipts, runningTasks, progressState);
+      const heartbeat = setInterval(updateProgress, PROGRESS_INTERVAL_MS);
+      heartbeat.unref();
+      try {
+        const pool = await runTaskPool(selected, {
+          maxConcurrentTasks: plan.maxConcurrentTasks,
+          results: taskReceipts,
+          checkSource: () => captureCandidate(discoverInventory()).sourceSha256 === plan.candidate.sourceSha256,
+          runTask: (task) => runCommand(task, runRoot),
+          onTaskStart: (task, startedAt) => runningTasks.set(task.id, startedAt),
+          onTaskFinish: (task) => runningTasks.delete(task.id),
+          onProgress: updateProgress,
+        });
+        sourceChanged = pool.sourceChanged;
+      } finally {
+        clearInterval(heartbeat);
       }
     }
     for (const task of plan.tasks) {
@@ -526,8 +675,13 @@ async function execute(plan) {
         required: true,
       });
     }
-    writeValidationProgress(selected, taskReceipts, null, 0, progressState);
-    const tasks = plan.tasks.map((task) => taskReceipts.get(task.id));
+    writeValidationProgress(selected, taskReceipts, new Map(), progressState);
+    const tasks = plan.tasks.map((task) => ({
+      ...taskReceipts.get(task.id),
+      stage: task.stage,
+      concurrencyGroup: task.concurrencyGroup,
+      dependsOn: task.dependsOn,
+    }));
     const totals = {
       planned: plan.tasks.filter((task) => task.selected).length,
       executed: tasks.filter((task) => task.startedAt).length,
