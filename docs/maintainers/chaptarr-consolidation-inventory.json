@@ -6,16 +6,16 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "6dd06383b8d13f1b7534e88406bfb29eab375582",
+  "sourceCommit": "5d696fb0b3cba552fa12b912a825954e2473e0e6",
   "targetCommit": "57b548305e78e52333a8d51fdd467f70ef5594c1",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 425,
-    "commitsNotInUpstreamHistory": 416,
-    "netChangedPaths": 1043,
+    "commits": 426,
+    "commitsNotInUpstreamHistory": 417,
+    "netChangedPaths": 1045,
     "fileStates": {
-      "no-mapped-target-file": 420,
+      "no-mapped-target-file": 422,
       "different-review-required": 473,
       "identical": 144,
       "deleted-in-bookshelf": 2,
@@ -7899,6 +7899,27 @@
         "release-notes/20261014-trusted-main-runner-pool.md",
         "scripts/test_workflow_runner_policy.py"
       ]
+    },
+    {
+      "commit": "5d696fb0b3cba552fa12b912a825954e2473e0e6",
+      "date": "2026-10-13",
+      "subject": "fix(validation): stabilize restrictive-umask test runs (#131)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/development/validation-engine.md",
+        "release-notes/20261014-validation-permission-results.md",
+        "scripts/validation-engine/engine.mjs",
+        "scripts/validation-engine/engine.test.mjs",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Console/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/DiskProviderTests/DiskProviderFixture.cs",
+        "src/NzbDrone.Mono.Test/packages.lock.json"
+      ]
     }
   ],
   "files": [
@@ -8780,7 +8801,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "f795a6f1d65981fbcf695a85994fee852d6e0712"
+        "oid": "26530e29de583fed40943ace1996a1c1867a34a3"
       },
       "targetBlob": {
         "mode": "100644",
@@ -10585,6 +10606,16 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "release-notes/20261014-validation-permission-results.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "40e3208780c3470afcde82a537feb697e1df0535"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "release-notes/README.md",
       "targetPath": "release-notes/README.md",
       "state": "different-review-required",
@@ -11993,7 +12024,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "50d6d277bc5e3e039e088719828a1bed34b7cf96"
+        "oid": "64d6639221da39274e7560e81d319b2034f283d7"
       },
       "targetBlob": {
         "mode": "100644",
@@ -12006,7 +12037,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "de66aa4581c137a3d2f1bd6077c074aa28b2f3cf"
+        "oid": "701c4bead2aea46e2cec19135340e4f4ad93275d"
       },
       "targetBlob": {
         "mode": "100644",
@@ -12155,7 +12186,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "74936c3639b49e0b0c1bb05f7daf55b8dcab6948"
+        "oid": "c147a48d069593d28c110f23478963b46cc0fdde"
       },
       "targetBlob": null
     },
@@ -12175,7 +12206,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "46e7ed0c96dcb06d304ba066909bb9675593f1c1"
+        "oid": "6ccabe0f0dbd4a2bb0b5c80501955f73770851d1"
       },
       "targetBlob": null
     },
@@ -12434,7 +12465,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "977d741327f8ff03ee874970f57a2165e4f87353"
+        "oid": "a6ac6ab05a09e36369ea63ada174cdca456b8244"
       },
       "targetBlob": null
     },
@@ -13006,7 +13037,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "83c9ebbbd1dbcf967826eb302acfc3c27b4b0efa"
+        "oid": "c3edf9ba8b7c1448c7028bdb40203fb7e1f12850"
       },
       "targetBlob": null
     },
@@ -15630,7 +15661,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "6f7c42a6ebf9bee785f7a2b7c3873e58385b53fa"
+        "oid": "76c3cc4b65cacbea4815a500f88edf36f45c994c"
       },
       "targetBlob": null
     },
@@ -15832,7 +15863,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "50363692f31b667f0ca0dcc4df6911608c27faa4"
+        "oid": "e8a00fbf38e310002ec92d2e521f2a2901eb73e9"
       },
       "targetBlob": null
     },
@@ -15852,7 +15883,17 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e1a018c217d983126819a015a99d61a5ef526090"
+        "oid": "a01fa9c5bff5848f840e72a63cde14047868dfc2"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "src/NzbDrone.Mono.Test/DiskProviderTests/DiskProviderFixture.cs",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "4f13d5ba30403181a5adce61d6ba9ea310223292"
       },
       "targetBlob": null
     },
@@ -15882,7 +15923,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5fca22266362b7f204b69f98f555b204888020cd"
+        "oid": "6445ad7b39f1ee2b9450bd7fac598133389c8ced"
       },
       "targetBlob": null
     },
