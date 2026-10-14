@@ -465,13 +465,19 @@ aliases, the existing COPR identity, both Chocolatey package IDs, and the
 BookshelfNG Helm chart identity. It requires checksummed assets from the
 ordinary ChaptarrNG release and makes no external changes while disabled.
 ChaptarrNG PR #100 contains the standard release and AUR package work. No
-publisher has been run against a release with those assets, and the COPR
-custom-source bootstrap still needs its one-time tag-pattern update. COPR
-sign-in as `slskdn` is verified and the new project form is prepared, but
-`slskdn/chaptarrng` has not been submitted or created and no package-scoped
-webhook is configured. The current release lacks installable assets, so no
-new package trigger is safe yet. Chocolatey `chaptarrng` returns 404 and
-ChaptarrNG has no Chocolatey publisher secret. The
+publisher has been run against a release with installable assets, and the
+existing BookshelfNG COPR custom-source bootstrap still needs its one-time
+tag-pattern update. The public [new `slskdn/chaptarrng` COPR project](https://copr.fedorainfracloud.org/coprs/slskdn/chaptarrng/)
+was created for Fedora 43/44/45 and Rawhide x86_64; its custom-source package
+and package-scoped webhook are configured, and `COPR_WEBHOOK_URL` is stored in
+ChaptarrNG Actions. No COPR build has run because the public `v0.9.969`
+release has no assets, including the required SRPM and checksum. The
+`BOOKSHELFNG_COPR_WEBHOOK_URL` is now configured in ChaptarrNG Actions, and
+the matching BookshelfNG `COPR_WEBHOOK_URL` was rotated to the same
+package-scoped endpoint. Neither hook has been exercised against a COPR
+build, and the old project's external bootstrap still needs an update before
+the bridge can run. Chocolatey `chaptarrng` returns 404 and ChaptarrNG has no
+Chocolatey publisher secret. The
 [candidate's distribution matrix](https://github.com/snapetech-org/bookshelfng/blob/codex/bookshelfng-channel-bridge-20261014/docs/maintainers/chaptarrng-distribution-bridge.md)
 lists the channel limits and enablement gates.
 
@@ -534,5 +540,5 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | Frontend build and static checks | `yarn typecheck` and the production webpack bundle pass; targeted ESLint reports no errors in changed JavaScript files. The bundle emitted 18 CSS-order warnings. Whole-tree ESLint reports 862 errors and 17 warnings across the inherited frontend tree. | Keep the inherited lint debt visible; resolve any candidate-caused lint error before merge. |
 | Cross-project secrets | All three repositories ignore `.env`; BookshelfNG and SeerrNG have local ignored, untracked `.env` files, while this ChaptarrNG worktree has no `.env` file. No `.env` or `.lic` file is tracked. BookshelfNG's Docker ignore excludes `.env`/`.env.*`, the SixLabors license, and signing files while retaining `.env.example`; a disposable Docker build-context check confirmed `.env.example` stayed in the context and `.env` did not. The license file remains outside repository trees. | Keep Git and Docker-context checks in release validation; no secret may enter a commit, build log, or published artifact. |
 | Hosted PR checks | BookshelfNG PR #112 merged as `7f7e07f0`; ChaptarrNG PRs #73, #76, and #77 merged as `5d8fffae`, `b2827c7a`, and `ee2efc55`; SeerrNG PR #203 merged as `97aa148`. ChaptarrNG PR #100 is at `00395098`; its migration fixture is included, but the current hosted macOS build has failed while other required checks remain pending. BookshelfNG PRs #128 and #130 and SeerrNG PR #280 at `3fdc38e8` remain open. | Resolve the current PR #100 failure and complete its required checks, including hosted Windows. Complete hosted checks and the harmless dispatch proof for SeerrNG PR #280. |
-| Distribution and migration | Candidate packaging builds both AUR and RPM identities from the same local Chaptarr archive; a Pacman upgrade retained the Bookshelf service identity, config, and data marker. ChaptarrNG PR #100 and BookshelfNG PR #130 contain the standard release and gated legacy publisher candidates. Local actionlint, COPR source, Chocolatey template-render, Helm lint/render/package, image-alias, and populated-database tests pass. COPR sign-in is available, but the new `slskdn/chaptarrng` project is only a prepared draft; no webhook is configured. | No public redirect is published. The bridge is disabled, the public Chaptarr release `v0.9.969` has no standard Linux/Windows assets, and COPR's existing external bootstrap is not updated. AUR `chaptarrng-bin` and Chocolatey `chaptarrng` are not registered; hosted Windows upgrade/moderation and live registry/COPR/Helm publish tests remain open, as do all remaining channel bridges. Pinned, offline, updater-disabled, third-party, manual archive, and Readarr-owned updater paths remain separate. |
+| Distribution and migration | Candidate packaging builds both AUR and RPM identities from the same local Chaptarr archive; a Pacman upgrade retained the Bookshelf service identity, config, and data marker. ChaptarrNG PR #100 and BookshelfNG PR #130 contain the standard release and gated legacy publisher candidates. Local actionlint, COPR source, Chocolatey template-render, Helm lint/render/package, image-alias, and populated-database tests pass. The public `slskdn/chaptarrng` COPR project and its custom-source package exist, and both standard and legacy COPR webhook secrets are configured in ChaptarrNG Actions. | No public redirect or COPR package build is published. The bridge is disabled, the public Chaptarr release `v0.9.969` has no standard assets, and the existing BookshelfNG COPR external bootstrap is not updated. ChaptarrNG still lacks AUR `chaptarrng-bin` and Chocolatey `chaptarrng`; hosted Windows upgrade/moderation and live registry/COPR/Helm publish tests remain open, as do all remaining channel bridges. Pinned, offline, updater-disabled, third-party, manual archive, and Readarr-owned updater paths remain separate. |
 | Release decisions | The BookshelfNG enhanced feature set blocks BookshelfNG retirement as a whole and row by row. The later ChaptarrNG gate includes that retained set plus every ChaptarrNG maintained and actively developed capability, including unpublished work; each channel is a separate blocker too. | Current evidence does not support a main merge that claims parity, BookshelfNG retirement, or release redirection. |
