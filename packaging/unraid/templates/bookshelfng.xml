@@ -6,14 +6,14 @@
   <Network>bridge</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Icon>https://raw.githubusercontent.com/snapetech/bookshelfng/main/Logo/512.png</Icon>
+  <Icon>https://raw.githubusercontent.com/snapetech-org/bookshelfng/main/Logo/512.png</Icon>
   <WebUI>http://[IP]:[PORT:8787]/</WebUI>
   <Overview>Built on .NET 10 LTS, one BookshelfNG instance manages ebook and audiobook libraries, with optional SeerrNG integration.</Overview>
   <Description>BookshelfNG is a complete standalone library and acquisition app; SeerrNG is optional. This Snapetech NG fork supplies the book contract used by SeerrNG. The Hardcover image needs a personal Hardcover API token for native metadata. Add it in HARDCOVER_AUTH or in BookshelfNG settings. One instance can manage both ebooks and audiobooks; point both SeerrNG service entries at this instance when using both formats. Do not attach an existing softcover or Readarr database to the Hardcover image without migration.</Description>
-  <Support>https://github.com/snapetech/seerrng/issues</Support>
-  <Project>https://github.com/snapetech/bookshelfng</Project>
-  <TemplateURL>https://raw.githubusercontent.com/snapetech/bookshelfng-unraid/main/templates/bookshelfng.xml</TemplateURL>
-  <ReadMe>https://github.com/snapetech/bookshelfng-unraid/blob/main/docs/installation.md</ReadMe>
+  <Support>https://github.com/snapetech-org/seerrng/issues</Support>
+  <Project>https://github.com/snapetech-org/bookshelfng</Project>
+  <TemplateURL>https://raw.githubusercontent.com/snapetech-org/bookshelfng-unraid/main/templates/bookshelfng.xml</TemplateURL>
+  <ReadMe>https://github.com/snapetech-org/bookshelfng-unraid/blob/main/docs/installation.md</ReadMe>
   <Category>MediaApp:Books</Category>
   <ExtraSearchTerms>bookshelfng bookshelf readarr hardcover ebook audiobook seerrng</ExtraSearchTerms>
   <Changes>Use the rolling latest tag for the Hardcover image. BookshelfNG runs independently with optional SeerrNG integration.</Changes>
