@@ -24,8 +24,8 @@ moving tag tracks the Hardcover image used by the Community Apps template.
 
 ## Source and support
 
-- [BookshelfNG application source and documentation](https://github.com/snapetech/bookshelfng)
-- [Unraid package and SeerrNG integration support](https://github.com/snapetech/seerrng/issues)
+- [BookshelfNG application source and documentation](https://github.com/snapetech-org/bookshelfng)
+- [Unraid package and SeerrNG integration support](https://github.com/snapetech-org/seerrng/issues)
 
 BookshelfNG is derived from Bookshelf and Readarr and distributed under GPLv3.
 This template repository uses the same GPLv3 license.

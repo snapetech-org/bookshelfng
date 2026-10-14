@@ -472,9 +472,10 @@ is wired to receive the exact image digest through a scoped dispatch in
 ChaptarrNG PR #100; its workflow retags only `latest`, `hardcover`, and
 `softcover` and rejects an older release event. That dispatch will run after
 the ChaptarrNG changes merge and a gated release is published. BookshelfNG PR
-#130 removes the duplicate organization-owned GHCR publisher. The bridge code is pushed at
-`4c348c5`, ChaptarrNG's dispatch is at `9e80f2c`, and the BookshelfNG workflow
-change is at `d88accef`. The bridge still lacks its personal-account GitHub
+#130 removes the duplicate organization-owned GHCR publisher. The bridge
+publisher code is at `4c348c5` and its passing CI workflow is at `7e2d1b0`;
+ChaptarrNG's dispatch is at `9e80f2c`, and the BookshelfNG workflow change is
+at `d88accef`. The bridge still lacks its personal-account GitHub
 App installation and write access to the existing `bookshelfng` package, so
 no alias has been published and the migration gate stays closed. See GitHub's
 documentation on
