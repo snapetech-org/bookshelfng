@@ -8,6 +8,15 @@ with checksummed Linux x64, Linux arm64, Windows x64, and both new and legacy
 RPM source packages. Every publish path uses the ordinary ChaptarrNG release
 payload; there is no compatibility image or second ChaptarrNG build.
 
+The stable container identity is `ghcr.io/snapetech/chaptarrng`. The GitHub
+repository now lives at `snapetech-org/chaptarrng`, but the public package
+remains under the original `snapetech` account namespace. The `chaptarrng` and
+`bookshelfng` GHCR packages currently have no linked repository, so their
+**Manage Actions access** settings must grant write access to
+`snapetech-org/chaptarrng` and `snapetech-org/bookshelfng`, respectively,
+before the standard publisher or legacy tag bridge can write with
+`GITHUB_TOKEN`. Do not derive image names from the repository owner's name.
+
 The bridge records one marker tag per channel and target release. A marker is
 written only after that channel's publisher accepts the update. That means a
 Chocolatey upload still needs moderation, and a COPR trigger still needs a
@@ -64,7 +73,8 @@ Keep the repository variable unset or `false` until all of these are true:
   exercised on disposable data.
 - The bridge's GHCR, Docker Hub, AUR, and Chocolatey credentials and package
   permissions are confirmed by the relevant publisher jobs without exposing
-  credential values.
+  credential values. GHCR Actions write access is explicitly granted for both
+  the standard `chaptarrng` package and the legacy `bookshelfng` package.
 - Remaining manual, pinned, offline, native, and third-party channels have
   explicit release notes and a migration path. Mutable tags are not described
   as automatic updates for installations that never pull or apply updates.

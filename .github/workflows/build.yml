@@ -47,6 +47,10 @@ jobs:
         run: |
           bash -n packaging/rpm/copr-source.sh scripts/test-copr-source.sh
           bash scripts/test-copr-source.sh
+      - name: Test the ChaptarrNG image namespace used by the release bridge
+        run: |
+          bash -n scripts/test-chaptarrng-release-bridge.sh
+          bash scripts/test-chaptarrng-release-bridge.sh
 
       - name: Test private runner temp setup
         if: runner.os == 'Linux'

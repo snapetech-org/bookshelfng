@@ -191,7 +191,7 @@ jobs:
         set -euo pipefail
         sudo apt-get update
         sudo apt-get install --yes --no-install-recommends skopeo
-        source_tag="ghcr.io/snapetech-org/chaptarrng:${VERSION}"
+        source_tag="ghcr.io/snapetech/chaptarrng:${VERSION}"
         skopeo inspect --raw "docker://${source_tag}" > "$RUNNER_TEMP/chaptarrng-manifest.json"
         python3 - "$RUNNER_TEMP/chaptarrng-manifest.json" <<'PY'
         import json
@@ -212,7 +212,7 @@ jobs:
 
     - name: Publish legacy tags from the exact standard image digest
       env:
-        SOURCE_IMAGE: ghcr.io/snapetech-org/chaptarrng@${{ steps.image.outputs.source_digest }}
+        SOURCE_IMAGE: ghcr.io/snapetech/chaptarrng@${{ steps.image.outputs.source_digest }}
         EXPECTED_DIGEST: ${{ steps.image.outputs.source_digest }}
         VERSION: ${{ needs.discover-release.outputs.version }}
         DOCKERHUB_CONFIGURED: 'false'
@@ -268,7 +268,7 @@ jobs:
         set -euo pipefail
         sudo apt-get update
         sudo apt-get install --yes --no-install-recommends skopeo
-        source_tag="ghcr.io/snapetech-org/chaptarrng:${VERSION}"
+        source_tag="ghcr.io/snapetech/chaptarrng:${VERSION}"
         skopeo inspect --raw "docker://${source_tag}" > "$RUNNER_TEMP/chaptarrng-manifest.json"
         python3 - "$RUNNER_TEMP/chaptarrng-manifest.json" <<'PY'
         import json
@@ -288,7 +288,7 @@ jobs:
 
     - name: Publish Docker Hub tags from the exact standard image digest
       env:
-        SOURCE_IMAGE: ghcr.io/snapetech-org/chaptarrng@${{ steps.image.outputs.source_digest }}
+        SOURCE_IMAGE: ghcr.io/snapetech/chaptarrng@${{ steps.image.outputs.source_digest }}
         EXPECTED_DIGEST: ${{ steps.image.outputs.source_digest }}
         VERSION: ${{ needs.discover-release.outputs.version }}
         DOCKERHUB_CONFIGURED: 'true'
@@ -509,7 +509,7 @@ jobs:
         set -euo pipefail
         sudo apt-get update
         sudo apt-get install --yes --no-install-recommends skopeo
-        image="ghcr.io/snapetech-org/chaptarrng:${VERSION}"
+        image="ghcr.io/snapetech/chaptarrng:${VERSION}"
         skopeo inspect --raw "docker://${image}" > "$RUNNER_TEMP/chaptarrng-manifest.json"
         digest="sha256:$(sha256sum "$RUNNER_TEMP/chaptarrng-manifest.json" | cut -d ' ' -f1)"
         chart_dir="$RUNNER_TEMP/bookshelfng-chart"
@@ -522,7 +522,7 @@ jobs:
         digest, version = sys.argv[2:]
         text = path.read_text(encoding="utf-8")
         replacements = [
-            (r"(?m)^  repository: .*?$", "  repository: ghcr.io/snapetech-org/chaptarrng"),
+            (r"(?m)^  repository: .*?$", "  repository: ghcr.io/snapetech/chaptarrng"),
             (r"(?m)^  tag: .*?$", f"  tag: {version}"),
             (r"(?m)^  digest: .*?$", f'  digest: "{digest}"'),
         ]
@@ -560,7 +560,7 @@ jobs:
         PY
         helm lint "$chart_dir"
         helm template bookshelfng "$chart_dir" > "$RUNNER_TEMP/bookshelfng-chart-rendered.yaml"
-        grep -Fq "image: \"ghcr.io/snapetech-org/chaptarrng@${digest}\"" "$RUNNER_TEMP/bookshelfng-chart-rendered.yaml"
+        grep -Fq "image: \"ghcr.io/snapetech/chaptarrng@${digest}\"" "$RUNNER_TEMP/bookshelfng-chart-rendered.yaml"
         grep -Fq 'claimName: bookshelfng-config' "$RUNNER_TEMP/bookshelfng-chart-rendered.yaml"
         grep -Fq 'containerPort: 8787' "$RUNNER_TEMP/bookshelfng-chart-rendered.yaml"
         helm package "$chart_dir" --version "$VERSION" --app-version "$VERSION" --destination "$RUNNER_TEMP"
