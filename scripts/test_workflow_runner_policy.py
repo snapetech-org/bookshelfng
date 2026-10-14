@@ -1,6 +1,6 @@
-from pathlib import Path
 import re
 import unittest
+from pathlib import Path
 
 
 WORKFLOW = Path(__file__).resolve().parents[1] / ".github" / "workflows" / "build.yml"
@@ -45,23 +45,23 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
 
     def test_pull_requests_never_select_the_persistent_runner(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
-        runner = next(
-            line.strip()
-            for line in source.splitlines()
-            if line.lstrip().startswith("runs-on:") and "self-hosted" in line
+        runner_match = re.search(r"(?m)^    runs-on: (?P<runner>[^\n]+)$", source)
+        self.assertIsNotNone(runner_match)
+        runner = runner_match.group("runner")
+        main_condition = (
+            "((github.event_name == 'push' && github.ref == 'refs/heads/main') "
+            "|| (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'))"
         )
+        trusted_runner_json = '{"group":"trusted-main","labels":["self-hosted","Linux","X64","host"]}'
+        expected = (
+            "$" + "{{ (" + main_condition
+            + " && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true') "
+            + "&& fromJSON('" + trusted_runner_json + "') || 'ubuntu-latest' }}"
+        )
+        self.assertEqual(runner, expected)
         self.assertNotIn("github.event_name == 'pull_request'", runner)
-        self.assertIn(
-            "github.event_name == 'push' && github.ref == 'refs/heads/main'",
-            runner,
-        )
-        self.assertIn(
-            "(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')",
-            runner,
-        )
         self.assertNotIn("startsWith(github.ref, 'refs/heads/')", runner)
-        self.assertIn("fromJSON('[\"self-hosted\",\"Linux\",\"X64\",\"host\"]')", runner)
-        self.assertIn("fromJSON('[\"ubuntu-latest\"]')", runner)
+        self.assertIn("fromJSON('" + trusted_runner_json + "')", runner)
 
     def test_playwright_installer_matches_runner_environment(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
