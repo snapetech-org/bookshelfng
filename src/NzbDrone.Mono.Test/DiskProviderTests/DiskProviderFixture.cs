@@ -88,6 +88,25 @@ namespace NzbDrone.Mono.Test.DiskProviderTests
             }
         }
 
+        private static void SetNormalPermissions(string path)
+        {
+            // Pin the fixture's starting mode instead of inheriting the runner's umask.
+            var mode = FilePermissions.S_IRUSR | FilePermissions.S_IWUSR |
+                       FilePermissions.S_IRGRP | FilePermissions.S_IWGRP |
+                       FilePermissions.S_IROTH | FilePermissions.S_IWOTH;
+
+            if (Directory.Exists(path))
+            {
+                mode |= FilePermissions.S_IXUSR | FilePermissions.S_IXGRP | FilePermissions.S_IXOTH;
+            }
+
+            if (Syscall.chmod(path, mode) < 0)
+            {
+                var error = Stdlib.GetLastError();
+                throw new LinuxPermissionsException("Error setting group: " + error);
+            }
+        }
+
         [Test]
         public void should_move_symlink()
         {
@@ -210,6 +229,7 @@ namespace NzbDrone.Mono.Test.DiskProviderTests
             var tempFile = GetTempFilePath();
 
             File.WriteAllText(tempFile, "File1");
+            SetNormalPermissions(tempFile);
             SetWritePermissionsInternal(tempFile, false, false);
             _tempPath = tempFile;
 
@@ -240,6 +260,7 @@ namespace NzbDrone.Mono.Test.DiskProviderTests
             var tempPath = GetTempFilePath();
 
             Directory.CreateDirectory(tempPath);
+            SetNormalPermissions(tempPath);
             SetWritePermissionsInternal(tempPath, false, false);
             _tempPath = tempPath;
 
@@ -270,6 +291,7 @@ namespace NzbDrone.Mono.Test.DiskProviderTests
             var tempPath = GetTempFilePath();
 
             Directory.CreateDirectory(tempPath);
+            SetNormalPermissions(tempPath);
             SetWritePermissionsInternal(tempPath, false, true);
             _tempPath = tempPath;
 
@@ -300,6 +322,7 @@ namespace NzbDrone.Mono.Test.DiskProviderTests
             var tempPath = GetTempFilePath();
 
             Directory.CreateDirectory(tempPath);
+            SetNormalPermissions(tempPath);
             SetWritePermissionsInternal(tempPath, false, true);
             _tempPath = tempPath;
 

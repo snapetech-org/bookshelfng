@@ -234,6 +234,8 @@ test('NUnit aggregate counts retain pass, fail, skip, inconclusive and total val
     skipped: 107,
     inconclusive: 37,
     result: 'Passed',
+    failedTestNames: [],
+    failedTestNamesTruncated: false,
   });
 });
 
@@ -245,7 +247,28 @@ test('NUnit reports without a real case total are rejected', () => {
 test('failed NUnit summaries retain the measured case counts for the receipt', () => {
   assert.deepEqual(parseNUnitSummary(
     '<test-run total="3" passed="2" failed="1" skipped="0" inconclusive="0" result="Failed"/>',
-  ), { total: 3, passed: 2, failed: 1, skipped: 0, inconclusive: 0, result: 'Failed' });
+  ), {
+    total: 3,
+    passed: 2,
+    failed: 1,
+    skipped: 0,
+    inconclusive: 0,
+    result: 'Failed',
+    failedTestNames: [],
+    failedTestNamesTruncated: false,
+  });
+});
+
+test('failed NUnit receipts include decoded case names and cap the list at 100', () => {
+  const cases = Array.from({ length: 101 }, (_, index) =>
+    `<test-case fullname="Fixture.case&amp;${index}" result="Failed"/>`).join('');
+  const summary = parseNUnitSummary(
+    `<test-run total="101" passed="0" failed="101" skipped="0" inconclusive="0" result="Failed">${cases}</test-run>`,
+  );
+  assert.equal(summary.failedTestNames.length, 100);
+  assert.equal(summary.failedTestNames[0], 'Fixture.case&0');
+  assert.equal(summary.failedTestNames[99], 'Fixture.case&99');
+  assert.equal(summary.failedTestNamesTruncated, true);
 });
 
 test('live progress summary reports completed, blocked, pending, and running tasks', () => {
