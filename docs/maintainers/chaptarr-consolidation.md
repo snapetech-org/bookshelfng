@@ -5,24 +5,28 @@ Date: 2026-10-14. AI-assisted investigation and implementation by Codex.
 Confidence: high for one populated migration-158 SQLite preview/apply/startup
 run; moderate for broader conversion behavior; low for retirement readiness.
 
-The generated path inventory is now pinned to BookshelfNG
-`4dda1ec10a56be9b4969cdf068c6664a0ef09cc9` and the committed ChaptarrNG
-integration candidate `7fda582a9a28093ee042b82af2423e95640f4843`. It covers
-422 reachable post-fork commits (413 absent from the pinned Bookshelf lineage
-ref) and 1,041 net-changed paths. These path-level states are an audit queue,
-not a semantic parity result.
+The generated path inventory is pinned to BookshelfNG
+`4dda1ec10a56be9b4969cdf068c6664a0ef09cc9` and ChaptarrNG integration
+candidate `1141c79687302366463bf87fed4565c4cc76090c`. It covers 423 reachable
+post-fork commits (414 absent from the pinned Bookshelf lineage ref) and
+1,041 net-changed paths. These path-level states are an audit queue, not a
+semantic parity result.
 
 At this review, BookshelfNG `origin/main` is `4dda1ec10`. ChaptarrNG `main` is
-`25226d41`, compared with upstream `develop` at `e67374f4`; ChaptarrNG is 574
-commits ahead and zero behind, with 1,099 net-changed paths. Open ChaptarrNG
-product/maintenance PRs #78, #97, and #99 and active dependency PRs also remain
-part of its upstream retirement gate. The BookshelfNG integration branch is
+`4364742e`, compared with upstream `develop` at `e67374f4`; ChaptarrNG is 575
+commits ahead and zero behind, with 1,100 net-changed paths. Open ChaptarrNG
+product/maintenance PRs #78, #97, #100, and #101 and active dependency PRs
+including #96 and #98 remain part of its upstream retirement gate; PR #99 has
+merged. The BookshelfNG integration branch is
 `codex/bookshelf-consolidation-integrated-20261014` at
-`7fda582a9a28093ee042b82af2423e95640f4843`. Its importer is wired into the
+`1141c79687302366463bf87fed4565c4cc76090c`. Its importer is wired into the
 ordinary ChaptarrNG startup migration and was tested in the same standard
 image used by fresh installs. It is under review as [ChaptarrNG PR
 #100](https://github.com/snapetech-org/chaptarrng/pull/100), but is not merged
-or released; BookshelfNG is not ready to retire.
+or released; BookshelfNG is not ready to retire. The hosted build failure was
+traced to the migration-158 SQL fixture being hidden by the generic `*.sql`
+ignore rule. The complete committed fixture is now tracked, the 12 focused
+importer tests pass locally, and the refreshed hosted checks are pending.
 
 ChaptarrNG PRs #73, #76, and #77 merged on October 13, 2026. BookshelfNG PR
 #112 and SeerrNG PR #203 also merged. The current local candidate and its new
@@ -59,7 +63,7 @@ behavior, feature parity, or any published package-channel bridge.
   commits refresh the report without changing this source-code comparison.
 - Historical ChaptarrNG integration base `683924daadf3201a467913c2ac4207eda6e61ea8`
   was 318 commits ahead and 3 behind its then-current main. The current
-  committed candidate is `7fda582a9a28093ee042b82af2423e95640f4843`; its
+  committed candidate is `1141c79687302366463bf87fed4565c4cc76090c`; its
   complete source-path comparison is in the regenerated inventory below.
   ChaptarrNG PR #73 merged as `5d8fffae` after all 14 reported checks passed.
   Its earlier Windows failures were resolved before merge. BookshelfNG PR #112
@@ -133,7 +137,7 @@ behavior, feature parity, or any published package-channel bridge.
 - The generated [inventory](chaptarr-consolidation-inventory.json) records
   every reachable commit after the parent of the first fork commit
   `bde894431`, including maintenance and merged work. At source `4dda1ec1` and
-  target `7fda582a`, it contains 422 commits (413 absent from the pinned
+  target `1141c796`, it contains 423 commits (414 absent from the pinned
   Bookshelf lineage ref `3ac41f7`) and 1,041 net-changed paths: 419 without a
   mapped Chaptarr path, 472 different mapped files requiring review, 144
   identical files, four text-equivalent files after branding/newline
@@ -147,7 +151,7 @@ Regenerate the tracked-source inventory with:
 python3 scripts/audit-chaptarr-consolidation.py \
   --chaptarr /path/to/chaptarrng-candidate \
   --source 4dda1ec10a56be9b4969cdf068c6664a0ef09cc9 \
-  --target 7fda582a9a28093ee042b82af2423e95640f4843 \
+  --target 1141c79687302366463bf87fed4565c4cc76090c \
   --upstream refs/remotes/audit-bookshelf/develop \
   --output docs/maintainers/chaptarr-consolidation-inventory.json
 ```
@@ -377,7 +381,7 @@ before release.
 | Encrypted backups and format-scoped profiles | Target encrypted backup support and native profile models exist | **Open blocker — old-data recovery unproven** | Test Bookshelf archive restore where supported, secret aliases, profile conversion, and rollback; never log credentials. |
 | .NET 10, platform builds, ImageSharp removal, and security/dependency fixes | .NET 10 is present; target has different dependencies and still uses licensed ImageSharp | **Open blocker — patch-by-patch review pending** | Review each security and dependency change; retain compatible fixes and prove supported OS/architecture builds. |
 | Release notes, announcements, package sync, and validation workflow | ChaptarrNG has separate release and validation workflows | **Open blocker — legacy identities not bridged** | Preserve old package/container IDs through tested compatibility artifacts; complete required per-repository validation without duplicate publication. |
-| Every remaining fork change in the pinned source inventory | 422 reachable post-fork commits and 1,041 net-changed paths are recorded at the current committed source and target pins | **Open blocker — exhaustive disposition pending** | Mark every path retained, ported, proven equivalent, or explicitly retired after impact review. |
+| Every remaining fork change in the pinned source inventory | 423 reachable post-fork commits and 1,041 net-changed paths are recorded at the current committed source and target pins | **Open blocker — exhaustive disposition pending** | Mark every path retained, ported, proven equivalent, or explicitly retired after impact review. |
 
 The commit/path inventory remains the exhaustive review ledger. Every
 behavioral change must be retained, ported, or proven equivalent; packaging
@@ -498,13 +502,13 @@ must be reported as unverified/unpublished, not a successful migration channel.
 
 | Area | Current evidence | Remaining blocker |
 | --- | --- | --- |
-| BookshelfNG source inventory | Regenerated at source `4dda1ec10a56be9b4969cdf068c6664a0ef09cc9` and target `7fda582a9a28093ee042b82af2423e95640f4843`: 422 reachable commits, 413 absent from the pinned Bookshelf lineage ref, and 1,041 changed paths (419 unmapped, 472 different, 144 identical, four text-equivalent, two deleted). | Disposition every path as retained, ported, equivalent, or explicitly retired. Path classification does not establish feature equivalence; report edits after those pins are not in the generated inventory. |
+| BookshelfNG source inventory | Regenerated at source `4dda1ec10a56be9b4969cdf068c6664a0ef09cc9` and target `1141c79687302366463bf87fed4565c4cc76090c`: 423 reachable commits, 414 absent from the pinned Bookshelf lineage ref, and 1,041 changed paths (419 unmapped, 472 different, 144 identical, four text-equivalent, two deleted). | Disposition every path as retained, ported, equivalent, or explicitly retired. Path classification does not establish feature equivalence; report edits after those pins are not in the generated inventory. |
 | ChaptarrNG Bookshelf feature port | PR #73 merged as `5d8fffae`; the current unpublished integration branch passes the complete Core suite (4,062 passed, 0 failed, 3 skipped; 4,065 total). A normal Linux/amd64 image previewed, applied, and started against separate copies of a real populated migration-158 database. The preview left the source hash unchanged and accounted for 127,177 rows; the retained backup matched all 39 source tables and rows; the v119 target passed integrity and foreign-key checks. Seven BookLore proxy tests and a live BookLore v2.4.0 upload/file-placement contract test pass. | Eighty-one source books still require operator-selected media classifications. Older schemas, PostgreSQL, full provider/config/client parity, representative M4B files, rollback restoration, hosted Windows, and BookLore processing of a valid production book remain unproven. |
-| ChaptarrNG maintained and active features | ChaptarrNG `main` at `25226d41` is 574 commits ahead and zero behind upstream `develop` at `e67374f4`, across 1,099 net-changed paths. Open product/maintenance PRs #78, #97, and #99 and active dependency PRs count before release. PRs #73, #76, and #77 have merged. | Every released and unreleased capability remains an individual ChaptarrNG-to-upstream blocker; see the itemized table linked above. |
+| ChaptarrNG maintained and active features | ChaptarrNG `main` at `4364742e` is 575 commits ahead and zero behind upstream `develop` at `e67374f4`, across 1,100 net-changed paths. Open product/maintenance PRs #78, #97, #100, and #101 and active dependency PRs including #96 and #98 count before release; #99 has merged. | Every released and unreleased capability remains an individual ChaptarrNG-to-upstream blocker; see the itemized table linked above. |
 | Bookshelf database compatibility | The standard Linux/amd64 candidate passed preview, explicit apply, and ordinary startup on separate copies of one real populated migration-158 SQLite database. Preview accounted for all 127,177 rows without changing the source; the retained backup matched all 39 table definitions and every source row; the v119 target passed integrity and foreign-key checks. Eighty-one books require operator-selected media mappings; the test choices were not reviewed as classifications. | Only this exact migration-158 SQLite input is proven. Older schemas, PostgreSQL, complete provider/settings contracts, first-login hash upgrade, source numeric-ID client compatibility, rollback restoration, feature parity, and release/channel bridges remain open. |
 | Candidate runtime and SeerrNG | The ordinary Linux/amd64 image started the converted populated database, served /ping and the production UI, preserved port, URL base, API key, SSL, configured indexers, and Docker image-pull update behavior, and passed SQLite/FK checks. The live BookshelfNG service was untouched. SeerrNG PR #203 merged at 97aa148 with its hosted checks passing; those checks did not include a populated migration-library probe. | Real SeerrNG request, provider-identity, history, availability, and pending-import behavior against the converted real library remains unproven. The migration run does not cover that client contract. |
 | Frontend build and static checks | `yarn typecheck` and the production webpack bundle pass; targeted ESLint reports no errors in changed JavaScript files. The bundle emitted 18 CSS-order warnings. Whole-tree ESLint reports 862 errors and 17 warnings across the inherited frontend tree. | Keep the inherited lint debt visible; resolve any candidate-caused lint error before merge. |
 | Cross-project secrets | All three repositories ignore `.env`; BookshelfNG and SeerrNG have local ignored, untracked `.env` files, while this ChaptarrNG worktree has no `.env` file. No `.env` or `.lic` file is tracked. BookshelfNG's Docker ignore excludes `.env`/`.env.*`, the SixLabors license, and signing files while retaining `.env.example`; a disposable Docker build-context check confirmed `.env.example` stayed in the context and `.env` did not. The license file remains outside repository trees. | Keep Git and Docker-context checks in release validation; no secret may enter a commit, build log, or published artifact. |
-| Hosted PR checks | BookshelfNG PR #112 merged as `7f7e07f0`; ChaptarrNG PRs #73, #76, and #77 merged as `5d8fffae`, `b2827c7a`, and `ee2efc55`; SeerrNG PR #203 merged as `97aa148`. The migration candidate is open as ChaptarrNG PR #100 at `7fda582a`; its hosted checks have started. | Complete PR #100's required checks, including hosted Windows, and run SeerrNG Mode 2 validation for its new PR. |
+| Hosted PR checks | BookshelfNG PR #112 merged as `7f7e07f0`; ChaptarrNG PRs #73, #76, and #77 merged as `5d8fffae`, `b2827c7a`, and `ee2efc55`; SeerrNG PR #203 merged as `97aa148`. ChaptarrNG PR #100 is at `1141c796`; the missing test fixture is now included and its refreshed hosted checks are queued. BookshelfNG PRs #128 and #130 and SeerrNG PR #280 remain open. | Complete PR #100's required checks, including hosted Windows, and run SeerrNG Mode 2 validation for its new PR. |
 | Distribution and migration | Candidate packaging builds both AUR and RPM identities from the same local Chaptarr archive; a Pacman upgrade retained the Bookshelf service identity, config, and data marker. ChaptarrNG PR #100 and BookshelfNG PR #130 contain the standard release and gated legacy publisher candidates. Local actionlint, COPR source, Chocolatey template-render, Helm lint/render/package, image-alias, and populated-database tests pass. | No public redirect is published. The bridge is disabled, the public Chaptarr release `v0.9.969` still has no standard Linux/Windows assets, and COPR's external bootstrap is not updated. Hosted Windows upgrade/moderation and live registry/COPR/Helm publish tests remain open, as do all remaining channel bridges. Pinned, offline, updater-disabled, third-party, manual archive, and Readarr-owned updater paths remain separate. |
 | Release decisions | The BookshelfNG enhanced feature set blocks BookshelfNG retirement as a whole and row by row. The later ChaptarrNG gate includes that retained set plus every ChaptarrNG maintained and actively developed capability, including unpublished work; each channel is a separate blocker too. | Current evidence does not support a main merge that claims parity, BookshelfNG retirement, or release redirection. |

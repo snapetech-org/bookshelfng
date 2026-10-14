@@ -17,12 +17,13 @@ released source; moderate for whether ChaptarrNG contains a related
 implementation; unknown for semantic equivalence until the listed acceptance
 checks pass.
 
-The current comparison is against ChaptarrNG `main` at `25226d41` and upstream
-Chaptarr `develop` at `e67374f4`: 574 commits ahead, zero behind, and 1,099
-net-changed paths. ChaptarrNG PRs #78, #97, and #99 and active dependency
-updates add to its cumulative blocker set before merge or release. The current
-Bookshelf migration candidate is still unmerged and unpublished; its populated
-SQLite result and per-channel candidate checks are recorded in the
+The current comparison is against ChaptarrNG `main` at `4364742e` and upstream
+Chaptarr `develop` at `e67374f4`: 575 commits ahead, zero behind, and 1,100
+net-changed paths. ChaptarrNG PRs #78, #97, #100, and #101 and active
+dependency updates including #96 and #98 add to its cumulative blocker set
+before merge or release; PR #99 has merged. The current Bookshelf migration
+candidate is ChaptarrNG PR #100 at `1141c796`; it is still unmerged and
+unpublished. Its populated SQLite result and per-channel candidate checks are recorded in the
 [consolidation report](chaptarr-consolidation.md). These source counts do not
 measure feature parity.
 
@@ -54,10 +55,10 @@ pins the current snapshot and tracks those blockers.
 
 The prior maintained-backlog snapshot `24b340f` is historical: PRs #69–#77
 have since merged. Current ChaptarrNG main and upstream counts are listed
-above. Open ChaptarrNG product/maintenance PRs #78, #97, and #99 and active
-dependency updates remain in scope. Each capability and distribution change
-remains a blocker before and after it merges or ships and is tracked in the
-ChaptarrNG matrix.
+above. Open ChaptarrNG product/maintenance PRs #78, #97, #100, and #101 and
+active dependency updates remain in scope; PR #99 has merged. Each capability
+and distribution change remains a blocker before and after it merges or ships
+and is tracked in the ChaptarrNG matrix.
 
 ## Feature matrix
 
@@ -87,7 +88,7 @@ is the commit/path audit that must be fully dispositioned.
 | Encrypted backups and restore | Passphrase-protected portable archives and per-format profiles | ChaptarrNG has encrypted backup support | **Open blocker.** Prove legacy archive recovery, secret handling, rollback, and profile conversion; never expose secrets in logs. |
 | .NET 10, dependency/security fixes, and platform builds | .NET 10 releases, broad native/package matrix, and maintained security/dependency patches | ChaptarrNG uses .NET 10 and has a different dependency/build matrix | **Open blocker.** Review every patch and supported platform; retain compatible fixes and run the target's required build and security checks. |
 | Release, package, and update channels | Containers, Unraid, Debian/RPM, AUR, PPA, Windows, macOS/Linux/FreeBSD, AppImage, Flatpak, Chocolatey, and Helm; YunoHost publishing retired | ChaptarrNG has its own release and package identities | **Open blocker.** Preserve old channel identities with tested bridge packages/images and migration instructions; no universal automatic redirect exists. |
-| All other fork changes | 422 reachable post-fork commits and 1,041 net-changed paths in the inventory pinned to BookshelfNG `4dda1ec1` and ChaptarrNG candidate `7fda582a` | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, proven equivalent, or explicitly retired. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
+| All other fork changes | 423 reachable post-fork commits and 1,041 net-changed paths in the inventory pinned to BookshelfNG `4dda1ec1` and ChaptarrNG candidate `1141c796` | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, proven equivalent, or explicitly retired. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
 
 ## Evidence and limits
 
