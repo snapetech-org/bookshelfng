@@ -20,7 +20,9 @@ export const validation = {
     'release-notes/20261011-validation-engine.md',
     'release-notes/20261012-validation-environment-isolation.md',
     'release-notes/20261012-validation-playwright-cache.md',
+    'release-notes/20261013-bounded-validation-task-pool.md',
   ],
+  maxConcurrentTasks: 2,
   runtimes: [
     {
       command: process.execPath,
@@ -64,6 +66,8 @@ export const validation = {
       id: 'engine-contract-tests',
       name: 'Validation engine contract tests',
       kind: 'test',
+      stage: 'tests',
+      concurrencyGroup: 'engine-contract-output',
       command: [process.execPath, '--test', 'scripts/validation-engine/engine.test.mjs'],
       inventory: ['validation-engine-contracts'],
       timeoutSeconds: 180,
@@ -72,6 +76,8 @@ export const validation = {
       id: 'dotnet-unit-tests',
       name: 'BookshelfNG Linux unit test selection',
       kind: 'test',
+      stage: 'tests',
+      concurrencyGroup: 'nunit-output',
       command: ['bash', './test.sh', 'Linux', 'Unit', 'Test'],
       env: {
         TEST_DIR: './_tests/net10.0/linux-x64',
