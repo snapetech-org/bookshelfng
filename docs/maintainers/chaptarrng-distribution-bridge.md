@@ -66,13 +66,19 @@ curl --fail --location --silent --show-error \
 The COPR webhook URL must remain the package-scoped custom endpoint for
 `bookshelfng`. It is used as a secret and must not be printed in workflow logs.
 
-As of 2026-10-14, COPR sign-in as `slskdn` is verified. The new
-`slskdn/chaptarrng` project form is prepared for Fedora 43/44/45 and Rawhide
-x86_64, but the project has not been submitted and no ChaptarrNG package
-webhook is configured. ChaptarrNG Actions has no `COPR_WEBHOOK_URL` secret.
-The public ChaptarrNG `v0.9.969` release also has no standard Linux archive,
-so neither the standard package trigger nor the legacy identity bridge can
-produce an installable package yet.
+As of 2026-10-14, the public [new ChaptarrNG COPR project](https://copr.fedorainfracloud.org/coprs/slskdn/chaptarrng/)
+exists for Fedora 43/44/45 and Rawhide x86_64. Its `chaptarrng` custom-source
+package uses the checked-in bootstrap with `bash curl cpio rpm` build
+dependencies and auto-rebuild enabled. The package-scoped webhook is stored
+in ChaptarrNG Actions as `COPR_WEBHOOK_URL`. The package has no builds yet;
+the public ChaptarrNG `v0.9.969` release has no assets, including the SRPM and
+checksum the bootstrap requires. ChaptarrNG Actions now has the
+`BOOKSHELFNG_COPR_WEBHOOK_URL` for the legacy identity, and BookshelfNG's
+`COPR_WEBHOOK_URL` was rotated to the matching package-scoped endpoint. Neither
+hook has been tested by submitting a COPR build. The existing
+`slskdn/bookshelfng` COPR bootstrap must still be updated and proven before
+the bridge is enabled. This new-project setup is not a package publication
+or retirement-continuity proof.
 
 ## Enablement gates
 
