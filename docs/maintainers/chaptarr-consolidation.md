@@ -19,7 +19,7 @@ product/maintenance PRs #78, #97, #100, and #101 and active dependency PRs
 including #96 and #98 remain part of its upstream retirement gate; PR #99 has
 merged. The BookshelfNG integration branch is
 `codex/bookshelf-consolidation-integrated-20261014` is currently at PR head
-`003950980ad93b60f97bd6c5e9732202a4cb00c9`; the semantic path inventory above
+`da311453206258d433d4eff0fe68d758ae7259f9`; the semantic path inventory above
 remains pinned to its earlier implementation snapshot. The importer is wired
 into the ordinary ChaptarrNG startup migration and was tested in the same
 standard image used by fresh installs. It is under review as [ChaptarrNG PR
@@ -29,10 +29,17 @@ failure from the ignored migration-158 SQL fixture was fixed and the complete
 fixture is committed. The migration fixture passes 15/15 locally, including
 rollback preview, rollback after a post-migration write, preservation of the
 current ChaptarrNG database, and rejection of a wrongly identified source
-backup. The full Release-mode Core suite passes (4,068 passed, 0 failed, 0
-skipped). On the current hosted run, the macOS build has reported failure
-while Windows/Linux and other required checks are still pending; final logs
-are not yet available.
+backup. The full Release-mode Core suite passed before the latest portability
+fix (4,068 passed, 0 failed, 0 skipped). The prior hosted Windows run reported
+six failures: the native package layout test, four conversion/rollback tests,
+and the audiobook-folder rename test. Commit `da311453` adjusts the lock-file
+creation for Windows and makes the package-layout test build its expected path
+with platform-native separators. The rename failure still needs a hosted
+Windows result to establish its cause. The prior macOS run failed the
+feature-branch Unraid guard without printing the failed assertion; the test
+now prints the captured output when that assertion fails. Hosted checks for
+`da311453` are pending, so these changes are not yet proven on Windows or
+macOS.
 
 ChaptarrNG PRs #73, #76, and #77 merged on October 13, 2026. BookshelfNG PR
 #112 and SeerrNG PR #203 also merged. SeerrNG PR #280 is open at
