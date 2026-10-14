@@ -18,7 +18,7 @@
     <PackageVersion Include="IPAddressRange" Version="6.3.0" />
     <PackageVersion Include="Polly" Version="8.8.0" />
     <PackageVersion Include="Servarr.FluentMigrator.Runner" Version="3.3.2.9" />
-    <PackageVersion Include="Servarr.FluentMigrator.Runner.SQLite" Version="3.3.2.9" />
+    <PackageVersion Include="Servarr.FluentMigrator.Runner.SQLite" Version="5.2.0.10" />
     <PackageVersion Include="Servarr.FluentMigrator.Runner.Postgres" Version="3.3.2.9" />
     <PackageVersion Include="FluentValidation" Version="9.5.4" />
     <PackageVersion Include="Ical.Net" Version="5.2.3" />
