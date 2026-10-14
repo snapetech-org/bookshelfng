@@ -18,15 +18,18 @@ commits ahead and zero behind, with 1,100 net-changed paths. Open ChaptarrNG
 product/maintenance PRs #78, #97, #100, and #101 and active dependency PRs
 including #96 and #98 remain part of its upstream retirement gate; PR #99 has
 merged. The BookshelfNG integration branch is
-`codex/bookshelf-consolidation-integrated-20261014` at
-`1141c79687302366463bf87fed4565c4cc76090c`. Its importer is wired into the
-ordinary ChaptarrNG startup migration and was tested in the same standard
-image used by fresh installs. It is under review as [ChaptarrNG PR
+`codex/bookshelf-consolidation-integrated-20261014` is currently at PR head
+`a396472d`, with implementation snapshot
+`1141c79687302366463bf87fed4565c4cc76090c` and a later docs-only refresh. Its
+importer is wired into the ordinary ChaptarrNG startup migration and was tested
+in the same standard image used by fresh installs. It is under review as [ChaptarrNG PR
 #100](https://github.com/snapetech-org/chaptarrng/pull/100), but is not merged
 or released; BookshelfNG is not ready to retire. The hosted build failure was
 traced to the migration-158 SQL fixture being hidden by the generic `*.sql`
-ignore rule. The complete committed fixture is now tracked, the 12 focused
-importer tests pass locally, and the refreshed hosted checks are pending.
+ignore rule. The complete committed fixture is now tracked; the 12 focused
+importer tests pass locally, as does the full Release-mode Core suite
+(4,062 passed, 0 failed, 3 skipped; 4,065 total). Refreshed hosted checks are
+still pending.
 
 ChaptarrNG PRs #73, #76, and #77 merged on October 13, 2026. BookshelfNG PR
 #112 and SeerrNG PR #203 also merged. The current local candidate and its new
