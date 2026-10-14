@@ -40,6 +40,20 @@ Bash 3.2 failure in the Unraid branch guard. The candidate now uses portable
 `File.Replace` promotion and `tr`-based case conversion; only the exact-head
 hosted rerun can close those platform checks.
 
+The exact PR #100 implementation also built the ordinary production UI and
+self-contained Linux x64 release archive on `kspls0` with .NET SDK 10.0.401.
+The archive and SHA-256 sidecar passed validation; a clean first-run instance
+served `/books/ping` and the UI with HTTP 200 on an isolated port. The same
+archive built both AUR identities and both COPR source RPMs. Both binary RPMs
+passed header and payload digest checks and installed in separate disposable
+Fedora 44 containers with package scriptlets disabled; the legacy package
+retained its BookshelfNG command, service, and environment-file paths while
+shipping the standard ChaptarrNG binary. The COPR source script also verified
+the SRPM checksum and extracted its required payload through a local response
+fixture. These are local candidate artifacts, not public release assets or
+registry publications. Builds emitted existing CSS-order, duplicate build-ID,
+and libfakeroot warnings; package and startup checks still passed.
+
 BookshelfNG PR #128 contains the ignore-rule fix; PR #130 contains the guarded
 release-channel bridge, dual-tag COPR source routing, and channel tests.
 ChaptarrNG PR #100 contains the database converter and standard-image startup
@@ -494,5 +508,5 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | Frontend build and static checks | `yarn typecheck` and the production webpack bundle pass; targeted ESLint reports no errors in changed JavaScript files. The bundle emitted 18 CSS-order warnings. Whole-tree ESLint reports 862 errors and 17 warnings across the inherited frontend tree. | Keep the inherited lint debt visible; resolve any candidate-caused lint error before merge. |
 | Cross-project secrets | All three repositories ignore `.env`; BookshelfNG and SeerrNG have local ignored, untracked `.env` files, while this ChaptarrNG worktree has no `.env` file. No `.env` or `.lic` file is tracked. BookshelfNG's Docker ignore excludes `.env`/`.env.*`, the SixLabors license, and signing files while retaining `.env.example`; a disposable Docker build-context check confirmed `.env.example` stayed in the context and `.env` did not. The license file remains outside repository trees. | Keep Git and Docker-context checks in release validation; no secret may enter a commit, build log, or published artifact. |
 | Hosted PR checks | BookshelfNG PR #128, BookshelfNG PR #130, ChaptarrNG PR #100, and SeerrNG PR #280 are open. ChaptarrNG's exact-head checks restarted after documentation-only commits; the prior code-head macOS job passed, while the new checks and other PRs are queued. Earlier ChaptarrNG runs exposed Windows migration promotion/rollback failures and a macOS Bash 3.2 script failure; the candidate includes fixes for both. | Wait for all current hosted results and fix failures before merging. A previously merged or skipped unrelated check does not close these exact-head gates. |
-| Distribution and migration | BookshelfNG PR #130 contains disabled-by-default bridge tooling for image aliases, legacy COPR, both Chocolatey IDs, and Helm; ChaptarrNG PR #100 contains the standard-image converter and AUR/RPM source-build work. Local package/channel tests exist. | No legacy bridge is released or tested against public installable assets. Pinned, offline, manual, and updater-disabled installs need explicit action; the Readarr-owned updater endpoint is outside Snapetech control. External COPR bootstrap update and real package upgrades remain open. |
+| Distribution and migration | BookshelfNG PR #130 contains disabled-by-default bridge tooling for image aliases, legacy COPR, both Chocolatey IDs, and Helm. The ordinary PR #100 Linux x64 archive passed first-run HTTP checks; both AUR identities and both COPR source RPMs built from it; new and legacy binary RPM digests and Fedora 44 install paths passed; the COPR payload/checksum route passed a local fixture. | No legacy bridge is released or tested against public installable assets. Pinned, offline, manual, and updater-disabled installs need explicit action; the Readarr-owned updater endpoint is outside Snapetech control. External COPR bootstrap update and real public package upgrades remain open. |
 | Release decisions | The BookshelfNG enhanced feature set blocks BookshelfNG retirement as a whole and row by row. The later ChaptarrNG gate includes that retained set plus every ChaptarrNG maintained and actively developed capability, including unpublished work; each channel is a separate blocker too. | Current evidence does not support a main merge that claims parity, BookshelfNG retirement, or release redirection. |
