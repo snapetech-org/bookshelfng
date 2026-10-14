@@ -66,6 +66,14 @@ curl --fail --location --silent --show-error \
 The COPR webhook URL must remain the package-scoped custom endpoint for
 `bookshelfng`. It is used as a secret and must not be printed in workflow logs.
 
+As of 2026-10-14, COPR sign-in as `slskdn` is verified. The new
+`slskdn/chaptarrng` project form is prepared for Fedora 43/44/45 and Rawhide
+x86_64, but the project has not been submitted and no ChaptarrNG package
+webhook is configured. ChaptarrNG Actions has no `COPR_WEBHOOK_URL` secret.
+The public ChaptarrNG `v0.9.969` release also has no standard Linux archive,
+so neither the standard package trigger nor the legacy identity bridge can
+produce an installable package yet.
+
 ## Enablement gates
 
 Keep the repository variable unset or `false` until all of these are true:
