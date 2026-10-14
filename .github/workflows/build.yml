@@ -32,7 +32,7 @@ env:
 jobs:
   build:
     # Pull-request builds stay hosted; trusted main builds use the pool after opt-in.
-    runs-on: ${{ (((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true') && 'trusted-main' || 'ubuntu-latest' }}
+    runs-on: ${{ (((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')) && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true') && fromJSON('{"group":"trusted-main","labels":["self-hosted","Linux","X64","host"]}') || 'ubuntu-latest' }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:

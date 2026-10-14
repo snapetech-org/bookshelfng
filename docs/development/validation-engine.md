@@ -43,9 +43,12 @@ use `CI=true` and `NODE_ENV=test` regardless of the invoking shell's values.
 Previous results are not reused.
 
 The current CI topology has one Linux x64 unit-test runner for main-branch
-validation. All pull-request validation uses GitHub-hosted runners; main pushes
-and manual runs on `main` may use the local runner pool. CI retains the normal
-NUnit report for pull-request feedback and uploads the machine-readable
+validation. All pull-request validation uses GitHub-hosted runners. Main
+pushes and manual runs on `main` may use the shared organization runner pool
+only when `TRUSTED_MAIN_RUNNERS_ENABLED` is set to `true`; while it is unset
+or false, those jobs stay hosted. The organization group is restricted to this
+workflow on `refs/heads/main`. CI retains the normal NUnit report for
+pull-request feedback and uploads the machine-readable
 validation receipt from the runner that performed the tests. The build,
 frontend compilation, Playwright installation, and artifact packaging remain
 separate existing CI steps; the test engine does not claim those steps passed

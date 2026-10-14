@@ -52,15 +52,16 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             "((github.event_name == 'push' && github.ref == 'refs/heads/main') "
             "|| (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'))"
         )
+        trusted_runner_json = '{"group":"trusted-main","labels":["self-hosted","Linux","X64","host"]}'
         expected = (
             "$" + "{{ (" + main_condition
             + " && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true') "
-            + "&& 'trusted-main' || 'ubuntu-latest' }}"
+            + "&& fromJSON('" + trusted_runner_json + "') || 'ubuntu-latest' }}"
         )
         self.assertEqual(runner, expected)
         self.assertNotIn("github.event_name == 'pull_request'", runner)
         self.assertNotIn("startsWith(github.ref, 'refs/heads/')", runner)
-        self.assertNotIn("fromJSON", runner)
+        self.assertIn("fromJSON('" + trusted_runner_json + "')", runner)
 
     def test_playwright_installer_matches_runner_environment(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
