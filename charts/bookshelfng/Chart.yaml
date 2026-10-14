@@ -4,10 +4,10 @@ description: Self-hosted book library management and download automation
 type: application
 version: 0.1.0
 appVersion: "0.4.21"
-home: https://github.com/snapetech/bookshelfng
-icon: https://raw.githubusercontent.com/snapetech/bookshelfng/main/frontend/src/Content/Images/logo.svg
+home: https://github.com/snapetech-org/bookshelfng
+icon: https://raw.githubusercontent.com/snapetech-org/bookshelfng/main/frontend/src/Content/Images/logo.svg
 sources:
-  - https://github.com/snapetech/bookshelfng
+  - https://github.com/snapetech-org/bookshelfng
 maintainers:
   - name: Snapetech
     url: https://github.com/snapetech

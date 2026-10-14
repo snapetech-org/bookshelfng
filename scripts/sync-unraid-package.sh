@@ -41,9 +41,9 @@ fi
 
 remote_url="$(git -C "$target_dir" config --get "remote.$remote.url" 2>/dev/null || true)"
 case "$remote_url" in
-	"https://github.com/snapetech/$target_repo.git"|"https://github.com/snapetech/$target_repo"|"git@github.com:snapetech/$target_repo.git"|"git@github.com:snapetech/$target_repo"|"ssh://git@github.com/snapetech/$target_repo.git") ;;
+	"https://github.com/snapetech-org/$target_repo.git"|"https://github.com/snapetech-org/$target_repo"|"git@github.com:snapetech-org/$target_repo.git"|"git@github.com:snapetech-org/$target_repo"|"ssh://git@github.com/snapetech-org/$target_repo.git") ;;
 	*)
-		echo "Remote '$remote' must point to snapetech/$target_repo (found: ${remote_url:-missing})." >&2
+		echo "Remote '$remote' must point to snapetech-org/$target_repo (found: ${remote_url:-missing})." >&2
 		exit 1
 		;;
 esac

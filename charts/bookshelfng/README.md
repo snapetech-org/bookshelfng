@@ -27,4 +27,4 @@ dropping the BookshelfNG process to its service account; do not set
 and providing writable runtime mounts. Use Kubernetes Secret references for
 the optional `BOOKSHELF_SEERRNG_API_KEY` integration credential.
 
-See the [full installation guide](https://github.com/snapetech/bookshelfng/blob/main/docs/standalone-install.md).
+See the [full installation guide](https://github.com/snapetech-org/bookshelfng/blob/main/docs/standalone-install.md).

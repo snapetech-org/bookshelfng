@@ -94,13 +94,13 @@ set -euo pipefail
 tag="$(tr -d '\r\n' < hook_payload)"
 [[ "$tag" =~ ^main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
 curl --fail --location --silent --show-error \
-  "https://raw.githubusercontent.com/snapetech/bookshelfng/main/packaging/rpm/copr-source.sh" \
+  "https://raw.githubusercontent.com/snapetech-org/bookshelfng/main/packaging/rpm/copr-source.sh" \
   | bash -s -- "$tag"
 ```
 
 Configure the script build dependencies as `bash curl cpio rpm`. In the COPR
 project settings, create a custom webhook for the `bookshelfng` package and save
-its URL as the `COPR_WEBHOOK_URL` Actions secret in `snapetech/bookshelfng`.
+its URL as the `COPR_WEBHOOK_URL` Actions secret in `snapetech-org/bookshelfng`.
 COPR's custom webhook sends the request body to the source script in
 `hook_payload`; the release workflow sends the verified release tag after
 publishing its assets. This setup does not need `COPR_LOGIN` or `COPR_TOKEN`.

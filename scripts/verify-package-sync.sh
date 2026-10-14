@@ -6,7 +6,7 @@ repo_root="$(git -C "$script_dir/.." rev-parse --show-toplevel)"
 work_dir="$(mktemp -d)"
 trap 'rm -rf "$work_dir"' EXIT
 
-unraid_url="${BOOKSHELFNG_UNRAID_GIT_URL:-https://github.com/snapetech/bookshelfng-unraid.git}"
+unraid_url="${BOOKSHELFNG_UNRAID_GIT_URL:-https://github.com/snapetech-org/bookshelfng-unraid.git}"
 unraid_branch="${BOOKSHELFNG_UNRAID_BRANCH:-main}"
 
 if ! command -v rsync >/dev/null 2>&1; then

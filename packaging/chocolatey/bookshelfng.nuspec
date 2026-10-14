@@ -7,11 +7,11 @@
     <authors>Snapetech</authors>
     <owners>Snapetech</owners>
     <copyright>Copyright (c) 2026 Snapetech</copyright>
-    <projectUrl>https://github.com/snapetech/bookshelfng</projectUrl>
-    <packageSourceUrl>https://github.com/snapetech/bookshelfng/tree/main/packaging/chocolatey</packageSourceUrl>
-    <docsUrl>https://github.com/snapetech/bookshelfng#readme</docsUrl>
-    <bugTrackerUrl>https://github.com/snapetech/bookshelfng/issues</bugTrackerUrl>
-    <licenseUrl>https://github.com/snapetech/bookshelfng/blob/main/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/snapetech-org/bookshelfng</projectUrl>
+    <packageSourceUrl>https://github.com/snapetech-org/bookshelfng/tree/main/packaging/chocolatey</packageSourceUrl>
+    <docsUrl>https://github.com/snapetech-org/bookshelfng#readme</docsUrl>
+    <bugTrackerUrl>https://github.com/snapetech-org/bookshelfng/issues</bugTrackerUrl>
+    <licenseUrl>https://github.com/snapetech-org/bookshelfng/blob/main/LICENSE.md</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>BookshelfNG is a standalone book library manager and download automation server. It runs locally and provides its own web interface.</description>
     <summary>Standalone book library manager and download automation server</summary>

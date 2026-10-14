@@ -11,9 +11,9 @@
   "addons": {"localstorage": {}},
   "persistentDirs": ["/config", "/books", "/downloads"],
   "manifestVersion": 2,
-  "website": "https://github.com/snapetech/bookshelfng",
-  "documentationUrl": "https://github.com/snapetech/bookshelfng#readme",
-  "packageUrl": "https://github.com/snapetech/bookshelfng",
-  "iconUrl": "https://raw.githubusercontent.com/snapetech/bookshelfng/main/Logo/512.png",
+  "website": "https://github.com/snapetech-org/bookshelfng",
+  "documentationUrl": "https://github.com/snapetech-org/bookshelfng#readme",
+  "packageUrl": "https://github.com/snapetech-org/bookshelfng",
+  "iconUrl": "https://raw.githubusercontent.com/snapetech-org/bookshelfng/main/Logo/512.png",
   "tags": ["books", "ebooks", "audiobooks", "automation"]
 }
