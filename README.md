@@ -79,11 +79,12 @@ matched all 39 source table definitions and every source row. Eighty-one books
 needed explicit media choices; test choices exercised conversion mechanics
 and were not reviewed as correct library classifications. Older schemas,
 PostgreSQL, complete provider/settings/client behavior, rollback on a real
-populated deployment, and published upgrade paths remain open. The migration fixture now passes
-15/15, including rollback preview, restoration after a post-migration write,
-retention of the current ChaptarrNG database, and wrong-backup rejection; the
-full Core suite passes 4,068/4,068. Real populated-deployment rollback remains
-open. Keep a verified backup and do not
+populated deployment, and published upgrade paths remain open. The local full
+Core suite passed 4,065 tests with 0 failures and 3 skipped, and the focused
+migration fixtures passed 23/23. A hosted Windows run failed four
+migration/rollback tests on the previous ChaptarrNG PR #100 head. A safe
+diagnostic update is pushed and its exact-head Windows rerun is queued. Keep a
+verified backup and do not
 mount a BookshelfNG `/config` directory as a ChaptarrNG configuration
 directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
 tracks the remaining feature, database, and distribution blockers.

@@ -6,28 +6,33 @@ ChaptarrNG Linux/amd64 candidate passed preview, explicit apply, and ordinary
 startup on separate copies of one real, populated migration-158 SQLite
 database. Its backup matched all 39 source table definitions and every row.
 Eighty-one books still need an operator's explicit media choice; the test
-choices were not reviewed as correct classifications. The 15-case migration
-fixture covers rollback preview, restoration after a post-migration write,
-retention of the current ChaptarrNG database, and wrong-backup rejection. No
-converter or channel bridge has been released. Older schemas, PostgreSQL, full
-settings/identity behavior, rollback on a real populated deployment, feature
-parity, and published upgrade paths remain open. This is a feature-level matrix, not a
-claim that similarly named features are equivalent.
+choices were not reviewed as correct classifications. The local full Core
+suite passed 4,065 tests with 0 failures and 3 skipped; the 23 focused
+migration fixtures passed. A hosted Windows run failed four migration/rollback
+tests on the previous head. A safe diagnostic update is on PR #100, whose
+exact-head hosted checks are queued. No converter or channel bridge has been
+released. Older schemas, PostgreSQL, full settings/identity behavior, rollback
+on a real populated deployment, feature parity, and published upgrade paths
+remain open. This is a feature-level matrix, not a claim that similarly named
+features are equivalent.
 
 **Confidence:** high for the listed BookshelfNG behavior at the pinned
 released source; moderate for whether ChaptarrNG contains a related
 implementation; unknown for semantic equivalence until the listed acceptance
 checks pass.
 
-The current comparison is against ChaptarrNG `main` at `4364742e` and upstream
-Chaptarr `develop` at `e67374f4`: 575 commits ahead, zero behind, and 1,100
-net-changed paths. ChaptarrNG PRs #78, #97, #100, and #101 and active
-dependency updates including #96 and #98 add to its cumulative blocker set
-before merge or release; PR #99 has merged. The current Bookshelf migration
-candidate is ChaptarrNG PR #100 at `1141c796`; it is still unmerged and
-unpublished. Its populated SQLite result and per-channel candidate checks are recorded in the
-[consolidation report](chaptarr-consolidation.md). These source counts do not
-measure feature parity.
+The current comparison is BookshelfNG `main` `5d696fb0`, ChaptarrNG `main`
+`6731a436`, and upstream Chaptarr `develop` `e67374f4`. ChaptarrNG is 606
+commits ahead and zero behind upstream, across 1,485 net-changed paths. The
+consolidation candidate, ChaptarrNG PR #100 at `561bf395`, is 25 commits ahead
+and zero behind ChaptarrNG `main`, across 359 changed paths. Open product and
+maintenance work includes PRs #78, #100, #103, and #105–#109; open dependency
+updates also remain in the cumulative blocker set. The source-to-candidate
+inventory now covers 426 reachable post-fork commits and 1,045 net-changed
+paths. These counts describe source history and paths, not feature parity. The
+candidate's populated SQLite result and per-channel checks are recorded in the
+[consolidation report](chaptarr-consolidation.md); it is still unmerged and
+unpublished.
 
 ## Retirement rule
 
@@ -56,11 +61,10 @@ ChaptarrNG branches and open feature PRs count before release; the combined
 pins the current snapshot and tracks those blockers.
 
 The prior maintained-backlog snapshot `24b340f` is historical: PRs #69–#77
-have since merged. Current ChaptarrNG main and upstream counts are listed
-above. Open ChaptarrNG product/maintenance PRs #78, #97, #100, and #101 and
-active dependency updates remain in scope; PR #99 has merged. Each capability
-and distribution change remains a blocker before and after it merges or ships
-and is tracked in the ChaptarrNG matrix.
+have since merged. Current ChaptarrNG main, upstream, and candidate counts are
+listed above. Every open ChaptarrNG product, maintenance, security, and
+dependency change counts in the cumulative blocker set before and after merge
+or release and is tracked in the ChaptarrNG matrix.
 
 ## Feature matrix
 
@@ -90,15 +94,16 @@ is the commit/path audit that must be fully dispositioned.
 | Encrypted backups and restore | Passphrase-protected portable archives and per-format profiles | ChaptarrNG has encrypted backup support | **Open blocker.** Prove legacy archive recovery, secret handling, rollback, and profile conversion; never expose secrets in logs. |
 | .NET 10, dependency/security fixes, and platform builds | .NET 10 releases, broad native/package matrix, and maintained security/dependency patches | ChaptarrNG uses .NET 10 and has a different dependency/build matrix | **Open blocker.** Review every patch and supported platform; retain compatible fixes and run the target's required build and security checks. |
 | Release, package, and update channels | Containers, Unraid, Debian/RPM, AUR, PPA, Windows, macOS/Linux/FreeBSD, AppImage, Flatpak, Chocolatey, and Helm; YunoHost publishing retired | ChaptarrNG has its own release and package identities | **Open blocker.** Preserve old channel identities with tested bridge packages/images and migration instructions; no universal automatic redirect exists. |
-| All other fork changes | 423 reachable post-fork commits and 1,041 net-changed paths in the inventory pinned to BookshelfNG `4dda1ec1` and ChaptarrNG candidate `1141c796` | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, proven equivalent, or explicitly retired. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
+| All other fork changes | 426 reachable post-fork commits and 1,045 net-changed paths in the inventory pinned to BookshelfNG `5d696fb0` and ChaptarrNG candidate `561bf395` | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, proven equivalent, or explicitly retired. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
 
 ## Evidence and limits
 
 The [consolidation report](chaptarr-consolidation.md) records exact source and
 target revisions, current implementation findings, the data-conversion
-contract, release-channel matrix, test results, and open gates. The integrated
-Linux Core suite passed 4,068 tests with 0 failures and 0 skipped on the
-current integration source. Fifteen migration fixture cases also passed,
+contract, release-channel matrix, test results, and open gates. The local
+Release-mode Core suite passed 4,065 tests with 0 failures and 3 skipped on the
+same application sources as the current integration head. Twenty-three
+focused migration fixtures also passed,
 including synthetic rollback after a post-migration write. The standard image passed preview,
 apply, and startup against separate copies of one real populated migration-158
 database; this is bounded evidence because 81 books still require operator-
@@ -122,9 +127,10 @@ cases, 29 metadata/ranking/series cases, 29 rename/path cases, and 6
 BookLore/TagLib cases, alongside the 5 converter-coordinator cases.
 The synthetic TagLib chapter-preservation fixture passed; focused
 migration-lineage tests passed 2/2, and 29 rename/path-portability tests
-passed. Hosted Windows reported three path-sensitive fixture failures on the
-older PR head; the fixture paths are corrected locally and still need a fresh
-hosted run. Preview, explicit apply, and ordinary startup were also exercised
+passed. A hosted Windows run at the previous PR #100 head failed four
+migration/rollback tests. The validation engine now records a safe exception
+type and method frame without logging error text or paths; its current hosted
+rerun is queued. Preview, explicit apply, and ordinary startup were also exercised
 on separate copies of one real populated BookshelfNG migration-158 SQLite
 database using the standard Linux/amd64 image. Preview left the source hash
 unchanged and accounted for all 127,177 rows; apply retained a backup matching
