@@ -349,7 +349,7 @@ schema](../src/Bookshelf.Diagnostics/README.md).
 This feature-level inventory covers work added or maintained in BookshelfNG
 from its May 18, 2026 fork from
 [pennydreadful/bookshelf](https://github.com/pennydreadful/bookshelf) through
-the [`main-v0.4.21.69` release](https://github.com/snapetech/bookshelfng/releases/tag/main-v0.4.21.69)
+the [`main-v0.4.21.69` release](https://github.com/snapetech-org/bookshelfng/releases/tag/main-v0.4.21.69)
 published on October 12, 2026. Bookshelf itself is a Readarr revival. The table
 groups related changes rather than listing every bug fix, dependency bump, or
 routine maintenance commit. The exhaustive commit and changed-path accounting
@@ -359,8 +359,8 @@ inventory. The sections below distinguish fork-maintained work from
 capabilities already shared with the Bookshelf and Readarr lineage. At the
 October 4 upstream comparison, BookshelfNG `main` included the direct parent's
 then-current `develop` history. For release-by-release entries see the
-[BookshelfNG releases](https://github.com/snapetech/bookshelfng/releases); the
-[main commit history](https://github.com/snapetech/bookshelfng/commits/main/)
+[BookshelfNG releases](https://github.com/snapetech-org/bookshelfng/releases); the
+[main commit history](https://github.com/snapetech-org/bookshelfng/commits/main/)
 has the patch-level record.
 
 | Period | Maintained work |
@@ -432,7 +432,7 @@ capability retained in ChaptarrNG plus every feature ChaptarrNG maintains or
 actively develops, including unreleased work. That full union blocks
 ChaptarrNG retirement as a whole, with each capability and distribution
 channel tracked individually. Those blockers are tracked in the
-[ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
+[ChaptarrNG retirement matrix](https://github.com/snapetech-org/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
 The published BookshelfNG `.69` database is not compatible with ChaptarrNG's
 native schema. The candidate's lineage guard rejects it before migrations, and

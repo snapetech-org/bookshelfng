@@ -28,7 +28,7 @@ test-report gate: 3,246 tests passed, 77 failed, and 100 were skipped. Image
 publication and release distribution did not run. This audit changed only
 workflow and maintainer-documentation files; the failing tests are in the
 existing application test tree. See
-[the CI run](https://github.com/snapetech/BookshelfNG/actions/runs/36503014342).
+[the CI run](https://github.com/snapetech-org/BookshelfNG/actions/runs/36503014342).
 
 ## Upstream tracking refs
 

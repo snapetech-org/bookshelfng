@@ -36,7 +36,7 @@ whole, with each capability, sub-capability, data path, and channel as an
 individual gate. A composite row closes only when every item it covers passes
 its acceptance checks. Active
 ChaptarrNG branches and open feature PRs count before release; the combined
-[ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers)
+[ChaptarrNG retirement matrix](https://github.com/snapetech-org/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers)
 pins the current snapshot and tracks those blockers.
 
 The maintained ChaptarrNG backlog branch is pinned at `24b340f`: 317 commits

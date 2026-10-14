@@ -5,9 +5,9 @@
 **Body:**
 
 ```text
-Project: https://github.com/snapetech/bookshelfng
+Project: https://github.com/snapetech-org/bookshelfng
 Docker image: https://hub.docker.com/r/snapetech/bookshelfng
-Recipe draft: https://github.com/snapetech/bookshelfng/tree/packaging/catalog-submissions/packaging/coop-cloud/bookshelfng
+Recipe draft: https://github.com/snapetech-org/bookshelfng/tree/packaging/catalog-submissions/packaging/coop-cloud/bookshelfng
 
 BookshelfNG is a self-hosted ebook and audiobook library manager descended from
 Readarr. The recipe uses the public Hardcover image, Traefik for the web UI,

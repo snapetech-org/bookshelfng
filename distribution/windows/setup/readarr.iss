@@ -3,8 +3,8 @@
 
 #define AppName "BookshelfNG"
 #define AppPublisher "Snapetech"
-#define AppURL "https://github.com/snapetech/bookshelfng"
-#define ForumsURL "https://github.com/snapetech/bookshelfng/discussions"
+#define AppURL "https://github.com/snapetech-org/bookshelfng"
+#define ForumsURL "https://github.com/snapetech-org/bookshelfng/discussions"
 #define AppExeName "Readarr.exe"
 #define BaseVersion GetEnv('MAJORVERSION')
 #define BuildNumber GetEnv('MINORVERSION')

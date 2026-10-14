@@ -9,7 +9,7 @@ Version:        0.0.0
 Release:        1%{?dist}
 Summary:        Standalone book library manager and download automation server
 License:        GPL-3.0-or-later
-URL:            https://github.com/snapetech/bookshelfng
+URL:            https://github.com/snapetech-org/bookshelfng
 Source0:        bookshelfng-%{version}.tar.gz
 BuildArch:      x86_64
 Requires:       glibc
