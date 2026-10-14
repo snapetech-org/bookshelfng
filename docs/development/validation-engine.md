@@ -21,7 +21,8 @@ The engine accepts the repository's two declared Node versions: local Volta
 Its native test task runs `./test.sh Linux Unit Test` with the same
 category filters as CI and requires the test runner's NUnit XML summary. It
 reports total, passed, failed, skipped, and inconclusive cases; a missing or
-zero-case result cannot pass.
+zero-case result cannot pass. Failed NUnit receipts also include up to 100 case
+names so CI failures can be identified from the machine-readable evidence.
 
 The engine writes task progress to stderr as tasks start and finish, with a
 once-per-minute heartbeat during long tasks. It runs up to two independent
