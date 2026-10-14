@@ -9,7 +9,7 @@ workflow="$repo_root/.github/workflows/chaptarrng-release-bridge.yml"
 required_lines=(
   "TARGET_REPOSITORY: snapetech-org/chaptarrng"
   'BRIDGE_ENABLED: ${{ vars.CHAPTARRNG_MIGRATION_BRIDGE_ENABLED || '\''false'\'' }}'
-  "PUBLISH_GHCR_ALIASES: 'true'"
+  "PUBLISH_GHCR_ALIASES: 'false'"
   "PUBLISH_LEGACY_ALIASES: 'true'"
   'source_tag="ghcr.io/snapetech/chaptarrng:${VERSION}"'
   'SOURCE_IMAGE: ghcr.io/snapetech/chaptarrng@'
@@ -25,8 +25,12 @@ for expected in "${required_lines[@]}"; do
   fi
 done
 
-[[ "$(grep -Fc "PUBLISH_LEGACY_ALIASES: 'true'" "$workflow")" -eq 2 ]]
-grep -Fq "PUBLISH_GHCR_ALIASES: 'false'" "$workflow"
+[[ "$(grep -Fc "PUBLISH_LEGACY_ALIASES: 'true'" "$workflow")" -eq 1 ]]
+grep -Fq 'delegated to the separately scoped personal-account bridge' "$workflow"
+if grep -Eq 'publish-ghcr-aliases|outputs\.ghcr|for channel in ghcr ' "$workflow"; then
+  echo 'The BookshelfNG organization workflow must not publish personal-account GHCR aliases.' >&2
+  exit 1
+fi
 
 if grep -Fq 'ghcr.io/snapetech-org/chaptarrng' "$workflow"; then
   echo 'The bridge must use the existing public ChaptarrNG package namespace.' >&2

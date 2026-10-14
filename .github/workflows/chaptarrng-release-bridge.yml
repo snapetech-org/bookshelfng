@@ -24,7 +24,6 @@ jobs:
       ready: ${{ steps.resolve.outputs.ready }}
       tag: ${{ steps.resolve.outputs.tag }}
       version: ${{ steps.resolve.outputs.version }}
-      ghcr: ${{ steps.resolve.outputs.ghcr }}
       dockerhub: ${{ steps.resolve.outputs.dockerhub }}
       copr: ${{ steps.resolve.outputs.copr }}
       chocolatey_new: ${{ steps.resolve.outputs.chocolatey_new }}
@@ -94,7 +93,7 @@ jobs:
           git show-ref --verify --quiet "refs/tags/bookshelfng-bridge-${tag}-$1"
         }
         {
-          for channel in ghcr dockerhub copr chocolatey-new chocolatey-legacy helm; do
+          for channel in dockerhub copr chocolatey-new chocolatey-legacy helm; do
             output_name="${channel//-/_}"
             if marker "$channel"; then
               echo "${output_name}=false"
@@ -153,83 +152,6 @@ jobs:
           echo '- Publishing is disabled. Set the BookshelfNG repository variable CHAPTARRNG_MIGRATION_BRIDGE_ENABLED=true only after the migration, rollback, and channel acceptance gates pass.'
           echo '- No package, image, Helm chart, or release was modified.'
         } >> "$GITHUB_STEP_SUMMARY"
-
-  publish-ghcr-aliases:
-    name: Redirect legacy GHCR mutable tags
-    needs: [discover-release]
-    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.ghcr == 'true'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: write
-    steps:
-    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      with:
-        ref: main
-        fetch-depth: 0
-
-    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      with:
-        repository: snapetech-org/chaptarrng
-        ref: ${{ needs.discover-release.outputs.tag }}
-        path: chaptarrng-source
-        persist-credentials: false
-
-    - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
-
-    - name: Log in to the existing BookshelfNG GHCR package
-      uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Install Skopeo and verify the standard multi-architecture image
-      env:
-        VERSION: ${{ needs.discover-release.outputs.version }}
-      run: |
-        set -euo pipefail
-        sudo apt-get update
-        sudo apt-get install --yes --no-install-recommends skopeo
-        source_tag="ghcr.io/snapetech/chaptarrng:${VERSION}"
-        skopeo inspect --raw "docker://${source_tag}" > "$RUNNER_TEMP/chaptarrng-manifest.json"
-        python3 - "$RUNNER_TEMP/chaptarrng-manifest.json" <<'PY'
-        import json
-        import sys
-        with open(sys.argv[1], encoding="utf-8") as stream:
-            manifest = json.load(stream)
-        platforms = {
-            (item.get("platform", {}).get("os"), item.get("platform", {}).get("architecture"))
-            for item in manifest.get("manifests", [])
-        }
-        required = {("linux", "amd64"), ("linux", "arm64"), ("linux", "arm")}
-        if not required.issubset(platforms):
-            raise SystemExit(f"Standard image is missing required platforms: {sorted(required - platforms)}")
-        PY
-        digest="sha256:$(sha256sum "$RUNNER_TEMP/chaptarrng-manifest.json" | cut -d ' ' -f1)"
-        echo "source_digest=$digest" >> "$GITHUB_OUTPUT"
-      id: image
-
-    - name: Publish legacy tags from the exact standard image digest
-      env:
-        SOURCE_IMAGE: ghcr.io/snapetech/chaptarrng@${{ steps.image.outputs.source_digest }}
-        EXPECTED_DIGEST: ${{ steps.image.outputs.source_digest }}
-        VERSION: ${{ needs.discover-release.outputs.version }}
-        DOCKERHUB_CONFIGURED: 'false'
-        PUBLISH_GHCR_ALIASES: 'true'
-        PUBLISH_LEGACY_ALIASES: 'true'
-      run: bash chaptarrng-source/packaging/scripts/publish-image-aliases.sh
-
-    - name: Mark this release redirected in GHCR
-      env:
-        TAG: ${{ needs.discover-release.outputs.tag }}
-      run: |
-        set -euo pipefail
-        marker="bookshelfng-bridge-${TAG}-ghcr"
-        git config user.name 'BookshelfNG migration bridge'
-        git config user.email 'noreply@github.com'
-        git tag "$marker"
-        git push origin "refs/tags/$marker"
 
   publish-dockerhub-aliases:
     name: Redirect Docker Hub mutable tags
@@ -590,7 +512,6 @@ jobs:
       - discover-release
       - publisher-credentials
       - disabled-preview
-      - publish-ghcr-aliases
       - publish-dockerhub-aliases
       - publish-bookshelf-copr
       - build-chocolatey-bridge
@@ -606,7 +527,6 @@ jobs:
         ENABLED: ${{ needs.discover-release.outputs.enabled }}
         READY: ${{ needs.discover-release.outputs.ready }}
         TAG: ${{ needs.discover-release.outputs.tag }}
-        GHCR: ${{ needs.publish-ghcr-aliases.result }}
         DOCKERHUB: ${{ needs.publish-dockerhub-aliases.result }}
         COPR: ${{ needs.publish-bookshelf-copr.result }}
         CHOCO_BUILD: ${{ needs.build-chocolatey-bridge.result }}
@@ -617,7 +537,7 @@ jobs:
         {
           echo '### BookshelfNG to ChaptarrNG release bridge'
           echo "- Latest release: ${TAG:-none} (assets ready: ${READY:-false}; publishing enabled: ${ENABLED:-false})."
-          echo "- Legacy GHCR mutable tags: ${GHCR:-skipped}."
+          echo '- Legacy GHCR mutable tags: delegated to the separately scoped personal-account bridge; this workflow does not write that package.'
           echo "- Docker Hub ChaptarrNG and BookshelfNG tags: ${DOCKERHUB:-skipped}."
           echo "- Existing BookshelfNG COPR identity: ${COPR:-skipped}."
           echo "- Chocolatey package build: ${CHOCO_BUILD:-skipped}; new identity: ${CHOCO_NEW:-skipped}; legacy upgrade identity: ${CHOCO_LEGACY:-skipped}."

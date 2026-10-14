@@ -9,9 +9,13 @@ RPM source packages. Every publish path uses the ordinary ChaptarrNG release
 payload; there is no compatibility image or second ChaptarrNG build.
 
 The ChaptarrNG release workflows use the same variable as a second gate before
-publishing old BookshelfNG AUR, COPR, Chocolatey, GHCR, or Docker Hub
-identities. Normal releases still publish the new ChaptarrNG image and package
-identities while the flag is unset.
+publishing legacy BookshelfNG AUR and Docker Hub identities. Docker Hub, COPR,
+Chocolatey, and Helm work runs through the BookshelfNG bridge workflow. GHCR
+aliases are dispatched directly by the gated ChaptarrNG release to a separate
+personal-account bridge because the legacy GHCR package is owned by
+`snapetech`; the organization-owned workflow cannot write that package with
+its own `GITHUB_TOKEN`. Normal releases still publish the standard ChaptarrNG
+image and package identities while the flag is unset.
 
 Repository variables are scoped per repository. After every acceptance gate
 below passes, prefer one organization Actions variable named
@@ -21,24 +25,28 @@ BookshelfNG; setting it in only one repository bridges only that repository's
 release paths.
 
 The stable container identity is `ghcr.io/snapetech/chaptarrng`. The GitHub
-repository now lives at `snapetech-org/chaptarrng`, but the public package
-remains under the original `snapetech` account namespace. The `chaptarrng` and
-`bookshelfng` GHCR packages currently have no linked repository, so their
-**Manage Actions access** settings must grant write access to
-`snapetech-org/chaptarrng` and `snapetech-org/bookshelfng`, respectively,
-before the standard publisher or legacy tag bridge can write with
-`GITHUB_TOKEN`. Do not derive image names from the repository owner's name.
+repository now lives at `snapetech-org/chaptarrng`, while both public package
+names remain under the original `snapetech` account namespace. The standard
+publisher remains responsible for the ChaptarrNG package. Legacy
+`bookshelfng:{latest,hardcover,softcover}` tags are written only by
+`snapetech/bookshelfng-ghcr-release-bridge`, using that personal repository's
+`GITHUB_TOKEN`; setup still requires package write access on the existing
+`bookshelfng` package and a narrowly scoped GitHub App installation that lets
+the ChaptarrNG release dispatch to the bridge repository. The bridge reads
+the public ChaptarrNG image by immutable digest and never builds another
+image. Do not derive image names from the repository owner's name.
 
-The bridge records one marker tag per channel and target release. A marker is
-written only after that channel's publisher accepts the update. That means a
-Chocolatey upload still needs moderation, and a COPR trigger still needs a
-successful downstream build before either channel is considered verified.
-The workflow summary reports publisher outcomes, not completed retirement
-gates.
+The BookshelfNG workflow records one marker tag per channel and target release
+for the channels it publishes. A marker is written only after that channel's
+publisher accepts the update. GHCR is dispatched separately to the personal
+account bridge and is not written by this organization workflow. A Chocolatey
+upload still needs moderation, and a COPR trigger still needs a successful
+downstream build before either channel is considered verified. Workflow
+summaries report publisher outcomes, not completed retirement gates.
 
 | Existing BookshelfNG channel | Candidate continuity path | What it does not move or prove |
 | --- | --- | --- |
-| GHCR image tags | Retargets `ghcr.io/snapetech/bookshelfng:latest`, `:hardcover`, and `:softcover` to the exact multi-architecture ChaptarrNG release image digest. | Pinned digests, other tags, registry caches, already-running containers, and a successful populated-library startup on each platform. |
+| GHCR image tags | A separately scoped personal-account bridge retags the exact multi-architecture ChaptarrNG release image digest as `ghcr.io/snapetech/bookshelfng:latest`, `:hardcover`, and `:softcover`. | Bridge repository/App setup, package write access, pinned digests, other tags, registry caches, already-running containers, and a successful populated-library startup on each platform. |
 | Docker Hub image tags | Mirrors the standard ChaptarrNG image to `snapetech/chaptarrng:<version>` and updates the moving ChaptarrNG and BookshelfNG aliases when the existing Docker Hub credentials are configured. | Pinned digests, cached images, and existing containers until their operator pulls/recreates them. |
 | COPR `slskdn/bookshelfng` | Sends the ChaptarrNG tag to the existing package-scoped COPR webhook. COPR downloads and verifies the legacy `bookshelfng` source RPM built from the same ChaptarrNG archive. | The external COPR custom-source bootstrap must first accept `vMAJOR.MINOR.PATCH` tags. A successful webhook response does not prove that COPR built or published the package. |
 | Chocolatey `bookshelfng` | Builds both `chaptarrng` and `bookshelfng` packages from the checksummed standard Windows archive, then submits each identity with the existing Chocolatey credential. The legacy package keeps the existing service and `%ProgramData%\BookshelfNG\data` path while converting supported database data at normal startup. | Chocolatey moderation/approval, unsupported database inputs, and upgrade/rollback behavior outside the hosted Windows release test. |
