@@ -383,6 +383,8 @@ async function runCommand(task, runRoot) {
   let failedCases = null;
   let skippedCases = null;
   let inconclusiveCases = null;
+  let failedTestNames = [];
+  let failedTestNamesTruncated = false;
   let parseError = null;
   if (task.id === 'engine-contract-tests') {
     const pass = output.match(/# pass (\d+)/);
@@ -399,6 +401,8 @@ async function runCommand(task, runRoot) {
       failedCases = summary.failed;
       skippedCases = summary.skipped;
       inconclusiveCases = summary.inconclusive;
+      failedTestNames = summary.failedTestNames;
+      failedTestNamesTruncated = summary.failedTestNamesTruncated;
       if (summary.result && summary.result !== 'Passed') parseError = `NUnit reported ${summary.result}`;
     } catch (error) { parseError = error.message; }
   }
@@ -420,6 +424,8 @@ async function runCommand(task, runRoot) {
     activeCases,
     passedCases,
     failedCases,
+    failedTestNames,
+    failedTestNamesTruncated,
     skippedCases,
     inconclusiveCases,
     inventory: task.inventory,
@@ -477,7 +483,40 @@ export function parseNUnitSummary(xml) {
   const inconclusive = Number(attrs.inconclusive ?? 0);
   if (![total, passed, failed, skipped, inconclusive].every(Number.isFinite)) throw new Error('NUnit XML aggregate counts are invalid');
   if (total < 1 || [passed, failed, skipped, inconclusive].some((count) => count < 0)) throw new Error('NUnit XML aggregate counts are invalid');
-  return { total, passed, failed, skipped, inconclusive, result: attrs.result ?? null };
+  const failedTestNames = [];
+  let failedTestCount = 0;
+  for (const match of xml.matchAll(/<test-case\b([^>]*)\/?\s*>/g)) {
+    const caseAttrs = Object.fromEntries([...match[1].matchAll(/([A-Za-z][A-Za-z0-9_-]*)="([^"]*)"/g)]
+      .map((attribute) => [attribute[1], decodeXmlAttribute(attribute[2])]));
+    if (caseAttrs.result !== 'Failed') continue;
+    failedTestCount += 1;
+    if (failedTestNames.length < 100) failedTestNames.push(caseAttrs.fullname ?? caseAttrs.name ?? 'unknown test case');
+  }
+  return {
+    total,
+    passed,
+    failed,
+    skipped,
+    inconclusive,
+    result: attrs.result ?? null,
+    failedTestNames,
+    failedTestNamesTruncated: failedTestCount > failedTestNames.length,
+  };
+}
+
+function decodeXmlAttribute(value) {
+  return value.replace(/&(#x[0-9a-f]+|#\d+|amp|lt|gt|quot|apos);/gi, (entity, code) => {
+    const normalized = code.toLowerCase();
+    if (normalized === 'amp') return '&';
+    if (normalized === 'lt') return '<';
+    if (normalized === 'gt') return '>';
+    if (normalized === 'quot') return '"';
+    if (normalized === 'apos') return "'";
+    const number = normalized[1] === 'x' ? Number.parseInt(normalized.slice(2), 16) : Number.parseInt(normalized.slice(1), 10);
+    return Number.isInteger(number) && number >= 0 && number <= 0x10ffff && !(number >= 0xd800 && number <= 0xdfff)
+      ? String.fromCodePoint(number)
+      : entity;
+  });
 }
 
 function formatElapsed(milliseconds) {

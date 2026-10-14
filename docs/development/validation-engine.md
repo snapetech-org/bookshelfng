@@ -21,7 +21,8 @@ The engine accepts the repository's two declared Node versions: local Volta
 Its native test task runs `./test.sh Linux Unit Test` with the same
 category filters as CI and requires the test runner's NUnit XML summary. It
 reports total, passed, failed, skipped, and inconclusive cases; a missing or
-zero-case result cannot pass.
+zero-case result cannot pass. Failed NUnit receipts also include up to 100 case
+names so CI failures can be identified from the machine-readable evidence.
 
 The engine writes task progress to stderr as tasks start and finish, with a
 once-per-minute heartbeat during long tasks. It runs up to two independent
@@ -65,7 +66,8 @@ passes only that cache path to the NUnit task. GitHub-hosted Linux installs its
 system dependencies with Playwright; self-hosted Linux uses the browser-only
 installer because its system dependencies are managed on the host. Local Linux
 runs that need direct-download browser tests should set `PLAYWRIGHT_BROWSERS_PATH`
-to the installed browser directory. The suite uses local fixtures and does not
-connect to live services or mutate provider data. Results describe local or
-GitHub-hosted test execution only; they do not claim that a live deployment was
-verified.
+to a task-owned cache directory and install Chromium with
+`pwsh ./_tests/net10.0/linux-x64/playwright.ps1 install chromium`. The suite
+uses local fixtures and does not connect to live services or mutate provider
+data. Results describe local or GitHub-hosted test execution only; they do not
+claim that a live deployment was verified.
