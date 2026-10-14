@@ -92,7 +92,7 @@ to bootstrap the script from the release tag:
 #!/usr/bin/env bash
 set -euo pipefail
 tag="$(tr -d '\r\n' < hook_payload)"
-[[ "$tag" =~ ^main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
+[[ "$tag" =~ ^(main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+|v[0-9]+\.[0-9]+\.[0-9]+)$ ]]
 curl --fail --location --silent --show-error \
   "https://raw.githubusercontent.com/snapetech/bookshelfng/main/packaging/rpm/copr-source.sh" \
   | bash -s -- "$tag"

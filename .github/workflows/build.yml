@@ -43,6 +43,11 @@ jobs:
       - name: Test self-hosted runner trust boundary
         run: python3 scripts/test_workflow_runner_policy.py
 
+      - name: Test the COPR migration source bridge
+        run: |
+          bash -n packaging/rpm/copr-source.sh scripts/test-copr-source.sh
+          bash scripts/test-copr-source.sh
+
       - name: Test private runner temp setup
         if: runner.os == 'Linux'
         run: ./scripts/test-private-runner-temp.sh

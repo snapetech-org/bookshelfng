@@ -1,0 +1,624 @@
+name: ChaptarrNG legacy distribution bridge
+
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bookshelfng-chaptarrng-release-bridge
+  cancel-in-progress: false
+
+jobs:
+  discover-release:
+    name: Check for a bridgeable ChaptarrNG release
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      enabled: ${{ steps.resolve.outputs.enabled }}
+      ready: ${{ steps.resolve.outputs.ready }}
+      tag: ${{ steps.resolve.outputs.tag }}
+      version: ${{ steps.resolve.outputs.version }}
+      ghcr: ${{ steps.resolve.outputs.ghcr }}
+      dockerhub: ${{ steps.resolve.outputs.dockerhub }}
+      copr: ${{ steps.resolve.outputs.copr }}
+      chocolatey_new: ${{ steps.resolve.outputs.chocolatey_new }}
+      chocolatey_legacy: ${{ steps.resolve.outputs.chocolatey_legacy }}
+      helm: ${{ steps.resolve.outputs.helm }}
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        ref: main
+        fetch-depth: 0
+        persist-credentials: false
+
+    - id: resolve
+      name: Validate release assets and bridge state
+      env:
+        GH_TOKEN: ${{ github.token }}
+        BRIDGE_ENABLED: ${{ vars.CHAPTARRNG_MIGRATION_BRIDGE_ENABLED || 'false' }}
+        TARGET_REPOSITORY: snapetech-org/chaptarrng
+      shell: bash
+      run: |
+        set -euo pipefail
+        enabled=false
+        if [[ "${BRIDGE_ENABLED,,}" == true ]]; then enabled=true; fi
+        {
+          echo "enabled=$enabled"
+          echo 'ready=false'
+        } >> "$GITHUB_OUTPUT"
+
+        release_json="$(gh release view --repo "$TARGET_REPOSITORY" latest --json tagName,isDraft,isPrerelease,assets 2>/dev/null || true)"
+        if [[ -z "$release_json" ]]; then
+          echo 'No published ChaptarrNG stable release was found.' >> "$GITHUB_STEP_SUMMARY"
+          exit 0
+        fi
+
+        tag="$(jq -r '.tagName // empty' <<< "$release_json")"
+        if [[ ! "$tag" =~ ^v([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+          echo "Latest ChaptarrNG release tag '$tag' is not a stable vMAJOR.MINOR.PATCH tag; bridge skipped." >> "$GITHUB_STEP_SUMMARY"
+          exit 0
+        fi
+        version="${BASH_REMATCH[1]}"
+        if ! jq -e '.isDraft == false and .isPrerelease == false' <<< "$release_json" >/dev/null; then
+          echo "ChaptarrNG $tag is not a published stable release; bridge skipped." >> "$GITHUB_STEP_SUMMARY"
+          exit 0
+        fi
+
+        required_assets=(
+          "ChaptarrNG-${version}-linux-x64.tar.gz"
+          "ChaptarrNG-${version}-linux-x64.tar.gz.sha256"
+          "ChaptarrNG-${version}-linux-arm64.tar.gz"
+          "ChaptarrNG-${version}-linux-arm64.tar.gz.sha256"
+          "ChaptarrNG-${version}-win-x64.zip"
+          "ChaptarrNG-${version}-win-x64.zip.sha256"
+          "chaptarrng-${version}-1.src.rpm"
+          "chaptarrng-${version}-1.src.rpm.sha256"
+          "bookshelfng-${version}-1.src.rpm"
+          "bookshelfng-${version}-1.src.rpm.sha256"
+        )
+        asset_names="$(jq -r '.assets[].name' <<< "$release_json")"
+        for asset in "${required_assets[@]}"; do
+          if ! grep -Fqx "$asset" <<< "$asset_names"; then
+            echo "ChaptarrNG $tag is missing required bridge asset '$asset'; bridge skipped." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+        done
+
+        marker() {
+          git show-ref --verify --quiet "refs/tags/bookshelfng-bridge-${tag}-$1"
+        }
+        {
+          for channel in ghcr dockerhub copr chocolatey-new chocolatey-legacy helm; do
+            output_name="${channel//-/_}"
+            if marker "$channel"; then
+              echo "${output_name}=false"
+            else
+              echo "${output_name}=true"
+            fi
+          done
+          echo "tag=$tag"
+          echo "version=$version"
+          echo 'ready=true'
+        } >> "$GITHUB_OUTPUT"
+        {
+          echo "ChaptarrNG $tag has all required checksummed assets."
+          echo "Legacy publisher gate enabled: $enabled."
+          echo 'Each completed channel is recorded with a per-release tag so scheduled checks do not republish the same version.'
+        } >> "$GITHUB_STEP_SUMMARY"
+
+  publisher-credentials:
+    name: Check legacy publisher credentials
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      dockerhub: ${{ steps.check.outputs.dockerhub }}
+      copr: ${{ steps.check.outputs.copr }}
+      chocolatey: ${{ steps.check.outputs.chocolatey }}
+    steps:
+    - id: check
+      env:
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+        CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+      shell: bash
+      run: |
+        [[ -n "$DOCKERHUB_USERNAME" && -n "$DOCKERHUB_TOKEN" ]] && echo 'dockerhub=true' >> "$GITHUB_OUTPUT" || echo 'dockerhub=false' >> "$GITHUB_OUTPUT"
+        [[ -n "$COPR_WEBHOOK_URL" ]] && echo 'copr=true' >> "$GITHUB_OUTPUT" || echo 'copr=false' >> "$GITHUB_OUTPUT"
+        [[ -n "$CHOCOLATEY_API_KEY" ]] && echo 'chocolatey=true' >> "$GITHUB_OUTPUT" || echo 'chocolatey=false' >> "$GITHUB_OUTPUT"
+
+  disabled-preview:
+    name: Report disabled bridge state
+    needs: [discover-release, publisher-credentials]
+    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled != 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+    - name: Explain the release gate
+      env:
+        TAG: ${{ needs.discover-release.outputs.tag }}
+      run: |
+        {
+          echo '### ChaptarrNG legacy distribution bridge'
+          echo "- ChaptarrNG release: ${TAG} is ready."
+          echo '- Publishing is disabled. Set the BookshelfNG repository variable CHAPTARRNG_MIGRATION_BRIDGE_ENABLED=true only after the migration, rollback, and channel acceptance gates pass.'
+          echo '- No package, image, Helm chart, or release was modified.'
+        } >> "$GITHUB_STEP_SUMMARY"
+
+  publish-ghcr-aliases:
+    name: Redirect legacy GHCR mutable tags
+    needs: [discover-release]
+    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.ghcr == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        ref: main
+        fetch-depth: 0
+
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        repository: snapetech-org/chaptarrng
+        ref: ${{ needs.discover-release.outputs.tag }}
+        path: chaptarrng-source
+        persist-credentials: false
+
+    - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
+
+    - name: Log in to the existing BookshelfNG GHCR package
+      uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Install Skopeo and verify the standard multi-architecture image
+      env:
+        VERSION: ${{ needs.discover-release.outputs.version }}
+      run: |
+        set -euo pipefail
+        sudo apt-get update
+        sudo apt-get install --yes --no-install-recommends skopeo
+        source_tag="ghcr.io/snapetech-org/chaptarrng:${VERSION}"
+        skopeo inspect --raw "docker://${source_tag}" > "$RUNNER_TEMP/chaptarrng-manifest.json"
+        python3 - "$RUNNER_TEMP/chaptarrng-manifest.json" <<'PY'
+        import json
+        import sys
+        with open(sys.argv[1], encoding="utf-8") as stream:
+            manifest = json.load(stream)
+        platforms = {
+            (item.get("platform", {}).get("os"), item.get("platform", {}).get("architecture"))
+            for item in manifest.get("manifests", [])
+        }
+        required = {("linux", "amd64"), ("linux", "arm64"), ("linux", "arm")}
+        if not required.issubset(platforms):
+            raise SystemExit(f"Standard image is missing required platforms: {sorted(required - platforms)}")
+        PY
+        digest="sha256:$(sha256sum "$RUNNER_TEMP/chaptarrng-manifest.json" | cut -d ' ' -f1)"
+        echo "source_digest=$digest" >> "$GITHUB_OUTPUT"
+      id: image
+
+    - name: Publish legacy tags from the exact standard image digest
+      env:
+        SOURCE_IMAGE: ghcr.io/snapetech-org/chaptarrng@${{ steps.image.outputs.source_digest }}
+        EXPECTED_DIGEST: ${{ steps.image.outputs.source_digest }}
+        VERSION: ${{ needs.discover-release.outputs.version }}
+        DOCKERHUB_CONFIGURED: 'false'
+        PUBLISH_GHCR_ALIASES: 'true'
+      run: bash chaptarrng-source/packaging/scripts/publish-image-aliases.sh
+
+    - name: Mark this release redirected in GHCR
+      env:
+        TAG: ${{ needs.discover-release.outputs.tag }}
+      run: |
+        set -euo pipefail
+        marker="bookshelfng-bridge-${TAG}-ghcr"
+        git config user.name 'BookshelfNG migration bridge'
+        git config user.email 'noreply@github.com'
+        git tag "$marker"
+        git push origin "refs/tags/$marker"
+
+  publish-dockerhub-aliases:
+    name: Redirect Docker Hub mutable tags
+    needs: [discover-release, publisher-credentials]
+    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.dockerhub == 'true' && needs.publisher-credentials.outputs.dockerhub == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: read
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        ref: main
+        fetch-depth: 0
+
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        repository: snapetech-org/chaptarrng
+        ref: ${{ needs.discover-release.outputs.tag }}
+        path: chaptarrng-source
+        persist-credentials: false
+
+    - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f
+      with:
+        registry: docker.io
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Install Skopeo and verify the standard multi-architecture image
+      id: image
+      env:
+        VERSION: ${{ needs.discover-release.outputs.version }}
+      run: |
+        set -euo pipefail
+        sudo apt-get update
+        sudo apt-get install --yes --no-install-recommends skopeo
+        source_tag="ghcr.io/snapetech-org/chaptarrng:${VERSION}"
+        skopeo inspect --raw "docker://${source_tag}" > "$RUNNER_TEMP/chaptarrng-manifest.json"
+        python3 - "$RUNNER_TEMP/chaptarrng-manifest.json" <<'PY'
+        import json
+        import sys
+        with open(sys.argv[1], encoding="utf-8") as stream:
+            manifest = json.load(stream)
+        platforms = {
+            (item.get("platform", {}).get("os"), item.get("platform", {}).get("architecture"))
+            for item in manifest.get("manifests", [])
+        }
+        required = {("linux", "amd64"), ("linux", "arm64"), ("linux", "arm")}
+        if not required.issubset(platforms):
+            raise SystemExit(f"Standard image is missing required platforms: {sorted(required - platforms)}")
+        PY
+        digest="sha256:$(sha256sum "$RUNNER_TEMP/chaptarrng-manifest.json" | cut -d ' ' -f1)"
+        echo "source_digest=$digest" >> "$GITHUB_OUTPUT"
+
+    - name: Publish Docker Hub tags from the exact standard image digest
+      env:
+        SOURCE_IMAGE: ghcr.io/snapetech-org/chaptarrng@${{ steps.image.outputs.source_digest }}
+        EXPECTED_DIGEST: ${{ steps.image.outputs.source_digest }}
+        VERSION: ${{ needs.discover-release.outputs.version }}
+        DOCKERHUB_CONFIGURED: 'true'
+        PUBLISH_GHCR_ALIASES: 'false'
+      run: bash chaptarrng-source/packaging/scripts/publish-image-aliases.sh
+
+    - name: Mark this release redirected on Docker Hub
+      env:
+        TAG: ${{ needs.discover-release.outputs.tag }}
+      run: |
+        set -euo pipefail
+        marker="bookshelfng-bridge-${TAG}-dockerhub"
+        git config user.name 'BookshelfNG migration bridge'
+        git config user.email 'noreply@github.com'
+        git tag "$marker"
+        git push origin "refs/tags/$marker"
+
+  publish-bookshelf-copr:
+    name: Trigger the existing BookshelfNG COPR package bridge
+    needs: [discover-release, publisher-credentials]
+    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.copr == 'true' && needs.publisher-credentials.outputs.copr == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        ref: main
+        fetch-depth: 0
+
+    - name: Submit the ChaptarrNG release tag to the existing package webhook
+      env:
+        COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+        TAG: ${{ needs.discover-release.outputs.tag }}
+      run: |
+        set -euo pipefail
+        python3 - "$COPR_WEBHOOK_URL" <<'PY'
+        import re
+        import sys
+        from urllib.parse import urlsplit
+
+        value = sys.argv[1]
+        try:
+            parsed = urlsplit(value)
+            valid = (
+                parsed.scheme == "https"
+                and parsed.hostname == "copr.fedorainfracloud.org"
+                and parsed.username is None
+                and parsed.password is None
+                and parsed.port in (None, 443)
+                and parsed.query == ""
+                and parsed.fragment == ""
+                and re.fullmatch(r"/webhooks/custom/[^/]+/[^/]+/bookshelfng/", parsed.path)
+            )
+        except ValueError:
+            valid = False
+        if not valid:
+            raise SystemExit("COPR_WEBHOOK_URL must be the package-scoped HTTPS custom webhook for bookshelfng.")
+        PY
+        curl --fail --location --silent --show-error \
+          --output "$RUNNER_TEMP/copr-response.txt" \
+          --header 'Content-Type: text/plain' \
+          --data "$TAG" \
+          "$COPR_WEBHOOK_URL"
+        test -s "$RUNNER_TEMP/copr-response.txt"
+        marker="bookshelfng-bridge-${TAG}-copr"
+        git config user.name 'BookshelfNG migration bridge'
+        git config user.email 'noreply@github.com'
+        git tag "$marker"
+        git push origin "refs/tags/$marker"
+
+  build-chocolatey-bridge:
+    name: Build ChaptarrNG and legacy Chocolatey packages
+    needs: [discover-release]
+    if: needs.discover-release.outputs.ready == 'true'
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        ref: main
+        persist-credentials: false
+
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        repository: snapetech-org/chaptarrng
+        ref: ${{ needs.discover-release.outputs.tag }}
+        path: chaptarrng-source
+        persist-credentials: false
+
+    - name: Download and verify the standard ChaptarrNG Windows archive
+      env:
+        GH_TOKEN: ${{ github.token }}
+        TAG: ${{ needs.discover-release.outputs.tag }}
+        VERSION: ${{ needs.discover-release.outputs.version }}
+      shell: pwsh
+      run: |
+        $ErrorActionPreference = 'Stop'
+        $asset = "ChaptarrNG-$env:VERSION-win-x64.zip"
+        gh release download $env:TAG --repo snapetech-org/chaptarrng --pattern $asset --pattern "$asset.sha256" --dir $env:RUNNER_TEMP
+        $sidecar = Get-Content (Join-Path $env:RUNNER_TEMP "$asset.sha256") -Raw
+        $expected = ($sidecar -split '\s+')[0]
+        $actual = (Get-FileHash (Join-Path $env:RUNNER_TEMP $asset) -Algorithm SHA256).Hash.ToLowerInvariant()
+        if ($actual -ne $expected) { throw 'The standard Windows archive checksum does not match its release sidecar.' }
+
+    - name: Pack both package identities
+      env:
+        VERSION: ${{ needs.discover-release.outputs.version }}
+        ARCHIVE_PATH: ${{ runner.temp }}\ChaptarrNG-${{ needs.discover-release.outputs.version }}-win-x64.zip
+        SOURCE_ROOT: ${{ runner.temp }}\chaptarrng-source
+        OUTPUT_DIRECTORY: ${{ runner.temp }}\chocolatey-bridge
+      shell: pwsh
+      run: ./scripts/build-chaptarrng-chocolatey-bridge.ps1 -SourceRoot $env:SOURCE_ROOT -Version $env:VERSION -ArchivePath $env:ARCHIVE_PATH -OutputDirectory $env:OUTPUT_DIRECTORY
+
+    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      with:
+        name: chaptarrng-chocolatey-bridge-${{ needs.discover-release.outputs.version }}
+        path: ${{ runner.temp }}/chocolatey-bridge/*.nupkg
+        retention-days: 1
+        if-no-files-found: error
+
+  publish-chocolatey-new-install:
+    name: Publish the ChaptarrNG Chocolatey identity
+    needs: [discover-release, publisher-credentials, build-chocolatey-bridge]
+    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.chocolatey_new == 'true' && needs.publisher-credentials.outputs.chocolatey == 'true'
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        ref: main
+        fetch-depth: 0
+    - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      with:
+        name: chaptarrng-chocolatey-bridge-${{ needs.discover-release.outputs.version }}
+        path: ${{ runner.temp }}\packages
+    - name: Push the new-install package
+      env:
+        VERSION: ${{ needs.discover-release.outputs.version }}
+        CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+      shell: pwsh
+      run: |
+        $ErrorActionPreference = 'Stop'
+        $package = Join-Path $env:RUNNER_TEMP "packages/chaptarrng.$env:VERSION.nupkg"
+        if (-not (Test-Path $package)) { throw 'The ChaptarrNG Chocolatey package artifact is missing.' }
+        choco push $package --source https://push.chocolatey.org/ --api-key $env:CHOCOLATEY_API_KEY
+        if ($LASTEXITCODE -ne 0) { throw 'Chocolatey rejected the ChaptarrNG package upload.' }
+        $marker = "bookshelfng-bridge-v$env:VERSION-chocolatey-new"
+        git config user.name 'BookshelfNG migration bridge'
+        git config user.email 'noreply@github.com'
+        git tag $marker
+        git push origin "refs/tags/$marker"
+
+  publish-chocolatey-legacy-upgrade:
+    name: Publish the existing BookshelfNG Chocolatey upgrade identity
+    needs: [discover-release, publisher-credentials, build-chocolatey-bridge]
+    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.chocolatey_legacy == 'true' && needs.publisher-credentials.outputs.chocolatey == 'true'
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        ref: main
+        fetch-depth: 0
+    - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      with:
+        name: chaptarrng-chocolatey-bridge-${{ needs.discover-release.outputs.version }}
+        path: ${{ runner.temp }}\packages
+    - name: Push the legacy upgrade package
+      env:
+        VERSION: ${{ needs.discover-release.outputs.version }}
+        CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+      shell: pwsh
+      run: |
+        $ErrorActionPreference = 'Stop'
+        $package = Join-Path $env:RUNNER_TEMP "packages/bookshelfng.$env:VERSION.nupkg"
+        if (-not (Test-Path $package)) { throw 'The BookshelfNG Chocolatey bridge artifact is missing.' }
+        choco push $package --source https://push.chocolatey.org/ --api-key $env:CHOCOLATEY_API_KEY
+        if ($LASTEXITCODE -ne 0) { throw 'Chocolatey rejected the BookshelfNG bridge package upload.' }
+        $marker = "bookshelfng-bridge-v$env:VERSION-chocolatey-legacy"
+        git config user.name 'BookshelfNG migration bridge'
+        git config user.email 'noreply@github.com'
+        git tag $marker
+        git push origin "refs/tags/$marker"
+
+  publish-helm-bridge:
+    name: Publish the legacy Helm chart identity using the standard image
+    needs: [discover-release]
+    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.helm == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        ref: main
+        fetch-depth: 0
+
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        repository: snapetech-org/chaptarrng
+        ref: ${{ needs.discover-release.outputs.tag }}
+        path: chaptarrng-source
+        persist-credentials: false
+
+    - uses: azure/setup-helm@9bc31f4ebc9c6b171d7bfbaa5d006ae7abdb4310 # v5.0.1
+
+    - name: Verify the standard image digest and render the preserved release identity
+      id: chart
+      env:
+        TAG: ${{ needs.discover-release.outputs.tag }}
+        VERSION: ${{ needs.discover-release.outputs.version }}
+      run: |
+        set -euo pipefail
+        sudo apt-get update
+        sudo apt-get install --yes --no-install-recommends skopeo
+        image="ghcr.io/snapetech-org/chaptarrng:${VERSION}"
+        skopeo inspect --raw "docker://${image}" > "$RUNNER_TEMP/chaptarrng-manifest.json"
+        digest="sha256:$(sha256sum "$RUNNER_TEMP/chaptarrng-manifest.json" | cut -d ' ' -f1)"
+        chart_dir="$RUNNER_TEMP/bookshelfng-chart"
+        cp -a charts/bookshelfng "$chart_dir"
+        python3 - "$chart_dir/values.yaml" "$digest" "$VERSION" <<'PY'
+        from pathlib import Path
+        import re
+        import sys
+        path = Path(sys.argv[1])
+        digest, version = sys.argv[2:]
+        text = path.read_text(encoding="utf-8")
+        replacements = [
+            (r"(?m)^  repository: .*?$", "  repository: ghcr.io/snapetech-org/chaptarrng"),
+            (r"(?m)^  tag: .*?$", f"  tag: {version}"),
+            (r"(?m)^  digest: .*?$", f'  digest: "{digest}"'),
+        ]
+        for pattern, replacement in replacements:
+            text, count = re.subn(pattern, replacement, text, count=1)
+            if count != 1:
+                raise SystemExit(f"Expected one chart value for pattern {pattern!r}.")
+        path.write_text(text, encoding="utf-8")
+        PY
+        python3 - <<'PY'
+        import os
+        from pathlib import Path
+        import textwrap
+        chart_dir = Path(os.environ["RUNNER_TEMP"]) / "bookshelfng-chart"
+        version = os.environ["VERSION"]
+        tag = os.environ["TAG"]
+        chart_dir.joinpath("README.md").write_text(textwrap.dedent(f"""\
+        # BookshelfNG Helm migration bridge
+
+        This chart keeps the existing `bookshelfng` OCI chart name, StatefulSet,
+        Service, PVC, labels, and port while running the standard ChaptarrNG
+        image at the exact multi-architecture digest released as {tag}. The saved
+        BookshelfNG configuration and PVC are reused; normal ChaptarrNG startup
+        converts supported migration-158 SQLite data.
+
+        Upgrade the existing release with:
+
+        ```sh
+        helm upgrade bookshelfng oci://ghcr.io/snapetech/bookshelfng/bookshelfng --version {version}
+        ```
+
+        Back up the PVC first and keep one replica. Do not start BookshelfNG
+        again after ChaptarrNG has converted the database.
+        """), encoding="utf-8")
+        PY
+        helm lint "$chart_dir"
+        helm template bookshelfng "$chart_dir" > "$RUNNER_TEMP/bookshelfng-chart-rendered.yaml"
+        grep -Fq "image: \"ghcr.io/snapetech-org/chaptarrng@${digest}\"" "$RUNNER_TEMP/bookshelfng-chart-rendered.yaml"
+        grep -Fq 'claimName: bookshelfng-config' "$RUNNER_TEMP/bookshelfng-chart-rendered.yaml"
+        grep -Fq 'containerPort: 8787' "$RUNNER_TEMP/bookshelfng-chart-rendered.yaml"
+        helm package "$chart_dir" --version "$VERSION" --app-version "$VERSION" --destination "$RUNNER_TEMP"
+        echo "digest=$digest" >> "$GITHUB_OUTPUT"
+
+    - name: Publish the versioned bridge chart to the existing OCI identity
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_ACTOR: ${{ github.actor }}
+        VERSION: ${{ needs.discover-release.outputs.version }}
+      run: |
+        set -euo pipefail
+        echo "$GITHUB_TOKEN" | helm registry login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
+        helm push "$RUNNER_TEMP/bookshelfng-${VERSION}.tgz" oci://ghcr.io/snapetech/bookshelfng
+        marker="bookshelfng-bridge-v${VERSION}-helm"
+        git config user.name 'BookshelfNG migration bridge'
+        git config user.email 'noreply@github.com'
+        git tag "$marker"
+        git push origin "refs/tags/$marker"
+
+  bridge-summary:
+    name: Report release bridge actions
+    if: always()
+    needs:
+      - discover-release
+      - publisher-credentials
+      - disabled-preview
+      - publish-ghcr-aliases
+      - publish-dockerhub-aliases
+      - publish-bookshelf-copr
+      - build-chocolatey-bridge
+      - publish-chocolatey-new-install
+      - publish-chocolatey-legacy-upgrade
+      - publish-helm-bridge
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+    - name: Summarize bridge readiness and channel results
+      env:
+        ENABLED: ${{ needs.discover-release.outputs.enabled }}
+        READY: ${{ needs.discover-release.outputs.ready }}
+        TAG: ${{ needs.discover-release.outputs.tag }}
+        GHCR: ${{ needs.publish-ghcr-aliases.result }}
+        DOCKERHUB: ${{ needs.publish-dockerhub-aliases.result }}
+        COPR: ${{ needs.publish-bookshelf-copr.result }}
+        CHOCO_BUILD: ${{ needs.build-chocolatey-bridge.result }}
+        CHOCO_NEW: ${{ needs.publish-chocolatey-new-install.result }}
+        CHOCO_LEGACY: ${{ needs.publish-chocolatey-legacy-upgrade.result }}
+        HELM: ${{ needs.publish-helm-bridge.result }}
+      run: |
+        {
+          echo '### BookshelfNG to ChaptarrNG release bridge'
+          echo "- Latest release: ${TAG:-none} (assets ready: ${READY:-false}; publishing enabled: ${ENABLED:-false})."
+          echo "- Legacy GHCR mutable tags: ${GHCR:-skipped}."
+          echo "- Docker Hub ChaptarrNG and BookshelfNG tags: ${DOCKERHUB:-skipped}."
+          echo "- Existing BookshelfNG COPR identity: ${COPR:-skipped}."
+          echo "- Chocolatey package build: ${CHOCO_BUILD:-skipped}; new identity: ${CHOCO_NEW:-skipped}; legacy upgrade identity: ${CHOCO_LEGACY:-skipped}."
+          echo "- Existing BookshelfNG Helm OCI identity: ${HELM:-skipped}."
+          echo 'The bridge only moves mutable aliases and new chart/package versions. Existing version tags, digests, and offline or already-downloaded assets do not move.'
+        } >> "$GITHUB_STEP_SUMMARY"

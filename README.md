@@ -84,6 +84,14 @@ mount a BookshelfNG `/config` directory as a ChaptarrNG configuration
 directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
 tracks the remaining feature, database, and distribution blockers.
 
+The release-bridge implementation is being added behind a disabled-by-default
+repository variable. It can redirect selected mutable image tags and publish
+versioned COPR, Chocolatey, and Helm updates from the standard ChaptarrNG
+release. This does not redirect pinned images, already-downloaded archives, or
+manual installers, and it is not enabled until migration and channel acceptance
+gates pass. See the [distribution bridge matrix](docs/maintainers/chaptarrng-distribution-bridge.md)
+for the per-channel scope and remaining release work.
+
 Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
 ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG
 then joins the upstream blocker set alongside all features ChaptarrNG maintains
