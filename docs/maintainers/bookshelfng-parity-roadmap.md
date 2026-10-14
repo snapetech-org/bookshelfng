@@ -6,10 +6,12 @@ ChaptarrNG Linux/amd64 candidate passed preview, explicit apply, and ordinary
 startup on separate copies of one real, populated migration-158 SQLite
 database. Its backup matched all 39 source table definitions and every row.
 Eighty-one books still need an operator's explicit media choice; the test
-choices were not reviewed as correct classifications. No converter or
-channel bridge has been released. Older schemas, PostgreSQL, full
-settings/identity behavior, rollback restoration, feature parity, and
-published upgrade paths remain open. This is a feature-level matrix, not a
+choices were not reviewed as correct classifications. The 15-case migration
+fixture covers rollback preview, restoration after a post-migration write,
+retention of the current ChaptarrNG database, and wrong-backup rejection. No
+converter or channel bridge has been released. Older schemas, PostgreSQL, full
+settings/identity behavior, rollback on a real populated deployment, feature
+parity, and published upgrade paths remain open. This is a feature-level matrix, not a
 claim that similarly named features are equivalent.
 
 **Confidence:** high for the listed BookshelfNG behavior at the pinned
@@ -95,8 +97,9 @@ is the commit/path audit that must be fully dispositioned.
 The [consolidation report](chaptarr-consolidation.md) records exact source and
 target revisions, current implementation findings, the data-conversion
 contract, release-channel matrix, test results, and open gates. The integrated
-Linux Core suite passed 4,062 tests with 0 failures and 3 skipped (4,065 total)
-on the current integration source. The standard image also passed preview,
+Linux Core suite passed 4,068 tests with 0 failures and 0 skipped on the
+current integration source. Fifteen migration fixture cases also passed,
+including synthetic rollback after a post-migration write. The standard image passed preview,
 apply, and startup against separate copies of one real populated migration-158
 database; this is bounded evidence because 81 books still require operator-
 selected media classifications. The separate opt-in
@@ -130,7 +133,7 @@ and retained the existing port, URL base, API key, SSL setting, and Docker
 image-pull update mechanism. The live BookshelfNG service was not changed.
 The 81 media choices used for apply were test-only and were not reviewed as
 correct library classifications. Older BookshelfNG schemas, PostgreSQL,
-complete provider/settings behavior, rollback restoration, full
+complete provider/settings behavior, rollback on a real populated deployment, full
 feature-by-feature semantic acceptance, populated-library SeerrNG
 request/identity/history probes, and tested old-channel bridges remain open.
 The released BookshelfNG `.69` database samples inspected earlier were empty;

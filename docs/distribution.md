@@ -14,7 +14,9 @@ real, populated BookshelfNG migration-158 SQLite database. The retained source
 backup matched all 39 table definitions and every source row. Eighty-one books
 needed explicit media choices; test choices were not reviewed as correct
 classifications. Older schemas, PostgreSQL, complete provider/settings and
-client behavior, rollback restoration, and published upgrade paths remain
+client behavior, rollback on a real populated deployment, and published
+upgrade paths remain open. The 15-case migration fixture covers rollback preview and restoration
+after a post-migration write; rollback on a real populated deployment remains
 open. A handoff must keep each old channel identity while converging on the
 same standard ChaptarrNG payload; legacy image tags must alias its exact
 multi-architecture digest rather than use a second build. There is no

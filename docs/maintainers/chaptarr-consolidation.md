@@ -26,9 +26,11 @@ in the same standard image used by fresh installs. It is under review as [Chapta
 #100](https://github.com/snapetech-org/chaptarrng/pull/100), but is not merged
 or released; BookshelfNG is not ready to retire. The hosted build failure was
 traced to the migration-158 SQL fixture being hidden by the generic `*.sql`
-ignore rule. The complete committed fixture is now tracked; the 12 focused
-importer tests pass locally, as does the full Release-mode Core suite
-(4,062 passed, 0 failed, 3 skipped; 4,065 total). Refreshed hosted checks are
+ignore rule. The complete committed fixture is now tracked. The migration
+fixture passes 15/15 locally, including rollback preview, rollback after a
+post-migration write, preservation of the current ChaptarrNG database, and
+rejection of a wrongly identified source backup. The full Release-mode Core
+suite passes (4,068 passed, 0 failed, 0 skipped). Refreshed hosted checks are
 still pending.
 
 ChaptarrNG PRs #73, #76, and #77 merged on October 13, 2026. BookshelfNG PR
@@ -55,7 +57,7 @@ identify a single target format. The choices used for the technical apply
 exercise were not reviewed as correct classifications; a real conversion must
 stop for the operator to map each one. This run proves one exact populated
 SQLite schema and its standard-image path. It does not prove older schemas,
-PostgreSQL, every provider or setting, rollback restoration, all client
+PostgreSQL, every provider or setting, rollback on a real populated deployment, all client
 behavior, feature parity, or any published package-channel bridge.
 
 ## Pinned evidence and preservation
@@ -85,8 +87,9 @@ behavior, feature parity, or any published package-channel bridge.
   media and profile mapping, edition cover/link and narrator data,
   edition/file/history and series links, settings, users and notifications,
   orphan-ID reservation, restart idempotence, and safe refusal paths. The
-  complete Core suite passed 4,062 tests with 0 failures and 3 skipped
-  (4,065 total) on the current integration source. A self-contained Linux x64
+  complete Core suite passed 4,068 tests with 0 failures and 0 skipped on the
+  current integration source. Fifteen migration fixture cases include
+  rollback after a post-migration write. A self-contained Linux x64
   artifact with the production UI and updater converted the populated
   synthetic fixture on the isolated agentic VM through normal startup,
   retained a source backup identical at the table-definition and row level,
@@ -506,9 +509,9 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | Area | Current evidence | Remaining blocker |
 | --- | --- | --- |
 | BookshelfNG source inventory | Regenerated at source `4dda1ec10a56be9b4969cdf068c6664a0ef09cc9` and target `1141c79687302366463bf87fed4565c4cc76090c`: 423 reachable commits, 414 absent from the pinned Bookshelf lineage ref, and 1,041 changed paths (419 unmapped, 472 different, 144 identical, four text-equivalent, two deleted). | Disposition every path as retained, ported, equivalent, or explicitly retired. Path classification does not establish feature equivalence; report edits after those pins are not in the generated inventory. |
-| ChaptarrNG Bookshelf feature port | PR #73 merged as `5d8fffae`; the current unpublished integration branch passes the complete Core suite (4,062 passed, 0 failed, 3 skipped; 4,065 total). A normal Linux/amd64 image previewed, applied, and started against separate copies of a real populated migration-158 database. The preview left the source hash unchanged and accounted for 127,177 rows; the retained backup matched all 39 source tables and rows; the v119 target passed integrity and foreign-key checks. Seven BookLore proxy tests and a live BookLore v2.4.0 upload/file-placement contract test pass. | Eighty-one source books still require operator-selected media classifications. Older schemas, PostgreSQL, full provider/config/client parity, representative M4B files, rollback restoration, hosted Windows, and BookLore processing of a valid production book remain unproven. |
+| ChaptarrNG Bookshelf feature port | PR #73 merged as `5d8fffae`; the current unpublished integration branch passes the complete Core suite (4,068 passed, 0 failed, 0 skipped). Fifteen migration fixture cases pass, including rollback after a post-migration write. A normal Linux/amd64 image previewed, applied, and started against separate copies of a real populated migration-158 database. The preview left the source hash unchanged and accounted for 127,177 rows; the retained backup matched all 39 source tables and rows; the v119 target passed integrity and foreign-key checks. Seven BookLore proxy tests and a live BookLore v2.4.0 upload/file-placement contract test pass. | Eighty-one source books still require operator-selected media classifications. Older schemas, PostgreSQL, full provider/config/client parity, representative M4B files, rollback on a real populated deployment, hosted Windows, and BookLore processing of a valid production book remain unproven. |
 | ChaptarrNG maintained and active features | ChaptarrNG `main` at `4364742e` is 575 commits ahead and zero behind upstream `develop` at `e67374f4`, across 1,100 net-changed paths. Open product/maintenance PRs #78, #97, #100, and #101 and active dependency PRs including #96 and #98 count before release; #99 has merged. | Every released and unreleased capability remains an individual ChaptarrNG-to-upstream blocker; see the itemized table linked above. |
-| Bookshelf database compatibility | The standard Linux/amd64 candidate passed preview, explicit apply, and ordinary startup on separate copies of one real populated migration-158 SQLite database. Preview accounted for all 127,177 rows without changing the source; the retained backup matched all 39 table definitions and every source row; the v119 target passed integrity and foreign-key checks. Eighty-one books require operator-selected media mappings; the test choices were not reviewed as classifications. | Only this exact migration-158 SQLite input is proven. Older schemas, PostgreSQL, complete provider/settings contracts, first-login hash upgrade, source numeric-ID client compatibility, rollback restoration, feature parity, and release/channel bridges remain open. |
+| Bookshelf database compatibility | The standard Linux/amd64 candidate passed preview, explicit apply, and ordinary startup on separate copies of one real populated migration-158 SQLite database. Preview accounted for all 127,177 rows without changing the source; the retained backup matched all 39 table definitions and every source row; the v119 target passed integrity and foreign-key checks. Fifteen fixture cases cover synthetic rollback after a post-migration write. Eighty-one books require operator-selected media mappings; the test choices were not reviewed as classifications. | Only this exact migration-158 SQLite input is proven. Older schemas, PostgreSQL, complete provider/settings contracts, first-login hash upgrade, source numeric-ID client compatibility, rollback on a real populated deployment, feature parity, and release/channel bridges remain open. |
 | Candidate runtime and SeerrNG | The ordinary Linux/amd64 image started the converted populated database, served /ping and the production UI, preserved port, URL base, API key, SSL, configured indexers, and Docker image-pull update behavior, and passed SQLite/FK checks. The live BookshelfNG service was untouched. SeerrNG PR #203 merged at 97aa148 with its hosted checks passing; those checks did not include a populated migration-library probe. | Real SeerrNG request, provider-identity, history, availability, and pending-import behavior against the converted real library remains unproven. The migration run does not cover that client contract. |
 | Frontend build and static checks | `yarn typecheck` and the production webpack bundle pass; targeted ESLint reports no errors in changed JavaScript files. The bundle emitted 18 CSS-order warnings. Whole-tree ESLint reports 862 errors and 17 warnings across the inherited frontend tree. | Keep the inherited lint debt visible; resolve any candidate-caused lint error before merge. |
 | Cross-project secrets | All three repositories ignore `.env`; BookshelfNG and SeerrNG have local ignored, untracked `.env` files, while this ChaptarrNG worktree has no `.env` file. No `.env` or `.lic` file is tracked. BookshelfNG's Docker ignore excludes `.env`/`.env.*`, the SixLabors license, and signing files while retaining `.env.example`; a disposable Docker build-context check confirmed `.env.example` stayed in the context and `.env` did not. The license file remains outside repository trees. | Keep Git and Docker-context checks in release validation; no secret may enter a commit, build log, or published artifact. |
