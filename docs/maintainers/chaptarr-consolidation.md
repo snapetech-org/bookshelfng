@@ -458,22 +458,26 @@ explicit update action. Each channel needs its own tested bridge while
 retaining its existing identity.
 
 BookshelfNG PR [#130](https://github.com/snapetech-org/bookshelfng/pull/130)
-adds a disabled-by-default publisher candidate for mutable GHCR/Docker Hub
-aliases, the existing COPR identity, both Chocolatey package IDs, and the
-BookshelfNG Helm chart identity. It requires checksummed assets from the
+adds a disabled-by-default publisher candidate for Docker Hub aliases, the
+existing COPR identity, both Chocolatey package IDs, and the BookshelfNG Helm
+chart identity. Its organization workflow no longer attempts to write the
+personal BookshelfNG GHCR package. It requires checksummed assets from the
 ordinary ChaptarrNG release and makes no external changes while disabled.
 ChaptarrNG PR #100 contains the standard release and AUR package work. The
 ordinary ChaptarrNG release workflow successfully pushed its standard image
 to `ghcr.io/snapetech/chaptarrng` in run `38267985018`; this does not test a
-BookshelfNG alias. The GHCR packages `snapetech/chaptarrng` and
-`snapetech/bookshelfng` are owned by the personal `snapetech` account, while
-the publishing workflows are in `snapetech-org`. On both package settings,
-the Actions access picker reports that all available repositories are already
-added and offers no organization repository; the `snapetech` account has no
-owned repositories. The separate package-to-repository link control also
-requires the same owner namespace. The requested Actions write grant therefore
-could not be applied through the current controls; the BookshelfNG image alias
-remains unverified and the bridge stays disabled. See GitHub's documentation on
+BookshelfNG alias. The public, same-owner bridge repository
+[`snapetech/bookshelfng-ghcr-release-bridge`](https://github.com/snapetech/bookshelfng-ghcr-release-bridge)
+is wired to receive the exact image digest through a scoped dispatch in
+ChaptarrNG PR #100; its workflow retags only `latest`, `hardcover`, and
+`softcover` and rejects an older release event. That dispatch will run after
+the ChaptarrNG changes merge and a gated release is published. BookshelfNG PR
+#130 removes the duplicate organization-owned GHCR publisher. The bridge code is pushed at
+`4c348c5`, ChaptarrNG's dispatch is at `9e80f2c`, and the BookshelfNG workflow
+change is at `d88accef`. The bridge still lacks its personal-account GitHub
+App installation and write access to the existing `bookshelfng` package, so
+no alias has been published and the migration gate stays closed. See GitHub's
+documentation on
 [package access control](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility)
 and [linking a repository to a package](https://docs.github.com/en/packages/learn-github-packages/connecting-a-repository-to-a-package).
 
@@ -550,6 +554,6 @@ must be reported as unverified/unpublished, not a successful migration channel.
 | Candidate runtime and SeerrNG | The ordinary Linux/amd64 image started the converted populated database, served /ping and the production UI, preserved port, URL base, API key, SSL, configured indexers, and Docker image-pull update behavior, and passed SQLite/FK checks. The live BookshelfNG service was untouched. SeerrNG PR #203 merged at 97aa148 with its hosted checks passing; those checks did not include a populated migration-library probe. | Real SeerrNG request, provider-identity, history, availability, and pending-import behavior against the converted real library remains unproven. The migration run does not cover that client contract. |
 | Frontend build and static checks | `yarn typecheck` and the production webpack bundle pass; targeted ESLint reports no errors in changed JavaScript files. The bundle emitted 18 CSS-order warnings. Whole-tree ESLint reports 862 errors and 17 warnings across the inherited frontend tree. | Keep the inherited lint debt visible; resolve any candidate-caused lint error before merge. |
 | Cross-project secrets | All three repositories ignore `.env`; BookshelfNG and SeerrNG have local ignored, untracked `.env` files, while this ChaptarrNG worktree has no `.env` file. No `.env` or `.lic` file is tracked. BookshelfNG's Docker ignore excludes `.env`/`.env.*`, the SixLabors license, and signing files while retaining `.env.example`; a disposable Docker build-context check confirmed `.env.example` stayed in the context and `.env` did not. The license file remains outside repository trees. | Keep Git and Docker-context checks in release validation; no secret may enter a commit, build log, or published artifact. |
-| Hosted PR checks | BookshelfNG PR #112 merged as `7f7e07f0`; ChaptarrNG PRs #73, #76, and #77 merged as `5d8fffae`, `b2827c7a`, and `ee2efc55`; SeerrNG PR #203 merged as `97aa148`. ChaptarrNG PR #100 is at `561bf395`; its current hosted checks are queued after the previous Windows run failed four migration/rollback tests. The new receipt captures a safe SQLite primary code and Chaptarr application method. BookshelfNG PR #128 is at `5743d1a6`, PR #130 at `094ac1a0`, and SeerrNG PR #280 at `e844689d`; their required hosted checks are queued. | Pass exact-head ChaptarrNG Windows and other required checks; complete the hosted BookshelfNG and SeerrNG checks. Local passes do not substitute for hosted platform validation. |
-| Distribution and migration | Candidate packaging builds AUR and RPM identities from one standard Chaptarr archive; a Pacman upgrade retained the Bookshelf service identity, config, and data marker. ChaptarrNG's ordinary release run `38267985018` successfully published the standard GHCR image. PR #100 and PR #130 contain gated legacy publisher candidates; local actionlint, COPR source, Chocolatey template-render, Helm lint/render/package, image-alias, and migration tests pass. The public `slskdn/chaptarrng` COPR project and webhook secrets exist. | No legacy redirect or COPR build is published, and the bridge remains disabled. The public Chaptarr release `v0.9.969` lacks standard archive, SRPM, and checksum assets. The user-owned GHCR package settings expose no organization repository to grant Actions access, so legacy BookshelfNG image publishing remains unverified. Existing BookshelfNG COPR bootstrap still needs its tag-pattern update. ChaptarrNG still lacks a public AUR `chaptarrng-bin` package and Chocolatey `chaptarrng`; its Chocolatey browser tab is logged out and Proton Pass is unavailable in the browser-control surface. Live registry/COPR/Helm publish tests, hosted Windows upgrade/moderation, and every other channel bridge remain open. Pinned, offline, updater-disabled, third-party, manual archive, and Readarr-owned updater paths remain separate. |
+| Hosted PR checks | BookshelfNG PR #112 merged as `7f7e07f0`; ChaptarrNG PRs #73, #76, and #77 merged as `5d8fffae`, `b2827c7a`, and `ee2efc55`; SeerrNG PR #203 merged as `97aa148`. ChaptarrNG PR #100 is at `9e80f2c1`; its current hosted checks are queued after the previous Windows run failed four migration/rollback tests. The new receipt captures a safe SQLite primary code and Chaptarr application method. BookshelfNG PR #128 is at `f508642d`, PR #130 at `d88accef`, and SeerrNG PR #280 at `e844689d`; the current required runs are queued. | Pass exact-head ChaptarrNG Windows and other required checks; complete the hosted BookshelfNG and SeerrNG checks. Local passes do not substitute for hosted platform validation. |
+| Distribution and migration | Candidate packaging builds AUR and RPM identities from one standard Chaptarr archive; a Pacman upgrade retained the Bookshelf service identity, config, and data marker. ChaptarrNG's ordinary release run `38267985018` successfully published the standard GHCR image. ChaptarrNG PR #100 contains the gated exact-digest dispatch to the new user-owned bridge; BookshelfNG PR #130 removes its duplicate organization GHCR writer. Local actionlint, COPR source, Chocolatey template-render, Helm lint/render/package, digest-alias, stale-release rejection, and migration tests pass. The public `slskdn/chaptarrng` COPR project and webhook secrets exist. | No legacy redirect or COPR build is published, and the bridge remains disabled. The public Chaptarr release `v0.9.969` lacks standard archive, SRPM, and checksum assets. The personal bridge still needs its GitHub App installation and write access to the existing `bookshelfng` package. Existing BookshelfNG COPR bootstrap still needs its tag-pattern update. ChaptarrNG still lacks a public AUR `chaptarrng-bin` package and Chocolatey `chaptarrng`; its Chocolatey browser tab is logged out and Proton Pass is unavailable in the browser-control surface. Live registry/COPR/Helm publish tests, hosted Windows upgrade/moderation, and every other channel bridge remain open. Pinned, offline, updater-disabled, third-party, manual archive, and Readarr-owned updater paths remain separate. |
 | Release decisions | The BookshelfNG enhanced feature set blocks BookshelfNG retirement as a whole and row by row. The later ChaptarrNG gate includes that retained set plus every ChaptarrNG maintained and actively developed capability, including unpublished work; each channel is a separate blocker too. | Current evidence does not support a main merge that claims parity, BookshelfNG retirement, or release redirection. |
