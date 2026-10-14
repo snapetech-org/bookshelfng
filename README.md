@@ -84,6 +84,11 @@ mount a BookshelfNG `/config` directory as a ChaptarrNG configuration
 directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
 tracks the remaining feature, database, and distribution blockers.
 
+BookshelfNG PR #130 adds a gated candidate publisher for selected legacy
+channels. It is disabled by default and has not moved any live image tags or
+packages. Its per-channel scope and the remaining manual and pinned-install
+gaps are tracked in the consolidation report.
+
 Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
 ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG
 then joins the upstream blocker set alongside all features ChaptarrNG maintains
