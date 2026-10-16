@@ -43,6 +43,20 @@ jobs:
       - name: Test self-hosted runner trust boundary
         run: python3 scripts/test_workflow_runner_policy.py
 
+      - name: Test the COPR migration source bridge
+        run: |
+          bash -n packaging/rpm/copr-source.sh scripts/test-copr-source.sh
+          bash scripts/test-copr-source.sh
+      - name: Test the ChaptarrNG image namespace used by the release bridge
+        run: |
+          bash -n scripts/test-chaptarrng-release-bridge.sh
+          bash scripts/test-chaptarrng-release-bridge.sh
+
+      - name: Test the BookshelfNG to ChaptarrNG transfer helper
+        run: |
+          bash -n scripts/bookshelfng-to-chaptarrng.sh scripts/test-bookshelfng-to-chaptarrng.sh
+          bash scripts/test-bookshelfng-to-chaptarrng.sh
+
       - name: Test private runner temp setup
         if: runner.os == 'Linux'
         run: ./scripts/test-private-runner-temp.sh
@@ -166,6 +180,10 @@ jobs:
           cp _output/net10.0/linux-x64/publish/Readarr _tests/bin/
           chmod +x _tests/bin/Readarr
           find _tests -name "Readarr.Test.Dummy" -exec chmod a+x {} \;
+
+      - name: Verify Unraid package sync stays off feature branches
+        shell: bash
+        run: bash scripts/test-sync-unraid-package.sh
 
       - name: Test
         id: validation
