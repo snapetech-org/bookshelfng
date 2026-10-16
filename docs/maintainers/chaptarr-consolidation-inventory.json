@@ -6,18 +6,18 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "9b0847973610f166523e155d3977049566d40745",
-  "targetCommit": "683924daadf3201a467913c2ac4207eda6e61ea8",
+  "sourceCommit": "5d696fb0b3cba552fa12b912a825954e2473e0e6",
+  "targetCommit": "561bf3954d0bb2bcc3beb546accdec76f26718e4",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 412,
-    "commitsNotInUpstreamHistory": 403,
-    "netChangedPaths": 1039,
+    "commits": 426,
+    "commitsNotInUpstreamHistory": 417,
+    "netChangedPaths": 1045,
     "fileStates": {
-      "no-mapped-target-file": 684,
-      "different-review-required": 338,
-      "identical": 11,
+      "no-mapped-target-file": 422,
+      "different-review-required": 473,
+      "identical": 144,
       "deleted-in-bookshelf": 2,
       "text-equivalent-after-brand-and-newline-normalization": 4
     }
@@ -7740,6 +7740,186 @@
         "docs/maintainers/bookshelfng-parity-roadmap.md",
         "docs/maintainers/chaptarr-consolidation.md"
       ]
+    },
+    {
+      "commit": "cfe9c41d793678fe0234fba46cb8336a5107b1c6",
+      "date": "2026-10-13",
+      "subject": "docs: refresh Bookshelf and Chaptarr evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "d14acd930dde0d9308ee6dfc4084a3a052cd1b0b",
+      "date": "2026-10-13",
+      "subject": "docs: refresh consolidation validation evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "9a70dc4c842cfac1cd30c3e59ad6a60c53fe0ab6",
+      "date": "2026-10-13",
+      "subject": "docs: correct consolidation validation snapshot",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "ce57cac255755edd54de41fc2d2f166af0b89d02",
+      "date": "2026-10-13",
+      "subject": "docs: pin consolidation report snapshot",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "0c8d5f102e658c8c5ab65a34ccca072450c5c11c",
+      "date": "2026-10-13",
+      "subject": "docs: keep source inventory pin stable",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "c2293a4851c458de26411fa9e6b7081acab9c20b",
+      "date": "2026-10-13",
+      "subject": "docs: correct Chaptarr migration status evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "7f7e07f0634bd941b1cb1ebc4fc5690e5ad6a13f",
+      "date": "2026-10-13",
+      "subject": "Merge pull request #112 from snapetech/codex/bookshelf-chaptarr-consolidation-20261012",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".dockerignore",
+        ".gitignore",
+        "README.md",
+        "docs/README.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "release-notes/2026-10-13-bookshelf-chaptarr-transition-guidance.md",
+        "release-notes/20261013-chaptarr-transition-status.md",
+        "release-notes/20261013-docker-context-credential-exclusion.md",
+        "scripts/audit-chaptarr-consolidation.py",
+        "scripts/create-consolidation-fixture.py",
+        "scripts/probe-lineage-guard.py",
+        "scripts/validation-engine/engine.test.mjs"
+      ]
+    },
+    {
+      "commit": "e327e8142a2abcfb2cae1c0a5c3f14458d20dbac",
+      "date": "2026-10-13",
+      "subject": "docs: document BookshelfNG upstream parity (#105)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/README.md",
+        "docs/capabilities-and-compatibility.md",
+        "release-notes/2026-10-12-upstream-parity-guide.md"
+      ]
+    },
+    {
+      "commit": "a4d21d5694d6518d88082691a036acde321f0b82",
+      "date": "2026-10-13",
+      "subject": "docs: update BookshelfNG agent guidance (#109)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "commit": "33941ed2432ed8434b039a02b6b03ea097efa7e7",
+      "date": "2026-10-13",
+      "subject": "docs: refresh BookshelfNG consolidation evidence (#115)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/booklore-integration.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "release-notes/20261013-bookshelf-consolidation-status.md"
+      ]
+    },
+    {
+      "commit": "4dda1ec10a56be9b4969cdf068c6664a0ef09cc9",
+      "date": "2026-10-13",
+      "subject": "Bump the nuget group with 1 update (#116)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "4a01ffab2f5e2458924dc109a69f6c66578ccbc0",
+      "date": "2026-10-13",
+      "subject": "ci: run independent validation tasks in a bounded pool (#124)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/development/validation-engine.md",
+        "release-notes/20261013-bounded-validation-task-pool.md",
+        "scripts/validation-engine/config.mjs",
+        "scripts/validation-engine/engine.mjs",
+        "scripts/validation-engine/engine.test.mjs"
+      ]
+    },
+    {
+      "commit": "6dd06383b8d13f1b7534e88406bfb29eab375582",
+      "date": "2026-10-13",
+      "subject": "ci: route trusted main builds through shared pool (#129)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        "docs/development/validation-engine.md",
+        "release-notes/20261014-trusted-main-runner-pool.md",
+        "scripts/test_workflow_runner_policy.py"
+      ]
+    },
+    {
+      "commit": "5d696fb0b3cba552fa12b912a825954e2473e0e6",
+      "date": "2026-10-13",
+      "subject": "fix(validation): stabilize restrictive-umask test runs (#131)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/development/validation-engine.md",
+        "release-notes/20261014-validation-permission-results.md",
+        "scripts/validation-engine/engine.mjs",
+        "scripts/validation-engine/engine.test.mjs",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Console/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/DiskProviderTests/DiskProviderFixture.cs",
+        "src/NzbDrone.Mono.Test/packages.lock.json"
+      ]
     }
   ],
   "files": [
@@ -7854,11 +8034,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e066f87bbf978c51724e0b94056cfefcaa462a6c"
+        "oid": "54f2fec22a114d3d2528a8d152c804c6af954e27"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "44232abd4f3081c729c36eb268cba030de1b77c0"
+        "oid": "877b2b428ef325f117332632f72c09b27883d662"
       }
     },
     {
@@ -7873,13 +8053,16 @@
     },
     {
       "sourcePath": ".github/workflows/release-distribution.yml",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": ".github/workflows/release-distribution.yml",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "685deca294bc118525e95f3b6f5c73b40dd59129"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f341c550eba411f64dce48f1abdcb4d4060fd729"
+      }
     },
     {
       "sourcePath": ".github/workflows/release-notes.yml",
@@ -7924,7 +8107,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "e250d13a5910b4b262cd7cf63951eff52346bf19"
+        "oid": "a777f8f72f49dafffe1ceb4ba0597da63c8c3a21"
       }
     },
     {
@@ -7939,13 +8122,16 @@
     },
     {
       "sourcePath": "AGENTS.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "AGENTS.md",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "ee8783d23872415d73069f13ce83c1dc24a69694"
+        "oid": "d75d2efe4aeb4ec4e0b7001b1cc65ac806d2874a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cc1d1c68aedbc816496a95b14ed0f73d78ab248f"
+      }
     },
     {
       "sourcePath": "CONTRIBUTING.md",
@@ -8132,11 +8318,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5cc5a1273e0304619413edb4c277a426cb2edfa1"
+        "oid": "217b831cb01f7d0b4652539e3fe4c6923ed37a2f"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "128d476739d83a6e59c844c1dd9671b5d100d44e"
+        "oid": "86dde8fb9d27e05fd1c96a8929da9ca2fcf04077"
       }
     },
     {
@@ -8545,7 +8731,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "be66ebdc5474c1567804a3c6bcd0cc66dd356b96"
+        "oid": "9d3def86f24745e36a25bc7aa8e3ccfbdd074370"
       },
       "targetBlob": null
     },
@@ -8585,7 +8771,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "c38722092b708621b1c26cb0a8303af51a6985ad"
+        "oid": "3cc7b122eba21f480bae342a0e8ceb3f1865e172"
       },
       "targetBlob": null
     },
@@ -8595,7 +8781,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "0b7ddc0116dc45fb5350c612a85fea0fd3601b91"
+        "oid": "6458bd64f67465ee492834b346a98144f9bb8828"
       },
       "targetBlob": null
     },
@@ -8615,11 +8801,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "000b640396b3494b0416c483e3375064c6331f76"
+        "oid": "26530e29de583fed40943ace1996a1c1867a34a3"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "d44805e8f1eeed6c2b4e4fe0195cb6c609c3fe6d"
+        "oid": "4b2172f0f5a7f37a2f9d9569524743684b7da171"
       }
     },
     {
@@ -8628,7 +8814,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a3f21840e2563cf4708a8aad11324641c2db4a28"
+        "oid": "d66357f3e331a1215af9a5f7f7a4577876e376fe"
       },
       "targetBlob": null
     },
@@ -8668,7 +8854,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "1c1e0d3f8c1aa0c455078056f83676ae021d12fe"
+        "oid": "642b27c0add30d8fca8d0dbb63fc58fa91f1d139"
       },
       "targetBlob": null
     },
@@ -8691,7 +8877,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e68abdc1379e893f385081791770ccc23bf4ade0"
+        "oid": "873a0c09ce6e6e740305e5e5c3cac0c03105e8cc"
       },
       "targetBlob": null
     },
@@ -8701,7 +8887,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5bed732a1fa5f46254d0c87b2a0e5caf59d26daa"
+        "oid": "8190089e5a8f46259a3b77389fcf0cbfdf1646e1"
       },
       "targetBlob": null
     },
@@ -8879,7 +9065,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "1aecc6907096c533e71c18ca5d9c4db26680a379"
+        "oid": "569929a39046857841b73103da7f16b0ce44aff3"
       }
     },
     {
@@ -9101,7 +9287,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "685b84602802c693893bf9a0238317dc6e90f769"
+        "oid": "82ffcb193ce52cefb9e87f8f5eaf285e7b7663c1"
       }
     },
     {
@@ -9114,7 +9300,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "910f139ad30df50296d5fd19434b0f531a8c7151"
+        "oid": "ef3e46cdb81136e59f5fa452083acef62169d1fd"
       }
     },
     {
@@ -9353,7 +9539,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "893283dfb6fa6a85b95dddd2b3dee8f2d7f2f366"
+        "oid": "e2a77b6c2d77f743a8b6bcd1cad56893273d82be"
       }
     },
     {
@@ -9405,7 +9591,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "49fe1a55c5735a791ccaa55eb502c98306fa7da5"
+        "oid": "8c98e827925f5e0a2703a0d677e3d6bb2cf9e4b0"
       }
     },
     {
@@ -9457,7 +9643,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "2dba9e13ca3f331c123e9372ae389c7e830beeb2"
+        "oid": "19d2819ad78173c9d98744e6c039e256e4a94ad5"
       }
     },
     {
@@ -9548,7 +9734,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "b0ddae39b91b9a984d21ff94a3e71be5621388dd"
+        "oid": "5f256c390dad3090c40d31dc0fb3c8f14a8ce5a2"
       }
     },
     {
@@ -9574,7 +9760,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "3d9323d0f833be4500a802fd5c9df4c2bbac4e29"
+        "oid": "38c4be10114d1d89042ba9d88067602782599cd6"
       }
     },
     {
@@ -9626,7 +9812,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "eb7be0ade8c0f5045d11c86925ab4bd62b121438"
+        "oid": "5f3388069aefca3cf098fc856763398a455dfcc6"
       }
     },
     {
@@ -9652,7 +9838,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "c172c498a7dce11423e5ab27b84a35e26ae915c1"
+        "oid": "58445fe306318dad05264957989b2281d9978f05"
       }
     },
     {
@@ -9773,7 +9959,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "a993ded7a01407c26c7e6fc0ed26cc878a812358"
+        "oid": "2baf4b29369b3137b58432cc8e99928c02b58e92"
       }
     },
     {
@@ -9809,7 +9995,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "acab1dab9505450b5ad26ef87a2100bdef6b8f19"
+        "oid": "90628cf52b1b035b825c7676665b28338a9e68f7"
       }
     },
     {
@@ -9894,13 +10080,16 @@
     },
     {
       "sourcePath": "packaging/chocolatey/tools/chocolateyuninstall.ps1",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "packaging/chocolatey/tools/chocolateyuninstall.ps1",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "8947e46c8f848ade46a0db068e7a1152494ff2e8"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "76f837982e7c59d68e9ef97e7be0ea0a792709b0"
+      }
     },
     {
       "sourcePath": "packaging/cloudron/CloudronManifest.json",
@@ -10064,13 +10253,16 @@
     },
     {
       "sourcePath": "packaging/rpm/copr-source.sh",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "packaging/rpm/copr-source.sh",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100755",
         "oid": "2684e5e7407eb32dd2e72c0ef1cf3964f8dcb01d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "ef6754787e719472b808d39aec3818772f581286"
+      }
     },
     {
       "sourcePath": "packaging/scripts/validate-aur-pkgbuild-hashes.sh",
@@ -10269,6 +10461,16 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "release-notes/2026-10-12-upstream-parity-guide.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "aa10194cfcc62d37697d90a64b05167bb0c0d089"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "release-notes/2026-10-13-bookshelf-chaptarr-transition-guidance.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -10338,6 +10540,29 @@
       }
     },
     {
+      "sourcePath": "release-notes/20261013-bookshelf-consolidation-status.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "83ff5c59d01f955a2c6420c8d8a06a64d11e79ff"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "release-notes/20261013-bounded-validation-task-pool.md",
+      "targetPath": "release-notes/20261013-bounded-validation-task-pool.md",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "7ef6e1dbdbe13a8c1a99cc7b4f381de55ceea940"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "aef362025a956ce8ef271195bc6137fa30d7cfb7"
+      }
+    },
+    {
       "sourcePath": "release-notes/20261013-chaptarr-transition-status.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -10369,6 +10594,26 @@
         "mode": "100644",
         "oid": "3af588df862590ef048aa19481fc214d2b786a2e"
       }
+    },
+    {
+      "sourcePath": "release-notes/20261014-trusted-main-runner-pool.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "0f41acc492cc1d978204a0a186ecfea9f80e00bc"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "release-notes/20261014-validation-permission-results.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "40e3208780c3470afcde82a537feb697e1df0535"
+      },
+      "targetBlob": null
     },
     {
       "sourcePath": "release-notes/README.md",
@@ -11645,14 +11890,14 @@
     {
       "sourcePath": "scripts/prepare-private-runner-temp.sh",
       "targetPath": "scripts/prepare-private-runner-temp.sh",
-      "state": "identical",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100755",
         "oid": "e2588c5b43ab0c041324f20975997c509e022031"
       },
       "targetBlob": {
         "mode": "100755",
-        "oid": "e2588c5b43ab0c041324f20975997c509e022031"
+        "oid": "0809e149dc58ba35ba61734c494c4b87a7ed0b21"
       }
     },
     {
@@ -11711,7 +11956,7 @@
       },
       "targetBlob": {
         "mode": "100755",
-        "oid": "cca59034719689c0a4ec5f316606f0a8a2979a3e"
+        "oid": "d9953bd327d0b73615a4fe73e5e2043c94f11831"
       }
     },
     {
@@ -11724,7 +11969,7 @@
       },
       "targetBlob": {
         "mode": "100755",
-        "oid": "fbf6aca8e859941aad4282508f1f94c39b2aae07"
+        "oid": "b8441097c6b7ace79b82529ca41d9a0381ab2634"
       }
     },
     {
@@ -11733,11 +11978,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "714a9da912ac963607ea7dd6b62be1993ac973e0"
+        "oid": "151a842786b56ad99cd57c4df230374da3896d2f"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "47059d728f85e1873f88aa975ce24fcb16191cf1"
+        "oid": "4350620a3934d106d6b27de1f8aa85b0ae8f92ba"
       }
     },
     {
@@ -11766,11 +12011,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "d799964e01e3fe1ee2ed49b8670524606d47bd0a"
+        "oid": "c637628bcfc845bcc6b20e25094e25d7252c5a47"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "f2f66941d90d88b122e643135d60248c713c56e2"
+        "oid": "f78bd965b18c3da2773e3561abb4a787dcdfe7c0"
       }
     },
     {
@@ -11779,11 +12024,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5b5b02ed022e67e70859be4b6197bfe56dbce682"
+        "oid": "64d6639221da39274e7560e81d319b2034f283d7"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "3143692c914b4c50316220111fa6ded4e798e55f"
+        "oid": "1fc92b9215a48cc0039768427d9983f6abaf5edf"
       }
     },
     {
@@ -11792,11 +12037,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e11607eaf07f536dffbc2ed8d3010b806da503cc"
+        "oid": "701c4bead2aea46e2cec19135340e4f4ad93275d"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "9f06f98986f84fb698e17134804c3735b161af26"
+        "oid": "bae0e399aa45207a4e84b03313793017f741f8df"
       }
     },
     {
@@ -11868,11 +12113,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "67260b1238da0374354aa584fc3910fcb03cfb95"
+        "oid": "70fd49a78fcdfd2cd318611bd81e1324fc3d2c16"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "ef675ba0c8ef9632ef1574004f8deadf0e846fb4"
+        "oid": "cb5548afde2d19d006e34392e59269ce389a83bf"
       }
     },
     {
@@ -11941,7 +12186,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "74936c3639b49e0b0c1bb05f7daf55b8dcab6948"
+        "oid": "c147a48d069593d28c110f23478963b46cc0fdde"
       },
       "targetBlob": null
     },
@@ -11961,7 +12206,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "46e7ed0c96dcb06d304ba066909bb9675593f1c1"
+        "oid": "6ccabe0f0dbd4a2bb0b5c80501955f73770851d1"
       },
       "targetBlob": null
     },
@@ -12031,7 +12276,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "d053c2f7f1282055cfa0c23a3483937186b40c21"
+        "oid": "4f5739f4683cfba457547aeac4de8f0256855de2"
       },
       "targetBlob": null
     },
@@ -12123,7 +12368,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "2c881072b20deddfab03d70cfecc70edb7883479"
+        "oid": "d1a80fee8dd9c77cd30b793103bac5656a7f2d4b"
       }
     },
     {
@@ -12136,7 +12381,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "9473d3ca8542f9024fce3aa1d118da880f4256f3"
+        "oid": "a6a6e2dac8bf0fe39ff77b72d7f247346b6cad8e"
       }
     },
     {
@@ -12149,7 +12394,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "fee571d77d55f465bf722505e8b81e266704aa5e"
+        "oid": "210e35e962cddb106cb218e59e27ee243a28e799"
       }
     },
     {
@@ -12188,7 +12433,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "5d5e79818dbd865f356e12fd399a49a73b99fd99"
+        "oid": "59ed0f32ff2480223772eddc5e2a24a46acb528b"
       }
     },
     {
@@ -12220,7 +12465,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "977d741327f8ff03ee874970f57a2165e4f87353"
+        "oid": "a6ac6ab05a09e36369ea63ada174cdca456b8244"
       },
       "targetBlob": null
     },
@@ -12783,7 +13028,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "7f1f3e28954f693867c677014c8459693b075876"
+        "oid": "344710baa38d6a9a12385466fc9b0b11d8a53198"
       }
     },
     {
@@ -12792,7 +13037,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "83c9ebbbd1dbcf967826eb302acfc3c27b4b0efa"
+        "oid": "c3edf9ba8b7c1448c7028bdb40203fb7e1f12850"
       },
       "targetBlob": null
     },
@@ -12878,7 +13123,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "171cb5a1ac81ec236a05d5169be264046154d836"
+        "oid": "569d8ba1f460e2ffd2a1a74ece20eb383cd0a59f"
       }
     },
     {
@@ -12976,7 +13221,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "4a999baf817dd5131152f4f4652c140f42a9c5f2"
+        "oid": "ba14b62c1295a299e98c220d4dc8c2c7a69d9eb7"
       }
     },
     {
@@ -13284,7 +13529,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "5fe5f2d31db6c1b495f8d5cc08f104ce1e60d827"
+        "oid": "6eb3b6dee7e3847375df493b1e9315465d8b439c"
       }
     },
     {
@@ -14547,7 +14792,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "d56466fb9bbcc0795d744c124806402622a06724"
+        "oid": "8f30bfe3169d5415f9a06c1bce6f7f19deec7847"
       }
     },
     {
@@ -14711,7 +14956,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "2ab0981567a298f05bda299d60127c4041c1145a"
+        "oid": "02d8ab09ce28c71378a3f98e55f6f1b40a73f246"
       }
     },
     {
@@ -14895,7 +15140,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "61bb63192b281af46526951670b1a8a0eef47074"
+        "oid": "c9e2f24640ba560b248d64879fc864b8fc2bec7a"
       }
     },
     {
@@ -14921,7 +15166,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "c7361add8b8f55a031e65cdc74d4b0c55bdc5501"
+        "oid": "3446bd45f3966106a242460824ba3ee2dca9f62a"
       }
     },
     {
@@ -15109,33 +15354,42 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core/Notifications/BookLore/BookLore.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/Notifications/BookLore/BookLore.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "25e6a192edee2517a5171e038879cfbbe5b3380d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "25e6a192edee2517a5171e038879cfbbe5b3380d"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Notifications/BookLore/BookLoreProxy.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/Notifications/BookLore/BookLoreProxy.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9f301d64e4542f8d3a528adba038e2c375a899fa"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f987805a7b3c2660a95f7dc751dd8bbb9685a68c"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Notifications/BookLore/BookLoreSettings.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/Notifications/BookLore/BookLoreSettings.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f22cb9376a9c9f6a3f143f4b18b5b2fe4e54d227"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f22cb9376a9c9f6a3f143f4b18b5b2fe4e54d227"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Notifications/Kavita/Kavita.cs",
@@ -15173,7 +15427,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "79d4d092fa0f6133a0901f7b65b860ba011e53d1"
+        "oid": "92b67f8c84c6a85f037e253d32dc5440989dfaa9"
       }
     },
     {
@@ -15287,7 +15541,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "7bbbc76da0d3afcab560fa23b98c52aa8dfc2cbb"
+        "oid": "3259ed851e3d982790cd9632957ea857b972adcc"
       }
     },
     {
@@ -15339,7 +15593,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "3222b8a25065b60775beaeb598f15ba9a3dabd72"
+        "oid": "2e5b5df703ec3175108187977f8f763a161dafbd"
       }
     },
     {
@@ -15387,7 +15641,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "f7db97be56ef63b967a5dcf18a6da4d3881efed5"
+        "oid": "930418e869ed6099270f6be74814ca6bddafbc75"
       },
       "targetBlob": null
     },
@@ -15407,7 +15661,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "6f7c42a6ebf9bee785f7a2b7c3873e58385b53fa"
+        "oid": "76c3cc4b65cacbea4815a500f88edf36f45c994c"
       },
       "targetBlob": null
     },
@@ -15434,7 +15688,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "efe708d749ae6bf1d081e8ba7aba1fbdf499bcfe"
+        "oid": "9fb913e9fa3f16fc79c2862291790fec58b8fbd8"
       }
     },
     {
@@ -15489,7 +15743,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "1791057b45029d8c7bc53146515d2c11c489e43d"
+        "oid": "c6559c8ff6d7727670a8f7f56696aea4e2f20cad"
       },
       "targetBlob": null
     },
@@ -15609,7 +15863,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "50363692f31b667f0ca0dcc4df6911608c27faa4"
+        "oid": "e8a00fbf38e310002ec92d2e521f2a2901eb73e9"
       },
       "targetBlob": null
     },
@@ -15629,7 +15883,17 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e1a018c217d983126819a015a99d61a5ef526090"
+        "oid": "a01fa9c5bff5848f840e72a63cde14047868dfc2"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "src/NzbDrone.Mono.Test/DiskProviderTests/DiskProviderFixture.cs",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "4f13d5ba30403181a5adce61d6ba9ea310223292"
       },
       "targetBlob": null
     },
@@ -15659,7 +15923,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5fca22266362b7f204b69f98f555b204888020cd"
+        "oid": "6445ad7b39f1ee2b9450bd7fac598133389c8ced"
       },
       "targetBlob": null
     },
@@ -15722,7 +15986,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "380238edc2e73c9047e0bbc4fccd0ef35699481b"
+        "oid": "896eb2f76f6debdcb65490c3714f9a0c37b4ad35"
       }
     },
     {
@@ -15731,7 +15995,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "d4e2f94753dda2d0d74f7cdbfb6fd7372403b28a"
+        "oid": "981da7575bf2fe9179d428ca4172da79a45384b2"
       },
       "targetBlob": null
     },
@@ -15781,7 +16045,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a8b03e1b5979a1289e76eb43ca4902bc105c0b1c"
+        "oid": "4f9059b4fb829d8ee213f94660ead54eceac5cb2"
       },
       "targetBlob": null
     },
@@ -15821,7 +16085,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "968e783edb7ef6200be5753a68766ec568a1c0f3"
+        "oid": "8f14d1a8b1c17161aa61b83dcc6436a86772ed0f"
       },
       "targetBlob": null
     },
@@ -15874,7 +16138,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "df35c3e54f2d95f74568db7952dfc8635339a758"
+        "oid": "bba748e4b923c9a4c5e07055aafd584022752175"
       },
       "targetBlob": null
     },
@@ -16243,7 +16507,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "ae098d8c37ede6ea50fa043287238578861991a0"
+        "oid": "d72f376d99ea1cebbb4d19d130b68d828a0962af"
       }
     },
     {
@@ -16256,7 +16520,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "a947b7b6ea6baaddc8523b8df77c6d617b798a77"
+        "oid": "227fda290d12b2051ee893bcc9f447a5c2ae142d"
       }
     },
     {
@@ -16321,7 +16585,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "21e5af97442373fff4e66a54a07e5ea1519f2a26"
+        "oid": "03c95fbadaa935cd5b57103fb3c6df9234b82912"
       }
     },
     {
@@ -16330,7 +16594,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "8bcffbbdcc836d7b9e978a83c15928f2c76c7dc8"
+        "oid": "7da748fa6d8ddd41492e035594240083b5316208"
       },
       "targetBlob": null
     },
@@ -16516,7 +16780,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "68c00a2c120112c3e3c98fae71b15f9dc810b016"
+        "oid": "7b5523a5c81f13692b4c96e34cc6316c84d505b5"
       },
       "targetBlob": null
     },
@@ -16568,2603 +16832,3383 @@
     },
     {
       "sourcePath": "src/TagLibSharp/AUTHORS",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/AUTHORS",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d8bc787cc0134fdc90a0dfa6c5983a0872edc1a0"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d8bc787cc0134fdc90a0dfa6c5983a0872edc1a0"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/COPYING",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/COPYING",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "8add30ad590a65db7e5914f5417eac39a64402a3"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "47044a8c58e6f70b352057afa28db4ac1210d9f8"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/Directory.Build.props",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/Directory.Build.props",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "51fca5b4f8cbef7903a2501f4f6e44cf9483d772"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "51fca5b4f8cbef7903a2501f4f6e44cf9483d772"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/Directory.Build.targets",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/Directory.Build.targets",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "4de98b5c73f02d8c44b5c9db1e43153871dbebd1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "faf2349bae2d93177053003cef008ce27a48b06b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/PATCHES.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/PATCHES.md",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b6406bfbf4d55af9feb3e46bdba122d991a91e7f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2846170980e58b2a1e6f87342878b7c9563c288b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/README.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/README.md",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "41634aec84fe7a6ed219c4d7d562d4f16f3f8d4a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "41634aec84fe7a6ed219c4d7d562d4f16f3f8d4a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Aac/AudioHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Aac/AudioHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "822bfa0f118e4ac7a20334b28f378e358e0a3588"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "03b252ac119696fa4fdf5a6fb632764f01249299"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Aac/BitStream.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Aac/BitStream.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "6249dfdcca0d03d73657340a4badc9e7ec49d1fb"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "8c88a6721f4c0ca562bae3267afa7c9cc555186a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Aac/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Aac/File.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "15f51da0dcdc6022b0446b03c4e2358799c690fc"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "64ba1db7ed3ccc69af66bd5c97368043d30e29cf"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Aiff/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Aiff/File.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "458976411dd4ffdc7da00f5602f8ccc5d79bead0"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c770b5a032efdfdb3c330bfd1be7fa1654203542"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Aiff/StreamHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Aiff/StreamHeader.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c52a9b10b7321c555db3c87a8eb52049715537c1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c52a9b10b7321c555db3c87a8eb52049715537c1"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ape/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ape/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "bdc7ec91eacd7dbcf50eb0a1e6eb56a7a4185d52"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "bdc7ec91eacd7dbcf50eb0a1e6eb56a7a4185d52"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ape/Footer.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ape/Footer.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1b7c978b8f9c5e868ce25ddb6f0379b96e3fbe9c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cb1ef39f110d1a28f8eea33ba48254eea95f3489"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ape/Item.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ape/Item.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "911ad34da8d91a9f755c6a8738e84cf8d946961d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "b74062c438665e7d08e4b4a64258b159cda484ec"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ape/StreamHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ape/StreamHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "e7a77577d0da77eb6d02c20d856627480f02207c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "3f5d5a0f10321b09ab59433f309732705a27083a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ape/Tag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ape/Tag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "aa5e5d436cf8470301133dcad8501505f6e64da3"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2cbf337ed2fe42707ab199b035be4bfd4338cf6c"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/ContentDescriptionObject.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/ContentDescriptionObject.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "07460edb48e93a1b9625b0ca1cb22a5c8223d44c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "bb9d37466677e5aaac2b7c97f00457c1315cdcff"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/ContentDescriptor.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/ContentDescriptor.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7e15f97a0198df512c072880ed5fee2ceb443d7f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c84da91c0096b011e3067eaa43bc328a4270d80c"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/DescriptionRecord.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/DescriptionRecord.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "47794cb2d950920f3f99935102d4f29231da25ce"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9a412dfb23c85c5af9cd450df19cf8e5f1f0843f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/ExtendedContentDescriptionObject.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/ExtendedContentDescriptionObject.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "025843dc363a4c1dd92858fe35b3210b1beac6b0"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "af181265a3b31d81d6d29ad868a6bc9ea07e62fa"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1da79131c637c99770d873b6df51faec00f136b8"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1da79131c637c99770d873b6df51faec00f136b8"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/FilePropertiesObject.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/FilePropertiesObject.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cce9d385317260437ab74259d89e1f3c93ea3a33"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cce9d385317260437ab74259d89e1f3c93ea3a33"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/Guid.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/Guid.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "bf4c22c1e6282b2defa02096cc11c23eaaca8b74"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "719d2a1b422a8a40fe1964162f09029f90370306"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/HeaderExtensionObject.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/HeaderExtensionObject.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2d44cd0c9e9dc2cc9314a24a3a6288caaef91615"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "504183d319c9a87708b8a3f512818ef478dab8f5"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/HeaderObject.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/HeaderObject.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ccccc387a182c03fcd01ad82d191016303ab150d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "ccccc387a182c03fcd01ad82d191016303ab150d"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/MetadataLibraryObject.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/MetadataLibraryObject.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "02afb0e66ec2aa48a886c15aecedeba67ac4d59a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0aeb03cf2a13711f343cfa19c7e91291ea6b8d14"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/Object.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/Object.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "8f72950f41d77ed4390d9d5327a60e4ab5574496"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9fe2d2dc3f61a780846513b0912a27b6cc0a929a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/PaddingObject.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/PaddingObject.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d42aaa5ee9ee5324204903916e6ac7feb8fc6dfc"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "4f1909049611504030ccfaadf6dd2e40e5b27fd3"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/StreamPropertiesObject.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/StreamPropertiesObject.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cc977755e3d249d9d48e7ce8d6dc357746892f4c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9e243d50895876fd7c8f1fc77b833d7902047f66"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/Tag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/Tag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d93d6a35ead8d610fec3864e150e19def029a981"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "fe598da1cdb840d093ca2f83b7b8824fb2f37e9f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Asf/UnknownObject.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Asf/UnknownObject.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1dc7b5a646fe4cc916a511af2cf7d3ca9f524191"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "db692f4964e88bcdc9a6cf6f358003be1677eb56"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Audible/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Audible/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f9462fcda84362d5897a124ec2a5cac6055a8b61"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f9462fcda84362d5897a124ec2a5cac6055a8b61"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Audible/Tag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Audible/Tag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "bd61818ce73e0c88d0b58d1d7a7942691386abdf"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "e3a982cafe7efccbb37623ec10c98d8459b54ac6"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/ByteVector.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/ByteVector.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c1e15f04eea4e77b85ded57a7439be6f216b597f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c1e15f04eea4e77b85ded57a7439be6f216b597f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/ByteVectorList.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/ByteVectorList.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "19716df32c8b83b9b372cd02087f6ef9327ca546"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1511d80f6863c105e3050a0e3a27196f33e172e3"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/CombinedTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/CombinedTag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "547a3099a8c2415d05728b0a79cd863b1df4c50e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d8d103bdba1c470ef2719b1ac4bf64c956ec8b46"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/CorruptFileException.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/CorruptFileException.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "22b86f64d67ed1567e19dbb594ce110375af562e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "90b90f7d2ab06976796d8d3c78b65e7785770e73"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Debugger.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Debugger.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "4a4dfaf6372c54342224f38ca5a7a0cfa9a0f71a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "09969f1cdd2409a04ea820bf19fbd8f5b65dbd2a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Dsf/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Dsf/File.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2c3302afb5311ded680e5005bda3bf5a0168f9fd"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "199147e46caa0daf7335fb24017a9c5d51b2cfd7"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Dsf/StreamHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Dsf/StreamHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "91a3476226309c48025267b38acac1bd3edfd199"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "4e5faac07f66a4e405c8a0c14b08b75fc4edf9e1"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/File.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "e65d30cc3664a81270b741d0377dfdb807a8873a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "576d3680d93129271fa72de8b2b531783321e23b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/FileTypes.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/FileTypes.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "8462c653761fedb5d44ee72f668522ce87f99731"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "596ffaa40c5803dfaefefe44be75358dc0a5867c"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Flac/Block.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Flac/Block.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9bb4b4ad43e53fe5eaa05601701e3ef9544527e6"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "62c9061aa9a8694bd3f732b208d519df26e4fa3a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Flac/BlockHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Flac/BlockHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0d5707a3caa448823023f1b23e95fc49a0723628"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1c240f5247fbe21919e044d2a4241e8085d30073"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Flac/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Flac/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "473e4305fc6ece87874114ad4854c0b919d4e192"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "473e4305fc6ece87874114ad4854c0b919d4e192"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Flac/Picture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Flac/Picture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "adec8a96e916ba6687be25a4161d69a7eb302a80"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "a2fd7f398d7b7d0efa72f5e5e75725fd9edef2f0"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Flac/StreamHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Flac/StreamHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "caffd0517c711aaaf6261e13f8eac0a446a23a06"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "23bf24c2716aca91715b103f79e55367ee25bf6d"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Genres.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Genres.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ef2006ad994414a00da2658d09875f6e4a09bd78"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "006828ac47b70d7c63c56222b4dbc9c89749ef1e"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Gif/Codec.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Gif/Codec.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2108d4e5a44c673cc6d9db42418b9d1556e8f691"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2108d4e5a44c673cc6d9db42418b9d1556e8f691"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Gif/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Gif/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "8d263a504eea1c2421f920b8b12c0d595fdf43e7"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "8d263a504eea1c2421f920b8b12c0d595fdf43e7"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Gif/GifCommentTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Gif/GifCommentTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0b3931be2b3a6c2c013b05fb183e0a8268fe40e2"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0b3931be2b3a6c2c013b05fb183e0a8268fe40e2"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/ICodec.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/ICodec.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "6613a55a80f2725a737d723723db309e40b0144b"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "b78f00fcbdb447648715c88e3f090205885cf758"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/ByteIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/ByteIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0de31e0e877d48aba1cd811ef9442ada4a07ec6a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0de31e0e877d48aba1cd811ef9442ada4a07ec6a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/ByteVectorIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/ByteVectorIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "433861405619021a4a7f2e6ad77eb7db119c86dd"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "433861405619021a4a7f2e6ad77eb7db119c86dd"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/LongArrayIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/LongArrayIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "847717aac52248dfaa301cab16b66f40ccbad35b"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "847717aac52248dfaa301cab16b66f40ccbad35b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/LongIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/LongIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c14f93124fc52b2beb0b653f84e40583e5cee109"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c14f93124fc52b2beb0b653f84e40583e5cee109"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/MakernoteIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/MakernoteIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "72408db76af5d9a5397f7196d13a31d2379a53bb"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "72408db76af5d9a5397f7196d13a31d2379a53bb"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/Rational.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/Rational.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "fe21aed84133549e279270fcb1ebe38ab4f0bc2f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "fe21aed84133549e279270fcb1ebe38ab4f0bc2f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/RationalArrayIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/RationalArrayIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "50c3929effb03c3c21ea955c50e68b134fd3084d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "50c3929effb03c3c21ea955c50e68b134fd3084d"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/RationalIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/RationalIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "13ef67d8bc033060de8bfcf0ff4d7066c510ced9"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "13ef67d8bc033060de8bfcf0ff4d7066c510ced9"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SByteIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SByteIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d7050c2c4a3da083e738f785c78aa60d2c468f6f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d7050c2c4a3da083e738f785c78aa60d2c468f6f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SLongArrayIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SLongArrayIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "03b747cfba8046f6dc69395947b9007fc44a183a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "03b747cfba8046f6dc69395947b9007fc44a183a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SLongIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SLongIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "eb2f6e802b681308d1a121bcb042a528bf34c1d5"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "eb2f6e802b681308d1a121bcb042a528bf34c1d5"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SRational.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SRational.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "498658d5dcf6a3619b3b3e925e4e28e5bd610b76"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "498658d5dcf6a3619b3b3e925e4e28e5bd610b76"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SRationalArrayIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SRationalArrayIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7018cdb9f538555d7f5939a2f093639fa2dbf644"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "7018cdb9f538555d7f5939a2f093639fa2dbf644"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SRationalIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SRationalIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0f39c75ff0ecaf1563a3bf385a78642e6b82d29f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0f39c75ff0ecaf1563a3bf385a78642e6b82d29f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SShortArrayIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SShortArrayIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "974454cecbc49fc52de3459d975be4a52b6b75dd"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "974454cecbc49fc52de3459d975be4a52b6b75dd"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SShortIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SShortIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "6720003106cb2794bce2e9b7504bd79afc4b601a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6720003106cb2794bce2e9b7504bd79afc4b601a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/ShortArrayIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/ShortArrayIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ff1c53579c6f450eac1ff4789752b7e77afaa7cd"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "ff1c53579c6f450eac1ff4789752b7e77afaa7cd"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/ShortIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/ShortIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b92741f93c2b0b3dfa604697a5a1cec7a42ff7bf"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "b92741f93c2b0b3dfa604697a5a1cec7a42ff7bf"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/StringIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/StringIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "aeb999ebd43baaafe042da735de5e338aa4ef2f1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "aeb999ebd43baaafe042da735de5e338aa4ef2f1"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/StripOffsetsIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/StripOffsetsIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "86e8020fe166e7e13354406238f27c318ee36b4a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "86e8020fe166e7e13354406238f27c318ee36b4a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SubIFDArrayEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SubIFDArrayEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1726f4da1cf91cf3c514df380f73c3fa29ac2f83"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1726f4da1cf91cf3c514df380f73c3fa29ac2f83"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SubIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/SubIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "74d8b553b10b5b389cfbd20d7c2e43da9ef193a9"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "74d8b553b10b5b389cfbd20d7c2e43da9ef193a9"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/ThumbnailDataIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/ThumbnailDataIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c7c47a6d6ff97a8ace10957d482877be32bc2b98"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c7c47a6d6ff97a8ace10957d482877be32bc2b98"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/UndefinedIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/UndefinedIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b2e9f897267bda7a1a902ac8b9fc04dda7b74246"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "b2e9f897267bda7a1a902ac8b9fc04dda7b74246"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/UserCommentIFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Entries/UserCommentIFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c7329eed8e24f0cef6f8bfa519bd10c4efc0c763"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c7329eed8e24f0cef6f8bfa519bd10c4efc0c763"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDDirectory.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDDirectory.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d8b42a4d3f9a1dd8f43b58b1872244c9837a5a2a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d8b42a4d3f9a1dd8f43b58b1872244c9837a5a2a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDEntry.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "e758b5fe9b09d9eb8e207a6e765fcd708b12b208"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "e758b5fe9b09d9eb8e207a6e765fcd708b12b208"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDEntryType.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDEntryType.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cd42292b45db3cbe875ec42b20e8c5cace892d9d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cd42292b45db3cbe875ec42b20e8c5cace892d9d"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDReader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDReader.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2a5ce77c0370a1e9c421106762fc6ee040ba271f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2a5ce77c0370a1e9c421106762fc6ee040ba271f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDRenderer.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDRenderer.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "da579a3667d859395472c5c8fca173c1f756e12f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "da579a3667d859395472c5c8fca173c1f756e12f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDStructure.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDStructure.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2dad010a3b913fe175c8f5afb1a7c55cec07fd99"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2dad010a3b913fe175c8f5afb1a7c55cec07fd99"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/IFDTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "32c11d7606271441c8263337f48d86415d599b97"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "32c11d7606271441c8263337f48d86415d599b97"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Makernotes/Nikon3MakernoteReader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Makernotes/Nikon3MakernoteReader.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "8b690b82f86718e5e86f1aaa6507baa687bc459b"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "8b690b82f86718e5e86f1aaa6507baa687bc459b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/CanonFileInfoEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/CanonFileInfoEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "36604d003ccb9eacd994cec6e106013ee70280c4"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "36604d003ccb9eacd994cec6e106013ee70280c4"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/CanonMakerNoteEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/CanonMakerNoteEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7148cd40d689238ec6d07000f8bcefcf62d413e9"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "7148cd40d689238ec6d07000f8bcefcf62d413e9"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/CanonPictureInfoEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/CanonPictureInfoEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f78fea10dd64fa38be4a29baf2102464be6a8a51"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f78fea10dd64fa38be4a29baf2102464be6a8a51"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/ExifEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/ExifEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "116d11d8f0b4a3f2c29a3edbabbeac26f434a200"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "116d11d8f0b4a3f2c29a3edbabbeac26f434a200"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/GPSEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/GPSEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ebd248950fa4c923d2cfbc6b209dd1f16f3e490e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "ebd248950fa4c923d2cfbc6b209dd1f16f3e490e"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/IFDEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/IFDEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9d593fb3c418b138fac065dafe3c548d5997a8f1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9d593fb3c418b138fac065dafe3c548d5997a8f1"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/IOPEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/IOPEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "757d4b274ee48d48d02d0d4bba44315f0cdb9692"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "757d4b274ee48d48d02d0d4bba44315f0cdb9692"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/Nikon3MakerNoteEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/Nikon3MakerNoteEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "52d1925d08fd9314964cd777dad6f5a9eec2ed0d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "52d1925d08fd9314964cd777dad6f5a9eec2ed0d"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonIsoInfoEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonIsoInfoEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "32c73ad4d17b9b1ea6633fae313c68ac120c2080"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "32c73ad4d17b9b1ea6633fae313c68ac120c2080"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonLensData3EntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonLensData3EntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f1a55971a7b135abc87e0b2d3a3a010db9f5b89b"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f1a55971a7b135abc87e0b2d3a3a010db9f5b89b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonPictureControlEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonPictureControlEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ea8ac255c12cb49ca6c993b378b995aac246f5a8"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "ea8ac255c12cb49ca6c993b378b995aac246f5a8"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonPreviewMakerNoteEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonPreviewMakerNoteEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5c7d5899bcda758e7ca959122961f09125d17ca0"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "5c7d5899bcda758e7ca959122961f09125d17ca0"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonShotInfoEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonShotInfoEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "db467fb2b43f00b810bd5720fc848f44bb5f165c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "db467fb2b43f00b810bd5720fc848f44bb5f165c"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonVibrationReductionEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonVibrationReductionEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5cf95546a2278d757d8e33f33f7d89d67b522d17"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "5cf95546a2278d757d8e33f33f7d89d67b522d17"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonWorldTimeEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/NikonWorldTimeEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "09b7e8a374f65da5f86f4942f5af9c8ad88f91de"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "09b7e8a374f65da5f86f4942f5af9c8ad88f91de"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/OlympusMakerNoteEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/OlympusMakerNoteEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cbe4336b87bb31b842e8f8dff7c17e9cb6e05860"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cbe4336b87bb31b842e8f8dff7c17e9cb6e05860"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/PanasonicMakerNoteEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/PanasonicMakerNoteEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3af8c0bd82e07cb1bb2ab08f6a1e82f0f73313f7"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "3af8c0bd82e07cb1bb2ab08f6a1e82f0f73313f7"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/PentaxMakerNoteEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/PentaxMakerNoteEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "96014d50de3764bbf84c233a8920d1df8757d2aa"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "96014d50de3764bbf84c233a8920d1df8757d2aa"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/SonyMakerNoteEntryTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IFD/Tags/SonyMakerNoteEntryTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "74a02f7bcc846a0089cd13f232765d295c28815e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "74a02f7bcc846a0089cd13f232765d295c28815e"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IIM/IIMReader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IIM/IIMReader.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "75f2ed8e120802d3946c3bbd77ff22bf6b53718f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "75f2ed8e120802d3946c3bbd77ff22bf6b53718f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/IIM/IIMTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/IIM/IIMTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7e0c21098f15572222c82b81b2feddf0d5dbcb62"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "7e0c21098f15572222c82b81b2feddf0d5dbcb62"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/ILazy.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/ILazy.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9b056d4517a31e9e8b6c0a55a776300fac0922b6"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9b056d4517a31e9e8b6c0a55a776300fac0922b6"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v1/StringHandler.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v1/StringHandler.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "29417f98bb0a820a0ce8d6eec30919fcd4aa9fae"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "3710b47c828570e969f5296fe49df90fd51576ef"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v1/Tag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v1/Tag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3aed7b5757cf6db8c11a5d4f28ac2f85d0918874"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "198eb37bd4013b209a6ff2b7f8d1e6fbf05a6d5b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/EventTimeCode.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/EventTimeCode.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "48609a6559266a355b5b1c3dfda2ebd1c71ca5b4"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f5279423623973f236c7e96750e75f395a873f8f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/EventType.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/EventType.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1bae1f12df8e90c2037f8388de40ae7fd8ac22e7"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "abde27fdb10fd953515af9fe4fc5e145f3a0f1ed"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/ExtendedHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/ExtendedHeader.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f15b79b63cd49f46716d0296286d8def8e0c65bb"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f15b79b63cd49f46716d0296286d8def8e0c65bb"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Footer.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Footer.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0661aaef35af0ad05f31132649383137eacbbe15"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0661aaef35af0ad05f31132649383137eacbbe15"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frame.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "bf332bd39994db4a340ed99742175dfae9e0ebbd"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "bf332bd39994db4a340ed99742175dfae9e0ebbd"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/FrameFactory.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/FrameFactory.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "737805db16e248b62130e963418cdd78d941cc80"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "ded2bbb0a6d6893451433ac2bddc152ab1332f7f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/FrameHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/FrameHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3bd86854c391f04901e3097ffae011656aedd353"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "a7eaba650878c38be5be717cdb85fb65b179b187"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/FrameTypes.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/FrameTypes.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "430810eb9af8cdcbc7e4bfcd9dccffd85302c2bd"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "430810eb9af8cdcbc7e4bfcd9dccffd85302c2bd"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/AttachmentFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/AttachmentFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3811ddc8d782419fa20a68938f862873c0856cf1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cb76c43e61d9a37a813601cb056ef03d7c249e94"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/ChapterFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/ChapterFrame.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0ab418dbe3f8196e1ae1c50981194b4d10581533"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0ab418dbe3f8196e1ae1c50981194b4d10581533"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/CommentsFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/CommentsFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7b193c698110536c0a37451ba99c83e41f440306"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "a6c09e854cd7a1ca30cc54e40c2fd5265fe0b2a6"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/EventTimeCodeFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/EventTimeCodeFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0fea78b09696ed41f44ee3b04916751d4ea32c77"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d06ca084d996f2733825856c9bc4a01c0ad17886"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/MusicCdIdentifierFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/MusicCdIdentifierFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "fa0629b32954cc6b21436a0faae1facddbf54d5e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2f66d6c80eeeafd8b8ce1649e855c86c39ff81c8"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/PlayCountFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/PlayCountFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c7c18f744b9828ef3cdf44acc24c48c99fe7925d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2b78efe4cd46c5dbae313040aeb7cd90b56c19a4"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/PopularimeterFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/PopularimeterFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "4e36f65bdc88a70964202ddf8aa92ca230213579"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "e3b86280fd9c3e656fa4b4660f63e581671898b3"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/PrivateFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/PrivateFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9b9bb84ae9fa9a5ece109471b4271810e8176218"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "3dee809bc7dea995331bf3dee11cd1db540e66ed"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/RelativeVolumeFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/RelativeVolumeFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "8fb71b661bb43689dd6abe816e8a27e7d350bcda"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "842098084cf573e9b55a60c2416c3f12bd6aa0df"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/SynchronizedLyricsFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/SynchronizedLyricsFrame.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c3a155cb3933eee0cf6257d2f45df699bf390dc0"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c3a155cb3933eee0cf6257d2f45df699bf390dc0"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/TableOfContentsFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/TableOfContentsFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "72424be26369d95e6da0e8324744a1864340a072"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d82a53cd12c1eb3785f48b0ad81a3f2af68f39ca"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/TermsOfUseFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/TermsOfUseFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d1b89abf0b8ae5c8d47a8533055d8202b5a61fb1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "149e5d84a4355ae094e00f09bf69a52bd0aa1cc1"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/TextIdentificationFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/TextIdentificationFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "48f0ec9151a8c3746f2b2f7e534c8e2b6a2dbde5"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "221decce6beed438352a359dd5ac151fae178fe2"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/UniqueFileIdentifierFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/UniqueFileIdentifierFrame.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b24f83a253e127ea0c0bbbbbb8a9b7cedb18c72a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "b24f83a253e127ea0c0bbbbbb8a9b7cedb18c72a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/UnknownFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/UnknownFrame.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1eb58a35335278529d6f1792ec22eb2410dc074b"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1eb58a35335278529d6f1792ec22eb2410dc074b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/UnsynchronisedLyricsFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/UnsynchronisedLyricsFrame.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7a460439f31aa1dd5d58a03973514130e007cbfb"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "7a460439f31aa1dd5d58a03973514130e007cbfb"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/UrlLinkFrame.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Frames/UrlLinkFrame.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2a0f30052b8e312f7beaa12f03db2cfb74b5254a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "12b98edef70a8001acc6f86dc9f9aa78032c5886"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Header.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Header.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "52273bdec02d36a29e24d78650e86e86e7eebc83"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "52273bdec02d36a29e24d78650e86e86e7eebc83"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/SynchData.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/SynchData.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c1c820105c15cef260cb11b88a6d0980c0f788fe"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c1c820105c15cef260cb11b88a6d0980c0f788fe"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/SynchedTextType.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/SynchedTextType.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "45422918e0367cb61f7508481e37397f8dffedc4"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "48158ab6adac96a8784c63aeac6794e172b8c71a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Tag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/Tag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "28024970205e3f98b402ef1e4b8ebe8445951d0b"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "150aa6285920304c50dbd7fb1f4fcb6a03cd2852"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Id3v2/TimestampFormat.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Id3v2/TimestampFormat.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d27827c7b30a85b13d10c125ced00c5156ccf1dc"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6b083ecb050c4ea67b48c55e4e105c3e9633e5e7"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Image/Codec.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Image/Codec.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "879a4a326975e92ae9dd04a7f69247728d7d9df0"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "879a4a326975e92ae9dd04a7f69247728d7d9df0"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Image/CombinedImageTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Image/CombinedImageTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1326486ef6fe22b3402a67a7de87f9fbaf9427a0"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1326486ef6fe22b3402a67a7de87f9fbaf9427a0"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Image/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Image/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "445bac1cb4f972300e1a9cc9d9554cc246337c9a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "445bac1cb4f972300e1a9cc9d9554cc246337c9a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Image/ImageBlockFile.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Image/ImageBlockFile.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "a087d2f450ad52a8cab53f5cff7bb07b8e003708"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "a087d2f450ad52a8cab53f5cff7bb07b8e003708"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Image/ImageOrientation.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Image/ImageOrientation.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "18781f1b3b261fb657f62e06d628473277e23767"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6d54fe60c3d27e22a555bcaf762371723eaf503d"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Image/ImageTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Image/ImageTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "87fd01fc8189a0146b9fef1ad64c235003d8c255"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "87fd01fc8189a0146b9fef1ad64c235003d8c255"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Image/NoMetadata/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Image/NoMetadata/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "babc6f8818e5b8d6b143b15619cb69a36ac10855"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "babc6f8818e5b8d6b143b15619cb69a36ac10855"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Jpeg/Codec.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Jpeg/Codec.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "aab82a17c387ec28e9c139e1816ebfa4c38f1a6b"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "aab82a17c387ec28e9c139e1816ebfa4c38f1a6b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Jpeg/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Jpeg/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f0d52b4f2b32b9a87b4eeb3833e2387754106ec4"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f0d52b4f2b32b9a87b4eeb3833e2387754106ec4"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Jpeg/JpegCommentTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Jpeg/JpegCommentTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "a69f0ab35b98c414e3f8cd799387bc081f6f6913"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "a69f0ab35b98c414e3f8cd799387bc081f6f6913"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Jpeg/Marker.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Jpeg/Marker.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "e572d8a937f5a1113fb43d5b07c638658cb64fa1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "e572d8a937f5a1113fb43d5b07c638658cb64fa1"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Jpeg/Table.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Jpeg/Table.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cc8e044903d1922f4b813b7d9e9eb2592e14b903"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cc8e044903d1922f4b813b7d9e9eb2592e14b903"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/ListBase.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/ListBase.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "607e4df9f1d932737ec5da372bb0681570b605b8"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "b5d37339ef2de133547bb815daf60caabbfc7df7"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/Attachment.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/Attachment.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "a6a178431911e9600f2e13b13711e9dbc86a0ae5"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9ac30d22323f1a848431c53aa4ff725e38a8ce56"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/AudioTrack.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/AudioTrack.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d908230e4476832a8790154215a826935f0ae65c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "efe5506c01ad183cf72fa0b0699cbe24dea79dfa"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/EBMLElement.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/EBMLElement.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9f1d8253713666a20491360c440334850a6693a9"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "e8c42a379393594e3f38c7ec8b0447520ce5a35a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/EBMLIDs.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/EBMLIDs.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cdaede293a417b07ec39eb26bd137cf784a24e69"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cdaede293a417b07ec39eb26bd137cf784a24e69"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/EBMLreader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/EBMLreader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "459cd8058ed2d3e5b0d6500d8f3adf8a795bdec8"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "ca7649c67745790ac7912a216e95da12043f7fe1"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/File.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "e7a1ff45b074233fae4d5096648d5a7c21d04a19"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "28e5ff2a7eaae61b0cb04dacaf4a3bafe2b1c378"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/IUIDElement.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/IUIDElement.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1e9b3bc06c9a055283e4be17cdba3657319054a3"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1e9b3bc06c9a055283e4be17cdba3657319054a3"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/MatroskaIDs.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/MatroskaIDs.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f63ac16cc706b67fc903c1a44c78f1087da2a882"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0b4f846cc60e3c75a782b006a06c19c5a8f25fb5"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/SimpleTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/SimpleTag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "244add3ce93b2c9af6e207ad80002afe4492e4d9"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "3a9474d51c1d99ac33e91e31e364f71c22fda54a"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/SubtitleTrack.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/SubtitleTrack.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c4951eb18732a0364b724300fe79ff9435404f89"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "19b4bc78e31ea90e0bd5e7900043512170f39b97"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/Tag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/Tag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "e8b41dc13ff18a69ea233cee663028df25e04ee7"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "62075f3960b5109fc245b0276fb9898d9eb5a411"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/Tags.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/Tags.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "78ebe423536f8305a7f006e8dc5944466e8cfb0f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6dca67ebd699a137202f531d3a1be5c6d2d2e4b0"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/TargetType.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/TargetType.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "74a5b4fcaf826131b3628c6553676da3786dca0d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "235e2bd7ac629375b0739d91dfea1d88ad6c567f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/Track.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/Track.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5a88188f9a5fcc5fa0f8bdc4c89ace2fef1cd991"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "5be99262e81cc7ed02c39c541f380c7860600ea6"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Matroska/VideoTrack.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Matroska/VideoTrack.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "393b113fc793edfb1a6da61482faf5fc74d36593"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2e3e8277364282b5dbb785d6c7d56264bef3e144"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpc/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpc/File.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b5cdbd24b197388f91b4a58333b2b977ed6891a2"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "e623197afe67c4216211aa0bf95ebe6eb8430494"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpc/StreamHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpc/StreamHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ca7f35d4ed93cc1a39c717a317aadf816387e8cc"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "5a611470ceac2df113423b02d579ada68fab4b6b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg/AudioFile.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg/AudioFile.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f9738129b9e467451bf00c9073fb7e96ea771831"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f9738129b9e467451bf00c9073fb7e96ea771831"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg/AudioHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg/AudioHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9ae71e9baee9fcb12778e1caffc19619c36bf03e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "e6ce90e83d20bfcf2209112bde8cccab82105465"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9a88603afdf865f11cea5efd0eae0bae8c06ddc6"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9a88603afdf865f11cea5efd0eae0bae8c06ddc6"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg/VBRIHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg/VBRIHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7320ab49551ab3383e75744764145800d1e4112e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "e9410f7797e1edc2caa68457316bad75c61a4ff7"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg/VideoHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg/VideoHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "814031afbc7e2feba611b7ae19155c98438d41c2"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "a73462c85f3a8ee99812a0ee2647d348463ffae8"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg/XingHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg/XingHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9470f0d46349a62b805cb3a5c5476190a74f3f85"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "4ba23dadf1231951ad109e688c0b5054cdb3363b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/AppleTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/AppleTag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2f9ac4ae2bd582f251cc6bf135442341eaeffdb8"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "af55c3f18ae16004fa532447f0d3c68240585598"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Box.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Box.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9f65691aa5723105cd6a45bd028f79826f1ed267"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9fd32ce2afe04d285d045e70d2f9f8c9c0de7df1"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/BoxFactory.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/BoxFactory.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "709ea5380e890be795c4e1d6a0d9fc46ce220199"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "88c59cdd107a64f20b0208d94a82753fe8c63b8e"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/BoxHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/BoxHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7542cfc0a1c7a8ee956a20170204eced788c2a19"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6e2d32e2fd7368cd743d142ae6072cd51093f52b"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/BoxTypes.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/BoxTypes.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b82343445ea3e67516da43926cf26ef321141b96"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "03c161f29102a046d9a08a926524472569b6c2ca"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/AppleAdditionalInfoBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/AppleAdditionalInfoBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7f61bfd72f90ce33c770ea6b2d58b51ca83bc97c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "e7e40335ff74dc580dbf0b3aa2040aeaac6ba3e2"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/AppleAnnotationBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/AppleAnnotationBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cbc1ea90762ab9496cb4003297844fa9c594c5a5"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "aceff91df5afcefb2571ee5206178ec0ecc8c9a9"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/AppleDataBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/AppleDataBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "29c8a87459cbcd8b33e52c3fc2454fbf584eed22"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "df8b5e2b1a54c58fdd17b19d081b41359e9d5acf"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/AppleElementaryStreamDescriptor.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/AppleElementaryStreamDescriptor.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "6b3ba0cafea78111475848777d4631291003ece1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "a46d32d8c5bf741b2c1d61187b7a7da2d2e01cd9"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/AppleItemListBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/AppleItemListBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "94960d6c09e30b5c99a16a67e322eca31706ae71"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "8f557824cc6dd4dfcec0689f864d41fcfe93a942"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/FullBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/FullBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d3278b83932eb83ccb06a14e6531c493446c4713"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "3b0e0b208a6417809aefe506aa5481546ae3a8e9"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoAudioSampleEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoAudioSampleEntry.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9bb39a67809e6040e7c46e4fb0fbb6f6d209ce21"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c0ce495c5817cd3096c049745c7c438b385106ce"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoChunkLargeOffsetBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoChunkLargeOffsetBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "50768833b510992a0f9cef0b2b683cba5ba41088"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "a2bad36c4483bbdf6b3592d4a30297b02f1fb4c1"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoChunkOffsetBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoChunkOffsetBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "349c4a14c5df1dd47eaedb793a454906f12b1625"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "db381edf1f408beec099eb722e9284ae217f611d"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoFreeSpaceBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoFreeSpaceBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "106f1d2fee07877a0e7d236ef0acf0d063b83d7a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1a2a6e6814f67cdfcc67d141af578d39704fec75"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoHandlerBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoHandlerBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ea5f468a406f8bec1731363244aa7a529efc87e7"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "807a225a88d00fd40cd4bd19936961cdcde7fb58"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoMetaBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoMetaBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5c36202c1ef5599d1f2f81c369536be99d8a8332"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0895b6a8c9b355570a1e1dd2e480b06441299509"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoMovieHeaderBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoMovieHeaderBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "94a4a4e8e0f1489afca2710c8d2dd492e49ff9aa"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c72ee4dd99d56c06be2867e2486949cf1f37bd04"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoSampleDescriptionBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoSampleDescriptionBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "634df72f95e3de01438d780250e0c7d8e61b53c1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "7b9dedcb7ffde6774783743cfa1e12beb51ff393"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoSampleEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoSampleEntry.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5e75d9038079859ecb6ea0ed3badd9e5f37a674a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6ffc41f762a7c09c563aec64305c5aa79bd996d9"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoSampleTableBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoSampleTableBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f7d8d01f8a522a2178746a7ec94aadc95c689a2f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "dcf9494090e60b1c0f4c69efedadefa69fc178d2"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoUserDataBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoUserDataBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7293b6f80c6a6b32d227364dfdbfd109cb138a4e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "565bde95008463a8fe3bbc2b2fedb4582937bcab"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoVisualSampleEntry.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/IsoVisualSampleEntry.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "fdf4b9687cfad0c10d957a59899e82bfce68831e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f99932032c43a1bb569abeca767a9b071853bc3e"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/OpaqueBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/OpaqueBox.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5ce30b492fab2f072fcb6447de93e8b084474915"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "5ce30b492fab2f072fcb6447de93e8b084474915"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/TextBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/TextBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "bb5eb29fe67783c66f7c3dfa932d0df74fd99441"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "7fc959fe3f2b340e4b583b90c21620800547b649"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/UnknownBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/UnknownBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5aab963ebbdfe9e12ae32b60259d1bd51f30a21b"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9b77c4dbff1a2b935001901f4dad7851abbddbb8"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/UrlBox.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/Boxes/UrlBox.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ed953dbf39da58f39b3625877a022d1556abd1ad"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1b29faf35cbeb7cdde5d4849341fe87aabaedb7e"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/File.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "df831e109b4d1ef68cebe9ef9b7d690c640202af"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "39c41329d26f3385dce9c29844ddd3fe653b5a36"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/FileParser.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Mpeg4/FileParser.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "fa1ad2f21b4f1e4c96b53c400d1adde1426c1654"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "25f21689066398ef9ead466e6b67e9cd8b9fa5a8"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/NonContainer/EndTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/NonContainer/EndTag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "08f79cad269a0b6ffac78b4f3cc8b202d91c65c8"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "97091dbb7701bd3d9df6da90bf111a3f01d8bf45"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/NonContainer/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/NonContainer/File.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0a3e7a59baf36c655d4fc82cbbb1fc28df72bf08"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "ecaaec08cb63e6014b3a74251ea011ee93e23c0e"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/NonContainer/StartTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/NonContainer/StartTag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "54d35ca7beae792a25e27c7ba4661586a65136ca"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6ba01f148b72c786d62283509573bdfe644ed580"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/NonContainer/Tag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/NonContainer/Tag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ae79d02d593d85b8aac021a965ba287653b941ff"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2f241a58bb6358b12886a809c5736a0cbd260848"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/Bitstream.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/Bitstream.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cd5e42607bd586ec2c95e2bcf35a36a16be8d41d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cd5e42607bd586ec2c95e2bcf35a36a16be8d41d"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/Codec.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/Codec.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f44774cc39b609d917ce461e62bb289985c96430"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2ba5b114e07652f11ef3d6e81714540eed7e7e94"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/Codecs/Opus.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/Codecs/Opus.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "bfd9e0dd6a278508a9d468b369a03ad601a57b77"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "bfd9e0dd6a278508a9d468b369a03ad601a57b77"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/Codecs/Theora.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/Codecs/Theora.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "79ca4f01bc9a611a89eac393df63fef6462523c3"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cc10a248866c5eaa1b0b00419f79c5f80ae46795"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/Codecs/Vorbis.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/Codecs/Vorbis.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5470af82e47eaca8cdb44dbabce9ee43bb7a99d9"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "5470af82e47eaca8cdb44dbabce9ee43bb7a99d9"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "70a720381db208d709c889521d41f4ef469421b9"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "70a720381db208d709c889521d41f4ef469421b9"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/GroupedComment.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/GroupedComment.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "30f4bccd967704292a5841ad106e8ef3f2834388"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2c5742e00577d28009d6a92fcb7b2df7d5c37e19"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/Page.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/Page.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "6ee813bbf4978955b323fb306a72a2af4a290a40"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6ee813bbf4978955b323fb306a72a2af4a290a40"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/PageHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/PageHeader.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "bdf9570bc7b9c6e0a71a4163bb8658bf4befef73"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "bdf9570bc7b9c6e0a71a4163bb8658bf4befef73"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/Paginator.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/Paginator.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f2c72cd2a73dd0647c2dbe9a0eaf6ea18194bc84"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f2c72cd2a73dd0647c2dbe9a0eaf6ea18194bc84"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Ogg/XiphComment.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Ogg/XiphComment.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0812e3aa0a380723ad9666eef8099315f76dd68c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "37b19066a0aeba98c865fe1292f241f3a1f7f96c"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Picture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Picture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "e6830ff5e131949a3956d2cbcddd96151ed65ca3"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "4560397678073bde95678d9573f4188a661cb2ae"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/PictureLazy.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/PictureLazy.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "01e15279c27053156e8286f1f8723f2a24c8a643"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "962103340e8fc3fb04ec1e5c1ddb1b7a89a8de64"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Png/Codec.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Png/Codec.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "46501d22ff8aab5f7e07fd43e365492dca3f76d0"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "46501d22ff8aab5f7e07fd43e365492dca3f76d0"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Png/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Png/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "127854b710fdaac86dc41fa7b0930a7337d941f4"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "127854b710fdaac86dc41fa7b0930a7337d941f4"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Png/PngTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Png/PngTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "76bda984269e3f407a5f08a69c7a40d5c17a45f7"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "76bda984269e3f407a5f08a69c7a40d5c17a45f7"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Properties.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Properties.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c7ac94c2d5e394f03b11b030ede39290469fc234"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "52e7865216e02aa7fbb4a12bfd408350d66c15b8"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/ReadOnlyByteVector.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/ReadOnlyByteVector.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c2261d7670295422dbc0d3ef5904d884fa5bd528"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "999bb3ff738f5c34f6ba55fe4aa68bd35eef001e"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Riff/AviHeaderList.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Riff/AviHeaderList.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "eaede69e1f669230325ee827260a72f42e5234d1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "eaede69e1f669230325ee827260a72f42e5234d1"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Riff/AviStream.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Riff/AviStream.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "981e612a2bb53d62693b24f08e4c3a1afbc84487"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "5edfd9fa2974de4fbc354e0f261fa176455125ae"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Riff/BitmapInfoHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Riff/BitmapInfoHeader.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0490431c90ae2534f7ddf1ce85a4088d258bf83e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "184d177ceec6040b0b92eecea3105d0516811f05"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Riff/DivXTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Riff/DivXTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ee812ef23b8261c0791e6e7725429796f1d46d0f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "ee812ef23b8261c0791e6e7725429796f1d46d0f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Riff/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Riff/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "fb004ec9635c0fb3f52ccb744185cb0ac00daaaa"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "fb004ec9635c0fb3f52ccb744185cb0ac00daaaa"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Riff/InfoTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Riff/InfoTag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7270fd8fb8e66c712bad40810c16dd9026b16568"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "824bcd147f918a5598f5b363d8ec29d898a03130"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Riff/List.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Riff/List.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "85e2bc10e6527c67e8499632f8342a8e722b4466"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "85e2bc10e6527c67e8499632f8342a8e722b4466"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Riff/ListTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Riff/ListTag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3f2106a8a5c88979ed9be21a6cfcba11026a9643"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "531ff2cda64eab983489dbbddc86c177d2d9e2b2"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Riff/MovieIdTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Riff/MovieIdTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "82d582efca22fa937e3ff8105ff6d8890f7c1c45"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "82d582efca22fa937e3ff8105ff6d8890f7c1c45"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Riff/WaveFormatEx.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Riff/WaveFormatEx.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "63d00ba022b44a98aafc32e46f84ad8ade542dae"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "63d00ba022b44a98aafc32e46f84ad8ade542dae"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/StringList.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/StringList.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "a6113e659d73850f2a1653dbe5ffdcec10ebd623"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "7ec3e95743901954f942a4590e9651a32c6a984d"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/SupportedMimeType.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/SupportedMimeType.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "91d60aa4cff7681f361842796df9a09f2a4b0ca7"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "4713c3214b25f8e6e7c2abce215ec4efb6b416eb"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tag.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cc6170084eae9a4ba2f54c63b44068bc5f22d566"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "7c320f7cb3400e5603c921d53fb76f7febf22614"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/TaglibSharp.csproj",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/TaglibSharp.csproj",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7a01183736d350f55fea39729323f70a8635e360"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "7a01183736d350f55fea39729323f70a8635e360"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/Arw/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/Arw/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2161f723f906e6278981dbd2fd07282b6aa59501"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2161f723f906e6278981dbd2fd07282b6aa59501"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/BaseTiffFile.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/BaseTiffFile.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "9e19c3add8ea31db961c3ad4dfe60e6bf85f9ce6"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9e19c3add8ea31db961c3ad4dfe60e6bf85f9ce6"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/Codec.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/Codec.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "22410c6de5601ef6a38d9260644c4d522e4b9e16"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "22410c6de5601ef6a38d9260644c4d522e4b9e16"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/Cr2/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/Cr2/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0472edc459e994f05bd1ced370325ac57c9093dd"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0472edc459e994f05bd1ced370325ac57c9093dd"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/Dng/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/Dng/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d5fb153bd95d9d3333dc4914048d945d2f0025e3"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d5fb153bd95d9d3333dc4914048d945d2f0025e3"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "03976ff18e696604ebd01f1f21eb8ec325dcf590"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "03976ff18e696604ebd01f1f21eb8ec325dcf590"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/Nef/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/Nef/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d194c5992b6f2f832676426ff9a8689501ec1493"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d194c5992b6f2f832676426ff9a8689501ec1493"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/Pef/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/Pef/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1deb76ac02f7d55c3bcf42de01cf5a26a64f4fad"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1deb76ac02f7d55c3bcf42de01cf5a26a64f4fad"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/Rw2/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/Rw2/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b740e8ede63562a3a8e0f4532c2d9c0dc8ce1f00"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "b740e8ede63562a3a8e0f4532c2d9c0dc8ce1f00"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/Rw2/IFDReader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/Rw2/IFDReader.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2463abe104027d75412fadb30173da555c9b2768"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2463abe104027d75412fadb30173da555c9b2768"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Tiff/Rw2/IFDTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Tiff/Rw2/IFDTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3c93d1b65d6d7f0a1a8a0b374367026df4643c5d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "3c93d1b65d6d7f0a1a8a0b374367026df4643c5d"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/UnsupportedFormatException.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/UnsupportedFormatException.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "da4ca5e75c76c070b47cf4ece0adc74ce8f85c74"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "177bf103cfd344f7282860871d3e549bc39441a9"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/WavPack/File.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/WavPack/File.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cbe1817bf03f5d2ec861101ac7e5d6c4c9a6cc2f"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "cbe1817bf03f5d2ec861101ac7e5d6c4c9a6cc2f"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/WavPack/StreamHeader.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/WavPack/StreamHeader.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b7a31a39dc9ce324f046f2fdd8ce2649234536dc"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "b7a31a39dc9ce324f046f2fdd8ce2649234536dc"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Xmp/XmlNodeExtensions.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Xmp/XmlNodeExtensions.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f28f3b68ac081827ae68ea7f03e8a9b864bc9c78"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f28f3b68ac081827ae68ea7f03e8a9b864bc9c78"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Xmp/XmpNode.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Xmp/XmpNode.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "084e48890418291772ece1463d9c2a5f027ca3fe"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "084e48890418291772ece1463d9c2a5f027ca3fe"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Xmp/XmpNodeType.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Xmp/XmpNodeType.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f7062ff632e9e2993a4d85870cd8847523462320"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f7062ff632e9e2993a4d85870cd8847523462320"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Xmp/XmpNodeVisitor.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Xmp/XmpNodeVisitor.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d47ba8bd24dd64ddff32ed3af1a3c5417db372e3"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d47ba8bd24dd64ddff32ed3af1a3c5417db372e3"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/src/TaglibSharp/Xmp/XmpTag.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/src/TaglibSharp/Xmp/XmpTag.cs",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c43fbd2c63d5415bf796e554d14cc4a83f9b0f1c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c43fbd2c63d5415bf796e554d14cc4a83f9b0f1c"
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/taglib-sharp.snk",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/TagLibSharp/taglib-sharp.snk",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5c1680ba7f42f6e2564635399f7825721042d064"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "5c1680ba7f42f6e2564635399f7825721042d064"
+      }
     },
     {
       "sourcePath": "test.sh",
@@ -19186,7 +20230,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "8efc2ea632dde326755b0c939205480f33dbef06"
+        "oid": "acfaa0a21d28f676e146e5df6c56ff19b0748d5e"
       }
     }
   ]
