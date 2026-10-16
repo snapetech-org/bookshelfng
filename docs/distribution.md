@@ -8,7 +8,7 @@ release and sends the existing Discord announcement.
 
 BookshelfNG `0.4.21.70` is designated the final BookshelfNG release. Its
 source-side helper takes a full appdata archive, then invokes the standard
-ChaptarrNG preview, apply, and rollback commands. ChaptarrNG `v0.9.972` is the
+ChaptarrNG preview, apply, and rollback commands. ChaptarrNG `v0.9.973` is the
 matching release target. Conversion is supported for the exact BookshelfNG
 migration-158 SQLite schema; ambiguous book formats require an operator's
 media map. One populated Linux/amd64 conversion retained all 39 source tables

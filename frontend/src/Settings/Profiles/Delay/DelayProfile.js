@@ -82,7 +82,7 @@ class DelayProfile extends Component {
       tags,
       tagList,
       isDragging,
-      connectDragSource
+      dragRef
     } = this.props;
 
     let preferred = titleCase(preferredProtocol);
@@ -119,14 +119,15 @@ class DelayProfile extends Component {
 
           {
             id !== 1 &&
-              connectDragSource(
-                <div className={styles.dragHandle}>
+              <div
+                ref={dragRef}
+                className={styles.dragHandle}
+              >
                   <Icon
                     className={styles.dragIcon}
                     name={icons.REORDER}
                   />
-                </div>
-              )
+              </div>
           }
         </div>
 
@@ -161,13 +162,13 @@ DelayProfile.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.number).isRequired,
   tagList: PropTypes.arrayOf(PropTypes.object).isRequired,
   isDragging: PropTypes.bool.isRequired,
-  connectDragSource: PropTypes.func,
+  dragRef: PropTypes.func,
   onConfirmDeleteDelayProfile: PropTypes.func.isRequired
 };
 
 DelayProfile.defaultProps = {
-  // The drag preview will not connect the drag handle.
-  connectDragSource: (node) => node
+  // The drag preview has no active drag connector.
+  dragRef: () => {}
 };
 
 export default DelayProfile;

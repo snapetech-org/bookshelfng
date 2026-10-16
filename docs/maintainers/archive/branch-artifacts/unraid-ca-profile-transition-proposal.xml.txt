@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<CommunityApplications>
+  <Profile>Proposed BookshelfNG to ChaptarrNG transition. Do not apply the template to an existing installation until a ChaptarrNG release with the BookshelfNG converter and migration instructions is available. Keep an independent appdata backup. New installations can use the ChaptarrNG listing.</Profile>
+  <Icon>https://raw.githubusercontent.com/snapetech/chaptarrng/main/Logo/256.png</Icon>
+  <WebPage>https://github.com/snapetech/bookshelfng-unraid</WebPage>
+  <Forum>https://github.com/snapetech/seerrng/issues</Forum>
+</CommunityApplications>

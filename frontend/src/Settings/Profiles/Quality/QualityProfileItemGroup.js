@@ -57,7 +57,7 @@ class QualityProfileItemGroup extends Component {
       isDragging,
       isDraggingUp,
       isDraggingDown,
-      connectDragSource,
+      dragRef,
       onQualityProfileItemAllowedChange,
       onQualityProfileItemDragMove,
       onQualityProfileItemDragEnd
@@ -129,15 +129,16 @@ class QualityProfileItemGroup extends Component {
           }
 
           {
-            connectDragSource(
-              <div className={styles.dragHandle}>
+            <div
+              ref={dragRef}
+              className={styles.dragHandle}
+            >
                 <Icon
                   className={styles.dragIcon}
                   name={icons.REORDER}
                   title={translate('Reorder')}
                 />
-              </div>
-            )
+            </div>
           }
         </div>
 
@@ -184,7 +185,7 @@ QualityProfileItemGroup.propTypes = {
   isDragging: PropTypes.bool.isRequired,
   isDraggingUp: PropTypes.bool.isRequired,
   isDraggingDown: PropTypes.bool.isRequired,
-  connectDragSource: PropTypes.func,
+  dragRef: PropTypes.func,
   onItemGroupAllowedChange: PropTypes.func.isRequired,
   onQualityProfileItemAllowedChange: PropTypes.func.isRequired,
   onItemGroupNameChange: PropTypes.func.isRequired,
@@ -194,8 +195,8 @@ QualityProfileItemGroup.propTypes = {
 };
 
 QualityProfileItemGroup.defaultProps = {
-  // The drag preview will not connect the drag handle.
-  connectDragSource: (node) => node
+  // The drag preview has no active drag connector.
+  dragRef: () => {}
 };
 
 export default QualityProfileItemGroup;

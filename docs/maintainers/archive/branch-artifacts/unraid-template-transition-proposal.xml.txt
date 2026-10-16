@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>BookshelfNG</Name>
+  <Repository>ghcr.io/snapetech/chaptarrng:latest</Repository>
+  <Registry>https://ghcr.io/snapetech/chaptarrng</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Icon>https://raw.githubusercontent.com/snapetech/chaptarrng/main/Logo/256.png</Icon>
+  <WebUI>http://[IP]:[PORT:8787]/</WebUI>
+  <Overview>Proposed BookshelfNG to ChaptarrNG transition; wait for the converter release and migration instructions before applying.</Overview>
+  <Description>Proposed transition to ChaptarrNG. Do not apply this template to an existing installation until a ChaptarrNG release with the BookshelfNG migration-158 SQLite converter and migration instructions is available. The proposed transition preserves the existing /config, /data, /download, host port 8787, PUID, PGID, TZ, and Hardcover settings. Back up the complete appdata directory before upgrading. Unsupported databases fail closed. New installations can use the ChaptarrNG Community Applications entry; SeerrNG remains optional.</Description>
+  <Support>https://github.com/snapetech/chaptarrng/issues</Support>
+  <Project>https://github.com/snapetech/chaptarrng</Project>
+  <TemplateURL>https://raw.githubusercontent.com/snapetech/bookshelfng-unraid/main/templates/bookshelfng.xml</TemplateURL>
+  <ReadMe>https://github.com/snapetech/bookshelfng-unraid/blob/main/docs/installation.md</ReadMe>
+  <Category>MediaApp:Books</Category>
+  <ExtraSearchTerms>bookshelfng bookshelf readarr hardcover ebook audiobook seerrng</ExtraSearchTerms>
+  <Changes>Transition template: apply the regular ChaptarrNG release to the existing BookshelfNG data directory. Keep an independent appdata backup until conversion and validation finish.</Changes>
+  <Requires>Docker and persistent appdata. Stop BookshelfNG before applying this update. New installations should use the ChaptarrNG template.</Requires>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+
+  <Config Name="Web UI Port" Target="8787" Default="8787" Mode="tcp" Description="Web UI Port for the standalone web interface." Type="Port" Display="always" Required="false" Mask="false">8787</Config>
+  <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/bookshelfng" Mode="rw" Description="Existing BookshelfNG appdata; the proposed ChaptarrNG converter supports migration-158 SQLite after its release." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/bookshelfng</Config>
+  <Config Name="Media" Target="/data" Default="/mnt/user/media" Mode="rw" Description="Keep the existing ebook and audiobook library mapping." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/media</Config>
+  <Config Name="Downloads" Target="/download" Default="/mnt/user/downloads" Mode="rw" Description="Keep the existing download-client path mapping." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/downloads</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID for files created by this service." Type="Variable" Display="always" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID for files created by this service." Type="Variable" Display="always" Required="false" Mask="false">100</Config>
+  <Config Name="TZ" Target="TZ" Default="Etc/UTC" Mode="" Description="Time zone used by this service." Type="Variable" Display="always" Required="false" Mask="false">Etc/UTC</Config>
+  <Config Name="HARDCOVER" Target="HARDCOVER" Default="true" Mode="" Description="Enable Hardcover metadata for this image." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="HARDCOVER_NATIVE" Target="HARDCOVER_NATIVE" Default="true" Mode="" Description="Use native Hardcover metadata access." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="HARDCOVER_AUTH" Target="HARDCOVER_AUTH" Default="" Mode="" Description="Personal Hardcover API token, including the Bearer prefix. Can also be entered in BookshelfNG settings." Type="Variable" Display="always" Required="false" Mask="true"></Config>
+</Container>

@@ -2,7 +2,7 @@
 
 BookshelfNG `0.4.21.70` is the final BookshelfNG release. It includes a
 source-side handoff helper that archives BookshelfNG appdata and invokes the
-standard ChaptarrNG migration commands. ChaptarrNG `v0.9.972` is the matching
+standard ChaptarrNG migration commands. ChaptarrNG `v0.9.973` is the matching
 release used in the examples below. Use a later stable ChaptarrNG version if
 one is available, but keep its image tag versioned or use an immutable digest.
 
@@ -70,7 +70,7 @@ migration:
 ./bookshelfng-to-chaptarrng.sh preview \
   --data-dir /path/to/bookshelfng-config \
   --backup-dir /path/to/separate-backup-volume \
-  --image ghcr.io/snapetech-org/chaptarrng:v0.9.972
+  --image ghcr.io/snapetech-org/chaptarrng:v0.9.973
 ```
 
 The script creates another full appdata archive before invoking ChaptarrNG.
@@ -95,7 +95,7 @@ After preview passes, keep the source service stopped and run:
 ./bookshelfng-to-chaptarrng.sh apply \
   --data-dir /path/to/bookshelfng-config \
   --backup-dir /path/to/separate-backup-volume \
-  --image ghcr.io/snapetech-org/chaptarrng:v0.9.972 \
+  --image ghcr.io/snapetech-org/chaptarrng:v0.9.973 \
   --confirm-stopped
 ```
 
@@ -128,7 +128,7 @@ source backup filename shown in the logs:
 ./bookshelfng-to-chaptarrng.sh rollback-preview \
   --data-dir /path/to/bookshelfng-config \
   --backup-dir /path/to/separate-backup-volume \
-  --image ghcr.io/snapetech-org/chaptarrng:v0.9.972 \
+  --image ghcr.io/snapetech-org/chaptarrng:v0.9.973 \
   --bookshelf-backup readarr.db.bookshelfng-backup-<timestamp>-<id>.db
 ```
 
@@ -138,7 +138,7 @@ After rollback-preview passes, restore the BookshelfNG database:
 ./bookshelfng-to-chaptarrng.sh rollback \
   --data-dir /path/to/bookshelfng-config \
   --backup-dir /path/to/separate-backup-volume \
-  --image ghcr.io/snapetech-org/chaptarrng:v0.9.972 \
+  --image ghcr.io/snapetech-org/chaptarrng:v0.9.973 \
   --bookshelf-backup readarr.db.bookshelfng-backup-<timestamp>-<id>.db \
   --confirm-stopped
 ```

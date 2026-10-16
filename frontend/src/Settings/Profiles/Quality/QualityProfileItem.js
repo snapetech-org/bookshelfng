@@ -43,7 +43,7 @@ class QualityProfileItem extends Component {
       allowed,
       isDragging,
       isOverCurrent,
-      connectDragSource
+      dragRef
     } = this.props;
 
     return (
@@ -92,15 +92,16 @@ class QualityProfileItem extends Component {
         </label>
 
         {
-          connectDragSource(
-            <div className={styles.dragHandle}>
+          <div
+            ref={dragRef}
+            className={styles.dragHandle}
+          >
               <Icon
                 className={styles.dragIcon}
                 title={translate('CreateGroup')}
                 name={icons.REORDER}
               />
-            </div>
-          )
+          </div>
         }
       </div>
     );
@@ -117,7 +118,7 @@ QualityProfileItem.propTypes = {
   isDragging: PropTypes.bool.isRequired,
   isOverCurrent: PropTypes.bool.isRequired,
   isInGroup: PropTypes.bool,
-  connectDragSource: PropTypes.func,
+  dragRef: PropTypes.func,
   onCreateGroupPress: PropTypes.func,
   onQualityProfileItemAllowedChange: PropTypes.func
 };
@@ -125,8 +126,8 @@ QualityProfileItem.propTypes = {
 QualityProfileItem.defaultProps = {
   isPreview: false,
   isOverCurrent: false,
-  // The drag preview will not connect the drag handle.
-  connectDragSource: (node) => node
+  // The drag preview has no active drag connector.
+  dragRef: () => {}
 };
 
 export default QualityProfileItem;

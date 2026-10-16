@@ -1,11 +1,13 @@
 # Self-hosting catalog deployment
 
-These catalog definitions still install BookshelfNG images. They are not a
-ChaptarrNG migration path, and their existing app identities and stored data
-have not been migrated. Do not submit new catalog entries from this source
-while the retirement bridge is incomplete. Each listed platform needs its own
-tested update that preserves its app identity, volumes, port, and rollback
-behavior; the current candidate only covers the Unraid template source.
+These catalog definitions still install BookshelfNG images. They do not migrate
+existing app identities or stored data, and the appdata helper does not update
+a catalog entry or image reference. Keep existing installations on their
+current package until an operator-reviewed migration is complete. New
+installations should use ChaptarrNG. Each listed platform needs a separate
+tested handoff that preserves its app identity, volumes, port, and rollback
+behavior. See the [migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
+and [channel status](https://github.com/snapetech-org/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md).
 
 This directory is the source of truth for the Docker-based self-hosting
 catalog submissions for BookshelfNG. The adapters use the public Docker Hub

@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using NLog.Extensions.Logging;
 using NzbDrone.Common.EnvironmentInfo;
 using NzbDrone.Common.Instrumentation;
@@ -181,11 +181,6 @@ namespace NzbDrone.Host
                     Scheme = "apiKey",
                     Description = "API key passed in the X-Api-Key header (recommended).",
                     In = ParameterLocation.Header,
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "X-Api-Key"
-                    },
                 };
 
                 c.AddSecurityDefinition("X-Api-Key", apiKeyHeader);
@@ -197,23 +192,22 @@ namespace NzbDrone.Host
                     Scheme = "apiKey",
                     Description = "Legacy API key passed as the apikey query parameter. Disable with BOOKSHELF_ALLOW_API_KEY_QUERY=false.",
                     In = ParameterLocation.Query,
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "apikey"
-                    },
                 };
 
                 c.AddSecurityDefinition("apikey", apiKeyQuery);
 
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                c.AddSecurityRequirement(document =>
                 {
-                    { apiKeyHeader, Array.Empty<string>() }
+                    var requirement = new OpenApiSecurityRequirement();
+                    requirement.Add(new OpenApiSecuritySchemeReference("X-Api-Key", document), new List<string>());
+                    return requirement;
                 });
 
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                c.AddSecurityRequirement(document =>
                 {
-                    { apiKeyQuery, Array.Empty<string>() }
+                    var requirement = new OpenApiSecurityRequirement();
+                    requirement.Add(new OpenApiSecuritySchemeReference("apikey", document), new List<string>());
+                    return requirement;
                 });
 
                 c.AddServer(new OpenApiServer

@@ -5,7 +5,7 @@
 BookshelfNG `0.4.21.70` is designated the final release and includes an
 appdata handoff helper. The bridge described below remains disabled by
 default; this release does not redirect any live package or image identity.
-ChaptarrNG `v0.9.972` is the matching release target. Migration support remains
+ChaptarrNG `v0.9.973` is the matching release target. Migration support remains
 limited to the exact BookshelfNG migration-158 SQLite schema, and channel
 acceptance gates are still open. Keep this document's channel matrix as a
 proposal and gate inventory, not a report of completed redirects.
