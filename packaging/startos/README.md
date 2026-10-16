@@ -6,7 +6,7 @@ the current migration candidate does not cover StartOS. See the
 [migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
 
 The compiled StartOS wrapper is published at
-https://github.com/snapetech/bookshelfng-startos.
+https://github.com/snapetech-org/bookshelfng-startos.
 
 - Package ID: `bookshelfng`
 - Image: `docker.io/snapetech/bookshelfng:hardcover-v0.4.21.37`

@@ -13,4 +13,4 @@ community app in a Cloudron dashboard. Cloudron does not require a central
 catalog PR for community apps.
 
 After the source PR is merged, the version metadata URL is:
-https://raw.githubusercontent.com/snapetech/bookshelfng/main/packaging/cloudron/CloudronVersions.json
+https://raw.githubusercontent.com/snapetech-org/bookshelfng/main/packaging/cloudron/CloudronVersions.json

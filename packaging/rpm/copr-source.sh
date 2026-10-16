@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo="snapetech/bookshelfng"
+repo="snapetech-org/bookshelfng"
 release_base="https://github.com/${repo}/releases/download"
 tag="${1:-}"
 

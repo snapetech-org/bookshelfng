@@ -170,7 +170,7 @@ namespace NzbDrone.Host
                     License = new OpenApiLicense
                     {
                         Name = "GPL-3.0",
-                        Url = new Uri("https://github.com/snapetech/bookshelfng/blob/main/LICENSE.md")
+                        Url = new Uri("https://github.com/snapetech-org/bookshelfng/blob/main/LICENSE.md")
                     }
                 });
 

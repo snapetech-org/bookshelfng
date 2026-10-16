@@ -5,7 +5,7 @@
     "description": "BookshelfNG API docs",
     "license": {
       "name": "GPL-3.0",
-      "url": "https://github.com/snapetech/bookshelfng/blob/main/LICENSE.md"
+      "url": "https://github.com/snapetech-org/bookshelfng/blob/main/LICENSE.md"
     },
     "version": "1.0.0"
   },

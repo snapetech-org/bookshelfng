@@ -29,7 +29,7 @@ SQLite, and C library packages. `ffmpeg` is optional and is only needed for
 chaptered audiobook generation.
 
 Download the archive matching the host from the
-[BookshelfNG releases](https://github.com/snapetech/bookshelfng/releases). Check
+[BookshelfNG releases](https://github.com/snapetech-org/bookshelfng/releases). Check
 the adjacent `.sha256` file before extracting it. Then start the app from its
 extracted directory:
 

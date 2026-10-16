@@ -417,7 +417,7 @@ namespace NzbDrone.Core.MetadataSource.BookInfo
         {
             var contactEmail = GetConfiguredValue("OPEN_LIBRARY_CONTACT_EMAIL", _configService.OpenLibraryContactEmail);
             var userAgent = contactEmail.IsNullOrWhiteSpace()
-                ? "BookshelfNG (https://github.com/Snapetech/BookshelfNG)"
+                ? "BookshelfNG (https://github.com/snapetech-org/BookshelfNG)"
                 : $"BookshelfNG ({contactEmail.Trim()})";
 
             return new HttpRequestBuilder(BaseUrl + path)

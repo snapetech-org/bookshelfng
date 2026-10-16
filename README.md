@@ -16,7 +16,7 @@ Published containers and native release
 archives include the required runtime; source builds require the .NET 10 SDK.
 
 On Unraid, install [BookshelfNG from Community Apps](https://ca.unraid.net/apps/bookshelfng-1fdcqrv18pja7r).
-See the [Unraid installation guide](https://github.com/snapetech/bookshelfng-unraid#installation-and-setup)
+See the [Unraid installation guide](https://github.com/snapetech-org/bookshelfng-unraid#installation-and-setup)
 for persistent storage, download paths, and Hardcover setup. The package uses
 `ghcr.io/snapetech/bookshelfng:latest`, which tracks the Hardcover image; the
 upstream Bookshelf listing uses a different image. SeerrNG integration is optional.
@@ -101,7 +101,7 @@ or is actively adding, including unpublished work in progress. That complete
 union blocks ChaptarrNG retirement as a whole. Active ChaptarrNG branch and
 pull-request features count before release; the matrix records the current
 snapshot and individual gates. See the
-[combined ChaptarrNG retirement matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
+[combined ChaptarrNG retirement matrix](https://github.com/snapetech-org/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
 ## Capabilities
 
@@ -580,7 +580,7 @@ you can also authenticate with package read access.
 - [Release distribution channels and publisher setup](docs/distribution.md)
 - [Optional diagnostics module](src/Bookshelf.Diagnostics/README.md)
 - [Release-note format and preview](release-notes/README.md)
-- [SeerrNG migration metadata source matrix](https://github.com/Snapetech/seerrng/blob/main/docs/using-seerr/bookshelf-metadata-sources.md)
+- [SeerrNG migration metadata source matrix](https://github.com/snapetech-org/seerrng/blob/main/docs/using-seerr/bookshelf-metadata-sources.md)
 
 ## Support and contributing
 

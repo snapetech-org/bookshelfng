@@ -284,8 +284,8 @@ function Updates() {
               <div>
                 <InlineMarkdown
                   data={translate('InstallMajorVersionUpdateMessageLink', {
-                    domain: 'github.com/snapetech/bookshelfng',
-                    url: 'https://github.com/snapetech/bookshelfng/releases/latest',
+                    domain: 'github.com/snapetech-org/bookshelfng',
+                    url: 'https://github.com/snapetech-org/bookshelfng/releases/latest',
                   })}
                 />
               </div>

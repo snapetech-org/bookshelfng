@@ -122,8 +122,8 @@ behavior, feature parity, or any published package-channel bridge.
   guide below. PR #77 merged as `ee2efc55` with the receipt-fingerprint
   correction.
   ChaptarrNG's itemized cumulative blocker table is in its
-  [fork feature guide](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#itemized-active-and-unreleased-chaptarrng-blockers).
-- SeerrNG PR [#203](https://github.com/snapetech/seerrng/pull/203) at source
+  [fork feature guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/FORK_FEATURES.md#itemized-active-and-unreleased-chaptarrng-blockers).
+- SeerrNG PR [#203](https://github.com/snapetech-org/seerrng/pull/203) at source
   head `dc6fe6e203ab25374581f2c24e2c858d919a549d` was squash-merged into
   `main` at `97aa148bed3a72cc02ca11f9f9d3341c230cceeb` on October 13, 2026.
   The final hosted run passed all four unit shards, lint/build, Playwright, six
@@ -366,14 +366,14 @@ ChaptarrNG retirement as a whole; each capability, sub-capability, migration
 or data path, source-change group, and channel is also an individual gate.
 Composite rows close only when every item they cover has passed its acceptance
 checks. The combined matrix is maintained in the ChaptarrNG
-[fork feature guide](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
+[fork feature guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
 
 The maintained backlog snapshot `24b340f` was historically 317 commits ahead
 of and 4 behind `origin/main` at `660cc034`, across 703 changed paths. PR #76
 later integrated that work into main at `b2827c7a`; PRs #69–#75 are merged.
 The remaining active capabilities, proposed channel changes, and acceptance
 evidence are listed in the ChaptarrNG
-[itemized cumulative blocker matrix](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#itemized-active-and-unreleased-chaptarrng-blockers).
+[itemized cumulative blocker matrix](https://github.com/snapetech-org/chaptarrng/blob/main/docs/FORK_FEATURES.md#itemized-active-and-unreleased-chaptarrng-blockers).
 PR #73's metadata-preference port is merged, but its capability parity and
 release acceptance remain individual blockers. Active capabilities count
 before release.
