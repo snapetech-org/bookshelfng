@@ -1,13 +1,13 @@
 # BookshelfNG Helm chart
 
-**Legacy chart for existing BookshelfNG deployments.** Do not use it for a new
-installation. The ChaptarrNG candidate adds BookshelfNG migration to its
-ordinary image, but that release and a BookshelfNG Helm chart handoff are not
-published yet. Keep the existing release, PVC, and independent backup until a
-chart-specific migration bridge is built and tested. The handoff must use the
-same ChaptarrNG image as a fresh installation; no compatibility image is
-maintained. See the
-[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
+**Legacy chart for existing BookshelfNG deployments.** ChaptarrNG `v0.9.972`
+includes the BookshelfNG converter in its standard image, but there is no
+Helm-specific upgrade bridge. Keep the current release, PVC, and independent
+backup until the operator has reviewed the migration guide and prepared the
+ChaptarrNG deployment. The handoff uses the same ChaptarrNG image as a fresh
+installation; no compatibility image is maintained. See the
+[migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
+and [channel status](https://github.com/snapetech-org/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md).
 
 This chart runs BookshelfNG as one StatefulSet replica and persists `/config`
 with a PVC. BookshelfNG's SQLite database must not be shared by multiple active
@@ -23,8 +23,8 @@ helm upgrade --install bookshelfng \
 ```
 
 For an existing Softcover deployment, keep its configuration and data backed
-up until provider settings have been reviewed for ChaptarrNG. Use `values.yaml` to configure
-storage, ingress, service type, resources, and Kubernetes environment values.
+up until provider settings have been reviewed for ChaptarrNG. Use `values.yaml`
+to configure storage, ingress, service type, resources, and Kubernetes environment values.
 Reference Kubernetes Secrets through `extraEnv[].valueFrom` for credentials; do
 not put provider tokens in Helm values committed to source.
 

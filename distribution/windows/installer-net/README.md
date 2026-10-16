@@ -2,10 +2,12 @@
 
 **This installer still installs and upgrades BookshelfNG.** It does not switch
 the Windows service to ChaptarrNG. New deployments should use ChaptarrNG where
-available; existing Windows installations need a tested Windows-specific
-bridge before changing the service or data directory. The current migration
-candidate does not cover this installer. See the
-[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
+available. The ChaptarrNG `v0.9.972` converter supports the migration-158
+SQLite database, but this installer does not change the service, data
+directory, or package identity. Review the
+[migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
+and the [channel status](https://github.com/snapetech-org/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md)
+before planning a Windows handoff.
 
 A self-contained .NET WPF installer for deploying BookshelfNG as a Windows service. It keeps the compatible Readarr service and data paths used by existing installations.
 
