@@ -10,7 +10,7 @@
 +++ INDEX_STAGE_1:README.md
 @@ -71,18 +71,12 @@
  ### ChaptarrNG consolidation status
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The planned retirement of BookshelfNG carries its enhanced features into
 -ChaptarrNG. That transition is still in progress: no converter or BookshelfNG
 -channel bridge has been released. The local ChaptarrNG integration candidate
@@ -29,7 +29,7 @@
  directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
 -tracks the remaining feature, database, and distribution blockers.
 +tracks feature, database, and distribution blockers.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
  ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG
 @@ -162,9 +156,8 @@
@@ -47,7 +47,7 @@
 @@ -608,13 +601,4 @@
  under GPLv3, and BookshelfNG is distributed under the terms of GPLv3. See
  [LICENSE](LICENSE.md).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -BookshelfNG is maintained as a fork because its standalone library model and
 -SeerrNG integration go beyond the current Bookshelf parent API. The upstream
 -Bookshelf README describes one type of a book per instance; BookshelfNG can
@@ -56,14 +56,14 @@
 -reviewed in the [capability and compatibility guide](docs/capabilities-and-compatibility.md),
 -which records what is shared, what this fork maintains, and what would need to
 -be available before SeerrNG could replace it.
--
+-[whitespace-only line: 0 spaces, 0 tabs]
  Copyright 2025–2026.
 --- HEAD:README.md
 +++ INDEX_STAGE_3:README.md
 @@ -15,11 +15,14 @@
  Published containers and native release
  archives include the required runtime; source builds require the .NET 10 SDK.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -On Unraid, install [BookshelfNG from Community Apps](https://ca.unraid.net/apps/bookshelfng-1fdcqrv18pja7r).
 -See the [Unraid installation guide](https://github.com/snapetech/bookshelfng-unraid#installation-and-setup)
 -for persistent storage, download paths, and Hardcover setup. The package uses
@@ -77,13 +77,13 @@
 +before switching. The migration is being built into the standard ChaptarrNG
 +release; it will not require a separate compatibility image. SeerrNG
 +integration is optional.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  BookshelfNG is for people who want Readarr-style book automation with a choice
  of metadata providers. Goodreads-compatible metadata services and native
 @@ -70,19 +73,17 @@
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ### ChaptarrNG consolidation status
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -The planned retirement of BookshelfNG carries its enhanced features into
 -ChaptarrNG. That transition is still in progress: no converter or BookshelfNG
 -channel bridge has been released. The local ChaptarrNG integration candidate
@@ -108,13 +108,13 @@
 +the plan. See the [migration guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 +and [consolidation report](docs/maintainers/chaptarr-consolidation.md) for the
 +remaining feature, database, and distribution blockers.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
  ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG
 @@ -608,13 +609,4 @@
  under GPLv3, and BookshelfNG is distributed under the terms of GPLv3. See
  [LICENSE](LICENSE.md).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -BookshelfNG is maintained as a fork because its standalone library model and
 -SeerrNG integration go beyond the current Bookshelf parent API. The upstream
 -Bookshelf README describes one type of a book per instance; BookshelfNG can
@@ -123,14 +123,14 @@
 -reviewed in the [capability and compatibility guide](docs/capabilities-and-compatibility.md),
 -which records what is shared, what this fork maintains, and what would need to
 -be available before SeerrNG could replace it.
--
+-[whitespace-only line: 0 spaces, 0 tabs]
  Copyright 2025–2026.
 --- INDEX:README.md
 +++ WORKTREE:README.md
 @@ -15,11 +15,16 @@
  Published containers and native release
  archives include the required runtime; source builds require the .NET 10 SDK.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -On Unraid, install [BookshelfNG from Community Apps](https://ca.unraid.net/apps/bookshelfng-1fdcqrv18pja7r).
 -See the [Unraid installation guide](https://github.com/snapetech/bookshelfng-unraid#installation-and-setup)
 -for persistent storage, download paths, and Hardcover setup. The package uses
@@ -146,13 +146,13 @@
 +BookshelfNG appdata until a compatible release and explicit instructions are
 +published. See the [migration status report](docs/maintainers/chaptarr-consolidation.md).
 +SeerrNG integration is optional.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  BookshelfNG is for people who want Readarr-style book automation with a choice
  of metadata providers. Goodreads-compatible metadata services and native
 @@ -70,19 +75,18 @@
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ### ChaptarrNG consolidation status
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -The planned retirement of BookshelfNG carries its enhanced features into
 -ChaptarrNG. That transition is still in progress: no converter or BookshelfNG
 -channel bridge has been released. The local ChaptarrNG integration candidate
@@ -178,7 +178,7 @@
 +and migration instructions are available. See the
 +[consolidation report](docs/maintainers/chaptarr-consolidation.md) for the
 +remaining feature, database, and distribution blockers.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
  ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG
 
@@ -187,7 +187,7 @@
 +++ INDEX:charts/bookshelfng/README.md
 @@ -1,4 +1,13 @@
  # BookshelfNG Helm chart
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +**Legacy chart for existing BookshelfNG deployments.** Do not use it for a new
 +installation. The ChaptarrNG candidate adds BookshelfNG migration to its
 +ordinary image, but that release and a BookshelfNG Helm chart handoff are not
@@ -196,13 +196,13 @@
 +same ChaptarrNG image as a fresh installation; no compatibility image is
 +maintained. See the
 +[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  This chart runs BookshelfNG as one StatefulSet replica and persists `/config`
  with a PVC. BookshelfNG's SQLite database must not be shared by multiple active
 @@ -13,8 +22,8 @@
    --version 0.4.21-20
  ```
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -For a Softcover image, clear the release digest and select the profile tag:
 -`--set image.digest="" --set image.tag=softcover`. Use `values.yaml` to configure
 +For an existing Softcover deployment, keep its configuration and data backed
@@ -218,7 +218,7 @@
  maintained. See the
 -[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
 +[migration status](https://github.com/snapetech/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  This chart runs BookshelfNG as one StatefulSet replica and persists `/config`
  with a PVC. BookshelfNG's SQLite database must not be shared by multiple active
 
@@ -227,16 +227,16 @@
 +++ INDEX:distribution/windows/installer-net/README.md
 @@ -1,4 +1,11 @@
  # BookshelfNG Windows Installer
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +**This installer still installs and upgrades BookshelfNG.** It does not switch
 +the Windows service to ChaptarrNG. New deployments should use ChaptarrNG where
 +available; existing Windows installations need a tested Windows-specific
 +bridge before changing the service or data directory. The current migration
 +candidate does not cover this installer. See the
 +[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  A self-contained .NET WPF installer for deploying BookshelfNG as a Windows service. It keeps the compatible Readarr service and data paths used by existing installations.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 --- INDEX:distribution/windows/installer-net/README.md
 +++ WORKTREE:distribution/windows/installer-net/README.md
 @@ -5,7 +5,7 @@
@@ -245,9 +245,9 @@
  candidate does not cover this installer. See the
 -[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
 +[migration status](https://github.com/snapetech/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  A self-contained .NET WPF installer for deploying BookshelfNG as a Windows service. It keeps the compatible Readarr service and data paths used by existing installations.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 
 ===== docs/distribution.md =====
 --- HEAD:docs/distribution.md
@@ -269,13 +269,13 @@
 +updaters require an explicit update. See the
  [BookshelfNG-to-ChaptarrNG distribution bridge matrix](maintainers/chaptarr-consolidation.md#distribution-bridge-matrix)
  for the per-channel requirements and current release gates.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 --- HEAD:docs/distribution.md
 +++ INDEX_STAGE_3:docs/distribution.md
 @@ -6,17 +6,15 @@
  builds platform archives and packages, attaches checksums, then publishes the
  release and sends the existing Discord announcement.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -These workflows currently publish BookshelfNG. The proposed move to
 -ChaptarrNG does not yet change any installed package, image, or updater, and no
 -compatibility bridge has been released. A safe transition must keep each old
@@ -298,14 +298,14 @@
 +channel-specific update. See the
  [BookshelfNG-to-ChaptarrNG distribution bridge matrix](maintainers/chaptarr-consolidation.md#distribution-bridge-matrix)
  for the per-channel requirements and current release gates.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 @@ -40,6 +38,20 @@
  skipped. It does not claim an upload succeeded unless the publisher command
  returns success. Configure the publisher settings and credentials listed below
  before expecting an external package store to receive a release.
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +## Retirement candidate (not published)
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +The ChaptarrNG release workflow publishes one standard image set for new and
 +migrated installations. Its executable includes the BookshelfNG preview/apply
 +migration utility; the same image handles automatic startup conversion when it
@@ -317,15 +317,15 @@
 +AUR, Chocolatey, Debian, and other native package identities remain open
 +channel-specific bridges. Existing pinned tags, manual installs, and disabled
 +updaters cannot be changed by a server-side redirect.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Publisher credentials and settings
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 --- INDEX:docs/distribution.md
 +++ WORKTREE:docs/distribution.md
 @@ -6,17 +6,17 @@
  builds platform archives and packages, attaches checksums, then publishes the
  release and sends the existing Discord announcement.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -These workflows currently publish BookshelfNG. The proposed move to
 -ChaptarrNG does not yet change any installed package, image, or updater, and no
 -compatibility bridge has been released. A safe transition must keep each old
@@ -350,14 +350,14 @@
 +require a channel-specific update. See the
  [BookshelfNG-to-ChaptarrNG distribution bridge matrix](maintainers/chaptarr-consolidation.md#distribution-bridge-matrix)
  for the per-channel requirements and current release gates.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 @@ -40,6 +40,20 @@
  skipped. It does not claim an upload succeeded unless the publisher command
  returns success. Configure the publisher settings and credentials listed below
  before expecting an external package store to receive a release.
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +## Retirement candidate (not published)
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +The ChaptarrNG release workflow publishes one standard image set for new and
 +migrated installations. Its executable includes the BookshelfNG preview/apply
 +migration utility; the same image handles automatic startup conversion when it
@@ -369,16 +369,16 @@
 +AUR, Chocolatey, Debian, and other native package identities remain open
 +channel-specific bridges. Existing pinned tags, manual installs, and disabled
 +updaters cannot be changed by a server-side redirect.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Publisher credentials and settings
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 
 ===== docs/maintainers/bookshelfng-parity-roadmap.md =====
 --- HEAD:docs/maintainers/bookshelfng-parity-roadmap.md
 +++ INDEX_STAGE_1:docs/maintainers/bookshelfng-parity-roadmap.md
 @@ -1,11 +1,8 @@
  # BookshelfNG feature inventory and ChaptarrNG retirement matrix
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  **Reviewed:** 2026-10-13. **Status:** the BookshelfNG-to-ChaptarrNG
 -consolidation is in progress; BookshelfNG is not ready to retire. The local
 -ChaptarrNG integration candidate has an uncommitted staged importer for the
@@ -388,7 +388,7 @@
 +consolidation is in progress; BookshelfNG is not ready to retire. The candidate
 +has no populated-library converter or release bridge. This is a feature-level
  matrix, not a claim that similarly named features are equivalent.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  **Confidence:** high for the listed BookshelfNG behavior at the pinned
 @@ -68,7 +65,7 @@
  | Vendored TagLibSharp MPEG-4 `chpl` handling | Patch includes byte-preserving chapter-list writes | The local Chaptarr candidate vendors this fork and passes a synthetic version-1 `chpl` fixture that checks exact atom preservation during a title write. The vendor includes its LGPL-2.1 `COPYING` file; its strong-name key matches the key already committed with the BookshelfNG vendor source. | **Local port and focused regression pass; broader compatibility remains an open blocker.** Validate representative M4B files, tag edits, conversion outputs, and failure cases; review continued use of the vendor signing identity and upstream the supported implementation. |
@@ -400,7 +400,7 @@
  | Previewable media moves, bulk moves, and extra-file handling | Preview, collision checks, registered sidecars, and format-aware paths | Chaptarr has different folder and organization behavior | **Open blocker.** Prove equivalent previews, collision and cross-device behavior, and that unknown/external files remain untouched. |
  | Optional privacy-preserving diagnostics | Separate module, explicit opt-in, aggregate-only event schema | No equivalent optional module identified | **Open blocker.** Retain its install/opt-in and data-minimization contract or record a reviewed replacement with the same operator choice. |
 @@ -82,24 +79,12 @@
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The [consolidation report](chaptarr-consolidation.md) records exact source and
  target revisions, current implementation findings, the data-conversion
 -contract, release-channel matrix, test results, and open gates. The integrated
@@ -447,7 +447,7 @@
 +released BookshelfNG `.69` database samples inspected were empty; a separate
 +synthetic populated fixture has only been tested for safe rejection before
 +migration, not successful conversion.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The BookshelfNG and ChaptarrNG databases have different schemas and identity
 -models. The local converter handles only the exact BookshelfNG migration-158
 -SQLite schema; unsupported schemas and provider identities fail closed with
@@ -459,7 +459,7 @@
 +convert it. The current ChaptarrNG lineage guard rejects the inspected
 +BookshelfNG databases before migration. A separate converter must preserve the
 +source and produce a new native ChaptarrNG database.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  Retirement also has a separate distribution gate. BookshelfNG's installed
  updater checks the Readarr-owned update service, so changing Snapetech release
 --- HEAD:docs/maintainers/bookshelfng-parity-roadmap.md
@@ -517,9 +517,9 @@
 -migrations; current fixture evidence and its limits are below.
 +Remote PR #73 remains a separate, older tree. These pins describe audited
 +source trees, not a released converter or a retirement-ready transition.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Pinned evidence and preservation
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 @@ -24,52 +20,40 @@
    `ace06bc2766d26c8c5951563dd22679a486870bb`. Later documentation-only
    commits refresh the report without changing this source-code comparison.
@@ -544,7 +544,7 @@
 -  receipt export and adds a workflow-order regression check. Its exact-head
 -  hosted run is pending. Earlier local full Core, Chromium, rename/path, and
 -  M4B fixture results remain tied to their recorded snapshots.
--
+-[whitespace-only line: 0 spaces, 0 tabs]
 -  The focused converter coordinator fixture passes 5/5 and the current
 -  populated importer/startup fixture passes 5/5. The fixture exercises mixed
 -  media and profile mapping, edition cover/link and narrator data,
@@ -585,7 +585,7 @@
 +  submission passed; build, release-note, package-sync, and four CodeQL checks
 +  were queued at the time of this report update. Those results apply only to
 +  that exact head.
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +  After the latest row-accounting change, the focused converter fixture passes
 +  5/5 and the Release console build has zero warnings or errors. The complete
 +  Core suite then passed on the current candidate: 4,038 passed, 0 failed, and
@@ -607,7 +607,7 @@
 @@ -195,20 +179,20 @@
  Every one of the source's 39 tables needs an explicit preserve, transform,
  rebuild, or deliberate-reset disposition; no table may disappear by omission.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -The current candidate is SQLite-only and only supports the exact migration-158
 -Bookshelf schema. The populated fixture validates a subset of table
 -dispositions; complete provider/configuration coverage, PostgreSQL import, and
@@ -616,13 +616,13 @@
 +conversion, and automatic discovery of a Bookshelf data directory are not
 +implemented. Its small unit fixture uses synthetic tables and a synthetic
 +import callback; it does not validate any of the table dispositions above.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The first-pass disposition below names every table in the released `.69`
 -schema. Some mappings now exist in the local candidate, but each remains open
 -until populated fixtures and real-data checks validate its semantics.
 +schema. These are conversion requirements, not proof that the converter exists;
 +each mapping remains open until populated fixtures exercise it.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  | BookshelfNG source tables | Proposed ChaptarrNG disposition | Required checks |
  | --- | --- | --- |
  | `AuthorMetadata` | Transform into native `Authors` metadata and provider identity columns | Preserve all populated metadata and qualify provider IDs; retain ambiguous identities for review. |
@@ -633,7 +633,7 @@
  | `BookFiles`, `ExtraFiles`, `MetadataFiles` | Preserve file paths and metadata while remapping author, book, edition and file foreign keys | Confirm every path/size/timestamp/part and Calibre reference; never move or delete media. |
  | `Users` | Preserve username, identifier and legacy password hash in native `Users` | Prove legacy login and one-time salted-hash upgrade; never copy fixture or production credentials into logs. |
 @@ -220,71 +204,77 @@
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The released `.69` SQLite schema is not a table-for-table copy. An isolated
  runtime probe on October 13, 2026 found 39 Bookshelf tables at migration 158
 -and 79 Chaptarr tables at migration 119. Both fresh databases passed
@@ -644,7 +644,7 @@
 -`Authors` plus a separate `AuthorMetadata` table and links `Books` through
 -`AuthorMetadataId` and `ForeignBookId`. Chaptarr folds provider metadata into
 -`Authors` and uses media-scoped `Books`/`Editions` relationships.
--
+-[whitespace-only line: 0 spaces, 0 tabs]
 -The local ChaptarrNG integration worktree now has a SQLite staging coordinator
 -and row importer wired into the full startup migration path. It accepts only
 -the exact BookshelfNG migration-158 table set; older or altered schemas fail
@@ -660,9 +660,9 @@
 -The coordinator fixtures pass 5/5; the populated startup/import fixture passes
 -5/5. This is still uncommitted candidate code, not a released converter or
 -proof of production-database compatibility.
--
+-[whitespace-only line: 0 spaces, 0 tabs]
 -Several compatibility questions remain after the first populated fixture:
--
+-[whitespace-only line: 0 spaces, 0 tabs]
 -- Mixed source books now split into media-specific target rows. Editions,
 -  files, series links, and file-specific history follow the mapped target row;
 -  generic book-level history retains the source ID, which is the primary
@@ -686,13 +686,13 @@
 -  contracts, credentials, path aliases, and source-only settings still need a
 -  full field audit; non-empty unmatched columns in direct-copy tables now fail
 -  closed.
--
+-[whitespace-only line: 0 spaces, 0 tabs]
 -The populated fixture covers dual-format books, file-specific history,
 -bookless download history, a supported blocklist identity, settings, users,
 -notifications, and an orphaned extra-file reference. Unsupported provider and
 -ambiguous monitoring cases preserve the source bytes. Real databases, old
 -schemas, every provider/setting contract, and client behavior remain open.
--
+-[whitespace-only line: 0 spaces, 0 tabs]
 -Chaptarr's app-folder resolver keeps a non-empty `chaptarr.db`, selects exactly
 -one `readarr.db` or `audioarr.db` only when the primary is absent or empty, and
 -rejects multiple legacy candidates. It resolves filenames before database
@@ -711,7 +711,7 @@
 +metadata into `Authors` and uses media-scoped `Books`/`Editions` relationships.
 +A row copy or table rename cannot preserve those relationships; conversion
 +needs explicit entity and foreign-key maps.
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +ChaptarrNG now has a SQLite staging coordinator that snapshots a file-backed
 +source, migrates a separate target, invokes an importer, validates SQLite
 +integrity, and only then promotes the target while retaining a source backup.
@@ -724,10 +724,10 @@
 +Bookshelf row importer is implemented, the coordinator is not wired into
 +startup, and no populated conversion has passed. The tests do not establish
 +configuration, identity, or feature parity.
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +Several target-model gaps are already concrete and must be resolved before
 +the converter can claim complete data preservation:
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +- One Bookshelf `Books` row can have audiobook and ebook editions. Chaptarr
 +  stores a media type on each book row, so conversion can produce multiple
 +  target book IDs for one source ID. Every dependent edition, file, series
@@ -756,11 +756,11 @@
 +  `BookFiles` rows and preserve them through a semantically correct target
 +  representation or an explicit schema change; assigning an unrelated book
 +  file is invalid.
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +These are implementation gates, not cleanup details. Add populated fixtures
 +for dual-format books, author-level download history, unresolved blocklist
 +identities, and unassociated extra files before enabling automatic promotion.
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +Chaptarr's app-folder resolver returns an existing `chaptarr.db`; if it is
 +absent, it selects the first existing legacy file in `readarr.db`, then
 +`audioarr.db` order. It does not inspect file size or schema, or reject multiple
@@ -772,13 +772,13 @@
 +backup, but startup does not call it and the actual Bookshelf row/configuration
 +importer is not implemented. Successful populated conversion is still
 +pending.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The converter must identify the exact Bookshelf database family and supported
  schema version before writing. It must stop both applications, checkpoint
 @@ -316,15 +306,16 @@
  checks. The combined matrix is maintained in the ChaptarrNG
  [fork feature guide](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -The maintained backlog snapshot `24b340f` was historically 317 commits ahead
 -of and 4 behind `origin/main` at `660cc034`, across 703 changed paths. PR #76
 -later integrated that work into main at `b2827c7a`; PRs #69–#75 are merged.
@@ -797,7 +797,7 @@
 -before release.
 +Draft PR #73's metadata-preference port is on a separate branch and remains an
 +individual blocker. Those active capabilities count before merge or release.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  | BookshelfNG capability or change | ChaptarrNG candidate finding | Retirement status | Required disposition and evidence |
  | --- | --- | --- | --- |
 @@ -338,7 +329,7 @@
@@ -812,7 +812,7 @@
 @@ -393,14 +384,12 @@
  conflicts. The legacy package can remain a thin maintained compatibility package
  after application development stops. Source retirement is not publisher retirement.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -**Current state: bridge implementation not started.** The local converter has
 -passed a synthetic populated-library startup test in a self-contained Linux
 -artifact on the isolated VM, but no BookshelfNG compatibility image, package,
@@ -827,7 +827,7 @@
 +the Readarr-owned service, and fixed tags/digests, offline hosts, manual
 +archives, and disabled updaters need an explicit update action. Each channel
 +needs its own tested bridge while retaining its existing identity.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  | Existing channel | Bridge needed | Automatic reach / acceptance |
  | --- | --- | --- |
 @@ -454,12 +443,12 @@
@@ -864,7 +864,7 @@
 +uncommitted ChaptarrNG integration worktree now contains an importer for the
  exact BookshelfNG migration-158 SQLite schema, wired into full startup
  migrations; current fixture evidence and its limits are below.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 @@ -24,33 +23,34 @@
    `ace06bc2766d26c8c5951563dd22679a486870bb`. Later documentation-only
    commits refresh the report without changing this source-code comparison.
@@ -902,7 +902,7 @@
 +  submission passed; build, release-note, package-sync, and four CodeQL checks
 +  were queued at the time of this report update. Those results apply only to
 +  that exact head.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
    The focused converter coordinator fixture passes 5/5 and the current
    populated importer/startup fixture passes 5/5. The fixture exercises mixed
    media and profile mapping, edition cover/link and narrator data,
@@ -942,7 +942,7 @@
 @@ -316,15 +318,16 @@
  checks. The combined matrix is maintained in the ChaptarrNG
  [fork feature guide](https://github.com/snapetech/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -The maintained backlog snapshot `24b340f` was historically 317 commits ahead
 -of and 4 behind `origin/main` at `660cc034`, across 703 changed paths. PR #76
 -later integrated that work into main at `b2827c7a`; PRs #69–#75 are merged.
@@ -961,7 +961,7 @@
 -before release.
 +Draft PR #73's metadata-preference port is on a separate branch and remains an
 +individual blocker. Those active capabilities count before merge or release.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  | BookshelfNG capability or change | ChaptarrNG candidate finding | Retirement status | Required disposition and evidence |
  | --- | --- | --- | --- |
 @@ -338,14 +341,14 @@
@@ -979,12 +979,12 @@
 -| Release notes, announcements, package sync, and validation workflow | ChaptarrNG has separate release and validation workflows | **Open blocker — legacy identities not bridged** | Preserve old package/container IDs through tested compatibility artifacts; complete required per-repository validation without duplicate publication. |
 +| Release notes, announcements, package sync, and validation workflow | ChaptarrNG has separate release and validation workflows | **Open blocker — legacy identities not bridged** | Preserve old package/container IDs through tested aliases and bridge packages carrying the ordinary ChaptarrNG artifact; do not create a second application build. Complete required per-repository validation without duplicate publication. |
  | Every remaining fork change in the pinned source inventory | 412 reachable post-fork commits and 1,039 net-changed paths are recorded at the current committed source and target pins | **Open blocker — exhaustive disposition pending** | Mark every path retained, ported, proven equivalent, or explicitly retired after impact review. |
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The commit/path inventory remains the exhaustive review ledger. Every
 @@ -393,24 +396,29 @@
  conflicts. The legacy package can remain a thin maintained compatibility package
  after application development stops. Source retirement is not publisher retirement.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -**Current state: bridge implementation not started.** The local converter has
 -passed a synthetic populated-library startup test in a self-contained Linux
 -artifact on the isolated VM, but no BookshelfNG compatibility image, package,
@@ -1004,7 +1004,7 @@
 +hosts, manual archives, and disabled updaters need a channel-specific update
 +action. Each bridge must keep the old install identity while delivering the
 +same ChaptarrNG build used by fresh installs.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  | Existing channel | Bridge needed | Automatic reach / acceptance |
  | --- | --- | --- |
 -| GHCR and Docker Hub `latest`, `hardcover`, `softcover`, existing edge aliases | Existing images expose port 8787 with `/config`, `/data`, `/download`, PUID/PGID, TZ, and flavor variables. Publish tested Chaptarr compatibility images under those old mutable identities; configure Chaptarr to retain the old port and translate old settings. | Next pull/recreate or configured updater if Snapetech can publish to both old packages; test each flavor and architecture. Registry names do not redirect by themselves, and immutable pins remain unchanged. |
@@ -1024,7 +1024,7 @@
  | macOS/Linux/FreeBSD archives | Legacy named wrapper/payload and migration-aware launcher in new bridge assets | Manual replacement unless an existing owned updater is subscribed; verify each platform rather than assuming Linux proof |
  | AppImage | Legacy desktop/launcher/data identity and new bridge asset; inspect existing embedded update metadata | No blanket automatic update promise; demonstrate actual existing updater if any |
 @@ -427,8 +435,10 @@
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  1. Complete pinned feature/commit review, bridge inventory and recovery design.
  2. Port independent missing features with native target tests and release notes.
 -3. Build lineage guard, converter, compatibility aliases and legacy image/package
@@ -1049,9 +1049,9 @@
 -   Keep old images/assets and the compatibility release machinery available.
 +   Keep the old package/image identities and their bridge publisher workflow
 +   available until the channel retirement criteria are met.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Evidence ledger
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  | Area | Current evidence | Remaining blocker |
  | --- | --- | --- |
  | BookshelfNG source inventory | Committed source `9b08479` compared with committed integration target `683924d`: 412 reachable commits, 403 absent from the pinned Bookshelf lineage ref, and 1,039 changed paths. Dirty worktree changes are outside this generated inventory. | Path classification is not feature equivalence; review and disposition every path, then regenerate after committing the current candidate. |
@@ -1080,7 +1080,7 @@
 +a retirement-ready transition. That worktree contains an importer for the
  exact BookshelfNG migration-158 SQLite schema, wired into full startup
  migrations; current fixture evidence and its limits are below.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 @@ -32,25 +32,23 @@
    beyond the committed base; none are in the generated source/target inventory
    and all remain part of the blocker review.
@@ -1102,7 +1102,7 @@
 +  head `c0ba1f2` has a new Windows build in progress, so the old result does
 +  not describe the current candidate. The integration worktree and its test
 +  evidence are a separate snapshot, not validation of PR #78's current head.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
    The focused converter coordinator fixture passes 5/5 and the current
    populated importer/startup fixture passes 5/5. The fixture exercises mixed
    media and profile mapping, edition cover/link and narrator data,
@@ -1144,12 +1144,12 @@
 -| Release notes, announcements, package sync, and validation workflow | ChaptarrNG has separate release and validation workflows | **Open blocker — legacy identities not bridged** | Preserve old package/container IDs through tested compatibility artifacts; complete required per-repository validation without duplicate publication. |
 +| Release notes, announcements, package sync, and validation workflow | ChaptarrNG has separate release and validation workflows | **Open blocker — legacy identities not bridged** | Preserve old package/container IDs through tested aliases and bridge packages carrying the ordinary ChaptarrNG artifact; do not create a second application build. Complete required per-repository validation without duplicate publication. |
  | Every remaining fork change in the pinned source inventory | 412 reachable post-fork commits and 1,039 net-changed paths are recorded at the current committed source and target pins | **Open blocker — exhaustive disposition pending** | Mark every path retained, ported, proven equivalent, or explicitly retired after impact review. |
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The commit/path inventory remains the exhaustive review ledger. Every
 @@ -393,24 +391,28 @@
  conflicts. The legacy package can remain a thin maintained compatibility package
  after application development stops. Source retirement is not publisher retirement.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -**Current state: bridge implementation not started.** The local converter has
 -passed a synthetic populated-library startup test in a self-contained Linux
 -artifact on the isolated VM, but no BookshelfNG compatibility image, package,
@@ -1170,7 +1170,7 @@
 +tags/digests, offline hosts, manual archives, and disabled updaters need an
 +explicit channel-specific update. Each bridge must keep the old install
 +identity while delivering a tested ChaptarrNG build.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  | Existing channel | Bridge needed | Automatic reach / acceptance |
  | --- | --- | --- |
 -| GHCR and Docker Hub `latest`, `hardcover`, `softcover`, existing edge aliases | Existing images expose port 8787 with `/config`, `/data`, `/download`, PUID/PGID, TZ, and flavor variables. Publish tested Chaptarr compatibility images under those old mutable identities; configure Chaptarr to retain the old port and translate old settings. | Next pull/recreate or configured updater if Snapetech can publish to both old packages; test each flavor and architecture. Registry names do not redirect by themselves, and immutable pins remain unchanged. |
@@ -1190,7 +1190,7 @@
  | macOS/Linux/FreeBSD archives | Legacy named wrapper/payload and migration-aware launcher in new bridge assets | Manual replacement unless an existing owned updater is subscribed; verify each platform rather than assuming Linux proof |
  | AppImage | Legacy desktop/launcher/data identity and new bridge asset; inspect existing embedded update metadata | No blanket automatic update promise; demonstrate actual existing updater if any |
 @@ -427,8 +429,10 @@
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  1. Complete pinned feature/commit review, bridge inventory and recovery design.
  2. Port independent missing features with native target tests and release notes.
 -3. Build lineage guard, converter, compatibility aliases and legacy image/package
@@ -1215,9 +1215,9 @@
 -   Keep old images/assets and the compatibility release machinery available.
 +   Keep the old package/image identities and their bridge publisher workflow
 +   available until the channel retirement criteria are met.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Evidence ledger
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  | Area | Current evidence | Remaining blocker |
  | --- | --- | --- |
  | BookshelfNG source inventory | Committed source `9b08479` compared with committed integration target `683924d`: 412 reachable commits, 403 absent from the pinned Bookshelf lineage ref, and 1,039 changed paths. Dirty worktree changes are outside this generated inventory. | Path classification is not feature equivalence; review and disposition every path, then regenerate after committing the current candidate. |
@@ -1242,7 +1242,7 @@
 +++ INDEX:docs/standalone-install.md
 @@ -1,4 +1,14 @@
  # Standalone installation
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +**Legacy BookshelfNG installation path.** New deployments should use
 +[ChaptarrNG](https://github.com/snapetech/chaptarrng) and a distribution
 +supported there. This guide remains for maintaining existing BookshelfNG
@@ -1252,7 +1252,7 @@
 +are not available yet. See the
 +[migration status and recovery guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 +before changing an existing installation.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  BookshelfNG is a web application that can run directly on a supported host. It
  does not need SeerrNG or another service to launch, search catalogs, manage a
 --- INDEX:docs/standalone-install.md
@@ -1274,7 +1274,7 @@
 +[BookshelfNG-to-ChaptarrNG status report](https://github.com/snapetech/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md)
 +before changing an existing installation. Keep using the current BookshelfNG
 +image until a converter release and migration instructions are published.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  BookshelfNG is a web application that can run directly on a supported host. It
  does not need SeerrNG or another service to launch, search catalogs, manage a
 
@@ -1283,14 +1283,14 @@
 +++ INDEX:packaging/catalogs/README.md
 @@ -1,4 +1,11 @@
  # Self-hosting catalog deployment
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +These catalog definitions still install BookshelfNG images. They are not a
 +ChaptarrNG migration path, and their existing app identities and stored data
 +have not been migrated. Do not submit new catalog entries from this source
 +while the retirement bridge is incomplete. Each listed platform needs its own
 +tested update that preserves its app identity, volumes, port, and rollback
 +behavior; the current candidate only covers the Unraid template source.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  This directory is the source of truth for the Docker-based self-hosting
  catalog submissions for BookshelfNG. The adapters use the public Docker Hub
 
@@ -1299,13 +1299,13 @@
 +++ INDEX:packaging/cloudron/README.md
 @@ -1,4 +1,10 @@
  # Cloudron community package
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +This is a legacy BookshelfNG package. It does not switch an installed Cloudron
 +app to ChaptarrNG. The package identity, persistent volumes, and rollback need
 +a separate tested migration; do not use it for new deployments during the
 +retirement transition. See the
 +[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The Cloudron package uses the public Hardcover Docker Hub image and persists
  `/config`, `/books`, and `/downloads`. Build it from this directory with the
 --- INDEX:packaging/cloudron/README.md
@@ -1316,7 +1316,7 @@
  retirement transition. See the
 -[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
 +[migration status](https://github.com/snapetech/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The Cloudron package uses the public Hardcover Docker Hub image and persists
  `/config`, `/books`, and `/downloads`. Build it from this directory with the
 
@@ -1325,12 +1325,12 @@
 +++ INDEX:packaging/startos/README.md
 @@ -1,4 +1,9 @@
  # StartOS submission packet
-+
++[whitespace-only line: 0 spaces, 0 tabs]
 +This is a legacy BookshelfNG submission, not a ChaptarrNG upgrade. The StartOS
 +package identity, data contract, and rollback path still need a tested bridge;
 +the current migration candidate does not cover StartOS. See the
 +[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The compiled StartOS wrapper is published at
  https://github.com/snapetech/bookshelfng-startos.
 --- INDEX:packaging/startos/README.md
@@ -1341,7 +1341,7 @@
  the current migration candidate does not cover StartOS. See the
 -[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
 +[migration status](https://github.com/snapetech/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  The compiled StartOS wrapper is published at
  https://github.com/snapetech/bookshelfng-startos.
 
@@ -1351,7 +1351,7 @@
 @@ -1,31 +1,31 @@
 -# BookshelfNG for Unraid
 +# BookshelfNG legacy template for Unraid
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -This repository publishes the standalone BookshelfNG Unraid Docker template.
 -**Built on .NET 10 LTS**, BookshelfNG is a Snapetech NG fork of Bookshelf for
 -ebook and audiobook library management and acquisition. It works independently;
@@ -1361,10 +1361,10 @@
 +the BookshelfNG appdata, media/download mount targets, and default web port.
 +Back up appdata before applying the update. New installations should use the
 +[ChaptarrNG Unraid listing](https://github.com/snapetech/chaptarrng-unraid).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -## Installation and setup
 +## Existing installations
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -In Unraid, open **Apps**, search for **BookshelfNG**, and select **Install** on
 -[the BookshelfNG listing](https://ca.unraid.net/apps/bookshelfng-1fdcqrv18pja7r).
 -For a manual install, use [the template XML](templates/bookshelfng.xml) with Unraid's Docker
@@ -1374,7 +1374,7 @@
 +the standard ChaptarrNG image. Read the [migration
 +guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 +before upgrading. For a manual install, use [the template XML](templates/bookshelfng.xml).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -- Map persistent appdata to `/config` and your media to `/data`.
 -- Map downloads to `/download`, matching your download client's container paths.
 -- Set a personal Hardcover API token in `HARDCOVER_AUTH` or BookshelfNG settings.
@@ -1391,15 +1391,15 @@
 +  previous image if startup does not complete.
 +- A template update does not change containers pinned to another image/tag or
 +  installed outside this Community Applications listing.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Source and support
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -- [BookshelfNG application source and documentation](https://github.com/snapetech/bookshelfng)
 -- [Unraid package and SeerrNG integration support](https://github.com/snapetech/seerrng/issues)
 +- [ChaptarrNG migration guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 +- [ChaptarrNG application source](https://github.com/snapetech/chaptarrng)
 +- [Unraid package support](https://github.com/snapetech/seerrng/issues)
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -BookshelfNG is derived from Bookshelf and Readarr and distributed under GPLv3.
 -This template repository uses the same GPLv3 license.
 +This template repository is distributed under GPLv3.
@@ -1407,7 +1407,7 @@
 +++ WORKTREE:packaging/unraid/README.md
 @@ -1,30 +1,29 @@
  # BookshelfNG legacy template for Unraid
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -This legacy listing is being retired in favor of ChaptarrNG. The updated
 -template switches the image to ChaptarrNG's standard build while preserving
 -the BookshelfNG appdata, media/download mount targets, and default web port.
@@ -1418,9 +1418,9 @@
 +targets, and default web port. The converter is not released, so do not apply
 +the proposed template yet. New installations should use the
  [ChaptarrNG Unraid listing](https://github.com/snapetech/chaptarrng-unraid).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Existing installations
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -Open **Apps > Previous Apps** and apply the updated BookshelfNG template using
 -the standard ChaptarrNG image. Read the [migration
 -guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
@@ -1429,7 +1429,7 @@
 +Wait for a ChaptarrNG release with the converter and migration instructions
 +before changing the image. Review the [migration status report](https://github.com/snapetech/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md).
 +For a manual install, use [the template XML](templates/bookshelfng.xml).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -- Keep the existing `/config`, `/data`, and `/download` mappings, PUID/PGID,
 -  timezone, Hardcover variables, and port 8787.
 -- The first ChaptarrNG startup converts only the supported BookshelfNG
@@ -1444,14 +1444,14 @@
 +retains a source backup; unsupported databases fail closed. A template update
 +does not change containers pinned to another image/tag or installed outside
 +this Community Applications listing.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Source and support
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -- [ChaptarrNG migration guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 +- [ChaptarrNG migration status report](https://github.com/snapetech/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md)
  - [ChaptarrNG application source](https://github.com/snapetech/chaptarrng)
  - [Unraid package support](https://github.com/snapetech/seerrng/issues)
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 
 ===== packaging/unraid/ca_profile.xml =====
 --- HEAD:packaging/unraid/ca_profile.xml
@@ -1483,7 +1483,7 @@
 @@ -1,28 +1,28 @@
 -# Install BookshelfNG on Unraid
 +# BookshelfNG Unraid retirement template
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -BookshelfNG is a Snapetech NG fork of Bookshelf for ebook and audiobook library
 -management and acquisition. It works independently; SeerrNG integration is optional.
 +This legacy listing moves existing installations to ChaptarrNG. The updated
@@ -1491,10 +1491,10 @@
 +image to the ChaptarrNG standard build. Back up appdata first. New
 +installations should use the [ChaptarrNG Unraid
 +listing](https://github.com/snapetech/chaptarrng-unraid).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -## Installation and setup
 +## Existing installations
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -In Unraid, open **Apps**, search for **BookshelfNG**, and select **Install** on
 -[the BookshelfNG listing](https://ca.unraid.net/apps/bookshelfng-1fdcqrv18pja7r).
 -For a manual install, use [the template XML](../templates/bookshelfng.xml) with Unraid's Docker
@@ -1503,7 +1503,7 @@
 +Open **Apps > Previous Apps** and apply the updated BookshelfNG template using
 +the standard ChaptarrNG image. Read the [migration guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 +before upgrading. For a manual install, use [the template XML](../templates/bookshelfng.xml).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -- Map persistent appdata to `/config` and your media to `/data`.
 -- Map downloads to `/download`, matching your download client's container paths.
 -- Set a personal Hardcover API token in `HARDCOVER_AUTH` or BookshelfNG settings.
@@ -1520,12 +1520,12 @@
 +  previous image if startup does not complete.
 +- A template update does not affect containers pinned to other images or
 +  installed outside this Community Applications listing.
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Source and support
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -- [BookshelfNG application source and documentation](https://github.com/snapetech/bookshelfng)
 -- [Unraid package and SeerrNG integration support](https://github.com/snapetech/seerrng/issues)
--
+-[whitespace-only line: 0 spaces, 0 tabs]
 -BookshelfNG is derived from Bookshelf and Readarr and distributed under GPLv3.
 +- [ChaptarrNG migration guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 +- [ChaptarrNG application source](https://github.com/snapetech/chaptarrng)
@@ -1534,7 +1534,7 @@
 +++ WORKTREE:packaging/unraid/docs/installation.md
 @@ -1,21 +1,22 @@
  # BookshelfNG Unraid retirement template
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -This legacy listing moves existing installations to ChaptarrNG. The updated
 -template preserves the BookshelfNG data and media mappings while changing the
 -image to the ChaptarrNG standard build. Back up appdata first. New
@@ -1544,16 +1544,16 @@
 +to ChaptarrNG's standard build. The converter is not released; do not apply the
 +proposed template yet. New installations should use the [ChaptarrNG Unraid
  listing](https://github.com/snapetech/chaptarrng-unraid).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Existing installations
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -Open **Apps > Previous Apps** and apply the updated BookshelfNG template using
 -the standard ChaptarrNG image. Read the [migration guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 +Keep using the current BookshelfNG image and retain a verified appdata backup.
 +Wait for a ChaptarrNG release with the converter and migration instructions
 +before changing the image. Review the [migration status report](https://github.com/snapetech/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md)
  before upgrading. For a manual install, use [the template XML](../templates/bookshelfng.xml).
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  - Keep the existing `/config`, `/data`, `/download`, PUID/PGID, timezone,
    Hardcover variables, and port 8787 mappings.
 -- The first ChaptarrNG startup converts only the supported BookshelfNG
@@ -1564,9 +1564,9 @@
    previous image if startup does not complete.
  - A template update does not affect containers pinned to other images or
 @@ -23,6 +24,6 @@
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
  ## Source and support
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
 -- [ChaptarrNG migration guide](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 +- [ChaptarrNG migration status report](https://github.com/snapetech/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md)
  - [ChaptarrNG application source](https://github.com/snapetech/chaptarrng)
@@ -1607,7 +1607,7 @@
 +  <Changes>Transition template: apply the regular ChaptarrNG release to the existing BookshelfNG data directory. Keep an independent appdata backup until conversion and validation finish.</Changes>
 +  <Requires>Docker and persistent appdata. Stop BookshelfNG before applying this update. New installations should use the ChaptarrNG template.</Requires>
    <ExtraParams>--restart=unless-stopped</ExtraParams>
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
    <Config Name="Web UI Port" Target="8787" Default="8787" Mode="tcp" Description="Web UI Port for the standalone web interface." Type="Port" Display="always" Required="false" Mask="false">8787</Config>
 -  <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/bookshelfng" Mode="rw" Description="Persistent BookshelfNG database, settings, and logs." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/bookshelfng</Config>
 -  <Config Name="Media" Target="/data" Default="/mnt/user/media" Mode="rw" Description="Ebook and audiobook library root." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/media</Config>
@@ -1638,7 +1638,7 @@
    <Changes>Transition template: apply the regular ChaptarrNG release to the existing BookshelfNG data directory. Keep an independent appdata backup until conversion and validation finish.</Changes>
 @@ -21,7 +21,7 @@
    <ExtraParams>--restart=unless-stopped</ExtraParams>
- 
+ [whitespace-only line: 0 spaces, 0 tabs]
    <Config Name="Web UI Port" Target="8787" Default="8787" Mode="tcp" Description="Web UI Port for the standalone web interface." Type="Port" Display="always" Required="false" Mask="false">8787</Config>
 -  <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/bookshelfng" Mode="rw" Description="Existing BookshelfNG appdata; ChaptarrNG converts its supported database on first startup." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/bookshelfng</Config>
 +  <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/bookshelfng" Mode="rw" Description="Existing BookshelfNG appdata; the proposed ChaptarrNG converter supports migration-158 SQLite after its release." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/bookshelfng</Config>
