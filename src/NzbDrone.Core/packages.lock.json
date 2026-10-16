@@ -237,11 +237,12 @@
       },
       "Servarr.FluentMigrator.Runner.SQLite": {
         "type": "Direct",
-        "requested": "[3.3.2.9, )",
-        "resolved": "3.3.2.9",
-        "contentHash": "wF35gswBUZodu+kkhypMB30Z5+ZTD1o5DPxYy+T/jW+5LXxN5JcBt0qMKtVNFb/K2WHgNCPnayYDHK8D2WnbNw==",
+        "requested": "[5.2.0.10, )",
+        "resolved": "5.2.0.10",
+        "contentHash": "CJ9RKVz9bantvldWlK824shjyaZzSyOSAG4fayjljtryuBfcp6ClJ2TVh7TjQKqQjbk4nfDLOygzuTC/ft8BRA==",
         "dependencies": {
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
+          "Servarr.FluentMigrator": "5.2.0.10",
+          "Servarr.FluentMigrator.Runner.Core": "5.2.0.10"
         }
       },
       "SkiaSharp": {
@@ -640,20 +641,20 @@
       },
       "Servarr.FluentMigrator": {
         "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "M14WFK/Bdo9/lZLjY0Dxtd2zaOpIxf9o7iBMZtIAAgjlYv84MfPoCbR9xTbMpwyD3kQQD4Y9rc8WUEgB8VqT+w==",
+        "resolved": "5.2.0.10",
+        "contentHash": "BE7bw/HLshsLUCQk56CkYIOPJ882R6902UZljQBaW3dKKMJTjVEVXtCrLzqK4c8452hxbpstzS3zCIdIefn1sQ==",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection": "2.0.0",
-          "Microsoft.Extensions.Options": "2.0.1",
-          "Servarr.FluentMigrator.Abstractions": "3.3.2.9"
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0",
+          "Servarr.FluentMigrator.Abstractions": "5.2.0.10"
         }
       },
       "Servarr.FluentMigrator.Abstractions": {
         "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "DvcsKD7cMchwG3QEKRLoFlnDfgJ2eZfQI/cQS+Fqdv++R14ZeUiTxFoEBelTpg7UsrTrjIdy962DR/O3Mo9elA==",
+        "resolved": "5.2.0.10",
+        "contentHash": "mJxcmEIvfAzix2l93BHMth5w5KMeLVVyyUXs/Zh6Domsqm103ZcqGjho6ty0eoq3BH8BKFqoyCBmi6TZ+FdyiA==",
         "dependencies": {
-          "System.ComponentModel.Annotations": "4.4.1"
+          "System.ComponentModel.Annotations": "5.0.0"
         }
       },
       "Servarr.FluentMigrator.Extensions.Oracle": {
@@ -690,14 +691,15 @@
       },
       "Servarr.FluentMigrator.Runner.Core": {
         "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "Y6s1LS0Zq0A57pdGWc6WekX1kujmtmqOBuV7FEff9DN7zA2CNI/MDA0khyj1FX1JFZHkz/JTFYvDS1Alv9S/ZA==",
+        "resolved": "5.2.0.10",
+        "contentHash": "tNE9hvSBGOgKPYWhwAgDodxBZx5svUewPOkGYM16RgwV32ti6+mvu3b7ZzUzmSrLGXN2/LC8V6Xk8rHX7mQ2AA==",
         "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "2.0.1",
-          "Microsoft.Extensions.DependencyInjection": "2.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "2.0.1",
-          "Microsoft.Extensions.Options": "2.0.1",
-          "Servarr.FluentMigrator.Abstractions": "3.3.2.9"
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.Logging": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0",
+          "Servarr.FluentMigrator": "5.2.0.10",
+          "Servarr.FluentMigrator.Abstractions": "5.2.0.10"
         }
       },
       "Servarr.FluentMigrator.Runner.Db2": {
