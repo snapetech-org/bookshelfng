@@ -1,6 +1,7 @@
 # Release-note fragments
 
-Add one Markdown fragment for every user-facing pull request. Tagged
+For any user-facing change, add one structured fragment under `release-notes/` describing it. A
+single fragment may cover related user-facing changes in the same pull request. Keep shipped fragments unchanged. Tagged
 `main-v*` image builds validate the fragments and include them in the GitHub
 Release and Discord announcement.
 
@@ -37,10 +38,10 @@ already shipped. Preview the notes in a change with:
 yarn release-notes:preview --base origin/main --head HEAD
 ```
 
-If a pull request is entirely internal and has no user-visible effect, put
-`release-note: none` in the pull request description. Do not use the opt-out to
-skip describing a feature, bug fix, security change, operational behavior, or
-user-facing documentation change.
+For internal-only work, no fragment is needed. In a pull request, either select the internal-only
+option in the template or put `release-note: none` on its own line in the description. When a
+direct push or merge check reads commit messages, put the same marker on its own line in the
+commit message.
 
 BookshelfNG posts release announcements with the repository secret
 `DISCORD_RELEASE_WEBHOOK`. Do not put the webhook URL in source files or

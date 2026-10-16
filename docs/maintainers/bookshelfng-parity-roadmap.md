@@ -1,17 +1,29 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
-**Reviewed:** 2026-10-13. **Status:** the BookshelfNG-to-ChaptarrNG
-consolidation is in progress; BookshelfNG is not ready to retire. The local
-ChaptarrNG integration candidate has an uncommitted staged importer for the
-exact migration-158 SQLite schema and passes a deterministic populated fixture.
-No converter or channel bridge has been released, and real user databases and
-the full settings/identity surface remain unverified. This is a feature-level
-matrix, not a claim that similarly named features are equivalent.
+**Reviewed:** 2026-10-16. **Status:** BookshelfNG `0.4.21.70` is designated
+the final release and includes a source-side appdata archive and handoff
+helper. ChaptarrNG's standard image includes preview, apply, automatic
+startup conversion, and rollback commands; the matching release target is
+`v0.9.972`. The verified migration input remains the exact BookshelfNG
+migration-158 SQLite schema. One populated Linux/amd64 run retained all 39
+source tables and rows, while 81 media choices still required operator review.
+This final-release decision and helper do not close the feature, data, or
+installation-channel acceptance gates. Older schemas, PostgreSQL, complete
+settings/identity behavior, rollback on every real deployment, and package
+handoff remain open. This is a feature-level matrix, not a claim that similarly
+named features are equivalent.
 
 **Confidence:** high for the listed BookshelfNG behavior at the pinned
 released source; moderate for whether ChaptarrNG contains a related
 implementation; unknown for semantic equivalence until the listed acceptance
 checks pass.
+
+The path inventory pinned later in this document compares a specific
+BookshelfNG source revision with a specific ChaptarrNG revision. Its counts
+describe source history and changed paths, not feature parity, and do not
+change as new releases are published. The current migration and channel
+evidence is in the [consolidation report](chaptarr-consolidation.md); the
+acceptance requirements in this matrix remain open until each item is tested.
 
 ## Retirement rule
 
@@ -39,14 +51,11 @@ ChaptarrNG branches and open feature PRs count before release; the combined
 [ChaptarrNG retirement matrix](https://github.com/snapetech-org/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-blockers)
 pins the current snapshot and tracks those blockers.
 
-The maintained ChaptarrNG backlog branch is pinned at `24b340f`: 317 commits
-ahead and 4 behind `origin/main` at `660cc03`, across 703 changed paths. Main
-includes merged CI PRs #69 and #75. Open PRs include #71 (maintainer guidance),
-#72 (Indonesian and Traditional Chinese choices, AudioBookShelf mapping and
-audiobook-mode translations, and locale direction metadata), draft #73 (the
-metadata-preference port), and #74 (proposed YunoHost removal).
-Each capability and proposed distribution change remains a blocker before it
-merges or ships and is tracked in the ChaptarrNG matrix.
+The prior maintained-backlog snapshot `24b340f` is historical: PRs #69–#77
+have since merged. Current ChaptarrNG main, upstream, and candidate counts are
+listed above. Every open ChaptarrNG product, maintenance, security, and
+dependency change counts in the cumulative blocker set before and after merge
+or release and is tracked in the ChaptarrNG matrix.
 
 ## Feature matrix
 
@@ -76,16 +85,20 @@ is the commit/path audit that must be fully dispositioned.
 | Encrypted backups and restore | Passphrase-protected portable archives and per-format profiles | ChaptarrNG has encrypted backup support | **Open blocker.** Prove legacy archive recovery, secret handling, rollback, and profile conversion; never expose secrets in logs. |
 | .NET 10, dependency/security fixes, and platform builds | .NET 10 releases, broad native/package matrix, and maintained security/dependency patches | ChaptarrNG uses .NET 10 and has a different dependency/build matrix | **Open blocker.** Review every patch and supported platform; retain compatible fixes and run the target's required build and security checks. |
 | Release, package, and update channels | Containers, Unraid, Debian/RPM, AUR, PPA, Windows, macOS/Linux/FreeBSD, AppImage, Flatpak, Chocolatey, and Helm; YunoHost publishing retired | ChaptarrNG has its own release and package identities | **Open blocker.** Preserve old channel identities with tested bridge packages/images and migration instructions; no universal automatic redirect exists. |
-| All other fork changes | 412 reachable post-fork commits and 1,039 net-changed paths at the committed audit pins; current dirty integration work is listed separately and still needs a regenerated inventory | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, or proven equivalent. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
+| All other fork changes | 426 reachable post-fork commits and 1,045 net-changed paths in the inventory pinned to BookshelfNG `5d696fb0` and ChaptarrNG candidate `561bf395` | Code paths differ across the two projects | **Open blocker.** Account for every inventory path as retained, ported, proven equivalent, or explicitly retired. Any proposed removal remains blocked until an explicit maintainer decision. The feature rows above do not replace this audit. |
 
 ## Evidence and limits
 
 The [consolidation report](chaptarr-consolidation.md) records exact source and
 target revisions, current implementation findings, the data-conversion
-contract, release-channel matrix, test results, and open gates. The integrated
-Linux Core suite passed 4,047 tests with 0 failures and 3 skipped (4,050 total)
-in 9m44s on a candidate snapshot before the final edition cover/link fix; the
-current importer fixture then passed 5/5 with that fix. The separate opt-in
+contract, release-channel matrix, test results, and open gates. The local
+Release-mode Core suite passed 4,065 tests with 0 failures and 3 skipped on the
+same application sources as the current integration head. Twenty-three
+focused migration fixtures also passed,
+including synthetic rollback after a post-migration write. The standard image passed preview,
+apply, and startup against separate copies of one real populated migration-158
+database; this is bounded evidence because 81 books still require operator-
+selected media classifications. The separate opt-in
 Chromium run passed 3/3 on an earlier candidate snapshot. The focused converter
 coordinator fixture passes 5/5, and the populated importer/startup fixture
 passes 5/5, including profile mapping, notification/config/user rows,
@@ -105,23 +118,32 @@ cases, 29 metadata/ranking/series cases, 29 rename/path cases, and 6
 BookLore/TagLib cases, alongside the 5 converter-coordinator cases.
 The synthetic TagLib chapter-preservation fixture passed; focused
 migration-lineage tests passed 2/2, and 29 rename/path-portability tests
-passed. Hosted Windows reported three path-sensitive fixture failures on the
-older PR head; the fixture paths are corrected locally and still need a fresh
-hosted run. Conversion of real user databases, older BookshelfNG schemas, full
+passed. A hosted Windows run at the previous PR #100 head failed four
+migration/rollback tests. The validation engine now records a safe exception
+type and method frame without logging error text or paths; its current hosted
+rerun is queued. Preview, explicit apply, and ordinary startup were also exercised
+on separate copies of one real populated BookshelfNG migration-158 SQLite
+database using the standard Linux/amd64 image. Preview left the source hash
+unchanged and accounted for all 127,177 rows; apply retained a backup matching
+all 39 source table definitions and every row; normal startup served the UI
+and retained the existing port, URL base, API key, SSL setting, and Docker
+image-pull update mechanism. The live BookshelfNG service was not changed.
+The 81 media choices used for apply were test-only and were not reviewed as
+correct library classifications. Older BookshelfNG schemas, PostgreSQL,
+complete provider/settings behavior, rollback on a real populated deployment, full
 feature-by-feature semantic acceptance, populated-library SeerrNG
-request/identity/history probes, and a tested old-channel bridge remain open.
-The released BookshelfNG `.69` database samples inspected were empty; the
-local deterministic fixture now converts through the normal Chaptarr startup
-path and verifies a retained Bookshelf backup, but it does not replace testing
-representative production data.
+request/identity/history probes, and tested old-channel bridges remain open.
+The released BookshelfNG `.69` database samples inspected earlier were empty;
+that earlier inspection is distinct from this one populated-database run.
 
 The BookshelfNG and ChaptarrNG databases have different schemas and identity
 models. The local converter handles only the exact BookshelfNG migration-158
 SQLite schema; unsupported schemas and provider identities fail closed with
-the source intact. Do not assume older schemas or a production database will
-convert. The converter stages a native ChaptarrNG database, validates it,
-retains a Bookshelf backup, and promotes only after its row-accounting checks.
-This local candidate is not a released migration tool.
+the source intact. The one populated-database run proves that exact input, not
+older schemas, PostgreSQL, or other production databases. The converter stages
+a native ChaptarrNG database, validates it, retains a Bookshelf backup, and
+promotes only after its row-accounting checks. This candidate is not a
+released migration tool.
 
 Retirement also has a separate distribution gate. BookshelfNG's installed
 updater checks the Readarr-owned update service, so changing Snapetech release
