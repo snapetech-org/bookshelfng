@@ -1,11 +1,5 @@
 # Install BookshelfNG on Unraid
 
-**Final BookshelfNG release:** `0.4.21.70`. The ChaptarrNG `v0.9.972`
-converter supports the migration-158 SQLite schema, but this template remains
-on the BookshelfNG image and does not migrate an installation. Back up appdata
-and follow the [migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
-before preparing a manual handoff; the bridge stays disabled by default.
-
 BookshelfNG is a Snapetech NG fork of Bookshelf for ebook and audiobook library
 management and acquisition. It works independently; SeerrNG integration is optional.
 
