@@ -5,9 +5,9 @@ import { mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-test('validation receipt export and artifact upload share the private temp root', () => {
+test('validation receipt export and artifact upload share the runner temp root', () => {
   const workflow = readFileSync('.github/workflows/build.yml', 'utf8');
-  const receiptPath = '$' + '{{ steps.private-runner-temp.outputs.path || runner.temp }}' +
+  const receiptPath = '$' + '{{ runner.temp }}' +
     '/bookshelf-validation/receipt.json';
   assert.ok(workflow.includes('VALIDATION_RECEIPT_EXPORT: ' + receiptPath));
   assert.ok(workflow.includes('path: ' + receiptPath));

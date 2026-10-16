@@ -49,22 +49,17 @@ packages use a private cache shared only within the validation run. Test tasks
 use `CI=true` and `NODE_ENV=test` regardless of the invoking shell's values.
 Previous results are not reused.
 
-The current CI topology has one Linux x64 unit-test runner for main-branch
-validation. All pull-request validation uses GitHub-hosted runners. Main
-pushes and manual runs on `main` may use the shared organization runner pool
-only when `TRUSTED_MAIN_RUNNERS_ENABLED` is set to `true`; while it is unset
-or false, those jobs stay hosted. The organization group is restricted to this
-workflow on `refs/heads/main`. CI retains the normal NUnit report for
-pull-request feedback and uploads the machine-readable
-validation receipt from the runner that performed the tests. The build,
+The current CI topology uses GitHub-hosted runners for Linux x64 unit tests and
+all pull-request validation. CI uploads the machine-readable validation receipt
+from the job that performed the tests.
+
+The build,
 frontend compilation, Playwright installation, and artifact packaging remain
 separate existing CI steps; the test engine does not claim those steps passed
 unless their workflow steps pass.
 
 The Linux CI job installs Chromium into a run-specific Playwright cache and
-passes only that cache path to the NUnit task. GitHub-hosted Linux installs its
-system dependencies with Playwright; self-hosted Linux uses the browser-only
-installer because its system dependencies are managed on the host. Local Linux
+passes only that cache path to the NUnit task. GitHub-hosted Linux installs its system dependencies with Playwright. Local Linux
 runs that need direct-download browser tests should set `PLAYWRIGHT_BROWSERS_PATH`
 to a task-owned cache directory and install Chromium with
 `pwsh ./_tests/net10.0/linux-x64/playwright.ps1 install chromium`. The suite

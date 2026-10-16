@@ -43,40 +43,17 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         ]
         self.assertEqual(branches, ["main"])
 
-    def test_pull_requests_never_select_the_persistent_runner(self) -> None:
+    def test_build_uses_a_github_hosted_runner(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
-        runner_match = re.search(r"(?m)^    runs-on: (?P<runner>[^\n]+)$", source)
-        self.assertIsNotNone(runner_match)
-        runner = runner_match.group("runner")
-        main_condition = (
-            "((github.event_name == 'push' && github.ref == 'refs/heads/main') "
-            "|| (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'))"
-        )
-        trusted_runner_json = '{"group":"trusted-main","labels":["self-hosted","Linux","X64","host"]}'
-        expected = (
-            "$" + "{{ (" + main_condition
-            + " && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true') "
-            + "&& fromJSON('" + trusted_runner_json + "') || 'ubuntu-latest' }}"
-        )
-        self.assertEqual(runner, expected)
-        self.assertNotIn("github.event_name == 'pull_request'", runner)
-        self.assertNotIn("startsWith(github.ref, 'refs/heads/')", runner)
-        self.assertIn("fromJSON('" + trusted_runner_json + "')", runner)
+        self.assertRegex(source, r"(?m)^    runs-on: ubuntu-latest$")
+        self.assertNotIn("self-hosted", source)
+        self.assertNotIn("TRUSTED_MAIN_RUNNERS_ENABLED", source)
 
-    def test_playwright_installer_matches_runner_environment(self) -> None:
+    def test_playwright_installer_uses_hosted_linux_dependencies(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
-        self_hosted = named_step(source, "Install Chromium on self-hosted Linux")
-        hosted = named_step(
-            source, "Install Chromium and system dependencies on GitHub-hosted Linux"
-        )
-
-        self.assertIn("runner.os == 'Linux'", self_hosted)
-        self.assertIn("runner.environment == 'self-hosted'", self_hosted)
-        self.assertIn("playwright.ps1 install chromium", self_hosted)
-        self.assertNotIn("--with-deps", self_hosted)
-        self.assertIn("runner.os == 'Linux'", hosted)
-        self.assertIn("runner.environment != 'self-hosted'", hosted)
-        self.assertIn("--with-deps chromium", hosted)
+        self.assertIn("Install Chromium and system dependencies on GitHub-hosted Linux", source)
+        self.assertIn("install --with-deps chromium", source)
+        self.assertNotIn("runner.environment", source)
 
 
 if __name__ == "__main__":
