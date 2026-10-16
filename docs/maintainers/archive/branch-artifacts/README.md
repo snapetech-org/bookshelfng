@@ -11,3 +11,9 @@ the tracked `yarn.lock` remain the frontend package manager and lockfile.
 image handoff from the dirty transition worktree. They are archived as plain
 text and are not active templates. The published BookshelfNG template keeps
 the BookshelfNG image while the distribution bridge remains disabled.
+
+`bookshelfng-transition-worktree-20261016.patch` records the staged, unstaged,
+and conflict-stage changes from that dirty transition worktree. It is an inert
+snapshot for review, not an apply-ready patch. Synced Unraid source files were
+restored to their companion-repository versions; their proposed content is
+preserved in the snapshot and the separate plain-text template artifacts.
