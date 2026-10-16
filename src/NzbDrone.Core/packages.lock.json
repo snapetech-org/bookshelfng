@@ -227,12 +227,13 @@
       },
       "Servarr.FluentMigrator.Runner.Postgres": {
         "type": "Direct",
-        "requested": "[3.3.2.9, )",
-        "resolved": "3.3.2.9",
-        "contentHash": "vrJ8t8W8dOtwjUtc5e+W7FdAH6jTGr6bl642CWttfewh+jEI8l/Ymdy7mueSY4masu4AyD4HcSJDTgzESWrYIg==",
+        "requested": "[5.2.0.10, )",
+        "resolved": "5.2.0.10",
+        "contentHash": "Baz9sNSAh0YOWQ9i2yLaiwhEWbweR1+O9gvjcmdx+jd//2zKMObp1C5HT7B2sGRbUK2MpR2rqMhulK2LHytPug==",
         "dependencies": {
-          "Servarr.FluentMigrator.Extensions.Postgres": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
+          "Servarr.FluentMigrator": "5.2.0.10",
+          "Servarr.FluentMigrator.Extensions.Postgres": "5.2.0.10",
+          "Servarr.FluentMigrator.Runner.Core": "5.2.0.10"
         }
       },
       "Servarr.FluentMigrator.Runner.SQLite": {
@@ -667,10 +668,10 @@
       },
       "Servarr.FluentMigrator.Extensions.Postgres": {
         "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "THC+jL+dPYBuNSEcRAohi+EsOo3uOMemZ+b8RIn9tp6aqgRTIbMGRwiOeuljo0PMoeuCV/GzCy+yuLyhUyKIaQ==",
+        "resolved": "5.2.0.10",
+        "contentHash": "U3Kzag+cjm3mrtiCdsN3y3f98HTjmGBzPIizwG9m14j+PLK4GDAOwZp1P7uwA07xWt8djyyCSlg+IiahFEZahw==",
         "dependencies": {
-          "Servarr.FluentMigrator.Abstractions": "3.3.2.9"
+          "Servarr.FluentMigrator.Abstractions": "5.2.0.10"
         }
       },
       "Servarr.FluentMigrator.Extensions.SqlAnywhere": {
