@@ -176,11 +176,11 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          // React DnD v16 publishes ESM imports such as `react/jsx-runtime`
-          // without file extensions. Keep Webpack's extension check relaxed
-          // for the DnD packages that contain those imports.
+          // React DnD v16 and its multi-backend packages publish ESM imports
+          // such as `react/jsx-runtime` without file extensions. Keep
+          // Webpack's extension check relaxed for those packages.
           test: /\.m?js$/,
-          include: /node_modules[\\/](?:react-dnd|dnd-core|@react-dnd)[\\/]/,
+          include: /node_modules[\\/](?:react-dnd|react-dnd-multi-backend|react-dnd-preview|dnd-core|dnd-multi-backend|rdndmb-html5-to-touch|@react-dnd)[\\/]/,
           resolve: {
             fullySpecified: false,
           },
