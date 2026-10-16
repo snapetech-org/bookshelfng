@@ -2,7 +2,6 @@
 export const validation = {
   repository: 'bookshelfng',
   inputs: [
-    'AGENTS.md',
     '.github/workflows/build.yml',
     'build.sh',
     'test.sh',

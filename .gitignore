@@ -164,3 +164,5 @@ CLAUDE.local.md
 # Portable Inno Setup install (downloaded by build.sh --installer)
 _inno/
 .env
+.env.sixlabors
+sixlabors.lic
