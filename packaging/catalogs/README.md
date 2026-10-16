@@ -1,5 +1,12 @@
 # Self-hosting catalog deployment
 
+These catalog definitions still install BookshelfNG images. They are not a
+ChaptarrNG migration path, and their existing app identities and stored data
+have not been migrated. Do not submit new catalog entries from this source
+while the retirement bridge is incomplete. Each listed platform needs its own
+tested update that preserves its app identity, volumes, port, and rollback
+behavior; the current candidate only covers the Unraid template source.
+
 This directory is the source of truth for the Docker-based self-hosting
 catalog submissions for BookshelfNG. The adapters use the public Docker Hub
 image so new installations do not need a registry login.

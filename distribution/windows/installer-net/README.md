@@ -1,5 +1,12 @@
 # BookshelfNG Windows Installer
 
+**This installer still installs and upgrades BookshelfNG.** It does not switch
+the Windows service to ChaptarrNG. New deployments should use ChaptarrNG where
+available; existing Windows installations need a tested Windows-specific
+bridge before changing the service or data directory. The current migration
+candidate does not cover this installer. See the
+[migration status](https://github.com/snapetech/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md).
+
 A self-contained .NET WPF installer for deploying BookshelfNG as a Windows service. It keeps the compatible Readarr service and data paths used by existing installations.
 
 ## Why a new installer?
