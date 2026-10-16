@@ -1,5 +1,15 @@
 # Standalone installation
 
+**Final BookshelfNG release:** `0.4.21.70`. This guide remains for existing
+installations. To move one to ChaptarrNG, use the
+[BookshelfNG handoff guide](migrate-from-bookshelfng-to-chaptarrng.md) and its
+source-side helper with the standard ChaptarrNG `v0.9.972` release. The
+converter supports the exact BookshelfNG migration-158 SQLite schema and may
+require an operator-reviewed media map. The helper backs up appdata; it does
+not copy external media/download mounts or automatically update a package,
+image, native installer, or Helm deployment. The release bridge is disabled
+by default.
+
 BookshelfNG is a web application that can run directly on a supported host. It
 does not need SeerrNG or another service to launch, search catalogs, manage a
 library, or provide its web interface. The container edition remains available
