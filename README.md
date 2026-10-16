@@ -80,7 +80,7 @@ migration status.
 The final BookshelfNG release includes a source-side helper that archives the
 entire appdata directory before it calls the standard ChaptarrNG preview,
 apply, or rollback command. The ChaptarrNG image has included those commands
-since `v0.9.970`; `v0.9.972` is the current matching release. The verified
+since `v0.9.970`; `v0.9.973` is the current matching release. The verified
 conversion scope is BookshelfNG migration-158 SQLite. Preview can stop for
 book-by-book media choices when the source does not identify a format.
 
@@ -94,6 +94,10 @@ and rollback paths remain unverified. The disabled-by-default release bridge
 does not change live tags or packages until its independent acceptance gates
 pass. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
 records current evidence and open gates.
+
+The final source release also clears its frontend dependency audit. The local
+`braces` toolchain patch and the full Yarn and .NET audit commands are
+documented in [Dependency security](docs/maintainers/dependency-security.md).
 
 Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
 ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG

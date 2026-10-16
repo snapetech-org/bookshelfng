@@ -8,7 +8,7 @@ and invokes the standard ChaptarrNG migration and rollback commands. The
 converter remains in the ChaptarrNG application; BookshelfNG now includes the
 operator handoff wrapper, documentation, and a fixture-based contract test.
 
-The matching ChaptarrNG release target is `v0.9.972`. The supported source
+The matching ChaptarrNG release target is `v0.9.973`. The supported source
 database is the exact BookshelfNG migration-158 SQLite schema. ChaptarrNG
 `v0.9.971` already passed the public synthetic preview, apply, startup,
 rollback, and ambiguous-media-map checks; the v158-to-v120 path has also been

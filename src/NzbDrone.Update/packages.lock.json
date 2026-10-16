@@ -284,13 +284,13 @@
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "sOZM+VyRj1pg/ItlHsvrSbjws6oGqZveTzTNBGZ9ziwRDyKsOF3ub6vhvOdxotCIqtlnyHAIwP5sLNvgiZC+pQ=="
+        "resolved": "10.0.13",
+        "contentHash": "DkNjtQyPR5Ud/zHnWHdsOuKbFRL9nIC92Q76z0NmHVDoQm40toLtsGFTIWq7toBoVa6fo/DInL3PLxY3Asixyw=="
       },
       "System.Security.Cryptography.ProtectedData": {
         "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "wO0W8VDMeRJZakRySOmemAnrBZMwEFRlbfBtATxUiLf2I3IhSRnCp1Vt157NWptdE4IJ7eftd5n8q9LtaKHFTQ=="
+        "resolved": "10.0.13",
+        "contentHash": "aUSmC6cPjFLSE0rDTsmkR3wvUOnscqewebOaaELEToh12sNmoltZqT3f0C81mJ1zhxKjWco25soHTvYwsXCsUw=="
       },
       "TestableIO.System.IO.Abstractions": {
         "type": "Transitive",
@@ -316,10 +316,10 @@
           "NLog.Extensions.Logging": "[6.2.1, )",
           "Newtonsoft.Json": "[13.0.4, )",
           "SharpZipLib": "[1.4.2, )",
-          "System.Configuration.ConfigurationManager": "[10.0.12, )",
+          "System.Configuration.ConfigurationManager": "[10.0.13, )",
           "System.Data.SQLite.Core.Servarr": "[1.0.115.5-18, )",
           "System.IO.Abstractions": "[17.2.26, )",
-          "System.ServiceProcess.ServiceController": "[10.0.12, )",
+          "System.ServiceProcess.ServiceController": "[10.0.13, )",
           "System.ValueTuple": "[4.6.2, )"
         }
       },
@@ -395,12 +395,12 @@
       },
       "System.Configuration.ConfigurationManager": {
         "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "6KP/CGB9YymJuhNorm5FS/urQJB40h6t4DIiXN8J1VT/jINZHNgjzcdWRHGYuXGLwO7SCOq5K/OMAnh6oRbeLg==",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "BkkGt1IDGMaNkSWJR+hEN3V/UMvyoYKW0rG7rlhKQwS2Ghn+9dt98aV7syIMK+ChumTk+IbDF4k0QXqVs9Zudg==",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.12",
-          "System.Security.Cryptography.ProtectedData": "10.0.12"
+          "System.Diagnostics.EventLog": "10.0.13",
+          "System.Security.Cryptography.ProtectedData": "10.0.13"
         }
       },
       "System.Data.SQLite.Core.Servarr": {
@@ -421,11 +421,11 @@
       },
       "System.ServiceProcess.ServiceController": {
         "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "sFV+RM/yPtshiCAEIuTm8Dt4F7VuKRbL50PnGC9nXHolk/jw+z3T8zx7axKTBC8mqtQU2ZmjsoPC9b1iwOilNQ==",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "0Zh/U/1+hy1MCxx1BTikJi4L5o1Ys6VhB8PKlTNOB4/n2d6ua2+TuoD6T7xN9RV0uiOGod575pQrUSTXg+aYGQ==",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.12"
+          "System.Diagnostics.EventLog": "10.0.13"
         }
       },
       "System.ValueTuple": {
@@ -438,8 +438,8 @@
     "net10.0/linux-musl-arm64": {
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "sOZM+VyRj1pg/ItlHsvrSbjws6oGqZveTzTNBGZ9ziwRDyKsOF3ub6vhvOdxotCIqtlnyHAIwP5sLNvgiZC+pQ=="
+        "resolved": "10.0.13",
+        "contentHash": "DkNjtQyPR5Ud/zHnWHdsOuKbFRL9nIC92Q76z0NmHVDoQm40toLtsGFTIWq7toBoVa6fo/DInL3PLxY3Asixyw=="
       },
       "System.Data.SQLite.Core.Servarr": {
         "type": "CentralTransitive",
@@ -449,19 +449,19 @@
       },
       "System.ServiceProcess.ServiceController": {
         "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "sFV+RM/yPtshiCAEIuTm8Dt4F7VuKRbL50PnGC9nXHolk/jw+z3T8zx7axKTBC8mqtQU2ZmjsoPC9b1iwOilNQ==",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "0Zh/U/1+hy1MCxx1BTikJi4L5o1Ys6VhB8PKlTNOB4/n2d6ua2+TuoD6T7xN9RV0uiOGod575pQrUSTXg+aYGQ==",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.12"
+          "System.Diagnostics.EventLog": "10.0.13"
         }
       }
     },
     "net10.0/linux-musl-x64": {
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "sOZM+VyRj1pg/ItlHsvrSbjws6oGqZveTzTNBGZ9ziwRDyKsOF3ub6vhvOdxotCIqtlnyHAIwP5sLNvgiZC+pQ=="
+        "resolved": "10.0.13",
+        "contentHash": "DkNjtQyPR5Ud/zHnWHdsOuKbFRL9nIC92Q76z0NmHVDoQm40toLtsGFTIWq7toBoVa6fo/DInL3PLxY3Asixyw=="
       },
       "System.Data.SQLite.Core.Servarr": {
         "type": "CentralTransitive",
@@ -471,19 +471,19 @@
       },
       "System.ServiceProcess.ServiceController": {
         "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "sFV+RM/yPtshiCAEIuTm8Dt4F7VuKRbL50PnGC9nXHolk/jw+z3T8zx7axKTBC8mqtQU2ZmjsoPC9b1iwOilNQ==",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "0Zh/U/1+hy1MCxx1BTikJi4L5o1Ys6VhB8PKlTNOB4/n2d6ua2+TuoD6T7xN9RV0uiOGod575pQrUSTXg+aYGQ==",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.12"
+          "System.Diagnostics.EventLog": "10.0.13"
         }
       }
     },
     "net10.0/linux-x64": {
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "sOZM+VyRj1pg/ItlHsvrSbjws6oGqZveTzTNBGZ9ziwRDyKsOF3ub6vhvOdxotCIqtlnyHAIwP5sLNvgiZC+pQ=="
+        "resolved": "10.0.13",
+        "contentHash": "DkNjtQyPR5Ud/zHnWHdsOuKbFRL9nIC92Q76z0NmHVDoQm40toLtsGFTIWq7toBoVa6fo/DInL3PLxY3Asixyw=="
       },
       "System.Data.SQLite.Core.Servarr": {
         "type": "CentralTransitive",
@@ -493,11 +493,11 @@
       },
       "System.ServiceProcess.ServiceController": {
         "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "sFV+RM/yPtshiCAEIuTm8Dt4F7VuKRbL50PnGC9nXHolk/jw+z3T8zx7axKTBC8mqtQU2ZmjsoPC9b1iwOilNQ==",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "0Zh/U/1+hy1MCxx1BTikJi4L5o1Ys6VhB8PKlTNOB4/n2d6ua2+TuoD6T7xN9RV0uiOGod575pQrUSTXg+aYGQ==",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.12"
+          "System.Diagnostics.EventLog": "10.0.13"
         }
       }
     }

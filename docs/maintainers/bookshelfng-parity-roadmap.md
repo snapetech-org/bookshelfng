@@ -4,7 +4,7 @@
 the final release and includes a source-side appdata archive and handoff
 helper. ChaptarrNG's standard image includes preview, apply, automatic
 startup conversion, and rollback commands; the matching release target is
-`v0.9.972`. The verified migration input remains the exact BookshelfNG
+`v0.9.973`. The verified migration input remains the exact BookshelfNG
 migration-158 SQLite schema. One populated Linux/amd64 run retained all 39
 source tables and rows, while 81 media choices still required operator review.
 This final-release decision and helper do not close the feature, data, or

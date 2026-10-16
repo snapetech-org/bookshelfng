@@ -464,142 +464,41 @@
       },
       "Servarr.FluentMigrator": {
         "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "M14WFK/Bdo9/lZLjY0Dxtd2zaOpIxf9o7iBMZtIAAgjlYv84MfPoCbR9xTbMpwyD3kQQD4Y9rc8WUEgB8VqT+w==",
+        "resolved": "5.2.0.10",
+        "contentHash": "BE7bw/HLshsLUCQk56CkYIOPJ882R6902UZljQBaW3dKKMJTjVEVXtCrLzqK4c8452hxbpstzS3zCIdIefn1sQ==",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection": "2.0.0",
-          "Microsoft.Extensions.Options": "2.0.1",
-          "Servarr.FluentMigrator.Abstractions": "3.3.2.9"
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0",
+          "Servarr.FluentMigrator.Abstractions": "5.2.0.10"
         }
       },
       "Servarr.FluentMigrator.Abstractions": {
         "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "DvcsKD7cMchwG3QEKRLoFlnDfgJ2eZfQI/cQS+Fqdv++R14ZeUiTxFoEBelTpg7UsrTrjIdy962DR/O3Mo9elA==",
+        "resolved": "5.2.0.10",
+        "contentHash": "mJxcmEIvfAzix2l93BHMth5w5KMeLVVyyUXs/Zh6Domsqm103ZcqGjho6ty0eoq3BH8BKFqoyCBmi6TZ+FdyiA==",
         "dependencies": {
-          "System.ComponentModel.Annotations": "4.4.1"
-        }
-      },
-      "Servarr.FluentMigrator.Extensions.Oracle": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "+vmpu8vSo7lhucNy+OxGUHk1liNgBlWP23TmtxJcYnb68uDaW14+zV8YbJIMX+Q7S625KHTD9VheGVAvhl1LiQ==",
-        "dependencies": {
-          "Servarr.FluentMigrator.Abstractions": "3.3.2.9"
+          "System.ComponentModel.Annotations": "5.0.0"
         }
       },
       "Servarr.FluentMigrator.Extensions.Postgres": {
         "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "THC+jL+dPYBuNSEcRAohi+EsOo3uOMemZ+b8RIn9tp6aqgRTIbMGRwiOeuljo0PMoeuCV/GzCy+yuLyhUyKIaQ==",
+        "resolved": "5.2.0.10",
+        "contentHash": "U3Kzag+cjm3mrtiCdsN3y3f98HTjmGBzPIizwG9m14j+PLK4GDAOwZp1P7uwA07xWt8djyyCSlg+IiahFEZahw==",
         "dependencies": {
-          "Servarr.FluentMigrator.Abstractions": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Extensions.SqlAnywhere": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "/1rMhfH3hrfPubECFYLoa4RtGTZg2Lcrzwu6/2gmlfrAUbua76YUqkid78bhF7RoVguGg/sF6sHSgTzGyF/qKA==",
-        "dependencies": {
-          "Servarr.FluentMigrator.Abstractions": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Extensions.SqlServer": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "4hWn2kLme/a10dZM4HiQkynLWUkLB7nHmEbmr54LI1CcocXarkPLJCKLpoDr47hytTPiVjQ4NG564W5LfIvSsA==",
-        "dependencies": {
-          "Servarr.FluentMigrator.Abstractions": "3.3.2.9"
+          "Servarr.FluentMigrator.Abstractions": "5.2.0.10"
         }
       },
       "Servarr.FluentMigrator.Runner.Core": {
         "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "Y6s1LS0Zq0A57pdGWc6WekX1kujmtmqOBuV7FEff9DN7zA2CNI/MDA0khyj1FX1JFZHkz/JTFYvDS1Alv9S/ZA==",
+        "resolved": "5.2.0.10",
+        "contentHash": "tNE9hvSBGOgKPYWhwAgDodxBZx5svUewPOkGYM16RgwV32ti6+mvu3b7ZzUzmSrLGXN2/LC8V6Xk8rHX7mQ2AA==",
         "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "2.0.1",
-          "Microsoft.Extensions.DependencyInjection": "2.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "2.0.1",
-          "Microsoft.Extensions.Options": "2.0.1",
-          "Servarr.FluentMigrator.Abstractions": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Runner.Db2": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "N6bnd8WY2SoRpaJGZ6mdcjQ8kdNXvp+AA6gA/QVBwCRCajO2SlKz6jbKE+Qwe5UOxs1+h8Hroasy8ca/YHu/UA==",
-        "dependencies": {
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Runner.Firebird": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "Ta77P3QrJ8A6AmvBp7eD8ZTW2c4BZcKGkvEr1JM46jzBAeuUVIHbl7YQ0kicO8g5/siANUtLceoOQ8ngjEHyqA==",
-        "dependencies": {
-          "Microsoft.Extensions.Options": "2.0.1",
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Runner.Hana": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "Ak4sVhoFFl7c7jIlb1+JiHL/DN1Wv1WRWEiqBahmVyUpiCvhWafQchpgiK1mqc4oCVIk7kKMfCG2+HYRFuEyMQ==",
-        "dependencies": {
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Runner.MySql": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "nJbTaRGADVc7zfKCLPtdbu1npMwADZ9sCDfmFq0lBv5L1IJs/wzxY9EE3Aj9auxr8dvUkBDAfEHoT7PkfP3/Kg==",
-        "dependencies": {
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Runner.Oracle": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "1GErfdWlElvpIW+x5iE+dbJb86B7xfFh/9EwsNf7SggeNT57kuisiyK2WV+x7Ozf3L6eZpimFfW6Hy4e/uzH4Q==",
-        "dependencies": {
-          "Servarr.FluentMigrator.Extensions.Oracle": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Runner.Redshift": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "oZD3cMn3FYW26c2M1to1w4wM/sow2PcXvzX2x61OUDjQZ5F3Y9Rrqt4EJ6vvTyqCXmN4FLAylj2c4VnjTD5o/A==",
-        "dependencies": {
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Runner.SqlAnywhere": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "ZKgXl7AMKQMcVN+N5ftsSV+sJNHKo8eW0et95VbGX7EWPlYtGAr8KQf0vtJi8MUbZpX+m4cgE0pV2G9ZRCWttA==",
-        "dependencies": {
-          "Servarr.FluentMigrator.Extensions.SqlAnywhere": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Runner.SqlServer": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "IrOlIZNHwjFTS7ZPFadzYE4xmaYsD5oXkIy+aPTRbtAG1FGVLGyg+5zMSVF1eExZGhXDxEUl5hpJN7THz99L9Q==",
-        "dependencies": {
-          "Microsoft.Data.SqlClient": "2.1.2",
-          "Servarr.FluentMigrator.Extensions.SqlServer": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
-        }
-      },
-      "Servarr.FluentMigrator.Runner.SqlServerCe": {
-        "type": "Transitive",
-        "resolved": "3.3.2.9",
-        "contentHash": "EnVlHbaNkr1fdWmaHiEpKwdaPaWd1X3YAduCJ9kR82mmMb2byPOtVCPFPnSJyKRCBLEbLg/fsuWAW2k286AMwg==",
-        "dependencies": {
-          "Servarr.FluentMigrator.Runner.SqlServer": "3.3.2.9",
-          "System.Security.Permissions": "4.7.0"
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.Logging": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0",
+          "Servarr.FluentMigrator": "5.2.0.10",
+          "Servarr.FluentMigrator.Abstractions": "5.2.0.10"
         }
       },
       "SkiaSharp.NativeAssets.macOS": {
@@ -619,23 +518,18 @@
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "sOZM+VyRj1pg/ItlHsvrSbjws6oGqZveTzTNBGZ9ziwRDyKsOF3ub6vhvOdxotCIqtlnyHAIwP5sLNvgiZC+pQ=="
+        "resolved": "10.0.13",
+        "contentHash": "DkNjtQyPR5Ud/zHnWHdsOuKbFRL9nIC92Q76z0NmHVDoQm40toLtsGFTIWq7toBoVa6fo/DInL3PLxY3Asixyw=="
       },
       "System.Security.Cryptography.ProtectedData": {
         "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "wO0W8VDMeRJZakRySOmemAnrBZMwEFRlbfBtATxUiLf2I3IhSRnCp1Vt157NWptdE4IJ7eftd5n8q9LtaKHFTQ=="
+        "resolved": "10.0.13",
+        "contentHash": "aUSmC6cPjFLSE0rDTsmkR3wvUOnscqewebOaaELEToh12sNmoltZqT3f0C81mJ1zhxKjWco25soHTvYwsXCsUw=="
       },
       "System.Threading.RateLimiting": {
         "type": "Transitive",
         "resolved": "9.0.18",
         "contentHash": "pxuHw/tQXaHMRXEaKzzgpoGO8VeTPIzHbnp0KclXp6js5wPHn7VaqSCa8yRTAsZDcZ2XuIEnXGM2MbRDJFLBog=="
-      },
-      "System.Windows.Extensions": {
-        "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "J+FZruVjELSk2NMe3MQNyCXszIlx1b7qOjUBCSbhabomYIVWpFS5QCnPdxE8K6SVt7Gja7ohpXX1oLLXRAIuzw=="
       },
       "TestableIO.System.IO.Abstractions": {
         "type": "Transitive",
@@ -661,10 +555,10 @@
           "NLog.Extensions.Logging": "[6.2.1, )",
           "Newtonsoft.Json": "[13.0.4, )",
           "SharpZipLib": "[1.4.2, )",
-          "System.Configuration.ConfigurationManager": "[10.0.12, )",
+          "System.Configuration.ConfigurationManager": "[10.0.13, )",
           "System.Data.SQLite.Core.Servarr": "[1.0.115.5-18, )",
           "System.IO.Abstractions": "[17.2.26, )",
-          "System.ServiceProcess.ServiceController": "[10.0.12, )",
+          "System.ServiceProcess.ServiceController": "[10.0.13, )",
           "System.ValueTuple": "[4.6.2, )"
         }
       },
@@ -690,13 +584,12 @@
           "NLog.Targets.Syslog": "[7.0.0, )",
           "Newtonsoft.Json": "[13.0.4, )",
           "Npgsql": "[10.0.3, )",
-          "PDFsharp": "[6.2.4, )",
+          "PDFsharp": "[6.5.0, )",
           "Polly": "[8.8.0, )",
           "Readarr.Common": "[1.0.0, )",
           "RestSharp": "[106.15.0, )",
-          "Servarr.FluentMigrator.Runner": "[3.3.2.9, )",
-          "Servarr.FluentMigrator.Runner.Postgres": "[3.3.2.9, )",
-          "Servarr.FluentMigrator.Runner.SQLite": "[3.3.2.9, )",
+          "Servarr.FluentMigrator.Runner.Postgres": "[5.2.0.10, )",
+          "Servarr.FluentMigrator.Runner.SQLite": "[5.2.0.10, )",
           "SkiaSharp": "[4.153.1, )",
           "System.IO.Abstractions": "[17.2.26, )",
           "System.IdentityModel.Tokens.Jwt": "[8.23.0, )",
@@ -952,9 +845,9 @@
       },
       "PDFsharp": {
         "type": "CentralTransitive",
-        "requested": "[6.2.4, )",
-        "resolved": "6.2.4",
-        "contentHash": "GhTr9F1uOYXHCIEOB5PXIgqn5a8WLsJL2m0eewTA0IvY1j6N4HGXHKKmEyB90/N6vrjmYamf41V9zbmdW2HY3g==",
+        "requested": "[6.5.0, )",
+        "resolved": "6.5.0",
+        "contentHash": "H9PYxFBvbevuYT5Q/d64MX7YxzEUuhl887fFTwN4By9vAKy9m54yBk5/Pm989KmBbtB2i6cUNa3Gve8loPSYkg==",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "8.0.3",
           "System.Security.Cryptography.Pkcs": "8.0.1"
@@ -984,46 +877,25 @@
           "RestSharp": "106.15.0"
         }
       },
-      "Servarr.FluentMigrator.Runner": {
-        "type": "CentralTransitive",
-        "requested": "[3.3.2.9, )",
-        "resolved": "3.3.2.9",
-        "contentHash": "AKudY5Q22phmQTfTYwyQwyEBp8OxM2E22OnKYm3AteiPvHJ6A/MFzjzbA8eQz8E0Z44K87Az08Oiyhtg9JlkXQ==",
-        "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "2.0.1",
-          "Microsoft.Extensions.Logging": "2.0.1",
-          "Servarr.FluentMigrator": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Db2": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Firebird": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Hana": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.MySql": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Oracle": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Postgres": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Redshift": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.SQLite": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.SqlAnywhere": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.SqlServer": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.SqlServerCe": "3.3.2.9"
-        }
-      },
       "Servarr.FluentMigrator.Runner.Postgres": {
         "type": "CentralTransitive",
-        "requested": "[3.3.2.9, )",
-        "resolved": "3.3.2.9",
-        "contentHash": "vrJ8t8W8dOtwjUtc5e+W7FdAH6jTGr6bl642CWttfewh+jEI8l/Ymdy7mueSY4masu4AyD4HcSJDTgzESWrYIg==",
+        "requested": "[5.2.0.10, )",
+        "resolved": "5.2.0.10",
+        "contentHash": "Baz9sNSAh0YOWQ9i2yLaiwhEWbweR1+O9gvjcmdx+jd//2zKMObp1C5HT7B2sGRbUK2MpR2rqMhulK2LHytPug==",
         "dependencies": {
-          "Servarr.FluentMigrator.Extensions.Postgres": "3.3.2.9",
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
+          "Servarr.FluentMigrator": "5.2.0.10",
+          "Servarr.FluentMigrator.Extensions.Postgres": "5.2.0.10",
+          "Servarr.FluentMigrator.Runner.Core": "5.2.0.10"
         }
       },
       "Servarr.FluentMigrator.Runner.SQLite": {
         "type": "CentralTransitive",
-        "requested": "[3.3.2.9, )",
-        "resolved": "3.3.2.9",
-        "contentHash": "wF35gswBUZodu+kkhypMB30Z5+ZTD1o5DPxYy+T/jW+5LXxN5JcBt0qMKtVNFb/K2WHgNCPnayYDHK8D2WnbNw==",
+        "requested": "[5.2.0.10, )",
+        "resolved": "5.2.0.10",
+        "contentHash": "CJ9RKVz9bantvldWlK824shjyaZzSyOSAG4fayjljtryuBfcp6ClJ2TVh7TjQKqQjbk4nfDLOygzuTC/ft8BRA==",
         "dependencies": {
-          "Servarr.FluentMigrator.Runner.Core": "3.3.2.9"
+          "Servarr.FluentMigrator": "5.2.0.10",
+          "Servarr.FluentMigrator.Runner.Core": "5.2.0.10"
         }
       },
       "SharpZipLib": {
@@ -1044,12 +916,12 @@
       },
       "System.Configuration.ConfigurationManager": {
         "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "6KP/CGB9YymJuhNorm5FS/urQJB40h6t4DIiXN8J1VT/jINZHNgjzcdWRHGYuXGLwO7SCOq5K/OMAnh6oRbeLg==",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "BkkGt1IDGMaNkSWJR+hEN3V/UMvyoYKW0rG7rlhKQwS2Ghn+9dt98aV7syIMK+ChumTk+IbDF4k0QXqVs9Zudg==",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.12",
-          "System.Security.Cryptography.ProtectedData": "10.0.12"
+          "System.Diagnostics.EventLog": "10.0.13",
+          "System.Security.Cryptography.ProtectedData": "10.0.13"
         }
       },
       "System.Data.SQLite.Core.Servarr": {
@@ -1093,22 +965,13 @@
         "resolved": "10.0.13",
         "contentHash": "a+EovgC1fBnwdlQ6cn3j4JFBfKqiFaFvoAhjisOoSvazLAcIznaBzPQP0oYnvccmeXfqUH1KebVZOxSeH6rMaw=="
       },
-      "System.Security.Permissions": {
-        "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "WkhmKe2rEGkqOYOFR1WNM7PGQ6Z/tArb8PMcVi0943KZtQC7IJUkLAQ3Cnx6XPeRb3DUkTDfeZmz+TiJ1R5YPQ==",
-        "dependencies": {
-          "System.Windows.Extensions": "10.0.12"
-        }
-      },
       "System.ServiceProcess.ServiceController": {
         "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "sFV+RM/yPtshiCAEIuTm8Dt4F7VuKRbL50PnGC9nXHolk/jw+z3T8zx7axKTBC8mqtQU2ZmjsoPC9b1iwOilNQ==",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "0Zh/U/1+hy1MCxx1BTikJi4L5o1Ys6VhB8PKlTNOB4/n2d6ua2+TuoD6T7xN9RV0uiOGod575pQrUSTXg+aYGQ==",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.12"
+          "System.Diagnostics.EventLog": "10.0.13"
         }
       },
       "System.ValueTuple": {
@@ -1136,13 +999,8 @@
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "sOZM+VyRj1pg/ItlHsvrSbjws6oGqZveTzTNBGZ9ziwRDyKsOF3ub6vhvOdxotCIqtlnyHAIwP5sLNvgiZC+pQ=="
-      },
-      "System.Windows.Extensions": {
-        "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "J+FZruVjELSk2NMe3MQNyCXszIlx1b7qOjUBCSbhabomYIVWpFS5QCnPdxE8K6SVt7Gja7ohpXX1oLLXRAIuzw=="
+        "resolved": "10.0.13",
+        "contentHash": "DkNjtQyPR5Ud/zHnWHdsOuKbFRL9nIC92Q76z0NmHVDoQm40toLtsGFTIWq7toBoVa6fo/DInL3PLxY3Asixyw=="
       },
       "Microsoft.Data.SqlClient": {
         "type": "CentralTransitive",
@@ -1177,11 +1035,11 @@
       },
       "System.ServiceProcess.ServiceController": {
         "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "sFV+RM/yPtshiCAEIuTm8Dt4F7VuKRbL50PnGC9nXHolk/jw+z3T8zx7axKTBC8mqtQU2ZmjsoPC9b1iwOilNQ==",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "0Zh/U/1+hy1MCxx1BTikJi4L5o1Ys6VhB8PKlTNOB4/n2d6ua2+TuoD6T7xN9RV0uiOGod575pQrUSTXg+aYGQ==",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.12"
+          "System.Diagnostics.EventLog": "10.0.13"
         }
       }
     },
@@ -1203,13 +1061,8 @@
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "sOZM+VyRj1pg/ItlHsvrSbjws6oGqZveTzTNBGZ9ziwRDyKsOF3ub6vhvOdxotCIqtlnyHAIwP5sLNvgiZC+pQ=="
-      },
-      "System.Windows.Extensions": {
-        "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "J+FZruVjELSk2NMe3MQNyCXszIlx1b7qOjUBCSbhabomYIVWpFS5QCnPdxE8K6SVt7Gja7ohpXX1oLLXRAIuzw=="
+        "resolved": "10.0.13",
+        "contentHash": "DkNjtQyPR5Ud/zHnWHdsOuKbFRL9nIC92Q76z0NmHVDoQm40toLtsGFTIWq7toBoVa6fo/DInL3PLxY3Asixyw=="
       },
       "Microsoft.Data.SqlClient": {
         "type": "CentralTransitive",
@@ -1244,11 +1097,11 @@
       },
       "System.ServiceProcess.ServiceController": {
         "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "sFV+RM/yPtshiCAEIuTm8Dt4F7VuKRbL50PnGC9nXHolk/jw+z3T8zx7axKTBC8mqtQU2ZmjsoPC9b1iwOilNQ==",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "0Zh/U/1+hy1MCxx1BTikJi4L5o1Ys6VhB8PKlTNOB4/n2d6ua2+TuoD6T7xN9RV0uiOGod575pQrUSTXg+aYGQ==",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.12"
+          "System.Diagnostics.EventLog": "10.0.13"
         }
       }
     },
@@ -1270,13 +1123,8 @@
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "sOZM+VyRj1pg/ItlHsvrSbjws6oGqZveTzTNBGZ9ziwRDyKsOF3ub6vhvOdxotCIqtlnyHAIwP5sLNvgiZC+pQ=="
-      },
-      "System.Windows.Extensions": {
-        "type": "Transitive",
-        "resolved": "10.0.12",
-        "contentHash": "J+FZruVjELSk2NMe3MQNyCXszIlx1b7qOjUBCSbhabomYIVWpFS5QCnPdxE8K6SVt7Gja7ohpXX1oLLXRAIuzw=="
+        "resolved": "10.0.13",
+        "contentHash": "DkNjtQyPR5Ud/zHnWHdsOuKbFRL9nIC92Q76z0NmHVDoQm40toLtsGFTIWq7toBoVa6fo/DInL3PLxY3Asixyw=="
       },
       "Microsoft.Data.SqlClient": {
         "type": "CentralTransitive",
@@ -1311,11 +1159,11 @@
       },
       "System.ServiceProcess.ServiceController": {
         "type": "CentralTransitive",
-        "requested": "[10.0.12, )",
-        "resolved": "10.0.12",
-        "contentHash": "sFV+RM/yPtshiCAEIuTm8Dt4F7VuKRbL50PnGC9nXHolk/jw+z3T8zx7axKTBC8mqtQU2ZmjsoPC9b1iwOilNQ==",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "0Zh/U/1+hy1MCxx1BTikJi4L5o1Ys6VhB8PKlTNOB4/n2d6ua2+TuoD6T7xN9RV0uiOGod575pQrUSTXg+aYGQ==",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.12"
+          "System.Diagnostics.EventLog": "10.0.13"
         }
       }
     }

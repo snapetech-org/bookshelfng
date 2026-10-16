@@ -23,7 +23,7 @@ export DOCKER_ARGS_FILE="$workdir/docker-args.txt"
 export PATH="$fakebin:$PATH"
 
 tool="$repo_root/scripts/bookshelfng-to-chaptarrng.sh"
-image='ghcr.io/snapetech-org/chaptarrng:v0.9.972'
+image='ghcr.io/snapetech-org/chaptarrng:v0.9.973'
 
 "$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image"
 grep -Fxq -- '-preview-bookshelf-migration' "$DOCKER_ARGS_FILE"
