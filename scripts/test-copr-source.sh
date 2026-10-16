@@ -72,7 +72,7 @@ chmod +x "$work/bin/curl" "$work/bin/rpm2cpio" "$work/bin/cpio"
 
 release_base_for_tag() {
   case "$1" in
-    main-v*) printf '%s\n' 'https://github.com/snapetech/bookshelfng/releases/download' ;;
+    main-v*) printf '%s\n' 'https://github.com/snapetech-org/bookshelfng/releases/download' ;;
     v*) printf '%s\n' 'https://github.com/snapetech-org/chaptarrng/releases/download' ;;
     *) echo "Unsupported fixture tag: $1" >&2; return 2 ;;
   esac
