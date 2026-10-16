@@ -29,6 +29,7 @@ metadata provider configuration.
 
 | Guide | Covers |
 | --- | --- |
+| [Move BookshelfNG to ChaptarrNG](migrate-from-bookshelfng-to-chaptarrng.md) | The final-release helper, complete appdata snapshots, preview/apply/rollback commands, media review, and supported migration limits |
 | [Standalone installation](standalone-install.md) | Native archives, Windows installer, packages, and platform setup |
 | [Distribution channels](distribution.md) | Published artifacts, release destinations, and publisher configuration |
 | [.NET 10 source builds](dotnet-10-platform-builds.md) | Complete backend and UI builds, plus Linux x86 and FreeBSD runtime packs |
