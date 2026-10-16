@@ -1,9 +1,45 @@
 # BookshelfNG retirement and ChaptarrNG consolidation
 
-Status: investigation and implementation in progress; **not safe to redirect releases**.
-Date: 2026-10-14. AI-assisted investigation and implementation by Codex.
-Confidence: high for one populated migration-158 SQLite preview/apply/startup
-run; moderate for broader conversion behavior; low for retirement readiness.
+## Current status — 2026-10-16
+
+The maintainer designates BookshelfNG `0.4.21.70` as the final BookshelfNG
+release. It adds a source-side helper that archives the full appdata directory
+and invokes the standard ChaptarrNG migration and rollback commands. The
+converter remains in the ChaptarrNG application; BookshelfNG now includes the
+operator handoff wrapper, documentation, and a fixture-based contract test.
+
+The matching ChaptarrNG release target is `v0.9.972`. The supported source
+database is the exact BookshelfNG migration-158 SQLite schema. ChaptarrNG
+`v0.9.971` already passed the public synthetic preview, apply, startup,
+rollback, and ambiguous-media-map checks; the v158-to-v120 path has also been
+tested against one populated BookshelfNG database on Linux/amd64. Eighty-one
+media choices in that technical run were not reviewed as correct library
+classifications. The final release/helper does not establish older-schema or
+PostgreSQL support, complete provider/environment parity, rollback on every
+real installation, or every package-channel upgrade path.
+
+BookshelfNG release-channel bridging remains disabled by default. This final
+release decision does not automatically redirect mutable tags, pinned images,
+packages, native installers, offline archives, or third-party catalogs. Keep
+an independent appdata backup and preserve media/download mounts until the
+converted installation has been checked. The user-facing procedure is in
+[`docs/migrate-from-bookshelfng-to-chaptarrng.md`](../migrate-from-bookshelfng-to-chaptarrng.md).
+
+At the GitHub security audit for this work, neither repository had open
+CodeQL or Dependabot alerts. Secret scanning is disabled on both repositories,
+so there is no server-side secret-alert inventory. The release workflows and
+local dependency checks are recorded separately from this migration evidence.
+
+## Historical investigation snapshot — 2026-10-14
+
+Status at that snapshot: implementation and validation in progress; **not safe
+to redirect releases**. AI-assisted investigation and implementation by
+Codex. Confidence was high for one populated migration-158 SQLite run,
+moderate for broader conversion behavior, and low for retirement readiness.
+
+> The inventory, branch names, pull-request states, migration target version,
+> and release-channel observations below are evidence recorded on October 14.
+> They are retained as history; the current status above supersedes them.
 
 The generated path inventory is pinned to BookshelfNG `main`
 `5d696fb0b3cba552fa12b912a825954e2473e0e6` and ChaptarrNG PR #100
@@ -46,7 +82,7 @@ open at `5743d1a610e8d1fd7e66c104df0e00fdaa5ee812`, PR #130 is open at
 queued. The conversion and channel evidence below records what has actually
 been tested and what remains open.
 
-## Latest populated database proof
+## Populated database proof — 2026-10-14
 
 On 2026-10-14, preview, explicit apply, and ordinary startup passed on
 separate copies of one real populated BookshelfNG migration-158 SQLite

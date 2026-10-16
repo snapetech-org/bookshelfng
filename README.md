@@ -1,5 +1,12 @@
 # BookshelfNG
 
+> **Final release:** BookshelfNG `0.4.21.70` is the final BookshelfNG release.
+> Existing operators can use the source-side handoff helper and the standard
+> ChaptarrNG migration commands described in the
+> [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md). This does
+> not make every database lineage or installation channel automatically
+> migratable; review the limits and keep an independent backup.
+
 [![.NET 10 LTS](https://img.shields.io/badge/.NET-10%20LTS-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/en-us/platform/support/policy)
 
 BookshelfNG is a self-hosted ebook and audiobook library manager descended
@@ -70,29 +77,23 @@ migration status.
 
 ### ChaptarrNG consolidation status
 
-The planned retirement of BookshelfNG carries its enhanced features into
-ChaptarrNG. That transition is still in progress: no converter or BookshelfNG
-channel bridge has been released. The ordinary ChaptarrNG Linux/amd64 image
-passed preview, explicit apply, and normal startup on separate copies of one
-real, populated BookshelfNG migration-158 SQLite database. The retained backup
-matched all 39 source table definitions and every source row. Eighty-one books
-needed explicit media choices; test choices exercised conversion mechanics
-and were not reviewed as correct library classifications. Older schemas,
-PostgreSQL, complete provider/settings/client behavior, rollback on a real
-populated deployment, and published upgrade paths remain open. The local full
-Core suite passed 4,065 tests with 0 failures and 3 skipped, and the focused
-migration fixtures passed 23/23. A hosted Windows run failed four
-migration/rollback tests on the previous ChaptarrNG PR #100 head. A safe
-diagnostic update is pushed and its exact-head Windows rerun is queued. Keep a
-verified backup and do not
-mount a BookshelfNG `/config` directory as a ChaptarrNG configuration
-directory. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
-tracks the remaining feature, database, and distribution blockers.
+The final BookshelfNG release includes a source-side helper that archives the
+entire appdata directory before it calls the standard ChaptarrNG preview,
+apply, or rollback command. The ChaptarrNG image has included those commands
+since `v0.9.970`; `v0.9.972` is the current matching release. The verified
+conversion scope is BookshelfNG migration-158 SQLite. Preview can stop for
+book-by-book media choices when the source does not identify a format.
 
-BookshelfNG PR #130 adds a gated candidate publisher for selected legacy
-channels. It is disabled by default and has not moved any live image tags or
-packages. Its per-channel scope and the remaining manual and pinned-install
-gaps are tracked in the consolidation report.
+The helper does not copy media or download folders mounted outside appdata,
+translate every environment setting or external service, or update a pinned
+image or package on its own. Keep the same media/download mounts where possible,
+back up external settings separately, and follow the
+[migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md). Older
+schemas, PostgreSQL, full feature parity, and several package-channel upgrade
+and rollback paths remain unverified. The disabled-by-default release bridge
+does not change live tags or packages until its independent acceptance gates
+pass. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
+records current evidence and open gates.
 
 Retiring BookshelfNG into ChaptarrNG is a separate gate from any later
 ChaptarrNG retirement. Every BookshelfNG capability carried into ChaptarrNG

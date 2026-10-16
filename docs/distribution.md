@@ -6,25 +6,24 @@ normal BookshelfNG build succeeds. It prepares the GitHub Release as a draft,
 builds platform archives and packages, attaches checksums, then publishes the
 release and sends the existing Discord announcement.
 
-These workflows currently publish BookshelfNG. The proposed move to
-ChaptarrNG has not changed an installed package, image, or updater, and no
-bridge has been released. The ordinary ChaptarrNG Linux/amd64 image passed
-preview, explicit apply, and normal startup against separate copies of one
-real, populated BookshelfNG migration-158 SQLite database. The retained source
-backup matched all 39 table definitions and every source row. Eighty-one books
-needed explicit media choices; test choices were not reviewed as correct
-classifications. Older schemas, PostgreSQL, complete provider/settings and
-client behavior, rollback on a real populated deployment, and published
-upgrade paths remain open. The 15-case migration fixture covers rollback preview and restoration
-after a post-migration write; rollback on a real populated deployment remains
-open. A handoff must keep each old channel identity while converging on the
-same standard ChaptarrNG payload; legacy image tags must alias its exact
-multi-architecture digest rather than use a second build. There is no
-universal automatic redirect: the BookshelfNG updater checks the Readarr-owned
-update service, and fixed tags/digests, offline installations, manual archives,
-and disabled updaters require an explicit update. See the
-[BookshelfNG-to-ChaptarrNG distribution bridge matrix](maintainers/chaptarr-consolidation.md#distribution-bridge-matrix)
-for the per-channel requirements and current release gates.
+BookshelfNG `0.4.21.70` is designated the final BookshelfNG release. Its
+source-side helper takes a full appdata archive, then invokes the standard
+ChaptarrNG preview, apply, and rollback commands. ChaptarrNG `v0.9.972` is the
+matching release target. Conversion is supported for the exact BookshelfNG
+migration-158 SQLite schema; ambiguous book formats require an operator's
+media map. One populated Linux/amd64 conversion retained all 39 source tables
+and rows, but 81 media choices in that run were not reviewed as correct
+classifications. Older schemas, PostgreSQL, full provider/settings behavior,
+and rollback on every real deployment remain unverified.
+
+The helper does not copy media or download folders outside appdata or update
+an installation channel. Release-channel bridging remains disabled by
+default; mutable tags, pinned digests, native packages, offline installers,
+and third-party catalogs need their own upgrade steps. See the
+[BookshelfNG-to-ChaptarrNG handoff guide](migrate-from-bookshelfng-to-chaptarrng.md)
+for the operator procedure and the
+[distribution bridge matrix](maintainers/chaptarr-consolidation.md#distribution-bridge-matrix)
+for channel requirements and open acceptance gates.
 
 ## Published artifacts
 
@@ -98,7 +97,7 @@ to bootstrap the script from the release tag:
 #!/usr/bin/env bash
 set -euo pipefail
 tag="$(tr -d '\r\n' < hook_payload)"
-[[ "$tag" =~ ^main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
+[[ "$tag" =~ ^(main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+|v[0-9]+\.[0-9]+\.[0-9]+)$ ]]
 curl --fail --location --silent --show-error \
   "https://raw.githubusercontent.com/snapetech-org/bookshelfng/main/packaging/rpm/copr-source.sh" \
   | bash -s -- "$tag"

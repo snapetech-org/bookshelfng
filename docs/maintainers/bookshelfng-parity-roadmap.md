@@ -1,38 +1,29 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
-**Reviewed:** 2026-10-14. **Status:** the BookshelfNG-to-ChaptarrNG
-consolidation is in progress; BookshelfNG is not ready to retire. The standard
-ChaptarrNG Linux/amd64 candidate passed preview, explicit apply, and ordinary
-startup on separate copies of one real, populated migration-158 SQLite
-database. Its backup matched all 39 source table definitions and every row.
-Eighty-one books still need an operator's explicit media choice; the test
-choices were not reviewed as correct classifications. The local full Core
-suite passed 4,065 tests with 0 failures and 3 skipped; the 23 focused
-migration fixtures passed. A hosted Windows run failed four migration/rollback
-tests on the previous head. A safe diagnostic update is on PR #100, whose
-exact-head hosted checks are queued. No converter or channel bridge has been
-released. Older schemas, PostgreSQL, full settings/identity behavior, rollback
-on a real populated deployment, feature parity, and published upgrade paths
-remain open. This is a feature-level matrix, not a claim that similarly named
-features are equivalent.
+**Reviewed:** 2026-10-16. **Status:** BookshelfNG `0.4.21.70` is designated
+the final release and includes a source-side appdata archive and handoff
+helper. ChaptarrNG's standard image includes preview, apply, automatic
+startup conversion, and rollback commands; the matching release target is
+`v0.9.972`. The verified migration input remains the exact BookshelfNG
+migration-158 SQLite schema. One populated Linux/amd64 run retained all 39
+source tables and rows, while 81 media choices still required operator review.
+This final-release decision and helper do not close the feature, data, or
+installation-channel acceptance gates. Older schemas, PostgreSQL, complete
+settings/identity behavior, rollback on every real deployment, and package
+handoff remain open. This is a feature-level matrix, not a claim that similarly
+named features are equivalent.
 
 **Confidence:** high for the listed BookshelfNG behavior at the pinned
 released source; moderate for whether ChaptarrNG contains a related
 implementation; unknown for semantic equivalence until the listed acceptance
 checks pass.
 
-The current comparison is BookshelfNG `main` `5d696fb0`, ChaptarrNG `main`
-`6731a436`, and upstream Chaptarr `develop` `e67374f4`. ChaptarrNG is 606
-commits ahead and zero behind upstream, across 1,485 net-changed paths. The
-consolidation candidate, ChaptarrNG PR #100 at `561bf395`, is 25 commits ahead
-and zero behind ChaptarrNG `main`, across 359 changed paths. Open product and
-maintenance work includes PRs #78, #100, #103, and #105–#109; open dependency
-updates also remain in the cumulative blocker set. The source-to-candidate
-inventory now covers 426 reachable post-fork commits and 1,045 net-changed
-paths. These counts describe source history and paths, not feature parity. The
-candidate's populated SQLite result and per-channel checks are recorded in the
-[consolidation report](chaptarr-consolidation.md); it is still unmerged and
-unpublished.
+The path inventory pinned later in this document compares a specific
+BookshelfNG source revision with a specific ChaptarrNG revision. Its counts
+describe source history and changed paths, not feature parity, and do not
+change as new releases are published. The current migration and channel
+evidence is in the [consolidation report](chaptarr-consolidation.md); the
+acceptance requirements in this matrix remain open until each item is tested.
 
 ## Retirement rule
 
