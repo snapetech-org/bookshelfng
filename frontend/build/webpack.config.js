@@ -176,6 +176,16 @@ module.exports = (env) => {
     module: {
       rules: [
         {
+          // React DnD v16 publishes ESM imports such as `react/jsx-runtime`
+          // without file extensions. Keep Webpack's extension check relaxed
+          // for the DnD packages that contain those imports.
+          test: /\.m?js$/,
+          include: /node_modules[\\/](?:react-dnd|dnd-core|@react-dnd)[\\/]/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
+        {
           test: /\.worker\.js$/,
           use: {
             loader: 'worker-loader',
