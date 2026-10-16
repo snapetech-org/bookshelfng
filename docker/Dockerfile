@@ -23,8 +23,8 @@ RUN apk add -U --upgrade --no-cache \
     xmlstarlet
 
 RUN test -x /usr/share/dotnet/dotnet && \
-    test -d /usr/share/dotnet/shared/Microsoft.NETCore.App/10.0.12 && \
-    test -d /usr/share/dotnet/shared/Microsoft.AspNetCore.App/10.0.12
+    test -d /usr/share/dotnet/shared/Microsoft.NETCore.App/10.0.13 && \
+    test -d /usr/share/dotnet/shared/Microsoft.AspNetCore.App/10.0.13
 
 ARG GIT_BRANCH
 ARG COMMIT_HASH
