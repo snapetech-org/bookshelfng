@@ -1,11 +1,11 @@
 # BookshelfNG
 
-> **Final release:** BookshelfNG `0.4.21.71` is the final BookshelfNG release.
-> Existing operators can use the source-side handoff helper and the standard
-> ChaptarrNG migration commands described in the
-> [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md). This does
-> not make every database lineage or installation channel automatically
-> migratable; review the limits and keep an independent backup.
+> **Final source tag:** BookshelfNG `0.4.21.71` is designated the final
+> release. Its GitHub release is still being prepared; `0.4.21.70` remains the
+> latest published version. Both include the source-side handoff helper. Use
+> the standard ChaptarrNG migration commands in the
+> [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md), review its
+> limits, and keep an independent backup.
 
 [![.NET 10 LTS](https://img.shields.io/badge/.NET-10%20LTS-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/en-us/platform/support/policy)
 
@@ -34,6 +34,8 @@ Hardcover remain available for primary library refreshes. Runtime catalog
 search is independently selectable across those providers, Open Library, and
 the other public catalogs. See [Metadata sources](#metadata-sources) for
 provider behavior and settings.
+
+For local MCP access, see the [SnapeTech MCP integration guide](docs/integrations/snapetech-mcp.md).
 
 ## One instance for ebooks and audiobooks
 
@@ -79,10 +81,16 @@ migration status.
 
 The final BookshelfNG release includes a source-side helper that archives the
 entire appdata directory before it calls the standard ChaptarrNG preview,
-apply, or rollback command. The ChaptarrNG image has included those commands
-since `v0.9.970`; `v0.9.973` is the current matching release. The verified
-conversion scope is BookshelfNG migration-158 SQLite. Preview can stop for
-book-by-book media choices when the source does not identify a format.
+apply, or rollback command. The current ChaptarrNG release is
+[`v0.9.975`](https://github.com/snapetech-org/chaptarrng/releases/tag/v0.9.975).
+The verified conversion scope is BookshelfNG migration-158 SQLite. Preview can
+stop for book-by-book media choices when the source does not identify a format.
+
+BookshelfNG issue #114 is implemented in its tagged `0.4.21.71` source. The
+same new-author path behavior is already in ChaptarrNG `v0.9.974` and later;
+ChaptarrNG uses configured format roots automatically and does not offer a
+separate toggle. Neither implementation moves existing files or rewrites
+existing authors when the setting is enabled or the application is upgraded.
 
 The helper does not copy media or download folders mounted outside appdata,
 translate every environment setting or external service, or update a pinned
@@ -93,7 +101,9 @@ schemas, PostgreSQL, full feature parity, and several package-channel upgrade
 and rollback paths remain unverified. The disabled-by-default release bridge
 does not change live tags or packages until its independent acceptance gates
 pass. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
-records current evidence and open gates.
+records current evidence and open gates. The
+[ChaptarrNG retirement status](https://github.com/snapetech-org/chaptarrng/blob/main/docs/BOOKSHELFNG_RETIREMENT.md)
+lists the current channel state and acceptance items.
 
 The final source release also clears its frontend dependency audit. The local
 `braces` toolchain patch and the full Yarn and .NET audit commands are

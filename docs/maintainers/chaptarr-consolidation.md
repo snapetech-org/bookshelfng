@@ -2,28 +2,42 @@
 
 ## Current status — 2026-10-17
 
-The maintainer designates BookshelfNG `0.4.21.71` as the final BookshelfNG
-release. It adds a source-side helper that archives the full appdata directory
-and invokes the standard ChaptarrNG migration and rollback commands. The
-converter remains in the ChaptarrNG application; BookshelfNG now includes the
-operator handoff wrapper, documentation, and a fixture-based contract test.
+BookshelfNG `0.4.21.71` is tagged as the final source release. Its CI has passed
+the build, tests, release-note checks, and image scan; the release workflow is
+still building standalone platform archives. Until that draft is published,
+`0.4.21.70` is the latest public BookshelfNG release. The `.71` source contains
+the optional new-author path setting requested in issue #114.
 
-The matching ChaptarrNG release target is `v0.9.973`. The supported source
-database is the exact BookshelfNG migration-158 SQLite schema. ChaptarrNG
-`v0.9.971` already passed the public synthetic preview, apply, startup,
-rollback, and ambiguous-media-map checks; the v158-to-v120 path has also been
-tested against one populated BookshelfNG database on Linux/amd64. Eighty-one
-media choices in that technical run were not reviewed as correct library
-classifications. The final release/helper does not establish older-schema or
-PostgreSQL support, complete provider/environment parity, rollback on every
-real installation, or every package-channel upgrade path.
+The latest published ChaptarrNG release is `v0.9.975`. It contains the
+preview/apply/restore tools, automatic startup conversion, and format-specific
+new-author path initialization (present since `v0.9.974`). ChaptarrNG fills
+missing roots from usable configured defaults automatically; it has no
+separate toggle, does not replace explicit values, and does not rewrite
+existing authors or move their files.
 
-BookshelfNG release-channel bridging remains disabled by default. This final
-release decision does not automatically redirect mutable tags, pinned images,
-packages, native installers, offline archives, or third-party catalogs. Keep
-an independent appdata backup and preserve media/download mounts until the
-converted installation has been checked. The user-facing procedure is in
-[`docs/migrate-from-bookshelfng-to-chaptarrng.md`](../migrate-from-bookshelfng-to-chaptarrng.md).
+The supported source database remains the exact BookshelfNG migration-158
+SQLite schema. The populated Linux/amd64 rehearsal retained all 39 source
+tables and rows, but 81 media choices were technical test inputs and were not
+reviewed as correct classifications. ChaptarrNG's published-image synthetic
+preview/apply/rollback/startup checks and the BookshelfNG source-helper
+contract test pass. Older schemas, PostgreSQL, two populated BookshelfNG
+databases, every provider/environment contract, rollback on operator data,
+full feature parity, and every package-channel upgrade remain unverified.
+
+The legacy bridge is still disabled. ChaptarrNG AUR `0.9.975-1` is published,
+and the standard COPR `0.9.975-1` build succeeded; the legacy COPR build was
+not triggered. The ChaptarrNG Chocolatey `0.9.975` push returned HTTP 403, so
+its public package is still `0.9.973`; BookshelfNG's public AUR and Chocolatey
+packages remain at `.70`. The scheduled BookshelfNG bridge run confirmed the
+gate was off and skipped all publishers. See the maintained
+[retirement status page](https://github.com/snapetech-org/chaptarrng/blob/main/docs/BOOKSHELFNG_RETIREMENT.md)
+and the user-facing
+[migration guide](../migrate-from-bookshelfng-to-chaptarrng.md) for the current
+channel checklist and operator procedure.
+
+The detailed investigation below records historical candidate revisions and
+their test evidence. Its pinned source counts and older release/channel rows
+are snapshots, not current publication status.
 
 At the GitHub security audit for this work, neither repository had open
 CodeQL or Dependabot alerts. Secret scanning is disabled on both repositories,

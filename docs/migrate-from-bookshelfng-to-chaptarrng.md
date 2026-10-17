@@ -1,10 +1,11 @@
 # Move a BookshelfNG installation to ChaptarrNG
 
-BookshelfNG `0.4.21.71` is the final BookshelfNG release. It includes a
-source-side handoff helper that archives BookshelfNG appdata and invokes the
-standard ChaptarrNG migration commands. ChaptarrNG `v0.9.973` is the matching
-release used in the examples below. Use a later stable ChaptarrNG version if
-one is available, but keep its image tag versioned or use an immutable digest.
+BookshelfNG `0.4.21.71` is tagged as the final source release; its GitHub
+release is still being prepared, and `0.4.21.70` is the latest published
+version. The `.70` release includes a source-side handoff helper that archives
+BookshelfNG appdata and invokes the standard ChaptarrNG migration commands.
+ChaptarrNG `v0.9.975` is the matching published release used in the examples
+below. Keep its image tag versioned or use an immutable digest.
 
 This process does not make every old installation automatically transferable.
 The converter supports the exact BookshelfNG migration-158 SQLite schema.
@@ -44,7 +45,7 @@ Download the helper from the final release:
 
 ```sh
 curl --fail --location --output bookshelfng-to-chaptarrng.sh \
-  https://raw.githubusercontent.com/snapetech-org/bookshelfng/main-v0.4.21.71/scripts/bookshelfng-to-chaptarrng.sh
+  https://raw.githubusercontent.com/snapetech-org/bookshelfng/main-v0.4.21.70/scripts/bookshelfng-to-chaptarrng.sh
 chmod +x bookshelfng-to-chaptarrng.sh
 ```
 
@@ -70,7 +71,7 @@ migration:
 ./bookshelfng-to-chaptarrng.sh preview \
   --data-dir /path/to/bookshelfng-config \
   --backup-dir /path/to/separate-backup-volume \
-  --image ghcr.io/snapetech-org/chaptarrng:v0.9.973
+  --image ghcr.io/snapetech-org/chaptarrng:v0.9.975
 ```
 
 The script creates another full appdata archive before invoking ChaptarrNG.
@@ -95,7 +96,7 @@ After preview passes, keep the source service stopped and run:
 ./bookshelfng-to-chaptarrng.sh apply \
   --data-dir /path/to/bookshelfng-config \
   --backup-dir /path/to/separate-backup-volume \
-  --image ghcr.io/snapetech-org/chaptarrng:v0.9.973 \
+  --image ghcr.io/snapetech-org/chaptarrng:v0.9.975 \
   --confirm-stopped
 ```
 
@@ -128,7 +129,7 @@ source backup filename shown in the logs:
 ./bookshelfng-to-chaptarrng.sh rollback-preview \
   --data-dir /path/to/bookshelfng-config \
   --backup-dir /path/to/separate-backup-volume \
-  --image ghcr.io/snapetech-org/chaptarrng:v0.9.973 \
+  --image ghcr.io/snapetech-org/chaptarrng:v0.9.975 \
   --bookshelf-backup readarr.db.bookshelfng-backup-<timestamp>-<id>.db
 ```
 
@@ -138,7 +139,7 @@ After rollback-preview passes, restore the BookshelfNG database:
 ./bookshelfng-to-chaptarrng.sh rollback \
   --data-dir /path/to/bookshelfng-config \
   --backup-dir /path/to/separate-backup-volume \
-  --image ghcr.io/snapetech-org/chaptarrng:v0.9.973 \
+  --image ghcr.io/snapetech-org/chaptarrng:v0.9.975 \
   --bookshelf-backup readarr.db.bookshelfng-backup-<timestamp>-<id>.db \
   --confirm-stopped
 ```

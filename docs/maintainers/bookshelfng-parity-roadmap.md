@@ -1,17 +1,17 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
-**Reviewed:** 2026-10-17. **Status:** BookshelfNG `0.4.21.71` is designated
-the final release and includes a source-side appdata archive and handoff
-helper. ChaptarrNG's standard image includes preview, apply, automatic
-startup conversion, and rollback commands; the matching release target is
-`v0.9.973`. The verified migration input remains the exact BookshelfNG
-migration-158 SQLite schema. One populated Linux/amd64 run retained all 39
-source tables and rows, while 81 media choices still required operator review.
-This final-release decision and helper do not close the feature, data, or
-installation-channel acceptance gates. Older schemas, PostgreSQL, complete
-settings/identity behavior, rollback on every real deployment, and package
-handoff remain open. This is a feature-level matrix, not a claim that similarly
-named features are equivalent.
+**Reviewed:** 2026-10-17. **Status:** BookshelfNG `0.4.21.71` is tagged as the
+final source release; its GitHub release is still a draft while platform
+archives are built, so `0.4.21.70` remains the latest published BookshelfNG
+release. ChaptarrNG `v0.9.975` is published with preview, apply, automatic
+startup conversion, and rollback commands. The verified migration input
+remains the exact BookshelfNG migration-158 SQLite schema. One populated
+Linux/amd64 run retained all 39 source tables and rows, while 81 media choices
+still required operator review. The final-release decision and helper do not
+close the feature, data, or installation-channel acceptance gates. Older
+schemas, PostgreSQL, complete settings/identity behavior, rollback on every
+real deployment, and package handoff remain open. This is a feature-level
+matrix, not a claim that similarly named features are equivalent.
 
 **Confidence:** high for the listed BookshelfNG behavior at the pinned
 released source; moderate for whether ChaptarrNG contains a related
@@ -68,7 +68,7 @@ is the commit/path audit that must be fully dispositioned.
 | BookshelfNG capability | BookshelfNG has | ChaptarrNG candidate has | Retirement disposition and status |
 | --- | --- | --- | --- |
 | One instance for ebooks and audiobooks; multiple compatible formats per book | Single book records can retain multiple ebook and audiobook files | Media-specific book and edition models exist | **Open blocker.** Convert records and all relationships; prove format isolation, monitoring, upgrades, and existing client behavior. |
-| Format-specific author paths, quality profiles, and metadata profiles | Optional per-format paths and profile overrides, with author defaults as fallback | Native media roots and profiles exist | **Open blocker.** Preserve override/fallback rules and prove imports, upgrades, renames, scans, and moves for both formats. |
+| Format-specific author paths, quality profiles, and metadata profiles | Optional per-format paths and profile overrides, with author defaults as fallback | Native media roots and profiles exist; new authors receive usable per-format roots automatically | **Partial parity.** ChaptarrNG `v0.9.974+` initializes missing new-author roots from configured defaults or the only compatible root, preserves explicit roots, leaves ambiguous defaults blank, and does not move existing files. BookshelfNG `0.4.21.71` adds the requested optional setting. The broader blocker remains open for profile override/fallback semantics and conversion of existing path/profile data; test imports, upgrades, renames, scans, and moves for both formats. |
 | Native Hardcover metadata and request controls | Direct GraphQL provider, per-process pacing/cache, batched lookups, rate-limit recovery, and identity routing | Chaptarr has a separate resolver and consensus pipeline | **Open blocker.** Keep the configured behavior and identity boundaries or provide a tested replacement; a provider name alone is not parity. |
 | Selectable supplemental catalogs and per-field source preferences | Hardcover, Readarr-compatible API, Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and optional Apify adapters | No matching Bookshelf catalog set or source-selection model identified | **Open blocker.** Port adapters, settings, qualified identities, field choices, and fallback rules, or replace each with tested behavior. |
 | Cross-catalog recovery and import matching | Retry unmapped files across configured catalogs; ISBN/ASIN/provider-ID and normalized-name matching; configurable title threshold | Different resolver, FTS, and matching architecture | **Open blocker.** Port the observed cases and no-false-match/no-delete guarantees; do not transplant the old matching engine blindly. |

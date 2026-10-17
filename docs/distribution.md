@@ -6,10 +6,11 @@ normal BookshelfNG build succeeds. It prepares the GitHub Release as a draft,
 builds platform archives and packages, attaches checksums, then publishes the
 release and sends the existing Discord announcement.
 
-BookshelfNG `0.4.21.71` is designated the final BookshelfNG release. Its
-source-side helper takes a full appdata archive, then invokes the standard
-ChaptarrNG preview, apply, and rollback commands. ChaptarrNG `v0.9.973` is the
-matching release target. Conversion is supported for the exact BookshelfNG
+BookshelfNG `0.4.21.71` is tagged as the final source release; its GitHub
+release is still being prepared, and `0.4.21.70` is the latest published
+version. The source-side helper takes a full appdata archive, then invokes the
+standard ChaptarrNG preview, apply, and rollback commands. ChaptarrNG
+`v0.9.975` is the matching published release. Conversion is supported for the exact BookshelfNG
 migration-158 SQLite schema; ambiguous book formats require an operator's
 media map. One populated Linux/amd64 conversion retained all 39 source tables
 and rows, but 81 media choices in that run were not reviewed as correct
