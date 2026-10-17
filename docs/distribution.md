@@ -6,7 +6,7 @@ normal BookshelfNG build succeeds. It prepares the GitHub Release as a draft,
 builds platform archives and packages, attaches checksums, then publishes the
 release and sends the existing Discord announcement.
 
-BookshelfNG `0.4.21.70` is designated the final BookshelfNG release. Its
+BookshelfNG `0.4.21.71` is designated the final BookshelfNG release. Its
 source-side helper takes a full appdata archive, then invokes the standard
 ChaptarrNG preview, apply, and rollback commands. ChaptarrNG `v0.9.973` is the
 matching release target. Conversion is supported for the exact BookshelfNG

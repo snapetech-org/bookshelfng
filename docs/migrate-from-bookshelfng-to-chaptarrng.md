@@ -1,6 +1,6 @@
 # Move a BookshelfNG installation to ChaptarrNG
 
-BookshelfNG `0.4.21.70` is the final BookshelfNG release. It includes a
+BookshelfNG `0.4.21.71` is the final BookshelfNG release. It includes a
 source-side handoff helper that archives BookshelfNG appdata and invokes the
 standard ChaptarrNG migration commands. ChaptarrNG `v0.9.973` is the matching
 release used in the examples below. Use a later stable ChaptarrNG version if
@@ -44,7 +44,7 @@ Download the helper from the final release:
 
 ```sh
 curl --fail --location --output bookshelfng-to-chaptarrng.sh \
-  https://raw.githubusercontent.com/snapetech-org/bookshelfng/main-v0.4.21.70/scripts/bookshelfng-to-chaptarrng.sh
+  https://raw.githubusercontent.com/snapetech-org/bookshelfng/main-v0.4.21.71/scripts/bookshelfng-to-chaptarrng.sh
 chmod +x bookshelfng-to-chaptarrng.sh
 ```
 

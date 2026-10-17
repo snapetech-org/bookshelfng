@@ -159,6 +159,27 @@ namespace NzbDrone.Core.Configuration
             set { SetValue("CreateEmptyAuthorFolders", value); }
         }
 
+        public bool AutoInitializeFormatSpecificAuthorPaths
+        {
+            get { return GetValueBoolean("AutoInitializeFormatSpecificAuthorPaths", false); }
+
+            set { SetValue("AutoInitializeFormatSpecificAuthorPaths", value); }
+        }
+
+        public string NewAuthorEbookRootFolderPath
+        {
+            get { return GetValue("NewAuthorEbookRootFolderPath", string.Empty); }
+
+            set { SetValue("NewAuthorEbookRootFolderPath", value); }
+        }
+
+        public string NewAuthorAudiobookRootFolderPath
+        {
+            get { return GetValue("NewAuthorAudiobookRootFolderPath", string.Empty); }
+
+            set { SetValue("NewAuthorAudiobookRootFolderPath", value); }
+        }
+
         public bool DeleteEmptyFolders
         {
             get { return GetValueBoolean("DeleteEmptyFolders", false); }

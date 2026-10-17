@@ -1,6 +1,6 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
-**Reviewed:** 2026-10-16. **Status:** BookshelfNG `0.4.21.70` is designated
+**Reviewed:** 2026-10-17. **Status:** BookshelfNG `0.4.21.71` is designated
 the final release and includes a source-side appdata archive and handoff
 helper. ChaptarrNG's standard image includes preview, apply, automatic
 startup conversion, and rollback commands; the matching release target is

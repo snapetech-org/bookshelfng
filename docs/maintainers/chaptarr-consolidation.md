@@ -1,8 +1,8 @@
 # BookshelfNG retirement and ChaptarrNG consolidation
 
-## Current status — 2026-10-16
+## Current status — 2026-10-17
 
-The maintainer designates BookshelfNG `0.4.21.70` as the final BookshelfNG
+The maintainer designates BookshelfNG `0.4.21.71` as the final BookshelfNG
 release. It adds a source-side helper that archives the full appdata directory
 and invokes the standard ChaptarrNG migration and rollback commands. The
 converter remains in the ChaptarrNG application; BookshelfNG now includes the

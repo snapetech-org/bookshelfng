@@ -5,6 +5,16 @@ requiring a second library instance. The feature has a per-author workflow and
 a bulk workflow. Both operate on files recorded in the current instance's
 database; they do not combine application databases.
 
+## Initialize paths for new authors
+
+For a library with separate ebook and audiobook roots, show advanced settings
+in **Settings → Media Management**, enable **Automatically initialize
+format-specific author paths** under **Folders**, then choose the ebook and
+audiobook root folders. New authors use
+the ebook root for their default and ebook paths and the audiobook root for
+their audiobook path. The feature only sets paths; it does not create or move
+files, and existing authors are left unchanged.
+
 ## Choose the move workflow
 
 ### Move one author's format

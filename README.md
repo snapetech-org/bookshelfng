@@ -1,6 +1,6 @@
 # BookshelfNG
 
-> **Final release:** BookshelfNG `0.4.21.70` is the final BookshelfNG release.
+> **Final release:** BookshelfNG `0.4.21.71` is the final BookshelfNG release.
 > Existing operators can use the source-side handoff helper and the standard
 > ChaptarrNG migration commands described in the
 > [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md). This does

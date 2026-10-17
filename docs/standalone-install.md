@@ -1,6 +1,6 @@
 # Standalone installation
 
-**Final BookshelfNG release:** `0.4.21.70`. This guide remains for existing
+**Final BookshelfNG release:** `0.4.21.71`. This guide remains for existing
 installations. To move one to ChaptarrNG, use the
 [BookshelfNG handoff guide](migrate-from-bookshelfng-to-chaptarrng.md) and its
 source-side helper with the standard ChaptarrNG `v0.9.973` release. The

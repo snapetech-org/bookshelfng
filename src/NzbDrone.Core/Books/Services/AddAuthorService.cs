@@ -7,6 +7,7 @@ using FluentValidation.Results;
 using NLog;
 using NzbDrone.Common.EnsureThat;
 using NzbDrone.Common.Extensions;
+using NzbDrone.Core.Configuration;
 using NzbDrone.Core.Exceptions;
 using NzbDrone.Core.MetadataSource;
 using NzbDrone.Core.Organizer;
@@ -27,6 +28,7 @@ namespace NzbDrone.Core.Books
         private readonly IProvideAuthorInfo _authorInfo;
         private readonly IBuildFileNames _fileNameBuilder;
         private readonly IAddAuthorValidator _addAuthorValidator;
+        private readonly IConfigService _configService;
         private readonly Logger _logger;
 
         public AddAuthorService(IAuthorService authorService,
@@ -34,6 +36,7 @@ namespace NzbDrone.Core.Books
                                 IProvideAuthorInfo authorInfo,
                                 IBuildFileNames fileNameBuilder,
                                 IAddAuthorValidator addAuthorValidator,
+                                IConfigService configService,
                                 Logger logger)
         {
             _authorService = authorService;
@@ -41,6 +44,7 @@ namespace NzbDrone.Core.Books
             _authorInfo = authorInfo;
             _fileNameBuilder = fileNameBuilder;
             _addAuthorValidator = addAuthorValidator;
+            _configService = configService;
             _logger = logger;
         }
 
@@ -135,10 +139,15 @@ namespace NzbDrone.Core.Books
         private Author SetPropertiesAndValidate(Author newAuthor)
         {
             var path = newAuthor.Path;
+            var folderName = string.IsNullOrWhiteSpace(path) ? _fileNameBuilder.GetAuthorFolder(newAuthor) : null;
             if (string.IsNullOrWhiteSpace(path))
             {
-                var folderName = _fileNameBuilder.GetAuthorFolder(newAuthor);
-                path = Path.Combine(newAuthor.RootFolderPath, folderName);
+                var rootFolderPath = _configService.AutoInitializeFormatSpecificAuthorPaths &&
+                    _configService.NewAuthorEbookRootFolderPath.IsNotNullOrWhiteSpace()
+                        ? _configService.NewAuthorEbookRootFolderPath
+                        : newAuthor.RootFolderPath;
+
+                path = Path.Combine(rootFolderPath, folderName);
             }
 
             // Disambiguate author path if it exists already
@@ -163,6 +172,29 @@ namespace NzbDrone.Core.Books
             }
 
             newAuthor.Path = path;
+
+            if (_configService.AutoInitializeFormatSpecificAuthorPaths)
+            {
+                var authorFolderName = Path.GetFileName(path.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar));
+                if (authorFolderName.IsNullOrWhiteSpace())
+                {
+                    authorFolderName = folderName ?? _fileNameBuilder.GetAuthorFolder(newAuthor);
+                }
+
+                if (newAuthor.EbookPath.IsNullOrWhiteSpace())
+                {
+                    newAuthor.EbookPath = path;
+                }
+
+                if (newAuthor.AudiobookPath.IsNullOrWhiteSpace())
+                {
+                    var audiobookRootFolderPath = _configService.NewAuthorAudiobookRootFolderPath;
+                    newAuthor.AudiobookPath = audiobookRootFolderPath.IsNotNullOrWhiteSpace()
+                        ? Path.Combine(audiobookRootFolderPath, authorFolderName)
+                        : path;
+                }
+            }
+
             newAuthor.CleanName = newAuthor.Metadata.Value.Name.CleanAuthorName();
             newAuthor.Added = DateTime.UtcNow;
 

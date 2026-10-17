@@ -349,8 +349,8 @@ schema](../src/Bookshelf.Diagnostics/README.md).
 This feature-level inventory covers work added or maintained in BookshelfNG
 from its May 18, 2026 fork from
 [pennydreadful/bookshelf](https://github.com/pennydreadful/bookshelf) through
-the [`main-v0.4.21.69` release](https://github.com/snapetech-org/bookshelfng/releases/tag/main-v0.4.21.69)
-published on October 12, 2026. Bookshelf itself is a Readarr revival. The table
+the [`main-v0.4.21.71` release](https://github.com/snapetech-org/bookshelfng/releases/tag/main-v0.4.21.71)
+published on October 17, 2026. Bookshelf itself is a Readarr revival. The table
 groups related changes rather than listing every bug fix, dependency bump, or
 routine maintenance commit. The exhaustive commit and changed-path accounting
 for the ChaptarrNG consolidation is in the
@@ -373,6 +373,7 @@ has the patch-level record.
 | September 26, 2026 | Added audiobook narrator credits from file tags to edition import scoring so matching narrators help rank audiobook editions when both local and provider metadata include them. |
 | September 27–October 4, 2026 | Added cross-catalog recovery for unmapped files, optional ebook/audiobook author folders, previewable per-author and bulk media moves, and SeerrNG format-scoped routes and availability counts. Hardened the SeerrNG credential and trusted-proxy boundaries, restored Readarr API and Docker compatibility, and added a built-in direct-download indexer/client with ordered source URLs, API-key downloads, optional headless-Chromium resolution, durable transfer state, and validated redirects. |
 | October 5–12, 2026 | Added format-specific author quality and metadata-profile overrides, authenticated encryption for full backups, first-run authentication recovery, and Jellyfin book-folder guidance; removed the vulnerable ImageSharp dependency; patched selector-parser CPU exhaustion; retired YunoHost publishing; and expanded source-bound validation. See the release history and the consolidation path inventory for the complete patch-level record. |
+| October 17, 2026 | Added an opt-in setting to initialize new authors' default, ebook, and audiobook paths from configured roots. |
 
 BookshelfNG retains ebook identification behavior from the Readarr lineage:
 EPUB ISBN normalization and checksum checks, ISBN-13 preference, ASIN matching,

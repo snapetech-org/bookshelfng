@@ -11640,6 +11640,17 @@
           "createEmptyAuthorFolders": {
             "type": "boolean"
           },
+          "autoInitializeFormatSpecificAuthorPaths": {
+            "type": "boolean"
+          },
+          "newAuthorEbookRootFolderPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "newAuthorAudiobookRootFolderPath": {
+            "type": "string",
+            "nullable": true
+          },
           "deleteEmptyFolders": {
             "type": "boolean"
           },

@@ -1,8 +1,8 @@
 # BookshelfNG to ChaptarrNG distribution bridge
 
-## Current status — 2026-10-16
+## Current status — 2026-10-17
 
-BookshelfNG `0.4.21.70` is designated the final release and includes an
+BookshelfNG `0.4.21.71` is designated the final release and includes an
 appdata handoff helper. The bridge described below remains disabled by
 default; this release does not redirect any live package or image identity.
 ChaptarrNG `v0.9.973` is the matching release target. Migration support remains

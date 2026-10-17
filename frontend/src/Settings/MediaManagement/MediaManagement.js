@@ -119,6 +119,67 @@ class MediaManagement extends Component {
                         size={sizes.MEDIUM}
                       >
                         <FormLabel>
+                          {translate('AutoInitializeFormatSpecificAuthorPaths')}
+                        </FormLabel>
+
+                        <FormInputGroup
+                          type={inputTypes.CHECK}
+                          name="autoInitializeFormatSpecificAuthorPaths"
+                          helpText={translate('AutoInitializeFormatSpecificAuthorPathsHelpText')}
+                          onChange={onInputChange}
+                          {...settings.autoInitializeFormatSpecificAuthorPaths}
+                        />
+                      </FormGroup>
+
+                      {
+                        settings.autoInitializeFormatSpecificAuthorPaths.value &&
+                          <>
+                            <FormGroup
+                              advancedSettings={advancedSettings}
+                              isAdvanced={true}
+                              size={sizes.MEDIUM}
+                            >
+                              <FormLabel>
+                                {translate('NewAuthorEbookRootFolderPath')}
+                              </FormLabel>
+
+                              <FormInputGroup
+                                type={inputTypes.ROOT_FOLDER_SELECT}
+                                name="newAuthorEbookRootFolderPath"
+                                includeMissingValue={true}
+                                helpText={translate('NewAuthorEbookRootFolderPathHelpText')}
+                                onChange={onInputChange}
+                                {...settings.newAuthorEbookRootFolderPath}
+                              />
+                            </FormGroup>
+
+                            <FormGroup
+                              advancedSettings={advancedSettings}
+                              isAdvanced={true}
+                              size={sizes.MEDIUM}
+                            >
+                              <FormLabel>
+                                {translate('NewAuthorAudiobookRootFolderPath')}
+                              </FormLabel>
+
+                              <FormInputGroup
+                                type={inputTypes.ROOT_FOLDER_SELECT}
+                                name="newAuthorAudiobookRootFolderPath"
+                                includeMissingValue={true}
+                                helpText={translate('NewAuthorAudiobookRootFolderPathHelpText')}
+                                onChange={onInputChange}
+                                {...settings.newAuthorAudiobookRootFolderPath}
+                              />
+                            </FormGroup>
+                          </>
+                      }
+
+                      <FormGroup
+                        advancedSettings={advancedSettings}
+                        isAdvanced={true}
+                        size={sizes.MEDIUM}
+                      >
+                        <FormLabel>
                           {translate('DeleteEmptyFolders')}
                         </FormLabel>
 
