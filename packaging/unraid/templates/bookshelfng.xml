@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>BookshelfNG</Name>
-  <Repository>ghcr.io/snapetech/bookshelfng:latest</Repository>
-  <Registry>https://ghcr.io/snapetech/bookshelfng</Registry>
+  <Repository>ghcr.io/snapetech-org/bookshelfng:main</Repository>
+  <Registry>https://ghcr.io/snapetech-org/bookshelfng</Registry>
   <Network>bridge</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
@@ -16,7 +16,7 @@
   <ReadMe>https://github.com/snapetech-org/bookshelfng-unraid/blob/main/docs/installation.md</ReadMe>
   <Category>MediaApp:Books</Category>
   <ExtraSearchTerms>bookshelfng bookshelf readarr hardcover ebook audiobook seerrng</ExtraSearchTerms>
-  <Changes>Use the rolling latest tag for the Hardcover image. BookshelfNG runs independently with optional SeerrNG integration.</Changes>
+  <Changes>Use the rolling main tag for the Hardcover image. BookshelfNG runs independently with optional SeerrNG integration.</Changes>
   <Requires>Docker and persistent appdata. Configure this app independently before connecting it to SeerrNG.</Requires>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
 
