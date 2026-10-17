@@ -1,0 +1,32 @@
+name: BookshelfNG fork-safe static validation
+on:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  validate:
+    name: Packaging static checks
+    if: github.event_name == 'pull_request' && github.event.pull_request.base.repo.full_name == 'snapetech-org/bookshelfng'
+    runs-on: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true && fromJSON('["self-hosted", "linux", "x64", "public-pr-bookshelfng"]') || 'ubuntu-latest' }}
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Test the COPR migration source bridge
+        run: |
+          bash -n packaging/rpm/copr-source.sh scripts/test-copr-source.sh
+          bash scripts/test-copr-source.sh
+      - name: Test the ChaptarrNG image namespace used by the release bridge
+        run: |
+          bash -n scripts/test-chaptarrng-release-bridge.sh
+          bash scripts/test-chaptarrng-release-bridge.sh
+      - name: Test the BookshelfNG to ChaptarrNG transfer helper
+        run: |
+          bash -n scripts/bookshelfng-to-chaptarrng.sh scripts/test-bookshelfng-to-chaptarrng.sh
+          bash scripts/test-bookshelfng-to-chaptarrng.sh
+      - name: Verify Unraid package sync stays off feature branches
+        run: bash scripts/test-sync-unraid-package.sh
+
