@@ -1,0 +1,22 @@
+name: BookshelfNG fork PR validation
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+permissions:
+  contents: read
+concurrency:
+  group: public-fork-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    name: Run disposable fork validation
+    if: >-
+      github.event.pull_request.head.repo.fork == true &&
+      github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name &&
+      github.event.pull_request.base.repo.full_name == 'snapetech-org/bookshelfng' &&
+      github.event.pull_request.base.ref == 'main'
+    permissions:
+      contents: read
+    uses: snapetech-org/bookshelfng/.github/workflows/fork-safe-validation.yml@d7d51430c958679ebe3fd5ba97a871afa3823ac2
+
