@@ -11,7 +11,11 @@ concurrency:
 jobs:
   validate:
     name: Run disposable fork validation
-    if: github.event.pull_request.head.repo.fork == true && github.event.pull_request.base.repo.full_name == 'snapetech-org/bookshelfng' && github.event.pull_request.base.ref == 'main'
+    if: >-
+      github.event.pull_request.head.repo.fork == true &&
+      github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name &&
+      github.event.pull_request.base.repo.full_name == 'snapetech-org/bookshelfng' &&
+      github.event.pull_request.base.ref == 'main'
     permissions:
       contents: read
     uses: snapetech-org/bookshelfng/.github/workflows/fork-safe-validation.yml@4efcc4dd8708ea0bdde45d97980bc120428b1554
