@@ -96,6 +96,31 @@ moving them to another host. The appdata archive can contain API keys, provider
 credentials, and library metadata, so keep it in private storage and do not
 upload or share it.
 
+## BookLore and BookOrbit handoff
+
+The converter preserves a BookshelfNG BookLore notification row, including its
+provider identity, saved settings and credentials, and `OnReleaseImport`
+trigger. It keeps the source row in the retained backup. It cannot infer that a
+saved BookLore URL or account belongs to a BookOrbit server, so it does not
+rewrite this connection.
+
+The current ChaptarrNG retirement candidate adds a separate BookOrbit Book
+Dock notification destination. Its API client has mock coverage for streaming,
+redirect refusal, credential and file rejection, and partial batches. An
+isolated BookOrbit v3.2.0 live contract run passed initial setup, login, Book
+Dock access, EPUB upload and listing, and unsupported-file rejection. This
+confirms upload admission, not BookOrbit's downstream processing of a
+production book or a transition using real BookshelfNG users and settings. The
+candidate is [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131)
+and is not included in public ChaptarrNG `v0.9.977`.
+
+After a ChaptarrNG build containing BookOrbit is available, add and test a
+separate BookOrbit connection in **Settings > Connect**. Keep the migrated
+BookLore connection until imported files appear in BookOrbit as expected; then
+disable or remove the old connection if it is no longer needed. For a partially
+rejected batch, inspect Book Dock before retrying because successful earlier
+uploads remain there.
+
 ## Prepare and snapshot
 
 Install the last BookshelfNG release and choose a backup directory on separate

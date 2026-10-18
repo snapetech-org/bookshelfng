@@ -242,7 +242,10 @@ snapshot and individual gates. See the
 - **Send imports to BookLore.** BookLore is an optional supported app. Add it
   as a notification destination to upload imported files to its BookDrop
   review queue; BookshelfNG runs without BookLore. See the
-  [BookLore integration guide](docs/booklore-integration.md).
+  [BookLore integration guide](docs/booklore-integration.md). During a
+  ChaptarrNG migration, this saved connection remains configured for BookLore;
+  it is not automatically rewritten to BookOrbit. See the
+  [migration handoff](docs/migrate-from-bookshelfng-to-chaptarrng.md#booklore-and-bookorbit-handoff).
 - **Connect a Calibre Content Server.** Configure a Calibre library as a root
   folder to add imported books to the library, sync metadata, and convert into
   configured output formats.
