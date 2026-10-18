@@ -22,7 +22,7 @@ rejects versions before migration 14 until the chain renames `Blacklist` to
 `Blocklist`. PR #126 merged a version-aware fix and migration-1 rollback
 fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
 checks passed, but that fix is not in `.977`.
-The current retirement-branch PostgreSQL candidate supports one migration-158 source schema. Run [39129297886](https://github.com/snapetech-org/chaptarrng/actions/runs/39129297886) on `b1995dd9` reached the conversion test but failed with `Npgsql.PostgresException`; the hosted server reported `relation "books" does not exist` in the media-mapping query. The identifier correction is in [cd0fc8f7](https://github.com/snapetech-org/chaptarrng/commit/cd0fc8f7) and exact-head workflow [39129748102](https://github.com/snapetech-org/chaptarrng/actions/runs/39129748102) is running. PostgreSQL remains unsupported for installations until all acceptance gates pass.
+Run [39131142836](https://github.com/snapetech-org/chaptarrng/actions/runs/39131142836) on `0f7a77d` failed in the PostgreSQL test fixture after migration: `ReadConfigValue` queried the mixed-case `Config` table without quotes, producing `relation "config" does not exist`. This is a fixture SQL failure, not a converter assertion failure. Commit [ceef1797](https://github.com/snapetech-org/chaptarrng/commit/ceef1797) quotes the table; exact-head run [39131508562](https://github.com/snapetech-org/chaptarrng/actions/runs/39131508562) is validating it. The candidate remains unsupported for operator data.
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be
