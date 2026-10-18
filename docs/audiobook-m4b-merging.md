@@ -37,8 +37,9 @@ but that does not make these BookshelfNG settings equivalent. The source-only
 [ChaptarrNG PR #129](https://github.com/snapetech-org/chaptarrng/pull/129) is
 under review and is not available in a published build. The exact source-code
 run on `05d78be4` failed the same four importer fixtures on Linux, macOS, and
-Windows. Workflow-only head `fe158f14` adds a PR-scoped Linux diagnostic
-rerun; its result is pending. Representative-media acceptance remains open.
+Windows. The Linux diagnostic on `fe158f14` reproduced the failures. Head
+`e46b8974` adds importer details to the failing assertions; its hosted
+validation is running. Representative-media acceptance remains open.
 Preserve the settings in your deployment notes, but keep
 `BOOKSHELF_M4B_MERGE` unset after migration until the ChaptarrNG migration
 guide names a tested build that supports it.

@@ -332,9 +332,10 @@ for track ordering, conversion settings, source-file handling, native install
 configuration, and implementation references.
 The published ChaptarrNG `v0.9.977` does not honor these BookshelfNG settings;
 the source-only [ChaptarrNG PR #129](https://github.com/snapetech-org/chaptarrng/pull/129)
-has four importer assertions failing on all three hosted platforms. Its
-PR-scoped Linux diagnostic rerun is pending. Keep the merge opt-in unset after
-migration until a tested ChaptarrNG build documents support.
+has four importer assertions failing on all three hosted platforms. The Linux
+diagnostic on `fe158f14` reproduced the failures. Head `e46b8974` adds importer
+details to the failing assertions; hosted validation is running. Keep the merge
+opt-in unset after migration until a tested ChaptarrNG build documents support.
 
 ## Privacy and optional diagnostics
 

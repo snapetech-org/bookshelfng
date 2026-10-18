@@ -23,8 +23,9 @@
 > allowlisted public metadata APIs and do not grant access. PR #129 is an
 > unpublished compatibility candidate for BookshelfNG's opt-in M4B merge
 > settings. The exact source-code run on `05d78be4` failed the same four
-> importer fixtures on Linux, macOS, and Windows. Workflow-only head
-> `fe158f14` adds a PR-scoped Linux diagnostic rerun; that run is pending.
+> importer fixtures on Linux, macOS, and Windows. The Linux diagnostic on
+> `fe158f14` reproduced the failures. Head `e46b8974` adds importer details to
+> the failing assertions; its hosted validation is running.
 > Representative-media acceptance remains open. Upgrade
 > pre-v14 BookshelfNG databases to `.71` before
 > switching. PostgreSQL migration and legacy-channel bridges remain
@@ -136,8 +137,9 @@ ChaptarrNG PR #129 is an unpublished source candidate for the BookshelfNG
 M4B merge settings. It preserves opt-in behavior, track ordering and chapter
 titles, and falls back to importing the original parts when conversion fails.
 The exact source-code run on `05d78be4` failed the same four importer fixtures
-on Linux, macOS, and Windows. Workflow-only head `fe158f14` adds a PR-scoped
-Linux diagnostic rerun, which is pending. Representative M4B files and
+on Linux, macOS, and Windows. The Linux diagnostic on `fe158f14` reproduced
+the failures. Head `e46b8974` adds importer details to the failing assertions;
+its hosted validation is running. Representative M4B files and
 end-to-end move/copy behavior still need acceptance. The feature is not in the
 public `.977` image, so keep `BOOKSHELF_M4B_MERGE` unset after migration until
 a tested ChaptarrNG build documents it.

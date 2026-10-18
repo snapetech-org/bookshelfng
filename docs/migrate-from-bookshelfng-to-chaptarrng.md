@@ -33,9 +33,10 @@ false positives and dismissed with a rationale.
 
 PR #129 remains an unpublished candidate for BookshelfNG's opt-in M4B
 settings. The exact source-code run on `05d78be4` failed the same four importer
-fixtures on Linux, macOS, and Windows. Workflow-only head `fe158f14` adds a
-PR-scoped Linux diagnostic rerun; that hosted run is pending. Representative
-media acceptance remains open. Neither change is in the public
+fixtures on Linux, macOS, and Windows. The Linux diagnostic on `fe158f14`
+reproduced the failures. Head `e46b8974` adds importer details to the failing
+assertions; its hosted validation is running. Representative media acceptance
+remains open. Neither change is in the public
 `.977` image.
 
 Update an earlier BookshelfNG release to `0.4.21.71` and let it finish its
