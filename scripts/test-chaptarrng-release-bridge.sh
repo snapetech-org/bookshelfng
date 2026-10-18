@@ -9,6 +9,8 @@ workflow="$repo_root/.github/workflows/chaptarrng-release-bridge.yml"
 required_lines=(
   "TARGET_REPOSITORY: snapetech-org/chaptarrng"
   'BRIDGE_ENABLED: ${{ vars.CHAPTARRNG_MIGRATION_BRIDGE_ENABLED || '\''false'\'' }}'
+  'RELEASE_READY: ${{ vars.BOOKSHELFNG_RELEASE_READY || '\''false'\'' }}'
+  'if [[ "${BRIDGE_ENABLED,,}" == true && "${RELEASE_READY,,}" == true ]]; then enabled=true; fi'
   "PUBLISH_GHCR_ALIASES: 'false'"
   "PUBLISH_LEGACY_ALIASES: 'true'"
   'source_tag="ghcr.io/snapetech/chaptarrng:${VERSION}"'

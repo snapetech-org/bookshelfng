@@ -27,7 +27,9 @@
 > CodeQL, dependency/security, and release-note checks. A synthetic two-track
 > smoke in the `.977` toolchain produced AAC at 44.1 kHz stereo with the two
 > supplied chapter titles and offsets. That checks m4b-tool and its chapter
-> sidecar, not the new importer end to end or representative library media.
+> sidecar. Focused ChaptarrNG importer tests cover selection, chapter/tag
+> behavior, and fallback with a mocked converter; representative files and a
+> full converter-to-import run remain open.
 > M4B support is still absent from the public `.977` image; keep the merge
 > setting unset after migration until a release with this support passes the
 > remaining acceptance gates. ChaptarrNG PR #130 merged to `main` as
@@ -39,10 +41,45 @@
 > algorithms; acceptance on converted operator data remains open. The change
 > is not in public `.977`. Upgrade
 > pre-v14 BookshelfNG databases to `.71` before
-> switching. PostgreSQL migration and legacy-channel bridges remain
-> unsupported. Use the standard ChaptarrNG migration commands
+> switching. PostgreSQL migration is not supported by a published ChaptarrNG
+> build. The retirement candidate handles one migration-158 PostgreSQL schema.
+> Its exact run on `e67f28ed` failed because migration 10 checked
+> `public.Editions` instead of the staging schema and skipped `Subtitle`.
+> Commit `8f0bbc29` adds the column through PostgreSQL's active search path.
+> Its exact run then failed to compile because `IMigrationRunner` has no
+> `VersionLoader` property. Commit `50f58223` reads the registered
+> `IVersionTableMetaData` service, but its fixture then failed at migration 23:
+> an unqualified schema check examined `public.NamingConfig`, skipped staging
+> `EbookRenameBooks`, and the following update failed. ChaptarrNG commit
+> `e6e9b955` adds a PostgreSQL processor that routes unqualified schema checks
+> to the active schema, plus a focused regression test. PR #131 is validating
+> that exact code revision.
+> Operator-data acceptance remains open;
+> do not use the candidate for an installation. BookshelfNG's freeze gate is
+> under review in [PR #148](https://github.com/snapetech-org/bookshelfng/pull/148).
+> The legacy-channel bridges remain disabled. Use the standard ChaptarrNG migration commands
 > in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md),
 > review its limits, and keep an independent backup.
+
+The current ChaptarrNG retirement branch also ports the native Hardcover
+provider and translates the saved `HardcoverAuth` setting to
+`HardcoverApiToken`. Bare numeric provider IDs are interpreted according to
+the BookshelfNG mode in effect during migration: `HARDCOVER=true` selects
+Hardcover unless `HARDCOVER_NATIVE=false`; otherwise the importer keeps the
+Goodreads interpretation. Preview records that choice. The current source
+candidate of the handoff helper adds `--provider-mode goodreads|native-hardcover`
+to pass the choice to the temporary converter container. That helper change
+and provider support are not in the published `.71` helper or ChaptarrNG
+`.977` image. The exact hosted run on `50f58223` failed its PostgreSQL
+migration fixture. ChaptarrNG commit `e6e9b955` contains the schema-query
+correction and PR #131 is validating it; converted-data acceptance remains
+open. Releases
+remain frozen until the full retirement gates close.
+
+BookshelfNG's tagged image/release jobs, manual distribution retries, and the
+ChaptarrNG legacy bridge are also fail-closed. They require the
+`BOOKSHELFNG_RELEASE_READY=true` repository variable, which is unset. Keep it
+unset until migration, parity, rollback, and channel acceptance are complete.
 
 [![.NET 10 LTS](https://img.shields.io/badge/.NET-10%20LTS-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/en-us/platform/support/policy)
 

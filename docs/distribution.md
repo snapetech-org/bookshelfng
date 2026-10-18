@@ -6,6 +6,13 @@ normal BookshelfNG build succeeds. It prepares the GitHub Release as a draft,
 builds platform archives and packages, attaches checksums, then publishes the
 release and sends the existing Discord announcement.
 
+Publication is frozen while BookshelfNG retirement acceptance remains open.
+Tagged image and release jobs, manual package-distribution retries, and the
+ChaptarrNG legacy bridge fail closed unless the BookshelfNG repository variable
+`BOOKSHELFNG_RELEASE_READY` is exactly `true`. It is unset. Set it only after
+migration, feature parity, rollback, and every supported channel pass
+acceptance; a normal CI or manual build does not enable publishing.
+
 BookshelfNG `0.4.21.71` is the published final source release. Its
 source-side helper takes a full appdata archive, then invokes the standard
 ChaptarrNG preview, apply, and rollback commands. ChaptarrNG `v0.9.977` remains
@@ -15,6 +22,19 @@ rejects versions before migration 14 until the chain renames `Blacklist` to
 `Blocklist`. PR #126 merged a version-aware fix and migration-1 rollback
 fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
 checks passed, but that fix is not in `.977`.
+The current retirement-branch PostgreSQL candidate supports one
+migration-158 source schema. Its exact run on `e67f28ed` failed because
+migration 10 checked `public.Editions` instead of the active staging schema
+and skipped `Subtitle`. Commit `8f0bbc29` adds the column through the active
+search path. Its exact run then failed to compile because `IMigrationRunner`
+has no `VersionLoader` property. Commit `50f58223` reads the registered
+`IVersionTableMetaData` service, but its fixture then failed at migration 23:
+an unqualified schema check examined `public.NamingConfig`, skipped staging
+`EbookRenameBooks`, and the following update failed. ChaptarrNG commit
+`e6e9b955` routes unqualified PostgreSQL schema checks through a scoped
+processor and adds a focused regression test; PR #131 is validating that code,
+and operator-data acceptance remains open. PostgreSQL remains unsupported for installations until
+the candidate passes all acceptance gates.
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be
@@ -29,10 +49,11 @@ rollback smoke passed using the published `.71` and `.977` images with an empty
 database; it does not validate the Unraid Community Apps update flow.
 
 The helper does not copy media or download folders outside appdata or update
-an installation channel. Release-channel bridging remains disabled by
-default; mutable tags, pinned digests, native packages, offline installers,
-and third-party catalogs need their own upgrade steps. See the
-[BookshelfNG-to-ChaptarrNG handoff guide](migrate-from-bookshelfng-to-chaptarrng.md)
+an installation channel. The migration bridge additionally requires
+`CHAPTARRNG_MIGRATION_BRIDGE_ENABLED=true`; that flag alone cannot bypass
+`BOOKSHELFNG_RELEASE_READY`. Mutable tags, pinned digests, native packages,
+offline installers, and third-party catalogs need their own upgrade steps.
+See the [BookshelfNG-to-ChaptarrNG handoff guide](migrate-from-bookshelfng-to-chaptarrng.md)
 for the operator procedure and the
 [distribution bridge matrix](maintainers/chaptarr-consolidation.md#distribution-bridge-matrix)
 for channel requirements and open acceptance gates.
@@ -62,6 +83,7 @@ before expecting an external package store to receive a release.
 
 | Secret or variable | Used by |
 | --- | --- |
+| `BOOKSHELFNG_RELEASE_READY` | Required as exactly `true` by tag publication, manual distribution retries, and the migration bridge; keep unset or `false` until all retirement acceptance gates close. |
 | `AUR_SSH_KEY` | Pushes the `bookshelfng-bin` package to AUR. Add the matching public key to the AUR account. |
 | `COPR_WEBHOOK_URL` | Package-scoped COPR custom webhook URL for the `bookshelfng` package. |
 | `GPG_PRIVATE_KEY` | Signs source packages before upload to Launchpad. |

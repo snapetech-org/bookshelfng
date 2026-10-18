@@ -14,6 +14,20 @@ Windows, and PostgreSQL migration checks passed. The source fix is not in
 The bridge described below remains disabled; no BookshelfNG package identity
 or image alias has been redirected.
 
+The active ChaptarrNG retirement candidate adds native Hardcover identity
+migration and PostgreSQL conversion for one migration-158 schema. Its exact run
+on `e67f28ed` failed because migration 10 checked `public.Editions` instead
+of the active staging schema and skipped `Subtitle`. ChaptarrNG commit
+`8f0bbc29` adds that column through the active search path. Its exact run
+failed to compile because `IMigrationRunner` has no `VersionLoader` property.
+Commit `50f58223` reads the registered `IVersionTableMetaData` service instead;
+its fixture then failed at migration 23 because an unqualified schema check
+examined `public.NamingConfig` and skipped `EbookRenameBooks` in staging.
+ChaptarrNG commit `e6e9b955` routes unqualified PostgreSQL checks through a
+schema-scoped processor and adds a focused regression test; PR #131 is
+validating that code. This candidate does not change bridge eligibility.
+Operator data, feature-parity, install-flow, and package-channel acceptance remain open.
+
 ChaptarrNG AUR `0.9.977-1` is published. The standard COPR package
 `chaptarrng 0.9.977-1` built successfully for Fedora 43, 44, 45, and Rawhide
 x86_64. Chocolatey `.977` passed package-transition smoke validation, but its
@@ -25,10 +39,12 @@ smoke passed on an empty migration-158 database; the old image started again
 on port 8787. The Unraid Community Apps template update remains untested. Use
 this channel matrix as a gate inventory, not a report of completed redirects.
 
-The bridge workflow is a candidate for the BookshelfNG repository. It is
-disabled unless the `CHAPTARRNG_MIGRATION_BRIDGE_ENABLED` repository variable
-is explicitly set to `true`. Its half-hour schedule and manual dispatch only
-run publishing logic from `main`. It waits for a stable ChaptarrNG release
+The bridge workflow is a candidate for the BookshelfNG repository. Publishing
+requires both `BOOKSHELFNG_RELEASE_READY=true` and
+`CHAPTARRNG_MIGRATION_BRIDGE_ENABLED=true`; both variables are unset. The first
+gate also blocks BookshelfNG tag-triggered images/releases and manual package
+retries. Its half-hour schedule and manual dispatch only run publishing logic
+from `main`. It waits for a stable ChaptarrNG release
 with checksummed Linux x64, Linux arm64, Windows x64, and both new and legacy
 RPM source packages. Every publish path uses the ordinary ChaptarrNG release
 payload; there is no compatibility image or second ChaptarrNG build.
@@ -45,9 +61,11 @@ image and package identities while the flag is unset.
 Repository variables are scoped per repository. After every acceptance gate
 below passes, prefer one organization Actions variable named
 `CHAPTARRNG_MIGRATION_BRIDGE_ENABLED` scoped to both repositories. If that is
-not available, set the same repository variable in both ChaptarrNG and
-BookshelfNG; setting it in only one repository bridges only that repository's
-release paths.
+not available, set the same bridge variable in both ChaptarrNG and BookshelfNG;
+setting it in only one repository bridges only that repository's release
+paths. Set `BOOKSHELFNG_RELEASE_READY=true` only in BookshelfNG, and set
+`CHAPTARRNG_RELEASE_READY=true` only in ChaptarrNG, after the full retirement
+acceptance is complete.
 
 The stable container identity is `ghcr.io/snapetech/chaptarrng`. The GitHub
 repository now lives at `snapetech-org/chaptarrng`, while both public package
@@ -115,7 +133,8 @@ or retirement-continuity proof.
 
 ## Enablement gates
 
-Keep the repository variable unset or `false` until all of these are true:
+Keep `BOOKSHELFNG_RELEASE_READY` and `CHAPTARRNG_MIGRATION_BRIDGE_ENABLED`
+unset or `false` until all of these are true:
 
 - The cumulative BookshelfNG feature set and all active ChaptarrNG features
   remain represented in the retirement matrices, with implementation and

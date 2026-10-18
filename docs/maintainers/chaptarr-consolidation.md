@@ -37,6 +37,20 @@ provider/environment contract,
 rollback on operator data, full feature parity, and each package-channel
 upgrade remain open.
 
+The current ChaptarrNG retirement branch adds PostgreSQL migration for one
+migration-158 source schema and native Hardcover identity handling. Its exact
+run on `e67f28ed` failed because migration 10 checked `public.Editions`
+instead of the active staging schema and skipped `Subtitle`. ChaptarrNG commit
+`8f0bbc29` adds the column through the active search path. Its exact run
+failed to compile because `IMigrationRunner` has no `VersionLoader` property.
+Commit `50f58223` reads the registered `IVersionTableMetaData` service, but its
+fixture then failed at migration 23 because an unqualified schema check
+examined `public.NamingConfig` and skipped staging `EbookRenameBooks`. ChaptarrNG
+commit `e6e9b955` routes unqualified PostgreSQL checks through a schema-scoped
+processor and adds a focused regression test; PR #131 is validating that code.
+The candidate remains unsupported for operator data, and its
+provider, database, feature, and channel acceptance gates are open.
+
 The migration bridge is disabled. ChaptarrNG AUR `0.9.977-1` is published;
 BookshelfNG's public AUR identity remains at `0.4.21.71-1` on the BookshelfNG
 payload. COPR built `chaptarrng 0.9.977-1` successfully for Fedora 43, 44, 45,
@@ -54,9 +68,11 @@ ChaptarrNG `v0.9.977` remains the latest public release; `.978` is a source
 version bump. PR #128 merged release and distribution workflows that fail
 closed unless `CHAPTARRNG_RELEASE_READY=true`, and the repository variable is
 unset. Do not publish a release, package, image, or channel update while
-retirement acceptance remains open. PR #127 merged to ChaptarrNG `main` as
-`b3089a39`. It adds selectable supplemental catalogs, per-field preferences,
-and exact cross-catalog recovery for unmapped files through ISBN, ASIN,
+retirement acceptance remains open. BookshelfNG's tag-triggered image/release
+jobs, manual distribution retries, and legacy bridge also fail closed unless
+`BOOKSHELFNG_RELEASE_READY=true`; that repository variable is unset. PR #127
+merged to ChaptarrNG `main` as `b3089a39`. It adds selectable supplemental
+catalogs, per-field preferences, and exact cross-catalog recovery for unmapped files through ISBN, ASIN,
 provider IDs, and normalized title/author evidence. Linux, macOS, Windows,
 PostgreSQL migration, CodeQL, dependency/security, and release-note checks
 passed on its exact head. Four provider-dispatch CodeQL findings on an earlier
@@ -72,7 +88,8 @@ and source cleanup only after successful move-mode import; copy mode retains
 the sources. A synthetic two-track smoke using the `.977` toolchain produced
 AAC at 44.1 kHz stereo and preserved the supplied chapter titles and offsets.
 That validates m4b-tool and its sidecar format, not the new importer end to
-end or representative library media. The source change is not in public
+end or representative library media. Focused importer tests cover selection,
+chapter/tag behavior, and fallback with a mocked converter. The source change is not in public
 `.977`; representative-media acceptance remains open. Neither merge closes
 real-data migration/rollback, settings parity, full feature parity, or
 installer/channel acceptance.
@@ -311,9 +328,15 @@ python3 scripts/audit-chaptarr-consolidation.py \
    populated conversion remain open.
 3. **Identity changes.** BookshelfNG has one book row with multiple formats;
    Chaptarr has provider-scoped identity and media-type-specific behavior.
-   Bare Hardcover and Goodreads IDs must not collide. Conversion needs durable
+   Its native Hardcover mode stores many primary provider IDs as bare numeric
+   values. The current ChaptarrNG migration candidate uses the same explicit
+   mode (`HARDCOVER=true`, unless `HARDCOVER_NATIVE=false`) to route those
+   values to Hardcover, and otherwise retains the Goodreads interpretation;
+   preview reports the selected dialect. The source-side helper candidate has
+   a `--provider-mode` option for applying one choice consistently. These
+   changes still need hosted and converted-data validation. Durable
    old-to-new author/book/edition/file maps and compatibility for existing
-   clients referring to numeric local IDs.
+   clients referring to numeric local IDs remain separate acceptance work.
 4. **Port changes.** BookshelfNG uses 8787; ChaptarrNG uses 8789. The legacy
    distribution must retain 8787, URL base, TLS settings and reverse-proxy paths.
 5. **Updater ownership.** BookshelfNG's `ReadarrCloudRequestBuilder` queries
@@ -548,7 +571,9 @@ path remains open.
 4. Map provider identity using explicit source lineage (`hardcover`/`softcover`)
    and stored provider identifiers. Preserve ebook/audio coexistence and all
    local foreign-key relationships. Record split records in an alias map used
-   by legacy API routes and SeerrNG reconciliation.
+   by legacy API routes and SeerrNG reconciliation. In native Hardcover mode,
+   run preview and apply with that provider mode enabled so bare numeric IDs
+   cannot be mistaken for Goodreads IDs.
 5. Validate row accounting, foreign references, file path/size preservation,
    profile selections, historical references, encrypted backup round trip and
    unchanged credentials. Rebuild target indexes/FTS from converted rows.

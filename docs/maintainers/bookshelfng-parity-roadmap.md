@@ -12,9 +12,12 @@ migration checks passed. That source fix is not in `.977`, and releases are
 frozen until the retirement gates close. PR #128 merged a fail-closed release
 and distribution gate requiring `CHAPTARRNG_RELEASE_READY=true`; the
 repository variable is unset. ChaptarrNG `.978` is a source version bump,
-not a release. ChaptarrNG PR #127 merged to `main` as `b3089a39` with
-supplemental catalogs, per-field preferences, and exact-identity recovery of
-unmapped files. Linux, macOS, Windows, PostgreSQL migration, CodeQL,
+not a release. BookshelfNG tag-triggered image/release publishing, manual
+distribution retries, and the legacy bridge now also require the separate
+`BOOKSHELFNG_RELEASE_READY=true` gate, which remains unset. ChaptarrNG PR #127
+merged to `main` as `b3089a39` with supplemental catalogs, per-field
+preferences, and exact-identity recovery of unmapped files. Linux, macOS,
+Windows, PostgreSQL migration, CodeQL,
 dependency/security, and release-note checks passed on its exact head. Four
 provider-dispatch findings on an earlier head were reviewed as false positives:
 provider IDs select allowlisted public metadata APIs and do not grant access.
@@ -25,8 +28,10 @@ migration, CodeQL, dependency/security, and release-note checks. It ports
 BookshelfNG's opt-in M4B settings, tagged track ordering and chapter titles,
 original-track fallback, and move/copy source handling. A synthetic two-track
 smoke using the `.977` toolchain preserved supplied chapter titles and offsets,
-but did not exercise the importer end to end or representative media. The
-source change remains unpublished; representative-media acceptance is open.
+but did not exercise the importer end to end or representative media. Focused
+importer tests cover selection, chapter/tag behavior, and fallback with a
+mocked converter. The source change remains unpublished; representative-media
+acceptance is open.
 ChaptarrNG PR #130 merged to `main` as `9f1ae60b` with a policy mapping from
 BookshelfNG's numeric `BookImportMinimumMatchPercent` to `BookMatchingStrictness`
 when no explicit Chaptarr mode exists: 50–66 maps to Aggressive, 67–82 to
@@ -47,8 +52,21 @@ unmonitored, and writes a review file, but it does not classify them. The
 final-release decision and helper do not close the feature, data, or
 installation-channel acceptance gates. PostgreSQL, complete
 settings/identity behavior, rollback on every real deployment, and package
-handoff remain open. This is a feature-level matrix, not a claim that
-similarly named features are equivalent.
+handoff remain open. PostgreSQL conversion is supported by no published
+ChaptarrNG release. A work-branch candidate targets one migration-158
+PostgreSQL schema. Its exact run on `e67f28ed` failed because migration 10
+checked `public.Editions` instead of the active staging schema and skipped
+`Subtitle`. Commit `8f0bbc29` adds the column through the active search path.
+Its exact run then failed to compile because `IMigrationRunner` has no
+`VersionLoader` property. Commit `50f58223` reads the registered
+`IVersionTableMetaData` service, but its fixture then failed at migration 23
+because an unqualified schema check examined `public.NamingConfig` and skipped
+staging `EbookRenameBooks`. ChaptarrNG commit `e6e9b955` routes unqualified
+PostgreSQL checks through a schema-scoped processor and adds a focused
+regression test; PR #131 is validating that code.
+Operator-data acceptance remains open, and
+it is unsupported for installations. This is a feature-level matrix, not a
+claim that similarly named features are equivalent.
 
 BookshelfNG's `BookImportMinimumMatchPercent` defaults to 70, allows 50–99,
 and affects both fuzzy title parsing and import acceptance. ChaptarrNG `main`
@@ -114,11 +132,11 @@ is the commit/path audit that must be fully dispositioned.
 | --- | --- | --- | --- |
 | One instance for ebooks and audiobooks; multiple compatible formats per book | Single book records can retain multiple ebook and audiobook files | Media-specific records exist; conversion preserves a selected edition per format and keeps unresolved records in both catalogs, unmonitored, with a review artifact; `main` upgrades recognized older SQLite schemas on a disposable copy | **Open blocker.** Publish the upgrader and validate older schemas with real data; convert and validate all rows and relationships; prove format isolation, monitoring, real-data rollback, and existing client behavior. The fallback does not infer the true format. |
 | Format-specific author paths, quality profiles, and metadata profiles | Optional per-format paths and profile overrides, with author defaults as fallback | Native media roots and profiles exist; new authors receive usable per-format roots automatically | **Partial parity.** ChaptarrNG `v0.9.974+` initializes missing new-author roots from configured defaults or the only compatible root, preserves explicit roots, leaves ambiguous defaults blank, and does not move existing files. BookshelfNG `0.4.21.71` implements the optional setting requested in the now-closed issue #114. The broader blocker remains open for profile override/fallback semantics and conversion of existing path/profile data; test imports, upgrades, renames, scans, and moves for both formats. |
-| Native Hardcover metadata and request controls | Direct GraphQL provider, per-process pacing/cache, batched lookups, rate-limit recovery, and identity routing | Chaptarr has a separate resolver and consensus pipeline | **Open blocker.** Keep the configured behavior and identity boundaries or provide a tested replacement; a provider name alone is not parity. |
+| Native Hardcover metadata and request controls | Direct GraphQL provider, per-process pacing/cache, batched lookups, rate-limit recovery, and identity routing | The ChaptarrNG retirement branch ports a native Hardcover GraphQL proxy, routes explicit Hardcover IDs through it, maps saved `HardcoverAuth` to `HardcoverApiToken`, and interprets bare numeric source IDs according to the active `HARDCOVER`/`HARDCOVER_NATIVE` mode. Its migration-helper candidate exposes `--provider-mode` so preview and apply use that same source mode. | **Open blocker.** Exact hosted validation on `50f58223` failed its PostgreSQL migration fixture. ChaptarrNG commit `e6e9b955` contains the schema-query correction and PR #131 is validating it. Pass hosted tests and converted-data review; compare cache lifetime, key isolation, batching, 429 handling, refresh rules, settings preservation, provider selection, and identity routing. The provider and helper changes are source-only and not in published ChaptarrNG `.977` or BookshelfNG `.71`. |
 | Selectable supplemental catalogs and per-field source preferences | Hardcover, Readarr-compatible API, Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and optional Apify adapters | ChaptarrNG main after PR #127 (`b3089a39`) includes Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and Apify with selectable sources, qualified identities, and per-field choices. Exact-head Linux, macOS, Windows, PostgreSQL migration, CodeQL, dependency/security, and release-note checks passed. It is not in published `.977`; Hardcover and the primary metadata API retain their separate resolvers. | **Source port merged; open blocker.** Review provider/settings migration, cached credential handling, per-field matching, fallback behavior, and converted operator data before accepting the row. |
 | Cross-catalog recovery and import matching | Retry unmapped files across configured catalogs; ISBN/ASIN/provider-ID and normalized-name matching; configurable title threshold | ChaptarrNG main after PR #127 searches exact ISBN/ASIN, canonical provider IDs, Goodreads work/edition IDs, or exact normalized title and author. Candidates must match supplied identity evidence, media type, and stable work/author IDs; ambiguous or conflicting IDs stay unmatched, and accepted results queue only the existing pending-author import. It never attaches files directly. Focused tests cover exact Goodreads and canonical provider-ID lookup, mismatched IDs, conflicting tags, identifier checks, ambiguity, and title matching; exact-head hosted validation passed. PR #130 adds the lossy 50–66 Aggressive, 67–82 Balanced, and 83–99 Strict mapping when no explicit mode exists; invalid values fail closed. | **Source port merged; open blocker.** Accept identifier/name, threshold approximation, media-type, ambiguity, and pending-import behavior on converted operator data. The mapping is not algorithm-equivalent and is not in public `.977`. |
 | Weighted edition terms, preferred series, and narrator-aware matching | Profile terms and series preferences; narrator tags and edition evidence affect audiobook ranking | The consolidation branch adds profile-based weighted edition scoring and preferred-series selection for filenames, ebook tags, Calibre, and AudioBookShelf metadata; stronger match evidence remains authoritative | **Partial candidate port; retirement blocker remains open.** Preserve weights and series choices, neutral handling of missing data, tie behavior, and manual-review boundaries; test the full Bookshelf edge-case set after profile/database conversion. |
-| Audiobook M4B merge and chapter metadata | Opt-in multi-track merge with track ordering and chapter creation | ChaptarrNG PR #129 merged to `main` as `949ae3dd`. Its clean head passed hosted Linux, macOS, Windows, PostgreSQL migration, CodeQL, dependency/security, and release-note checks. It preserves tagged track order and chapter titles, falls back to original tracks on conversion failure, and removes sources only after successful move-mode import; copy mode retains them. A synthetic two-track smoke preserved supplied chapter titles and offsets using the `.977` toolchain, but did not exercise the importer end to end or representative media. The implementation is not in public `.977`. | **Source port merged; open blocker.** Validate chapter offsets, embedded source chapters, tags, conversion failures, source retention, and restart/resume behavior with representative media and move/copy deployments. |
+| Audiobook M4B merge and chapter metadata | Opt-in multi-track merge with track ordering and chapter creation | ChaptarrNG PR #129 merged to `main` as `949ae3dd`. Its clean head passed hosted Linux, macOS, Windows, PostgreSQL migration, CodeQL, dependency/security, and release-note checks. It preserves tagged track order and chapter titles, falls back to original tracks on conversion failure, and removes sources only after successful move-mode import; copy mode retains them. Focused importer tests cover selection, chapter/tag behavior, and fallback with a mocked converter. A synthetic two-track smoke preserved supplied chapter titles and offsets using the `.977` toolchain, but full converter-to-import and representative media remain open. The implementation is not in public `.977`. | **Source port merged; open blocker.** Validate chapter offsets, embedded source chapters, tags, conversion failures, source retention, and restart/resume behavior with representative media and move/copy deployments. |
 | Vendored TagLibSharp MPEG-4 `chpl` handling | Patch includes byte-preserving chapter-list writes | The local Chaptarr candidate vendors this fork and passes a synthetic version-1 `chpl` fixture that checks exact atom preservation during a title write. The vendor includes its LGPL-2.1 `COPYING` file; its strong-name key matches the key already committed with the BookshelfNG vendor source. | **Local port and focused regression pass; broader compatibility remains an open blocker.** Validate representative M4B files, tag edits, conversion outputs, and failure cases; review continued use of the vendor signing identity and upstream the supported implementation. |
 | Existing torrent adoption and safe seeding | Can adopt tracked torrent data without removing the seed | Native adoption/continuation work exists | **Open blocker.** Prove same-category, wrong-category, completed-download, and seeding-data preservation cases. |
 | Direct Download with ordered sources and browser-assisted links | Ebook search, API-key downloads, optional browser fallback, durable transfer state, and redirect validation | A built-in direct-download implementation exists | **Open blocker.** Preserve URL order, configuration aliases, staged-state recovery, architecture limits, and redirect/private-network protections. |

@@ -41,12 +41,13 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
         BRIDGE_ENABLED: ${{ vars.CHAPTARRNG_MIGRATION_BRIDGE_ENABLED || 'false' }}
+        RELEASE_READY: ${{ vars.BOOKSHELFNG_RELEASE_READY || 'false' }}
         TARGET_REPOSITORY: snapetech-org/chaptarrng
       shell: bash
       run: |
         set -euo pipefail
         enabled=false
-        if [[ "${BRIDGE_ENABLED,,}" == true ]]; then enabled=true; fi
+        if [[ "${BRIDGE_ENABLED,,}" == true && "${RELEASE_READY,,}" == true ]]; then enabled=true; fi
         {
           echo "enabled=$enabled"
           echo 'ready=false'
@@ -149,7 +150,7 @@ jobs:
         {
           echo '### ChaptarrNG legacy distribution bridge'
           echo "- ChaptarrNG release: ${TAG} is ready."
-          echo '- Publishing is disabled. Set the BookshelfNG repository variable CHAPTARRNG_MIGRATION_BRIDGE_ENABLED=true only after the migration, rollback, and channel acceptance gates pass.'
+          echo '- Publishing is disabled. Both BOOKSHELFNG_RELEASE_READY and CHAPTARRNG_MIGRATION_BRIDGE_ENABLED must be true after the migration, rollback, feature, and channel acceptance gates pass.'
           echo '- No package, image, Helm chart, or release was modified.'
         } >> "$GITHUB_STEP_SUMMARY"
 
