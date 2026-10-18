@@ -146,6 +146,14 @@ make separate working copies before migrating them separately. This workflow
 does not merge libraries or shared settings; if ownership cannot be established,
 stop for manual reconciliation.
 
+If the goal is one combined library, first use the
+[two-instance consolidation runbook](../README.md#one-instance-for-ebooks-and-audiobooks)
+to move tracked media into the BookshelfNG instance you are keeping and import
+or rescan it there. That workflow does not merge database history, profiles,
+monitoring, or settings. Keep both original appdata backups until the selected
+BookshelfNG library is verified, then migrate its single database to
+ChaptarrNG.
+
 The helper does not classify ambiguous books. ChaptarrNG keeps records with
 unknown formats in both catalogs, unmonitored, and writes a private review
 file; operators can supply a media map before conversion or review and classify

@@ -60,6 +60,16 @@ installation-channel acceptance gates. PostgreSQL, complete
 settings/identity behavior, rollback on every real deployment, and package
 handoff remain open. PostgreSQL conversion is supported by no published ChaptarrNG release. Run [39132760214](https://github.com/snapetech-org/chaptarrng/actions/runs/39132760214) on `9c051d3d` reported NUnit source line 162 in `should_preview_convert_and_restore_a_current_bookshelf_postgres_schema`. The fixture seeds `BookImportMinimumMatchPercent` with that exact casing but the check queried lowercase, identifying a fixture expectation error. ChaptarrNG commit [b5bd9527](https://github.com/snapetech-org/chaptarrng/commit/b5bd9527) corrects the three retained-config checks. Exact-head run [39135608892](https://github.com/snapetech-org/chaptarrng/actions/runs/39135608892) on commit [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed. The candidate remains unsupported for operator data. PR #131 remains draft; migration code snapshot `0d31609b` passed analysis, Linux and macOS builds, PostgreSQL migration, release-note, dependency-review, and security checks. Run 39142709701 completed successfully, including the Windows build.
 
+The migration accepts one database per appdata directory. ChaptarrNG refuses
+two non-empty legacy database candidates rather than choosing or combining
+them; the BookshelfNG handoff helper ignores an empty candidate and refuses two
+populated candidates before it creates an archive. The helper selection fix
+and regression coverage are in BookshelfNG PR #154. For two independent
+installations, migrate each appdata directory separately. To make one combined
+library, use the manual two-instance media-consolidation runbook in the root
+README, then migrate the verified BookshelfNG instance; that workflow does not
+merge database history, profiles, monitoring, or settings.
+
 This is a feature-level matrix, not a
 claim that similarly named features are equivalent.
 
