@@ -9,7 +9,7 @@ release and sends the existing Discord announcement.
 Publication is frozen while BookshelfNG retirement acceptance remains open.
 Tagged image and release jobs, manual package-distribution retries, and the
 ChaptarrNG legacy bridge fail closed unless the BookshelfNG repository variable
-`BOOKSHELFNG_RELEASE_READY` is exactly `true`. It is unset. Set it only after
+`BOOKSHELFNG_RELEASE_READY` is exactly `true`. It is unset. PR #148 merged the BookshelfNG fail-closed gate to `main` as `c6b4642`, and the merge run skipped its publisher jobs. Set it only after
 migration, feature parity, rollback, and every supported channel pass
 acceptance; a normal CI or manual build does not enable publishing.
 
@@ -22,19 +22,7 @@ rejects versions before migration 14 until the chain renames `Blacklist` to
 `Blocklist`. PR #126 merged a version-aware fix and migration-1 rollback
 fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
 checks passed, but that fix is not in `.977`.
-The current retirement-branch PostgreSQL candidate supports one
-migration-158 source schema. Its exact run on `e67f28ed` failed because
-migration 10 checked `public.Editions` instead of the active staging schema
-and skipped `Subtitle`. Commit `8f0bbc29` adds the column through the active
-search path. Its exact run then failed to compile because `IMigrationRunner`
-has no `VersionLoader` property. Commit `50f58223` reads the registered
-`IVersionTableMetaData` service, but its fixture then failed at migration 23:
-an unqualified schema check examined `public.NamingConfig`, skipped staging
-`EbookRenameBooks`, and the following update failed. ChaptarrNG commit
-`e6e9b955` routes unqualified PostgreSQL schema checks through a scoped
-processor and adds a focused regression test; PR #131 is validating that code,
-and operator-data acceptance remains open. PostgreSQL remains unsupported for installations until
-the candidate passes all acceptance gates.
+The current retirement-branch PostgreSQL candidate supports one migration-158 source schema. The PostgreSQL smoke run [39127070836](https://github.com/snapetech-org/chaptarrng/actions/runs/39127070836) on code head `21c41ad5` failed during application startup before the 300-second readiness limit (DryIoc exception, no NUnit totals). This does not establish a converter assertion failure. Follow PR #131 for current diagnostics. PostgreSQL remains unsupported for installations until the candidate passes all acceptance gates.
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be

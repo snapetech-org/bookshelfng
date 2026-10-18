@@ -9,36 +9,9 @@ acceptance gates close. PR #128 merged release and distribution workflows that
 fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
-BookshelfNG releases are frozen too. Its tagged image/release workflows and
-manual distribution retries require `BOOKSHELFNG_RELEASE_READY=true`, which is
-unset until migration, parity, rollback, and channel acceptance are complete.
-Neither application's release gate enables the other's publishing paths.
+BookshelfNG releases are frozen too. PR #148 merged its fail-closed publishing gate to `main` as `c6b4642`; its tagged image/release workflows, manual distribution retries, and legacy bridge require `BOOKSHELFNG_RELEASE_READY=true`, which remains unset. Neither application's release gate enables the other's publishing paths.
 
-The published converter supports the exact BookshelfNG migration-158 SQLite
-schema and bundles BookshelfNG's SQLite migration chain. It rejects versions
-before migration 14 because they still use `Blacklist`; upgrade those
-installations to the final BookshelfNG `.71` release first. PR #126 merged a
-version-aware guard and synthetic migration-1 rollback fixture into
-ChaptarrNG `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
-checks passed, but that source fix is not in `.977`. Populated synthetic
-migration-22 coverage is not proof from real older-schema data. PostgreSQL,
-two populated Bookshelf databases, and several external settings and
-installation-channel upgrades are not covered. An unreleased ChaptarrNG
-work-branch candidate stages conversion for one migration-158 PostgreSQL
-schema. Its exact run on `e67f28ed` failed because migration 10 checked
-`public.Editions` and skipped the staging `Subtitle` column. Commit
-`8f0bbc29` adds it through the active PostgreSQL search path. Its exact run
-failed to compile because `IMigrationRunner` has no `VersionLoader` property.
-Commit `50f58223` reads the registered `IVersionTableMetaData` service, but its
-fixture then failed at migration 23 because an unqualified schema check
-examined `public.NamingConfig`, skipped staging `EbookRenameBooks`, and the
-following update failed. ChaptarrNG commit `e6e9b955` routes unqualified
-PostgreSQL checks through a schema-scoped processor and adds a focused
-regression test; PR #131 is validating that code. Operator-data acceptance
-remains open, and the candidate is not supported for installations. The
-published migration path remains SQLite-only. The release
-bridge remains disabled by default. Read the limits
-below before changing a running installation.
+The published converter accepts the exact BookshelfNG migration-158 SQLite schema and rejects versions before migration 14; upgrade older installs to BookshelfNG `.71` first. PR #126 merged a version-aware guard and migration-1 rollback fixture into ChaptarrNG `main`, but it is not in `.977`. The PostgreSQL candidate is limited to one migration-158 schema. The PostgreSQL smoke run [39127070836](https://github.com/snapetech-org/chaptarrng/actions/runs/39127070836) on code head `21c41ad5` failed during application startup before the 300-second readiness limit (DryIoc exception, no NUnit totals). This does not establish a converter assertion failure. Follow PR #131 for current diagnostics. PostgreSQL remains unsupported for operators; keep BookshelfNG running or use only the published SQLite path.
 
 ChaptarrNG PR #127 merged to `main` as `b3089a39`, adding supplemental
 catalogs, per-field metadata preferences, and exact ISBN, ASIN, provider-ID, or
@@ -97,22 +70,7 @@ unset after switching until the ChaptarrNG
 [migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 documents a release containing it and the remaining acceptance gates close.
 
-Native Hardcover databases also need the provider mode preserved during
-conversion. BookshelfNG often stores its primary Hardcover work, author,
-edition, and series IDs as bare numbers. The ChaptarrNG work-branch candidate
-interprets those numbers as Hardcover when `HARDCOVER=true` and
-`HARDCOVER_NATIVE` is not `false`; in Goodreads mode, the same numbers stay
-Goodreads IDs. Preview reports the interpretation. The current source
-candidate of the helper accepts `--provider-mode native-hardcover` or
-`--provider-mode goodreads` on both preview and apply and passes that mode to
-the temporary converter container. Configure the same mode in the permanent
-replacement container after migration. The helper bundled in the published
-BookshelfNG `.71` tag predates this option, and the ChaptarrNG provider and
-identity work is not in `.977`. The exact hosted run on `50f58223` failed its
-PostgreSQL migration fixture; PR #131 now validates the correction in commit
-`e6e9b955`. Converted-data acceptance remains open.
-Do not use those published builds for a native Hardcover migration until the
-release-freeze gates are closed.
+Native Hardcover databases need the same provider mode during preview and apply. BookshelfNG commonly stores Hardcover work, author, edition, and series IDs as bare numbers. The ChaptarrNG candidate interprets them as Hardcover when `HARDCOVER=true` and `HARDCOVER_NATIVE` is not `false`; otherwise numeric IDs keep Goodreads identity. The helper candidate exposes `--provider-mode native-hardcover|goodreads`. These changes are not in the published `.71` helper or ChaptarrNG `.977` image. The exact-head run [39127070836](https://github.com/snapetech-org/chaptarrng/actions/runs/39127070836) on `21c41ad5` failed at app startup before the 300-second readiness limit, with a DryIoc exception and no NUnit totals; it does not establish a converter assertion failure; converted-data acceptance remains open. Do not use those published builds for native Hardcover migration until the release-freeze gates close.
 
 ## What the helper does
 
@@ -297,16 +255,7 @@ Windows, and PostgreSQL migration checks passed, but the source fix is not in
 Populated synthetic migration-22 evidence covers conversion and rollback,
 source-unchanged preview, and refusal of a future schema. This does not
 establish older-schema behavior on real data or PostgreSQL source conversion.
-The PostgreSQL candidate's exact run on `e67f28ed` failed because migration 10
-checked the public schema instead of the active staging schema. Commit
-`8f0bbc29` corrects the column migration. Its exact run then failed to
-compile because `IMigrationRunner` has no `VersionLoader` property. Commit
-`50f58223` reads the registered `IVersionTableMetaData` service instead;
-its PostgreSQL fixture then failed at migration 23 because an unqualified
-schema check examined `public.NamingConfig` and skipped a staging column. The
-current ChaptarrNG commit `e6e9b955` routes unqualified PostgreSQL checks
-through a schema-scoped processor and adds a focused regression test; PR #131
-is validating that code.
+The PostgreSQL smoke run [39127070836](https://github.com/snapetech-org/chaptarrng/actions/runs/39127070836) on code head `21c41ad5` failed during application startup before the 300-second readiness limit (DryIoc exception, no NUnit totals). This does not establish a converter assertion failure. Follow PR #131 for current diagnostics. The PostgreSQL candidate remains unavailable to operators and in any release.
 Ambiguous formats are retained in both catalogs without monitoring until the
 operator classifies them; the converter does not infer their true type. Full
 provider and environment parity, every installation channel, and rollback on

@@ -37,19 +37,7 @@ provider/environment contract,
 rollback on operator data, full feature parity, and each package-channel
 upgrade remain open.
 
-The current ChaptarrNG retirement branch adds PostgreSQL migration for one
-migration-158 source schema and native Hardcover identity handling. Its exact
-run on `e67f28ed` failed because migration 10 checked `public.Editions`
-instead of the active staging schema and skipped `Subtitle`. ChaptarrNG commit
-`8f0bbc29` adds the column through the active search path. Its exact run
-failed to compile because `IMigrationRunner` has no `VersionLoader` property.
-Commit `50f58223` reads the registered `IVersionTableMetaData` service, but its
-fixture then failed at migration 23 because an unqualified schema check
-examined `public.NamingConfig` and skipped staging `EbookRenameBooks`. ChaptarrNG
-commit `e6e9b955` routes unqualified PostgreSQL checks through a schema-scoped
-processor and adds a focused regression test; PR #131 is validating that code.
-The candidate remains unsupported for operator data, and its
-provider, database, feature, and channel acceptance gates are open.
+The current ChaptarrNG retirement branch adds PostgreSQL migration for one migration-158 source schema and native Hardcover identity handling. Earlier hosted runs corrected staging-schema lookup and migration-runner API issues. The PostgreSQL smoke run [39127070836](https://github.com/snapetech-org/chaptarrng/actions/runs/39127070836) on code head `21c41ad5` failed during application startup before the 300-second readiness limit (DryIoc exception, no NUnit totals). This does not establish a converter assertion failure. Follow PR #131 for current diagnostics. The candidate remains unsupported for operator data, and its provider, database, feature, and channel acceptance gates are open.
 
 The migration bridge is disabled. ChaptarrNG AUR `0.9.977-1` is published;
 BookshelfNG's public AUR identity remains at `0.4.21.71-1` on the BookshelfNG
@@ -68,9 +56,7 @@ ChaptarrNG `v0.9.977` remains the latest public release; `.978` is a source
 version bump. PR #128 merged release and distribution workflows that fail
 closed unless `CHAPTARRNG_RELEASE_READY=true`, and the repository variable is
 unset. Do not publish a release, package, image, or channel update while
-retirement acceptance remains open. BookshelfNG's tag-triggered image/release
-jobs, manual distribution retries, and legacy bridge also fail closed unless
-`BOOKSHELFNG_RELEASE_READY=true`; that repository variable is unset. PR #127
+retirement acceptance remains open. BookshelfNG PR #148 merged its fail-closed publisher gate to `main` as `c6b4642`; its tag-triggered image/release jobs, manual distribution retries, and legacy bridge require `BOOKSHELFNG_RELEASE_READY=true`, which remains unset. PR #127
 merged to ChaptarrNG `main` as `b3089a39`. It adds selectable supplemental
 catalogs, per-field preferences, and exact cross-catalog recovery for unmapped files through ISBN, ASIN,
 provider IDs, and normalized title/author evidence. Linux, macOS, Windows,

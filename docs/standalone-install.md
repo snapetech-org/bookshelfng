@@ -8,27 +8,7 @@ the exact BookshelfNG migration-158 SQLite schema and bundles the source
 migration chain, but rejects versions before migration 14. Upgrade BookshelfNG
 to `.71` before switching a database with an earlier schema.
 
-PR #126 merged a version-aware table guard and migration-1 rollback fixture
-into ChaptarrNG `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
-checks passed. The fix is not in `.977`. ChaptarrNG releases are frozen until
-feature parity, representative migration and rollback, and install-channel
-acceptance are complete. The helper backs up appdata; it does not copy external
-media/download mounts or automatically update a package, image, native
-installer, or Helm deployment. The release bridge remains disabled by default.
-The current PostgreSQL candidate is limited to one migration-158 schema. Its
-exact run on `e67f28ed` failed because migration 10 checked `public.Editions`
-instead of the active staging schema and skipped `Subtitle`. Commit
-`8f0bbc29` adds the column through PostgreSQL's active search path. Its exact
-run failed to compile because `IMigrationRunner` has no `VersionLoader`
-property. Commit `50f58223` reads the registered `IVersionTableMetaData`
-service, but its fixture then failed at migration 23 because an unqualified
-schema check examined `public.NamingConfig` and skipped staging
-`EbookRenameBooks`. ChaptarrNG commit `e6e9b955` routes unqualified PostgreSQL
-checks through a schema-scoped processor and adds a regression test; PR #131 is
-validating that code. Do not use it for operator data.
-BookshelfNG's
-fail-closed publishing gate is under review in
-[PR #148](https://github.com/snapetech-org/bookshelfng/pull/148).
+PR #126 merged the version-aware table guard and synthetic migration-1 rollback fixture into ChaptarrNG `main`; the source fix is not in published `.977`. ChaptarrNG releases remain frozen while migration, parity, populated-data rollback, and installer/channel acceptance are open. The helper archives appdata but does not copy external media or downloads or update a package, image, native installer, or Helm deployment. The PostgreSQL candidate is limited to one migration-158 schema. The PostgreSQL smoke run [39127070836](https://github.com/snapetech-org/chaptarrng/actions/runs/39127070836) on code head `21c41ad5` failed during application startup before the 300-second readiness limit (DryIoc exception, no NUnit totals). This does not establish a converter assertion failure. Follow PR #131 for current diagnostics. Do not use it for operator data. BookshelfNG's fail-closed publisher gate merged as `c6b4642`; its readiness variable remains unset and the latest release remains `.71`.
 
 BookshelfNG is a web application that can run directly on a supported host. It
 does not need SeerrNG or another service to launch, search catalogs, manage a

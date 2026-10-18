@@ -14,19 +14,7 @@ Windows, and PostgreSQL migration checks passed. The source fix is not in
 The bridge described below remains disabled; no BookshelfNG package identity
 or image alias has been redirected.
 
-The active ChaptarrNG retirement candidate adds native Hardcover identity
-migration and PostgreSQL conversion for one migration-158 schema. Its exact run
-on `e67f28ed` failed because migration 10 checked `public.Editions` instead
-of the active staging schema and skipped `Subtitle`. ChaptarrNG commit
-`8f0bbc29` adds that column through the active search path. Its exact run
-failed to compile because `IMigrationRunner` has no `VersionLoader` property.
-Commit `50f58223` reads the registered `IVersionTableMetaData` service instead;
-its fixture then failed at migration 23 because an unqualified schema check
-examined `public.NamingConfig` and skipped `EbookRenameBooks` in staging.
-ChaptarrNG commit `e6e9b955` routes unqualified PostgreSQL checks through a
-schema-scoped processor and adds a focused regression test; PR #131 is
-validating that code. This candidate does not change bridge eligibility.
-Operator data, feature-parity, install-flow, and package-channel acceptance remain open.
+The active ChaptarrNG retirement candidate adds native Hardcover identity migration and PostgreSQL conversion for one migration-158 schema. Earlier hosted runs corrected staging-schema lookup and migration-runner API issues. The PostgreSQL smoke run [39127070836](https://github.com/snapetech-org/chaptarrng/actions/runs/39127070836) on code head `21c41ad5` failed during application startup before the 300-second readiness limit (DryIoc exception, no NUnit totals). This does not establish a converter assertion failure. Follow PR #131 for current diagnostics. This candidate does not change bridge eligibility. Operator data, feature parity, install flow, and package-channel acceptance remain open. BookshelfNG's publisher freeze gate merged to `main` as `c6b4642`; its variable is unset.
 
 ChaptarrNG AUR `0.9.977-1` is published. The standard COPR package
 `chaptarrng 0.9.977-1` built successfully for Fedora 43, 44, 45, and Rawhide
