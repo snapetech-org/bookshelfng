@@ -65,7 +65,9 @@ two non-empty legacy database candidates rather than choosing or combining
 them; the BookshelfNG helper on source `main` ignores an empty candidate and
 refuses two populated candidates before it creates an archive. This helper fix
 and regression coverage merged in BookshelfNG PR #154 as `de782d5`, but are not
-in the published `.71` helper. For two independent
+in the published `.71` helper. The `.71` helper may print a zero-byte
+`readarr.db` beside a populated `audioarr.db`; ChaptarrNG `.977` independently
+ignores empty legacy files when selecting its source. For two independent
 installations, migrate each appdata directory separately. To make one combined
 library, use the manual two-instance media-consolidation runbook in the root
 README, then migrate the verified BookshelfNG instance; that workflow does not
