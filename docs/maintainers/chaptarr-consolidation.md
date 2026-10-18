@@ -54,31 +54,35 @@ ChaptarrNG `v0.9.977` remains the latest public release; `.978` is a source
 version bump. PR #128 merged release and distribution workflows that fail
 closed unless `CHAPTARRNG_RELEASE_READY=true`, and the repository variable is
 unset. Do not publish a release, package, image, or channel update while
-retirement acceptance remains open. PR #127 at `a95131a` is an unpublished
-candidate for selectable supplemental catalogs and exact cross-catalog
-unmapped-file recovery through ISBN, ASIN, provider IDs, and normalized
-title/author evidence. The previous head's four CodeQL findings were reviewed
-as false positives: provider IDs select allowlisted public metadata APIs and
-do not grant access. The alerts were dismissed with that rationale; current
-CodeQL and C# analysis checks pass, while cross-platform builds remain pending.
-The local focused .NET test is blocked by the missing ImageSharp license. PR
-#129 at `5754162` is an unpublished candidate
-for opt-in BookshelfNG M4B merge compatibility, with original-track fallback
-and source cleanup limited to successful move-mode imports. The first hosted
-build found a C# local-variable name conflict; commit `5754162` fixes it and
-the current-head checks are pending. Neither candidate closes representative
-real-data migration/rollback, settings parity, full feature parity, or
-installer/channel acceptance.
+retirement acceptance remains open. PR #127 merged to ChaptarrNG `main` as
+`b3089a39`. It adds selectable supplemental catalogs, per-field preferences,
+and exact cross-catalog recovery for unmapped files through ISBN, ASIN,
+provider IDs, and normalized title/author evidence. Linux, macOS, Windows,
+PostgreSQL migration, CodeQL, dependency/security, and release-note checks
+passed on its exact head. Four provider-dispatch CodeQL findings on an earlier
+head were reviewed and dismissed as false positives because they route only to
+allowlisted public APIs. The merged source is not in public `.977` and has not
+closed settings or converted-operator-data acceptance.
 
-The tracked path-level inventory is a pinned snapshot against BookshelfNG
-`e8598914` and ChaptarrNG PR #127 head `6d437113`. It predates the current PR
-#127 and #129 heads; regenerate it after those candidates are accepted so the
-source audit includes their committed changes. The snapshot covers 532 reachable
-post-fork commits and 1,091 net-changed paths: 437 have no same-name mapped
-target, 493 differ and need review, 155 are identical, four are text-equivalent
-after branding/newline normalization, and two were deleted in BookshelfNG.
-These counts identify a review queue; path or text similarity does not prove
-that behavior is equivalent or safely retired.
+PR #129 at `18abee6` remains an unpublished candidate for opt-in BookshelfNG
+M4B merge compatibility, with original-track fallback and source cleanup
+limited to successful move-mode imports. Its earlier cross-platform run failed
+four importer fixtures. The current head corrects the fixture media-info and
+disk-provider dependencies and checks real temporary-file transfers; exact-
+head hosted validation is pending. Representative-media acceptance remains
+open. Neither change closes real-data migration/rollback, settings parity,
+full feature parity, or installer/channel acceptance.
+
+The tracked path-level inventory was regenerated against BookshelfNG `main`
+`e4925778` and ChaptarrNG `main` `b3089a39`. It covers 533 reachable post-fork
+commits (524 absent from the pinned Bookshelf lineage ref) and 1,091
+net-changed paths: 437 have no same-name mapped target, 493 differ and need
+review, 155 are identical, four are text-equivalent after branding/newline
+normalization, and two were deleted in BookshelfNG. This target includes
+ChaptarrNG PR #127, now merged. PR #129 remains an unpublished source
+candidate and is not in the target tree. These counts identify a review queue;
+path or text similarity does not prove that behavior is equivalent or safely
+retired.
 
 The detailed investigation below records historical candidate revisions and
 their test evidence. Its pinned source counts and older release/channel rows
@@ -488,11 +492,11 @@ before release.
 | --- | --- | --- | --- |
 | Rich book lookup; SeerrNG capabilities; paged books; format availability | Capability resource and Readarr facade exist | **Open blocker — integration parity unproven** | Test unchanged SeerrNG settings, IDs, keys, requests, pending work, and availability links against the exact candidate. |
 | Native Hardcover, pacing, retry headers, author reuse, and refresh-age policy | Native Hardcover and V5 metadata implementations exist in a different provider pipeline | **Open blocker — semantic parity unproven** | Compare cache lifetime, key isolation, batching, 429 handling, refresh rules, and identity routing; retain configured behavior. |
-| Supplemental catalogs: Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and Apify; per-field preferences | Provider-ID columns exist, but the BookshelfNG adapter and settings set is not present | **Open blocker — port or replace** | Preserve adapters, source selection/fallback, qualified IDs, field choices, and provider-specific request constraints. |
-| Cross-catalog unmapped recovery; normalized title and identifier matching | FTS and matching architectures differ | **Open blocker — behavioral cases unproven** | Port the cases rather than the old engine wholesale; retain no-false-match, ambiguity, and no-delete constraints. |
+| Supplemental catalogs: Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and Apify; per-field preferences | ChaptarrNG main after PR #127 (`b3089a39`) includes these adapters, selectable sources, qualified IDs, and per-field choices; hosted platform and security checks passed. Not in public `.977`. | **Source port merged; operator/settings acceptance open** | Preserve source selection/fallback, qualified IDs, field choices, provider-specific request constraints, and saved settings on converted operator data. |
+| Cross-catalog unmapped recovery; normalized title and identifier matching | ChaptarrNG main after PR #127 uses exact ISBN/ASIN/provider IDs or normalized title and author, checks media type and stable identities, and queues the existing pending-author import without attaching files. Hosted checks passed. | **Source port merged; behavioral/data acceptance open** | Verify no-false-match, ambiguity, converted provider IDs, `BookImportMinimumMatchPercent` behavior, and no-delete constraints on representative libraries. |
 | Multiple ebook/audio formats; per-format folders and profile overrides | Native media-specific models, roots, and profiles exist | **Open blocker — conversion and isolation unproven** | Convert all rows and references; verify fallback rules, sibling-format isolation, monitoring, imports, upgrades, scans, and renames. |
 | Weighted edition terms, preferred series, narrator evidence, and publisher/dramatized cases | The consolidation branch adds profile-based weighted edition scoring and preferred-series selection for filenames, ebook tags, Calibre, and AudioBookShelf metadata; Chaptarr's stronger match evidence stays ahead of the preference signal | **Partial candidate port; retirement blocker remains open** | Preserve weights, series choices, missing-evidence neutrality, tie behavior, and manual-review boundaries; verify the full Bookshelf edge-case set after profile/database conversion. |
-| Optional M4B merge, chapters, part order, and completion state | PR #129 ports the opt-in setting, part order and chapter-title behavior, original-track fallback, and successful move-mode source cleanup. It is unpublished and awaiting exact-head hosted validation. | **Candidate port; media parity unproven** | Complete hosted tests and validate chapter offsets and preservation, ordering, metadata, source retention, and failure recovery with representative M4B media. |
+| Optional M4B merge, chapters, part order, and completion state | PR #129 ports the opt-in setting, part order and chapter-title behavior, original-track fallback, and successful move-mode source cleanup. An earlier hosted run failed four importer fixtures; head `18abee6` corrects their test dependencies and checks file transfer. | **Candidate port; media parity unproven** | Complete hosted tests and validate chapter offsets and preservation, ordering, metadata, source retention, and failure recovery with representative M4B media. |
 | Vendored TagLibSharp patch (253 changed source paths; byte-preserving MPEG-4 `chpl` handling) | The local candidate vendors the BookshelfNG TagLibSharp fork as a project and passes a synthetic version-1 `chpl` fixture that verifies exact atom preservation while writing a title. The vendor contains its LGPL-2.1 `COPYING` file; its strong-name key matches the key already committed with the BookshelfNG vendor source. | **Local port and focused regression pass; broader compatibility remains an open blocker** | Prove behavior on representative existing M4B files and across tag edits, conversion outputs, and failure cases; review continued use of the vendor signing identity and upstream the supported implementation. |
 | Existing-torrent adoption and seeding preservation | Native continuation/adoption work exists | **Open blocker — edge cases unproven** | Test same-category and wrong-category cases, seeding-data preservation, and completed-download import. |
 | Direct Download and browser-assisted grab | Native direct-download implementation and fixtures exist | **Open blocker — settings and recovery parity unproven** | Map settings and durable transfer state; test ordered URLs, interrupted recovery, architecture limits, and redirect/private-network safety. |

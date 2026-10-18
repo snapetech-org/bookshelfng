@@ -6,13 +6,13 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "e8598914c0fc8d17c57bb04f09d5bf09ee714ec5",
-  "targetCommit": "6d437113893098e0d897bdb938c8c70d52cae676",
+  "sourceCommit": "e4925778eb49678fde4f6a44ef1ff8448ac88850",
+  "targetCommit": "b3089a397bb9769b91151069cff5cc6d498474ba",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 532,
-    "commitsNotInUpstreamHistory": 523,
+    "commits": 533,
+    "commitsNotInUpstreamHistory": 524,
     "netChangedPaths": 1091,
     "fileStates": {
       "no-mapped-target-file": 437,
@@ -10329,6 +10329,17 @@
         "docs/maintainers/chaptarr-consolidation.md",
         "docs/migrate-from-bookshelfng-to-chaptarrng.md"
       ]
+    },
+    {
+      "commit": "e4925778eb49678fde4f6a44ef1ff8448ac88850",
+      "date": "2026-10-17",
+      "subject": "docs: refresh ChaptarrNG parity inventory",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
     }
   ],
   "files": [
@@ -11362,7 +11373,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5a1638c100ef7c54039d5c9f0818b1ef79af5525"
+        "oid": "1024e09dde66c8dca139b4cae8683d3c6435e165"
       },
       "targetBlob": null
     },
@@ -11382,7 +11393,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "4c40b05930e367a46f28f1a61a7fcd16957c770d"
+        "oid": "87a2b93b8dcb8a31fecd5b5beac10a5092562a61"
       },
       "targetBlob": null
     },
@@ -11392,7 +11403,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "d5cb408ddadc51735b8e1384d5b4606da7a41a73"
+        "oid": "798dad9888143e448e8024222a34e93ecfd91b9e"
       },
       "targetBlob": null
     },
@@ -18197,7 +18208,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "6f200af35d779190ab51f0fd0ec11b6d388c546e"
+        "oid": "d51dda2aba0b862539b13d6cc7d28e5eec899227"
       }
     },
     {
@@ -18223,7 +18234,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "cc0becc4ed53f613c226ae98c5018465972921df"
+        "oid": "26aeed974a27b38c81fe179b2c932d932428133d"
       }
     },
     {
@@ -18249,7 +18260,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "3f0103261e39e0098d1ab61be9751fbf40fe976b"
+        "oid": "edf6a83d8f89bfe3fe496ef292ee86137c2b2c49"
       }
     },
     {

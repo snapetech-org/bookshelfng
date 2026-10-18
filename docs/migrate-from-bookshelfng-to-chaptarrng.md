@@ -22,15 +22,21 @@ installation-channel upgrades are not covered. The release bridge remains
 disabled by default. Read the limits below before changing a running
 installation.
 
-PR #127 is still an unpublished candidate for supplemental catalogs,
-per-field metadata preferences, and exact ISBN, ASIN, provider-ID, or
-title/author recovery of unmapped files. The previous head's four
-provider-dispatch CodeQL findings were reviewed as false positives and
-dismissed with a rationale. Current CodeQL and C# analysis checks pass, while
-cross-platform build validation is pending. PR #129 is a separate unpublished candidate for
-BookshelfNG's opt-in M4B settings; its release-note contract is fixed and
-current-head checks are pending. Neither candidate is in the public `.977`
-image, and operator acceptance remains open.
+ChaptarrNG PR #127 merged to `main` as `b3089a39`, adding supplemental
+catalogs, per-field metadata preferences, and exact ISBN, ASIN, provider-ID, or
+title/author recovery of unmapped files. Linux, macOS, Windows, PostgreSQL
+migration, CodeQL, dependency/security, and release-note checks passed on its
+exact head. Its source changes are not in the public `.977` image; provider and
+settings migration still need acceptance against converted operator data. The
+four provider-dispatch CodeQL findings on an earlier head were reviewed as
+false positives and dismissed with a rationale.
+
+PR #129 remains an unpublished candidate for BookshelfNG's opt-in M4B
+settings. Its earlier cross-platform run failed four new importer fixtures.
+Commit `18abee6` corrects the fixture media-info and disk-provider dependencies
+and exercises file transfers; exact-head hosted validation is pending.
+Representative-media acceptance remains open. Neither change is in the public
+`.977` image.
 
 Update an earlier BookshelfNG release to `0.4.21.71` and let it finish its
 database migration before replacing the application. This brings the source

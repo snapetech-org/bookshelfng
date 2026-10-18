@@ -14,15 +14,17 @@
 > install-channel acceptance gates are complete. PR #128 merged fail-closed
 > release and distribution gates; they require `CHAPTARRNG_RELEASE_READY=true`,
 > which is unset. ChaptarrNG `.978` is a source version bump, not a release.
-> PR #127 remains an unpublished candidate for supplemental catalogs and exact
-> ISBN/ASIN/provider-ID and title/author recovery of unmapped files. Its previous
-> head triggered four provider-dispatch CodeQL findings. Review confirmed they
-> are false positives: provider IDs select allowlisted public metadata APIs and
-> do not grant access. The alerts were dismissed with that rationale, and the
-> current CodeQL and C# analysis checks pass; cross-platform build validation
-> is pending. PR #129 is an unpublished compatibility candidate for
-> BookshelfNG's opt-in M4B merge settings. Its release-note contract is fixed
-> and current-head hosted validation is pending; representative-media
+> ChaptarrNG PR #127 merged to `main` as `b3089a39`, adding supplemental
+> catalogs, per-field source preferences, and exact-identity recovery for
+> unmapped files. Linux, macOS, Windows, PostgreSQL migration, CodeQL,
+> dependency/security, and release-note checks passed on its exact head. The
+> source change is not in public `.977`. Four provider-dispatch CodeQL findings
+> on an earlier head were reviewed as false positives: provider IDs select
+> allowlisted public metadata APIs and do not grant access. PR #129 is an
+> unpublished compatibility candidate for BookshelfNG's opt-in M4B merge
+> settings. Its earlier cross-platform run failed four new importer fixtures.
+> Commit `18abee6` corrects the fixture dependencies and exercises real
+> temporary-file transfers; hosted validation is pending. Representative-media
 > acceptance remains open. Upgrade
 > pre-v14 BookshelfNG databases to `.71` before
 > switching. PostgreSQL migration and legacy-channel bridges remain
@@ -123,18 +125,21 @@ moving without guessing which format to search.
 
 ChaptarrNG PR #128 merged release and distribution workflows that fail closed
 unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable remains unset.
-The current `.978` source version bump is not a published release. PR #127 is
-still an unpublished candidate for selectable supplemental catalogs,
+The current `.978` source version bump is not a published release. ChaptarrNG
+PR #127 merged as `b3089a39` and adds selectable supplemental catalogs,
 per-field metadata preferences, and exact-identity recovery for unmapped files.
 Its cross-catalog fallback queues a reviewable pending-author import and never
-attaches a file directly. Hosted validation and migration acceptance remain
-open.
+attaches a file directly. Exact-head hosted validation passed; provider/settings
+migration and behavior on converted operator data remain open.
 
 ChaptarrNG PR #129 is an unpublished source candidate for the BookshelfNG
 M4B merge settings. It preserves opt-in behavior, track ordering and chapter
 titles, and falls back to importing the original parts when conversion fails.
-The latest hosted run is pending; representative M4B files and end-to-end
-move/copy behavior still need acceptance. The feature is not in the public
+The previous hosted run on `5754162` failed four importer fixtures across the
+platforms. Commit `18abee6` fixes the fixture media-info and disk-provider
+dependencies and verifies file transfer; its hosted rerun is pending.
+Representative M4B files and end-to-end move/copy behavior still need
+acceptance. The feature is not in the public
 `.977` image, so keep `BOOKSHELF_M4B_MERGE` unset after migration until a
 tested ChaptarrNG build documents it.
 
