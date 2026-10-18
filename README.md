@@ -2,15 +2,20 @@
 
 > **Final source tag:** BookshelfNG `0.4.21.71` is designated the final
 > release, and its GitHub release is published. The `.71` release includes
-> the source-side handoff helper. ChaptarrNG `v0.9.977` is published with the
-> final migration-158 SQLite converter and a bundled source migration chain.
-> Its current table guard rejects source versions before migration 14 because
-> they still use `Blacklist`; an allowlist fix is under hosted validation for
-> a follow-up release. For now, upgrade BookshelfNG to `.71` before switching.
-> PostgreSQL migration and legacy-channel bridges remain unsupported. Use the
-> standard ChaptarrNG migration commands in the
-> [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md), review its
-> limits, and keep an independent backup.
+> the source-side handoff helper. ChaptarrNG `v0.9.977` remains the latest
+> public release; it supports the exact BookshelfNG migration-158 SQLite
+> schema, but its converter rejects source versions before migration 14 because
+> those databases still use `Blacklist`.
+>
+> PR #126 merged a version-aware fix and migration-1 rollback fixture into
+> ChaptarrNG `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
+> checks passed. That fix is not in the published `.977` release. ChaptarrNG
+> releases are frozen until the BookshelfNG feature, data, rollback, and
+> install-channel acceptance gates are complete. Upgrade pre-v14 BookshelfNG
+> databases to `.71` before switching. PostgreSQL migration and legacy-channel
+> bridges remain unsupported. Use the standard ChaptarrNG migration commands
+> in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md),
+> review its limits, and keep an independent backup.
 
 [![.NET 10 LTS](https://img.shields.io/badge/.NET-10%20LTS-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/en-us/platform/support/policy)
 
@@ -88,15 +93,17 @@ migration status.
 
 The final BookshelfNG release includes a source-side helper that archives the
 entire appdata directory before it calls the standard ChaptarrNG preview,
-apply, or rollback command. The current ChaptarrNG release is
-[`v0.9.977`](https://github.com/snapetech-org/chaptarrng/releases/tag/v0.9.977).
-It handles the final migration-158 SQLite schema and bundles the BookshelfNG
-source migration chain. Its current pre-upgrade table guard rejects source
-versions before migration 14 because the chain has not yet renamed `Blacklist`
-to `Blocklist`; a version-aware fix is under hosted validation for a follow-up
-release. Populated synthetic migration-22 tests cover conversion and rollback,
-but older-schema behavior on real data is not established. PostgreSQL source
-conversion remains unsupported. If the source
+apply, or rollback command. ChaptarrNG `v0.9.977` remains the latest public
+release. Its converter supports the final migration-158 SQLite schema and
+bundles the BookshelfNG source migration chain, but rejects versions before
+migration 14 because their table is still named `Blacklist`. PR #126 merged a
+version-aware guard and migration-1 rollback fixture into ChaptarrNG `main`;
+hosted Linux, macOS, Windows, and PostgreSQL migration checks passed. This
+source fix is not available in `.977`. ChaptarrNG releases are frozen until
+feature parity, representative data migration and rollback, and channel
+acceptance are complete. Populated synthetic migration-22 tests cover
+conversion and rollback, but older-schema behavior on real data is not
+established. PostgreSQL source conversion remains unsupported. If the source
 does not identify a format, ChaptarrNG preserves the work in both catalogs
 without monitoring and writes a private review file. This keeps conversion
 moving without guessing which format to search.

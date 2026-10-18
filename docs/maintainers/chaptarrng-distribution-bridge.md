@@ -2,14 +2,18 @@
 
 ## Current status — 2026-10-18
 
-BookshelfNG `0.4.21.71` is the published final source release and includes an
-appdata handoff helper. Issue #114 is closed. ChaptarrNG `v0.9.977` is
-published with the migration tools, the bundled BookshelfNG SQLite chain, and
-an unmonitored dual-catalog fallback for records whose formats cannot be
-inferred. Its pre-upgrade table guard rejects source versions before migration
-14 because they still use `Blacklist`; a version-aware fix is under hosted
-validation for a follow-up release. The bridge described below remains
-disabled; no BookshelfNG package identity or image alias has been redirected.
+BookshelfNG `0.4.21.71` is the published final source release and includes
+an appdata handoff helper. Issue #114 is closed. ChaptarrNG `v0.9.977` is the
+latest public release with migration tools, the bundled BookshelfNG SQLite
+chain, and an unmonitored dual-catalog fallback for records whose formats
+cannot be inferred. Its pre-upgrade guard rejects versions before migration
+14 because they still use `Blacklist`. PR #126 merged a version-aware fix and
+migration-1 rollback fixture into ChaptarrNG `main`; hosted Linux, macOS,
+Windows, and PostgreSQL migration checks passed. The source fix is not in
+`.977`, and ChaptarrNG releases are frozen until all retirement gates close.
+The bridge described below remains disabled; no BookshelfNG package identity
+or image alias has been redirected.
+
 ChaptarrNG AUR `0.9.977-1` is published. The standard COPR package
 `chaptarrng 0.9.977-1` built successfully for Fedora 43, 44, 45, and Rawhide
 x86_64. Chocolatey `.977` passed package-transition smoke validation, but its
