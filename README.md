@@ -1,80 +1,14 @@
 # BookshelfNG
 
-> **Final source tag:** BookshelfNG `0.4.21.71` is designated the final
-> release, and its GitHub release is published. The `.71` release includes
-> the source-side handoff helper. ChaptarrNG `v0.9.977` remains the latest
-> public release; it supports the exact BookshelfNG migration-158 SQLite
-> schema, but its converter rejects source versions before migration 14 because
-> those databases still use `Blacklist`.
+> **Final source release:** BookshelfNG `0.4.21.71` is published. ChaptarrNG `v0.9.977` is the latest public release; its BookshelfNG converter supports migration-158 SQLite and rejects source versions before migration 14. PostgreSQL source conversion is not available in a published build.
 >
-> PR #126 merged a version-aware fix and migration-1 rollback fixture into
-> ChaptarrNG `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
-> checks passed. That fix is not in the published `.977` release. ChaptarrNG
-> releases are frozen until the BookshelfNG feature, data, rollback, and
-> install-channel acceptance gates are complete. PR #128 merged fail-closed
-> release and distribution gates; they require `CHAPTARRNG_RELEASE_READY=true`,
-> which is unset. ChaptarrNG `.978` is a source version bump, not a release.
-> ChaptarrNG PR #127 merged to `main` as `b3089a39`, adding supplemental
-> catalogs, per-field source preferences, and exact-identity recovery for
-> unmapped files. Its hosted platform, migration, security, and release-note
-> checks passed; the source change is not in public `.977`. Four
-> provider-dispatch CodeQL findings on an earlier head were reviewed as false
-> positives: provider IDs select allowlisted public metadata APIs and do not
-> grant access. ChaptarrNG PR #129 merged to `main` as `949ae3dd` with
-> BookshelfNG's opt-in M4B merge settings, tagged track ordering and chapter
-> titles, failed-conversion fallback, and successful move-mode source cleanup.
-> Its clean head passed hosted Linux, macOS, Windows, PostgreSQL migration,
-> CodeQL, dependency/security, and release-note checks. A synthetic two-track
-> smoke in the `.977` toolchain produced AAC at 44.1 kHz stereo with the two
-> supplied chapter titles and offsets. That checks m4b-tool and its chapter
-> sidecar. Focused ChaptarrNG importer tests cover selection, chapter/tag
-> behavior, and fallback with a mocked converter; representative files and a
-> full converter-to-import run remain open.
-> M4B support is still absent from the public `.977` image; keep the merge
-> setting unset after migration until a release with this support passes the
-> remaining acceptance gates. ChaptarrNG PR #130 merged to `main` as
-> `9f1ae60b` and maps the legacy `BookImportMinimumMatchPercent` to the closest
-> `BookMatchingStrictness` mode when no explicit mode exists: 50–66 is
-> Aggressive, 67–82 Balanced, and 83–99 Strict. Explicit Chaptarr settings
-> take precedence, invalid legacy values fail closed, and the source row is
-> preserved. This is a lossy policy approximation between different matching
-> algorithms; acceptance on converted operator data remains open. The change
-> is not in public `.977`. Upgrade
-> pre-v14 BookshelfNG databases to `.71` before
-> switching. PostgreSQL migration is not supported by a published ChaptarrNG
-> build. The retirement candidate handles one migration-158 PostgreSQL schema.
-> Its exact run on `e67f28ed` failed because migration 10 checked
-> `public.Editions` instead of the staging schema and skipped `Subtitle`.
-> Commit `8f0bbc29` adds the column through PostgreSQL's active search path.
-> Its exact run then failed to compile because `IMigrationRunner` has no
-> `VersionLoader` property. Commit `50f58223` reads the registered
-> `IVersionTableMetaData` service, but its fixture then failed at migration 23:
-> an unqualified schema check examined `public.NamingConfig`, skipped staging
-> `EbookRenameBooks`, and the following update failed. ChaptarrNG commit
-> `e6e9b955` adds a PostgreSQL processor that routes unqualified schema checks
-> to the active schema, plus a focused regression test. PR #131 is validating
-> that exact code revision.
-> Operator-data acceptance remains open;
-> do not use the candidate for an installation. BookshelfNG's freeze gate is
-> under review in [PR #148](https://github.com/snapetech-org/bookshelfng/pull/148).
-> The legacy-channel bridges remain disabled. Use the standard ChaptarrNG migration commands
-> in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md),
-> review its limits, and keep an independent backup.
+> Releases remain frozen until the migration, feature-parity, rollback, and installation-channel acceptance gates close. BookshelfNG PR #148 merged to `main` as `c6b4642`; the fail-closed publisher gate is in place, its readiness variable remains unset, and no release has followed `.71`. ChaptarrNG release publication is separately gated and remains frozen.
+>
+> ChaptarrNG PR #131 is evaluating older-schema SQLite support and one-schema PostgreSQL conversion. The PostgreSQL smoke run [39127070836](https://github.com/snapetech-org/chaptarrng/actions/runs/39127070836) on code head `21c41ad5` failed during application startup before the 300-second readiness limit (DryIoc exception, no NUnit totals). This does not establish a converter assertion failure. Follow PR #131 for current diagnostics. Do not use the unreleased candidate for operator data.
+>
+> BookshelfNG issue #114 is closed. ChaptarrNG `v0.9.974` and later initialize missing new-author paths automatically from unambiguous configured defaults; there is no separate toggle, and explicit roots and existing authors remain unchanged. See the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md) and [retirement status](docs/maintainers/chaptarr-consolidation.md).
 
-The current ChaptarrNG retirement branch also ports the native Hardcover
-provider and translates the saved `HardcoverAuth` setting to
-`HardcoverApiToken`. Bare numeric provider IDs are interpreted according to
-the BookshelfNG mode in effect during migration: `HARDCOVER=true` selects
-Hardcover unless `HARDCOVER_NATIVE=false`; otherwise the importer keeps the
-Goodreads interpretation. Preview records that choice. The current source
-candidate of the handoff helper adds `--provider-mode goodreads|native-hardcover`
-to pass the choice to the temporary converter container. That helper change
-and provider support are not in the published `.71` helper or ChaptarrNG
-`.977` image. The exact hosted run on `50f58223` failed its PostgreSQL
-migration fixture. ChaptarrNG commit `e6e9b955` contains the schema-query
-correction and PR #131 is validating it; converted-data acceptance remains
-open. Releases
-remain frozen until the full retirement gates close.
+The current ChaptarrNG retirement branch also ports the native Hardcover provider, maps saved `HardcoverAuth` to `HardcoverApiToken`, and preserves bare numeric IDs according to the source `HARDCOVER` mode. The helper candidate accepts `--provider-mode goodreads|native-hardcover` so preview and apply use the same interpretation. These changes are source-only; they are not in the published `.71` helper or ChaptarrNG `.977` image. The exact-head run [39127070836](https://github.com/snapetech-org/chaptarrng/actions/runs/39127070836) on code head `21c41ad5` failed during application startup: the process exited before the 300-second readiness limit with a DryIoc dependency-resolution exception and no NUnit totals. That does not establish a converter assertion failure; follow ChaptarrNG PR #131 for the diagnostic follow-up and current checks, and converted-data and rollback acceptance remain open. Keep the release freeze in place.
 
 BookshelfNG's tagged image/release jobs, manual distribution retries, and the
 ChaptarrNG legacy bridge are also fail-closed. They require the
