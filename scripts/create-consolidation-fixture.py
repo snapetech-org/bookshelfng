@@ -125,6 +125,15 @@ def populate_bookshelf_fixture(database, output):
 
         with connection:
             insert_row(connection, 'Tags', {'Id': FIXTURE_ID, 'Label': 'Migration Fixture'})
+            for key, value in (
+                ('HardcoverAuth', 'Bearer fixture-hardcover-token'),
+                ('BookImportMinimumMatchPercent', '75'),
+                ('MetadataCatalogSources', 'openlibrary,googlebooks'),
+                ('GoogleBooksApiKey', 'fixture-key-preserved'),
+                ('MetadataTitleSourcePreference', 'openlibrary'),
+                ('MetadataCoverSourcePreference', 'googlebooks'),
+            ):
+                insert_row(connection, 'Config', {'Key': key, 'Value': value})
             insert_row(connection, 'RootFolders', {
                 'Id': FIXTURE_ID,
                 'Path': str(ebook_root),
@@ -151,7 +160,11 @@ def populate_bookshelf_fixture(database, output):
             })
             insert_row(connection, 'AuthorMetadata', {
                 'Id': FIXTURE_ID,
-                'ForeignAuthorId': 'fixture-hardcover-author-9001',
+                # BookshelfNG's native Hardcover mode stores primary catalog
+                # IDs as bare numbers. Keep this fixture in that real source
+                # dialect so the ChaptarrNG handoff can verify mode-aware
+                # provider identity conversion.
+                'ForeignAuthorId': '9001',
                 'TitleSlug': 'jane-fixture',
                 'Name': 'Jane Fixture',
                 'Overview': 'Synthetic linked-record migration fixture',
@@ -193,7 +206,7 @@ def populate_bookshelf_fixture(database, output):
             insert_row(connection, 'Books', {
                 'Id': FIXTURE_ID,
                 'AuthorMetadataId': FIXTURE_ID,
-                'ForeignBookId': 'fixture-hardcover-book-9001',
+                'ForeignBookId': '9002',
                 'TitleSlug': 'the-migration-atlas-fixture',
                 'Title': 'The Migration Atlas',
                 'ReleaseDate': '2024-03-12',
@@ -212,7 +225,7 @@ def populate_bookshelf_fixture(database, output):
             insert_row(connection, 'Editions', {
                 'Id': FIXTURE_ID,
                 'BookId': FIXTURE_ID,
-                'ForeignEditionId': 'fixture-hardcover-edition-ebook-9001',
+                'ForeignEditionId': '9003',
                 'Isbn13': '9780306406157',
                 'Asin': None,
                 'Title': 'The Migration Atlas (EPUB)',
@@ -235,7 +248,7 @@ def populate_bookshelf_fixture(database, output):
             insert_row(connection, 'Editions', {
                 'Id': FIXTURE_ID + 1,
                 'BookId': FIXTURE_ID,
-                'ForeignEditionId': 'fixture-hardcover-edition-audio-9001',
+                'ForeignEditionId': '9004',
                 'Isbn13': None,
                 'Asin': 'B0FIXTURE01',
                 'Title': 'The Migration Atlas (Audiobook)',
@@ -310,7 +323,7 @@ def populate_bookshelf_fixture(database, output):
             })
             insert_row(connection, 'Series', {
                 'Id': FIXTURE_ID,
-                'ForeignSeriesId': 'fixture-hardcover-series-9001',
+                'ForeignSeriesId': '9005',
                 'Title': 'Atlas Cycle',
                 'Description': 'Synthetic series relationship',
                 'Numbered': 1,
@@ -402,7 +415,7 @@ def populate_bookshelf_fixture(database, output):
         for table in (
             'AuthorMetadata', 'Authors', 'Books', 'Editions', 'BookFiles',
             'ExtraFiles', 'MetadataFiles', 'Series', 'SeriesBookLink', 'Users',
-            'Notifications', 'History', 'DownloadHistory', 'Blocklist', 'RootFolders', 'Tags',
+            'Notifications', 'History', 'DownloadHistory', 'Blocklist', 'RootFolders', 'Tags', 'Config',
         ):
             counts[table] = connection.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0]
         integrity = connection.execute('PRAGMA integrity_check').fetchall()
