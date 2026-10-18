@@ -2,9 +2,10 @@
 
 **This installer still installs and upgrades BookshelfNG.** It does not switch
 the Windows service to ChaptarrNG. New deployments should use ChaptarrNG where
-available. The ChaptarrNG `v0.9.972` converter supports the migration-158
-SQLite database, but this installer does not change the service, data
-directory, or package identity. Review the
+available. The published ChaptarrNG `v0.9.977` converter supports the final
+migration-158 SQLite database and rejects source schemas before migration 14.
+This installer does not change the service, data directory, or package
+identity. Review the
 [migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 and the [channel status](https://github.com/snapetech-org/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md)
 before planning a Windows handoff.

@@ -1,7 +1,7 @@
 # BookshelfNG Helm chart
 
-**Legacy chart for existing BookshelfNG deployments.** ChaptarrNG `v0.9.972`
-includes the BookshelfNG converter in its standard image, but there is no
+**Legacy chart for existing BookshelfNG deployments.** ChaptarrNG `v0.9.977`
+includes the BookshelfNG SQLite converter in its standard image, but there is no
 Helm-specific upgrade bridge. Keep the current release, PVC, and independent
 backup until the operator has reviewed the migration guide and prepared the
 ChaptarrNG deployment. The handoff uses the same ChaptarrNG image as a fresh

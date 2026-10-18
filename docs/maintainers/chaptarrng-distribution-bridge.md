@@ -14,12 +14,28 @@ Windows, and PostgreSQL migration checks passed. The source fix is not in
 The bridge described below remains disabled; no BookshelfNG package identity
 or image alias has been redirected.
 
-The active ChaptarrNG retirement candidate adds native Hardcover identity migration and PostgreSQL conversion for one migration-158 schema. Run [39132760214](https://github.com/snapetech-org/chaptarrng/actions/runs/39132760214) on `9c051d3d` reported NUnit source line 162 in `should_preview_convert_and_restore_a_current_bookshelf_postgres_schema`. The fixture seeds `BookImportMinimumMatchPercent` with that exact casing but the check queried lowercase, identifying a fixture expectation error. ChaptarrNG commit [b5bd9527](https://github.com/snapetech-org/chaptarrng/commit/b5bd9527) corrects the three retained-config checks. Exact-head run [39135608892](https://github.com/snapetech-org/chaptarrng/actions/runs/39135608892) on commit [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed. The candidate remains unsupported for operator data. This candidate does not change bridge eligibility. Operator data, feature parity, install flow, and package-channel acceptance remain open. BookshelfNG’s publisher freeze gate merged to `main` as `c6b4642`; its variable is unset.
+The ChaptarrNG retirement candidate is draft PR #131; its migration code was
+tested at snapshot [`0d31609b`](https://github.com/snapetech-org/chaptarrng/commit/0d31609b). It
+adds older SQLite support, one migration-158 PostgreSQL schema, native
+Hardcover identity migration, and a separately configured BookOrbit Book Dock
+destination. Exact-head run [39142709701](https://github.com/snapetech-org/chaptarrng/actions/runs/39142709701)
+passed Linux, macOS, and Windows builds, PostgreSQL migration, and release-note
+checks. Analysis, dependency, and security checks have passed. The candidate
+is unsupported for operator data and does not change
+bridge eligibility. Operator data, feature parity, install flow, and
+package-channel acceptance remain open. BookshelfNG’s publisher freeze gate
+merged to `main` as `c6b4642`; its variable is unset.
 
-ChaptarrNG AUR `0.9.977-1` is published. The standard COPR package
-`chaptarrng 0.9.977-1` built successfully for Fedora 43, 44, 45, and Rawhide
-x86_64. Chocolatey `.977` passed package-transition smoke validation, but its
-push returned HTTP 403 and the live feed has no `chaptarrng` entry. The
+ChaptarrNG AUR `0.9.977-1` is published. A local BookshelfNG-identity AUR
+candidate passed a network-disabled pacman upgrade from the published
+`0.4.21.71-1` package and downgrade back, preserving an environment override
+and synthetic data canary. The installed candidate also passed preview,
+conversion, and restore against a synthetic populated migration-158 database.
+Systemd was not running, and acceptance with operator data remains open. The
+standard COPR package `chaptarrng 0.9.977-1` built successfully for Fedora 43,
+44, 45, and Rawhide x86_64. The legacy COPR trigger remains disabled.
+Chocolatey `.977` passed package-transition smoke validation, but its push
+returned HTTP 403 and the live feed has no `chaptarrng` entry. The
 BookshelfNG AUR identity remains on its own `0.4.21.71-1` payload; the public
 Chocolatey identity remains at `0.4.21.70`. Feature and channel acceptance
 gates are still open. An isolated 2026-10-18 Docker image-switch and rollback
@@ -82,42 +98,46 @@ summaries report publisher outcomes, not completed retirement gates.
 | COPR `slskdn/bookshelfng` | Sends the ChaptarrNG tag to the existing package-scoped COPR webhook. COPR downloads and verifies the legacy `bookshelfng` source RPM built from the same ChaptarrNG archive. | The external COPR custom-source bootstrap must first accept `vMAJOR.MINOR.PATCH` tags. A successful webhook response does not prove that COPR built or published the package. |
 | Chocolatey `bookshelfng` | Builds both `chaptarrng` and `bookshelfng` packages from the checksummed standard Windows archive, then submits each identity with the existing Chocolatey credential. The legacy package keeps the existing service and `%ProgramData%\BookshelfNG\data` path while converting supported database data at normal startup. | Chocolatey moderation/approval, unsupported database inputs, and upgrade/rollback behavior outside the hosted Windows release test. |
 | BookshelfNG Helm OCI chart | Publishes a new chart version under the existing BookshelfNG OCI chart identity and pins it to the exact standard ChaptarrNG multi-architecture image digest while preserving the chart's resource names, PVC, labels, and port. | Existing releases do not upgrade themselves. Operators must apply a chart update, and pinned charts or image digests stay pinned. |
-| AUR `bookshelfng-bin` | The ChaptarrNG release workflow builds and submits both the new and legacy package identities using the ChaptarrNG AUR credential. | AUR review/build state and an installed-machine upgrade with real operator data. |
+| AUR `bookshelfng-bin` | The ChaptarrNG release workflow builds and submits both the new and legacy package identities using the ChaptarrNG AUR credential. | Active systemd handoff and acceptance with representative operator data; the synthetic package-level migration/restore rehearsal passed. |
 | Unraid Community Apps | A running BookshelfNG template that pulls a mutable BookshelfNG GHCR tag can receive the standard ChaptarrNG image after that alias moves. | The catalog listing, pinned image references, cached tags, template-specific volume/environment compatibility, and automatic rollout. |
 | Debian/PPA, AppImage, Flatpak, native archives, Windows setup, macOS, FreeBSD, YunoHost, and third-party catalogs | No universal redirect is implemented here. | Each package identity, feed, updater, signing key, and manual download path needs its own tested migration or a clear operator handoff. |
 
 ## COPR one-time update
 
-The existing COPR package's custom-source bootstrap currently accepts the
-BookshelfNG release tag format. Before enabling this bridge, update that COPR
-script so it accepts both the old and ChaptarrNG tag forms and passes the value
-to the current `packaging/rpm/copr-source.sh` from the BookshelfNG `main`
-branch:
+The existing `slskdn/bookshelfng` custom-source bootstrap must accept both
+the BookshelfNG release tag format and the ChaptarrNG `vMAJOR.MINOR.PATCH`
+format before this bridge can run. The checked-in
+`packaging/rpm/copr-source.sh` already accepts both forms and verifies the
+source RPM; update the external bootstrap to fetch that script from the current
+BookshelfNG `main` branch:
 
 ```bash
 tag="$(tr -d '\r\n' < hook_payload)"
 [[ "$tag" =~ ^(main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+|v[0-9]+\.[0-9]+\.[0-9]+)$ ]]
 curl --fail --location --silent --show-error \
-  "https://raw.githubusercontent.com/snapetech/bookshelfng/main/packaging/rpm/copr-source.sh" \
+  "https://raw.githubusercontent.com/snapetech-org/bookshelfng/main/packaging/rpm/copr-source.sh" \
   | bash -s -- "$tag"
 ```
 
 The COPR webhook URL must remain the package-scoped custom endpoint for
 `bookshelfng`. It is used as a secret and must not be printed in workflow logs.
 
-As of 2026-10-14, the public [new ChaptarrNG COPR project](https://copr.fedorainfracloud.org/coprs/slskdn/chaptarrng/)
-exists for Fedora 43/44/45 and Rawhide x86_64. Its `chaptarrng` custom-source
-package uses the checked-in bootstrap with `bash curl cpio rpm` build
-dependencies and auto-rebuild enabled. The package-scoped webhook is stored
-in ChaptarrNG Actions as `COPR_WEBHOOK_URL`. The package has no builds yet;
-the public ChaptarrNG `v0.9.969` release has no assets, including the SRPM and
-checksum the bootstrap requires. ChaptarrNG Actions now has the
-`BOOKSHELFNG_COPR_WEBHOOK_URL` for the legacy identity, and BookshelfNG's
-`COPR_WEBHOOK_URL` was rotated to the matching package-scoped endpoint. Neither
-hook has been tested by submitting a COPR build. The existing
-`slskdn/bookshelfng` COPR bootstrap must still be updated and proven before
-the bridge is enabled. This new-project setup is not a package publication
-or retirement-continuity proof.
+As of 2026-10-18, the public
+[new ChaptarrNG COPR project](https://copr.fedorainfracloud.org/coprs/slskdn/chaptarrng/)
+exists for Fedora 43/44/45 and Rawhide x86_64. The standard
+chaptarrng 0.9.977-1 package built successfully for those targets. The legacy
+BookshelfNG trigger was skipped while the bridge is disabled, so its
+old-identity package upgrade remains untested.
+
+The checked-in BookshelfNG script at packaging/rpm/copr-source.sh accepts both
+the old main-vMAJOR.MINOR.PATCH.BUILD tags and ChaptarrNG vMAJOR.MINOR.PATCH
+tags, then verifies the source RPM checksum and expected payload. The external
+slskdn/bookshelfng custom-source bootstrap still needs a confirmed update and
+a successful legacy-identity build; a checked-in script does not prove that
+the external COPR configuration uses it. The new ChaptarrNG COPR webhook and
+the package-scoped BookshelfNG webhook are configured, but the disabled
+legacy trigger has not tested the old package path. This new-project setup is
+not a package publication or retirement-continuity proof.
 
 ## Enablement gates
 
