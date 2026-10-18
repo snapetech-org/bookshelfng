@@ -1,6 +1,6 @@
 # BookshelfNG retirement and ChaptarrNG consolidation
 
-## Current status — 2026-10-17
+## Current status — 2026-10-18
 
 BookshelfNG `0.4.21.71` is the published final source release. Its issue #114
 request is closed; the `.71` release contains the optional new-author path
@@ -11,15 +11,24 @@ safe fallback for records whose media format cannot be inferred. ChaptarrNG
 format defaults without replacing explicit values or rewriting existing
 authors and files.
 
-The supported source database remains the exact BookshelfNG migration-158
-SQLite schema. A populated Linux/amd64 rehearsal accounted for all 127,177
+The public ChaptarrNG `v0.9.976` supports BookshelfNG migration-158 SQLite.
+ChaptarrNG `main` now embeds the final BookshelfNG SQLite migration chain and
+applies it to a disposable copy before conversion; `v0.9.977` publication is
+pending hosted CI and release checks. A synthetic v22 fixture passes upgrade,
+conversion, rollback, non-mutating preview, and future-schema refusal. It is
+not evidence from real older-schema operator data. A populated Linux/amd64
+rehearsal of the final schema accounted for all 127,177
 rows across 39 source tables. Its 81 media choices were technical test inputs,
 not reviewed classifications. The published `.976` converter now keeps
 unresolved works in both catalogs, unmonitored, and writes a private review
 file; operators still need to classify those works. The `.976` release
 workflow passed Linux, macOS, Windows, and PostgreSQL migration validation.
-This remains bounded evidence: older schemas, PostgreSQL source conversion,
-two populated BookshelfNG databases, every provider/environment contract,
+ChaptarrNG `main` also packages an optional aggregate-only diagnostics module
+that preserves an existing BookshelfNG opt-in only when both the legacy flag
+and archived plugin marker are present; the `.977` artifact check is pending.
+This remains bounded evidence: older-schema behavior on real data, PostgreSQL
+source conversion, two populated BookshelfNG databases, every
+provider/environment contract,
 rollback on operator data, full feature parity, and each package-channel
 upgrade remain open.
 
@@ -299,10 +308,15 @@ and library checks.
 Every one of the source's 39 tables needs an explicit preserve, transform,
 rebuild, or deliberate-reset disposition; no table may disappear by omission.
 
-The published converter is SQLite-only and supports the exact migration-158
-Bookshelf schema. The populated fixture validates a subset of table
-dispositions; complete provider/configuration coverage, PostgreSQL import, and
-automatic discovery of a separate Bookshelf data directory remain open.
+The published `v0.9.976` converter is SQLite-only and supports the exact
+migration-158 Bookshelf schema. ChaptarrNG `main` adds the embedded SQLite
+migration chain for recognized source schemas through version 158, pending
+`v0.9.977` publication. Its synthetic v22 fixture validates source upgrade,
+conversion, preview immutability, and rollback. This does not establish
+real-data support for older schemas. The populated fixture validates a subset
+of table dispositions; complete provider/configuration coverage, PostgreSQL
+import, and automatic discovery of a separate Bookshelf data directory remain
+open.
 
 The first-pass disposition below names every table in the released `.69`
 schema. Some mappings now exist in the local candidate, but each remains open

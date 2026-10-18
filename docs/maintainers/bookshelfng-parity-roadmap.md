@@ -1,16 +1,23 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
-**Reviewed:** 2026-10-17. **Status:** BookshelfNG `0.4.21.71` is the published
+**Reviewed:** 2026-10-18. **Status:** BookshelfNG `0.4.21.71` is the published
 final source release, and issue #114 is closed. ChaptarrNG `v0.9.976` is
 published with preview, apply, automatic startup conversion, rollback, and a
-safe fallback for books whose formats cannot be inferred. The verified
-migration input remains the exact BookshelfNG migration-158 SQLite schema. One
+safe fallback for books whose formats cannot be inferred. ChaptarrNG `main`
+now embeds the BookshelfNG SQLite migration chain for recognized schemas up
+to migration 158 on a disposable copy; this change is pending hosted CI and
+publication in `v0.9.977`. A synthetic migration-22 fixture passes upgrade,
+conversion, rollback, and source-unchanged preview, but does not establish
+older-schema behavior on real data. The verified populated-database input is
+the exact BookshelfNG migration-158 SQLite schema. The same pending ChaptarrNG
+release also packages the optional aggregate-only diagnostics replacement;
+its release artifact and preserved opt-in remain to be validated. One
 populated Linux/amd64 run retained all 39 source tables and rows; 81 books
 needed media classification, and the test-map choices were not reviewed as
 correct. The current converter keeps unresolved records in both catalogs,
 unmonitored, and writes a review file, but it does not classify them. The
 final-release decision and helper do not close the feature, data, or
-installation-channel acceptance gates. Older schemas, PostgreSQL, complete
+installation-channel acceptance gates. PostgreSQL, complete
 settings/identity behavior, rollback on every real deployment, and package
 handoff remain open. This is a feature-level matrix, not a claim that
 similarly named features are equivalent.
@@ -69,7 +76,7 @@ is the commit/path audit that must be fully dispositioned.
 
 | BookshelfNG capability | BookshelfNG has | ChaptarrNG implementation has | Retirement disposition and status |
 | --- | --- | --- | --- |
-| One instance for ebooks and audiobooks; multiple compatible formats per book | Single book records can retain multiple ebook and audiobook files | Media-specific records exist; conversion preserves a selected edition per format and keeps unresolved records in both catalogs, unmonitored, with a review artifact | **Open blocker.** Convert and validate all rows and relationships; prove format isolation, monitoring, upgrades, real-data rollback, and existing client behavior. The fallback does not infer the true format. |
+| One instance for ebooks and audiobooks; multiple compatible formats per book | Single book records can retain multiple ebook and audiobook files | Media-specific records exist; conversion preserves a selected edition per format and keeps unresolved records in both catalogs, unmonitored, with a review artifact; `main` upgrades recognized older SQLite schemas on a disposable copy | **Open blocker.** Publish the upgrader and validate older schemas with real data; convert and validate all rows and relationships; prove format isolation, monitoring, real-data rollback, and existing client behavior. The fallback does not infer the true format. |
 | Format-specific author paths, quality profiles, and metadata profiles | Optional per-format paths and profile overrides, with author defaults as fallback | Native media roots and profiles exist; new authors receive usable per-format roots automatically | **Partial parity.** ChaptarrNG `v0.9.974+` initializes missing new-author roots from configured defaults or the only compatible root, preserves explicit roots, leaves ambiguous defaults blank, and does not move existing files. BookshelfNG `0.4.21.71` implements the optional setting requested in the now-closed issue #114. The broader blocker remains open for profile override/fallback semantics and conversion of existing path/profile data; test imports, upgrades, renames, scans, and moves for both formats. |
 | Native Hardcover metadata and request controls | Direct GraphQL provider, per-process pacing/cache, batched lookups, rate-limit recovery, and identity routing | Chaptarr has a separate resolver and consensus pipeline | **Open blocker.** Keep the configured behavior and identity boundaries or provide a tested replacement; a provider name alone is not parity. |
 | Selectable supplemental catalogs and per-field source preferences | Hardcover, Readarr-compatible API, Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and optional Apify adapters | No matching Bookshelf catalog set or source-selection model identified | **Open blocker.** Port adapters, settings, qualified identities, field choices, and fallback rules, or replace each with tested behavior. |
@@ -82,7 +89,7 @@ is the commit/path audit that must be fully dispositioned.
 | BookLore BookDrop uploads | Uploads imported books through BookLore's BookDrop API | Optional external app integration ported in the current ChaptarrNG candidate; seven proxy tests and one live BookLore v2.4.0 upload-contract test pass, including exact-byte file placement in BookDrop | **Open blocker.** Convert stored notification settings and credentials; preserve streaming, redirects, supported-format and size handling; test rejected files, recovery, and partial batches. The live contract proves API upload and file placement, not BookLore processing of a valid production book. BookLore [identifies BookOrbit as its official successor and says it is entering maintenance mode](https://github.com/booklore-app/booklore/blob/develop/README.md); test the successor path or record a legacy-user transition. |
 | Calibre, MyAnonamouse, Audiobookshelf sidecars, and SeerrNG integration | These standalone service and metadata workflows are present | Some native integrations and the SeerrNG contract exist; the full set is not proven equivalent | **Open blocker.** Disposition each integration and preserve its settings, API behavior, and stored associations. |
 | Previewable media moves, bulk moves, and extra-file handling | Preview, collision checks, registered sidecars, and format-aware paths | Chaptarr has different folder and organization behavior | **Open blocker.** Prove equivalent previews, collision and cross-device behavior, and that unknown/external files remain untouched. |
-| Optional privacy-preserving diagnostics | Separate module, explicit opt-in, aggregate-only event schema | No equivalent optional module identified | **Open blocker.** Retain its install/opt-in and data-minimization contract or record a reviewed replacement with the same operator choice. |
+| Optional privacy-preserving diagnostics | Separate module, explicit opt-in, aggregate-only event schema | ChaptarrNG `main` now packages an optional aggregate-only diagnostics module. It honors the legacy enable flag only when the archived BookshelfNG plugin marker is present and requires the operator to preserve endpoint/token environment variables. | **Candidate replacement implemented; pending `v0.9.977` release validation.** Verify the module is included in published artifacts and preserves the explicit opt-in without enabling diagnostics for other installs; then close this feature row. |
 | Scoped SeerrNG access, API aliases, proxy and request controls | Restricted key, compatibility routes, format-specific availability, and hardened proxy/auth boundaries | ChaptarrNG has its own facade and scoped key | **Open blocker.** Preserve existing permissions and configuration semantics; test unchanged SeerrNG settings, IDs, keys, and proxy deployments. |
 | Encrypted backups and restore | Passphrase-protected portable archives and per-format profiles | ChaptarrNG has encrypted backup support | **Open blocker.** Prove legacy archive recovery, secret handling, rollback, and profile conversion; never expose secrets in logs. |
 | .NET 10, dependency/security fixes, and platform builds | .NET 10 releases, broad native/package matrix, and maintained security/dependency patches | ChaptarrNG uses .NET 10 and has a different dependency/build matrix | **Open blocker.** Review every patch and supported platform; retain compatible fixes and run the target's required build and security checks. |
@@ -133,22 +140,25 @@ all 39 source table definitions and every row; normal startup served the UI
 and retained the existing port, URL base, API key, SSL setting, and Docker
 image-pull update mechanism. The live BookshelfNG service was not changed.
 The 81 media choices used for apply were test-only and were not reviewed as
-correct library classifications. Older BookshelfNG schemas, PostgreSQL,
-complete provider/settings behavior, rollback on a real populated deployment, full
-feature-by-feature semantic acceptance, populated-library SeerrNG
+correct library classifications. Real-data validation for older BookshelfNG
+schemas, PostgreSQL, complete provider/settings behavior, rollback on a real
+populated deployment, full feature-by-feature semantic acceptance, populated-library SeerrNG
 request/identity/history probes, and tested old-channel bridges remain open.
 The released BookshelfNG `.69` database samples inspected earlier were empty;
 that earlier inspection is distinct from this one populated-database run.
 
 The BookshelfNG and ChaptarrNG databases have different schemas and identity
-models. The local converter handles only the exact BookshelfNG migration-158
-SQLite schema; unsupported schemas and provider identities fail closed with
-the source intact. The one populated-database run proves that exact input, not
-older schemas, PostgreSQL, or other production databases. The converter stages
-a native ChaptarrNG database, validates it, retains a Bookshelf backup, and
-promotes only after its row-accounting checks. This migration tool is included
-in the public ChaptarrNG `v0.9.976` release. The evidence above does not prove
-older schemas, PostgreSQL source conversion, or every real-world data shape.
+models. The public ChaptarrNG `v0.9.976` converter handles the exact
+migration-158 SQLite schema; `main` adds an embedded older-schema SQLite
+chain intended for `v0.9.977`, pending hosted CI and release. A synthetic
+migration-22 fixture exercises upgrade, conversion, rollback, and non-mutating
+preview. Unknown schemas and provider identities still fail closed with the
+source intact. The one populated-database run proves only the exact v158
+input, not older real databases, PostgreSQL, or other production data. The
+converter stages a native ChaptarrNG database, validates it, retains a
+Bookshelf backup, and promotes only after its row-accounting checks. The
+evidence above does not prove PostgreSQL source conversion or every real-world
+data shape.
 
 Retirement also has a separate distribution gate. BookshelfNG's installed
 updater checks the Readarr-owned update service, so changing Snapetech release

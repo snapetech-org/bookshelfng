@@ -7,18 +7,24 @@ published release used in the examples
 below. Keep its image tag versioned or use an immutable digest.
 
 This process does not make every old installation automatically transferable.
-The converter supports the exact BookshelfNG migration-158 SQLite schema.
-Older schemas, PostgreSQL, two populated Bookshelf databases, and several
-external settings and installation-channel upgrades are not covered. The
-release bridge remains disabled by default. Read the limits below before
-changing a running installation.
+The published converter supports the exact BookshelfNG migration-158 SQLite
+schema. ChaptarrNG `main` now embeds BookshelfNG's SQLite migration chain and
+will upgrade recognized older schemas on a disposable copy in `v0.9.977`,
+pending hosted CI and release publication. A synthetic migration-22 fixture
+passes upgrade, conversion, rollback, source-unchanged preview, and refusal of
+a future schema; this is not proof from real old-schema data. PostgreSQL, two
+populated Bookshelf databases, and several external settings and
+installation-channel upgrades are not covered. The release bridge remains
+disabled by default. Read the limits below before changing a running
+installation.
 
-If you are on an earlier BookshelfNG release, update to `0.4.21.71` first
-and let it complete its database migration before replacing the application.
-Stop BookshelfNG when it is idle, then run the ChaptarrNG preview against the
-resulting migration-158 SQLite database. ChaptarrNG does not run BookshelfNG's
-older database migrations. PostgreSQL BookshelfNG databases require a separate
-manual migration path and are not accepted by the current converter.
+Until ChaptarrNG `v0.9.977` is published, update an earlier BookshelfNG
+release to `0.4.21.71` and let it finish its database migration before
+replacing the application. After `.977` is available, its bundled SQLite
+chain can upgrade recognized older schemas on a temporary copy. Stop
+BookshelfNG when it is idle, then run preview before switching. PostgreSQL
+BookshelfNG databases require a separate manual migration path and are not
+accepted by the converter.
 
 The helper archives appdata, including `plugins/Bookshelf.Diagnostics.dll`,
 but it does not capture environment variables. If the optional diagnostics
@@ -180,12 +186,15 @@ not assume an existing BookshelfNG package or image will redirect itself.
 Keep the old installer or image reference available until the migration has
 been verified and rollback is no longer needed.
 
-The verified converter input is the exact BookshelfNG migration-158 SQLite
-schema. Ambiguous formats are retained in both catalogs without monitoring
-until the operator classifies them; the converter does not infer their true
-type. Older BookshelfNG schemas, PostgreSQL conversion, full provider and
-environment parity, every installation channel, and rollback on every
-real-world deployment have not been established. Unsupported database
+The published `.976` converter input is the exact BookshelfNG migration-158
+SQLite schema. The `.977` candidate adds the embedded SQLite upgrade chain;
+local synthetic evidence covers migration 22 through conversion and rollback,
+source-unchanged preview, and refusal of a future schema. This does not
+establish older-schema behavior on real data or PostgreSQL source conversion.
+Ambiguous formats are retained in both catalogs without monitoring until the
+operator classifies them; the converter does not infer their true type. Full
+provider and environment parity, every installation channel, and rollback on
+every real-world deployment have not been established. Unsupported database
 lineages fail closed; do not bypass the check by renaming or editing the
 database. See the [consolidation report](maintainers/chaptarr-consolidation.md)
 for evidence and the remaining feature and channel inventory.

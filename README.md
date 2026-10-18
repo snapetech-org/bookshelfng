@@ -2,8 +2,12 @@
 
 > **Final source tag:** BookshelfNG `0.4.21.71` is designated the final
 > release, and its GitHub release is published. The `.71` release includes
-> the source-side handoff helper. Use the standard ChaptarrNG `v0.9.976`
-> migration commands in the
+> the source-side handoff helper. ChaptarrNG `v0.9.976` handles the final
+> migration-158 SQLite schema. The upcoming ChaptarrNG `v0.9.977` release adds
+> bundled upgrades for recognized older SQLite schemas; its hosted CI and
+> publication are still pending. Until it is published, upgrade BookshelfNG
+> to `.71` before switching. PostgreSQL migration and legacy-channel bridges
+> are still unsupported. Use the standard ChaptarrNG migration commands in the
 > [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md), review its
 > limits, and keep an independent backup.
 
@@ -83,10 +87,15 @@ The final BookshelfNG release includes a source-side helper that archives the
 entire appdata directory before it calls the standard ChaptarrNG preview,
 apply, or rollback command. The current ChaptarrNG release is
 [`v0.9.976`](https://github.com/snapetech-org/chaptarrng/releases/tag/v0.9.976).
-The verified conversion scope is BookshelfNG migration-158 SQLite. If the
-source does not identify a format, ChaptarrNG preserves the work in both
-catalogs without monitoring and writes a private review file. This keeps
-conversion moving without guessing which format to search.
+That release handles the final migration-158 SQLite schema. ChaptarrNG `main`
+now embeds the BookshelfNG SQLite migration chain for recognized older
+schemas; publication in `v0.9.977` is pending hosted CI and release checks. A
+synthetic migration-22 fixture passes upgrade, conversion, rollback, and
+non-mutating preview, but older-schema behavior on real data is not yet
+established. PostgreSQL source conversion remains unsupported. If the source
+does not identify a format, ChaptarrNG preserves the work in both catalogs
+without monitoring and writes a private review file. This keeps conversion
+moving without guessing which format to search.
 
 BookshelfNG issue #114 is closed and implemented in its tagged `0.4.21.71`
 source. The same new-author path behavior is already in ChaptarrNG
@@ -99,9 +108,9 @@ The helper does not copy media or download folders mounted outside appdata,
 translate every environment setting or external service, or update a pinned
 image or package on its own. Keep the same media/download mounts where possible,
 back up external settings separately, and follow the
-[migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md). Older
-schemas, PostgreSQL, full feature parity, and several package-channel upgrade
-and rollback paths remain unverified. The disabled-by-default release bridge
+[migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md). PostgreSQL,
+full feature parity, and several package-channel upgrade and rollback paths
+remain unverified. The disabled-by-default release bridge
 does not change live tags or packages until its independent acceptance gates
 pass. The [consolidation report](docs/maintainers/chaptarr-consolidation.md)
 records current evidence and open gates. The
