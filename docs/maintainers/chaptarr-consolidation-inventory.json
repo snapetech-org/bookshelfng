@@ -6,18 +6,18 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "5d696fb0b3cba552fa12b912a825954e2473e0e6",
-  "targetCommit": "561bf3954d0bb2bcc3beb546accdec76f26718e4",
+  "sourceCommit": "e8598914c0fc8d17c57bb04f09d5bf09ee714ec5",
+  "targetCommit": "6d437113893098e0d897bdb938c8c70d52cae676",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 426,
-    "commitsNotInUpstreamHistory": 417,
-    "netChangedPaths": 1045,
+    "commits": 532,
+    "commitsNotInUpstreamHistory": 523,
+    "netChangedPaths": 1091,
     "fileStates": {
-      "no-mapped-target-file": 422,
-      "different-review-required": 473,
-      "identical": 144,
+      "no-mapped-target-file": 437,
+      "different-review-required": 493,
+      "identical": 155,
       "deleted-in-bookshelf": 2,
       "text-equivalent-after-brand-and-newline-normalization": 4
     }
@@ -6950,6 +6950,24 @@
       ]
     },
     {
+      "commit": "a90cf219ac8ab7a3a9fa687877e50f415d371cd5",
+      "date": "2026-10-06",
+      "subject": "chore(packaging): retire YunoHost publishing",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".githooks/sync-packages.sh",
+        ".github/workflows/build.yml",
+        ".github/workflows/package-sync.yml",
+        ".github/workflows/release-distribution.yml",
+        "README.md",
+        "release-notes/2026-10-06-stop-yunohost-publishing.md",
+        "scripts/install-package-sync-hook.sh",
+        "scripts/install-yunohost-sync-hook.sh",
+        "scripts/sync-yunohost-package.sh",
+        "scripts/verify-package-sync.sh"
+      ]
+    },
+    {
       "commit": "73bcc42c9961dd31a5674e09384f73e4ad3abee3",
       "date": "2026-10-06",
       "subject": "feat: add format-specific profiles and encrypted backups (#77)",
@@ -7876,12 +7894,189 @@
       ]
     },
     {
+      "commit": "0b62b0377ec37674749dc0c42f890ff53c9201f1",
+      "date": "2026-10-13",
+      "subject": "docs: update BookshelfNG consolidation and retirement paths",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/startos/README.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/ca_profile.xml",
+        "packaging/unraid/docs/installation.md",
+        "packaging/unraid/templates/bookshelfng.xml",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-sync-unraid-package.sh"
+      ]
+    },
+    {
+      "commit": "89a843a2ca486e083becd0916efe8d8f077ca135",
+      "date": "2026-10-13",
+      "subject": "feat(packaging): add guarded ChaptarrNG release bridge",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "packaging/rpm/copr-source.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/test-copr-source.sh"
+      ]
+    },
+    {
+      "commit": "6de81f8d51cc4dba4b312971112b3f13d72fffe6",
+      "date": "2026-10-13",
+      "subject": "docs: track the gated distribution bridge",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/ca_profile.xml",
+        "packaging/unraid/docs/installation.md",
+        "packaging/unraid/templates/bookshelfng.xml"
+      ]
+    },
+    {
+      "commit": "fb4d15a49ba22435228bdfb9bb7d9408c8bf6fa5",
+      "date": "2026-10-13",
+      "subject": "fix(packaging): use stable ChaptarrNG GHCR namespace",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "scripts/test-chaptarrng-release-bridge.sh"
+      ]
+    },
+    {
+      "commit": "20b0a6bd8f4cb6d04b9658565ff274f36721adc1",
+      "date": "2026-10-13",
+      "subject": "test(packaging): assert gated legacy aliases",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "scripts/test-chaptarrng-release-bridge.sh"
+      ]
+    },
+    {
       "commit": "4a01ffab2f5e2458924dc109a69f6c66578ccbc0",
       "date": "2026-10-13",
       "subject": "ci: run independent validation tasks in a bounded pool (#124)",
       "alsoInBookshelfUpstreamHistory": false,
       "paths": [
         "docs/development/validation-engine.md",
+        "release-notes/20261013-bounded-validation-task-pool.md",
+        "scripts/validation-engine/config.mjs",
+        "scripts/validation-engine/engine.mjs",
+        "scripts/validation-engine/engine.test.mjs"
+      ]
+    },
+    {
+      "commit": "9ed5e4ce643be3f45e96c68a2c5e10108ea6c75c",
+      "date": "2026-10-13",
+      "subject": "docs: refresh consolidation retirement evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "bdabd8dd06b5f6c427814839052169eeb05acde8",
+      "date": "2026-10-13",
+      "subject": "docs: record full Chaptarr consolidation test result",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "f5010caafa2cc779e77967b84e1379bfaccbb1e2",
+      "date": "2026-10-13",
+      "subject": "Merge branch 'main' into codex/bookshelf-chaptarr-consolidation-20261012",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/development/validation-engine.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/startos/README.md",
+        "release-notes/20261013-bounded-validation-task-pool.md",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "scripts/validation-engine/engine.mjs",
+        "scripts/validation-engine/engine.test.mjs"
+      ]
+    },
+    {
+      "commit": "30139753a1e6fcc4428d20372ae74f729c1eafeb",
+      "date": "2026-10-13",
+      "subject": "Merge branch 'main' into codex/bookshelfng-channel-bridge-20261014",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        "README.md",
+        "docs/development/validation-engine.md",
+        "docs/distribution.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "packaging/rpm/copr-source.sh",
+        "release-notes/20261013-bounded-validation-task-pool.md",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/validation-engine/config.mjs",
+        "scripts/validation-engine/engine.mjs",
+        "scripts/validation-engine/engine.test.mjs"
+      ]
+    },
+    {
+      "commit": "e83f88fc2cec9858201e7c8c49b7299565e51e5b",
+      "date": "2026-10-13",
+      "subject": "docs: record ChaptarrNG rollback fixture evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "7a3e9eb98020916f9bca4d5804d01f0aa58aa9cd",
+      "date": "2026-10-13",
+      "subject": "Merge remote-tracking branch 'origin/codex/bookshelf-chaptarr-consolidation-20261012' into codex/bookshelf-chaptarr-consolidation-20261012",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/development/validation-engine.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
         "release-notes/20261013-bounded-validation-task-pool.md",
         "scripts/validation-engine/config.mjs",
         "scripts/validation-engine/engine.mjs",
@@ -7898,6 +8093,135 @@
         "docs/development/validation-engine.md",
         "release-notes/20261014-trusted-main-runner-pool.md",
         "scripts/test_workflow_runner_policy.py"
+      ]
+    },
+    {
+      "commit": "b3638fc051c0ac153190f08d73f690a5cd55a977",
+      "date": "2026-10-13",
+      "subject": "docs: refresh retirement evidence and channel status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "4f5888029d999b1694c5cebd90268b0fe6a471cc",
+      "date": "2026-10-13",
+      "subject": "docs: record COPR bridge readiness",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarrng-distribution-bridge.md"
+      ]
+    },
+    {
+      "commit": "f4f7006c865b0ceed8d04b0d096e18cb29a18b0d",
+      "date": "2026-10-13",
+      "subject": "docs: update consolidation validation status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "7a060237c20ba9a6d0841466bbb21bd6d37ce07f",
+      "date": "2026-10-13",
+      "subject": "docs: record Windows portability fixes",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "6e9638a292e6e2c1d47db173b2025a501ffdd6ec",
+      "date": "2026-10-13",
+      "subject": "docs: record COPR migration channel setup",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "055051163ba68e69479bd0f3e217d5229ef5f6eb",
+      "date": "2026-10-13",
+      "subject": "docs: record COPR bridge setup",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarrng-distribution-bridge.md"
+      ]
+    },
+    {
+      "commit": "19ea5a8a937024b611663354197b326f9a0e5b68",
+      "date": "2026-10-13",
+      "subject": "chore: ignore local license and key files",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".gitignore"
+      ]
+    },
+    {
+      "commit": "16b47dae1b7519ea7c5e87d9904e75665b8fe1d9",
+      "date": "2026-10-13",
+      "subject": "chore: sync BookshelfNG branch with main",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        ".gitignore",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/development/validation-engine.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/startos/README.md",
+        "release-notes/20261014-trusted-main-runner-pool.md",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/test_workflow_runner_policy.py"
+      ]
+    },
+    {
+      "commit": "ff8aa16bcd6caecb0619fa98abc8a837af63f6e3",
+      "date": "2026-10-13",
+      "subject": "chore: sync BookshelfNG branch with main",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        "README.md",
+        "docs/development/validation-engine.md",
+        "docs/distribution.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "packaging/rpm/copr-source.sh",
+        "release-notes/20261014-trusted-main-runner-pool.md",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test_workflow_runner_policy.py"
+      ]
+    },
+    {
+      "commit": "a7c9bd39d9eb10603ea572b34aadd1ad14ce7507",
+      "date": "2026-10-13",
+      "subject": "test(packaging): verify COPR release routing",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "scripts/test-copr-source.sh"
+      ]
+    },
+    {
+      "commit": "97501655c7cd94dc33ffc9197fee1a54c709193a",
+      "date": "2026-10-13",
+      "subject": "docs(migration): refresh retirement audit evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
       ]
     },
     {
@@ -7919,6 +8243,2091 @@
         "src/NzbDrone.Libraries.Test/packages.lock.json",
         "src/NzbDrone.Mono.Test/DiskProviderTests/DiskProviderFixture.cs",
         "src/NzbDrone.Mono.Test/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "3befca0c078ba445b6edc1865da91d0c895c0452",
+      "date": "2026-10-13",
+      "subject": "docs(packaging): record release artifact validation",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "23b27e63dd416ad17675b4eb7db511b1134a4fd5",
+      "date": "2026-10-13",
+      "subject": "Merge remote-tracking branch 'origin/main' into codex/bookshelf-chaptarr-consolidation-20261012",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        ".gitignore",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/development/validation-engine.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/startos/README.md",
+        "release-notes/20261014-validation-permission-results.md",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/engine.mjs",
+        "scripts/validation-engine/engine.test.mjs",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Console/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/DiskProviderTests/DiskProviderFixture.cs",
+        "src/NzbDrone.Mono.Test/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "a0ad9630036265a4dfd73379fae384b7c0cb37ec",
+      "date": "2026-10-13",
+      "subject": "Merge remote-tracking branch 'origin/main' into codex/bookshelfng-channel-bridge-20261014",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        "README.md",
+        "docs/development/validation-engine.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "packaging/rpm/copr-source.sh",
+        "release-notes/20261014-validation-permission-results.md",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/validation-engine/engine.mjs",
+        "scripts/validation-engine/engine.test.mjs",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Console/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/DiskProviderTests/DiskProviderFixture.cs",
+        "src/NzbDrone.Mono.Test/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "094ac1a0a30687523fa6111dbf01286e5a7fff04",
+      "date": "2026-10-13",
+      "subject": "docs(migration): refresh source inventory to latest main",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "5743d1a610e8d1fd7e66c104df0e00fdaa5ee812",
+      "date": "2026-10-13",
+      "subject": "ci: revalidate release notes when PRs are edited",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/release-notes.yml"
+      ]
+    },
+    {
+      "commit": "f508642d4d88bcf8fdb0840b1de2165ea05cacb0",
+      "date": "2026-10-14",
+      "subject": "docs(migration): refresh retirement evidence and inventory",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "d88accef581fc1a8c9e12480c22fa20f04afb603",
+      "date": "2026-10-14",
+      "subject": "fix(packaging): delegate GHCR aliases to personal bridge",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "scripts/test-chaptarrng-release-bridge.sh"
+      ]
+    },
+    {
+      "commit": "ec46c9583eb571778925e9cbbdcc905aa988c6ce",
+      "date": "2026-10-14",
+      "subject": "docs: update GHCR retirement bridge evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "15f095f06949374f8e1eaada5ed432d54d0c4bee",
+      "date": "2026-10-14",
+      "subject": "chore(repository): migrate GitHub owner links (#132)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "charts/bookshelfng/Chart.yaml",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/setup/readarr.iss",
+        "docs/capabilities-and-compatibility.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/branch-reconciliation-2026.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/standalone-install.md",
+        "frontend/src/System/Updates/Updates.tsx",
+        "package.json",
+        "packaging/aur/PKGBUILD",
+        "packaging/chocolatey/bookshelfng.nuspec",
+        "packaging/chocolatey/tools/chocolateyinstall.ps1",
+        "packaging/cloudron/CloudronManifest.json",
+        "packaging/cloudron/CloudronVersions.json",
+        "packaging/cloudron/README.md",
+        "packaging/coop-cloud/bookshelfng/WISHLIST_ISSUE.md",
+        "packaging/debian/control",
+        "packaging/debian/copyright",
+        "packaging/rpm/bookshelfng.spec",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "packaging/startos/SUBMISSION_EMAIL.md",
+        "packaging/systemd/bookshelfng.env",
+        "packaging/unraid/README.md",
+        "packaging/unraid/ca_profile.xml",
+        "packaging/unraid/docs/installation.md",
+        "packaging/unraid/templates/bookshelfng.xml",
+        "release-notes/20261014-org-repository-links.md",
+        "scripts/sync-unraid-package.sh",
+        "scripts/verify-package-sync.sh",
+        "src/NzbDrone.Core/MetadataSource/BookInfo/OpenLibraryMetadataProxy.cs",
+        "src/NzbDrone.Host/Startup.cs",
+        "src/Readarr.Api.V1/openapi.json"
+      ]
+    },
+    {
+      "commit": "03a3c259aa7bf1cbcdefcee4a1332f2b5bc0c6b3",
+      "date": "2026-10-14",
+      "subject": "chore(deps): bump redux-actions from 2.6.5 to 3.0.3",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "package.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "46a22916323a435d59e474f321ea73f5aeab874b",
+      "date": "2026-10-14",
+      "subject": "chore(deps-dev): bump babel-loader from 9.2.1 to 10.1.1",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "package.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "627d76ce4cac9b2087851f3659ef585a96a13353",
+      "date": "2026-10-14",
+      "subject": "chore(deps): bump react-dnd from 14.0.4 to 16.0.1",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "package.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "eb9b8d55f0445e25d7bdf961dbb09b61e9f3d140",
+      "date": "2026-10-14",
+      "subject": "chore(deps): bump react-slider from 1.3.3 to 2.0.6",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "package.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "22ecc136b6f27a1c803f12850159456fa7850403",
+      "date": "2026-10-14",
+      "subject": "chore(deps-dev): bump the npm-minor-patch group across 1 directory with 2 updates",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "package.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "59d930e1b3fd1c09d1d1eb8acf5c8203b82684e5",
+      "date": "2026-10-14",
+      "subject": "fix(packaging): sync canonical Unraid owner links",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/ca_profile.xml",
+        "packaging/unraid/docs/installation.md",
+        "packaging/unraid/templates/bookshelfng.xml"
+      ]
+    },
+    {
+      "commit": "7a1abf2373da7fa7695746afcafa16de025a2777",
+      "date": "2026-10-14",
+      "subject": "fix(packaging): sync canonical Unraid owner links",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "packaging/unraid/README.md",
+        "packaging/unraid/ca_profile.xml",
+        "packaging/unraid/docs/installation.md",
+        "packaging/unraid/templates/bookshelfng.xml"
+      ]
+    },
+    {
+      "commit": "f467bc060b6914893d9da39d6ccee3cd1b1d24d4",
+      "date": "2026-10-14",
+      "subject": "fix(ci): compare release notes against PR merge base",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/release-notes.yml",
+        "scripts/release-notes.test.mjs"
+      ]
+    },
+    {
+      "commit": "6ec429e804e68fd089a8c1506a4631738e0af33d",
+      "date": "2026-10-14",
+      "subject": "chore(deps): bump dotnet/aspnet",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile"
+      ]
+    },
+    {
+      "commit": "b01f54b52a5e9677920a60c3f957167a189262b6",
+      "date": "2026-10-14",
+      "subject": "Bump the nuget-minor-patch group with 10 updates",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "884784cab19eb692d1cfdad9cb9f8c653d3508ac",
+      "date": "2026-10-14",
+      "subject": "Bump Swashbuckle.AspNetCore.SwaggerGen from 6.9.0 to 10.3.0",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "0fbba5662ceb267a4cc62440d2957ba6bbcdda3c",
+      "date": "2026-10-14",
+      "subject": "Bump Selenium.WebDriver.ChromeDriver from 134.0.6998.16500 to 155.0.8059.7900",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Automation.Test/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "cf8904a377e5279258bff9d2189c6f69ca3bbe6a",
+      "date": "2026-10-14",
+      "subject": "Bump Servarr.FluentMigrator.Runner.SQLite from 3.3.2.9 to 5.2.0.10",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Core/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "be51a8aa3fa8bfea606161582d2e9a1e075e0696",
+      "date": "2026-10-14",
+      "subject": "Bump Servarr.FluentMigrator.Runner.Postgres from 3.3.2.9 to 5.2.0.10",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Core/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "029b0f9bfcc96a344a99c96e5de5090dfb0114dd",
+      "date": "2026-10-15",
+      "subject": "docs: align merge and release-note rules",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        "AGENTS.md",
+        "release-notes/README.md",
+        "scripts/validation-engine/config.mjs"
+      ]
+    },
+    {
+      "commit": "66b50f6e959eb0c1aea688337523b77132a32501",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/main' into codex/bookshelf-chaptarr-consolidation-20261012",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/Chart.yaml",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "distribution/windows/setup/readarr.iss",
+        "docs/capabilities-and-compatibility.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/branch-reconciliation-2026.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/standalone-install.md",
+        "frontend/src/System/Updates/Updates.tsx",
+        "package.json",
+        "packaging/aur/PKGBUILD",
+        "packaging/catalogs/README.md",
+        "packaging/chocolatey/bookshelfng.nuspec",
+        "packaging/chocolatey/tools/chocolateyinstall.ps1",
+        "packaging/cloudron/CloudronManifest.json",
+        "packaging/cloudron/CloudronVersions.json",
+        "packaging/cloudron/README.md",
+        "packaging/coop-cloud/bookshelfng/WISHLIST_ISSUE.md",
+        "packaging/debian/control",
+        "packaging/debian/copyright",
+        "packaging/rpm/bookshelfng.spec",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "packaging/startos/SUBMISSION_EMAIL.md",
+        "packaging/systemd/bookshelfng.env",
+        "release-notes/20261014-org-repository-links.md",
+        "release-notes/README.md",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "scripts/verify-package-sync.sh",
+        "src/NzbDrone.Core/MetadataSource/BookInfo/OpenLibraryMetadataProxy.cs",
+        "src/NzbDrone.Host/Startup.cs",
+        "src/Readarr.Api.V1/openapi.json"
+      ]
+    },
+    {
+      "commit": "3372965b09b8ea11f468d57c434821558170e96b",
+      "date": "2026-10-16",
+      "subject": "docs: prepare final BookshelfNG handoff and bridge release",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/Chart.yaml",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "distribution/windows/setup/readarr.iss",
+        "docs/README.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/branch-reconciliation-2026.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "frontend/src/System/Updates/Updates.tsx",
+        "package.json",
+        "packaging/aur/PKGBUILD",
+        "packaging/catalogs/README.md",
+        "packaging/chocolatey/bookshelfng.nuspec",
+        "packaging/chocolatey/tools/chocolateyinstall.ps1",
+        "packaging/cloudron/CloudronManifest.json",
+        "packaging/cloudron/CloudronVersions.json",
+        "packaging/cloudron/README.md",
+        "packaging/coop-cloud/bookshelfng/WISHLIST_ISSUE.md",
+        "packaging/debian/control",
+        "packaging/debian/copyright",
+        "packaging/rpm/bookshelfng.spec",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "packaging/startos/SUBMISSION_EMAIL.md",
+        "packaging/systemd/bookshelfng.env",
+        "release-notes/20261014-org-repository-links.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "scripts/verify-package-sync.sh",
+        "src/NzbDrone.Core/MetadataSource/BookInfo/OpenLibraryMetadataProxy.cs",
+        "src/NzbDrone.Host/Startup.cs",
+        "src/Readarr.Api.V1/openapi.json"
+      ]
+    },
+    {
+      "commit": "677609e4bdee3fb8429456516b229e597f075ea3",
+      "date": "2026-10-16",
+      "subject": "test(packaging): use canonical BookshelfNG release URL",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "scripts/test-copr-source.sh"
+      ]
+    },
+    {
+      "commit": "0dc3013ee3571eaae107f6a5920d32afc9b406a3",
+      "date": "2026-10-16",
+      "subject": "Merge pull request #128 from snapetech-org/codex/bookshelf-chaptarr-consolidation-20261012",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh"
+      ]
+    },
+    {
+      "commit": "1e2812442d700e41aa1bdf79ace1644fcd95740e",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/nuget/src/Selenium.WebDriver.ChromeDriver-155.0.8059.7900",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Automation.Test/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "552958ca0074b3f6a18739d0aa500e70640376f8",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/nuget/src/Servarr.FluentMigrator.Runner.Postgres-5.2.0.10",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Core/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "8f609c1a49e7bb9e4be489d653974ea7f1744ba1",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/nuget/src/Servarr.FluentMigrator.Runner.SQLite-5.2.0.10",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Core/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "3ad26e1d015922eb650a444c0c311dc66603fcaa",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/nuget/src/Swashbuckle.AspNetCore.SwaggerGen-10.3.0",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "b0fd58f7958eb495a9f6153d4c601599ea2da442",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/nuget/src/nuget-minor-patch-de278d332c",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "eadb0fa07a226829e31dd0ed4da460e77719e997",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/docker/docker/docker-minor-patch-7823919226",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docker/Dockerfile",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs"
+      ]
+    },
+    {
+      "commit": "b72dede01e08c47e02f0b4b73b9b293042e0f664",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/npm_and_yarn/react-slider-2.0.6",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "package.json",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "43cf94814dc2cfbabfdf060bac3523aef8ed2360",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/npm_and_yarn/babel-loader-10.1.1",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "package.json",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "3f09a96ab3d1aea89cc259061987b97ac83b0aa9",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/npm_and_yarn/react-dnd-16.0.1",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "package.json",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "2b7b21ed07147c575eeeddc8f7a0be5b5935b1c9",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/npm_and_yarn/redux-actions-3.0.3",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "package.json",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "399047b6f2b4d21f38cb8aa8d5881a30e2bde351",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'main' into dependabot/npm_and_yarn/npm-minor-patch-8e72625b1b",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "package.json",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "release-notes/README.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/validation-engine/config.mjs",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "388188480bdfcf96a948862d4fade8de92a11cb3",
+      "date": "2026-10-12",
+      "subject": "chore: pin Yarn package manager",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "package.json"
+      ]
+    },
+    {
+      "commit": "ff5289efad7a7499614c57ac6a763a27bb5fb590",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/nuget/src/nuget-minor-patch-de278d332c' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "7c468162a25829ed5ff80247b9b8923354afdb58",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/docker/docker/docker-minor-patch-7823919226' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile",
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "261cc46b9f09d9ff5106281ebd14adf1999b6146",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/nuget/src/Selenium.WebDriver.ChromeDriver-155.0.8059.7900' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile",
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "0bf9c7f935ec3daef2d6f5d5b70f04b076c45cab",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/npm_and_yarn/babel-loader-10.1.1' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile",
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "784a33643a461a80045b554f25dd452378601a87",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/npm_and_yarn/redux-actions-3.0.3' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile",
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "2227597d931dde215c983d45a745aaea13eef0b3",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/npm_and_yarn/react-slider-2.0.6' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile",
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "0d9400f228cda2ceafe4810ae6e2d4a60f22dd14",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/npm_and_yarn/npm-minor-patch-8e72625b1b' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile",
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "0dcaef50d294a8443fb3df6cdcb99d1a2b990538",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/npm_and_yarn/react-dnd-16.0.1' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile",
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "b893e5982c46b014a066d3c85a877e7f6fd2ad78",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/nuget/src/Swashbuckle.AspNetCore.SwaggerGen-10.3.0' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile",
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "cca6cd98a323794cfbeaaa93a19e3941d614ba28",
+      "date": "2026-10-16",
+      "subject": "fix(api): update OpenAPI namespace for SwaggerGen 10",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "src/NzbDrone.Host/Startup.cs"
+      ]
+    },
+    {
+      "commit": "b115ef40af4ae881204cc702f349416004d70fd7",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/nuget/src/Servarr.FluentMigrator.Runner.SQLite-5.2.0.10' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile",
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/Startup.cs",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "a0c48be7c9e962d6817746ee7b76d8a66a52ebf7",
+      "date": "2026-10-16",
+      "subject": "Merge remote-tracking branch 'origin/dependabot/nuget/src/Servarr.FluentMigrator.Runner.Postgres-5.2.0.10' into codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile",
+        "package.json",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/Startup.cs",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "8156149ff43557b699ded088a1e11fff99b45231",
+      "date": "2026-10-16",
+      "subject": "fix(ui): allow React DnD v16 ESM imports",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "frontend/build/webpack.config.js",
+        "release-notes/fixed-react-dnd-v16-build.md"
+      ]
+    },
+    {
+      "commit": "3ee4898fa9bb1c1cc13368e96592fd70efe4662e",
+      "date": "2026-10-16",
+      "subject": "chore: finalize handoff docs and dependency updates",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/maintainers/archive/branch-artifacts/README.md",
+        "docs/maintainers/archive/branch-artifacts/pr105-pnpm-lock.yaml.txt",
+        "docs/maintainers/archive/branch-artifacts/unraid-ca-profile-transition-proposal.xml.txt",
+        "docs/maintainers/archive/branch-artifacts/unraid-template-transition-proposal.xml.txt",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/startos/README.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md",
+        "release-notes/fixed-swagger-openapi-security.md",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host/Startup.cs",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "fdff1b692bbfce798c6682560be3fa4427ccee6a",
+      "date": "2026-10-16",
+      "subject": "fix(frontend): migrate drag editors to React DnD hooks",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "frontend/build/webpack.config.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsColumn.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsColumnDragPreview.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsColumnDragSource.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsModal.js",
+        "frontend/src/Settings/Profiles/Delay/DelayProfile.js",
+        "frontend/src/Settings/Profiles/Delay/DelayProfileDragPreview.js",
+        "frontend/src/Settings/Profiles/Delay/DelayProfileDragSource.js",
+        "frontend/src/Settings/Profiles/Profiles.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItem.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItemDragPreview.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItemDragSource.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItemGroup.js",
+        "package.json",
+        "release-notes/fixed-react-dnd-v16-build.md",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "5fc03efe80fa843edf7e23a63126d5df3c49c4fb",
+      "date": "2026-10-16",
+      "subject": "chore(packaging): keep synced Unraid docs unchanged",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "a39d95716341258b6d77d4a91cd8582f98e79f2f",
+      "date": "2026-10-16",
+      "subject": "fix(deps): avoid unused FluentMigrator providers",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Core/Readarr.Core.csproj",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json"
+      ]
+    },
+    {
+      "commit": "af82853a094c08b686c5f3dfdff410fbf273065e",
+      "date": "2026-10-16",
+      "subject": "Merge branch 'chore/stop-yunohost-publishing'",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".dockerignore",
+        ".github/FUNDING.yml",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-distribution.yml",
+        ".github/workflows/release-notes.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "charts/bookshelfng/Chart.yaml",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "distribution/windows/setup/readarr.iss",
+        "docker/Dockerfile",
+        "docs/README.md",
+        "docs/booklore-integration.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/development/validation-engine.md",
+        "docs/distribution.md",
+        "docs/encrypted-backups.md",
+        "docs/import-matching-and-formats.md",
+        "docs/maintainers/archive/branch-artifacts/README.md",
+        "docs/maintainers/archive/branch-artifacts/pr105-pnpm-lock.yaml.txt",
+        "docs/maintainers/archive/branch-artifacts/unraid-ca-profile-transition-proposal.xml.txt",
+        "docs/maintainers/archive/branch-artifacts/unraid-template-transition-proposal.xml.txt",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/branch-reconciliation-2026.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/seerrng-integration.md",
+        "docs/standalone-install.md",
+        "frontend/build/webpack.config.js",
+        "frontend/src/Author/Edit/EditAuthorModalContent.js",
+        "frontend/src/Author/Edit/EditAuthorModalContentConnector.js",
+        "frontend/src/Components/Form/MetadataProfileSelectInputConnector.js",
+        "frontend/src/Components/Form/QualityProfileSelectInputConnector.js",
+        "frontend/src/Components/Page/PageJumpBar.css",
+        "frontend/src/Components/Scroller/Scroller.css",
+        "frontend/src/Components/Table/TableOptions/TableOptionsColumn.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsColumnDragPreview.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsColumnDragSource.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsModal.js",
+        "frontend/src/Search/Author/AddNewAuthorModalContentConnector.js",
+        "frontend/src/Search/Common/AddAuthorOptionsForm.js",
+        "frontend/src/Settings/Profiles/Delay/DelayProfile.js",
+        "frontend/src/Settings/Profiles/Delay/DelayProfileDragPreview.js",
+        "frontend/src/Settings/Profiles/Delay/DelayProfileDragSource.js",
+        "frontend/src/Settings/Profiles/Profiles.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItem.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItemDragPreview.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItemDragSource.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItemGroup.js",
+        "frontend/src/Store/Actions/searchActions.js",
+        "frontend/src/Store/Actions/systemActions.js",
+        "frontend/src/System/Backup/Backups.js",
+        "frontend/src/System/Backup/EncryptedBackupModal.js",
+        "frontend/src/System/Backup/EncryptedBackupModalContent.js",
+        "frontend/src/System/Backup/RestoreBackupModalContent.js",
+        "frontend/src/System/Backup/downloadEncryptedBackup.js",
+        "frontend/src/System/Updates/Updates.tsx",
+        "package.json",
+        "packaging/aur/PKGBUILD",
+        "packaging/catalogs/README.md",
+        "packaging/chocolatey/bookshelfng.nuspec",
+        "packaging/chocolatey/tools/chocolateyinstall.ps1",
+        "packaging/cloudron/CloudronManifest.json",
+        "packaging/cloudron/CloudronVersions.json",
+        "packaging/cloudron/Dockerfile",
+        "packaging/cloudron/README.md",
+        "packaging/coop-cloud/bookshelfng/WISHLIST_ISSUE.md",
+        "packaging/debian/control",
+        "packaging/debian/copyright",
+        "packaging/rpm/bookshelfng.spec",
+        "packaging/rpm/copr-source.sh",
+        "packaging/startos/README.md",
+        "packaging/startos/SUBMISSION_EMAIL.md",
+        "packaging/systemd/bookshelfng.env",
+        "packaging/unraid/README.md",
+        "packaging/unraid/ca_profile.xml",
+        "packaging/unraid/docs/installation.md",
+        "packaging/unraid/templates/bookshelfng.xml",
+        "packaging/yunohost/.editorconfig",
+        "packaging/yunohost/.gitattributes",
+        "packaging/yunohost/.github/ISSUE_TEMPLATE.md",
+        "packaging/yunohost/.github/PULL_REQUEST_TEMPLATE.md",
+        "packaging/yunohost/.gitignore",
+        "packaging/yunohost/LICENSE",
+        "packaging/yunohost/conf/nginx.conf",
+        "packaging/yunohost/conf/systemd.service",
+        "packaging/yunohost/doc/ADMIN.md",
+        "packaging/yunohost/doc/DESCRIPTION.md",
+        "packaging/yunohost/doc/POST_INSTALL.md",
+        "packaging/yunohost/doc/PRE_INSTALL.md",
+        "packaging/yunohost/manifest.toml",
+        "packaging/yunohost/scripts/_common.sh",
+        "packaging/yunohost/scripts/backup",
+        "packaging/yunohost/scripts/change_url",
+        "packaging/yunohost/scripts/install",
+        "packaging/yunohost/scripts/remove",
+        "packaging/yunohost/scripts/restore",
+        "packaging/yunohost/scripts/upgrade",
+        "packaging/yunohost/tests.toml",
+        "release-notes/2026-10-06-encrypted-portable-backups.md",
+        "release-notes/2026-10-06-format-specific-author-profiles.md",
+        "release-notes/2026-10-11-fixed-imagesharp-vulnerabilities.md",
+        "release-notes/2026-10-12-upstream-parity-guide.md",
+        "release-notes/2026-10-13-bookshelf-chaptarr-transition-guidance.md",
+        "release-notes/20261011-validation-engine.md",
+        "release-notes/20261012-postcss-selector-parser-security.md",
+        "release-notes/20261012-validation-environment-isolation.md",
+        "release-notes/20261012-validation-playwright-cache.md",
+        "release-notes/20261013-bookshelf-consolidation-status.md",
+        "release-notes/20261013-bounded-validation-task-pool.md",
+        "release-notes/20261013-chaptarr-transition-status.md",
+        "release-notes/20261013-docker-context-credential-exclusion.md",
+        "release-notes/20261013-pr-runner-isolation.md",
+        "release-notes/20261014-org-repository-links.md",
+        "release-notes/20261014-trusted-main-runner-pool.md",
+        "release-notes/20261014-validation-permission-results.md",
+        "release-notes/README.md",
+        "release-notes/added-github-sponsor-button.md",
+        "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+        "release-notes/first-run-account-setup.md",
+        "release-notes/fixed-react-dnd-v16-build.md",
+        "release-notes/fixed-swagger-openapi-security.md",
+        "release-notes/jellyfin-books-folder-layout.md",
+        "scripts/audit-chaptarr-consolidation.py",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+        "scripts/create-consolidation-fixture.py",
+        "scripts/prepare-private-runner-temp.sh",
+        "scripts/probe-lineage-guard.py",
+        "scripts/release-notes.test.mjs",
+        "scripts/sync-unraid-package.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh",
+        "scripts/test-copr-source.sh",
+        "scripts/test-private-runner-temp.sh",
+        "scripts/test-sync-unraid-package.sh",
+        "scripts/test_workflow_runner_policy.py",
+        "scripts/validation-engine/config.mjs",
+        "scripts/validation-engine/engine.mjs",
+        "scripts/validation-engine/engine.test.mjs",
+        "scripts/verify-package-sync.sh",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Console/Readarr.Console.csproj",
+        "src/NzbDrone.Console/packages.lock.json",
+        "src/NzbDrone.Core.Test/Backup/EncryptedBackupServiceFixture.cs",
+        "src/NzbDrone.Core.Test/Books/AuthorFormatProfileFixture.cs",
+        "src/NzbDrone.Core.Test/MediaCoverTests/ImageResizerFixture.cs",
+        "src/NzbDrone.Core.Test/MusicTests/RefreshArtistServiceFixture.cs",
+        "src/NzbDrone.Core.Test/Profiles/Metadata/MetadataProfileServiceFixture.cs",
+        "src/NzbDrone.Core.Test/Profiles/QualityProfileServiceFixture.cs",
+        "src/NzbDrone.Core.Test/Readarr.Core.Test.csproj",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/Backup/BackupService.cs",
+        "src/NzbDrone.Core/Backup/EncryptedBackupService.cs",
+        "src/NzbDrone.Core/Books/Handlers/AuthorEditedHandler.cs",
+        "src/NzbDrone.Core/Books/Model/Author.cs",
+        "src/NzbDrone.Core/Books/Repositories/BookRepository.cs",
+        "src/NzbDrone.Core/Books/Services/BookCutoffService.cs",
+        "src/NzbDrone.Core/Books/Services/RefreshAuthorService.cs",
+        "src/NzbDrone.Core/Books/Services/RefreshBookService.cs",
+        "src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs",
+        "src/NzbDrone.Core/Datastore/TableMapping.cs",
+        "src/NzbDrone.Core/DecisionEngine/DownloadDecisionComparer.cs",
+        "src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs",
+        "src/NzbDrone.Core/DecisionEngine/Specifications/CustomFormatAllowedByProfileSpecification.cs",
+        "src/NzbDrone.Core/DecisionEngine/Specifications/CutoffSpecification.cs",
+        "src/NzbDrone.Core/DecisionEngine/Specifications/QualityAllowedByProfileSpecification.cs",
+        "src/NzbDrone.Core/DecisionEngine/Specifications/QueueSpecification.cs",
+        "src/NzbDrone.Core/DecisionEngine/Specifications/RssSync/DelaySpecification.cs",
+        "src/NzbDrone.Core/DecisionEngine/Specifications/RssSync/HistorySpecification.cs",
+        "src/NzbDrone.Core/DecisionEngine/Specifications/UpgradeAllowedSpecification.cs",
+        "src/NzbDrone.Core/DecisionEngine/Specifications/UpgradeDiskSpecification.cs",
+        "src/NzbDrone.Core/Download/Pending/PendingReleaseService.cs",
+        "src/NzbDrone.Core/Localization/Core/en.json",
+        "src/NzbDrone.Core/MediaCover/ImageResizer.cs",
+        "src/NzbDrone.Core/MediaCover/MediaCoverService.cs",
+        "src/NzbDrone.Core/MediaFiles/BookImport/ImportApprovedBooks.cs",
+        "src/NzbDrone.Core/MediaFiles/BookImport/Specifications/AlbumUpgradeSpecification.cs",
+        "src/NzbDrone.Core/MediaFiles/BookImport/Specifications/UpgradeSpecification.cs",
+        "src/NzbDrone.Core/MediaFiles/EbookTagService.cs",
+        "src/NzbDrone.Core/MediaFiles/MediaFileExtensions.cs",
+        "src/NzbDrone.Core/MetadataSource/BookInfo/OpenLibraryMetadataProxy.cs",
+        "src/NzbDrone.Core/Profiles/Metadata/MetadataProfileService.cs",
+        "src/NzbDrone.Core/Profiles/Qualities/QualityProfileService.cs",
+        "src/NzbDrone.Core/Qualities/QualitiesBelowCutoff.cs",
+        "src/NzbDrone.Core/Readarr.Core.csproj",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/Startup.cs",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/ApiTests/AuthorFixture.cs",
+        "src/NzbDrone.Integration.Test/ApiTests/EncryptedBackupFixture.cs",
+        "src/NzbDrone.Integration.Test/ApiTests/FirstRunAuthenticationFixture.cs",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/DiskProviderTests/DiskProviderFixture.cs",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/NzbDroneRunner.cs",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/Author/AuthorController.cs",
+        "src/Readarr.Api.V1/Author/AuthorResource.cs",
+        "src/Readarr.Api.V1/BookFiles/BookFileResource.cs",
+        "src/Readarr.Api.V1/Books/BookController.cs",
+        "src/Readarr.Api.V1/History/HistoryController.cs",
+        "src/Readarr.Api.V1/Indexers/ReleaseModuleBase.cs",
+        "src/Readarr.Api.V1/Queue/QueueResource.cs",
+        "src/Readarr.Api.V1/System/Backup/BackupController.cs",
+        "src/Readarr.Api.V1/openapi.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/Authentication/FirstRunAuthenticationSetup.cs",
+        "src/Readarr.Http/packages.lock.json",
+        "test.sh",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "1c3a2b2a4712bb64922e98499641de18a1b4e45f",
+      "date": "2026-10-16",
+      "subject": "docs: preserve dirty transition worktree artifacts",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/archive/branch-artifacts/README.md",
+        "docs/maintainers/archive/branch-artifacts/bookshelfng-transition-worktree-20261016.patch"
+      ]
+    },
+    {
+      "commit": "66f06a5fbea7b60d8d60daf767b1908e0de14980",
+      "date": "2026-10-16",
+      "subject": "docs: normalize whitespace in archived branch snapshot",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/archive/branch-artifacts/bookshelfng-transition-worktree-20261016.patch"
+      ]
+    },
+    {
+      "commit": "21176414609d8213e8bb52245077cde0496e8fd3",
+      "date": "2026-10-16",
+      "subject": "fix(security): clear frontend dependency audit for final release",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/maintainers/dependency-security.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "package.json",
+        "patches/braces/LICENSE",
+        "patches/braces/PATCH.md",
+        "patches/braces/README.md",
+        "patches/braces/index.js",
+        "patches/braces/lib/compile.js",
+        "patches/braces/lib/constants.js",
+        "patches/braces/lib/expand.js",
+        "patches/braces/lib/parse.js",
+        "patches/braces/lib/stringify.js",
+        "patches/braces/lib/utils.js",
+        "patches/braces/package.json",
+        "release-notes/security-dependency-audit.md",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Console/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "78af649bac3c982528f057586fa348702bfed286",
+      "date": "2026-10-16",
+      "subject": "Merge pull request #140 from snapetech-org/codex/final-dependency-reconcile-20261016",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docker/Dockerfile",
+        "docs/distribution.md",
+        "docs/maintainers/archive/branch-artifacts/README.md",
+        "docs/maintainers/archive/branch-artifacts/bookshelfng-transition-worktree-20261016.patch",
+        "docs/maintainers/archive/branch-artifacts/pr105-pnpm-lock.yaml.txt",
+        "docs/maintainers/archive/branch-artifacts/unraid-ca-profile-transition-proposal.xml.txt",
+        "docs/maintainers/archive/branch-artifacts/unraid-template-transition-proposal.xml.txt",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/maintainers/dependency-security.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "frontend/build/webpack.config.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsColumn.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsColumnDragPreview.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsColumnDragSource.js",
+        "frontend/src/Components/Table/TableOptions/TableOptionsModal.js",
+        "frontend/src/Settings/Profiles/Delay/DelayProfile.js",
+        "frontend/src/Settings/Profiles/Delay/DelayProfileDragPreview.js",
+        "frontend/src/Settings/Profiles/Delay/DelayProfileDragSource.js",
+        "frontend/src/Settings/Profiles/Profiles.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItem.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItemDragPreview.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItemDragSource.js",
+        "frontend/src/Settings/Profiles/Quality/QualityProfileItemGroup.js",
+        "package.json",
+        "packaging/catalogs/README.md",
+        "packaging/cloudron/README.md",
+        "packaging/startos/README.md",
+        "patches/braces/LICENSE",
+        "patches/braces/PATCH.md",
+        "patches/braces/README.md",
+        "patches/braces/index.js",
+        "patches/braces/lib/compile.js",
+        "patches/braces/lib/constants.js",
+        "patches/braces/lib/expand.js",
+        "patches/braces/lib/parse.js",
+        "patches/braces/lib/stringify.js",
+        "patches/braces/lib/utils.js",
+        "patches/braces/package.json",
+        "release-notes/fixed-react-dnd-v16-build.md",
+        "release-notes/fixed-swagger-openapi-security.md",
+        "release-notes/security-dependency-audit.md",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "src/Directory.Packages.props",
+        "src/NzbDrone.Api.Test/packages.lock.json",
+        "src/NzbDrone.Automation.Test/packages.lock.json",
+        "src/NzbDrone.Common.Test/packages.lock.json",
+        "src/NzbDrone.Common/packages.lock.json",
+        "src/NzbDrone.Console/packages.lock.json",
+        "src/NzbDrone.Core.Test/packages.lock.json",
+        "src/NzbDrone.Core/Readarr.Core.csproj",
+        "src/NzbDrone.Core/packages.lock.json",
+        "src/NzbDrone.Host.Test/packages.lock.json",
+        "src/NzbDrone.Host/Startup.cs",
+        "src/NzbDrone.Host/packages.lock.json",
+        "src/NzbDrone.Integration.Test/packages.lock.json",
+        "src/NzbDrone.Libraries.Test/packages.lock.json",
+        "src/NzbDrone.Mono.Test/packages.lock.json",
+        "src/NzbDrone.Mono/packages.lock.json",
+        "src/NzbDrone.SignalR/packages.lock.json",
+        "src/NzbDrone.Test.Common/packages.lock.json",
+        "src/NzbDrone.Update.Test/packages.lock.json",
+        "src/NzbDrone.Update/packages.lock.json",
+        "src/NzbDrone.Windows.Test/packages.lock.json",
+        "src/NzbDrone.Windows/packages.lock.json",
+        "src/Readarr.Api.V1/packages.lock.json",
+        "src/Readarr.Http/packages.lock.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "commit": "3335c6b6932a7b3979a415d207e01da897f2b6b8",
+      "date": "2026-10-16",
+      "subject": "fix(docker): check the pinned .NET 10.0.13 runtime (#141)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docker/Dockerfile"
+      ]
+    },
+    {
+      "commit": "ab0c05db9011254ac0b10de59d4357487d4a5686",
+      "date": "2026-10-16",
+      "subject": "ci: retire private GitHub Actions runners",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        "docs/development/validation-engine.md",
+        "scripts/prepare-private-runner-temp.sh",
+        "scripts/test-private-runner-temp.sh",
+        "scripts/test_workflow_runner_policy.py",
+        "scripts/validation-engine/engine.test.mjs"
+      ]
+    },
+    {
+      "commit": "220cd58ebddccd21ee64c5b53a091c64ee79d09d",
+      "date": "2026-10-17",
+      "subject": "Follow validated main images in Unraid templates",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        "packaging/unraid/templates/bookshelfng.xml",
+        "release-notes/2026-10-17-unraid-main-image-channel.md"
+      ]
+    },
+    {
+      "commit": "4efcc4dd8708ea0bdde45d97980bc120428b1554",
+      "date": "2026-10-17",
+      "subject": "ci: add isolated public fork PR checks",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/fork-safe-validation.yml",
+        ".github/workflows/public-fork-pr.yml"
+      ]
+    },
+    {
+      "commit": "57b9b1257bd72ddc0b92e0a2d4e1901bfa800cfa",
+      "date": "2026-10-17",
+      "subject": "ci: pin and scope public fork validation workflow",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/public-fork-pr.yml"
+      ]
+    },
+    {
+      "commit": "d7d51430c958679ebe3fd5ba97a871afa3823ac2",
+      "date": "2026-10-17",
+      "subject": "Require an external fork repository for JIT validation",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/fork-safe-validation.yml",
+        ".github/workflows/public-fork-pr.yml"
+      ]
+    },
+    {
+      "commit": "e20f1b6e4ed8468db1bf72f9acd40045a380c7d0",
+      "date": "2026-10-17",
+      "subject": "Pin caller to hardened fork validation workflow",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/public-fork-pr.yml"
+      ]
+    },
+    {
+      "commit": "0cad9aed985337fd6bb3b5def486f129962a7a90",
+      "date": "2026-10-17",
+      "subject": "Merge pull request #142 from snapetech-org/codex/public-fork-jit-20261017",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/fork-safe-validation.yml",
+        ".github/workflows/public-fork-pr.yml"
+      ]
+    },
+    {
+      "commit": "a4b1146d34af46a7030aa1d9382f0a9a911522c5",
+      "date": "2026-10-17",
+      "subject": "feat(media-management): initialize new author format paths (#114)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/README.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/media-storage.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "frontend/src/Settings/MediaManagement/MediaManagement.js",
+        "release-notes/added-auto-format-specific-author-paths.md",
+        "src/NzbDrone.Core/Books/Services/AddAuthorService.cs",
+        "src/NzbDrone.Core/Configuration/ConfigService.cs",
+        "src/NzbDrone.Core/Configuration/IConfigService.cs",
+        "src/NzbDrone.Core/Localization/Core/en.json",
+        "src/Readarr.Api.V1/Config/MediaManagementConfigResource.cs",
+        "src/Readarr.Api.V1/openapi.json"
+      ]
+    },
+    {
+      "commit": "9dcd73fc21689169f7cb366193d7383ddd2ce3d5",
+      "date": "2026-10-17",
+      "subject": "docs(migration): update BookshelfNG retirement handoff",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/integrations/snapetech-mcp.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "cebb39b66283517679ee079950b99702eb5c8f5c",
+      "date": "2026-10-17",
+      "subject": "docs(migration): mark handoff update internal",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": []
+    },
+    {
+      "commit": "8c86d98854425de36904006c13b8a9e2edb3aa2c",
+      "date": "2026-10-17",
+      "subject": "Add secretless gVisor runner smoke workflow",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/gvisor-runner-smoke.yml"
+      ]
+    },
+    {
+      "commit": "11f7a47236fee559065b7766d264815d652662d7",
+      "date": "2026-10-17",
+      "subject": "docs(migration): refresh ChaptarrNG retirement handoff",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "e1befe4e3bbc9c2d35042730da03e3abaa2cbc6c",
+      "date": "2026-10-17",
+      "subject": "docs(migration): clarify schema and diagnostics handoff",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "21cb92faeb93e3b9fb09ed4befa3a714671c34d6",
+      "date": "2026-10-17",
+      "subject": "docs(migration): refresh ChaptarrNG retirement status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "071c9db3d05a5822e4a316ccd132f7d56c760ae3",
+      "date": "2026-10-17",
+      "subject": "docs: align Bookshelf handoff with ChaptarrNG 0.9.977",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "be8d4c48942dbf4adb77ba0308373e8629b65b7d",
+      "date": "2026-10-17",
+      "subject": "docs: record the Bookshelf container handoff rehearsal",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "d658b0b42f8ac916561d034c15c0e18610f4aca2",
+      "date": "2026-10-17",
+      "subject": "docs: direct new Unraid installs to ChaptarrNG",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "799ee417051d56705edc1bd2d3dffe5621031578",
+      "date": "2026-10-17",
+      "subject": "docs: refresh legacy package migration status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/standalone-install.md",
+        "packaging/catalogs/README.md",
+        "packaging/catalogs/compose.yaml",
+        "packaging/cloudron/README.md",
+        "packaging/coop-cloud/bookshelfng/compose.yml",
+        "packaging/startos/README.md",
+        "packaging/startos/SUBMISSION_EMAIL.md"
+      ]
+    },
+    {
+      "commit": "2ed38c9148ec9c0d05c281f72461938ec31a01e3",
+      "date": "2026-10-17",
+      "subject": "Clarify BookshelfNG retirement readiness status (#145)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "e8598914c0fc8d17c57bb04f09d5bf09ee714ec5",
+      "date": "2026-10-17",
+      "subject": "docs: update ChaptarrNG retirement readiness",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
       ]
     }
   ],
@@ -7956,7 +10365,7 @@
       },
       "targetBlob": {
         "mode": "100755",
-        "oid": "b46dfe8b5e9d114eaa65332f719fab2db6247138"
+        "oid": "86d3972f4c344c10169d6ca7c3bf7d6604f8a222"
       }
     },
     {
@@ -7998,7 +10407,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "18292d61620447269a49ae0de63afa58b63f6b85"
+        "oid": "12469975a516c16bc6ec893339d8bde1c5d7fe5a"
       },
       "targetBlob": null
     },
@@ -8034,11 +10443,47 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "54f2fec22a114d3d2528a8d152c804c6af954e27"
+        "oid": "302abce3ae5233bc0c6aaaa568e041f74871da89"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "877b2b428ef325f117332632f72c09b27883d662"
+        "oid": "1cb69fd573c646c24567fc5a82fca7e2766930f2"
+      }
+    },
+    {
+      "sourcePath": ".github/workflows/chaptarrng-release-bridge.yml",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "52d0ee3c7c2a32cd0053aedfbc397ff40d5f160a"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": ".github/workflows/fork-safe-validation.yml",
+      "targetPath": ".github/workflows/fork-safe-validation.yml",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "17c993342d16691386198ac902ce64bd9007b307"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d5998f1c2aa8c55c47e9579a941c576eeaef5aa6"
+      }
+    },
+    {
+      "sourcePath": ".github/workflows/gvisor-runner-smoke.yml",
+      "targetPath": ".github/workflows/gvisor-runner-smoke.yml",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "9afae41742d2d6836814543b00d3803f26ff5655"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9afae41742d2d6836814543b00d3803f26ff5655"
       }
     },
     {
@@ -8052,6 +10497,19 @@
       "targetBlob": null
     },
     {
+      "sourcePath": ".github/workflows/public-fork-pr.yml",
+      "targetPath": ".github/workflows/public-fork-pr.yml",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "137c21cffa67c9d50f4acc6963cfb28b141e391e"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d720432b686ecdbe39357743148d78d84608d56b"
+      }
+    },
+    {
       "sourcePath": ".github/workflows/release-distribution.yml",
       "targetPath": ".github/workflows/release-distribution.yml",
       "state": "different-review-required",
@@ -8061,7 +10519,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "f341c550eba411f64dce48f1abdcb4d4060fd729"
+        "oid": "28fb224ffbf11956eb19e1597a2d790854637f3c"
       }
     },
     {
@@ -8070,7 +10528,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "609e2836bdcf5eab3b2d13e1517865e5e707a794"
+        "oid": "f82361f254f831ce84d4203ce8788475be70285b"
       },
       "targetBlob": null
     },
@@ -8094,7 +10552,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "a3552308b3d954e3894a62e5a93187162fffb2c6"
+        "oid": "0323627f17cbb0a4bf3245770f0fecf28db2e7d6"
       }
     },
     {
@@ -8103,11 +10561,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "0f3d00de9b0cd31f785c5050f54c5e934bee0493"
+        "oid": "4dd2a2c35a9930f5268a4736fd9d35df4b517812"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "a777f8f72f49dafffe1ceb4ba0597da63c8c3a21"
+        "oid": "bca090b11fa9122e4d1f04a0dca5199eae11844f"
       }
     },
     {
@@ -8121,26 +10579,13 @@
       "targetBlob": null
     },
     {
-      "sourcePath": "AGENTS.md",
-      "targetPath": "AGENTS.md",
-      "state": "different-review-required",
-      "sourceBlob": {
-        "mode": "100644",
-        "oid": "d75d2efe4aeb4ec4e0b7001b1cc65ac806d2874a"
-      },
-      "targetBlob": {
-        "mode": "100644",
-        "oid": "cc1d1c68aedbc816496a95b14ed0f73d78ab248f"
-      }
-    },
-    {
       "sourcePath": "CONTRIBUTING.md",
       "targetPath": "CONTRIBUTING.md",
       "state": "deleted-in-bookshelf",
       "sourceBlob": null,
       "targetBlob": {
         "mode": "100644",
-        "oid": "f2dd5c107f5e7a1b2371738761470b3cb8005d62"
+        "oid": "d021deeaa3af11c40fdcd22ec37daad6e33a6d41"
       }
     },
     {
@@ -8318,11 +10763,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "217b831cb01f7d0b4652539e3fe4c6923ed37a2f"
+        "oid": "961edf91e4ec64beec82cc42c1dcf2d57146ee9c"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "86dde8fb9d27e05fd1c96a8929da9ca2fcf04077"
+        "oid": "b5eb2a3a22b59f931dddc1667b4542f8701621b0"
       }
     },
     {
@@ -8361,7 +10806,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "d31ea11d9f17371fad421c9afb92a84fe4816177"
+        "oid": "bf464ef46f85efc5d5e1d522df286fdd6682cb69"
       },
       "targetBlob": null
     },
@@ -8371,7 +10816,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "4f7f86a12cc694088d8598615b8914dfa7dbbdfb"
+        "oid": "b3aa87ef91a479b4f4a6b7f60fd7590b11675c50"
       },
       "targetBlob": null
     },
@@ -8611,7 +11056,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "26bba8f52300bf75023b1c0003965c802f639437"
+        "oid": "6ebd1c0f90db63f806f5e84f2aba8f188f1118db"
       },
       "targetBlob": null
     },
@@ -8681,7 +11126,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "776c7fe48a2c67ff245fe98a3487125dbb4a4812"
+        "oid": "e2d28dd6ef06e28c456c52f6606aad1e2e90cc55"
       },
       "targetBlob": null
     },
@@ -8711,7 +11156,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "f4b998316768ae6903693233f0bd74e2fe9dce0b"
+        "oid": "527c9f083919f9354564b32db7777220b2ffafb1"
       },
       "targetBlob": null
     },
@@ -8731,7 +11176,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "9d3def86f24745e36a25bc7aa8e3ccfbdd074370"
+        "oid": "e6e33e2dd0d8f4657f7a90cc3655d9f548942cea"
       },
       "targetBlob": null
     },
@@ -8781,7 +11226,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "6458bd64f67465ee492834b346a98144f9bb8828"
+        "oid": "5c15c51a0e9feae62b230e77ba0559606fd5ce95"
       },
       "targetBlob": null
     },
@@ -8801,11 +11246,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "26530e29de583fed40943ace1996a1c1867a34a3"
+        "oid": "d5e6e85115da1930860df40aa263a2445e29480c"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "4b2172f0f5a7f37a2f9d9569524743684b7da171"
+        "oid": "16d7e14cea8335a072e43c56f3bb442ab9aa4930"
       }
     },
     {
@@ -8814,7 +11259,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "d66357f3e331a1215af9a5f7f7a4577876e376fe"
+        "oid": "85e9fe000fb62d51eee65afcd4d15eb1a8e94a05"
       },
       "targetBlob": null
     },
@@ -8849,27 +11294,87 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "docs/integrations/snapetech-mcp.md",
+      "targetPath": "docs/integrations/snapetech-mcp.md",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "2c046e022cff24caa754a604935c8cef92a4b5e9"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6b96cdf9b43657bd9f392ab24f7be39104e1ef65"
+      }
+    },
+    {
+      "sourcePath": "docs/maintainers/archive/branch-artifacts/README.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "21d0186f5abc91e5c748db46e39da796b87dffe9"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "docs/maintainers/archive/branch-artifacts/bookshelfng-transition-worktree-20261016.patch",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "992c44bbf07f68121aefaa745b8cfbe1fdcad07c"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "docs/maintainers/archive/branch-artifacts/pr105-pnpm-lock.yaml.txt",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "555f83c5e30f721c63c69eeb056de1b480feac23"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "docs/maintainers/archive/branch-artifacts/unraid-ca-profile-transition-proposal.xml.txt",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "6f1fc497df0231884d5159f72d083797fcc10fed"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "docs/maintainers/archive/branch-artifacts/unraid-template-transition-proposal.xml.txt",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "0a0caf29d4a5c174aaf287f09826500dcc61d910"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "docs/maintainers/bookshelfng-parity-roadmap.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "642b27c0add30d8fca8d0dbb63fc58fa91f1d139"
+        "oid": "5a1638c100ef7c54039d5c9f0818b1ef79af5525"
       },
       "targetBlob": null
     },
     {
       "sourcePath": "docs/maintainers/branch-reconciliation-2026.md",
-      "targetPath": "docs/maintainers/branch-reconciliation-2026.md",
-      "state": "different-review-required",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "8a6ca3f9454c5499e2cc76cd2047100c36c7b985"
+        "oid": "3ddc390150d6d02d67b83a5aede8ed2e894c4f4f"
       },
-      "targetBlob": {
-        "mode": "100644",
-        "oid": "7979ab44a864d1a7194941ad6c130b4475842bd3"
-      }
+      "targetBlob": null
     },
     {
       "sourcePath": "docs/maintainers/chaptarr-consolidation-inventory.json",
@@ -8877,7 +11382,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "873a0c09ce6e6e740305e5e5c3cac0c03105e8cc"
+        "oid": "4c40b05930e367a46f28f1a61a7fcd16957c770d"
       },
       "targetBlob": null
     },
@@ -8887,7 +11392,27 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "8190089e5a8f46259a3b77389fcf0cbfdf1646e1"
+        "oid": "d5cb408ddadc51735b8e1384d5b4606da7a41a73"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "docs/maintainers/chaptarrng-distribution-bridge.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "2012519d55e6e8c38d227a16354042f06b1afba4"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "docs/maintainers/dependency-security.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "62effd1150f6d59460612e4f526e2545e7fd205d"
       },
       "targetBlob": null
     },
@@ -8897,7 +11422,17 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "2b38b4686317b47049fe92f75b88855e40e2ee60"
+        "oid": "eaa088c7888a40d0ac4847f85e28c80dfbff131d"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "3ae87547933647c3bb7e7e5d3060dd784ebf00e9"
       },
       "targetBlob": null
     },
@@ -8947,7 +11482,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "c5c2e0b7a62a23445f3c5e367b1d45d5984a7398"
+        "oid": "5032117de29292137223aba7298c48505c4770ae"
       },
       "targetBlob": null
     },
@@ -8957,11 +11492,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "f7cb33a2983044c9f76727d05777c52adf4a6a9f"
+        "oid": "22aa6c8e4f32dfd1ba9e20364575075d5605f6ff"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "1cf55ad2e24a1434361fd4067074fb58361167eb"
+        "oid": "888361d702a9db68342a2f4b2951620f175ebf56"
       }
     },
     {
@@ -9026,7 +11561,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "e4f16a9d43dca5fcc7e54ecd9d3f91d91ba8f768"
+        "oid": "05172e9df1b7545a8e7baa620d5e1b5ab58577ce"
       }
     },
     {
@@ -9108,7 +11643,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "e51fba720801e63bf65dfe5e00be167b75762623"
+        "oid": "225c616516c02eb8fb8d44e60c2650f2b866f01d"
       }
     },
     {
@@ -9356,6 +11891,58 @@
       }
     },
     {
+      "sourcePath": "frontend/src/Components/Table/TableOptions/TableOptionsColumn.js",
+      "targetPath": "frontend/src/Components/Table/TableOptions/TableOptionsColumn.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "008a1d429d7b3536998cf06c1a0c32c8d9f00083"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "402ef5ae1086bd7bf04fa25054baf88e2589a3ef"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Components/Table/TableOptions/TableOptionsColumnDragPreview.js",
+      "targetPath": "frontend/src/Components/Table/TableOptions/TableOptionsColumnDragPreview.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "e068bbd27286f827dce89f583fcce42af324ae57"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0a7a77f2ea3d3b492ddfee1dbfd3378ecd1d50cd"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Components/Table/TableOptions/TableOptionsColumnDragSource.js",
+      "targetPath": "frontend/src/Components/Table/TableOptions/TableOptionsColumnDragSource.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "69ab117a0f7a3292a71da7a053310ab99652c15e"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "fc979ce68bec4aa90c8da36811d8bd88d086e384"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Components/Table/TableOptions/TableOptionsModal.js",
+      "targetPath": "frontend/src/Components/Table/TableOptions/TableOptionsModal.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "0f5575d29b507a56eb105a38c1d9b70779e58474"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d02ea501c677cb559effee893e84cd56a0df94a6"
+      }
+    },
+    {
       "sourcePath": "frontend/src/Content/Images/Icons/android-chrome-192x192.png",
       "targetPath": "frontend/src/Content/Images/Icons/android-chrome-192x192.png",
       "state": "different-review-required",
@@ -9539,7 +12126,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "e2a77b6c2d77f743a8b6bcd1cad56893273d82be"
+        "oid": "ea59db6555a0c5f1bb5ab06e2d0a26e9473c06f4"
       }
     },
     {
@@ -9591,7 +12178,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "8c98e827925f5e0a2703a0d677e3d6bb2cf9e4b0"
+        "oid": "ba0b6b61e4431c73008376c3619244becaaf5b40"
       }
     },
     {
@@ -9604,7 +12191,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "4af3df4faef834b12a851fe53200784b01951d53"
+        "oid": "f5c8cf6ddab6099df7a41d508a910db03ea6d74c"
       }
     },
     {
@@ -9617,7 +12204,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "cc087aebd61947ecbb586743a96ac1ca058ce249"
+        "oid": "15d2e139d1a6d54556e209a3db0eb5c71a5780ee"
       }
     },
     {
@@ -9682,7 +12269,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "ed2466c514100fe900dfa78f78095342bf193b95"
+        "oid": "443fffe99b66a68571a215ce3e4aab868425590a"
       }
     },
     {
@@ -9730,7 +12317,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "2c734cc9393f89e7d8eb4fef293e8a0e47b9230e"
+        "oid": "7596dc3612a4d5a0ffe9e5755fdaf4506a169bc9"
       },
       "targetBlob": {
         "mode": "100644",
@@ -9747,7 +12334,46 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "ae9fcbba42d36b5538dab55c1d6c68fee524f7d6"
+        "oid": "1c7977e7762650fa28f820bdf21f90c7fd72b5e1"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Settings/Profiles/Delay/DelayProfile.js",
+      "targetPath": "frontend/src/Settings/Profiles/Delay/DelayProfile.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "929fb3632e91011f85236666ffeead13205ac5ce"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0af6b22b7241918f9b3e0f0d4f8e3233d8391dae"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Settings/Profiles/Delay/DelayProfileDragPreview.js",
+      "targetPath": "frontend/src/Settings/Profiles/Delay/DelayProfileDragPreview.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "2b6c4bd861d0be7f561510e5bbba14ada961b146"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "297fc0015e072994cc4657a0a6c8c55c6bef9ba7"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Settings/Profiles/Delay/DelayProfileDragSource.js",
+      "targetPath": "frontend/src/Settings/Profiles/Delay/DelayProfileDragSource.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "3ea6951897354a6a0ad9a14411eb3e222539c3bb"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c408dd5535ca27822518a66612ab103d8fb0e386"
       }
     },
     {
@@ -9760,7 +12386,72 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "38c4be10114d1d89042ba9d88067602782599cd6"
+        "oid": "91880893652e83070173f05b6ff55156cfb01588"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Settings/Profiles/Profiles.js",
+      "targetPath": "frontend/src/Settings/Profiles/Profiles.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "829a2cb1a0984f7bb80276cb29ad2b96a581424e"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "4f12a33fc7656f8e672b7ab8696a2b81ffd58053"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Settings/Profiles/Quality/QualityProfileItem.js",
+      "targetPath": "frontend/src/Settings/Profiles/Quality/QualityProfileItem.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "68142c2c07d369cc3561887f30ef1ad0f746656b"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "56223a1694c67646c65f3869ef3ecd0b154254fb"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Settings/Profiles/Quality/QualityProfileItemDragPreview.js",
+      "targetPath": "frontend/src/Settings/Profiles/Quality/QualityProfileItemDragPreview.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "752670c1eeb563b8cc58d28a8fcc5df8bf7509ea"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6e47af8bb5e13a510c2fd7a5e996765666e5e9b2"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Settings/Profiles/Quality/QualityProfileItemDragSource.js",
+      "targetPath": "frontend/src/Settings/Profiles/Quality/QualityProfileItemDragSource.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "928f3a2261b6e9f23045396cde50c236f9195522"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "e0f401d34e9288d0932291458ac4204bb7d45869"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Settings/Profiles/Quality/QualityProfileItemGroup.js",
+      "targetPath": "frontend/src/Settings/Profiles/Quality/QualityProfileItemGroup.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "1e21a152d8f8ca8fad62ea5d4e72ffef8a89e967"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "07f0e089cfa3d8ef39aa89dca1bb70aaeab984e5"
       }
     },
     {
@@ -9825,7 +12516,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "9b095744d075b54d586db37add5d8d8d62576b42"
+        "oid": "bdd774ed785d42bfc212f66b6817cae926f7f0e6"
       }
     },
     {
@@ -9838,7 +12529,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "58445fe306318dad05264957989b2281d9978f05"
+        "oid": "21fa72032f9f75f64e8e6caba72779d38805ad8e"
       }
     },
     {
@@ -9910,7 +12601,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "e67bc9c449313e1e171c60115cd8326679e1d81d"
+        "oid": "de2d0b0c1a704e602c1ee265a8a2685c3b775adf"
       }
     },
     {
@@ -9942,7 +12633,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "ffc933a98efa6f0d8d567bb3495d33c0ab84a381"
+        "oid": "9fa49ddf9671da1feb0adaa5b3efaf58a9edb727"
       },
       "targetBlob": {
         "mode": "100644",
@@ -9959,7 +12650,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "2baf4b29369b3137b58432cc8e99928c02b58e92"
+        "oid": "34cc5bd40af024ce62eb9ae33cef7f215fc96cc3"
       }
     },
     {
@@ -9972,7 +12663,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "c49edce2344eb8182b08ff383258244fb083ede9"
+        "oid": "0d35cfd6977483a55cb0f4a3f83fe3645c0b84f3"
       }
     },
     {
@@ -9991,11 +12682,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a9b9cf1618ad3c53f54aa0b3c6ac60379cf9f33a"
+        "oid": "10acc31f81838c860313808384a540c392c7b098"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "90628cf52b1b035b825c7676665b28338a9e68f7"
+        "oid": "5fef04c74e2d5126942690ce8a2cc157923829be"
       }
     },
     {
@@ -10024,7 +12715,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "42cdaac97a179b883665b3f7923825d2dd0eeda6"
+        "oid": "51a4e05906896782019b07ee382921f188b7196f"
       },
       "targetBlob": null
     },
@@ -10044,7 +12735,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "6862d5c613b7a77e59acf37013702cd7a9ac7a24"
+        "oid": "cc18be041bf403882d1ed096f34dc92a1df55277"
       },
       "targetBlob": null
     },
@@ -10054,7 +12745,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "822f6b4e4c200c416af1ec30562fac1f0e239596"
+        "oid": "1f6ed72d7c88b8dc4d0cc9182b5db596cc108891"
       },
       "targetBlob": null
     },
@@ -10064,7 +12755,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "bcf29bc44d59076875af583d083c4134987a6d68"
+        "oid": "3945668fca97c69aaea5e8277472b5851459625c"
       },
       "targetBlob": null
     },
@@ -10074,7 +12765,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "8a83f5f40fea9098863d52252ee52d1a72b361d7"
+        "oid": "b1ae1030e2fad74f74afeb64b7063388ba9d9858"
       },
       "targetBlob": null
     },
@@ -10097,7 +12788,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "21792e3d404ef781e7b47ae8a37e6e62b6959a7b"
+        "oid": "a9ff7790a96a7f43b8c1f0d729a80e8e81790e45"
       },
       "targetBlob": null
     },
@@ -10107,7 +12798,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "62d2e2377d7fae0bd119b475be060096ca50a338"
+        "oid": "ac43ee397e14bc9b7bb97e31c84a4bd90eae03c0"
       },
       "targetBlob": null
     },
@@ -10127,7 +12818,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "46b389d09199fbfe6fb452b5e0aeb0d71d3c8b03"
+        "oid": "9834e20e52419484b9dba2b55008ec17b62b140a"
       },
       "targetBlob": null
     },
@@ -10157,7 +12848,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "158ae9a1a73e59fb7f13b127fe840071edd5629f"
+        "oid": "d0100ec326785fa0ddbf6c61b1f74ade27bcdf73"
       },
       "targetBlob": null
     },
@@ -10167,7 +12858,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "4acbc9f5bc5d6d0922812c8b0e6ad1257dc0fc74"
+        "oid": "0f577cfc95eb674d378dde382fd99f2e785d032a"
       },
       "targetBlob": null
     },
@@ -10197,7 +12888,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "cf20101e6bf19f9eb3b79403c1fa96f1d55b255e"
+        "oid": "8f1df654d6d54094e853d697a5dd22fbb55a20a1"
       },
       "targetBlob": null
     },
@@ -10207,7 +12898,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "4765dca3917bd6c83182e2f7360ecac623fdd130"
+        "oid": "bbd58fd3abb15e89d6f311b4e69101e79336c833"
       },
       "targetBlob": null
     },
@@ -10247,7 +12938,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a9c6b0f2482b9693532cf7d698b149f2da9a5059"
+        "oid": "4f168f27860b254963c26763dbc94175e655dcbb"
       },
       "targetBlob": null
     },
@@ -10257,7 +12948,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100755",
-        "oid": "2684e5e7407eb32dd2e72c0ef1cf3964f8dcb01d"
+        "oid": "9b7ca44d8c224f2c565e2ea807dbdca2bf74bf2d"
       },
       "targetBlob": {
         "mode": "100644",
@@ -10280,7 +12971,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "f00fa44bff2f04d31db86b980f4d4dddc3bb4954"
+        "oid": "35a8ecce1626e6e20933bbeda54ea722a16f9b60"
       },
       "targetBlob": null
     },
@@ -10290,7 +12981,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "b64b86111e83f3b47890cebdbbd42a7eabbe6f5a"
+        "oid": "3daf04d8431a3aace0d574f61cc3c6f9192e040f"
       },
       "targetBlob": null
     },
@@ -10300,7 +12991,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "369b33427162a58a0e26dc42a20f915f30acae00"
+        "oid": "78cff13a4f75b09751a7ab50776606bcfce7c0d7"
       },
       "targetBlob": null
     },
@@ -10340,11 +13031,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "97abbdf3261d29569a8aea884e34797f12f5f1a3"
+        "oid": "18967eeb6401240fbf5f06f98bff42035a9899bf"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "b672db265912d3496dcdf781c835a99080c5e65d"
+        "oid": "c6002a257ee51b67ae2c3fe5a38a454a2de546ff"
       }
     },
     {
@@ -10353,11 +13044,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "f378c8e6f5bf4a087016ba4241161144d0dc49ec"
+        "oid": "0d9ca501a9e2abdb0ef130eeb568d0fbfeb27c84"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "69180e4a86ae22840b529a5a7b39fafafbd82a79"
+        "oid": "a0aa16aeadd10c3f2bbcdb49b4f024ed39cc3985"
       }
     },
     {
@@ -10366,7 +13057,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a385badacee6aba5787c43cfe456bd7ca563b94a"
+        "oid": "a2960898f8811139eab304c490c167b8451f58ce"
       },
       "targetBlob": null
     },
@@ -10376,9 +13067,152 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e49a93e171f663079c0cb8392661946805aa33e0"
+        "oid": "b1a3b1f986f7ca3c79fc152b5b8b7020d44c2768"
       },
       "targetBlob": null
+    },
+    {
+      "sourcePath": "patches/braces/LICENSE",
+      "targetPath": "patches/braces/LICENSE",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "9af4a67d206f24ecdbb5fdff2839041ca0bbd346"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9af4a67d206f24ecdbb5fdff2839041ca0bbd346"
+      }
+    },
+    {
+      "sourcePath": "patches/braces/PATCH.md",
+      "targetPath": "patches/braces/PATCH.md",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "096b5cd550d0424c4fc83e578b23ca8ecab4691f"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "fb119fff0fb93c0eb0c2ebec3f4a0e3e1d92bba1"
+      }
+    },
+    {
+      "sourcePath": "patches/braces/README.md",
+      "targetPath": "patches/braces/README.md",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "f59dd604566f1239274c4caf6d88b90b4ddeb25d"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f59dd604566f1239274c4caf6d88b90b4ddeb25d"
+      }
+    },
+    {
+      "sourcePath": "patches/braces/index.js",
+      "targetPath": "patches/braces/index.js",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "d222c13b579d2d476dc26d692219dbaee1665b88"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d222c13b579d2d476dc26d692219dbaee1665b88"
+      }
+    },
+    {
+      "sourcePath": "patches/braces/lib/compile.js",
+      "targetPath": "patches/braces/lib/compile.js",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "dce69beb90ece5c3b0ca234a949418f9f34eedbc"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "dce69beb90ece5c3b0ca234a949418f9f34eedbc"
+      }
+    },
+    {
+      "sourcePath": "patches/braces/lib/constants.js",
+      "targetPath": "patches/braces/lib/constants.js",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "2bb3b8840382c56700869b3a9e1f958fcce01efd"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2bb3b8840382c56700869b3a9e1f958fcce01efd"
+      }
+    },
+    {
+      "sourcePath": "patches/braces/lib/expand.js",
+      "targetPath": "patches/braces/lib/expand.js",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "35b2c41d6afdb8f0197959e26079f266e48370d3"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "35b2c41d6afdb8f0197959e26079f266e48370d3"
+      }
+    },
+    {
+      "sourcePath": "patches/braces/lib/parse.js",
+      "targetPath": "patches/braces/lib/parse.js",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "1428f30aff1e7f2620fce210923e3428b283aa31"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1428f30aff1e7f2620fce210923e3428b283aa31"
+      }
+    },
+    {
+      "sourcePath": "patches/braces/lib/stringify.js",
+      "targetPath": "patches/braces/lib/stringify.js",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "abb42e115da068237bdd9260b3962324954347d5"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "abb42e115da068237bdd9260b3962324954347d5"
+      }
+    },
+    {
+      "sourcePath": "patches/braces/lib/utils.js",
+      "targetPath": "patches/braces/lib/utils.js",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "d19311fe044ad5157624077670dc297e8b53da49"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d19311fe044ad5157624077670dc297e8b53da49"
+      }
+    },
+    {
+      "sourcePath": "patches/braces/package.json",
+      "targetPath": "patches/braces/package.json",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "17dc34403efad0f63024e6e6513da18c2c85b4c4"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "17dc34403efad0f63024e6e6513da18c2c85b4c4"
+      }
     },
     {
       "sourcePath": "release-notes/2026-09-27-unraid-user-installation-guidance.md",
@@ -10479,6 +13313,19 @@
         "oid": "f3eebb775039637c009e4268e1ffb680e892ba9b"
       },
       "targetBlob": null
+    },
+    {
+      "sourcePath": "release-notes/2026-10-17-unraid-main-image-channel.md",
+      "targetPath": "release-notes/2026-10-17-unraid-main-image-channel.md",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "fdd0ed29cafc3634709da3a5a371d7cd41992aa1"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "8eccc5a0f763977a36723681fc27dd3fae90666a"
+      }
     },
     {
       "sourcePath": "release-notes/20260925-catalog-packaging.md",
@@ -10596,6 +13443,19 @@
       }
     },
     {
+      "sourcePath": "release-notes/20261014-org-repository-links.md",
+      "targetPath": "release-notes/20261014-org-repository-links.md",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "1918567ea8bedd9d6d92e91d29b6fd5105813f00"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "12742f94c5acae83ee3a157ec7a76d483abb6849"
+      }
+    },
+    {
       "sourcePath": "release-notes/20261014-trusted-main-runner-pool.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -10621,11 +13481,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "7a2eaa622ca31d21a0aaf2564d33e9380221b49b"
+        "oid": "0a6bd6ffa334c9806164a77cbe924184ae04621e"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "613105070374ef9b80fe99634c663c95197c2900"
+        "oid": "8b11ba8d25ede44ae1e8a03825bd90488a915509"
       }
     },
     {
@@ -10665,6 +13525,16 @@
       "sourceBlob": {
         "mode": "100644",
         "oid": "971672ece5d4fa6d91514518e720023950092726"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "release-notes/added-auto-format-specific-author-paths.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "cfad4abdeff539e441734dbf03499ebe463ee3d5"
       },
       "targetBlob": null
     },
@@ -11159,6 +14029,16 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "3a07014acf06161c12537839c6a0ff3bab000cdf"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "release-notes/first-run-account-setup.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -11549,6 +14429,16 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "release-notes/fixed-react-dnd-v16-build.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "645ad0c38c18ec2fc5f9720ab32d4c0f62b1b73a"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "release-notes/fixed-release-publisher-preflight.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -11585,6 +14475,16 @@
       "sourceBlob": {
         "mode": "100644",
         "oid": "a6d32e74693c093491f2660ab1acb3de78d8c012"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "release-notes/fixed-swagger-openapi-security.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "13b3625c93b3c10e961191841502349b16fd41c5"
       },
       "targetBlob": null
     },
@@ -11729,6 +14629,16 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "release-notes/security-dependency-audit.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "029e12dc47eef997281ddc2635cd2f05617139b8"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "release-notes/security-patch-frontend-build-dependencies.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -11812,6 +14722,26 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "scripts/bookshelfng-to-chaptarrng.sh",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100755",
+        "oid": "b44ec69b45c279d290a2ea71ef656cdfe1dca3c4"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "scripts/build-chaptarrng-chocolatey-bridge.ps1",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "fe9b90510aea221d1aff6076e178b37955a0208b"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "scripts/build-dotnet10-platform-runtime-packs.sh",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -11888,19 +14818,6 @@
       }
     },
     {
-      "sourcePath": "scripts/prepare-private-runner-temp.sh",
-      "targetPath": "scripts/prepare-private-runner-temp.sh",
-      "state": "different-review-required",
-      "sourceBlob": {
-        "mode": "100755",
-        "oid": "e2588c5b43ab0c041324f20975997c509e022031"
-      },
-      "targetBlob": {
-        "mode": "100755",
-        "oid": "0809e149dc58ba35ba61734c494c4b87a7ed0b21"
-      }
-    },
-    {
       "sourcePath": "scripts/preview-release-notes.mjs",
       "targetPath": "scripts/preview-release-notes.mjs",
       "state": "different-review-required",
@@ -11942,7 +14859,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "c48608011a758439c431e9dc6237ed82d10c0071"
+        "oid": "e069b32de1e053901bf4f75dfd1fd67fdff6d3d1"
       },
       "targetBlob": null
     },
@@ -11952,24 +14869,54 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100755",
-        "oid": "1418b7f7bdef66340b104dba35b7a371b83c8493"
+        "oid": "2b7cf283b0be5ffa00f35666592fa26d329b2c79"
       },
       "targetBlob": {
         "mode": "100755",
-        "oid": "d9953bd327d0b73615a4fe73e5e2043c94f11831"
+        "oid": "1684e208275db601a2a293f711c819ca945cb065"
       }
     },
     {
-      "sourcePath": "scripts/test-private-runner-temp.sh",
-      "targetPath": "scripts/test-private-runner-temp.sh",
+      "sourcePath": "scripts/test-bookshelfng-to-chaptarrng.sh",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100755",
+        "oid": "0a0b617ed82ce4d606ba13a63184fc161f0c92ea"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "scripts/test-chaptarrng-release-bridge.sh",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "b3163d09720cb30272c772d0f4e7aae9e9fc2c6d"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "scripts/test-copr-source.sh",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100755",
+        "oid": "638239d7cf59a472206982f597f4f67fb80789df"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "scripts/test-sync-unraid-package.sh",
+      "targetPath": "scripts/test-sync-unraid-package.sh",
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100755",
-        "oid": "d6cb4026fabc9783a52ed06327a1944202cd7e04"
+        "oid": "d5a0f088ead3572e32a8df8656bb79dde99cfd04"
       },
       "targetBlob": {
         "mode": "100755",
-        "oid": "b8441097c6b7ace79b82529ca41d9a0381ab2634"
+        "oid": "1170a97cee783eb39254803209b9e31799717244"
       }
     },
     {
@@ -11978,11 +14925,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "151a842786b56ad99cd57c4df230374da3896d2f"
+        "oid": "24ef6ce5e8e4df1cc5f19fe7a83fca9899a170cf"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "4350620a3934d106d6b27de1f8aa85b0ae8f92ba"
+        "oid": "639482e75d1b80d6b769d239eb9ef59221d2b945"
       }
     },
     {
@@ -12011,11 +14958,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "c637628bcfc845bcc6b20e25094e25d7252c5a47"
+        "oid": "20ee6aa06ae4dbd1143484ea7b21a405c4bcdf3d"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "f78bd965b18c3da2773e3561abb4a787dcdfe7c0"
+        "oid": "fa8399db043b0c1215d392906f9cbdb85f90c348"
       }
     },
     {
@@ -12028,7 +14975,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "1fc92b9215a48cc0039768427d9983f6abaf5edf"
+        "oid": "73a43fa92415c94a951cdeed227d1242b08b3bae"
       }
     },
     {
@@ -12037,11 +14984,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "701c4bead2aea46e2cec19135340e4f4ad93275d"
+        "oid": "6a6976f366a0d15055db0ae8972bbedd325d0ecd"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "bae0e399aa45207a4e84b03313793017f741f8df"
+        "oid": "59b31c27d37f9cb733ae10b993f11b5865df71ef"
       }
     },
     {
@@ -12050,7 +14997,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100755",
-        "oid": "d6ba836843dc3a810f239d8e225db75bd557eb46"
+        "oid": "33500f2cb63c510759ee02bb4894e7594f780e96"
       },
       "targetBlob": null
     },
@@ -12104,7 +15051,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "1ac44280d7a4f1fa1f8713e5a8d3f3cd46b7e488"
+        "oid": "5ffbb80e757af565d175f48d604f156d29a60a1d"
       }
     },
     {
@@ -12113,11 +15060,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "70fd49a78fcdfd2cd318611bd81e1324fc3d2c16"
+        "oid": "37d822917ce9ac10c13d3c118bedbd0829a26413"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "cb5548afde2d19d006e34392e59269ce389a83bf"
+        "oid": "606c11911ada6ed88ab25db6ea537a43447a6ec7"
       }
     },
     {
@@ -12186,7 +15133,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "c147a48d069593d28c110f23478963b46cc0fdde"
+        "oid": "014fc5a367a3d1f0106fbc55d20d220209012e8a"
       },
       "targetBlob": null
     },
@@ -12206,7 +15153,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "6ccabe0f0dbd4a2bb0b5c80501955f73770851d1"
+        "oid": "f63371b48625767a4b6b943eece6e8f310b58fdf"
       },
       "targetBlob": null
     },
@@ -12276,7 +15223,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "4f5739f4683cfba457547aeac4de8f0256855de2"
+        "oid": "272376d14216866daf026d7e81936d89e02d4c4c"
       },
       "targetBlob": null
     },
@@ -12290,7 +15237,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "0a7d95f5dc0590c7a558a7708908a6cf7e397111"
+        "oid": "e27bfa3f27b147f6a60b59b848d213167314db1b"
       }
     },
     {
@@ -12303,7 +15250,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "d76335bca906434d6996bfccac896e7fc6b5db97"
+        "oid": "2b9a85a59f80787039fab8968a847e2b58a73ab9"
       }
     },
     {
@@ -12442,7 +15389,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "1a75808a7214435c2f35f803a8d1aebee3f8ff32"
+        "oid": "2659c20ccc56061182d16d5fb5c691ccb5256265"
       },
       "targetBlob": null
     },
@@ -12465,7 +15412,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a6ac6ab05a09e36369ea63ada174cdca456b8244"
+        "oid": "ab8b754f4e0558485c76117729b63c1c6ae37348"
       },
       "targetBlob": null
     },
@@ -12880,23 +15827,29 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/MetadataSource/BookInfo/AdditionalBookMetadataProxyFixture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Core.Test/MetadataSource/BookInfo/AdditionalBookMetadataProxyFixture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "fb6dcf6766945fca5a94024957b45199cc11b0cd"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f35fdc3b1e2d61c0cc4272ffdac414dc87c7a0c4"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/MetadataSource/BookInfo/AdditionalMetadataSourcesFixture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Core.Test/MetadataSource/BookInfo/AdditionalMetadataSourcesFixture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "794c5db92f0aa2bcdb2294bceae0b182aa37a4b3"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0970a2994fcbcc170ff834610b3e804cb9314f5c"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/MetadataSource/BookInfo/BookInfoProxyDbIdsFixture.cs",
@@ -13028,7 +15981,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "344710baa38d6a9a12385466fc9b0b11d8a53198"
+        "oid": "f3ec2c1219640bc947e77795dcd72e325c5dd0af"
       }
     },
     {
@@ -13037,7 +15990,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "c3edf9ba8b7c1448c7028bdb40203fb7e1f12850"
+        "oid": "afb0aa1f45e32d66a3a3b6ad63f8ce3a7e4754f5"
       },
       "targetBlob": null
     },
@@ -13123,7 +16076,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "569d8ba1f460e2ffd2a1a74ece20eb383cd0a59f"
+        "oid": "7c2ecc2cf40c783477e46c570dbc09d9c7b78065"
       }
     },
     {
@@ -13182,7 +16135,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "a709e42188c37b7fbdeea80dfb403d9039df3868"
+        "oid": "229d0da221898b23b4e7d58865f85a1a76c403a5"
       }
     },
     {
@@ -13221,7 +16174,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "ba14b62c1295a299e98c220d4dc8c2c7a69d9eb7"
+        "oid": "639d1391338c631bdf89390326a91afdd9a6156d"
       }
     },
     {
@@ -13257,7 +16210,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "d97869da3366e760ec10a01fa8fd57133c07222e"
+        "oid": "a679114c345f83256e748458b5524e59260aeec9"
       }
     },
     {
@@ -13270,7 +16223,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "9916d7c6bb86966e34b5ae4c948b81218ab52904"
+        "oid": "d4edab17a02db80c52ecc5c98bde88165cc0e778"
       }
     },
     {
@@ -13279,7 +16232,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "bd2c7af246b3e327ba6d9bf5d9cf88c0298574e8"
+        "oid": "7814aead62b8f7ab6446ce6955da5a88770ceb9e"
       },
       "targetBlob": null
     },
@@ -13293,7 +16246,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "bf4ae90349518e384f15aae9796f9ba25e561407"
+        "oid": "f3a417a6dec25d7a127383556ba6e51377b5e40c"
       }
     },
     {
@@ -13316,7 +16269,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "388a6dd4126461edee31e040ee306ff7d5cc12c8"
+        "oid": "3e0e1f2ca9d2a6657c4bba0dc0742074aa93ca2a"
       }
     },
     {
@@ -13342,7 +16295,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "7e2e4b808b3acf1a87557ad1feb6d93a82fc1205"
+        "oid": "bfc0b9dcd2651266b0a23fbd3729be221b1aa709"
       }
     },
     {
@@ -13368,7 +16321,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "8c73e535edec789fd520861ed70bd3bea8d2983f"
+        "oid": "bb25c1742b3f9627d666e7d5c33dd41cbb5eedf0"
       }
     },
     {
@@ -13430,7 +16383,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "a36b4a9e26a82f7b0572daa62153bef755829541"
+        "oid": "d64aabd93bc50233f651b41c63196d1bf04d41fe"
       }
     },
     {
@@ -13439,11 +16392,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "f1a580a87d379c441ad09fd839723f18dbc28c54"
+        "oid": "50aa4cf416d8ca24ebeb21e0c8710c3885e91dea"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "d7af7224b94c096b305382ed45b96c6e6e035bda"
+        "oid": "7d9026b975ca1456bb9a31dbcacbcb55cebb04f0"
       }
     },
     {
@@ -13452,11 +16405,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "65930101f576e1f60306d43e8cb338c953f49bbf"
+        "oid": "163a514d3e52c2a2c87c3b0bc08aa8c30713badf"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "5234bd9f4d43c6df42a5952f7125a43d2d57128c"
+        "oid": "da3c3f19a14052bc1968391b1d3ef9caaa63650e"
       }
     },
     {
@@ -13529,7 +16482,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "6eb3b6dee7e3847375df493b1e9315465d8b439c"
+        "oid": "c237992e37ddcbe957d61a994dff03767c122836"
       }
     },
     {
@@ -13633,7 +16586,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "43bd6d76ddc3fcda11b6c3c02baac50b3c62c8c5"
+        "oid": "369e59996559a645594b01504ae69c3b7d92ba8d"
       }
     },
     {
@@ -13750,7 +16703,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "5b079bce1e987d7c998482127a8e909a01a4c90a"
+        "oid": "2c7811a9d52ac9916d996a5a51483f462adc4f3a"
       }
     },
     {
@@ -13763,7 +16716,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "161cbaa8b4c479450623d313fa4afc89f43f6844"
+        "oid": "7bdc137344cd01b6acf36e162a42aa79d7a490b9"
       }
     },
     {
@@ -14788,11 +17741,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "0b43ed088df7eb169599341b3edfe78928c5dd57"
+        "oid": "b4432c89f517e4737adaf7e1809ed5043eb04e23"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "8f30bfe3169d5415f9a06c1bce6f7f19deec7847"
+        "oid": "cdc2493e1b9e4b6119c3a02757fa2ce3fed82106"
       }
     },
     {
@@ -14877,7 +17830,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "bb1f887737a190cd946ab44d00b9dbb86a234961"
+        "oid": "264bb38cf627ded3dcb4518f87924178b89cc420"
       }
     },
     {
@@ -14956,7 +17909,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "02d8ab09ce28c71378a3f98e55f6f1b40a73f246"
+        "oid": "192ed64c35e39fdc1d69f09b21ad33ed059f4b94"
       }
     },
     {
@@ -14979,7 +17932,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "e04896017a161d218232a921f9ab5f0fe1d2f69b"
+        "oid": "fab99889bce73d8316cdf4d35171ec3d7aab1749"
       }
     },
     {
@@ -15101,7 +18054,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "546ec0bf6cf69daa963402f4f6d80c2962405d1c"
+        "oid": "412281a987bb56beaa14f3409d0c9f6fb6bd8cc3"
       }
     },
     {
@@ -15127,7 +18080,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "013cd528da8e246e1833bf3a601cd3b15105c41a"
+        "oid": "33ef92bf567d676f444ff84c4c596eecdb99fe63"
       }
     },
     {
@@ -15236,23 +18189,29 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core/MetadataSource/BookInfo/AdditionalBookMetadataProxy.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/MetadataSource/BookInfo/AdditionalBookMetadataProxy.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "024643f01466b68903fe5ed72071da6480930510"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6f200af35d779190ab51f0fd0ec11b6d388c546e"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/MetadataSource/BookInfo/AdditionalMetadataSources.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/MetadataSource/BookInfo/AdditionalMetadataSources.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "fbaa8a6a4e99cf13645d33bf0ee387769b4d695a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "b182ad05ea995930f00c5d4cfb5a4d7727fe67dd"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/MetadataSource/BookInfo/BookInfoProxy.cs",
@@ -15264,7 +18223,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "507c26d7a7c903148d267b12e6b66922275ba42b"
+        "oid": "cc0becc4ed53f613c226ae98c5018465972921df"
       }
     },
     {
@@ -15282,13 +18241,16 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core/MetadataSource/BookInfo/OpenLibraryMetadataProxy.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/MetadataSource/BookInfo/OpenLibraryMetadataProxy.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "ac034263a13f5170463a29d31bb1680db6d733d3"
+        "oid": "d198791d71efb4c0e60cb9d3a7ae52bad95b8a7c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "3f0103261e39e0098d1ab61be9751fbf40fe976b"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/MetadataSource/Goodreads/GoodreadsProxy.cs",
@@ -15427,7 +18389,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "92b67f8c84c6a85f037e253d32dc5440989dfaa9"
+        "oid": "4323e6a15c09071a531eaa98364d649419551d96"
       }
     },
     {
@@ -15440,7 +18402,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "a07164fea9dbde07ee05b6b006e310d876be8a20"
+        "oid": "c37599d1e7dd659501c51c33dc659750c160a432"
       }
     },
     {
@@ -15589,11 +18551,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "63c8d13c14a14dcca956278e6a69b4738a296154"
+        "oid": "a96553cf27d75473bbd5b3d60b13c0f2108a7842"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "2e5b5df703ec3175108187977f8f763a161dafbd"
+        "oid": "792161f6b61f1d655ca5bc0bfaf6f16e2dd5355f"
       }
     },
     {
@@ -15641,7 +18603,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "930418e869ed6099270f6be74814ca6bddafbc75"
+        "oid": "aa369f7b538f32952b1e946346fdf76f5e46d90d"
       },
       "targetBlob": null
     },
@@ -15661,7 +18623,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "76c3cc4b65cacbea4815a500f88edf36f45c994c"
+        "oid": "17681b289be78f2255da1cf90c2d39a599dd7b7a"
       },
       "targetBlob": null
     },
@@ -15688,7 +18650,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "9fb913e9fa3f16fc79c2862291790fec58b8fbd8"
+        "oid": "9f12af841e38f60f7d31cc20296624f94b39405e"
       }
     },
     {
@@ -15701,7 +18663,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "850b6b78b7af82acee7f26cc233669f8ea843dda"
+        "oid": "5178ea8736cbd2d18d87ab3bfedd4a762673aff7"
       }
     },
     {
@@ -15730,11 +18692,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "809d2324ef997bdbd23bd2bb7d21e49e27dab1de"
+        "oid": "8085bdde3529187ba3b2f1eba9ebbaf4c1515dd7"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "08648038b3f8445ce009dca7f3c3dbd393eb8930"
+        "oid": "8f3e3fd5ae4cd0e9ddefdc5162de7d7a29c8f4fb"
       }
     },
     {
@@ -15743,7 +18705,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "c6559c8ff6d7727670a8f7f56696aea4e2f20cad"
+        "oid": "22bf7cc25ec9ab247bf0db2a7afce51dd3e9925d"
       },
       "targetBlob": null
     },
@@ -15863,7 +18825,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e8a00fbf38e310002ec92d2e521f2a2901eb73e9"
+        "oid": "1bd9a1571eb60be73bf589aa86cf92da2345ec54"
       },
       "targetBlob": null
     },
@@ -15883,7 +18845,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a01fa9c5bff5848f840e72a63cde14047868dfc2"
+        "oid": "cee8265b09d33678b0589e7790a90e00a30b355e"
       },
       "targetBlob": null
     },
@@ -15923,7 +18885,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "6445ad7b39f1ee2b9450bd7fac598133389c8ced"
+        "oid": "83683d25477682656cbd465461e18872f61be4bb"
       },
       "targetBlob": null
     },
@@ -15972,7 +18934,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "bc0ddf201ecfd1d85e2c868aa78c0580c4466a4a"
+        "oid": "4fbcc8e0b265f3fb0a4e3c2c283cfd20863855aa"
       },
       "targetBlob": null
     },
@@ -15986,7 +18948,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "896eb2f76f6debdcb65490c3714f9a0c37b4ad35"
+        "oid": "c6a79930133b1ea5f3df7296c9c222605e9961ed"
       }
     },
     {
@@ -15995,7 +18957,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "981da7575bf2fe9179d428ca4172da79a45384b2"
+        "oid": "dca824ba2707517c7f792bda9f26ed1ae3be96ae"
       },
       "targetBlob": null
     },
@@ -16045,7 +19007,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "4f9059b4fb829d8ee213f94660ead54eceac5cb2"
+        "oid": "c62e44fecde4aa6af394c1c6548a9971068378db"
       },
       "targetBlob": null
     },
@@ -16085,7 +19047,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "8f14d1a8b1c17161aa61b83dcc6436a86772ed0f"
+        "oid": "810115dd714fd6f7e1e0f98e3fecda019b97fddf"
       },
       "targetBlob": null
     },
@@ -16108,7 +19070,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "99cc2527cce28b849e399262a343f42e1168d8c6"
+        "oid": "a1040f4fefb5ec8223dc03d07eee52761813e769"
       },
       "targetBlob": null
     },
@@ -16138,7 +19100,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "bba748e4b923c9a4c5e07055aafd584022752175"
+        "oid": "45560a20fe97924ee93297022cde531e945f3886"
       },
       "targetBlob": null
     },
@@ -16174,7 +19136,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5e696fa9d9de07d6a3d8b9eba96e6d259633332a"
+        "oid": "53a3f384cd3b0ecd3f6ce179e8c5a83531bba4f7"
       },
       "targetBlob": null
     },
@@ -16214,7 +19176,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "872338355e821e3b63b8df9cc8322410f32bd186"
+        "oid": "3bc655d3079b18dad9be6eb6522668d9e2a6447c"
       }
     },
     {
@@ -16237,7 +19199,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "6d5941ff5e243c4f9c6386afe27daa876a895c29"
+        "oid": "cac7f09bd509796a75c24aec9ebb5fdceab328f6"
       }
     },
     {
@@ -16250,7 +19212,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "57075ed2fe4eadb7f2013693fdea4a75e748a8e5"
+        "oid": "6fe82f74d4c66835e6762a5875db37679a1410d1"
       }
     },
     {
@@ -16263,7 +19225,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "072f3cee4bdc96194e501980b116c71bcd2a5601"
+        "oid": "53fd8e006246cecc678a6131320aa494e1e0b858"
       }
     },
     {
@@ -16302,7 +19264,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "667a19fe564fe358db3b26fe92207ff701c54ee9"
+        "oid": "f859960893e94f7a275b1111ab13bcaa9ff77822"
       }
     },
     {
@@ -16399,7 +19361,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "0fee54e193aec32bcab4f136e5e2b3abc3846911"
+        "oid": "fb87cad7dc5a56c146d21ca96ae976b7fb383dac"
       },
       "targetBlob": {
         "mode": "100644",
@@ -16416,7 +19378,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "df69b47985d94fcec4e6f30450534a09b1e8f5ad"
+        "oid": "8537f7ce8c520f4f4b8dcb38ea9a412eb80802fa"
       }
     },
     {
@@ -16429,7 +19391,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "505f48478a9590d625f253d081950a83c3463bf2"
+        "oid": "c8f4a0a920ef11ab6297a5ddee45522f2536f748"
       }
     },
     {
@@ -16581,11 +19543,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "4b8a759f568bdb106f26f2c81991665c6ab3c411"
+        "oid": "c74113919c8710419f3fc6c4c9a5b154900ed879"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "03c95fbadaa935cd5b57103fb3c6df9234b82912"
+        "oid": "ed6e122f75b3b4220e0d25ef0a0b5ab4dbb7b053"
       }
     },
     {
@@ -16594,7 +19556,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "7da748fa6d8ddd41492e035594240083b5316208"
+        "oid": "3cfb39242ef29583ab6c512ab55704dd714d6bef"
       },
       "targetBlob": null
     },
@@ -16621,7 +19583,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "4a150fd1aa3743826694e613f97d3c313b2dcfed"
+        "oid": "16de97dbfc6e35aabcd63f88f5803bd83ff9c2b3"
       }
     },
     {
@@ -16780,7 +19742,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "7b5523a5c81f13692b4c96e34cc6316c84d505b5"
+        "oid": "145eb2be97d4fc214ee75c4bf527717f3f957057"
       },
       "targetBlob": null
     },
@@ -20226,11 +23188,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "0210e5d787c133e0a151fa2c47bcb9128691bac2"
+        "oid": "392e6d7b1efee597a60671443fc6970b0d73cc88"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "acfaa0a21d28f676e146e5df6c56ff19b0748d5e"
+        "oid": "d4d98efd531300a9daa00f0b5a311c179476755c"
       }
     }
   ]

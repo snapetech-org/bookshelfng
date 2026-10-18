@@ -62,6 +62,14 @@ local focused .NET test is blocked by the missing ImageSharp license. This
 candidate does not close real-data migration/rollback, settings parity, full
 feature parity, or installer/channel acceptance.
 
+The current path-level inventory is regenerated against BookshelfNG
+`e8598914` and ChaptarrNG PR #127 head `6d437113`. It covers 532 reachable
+post-fork commits and 1,091 net-changed paths: 437 have no same-name mapped
+target, 493 differ and need review, 155 are identical, four are text-equivalent
+after branding/newline normalization, and two were deleted in BookshelfNG.
+These counts identify a review queue; path or text similarity does not prove
+that behavior is equivalent or safely retired.
+
 The detailed investigation below records historical candidate revisions and
 their test evidence. Its pinned source counts and older release/channel rows
 are snapshots, not current publication status. BookshelfNG issue #144 remains
