@@ -127,12 +127,24 @@ parity remain open.
 `scripts/bookshelfng-to-chaptarrng.sh` is a Bash wrapper for Linux or macOS
 with Docker and `tar` available. It:
 
-1. Checks for a regular `readarr.db` or `audioarr.db` in the appdata directory.
-   It refuses two non-empty source databases because it cannot merge them.
+1. Selects one non-empty regular `readarr.db` or `audioarr.db` in the appdata
+   directory. An empty candidate is ignored when selecting. The helper refuses
+   two non-empty source databases because it cannot determine whether they
+   belong together or merge them.
 2. Creates a mode-`0600` compressed archive of the full appdata directory in a
    backup directory you choose outside appdata.
 3. Runs the requested preview, apply, rollback-preview, or rollback command in
    the versioned standard ChaptarrNG image.
+
+Each BookshelfNG installation uses one active database. If these files belong
+to two independently operated installations, migrate each installation from
+its own appdata directory and keep the ChaptarrNG instances separate. If both
+database files are non-empty in one appdata directory, the helper stops before
+creating a migration archive or starting ChaptarrNG. Keep the original appdata
+intact, identify which installation owns each database and its settings, and
+make separate working copies before migrating them separately. This workflow
+does not merge libraries or shared settings; if ownership cannot be established,
+stop for manual reconciliation.
 
 The helper does not classify ambiguous books. ChaptarrNG keeps records with
 unknown formats in both catalogs, unmonitored, and writes a private review

@@ -45,6 +45,36 @@ tar -tzf "$archive" | grep -Fxq 'source config/logs/Readarr.debug.txt'
 grep -Fxq -- 'HARDCOVER=true' "$DOCKER_ARGS_FILE"
 grep -Fxq -- 'HARDCOVER_NATIVE=true' "$DOCKER_ARGS_FILE"
 
+audio_data_dir="$workdir/audio only"
+audio_backup_dir="$workdir/audio backup"
+mkdir -p "$audio_data_dir" "$audio_backup_dir"
+: > "$audio_data_dir/readarr.db"
+printf 'audio database\n' > "$audio_data_dir/audioarr.db"
+audio_output="$("$tool" snapshot --data-dir "$audio_data_dir" --backup-dir "$audio_backup_dir")"
+grep -Fq -- 'Database selected for the ChaptarrNG handoff: audioarr.db' <<< "$audio_output"
+
+dual_data_dir="$workdir/two populated databases"
+dual_backup_dir="$workdir/two database backup"
+mkdir -p "$dual_data_dir" "$dual_backup_dir"
+printf 'readarr database\n' > "$dual_data_dir/readarr.db"
+printf 'audio database\n' > "$dual_data_dir/audioarr.db"
+if "$tool" snapshot --data-dir "$dual_data_dir" --backup-dir "$dual_backup_dir" 2>/dev/null; then
+  echo 'two populated legacy databases should have been rejected' >&2
+  exit 1
+fi
+[[ -z "$(find "$dual_backup_dir" -maxdepth 1 -type f -print -quit)" ]]
+
+symlink_data_dir="$workdir/symlink candidate"
+symlink_backup_dir="$workdir/symlink backup"
+mkdir -p "$symlink_data_dir" "$symlink_backup_dir"
+printf 'readarr database\n' > "$symlink_data_dir/readarr.db"
+ln -s readarr.db "$symlink_data_dir/audioarr.db"
+if "$tool" snapshot --data-dir "$symlink_data_dir" --backup-dir "$symlink_backup_dir" 2>/dev/null; then
+  echo 'two non-empty legacy paths including a symlink should have been rejected' >&2
+  exit 1
+fi
+[[ -z "$(find "$symlink_backup_dir" -maxdepth 1 -type f -print -quit)" ]]
+
 before_count="$(find "$backup_dir" -maxdepth 1 -type f -name '*.tar.gz' | wc -l)"
 if "$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image latest 2>/dev/null; then
   echo 'mutable image tag should have been rejected' >&2

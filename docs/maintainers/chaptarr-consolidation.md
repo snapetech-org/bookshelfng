@@ -31,8 +31,9 @@ ChaptarrNG `.977` packages an optional aggregate-only diagnostics module that
 preserves an existing BookshelfNG opt-in only when both the legacy flag and
 archived plugin marker are present. Its Linux, macOS, and Windows artifact
 checks passed; testing environment transfer on an installed migration remains
-open. This remains bounded evidence: older-schema behavior on real data, PostgreSQL
-source conversion, two populated BookshelfNG databases, every
+open. This remains bounded evidence: older-schema behavior on real data,
+PostgreSQL source conversion, merging two populated source databases in one
+appdata directory (deliberately refused as ambiguous), every
 provider/environment contract,
 in-place rollback on an installed service, full feature parity, and most
 package-channel acceptance remain open. A separate private populated migration-158
@@ -317,16 +318,17 @@ python3 scripts/audit-chaptarr-consolidation.py \
    schema repair at version 117, then applies versions 118 and 119. Never copy
    `VersionInfo` into a Chaptarr database or run its numbered migrations
    against BookshelfNG's schema.
-2. **Filename detection is not schema conversion.** Chaptarr's
-   `PathExtensions.GetDatabase()` returns an existing `chaptarr.db`; if it is
-   absent, it chooses the first existing legacy file in `readarr.db`, then
-   `audioarr.db` order. The resolver does not inspect file size or schema, or
-   reject multiple legacy files. `DatabaseRestorationService.Validate()` checks
-   SQLite integrity and Chaptarr's dual-root columns for backup restore
-   candidates; that restore check does not validate the path selected for
-   ordinary startup. A startup lineage check is still needed before migrations
-   or maintenance can modify an old database. Separate-directory discovery and
-   populated conversion remain open.
+2. **Filename resolution is not schema conversion.** Chaptarr's
+   `PathExtensions.GetDatabase()` keeps a non-empty `chaptarr.db`; when it is
+   absent or empty, it selects a single non-empty legacy file from `readarr.db`
+   and `audioarr.db`. If both legacy files are non-empty, startup stops with an
+   ambiguity error instead of choosing or merging them. The resolver does not
+   inspect schema. The startup lineage guard validates the selected database
+   before migration, while `DatabaseRestorationService.Validate()` separately
+   checks SQLite integrity and Chaptarr's dual-root columns for restore
+   candidates. Each independently operated BookshelfNG instance can be
+   migrated from its own appdata directory; merging two databases from one
+   directory is unsupported.
 3. **Identity changes.** BookshelfNG has one book row with multiple formats;
    Chaptarr has provider-scoped identity and media-type-specific behavior.
    Its native Hardcover mode stores many primary provider IDs as bare numeric
@@ -478,13 +480,16 @@ ambiguous monitoring cases preserve the source bytes. Real databases, old
 schemas, every provider/setting contract, and client behavior remain open.
 
 Chaptarr's app-folder resolver keeps a non-empty `chaptarr.db`, selects exactly
-one `readarr.db` or `audioarr.db` only when the primary is absent or empty, and
-rejects multiple legacy candidates. It resolves filenames before database
-recovery; the lineage check runs after restore and before migration. Full SQLite
-main-database startup now invokes the importer for a detected Bookshelf schema.
-The converter is limited to one legacy database in the selected data directory;
-it does not discover a separate Bookshelf mount. The restore service's own
-candidate validation remains separate from lineage conversion.
+one non-empty `readarr.db` or `audioarr.db` only when the primary is absent or
+empty, and rejects two non-empty legacy candidates. It resolves filenames
+before database recovery; the lineage check runs after restore and before
+migration. Full SQLite main-database startup invokes the importer for a
+detected Bookshelf schema. Conversion handles one database in the selected
+data directory and does not discover a separate Bookshelf mount. Two
+independent installations can be migrated separately by keeping separate
+appdata directories; one Bookshelf database is not merged into another. The
+restore service's own candidate validation remains separate from lineage
+conversion.
 
 The converter must identify the exact Bookshelf database family and supported
 schema version before writing. It must stop both applications, checkpoint
