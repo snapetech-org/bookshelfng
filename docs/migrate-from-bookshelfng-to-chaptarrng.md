@@ -28,9 +28,20 @@ network-disabled pacman upgrade from the published .71 package and downgrade
 back, preserving an environment override and synthetic data canary. The
 installed candidate also passed preview, conversion to ChaptarrNG migration
 120, restore to BookshelfNG migration 158, and SQLite integrity/foreign-key
-checks against a synthetic populated database. Systemd was not running, and
-acceptance with operator data remains open. The candidate is unpublished; check
-the [package status](https://github.com/snapetech-org/chaptarrng/blob/main/packaging/README.md)
+checks against a synthetic populated database.
+
+A follow-up rehearsal booted systemd in an isolated Arch container. The public
+`.71` package started against the fixture; pacman then upgraded the active
+service to the local `.977` candidate. Its hooks stopped BookshelfNG and
+restarted ChaptarrNG, whose normal startup converted the database to migration
+120. Restore preview and apply returned it to migration 158 and retained the
+converted database as a backup. Pacman downgrade restored `.71`, and the
+BookshelfNG service started against the restored database. The environment
+override and data canary survived; integrity and foreign-key checks passed.
+`systemd-networkd-wait-online` was masked only inside the network-isolated test
+container. Representative operator data and host-specific settings remain
+open. The candidate is unpublished; check the
+[package status](https://github.com/snapetech-org/chaptarrng/blob/main/packaging/README.md)
 for channel acceptance.
 
 
@@ -116,12 +127,32 @@ parity remain open.
 `scripts/bookshelfng-to-chaptarrng.sh` is a Bash wrapper for Linux or macOS
 with Docker and `tar` available. It:
 
-1. Checks for a regular `readarr.db` or `audioarr.db` in the appdata directory.
-   It refuses two non-empty source databases because it cannot merge them.
+1. Selects one non-empty regular `readarr.db` or `audioarr.db` in the appdata
+   directory. An empty candidate is ignored when selecting. The helper refuses
+   two non-empty source databases because it cannot determine whether they
+   belong together or merge them.
 2. Creates a mode-`0600` compressed archive of the full appdata directory in a
    backup directory you choose outside appdata.
 3. Runs the requested preview, apply, rollback-preview, or rollback command in
    the versioned standard ChaptarrNG image.
+
+Each BookshelfNG installation uses one active database. If these files belong
+to two independently operated installations, migrate each installation from
+its own appdata directory and keep the ChaptarrNG instances separate. If both
+database files are non-empty in one appdata directory, the helper stops before
+creating a migration archive or starting ChaptarrNG. Keep the original appdata
+intact, identify which installation owns each database and its settings, and
+make separate working copies before migrating them separately. This workflow
+does not merge libraries or shared settings; if ownership cannot be established,
+stop for manual reconciliation.
+
+If the goal is one combined library, first use the
+[two-instance consolidation runbook](../README.md#one-instance-for-ebooks-and-audiobooks)
+to move tracked media into the BookshelfNG instance you are keeping and import
+or rescan it there. That workflow does not merge database history, profiles,
+monitoring, or settings. Keep both original appdata backups until the selected
+BookshelfNG library is verified, then migrate its single database to
+ChaptarrNG.
 
 The helper does not classify ambiguous books. ChaptarrNG keeps records with
 unknown formats in both catalogs, unmonitored, and writes a private review

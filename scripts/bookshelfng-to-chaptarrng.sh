@@ -87,16 +87,25 @@ done
 data_dir="$(cd -- "$data_dir" && pwd -P)"
 [[ "$data_dir" != / ]] || fail 'refusing to archive the filesystem root'
 
-if [[ -f "$data_dir/readarr.db" && ! -L "$data_dir/readarr.db" ]]; then
-  source_database="$data_dir/readarr.db"
-elif [[ -f "$data_dir/audioarr.db" && ! -L "$data_dir/audioarr.db" ]]; then
-  source_database="$data_dir/audioarr.db"
-else
-  fail 'data directory must contain a regular readarr.db or audioarr.db file'
-fi
-
 if [[ -s "$data_dir/readarr.db" && -s "$data_dir/audioarr.db" ]]; then
   fail 'both BookshelfNG databases contain data; this tool will not merge two libraries'
+fi
+
+readarr_populated=false
+audioarr_populated=false
+if [[ -f "$data_dir/readarr.db" && ! -L "$data_dir/readarr.db" && -s "$data_dir/readarr.db" ]]; then
+  readarr_populated=true
+fi
+if [[ -f "$data_dir/audioarr.db" && ! -L "$data_dir/audioarr.db" && -s "$data_dir/audioarr.db" ]]; then
+  audioarr_populated=true
+fi
+
+if [[ "$readarr_populated" == true ]]; then
+  source_database="$data_dir/readarr.db"
+elif [[ "$audioarr_populated" == true ]]; then
+  source_database="$data_dir/audioarr.db"
+else
+  fail 'data directory must contain a non-empty regular readarr.db or audioarr.db file'
 fi
 
 [[ -n "$backup_dir" ]] || fail '--backup-dir is required so you can choose a separate backup location'
