@@ -9,6 +9,11 @@ acceptance gates close. PR #128 merged release and distribution workflows that
 fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
+BookshelfNG releases are frozen too. Its tagged image/release workflows and
+manual distribution retries require `BOOKSHELFNG_RELEASE_READY=true`, which is
+unset until migration, parity, rollback, and channel acceptance are complete.
+Neither application's release gate enables the other's publishing paths.
+
 The published converter supports the exact BookshelfNG migration-158 SQLite
 schema and bundles BookshelfNG's SQLite migration chain. It rejects versions
 before migration 14 because they still use `Blacklist`; upgrade those

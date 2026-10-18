@@ -62,9 +62,11 @@ ChaptarrNG `v0.9.977` remains the latest public release; `.978` is a source
 version bump. PR #128 merged release and distribution workflows that fail
 closed unless `CHAPTARRNG_RELEASE_READY=true`, and the repository variable is
 unset. Do not publish a release, package, image, or channel update while
-retirement acceptance remains open. PR #127 merged to ChaptarrNG `main` as
-`b3089a39`. It adds selectable supplemental catalogs, per-field preferences,
-and exact cross-catalog recovery for unmapped files through ISBN, ASIN,
+retirement acceptance remains open. BookshelfNG's tag-triggered image/release
+jobs, manual distribution retries, and legacy bridge also fail closed unless
+`BOOKSHELFNG_RELEASE_READY=true`; that repository variable is unset. PR #127
+merged to ChaptarrNG `main` as `b3089a39`. It adds selectable supplemental
+catalogs, per-field preferences, and exact cross-catalog recovery for unmapped files through ISBN, ASIN,
 provider IDs, and normalized title/author evidence. Linux, macOS, Windows,
 PostgreSQL migration, CodeQL, dependency/security, and release-note checks
 passed on its exact head. Four provider-dispatch CodeQL findings on an earlier

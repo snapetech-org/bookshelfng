@@ -64,6 +64,11 @@ and provider support are not in the published `.71` helper or ChaptarrNG
 behind the PostgreSQL fix, and converted-data acceptance remains open. Releases
 remain frozen until the full retirement gates close.
 
+BookshelfNG's tagged image/release jobs, manual distribution retries, and the
+ChaptarrNG legacy bridge are also fail-closed. They require the
+`BOOKSHELFNG_RELEASE_READY=true` repository variable, which is unset. Keep it
+unset until migration, parity, rollback, and channel acceptance are complete.
+
 [![.NET 10 LTS](https://img.shields.io/badge/.NET-10%20LTS-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/en-us/platform/support/policy)
 
 BookshelfNG is a self-hosted ebook and audiobook library manager descended

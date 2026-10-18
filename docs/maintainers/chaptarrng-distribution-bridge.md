@@ -32,10 +32,12 @@ smoke passed on an empty migration-158 database; the old image started again
 on port 8787. The Unraid Community Apps template update remains untested. Use
 this channel matrix as a gate inventory, not a report of completed redirects.
 
-The bridge workflow is a candidate for the BookshelfNG repository. It is
-disabled unless the `CHAPTARRNG_MIGRATION_BRIDGE_ENABLED` repository variable
-is explicitly set to `true`. Its half-hour schedule and manual dispatch only
-run publishing logic from `main`. It waits for a stable ChaptarrNG release
+The bridge workflow is a candidate for the BookshelfNG repository. Publishing
+requires both `BOOKSHELFNG_RELEASE_READY=true` and
+`CHAPTARRNG_MIGRATION_BRIDGE_ENABLED=true`; both variables are unset. The first
+gate also blocks BookshelfNG tag-triggered images/releases and manual package
+retries. Its half-hour schedule and manual dispatch only run publishing logic
+from `main`. It waits for a stable ChaptarrNG release
 with checksummed Linux x64, Linux arm64, Windows x64, and both new and legacy
 RPM source packages. Every publish path uses the ordinary ChaptarrNG release
 payload; there is no compatibility image or second ChaptarrNG build.
@@ -52,9 +54,11 @@ image and package identities while the flag is unset.
 Repository variables are scoped per repository. After every acceptance gate
 below passes, prefer one organization Actions variable named
 `CHAPTARRNG_MIGRATION_BRIDGE_ENABLED` scoped to both repositories. If that is
-not available, set the same repository variable in both ChaptarrNG and
-BookshelfNG; setting it in only one repository bridges only that repository's
-release paths.
+not available, set the same bridge variable in both ChaptarrNG and BookshelfNG;
+setting it in only one repository bridges only that repository's release
+paths. Set `BOOKSHELFNG_RELEASE_READY=true` only in BookshelfNG, and set
+`CHAPTARRNG_RELEASE_READY=true` only in ChaptarrNG, after the full retirement
+acceptance is complete.
 
 The stable container identity is `ghcr.io/snapetech/chaptarrng`. The GitHub
 repository now lives at `snapetech-org/chaptarrng`, while both public package
@@ -122,7 +126,8 @@ or retirement-continuity proof.
 
 ## Enablement gates
 
-Keep the repository variable unset or `false` until all of these are true:
+Keep `BOOKSHELFNG_RELEASE_READY` and `CHAPTARRNG_MIGRATION_BRIDGE_ENABLED`
+unset or `false` until all of these are true:
 
 - The cumulative BookshelfNG feature set and all active ChaptarrNG features
   remain represented in the retirement matrices, with implementation and

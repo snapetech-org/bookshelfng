@@ -12,9 +12,12 @@ migration checks passed. That source fix is not in `.977`, and releases are
 frozen until the retirement gates close. PR #128 merged a fail-closed release
 and distribution gate requiring `CHAPTARRNG_RELEASE_READY=true`; the
 repository variable is unset. ChaptarrNG `.978` is a source version bump,
-not a release. ChaptarrNG PR #127 merged to `main` as `b3089a39` with
-supplemental catalogs, per-field preferences, and exact-identity recovery of
-unmapped files. Linux, macOS, Windows, PostgreSQL migration, CodeQL,
+not a release. BookshelfNG tag-triggered image/release publishing, manual
+distribution retries, and the legacy bridge now also require the separate
+`BOOKSHELFNG_RELEASE_READY=true` gate, which remains unset. ChaptarrNG PR #127
+merged to `main` as `b3089a39` with supplemental catalogs, per-field
+preferences, and exact-identity recovery of unmapped files. Linux, macOS,
+Windows, PostgreSQL migration, CodeQL,
 dependency/security, and release-note checks passed on its exact head. Four
 provider-dispatch findings on an earlier head were reviewed as false positives:
 provider IDs select allowlisted public metadata APIs and do not grant access.

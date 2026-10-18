@@ -106,11 +106,16 @@ jobs:
       - name: Resolve version
         id: version
         env:
+          BOOKSHELFNG_RELEASE_READY: ${{ vars.BOOKSHELFNG_RELEASE_READY || 'false' }}
           RELEASE_TAG: ${{ inputs.tag }}
           CHANNELS: ${{ inputs.channels }}
           CHOCOLATEY_USE_MAIN_PACKAGING: ${{ inputs.chocolatey_use_main_packaging }}
         run: |
           set -euo pipefail
+          if [[ "${BOOKSHELFNG_RELEASE_READY,,}" != true ]]; then
+            echo "BookshelfNG release distribution is frozen until retirement acceptance is complete." >&2
+            exit 1
+          fi
           if [[ "$CHOCOLATEY_USE_MAIN_PACKAGING" == true && "$CHANNELS" != chocolatey ]]; then
             echo "Using main's Chocolatey scripts is only allowed when channels is exactly chocolatey." >&2
             exit 2
