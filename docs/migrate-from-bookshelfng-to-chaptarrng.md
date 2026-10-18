@@ -25,11 +25,18 @@ migration-22 coverage is not proof from real older-schema data. PostgreSQL,
 two populated Bookshelf databases, and several external settings and
 installation-channel upgrades are not covered. An unreleased ChaptarrNG
 work-branch candidate stages conversion for one migration-158 PostgreSQL
-schema. Its hosted run on `0211ed91` failed when the migration repair hook
-queried `VersionInfo` outside the active staging schema. Commit `ef519cd7`
-scopes the check to the active schema; the exact hosted rerun is queued.
-Operator-data acceptance remains open, and the candidate is not supported for
-installations. The published migration path remains SQLite-only. The release
+schema. Its exact run on `e67f28ed` failed because migration 10 checked
+`public.Editions` and skipped the staging `Subtitle` column. Commit
+`8f0bbc29` adds it through the active PostgreSQL search path. Its exact run
+failed to compile because `IMigrationRunner` has no `VersionLoader` property.
+Commit `50f58223` reads the registered `IVersionTableMetaData` service, but its
+fixture then failed at migration 23 because an unqualified schema check
+examined `public.NamingConfig`, skipped staging `EbookRenameBooks`, and the
+following update failed. ChaptarrNG commit `e6e9b955` routes unqualified
+PostgreSQL checks through a schema-scoped processor and adds a focused
+regression test; PR #131 is validating that code. Operator-data acceptance
+remains open, and the candidate is not supported for installations. The
+published migration path remains SQLite-only. The release
 bridge remains disabled by default. Read the limits
 below before changing a running installation.
 
@@ -72,7 +79,7 @@ ChaptarrNG `.977` while the release freeze is active. Stop BookshelfNG when it
 is idle, then run preview before switching. PostgreSQL BookshelfNG databases
 are not accepted by a published ChaptarrNG converter. Do not use the
 unreleased PostgreSQL candidate with operator data; retain the source database
-while the exact hosted rerun and populated-data acceptance remain open.
+while exact-head CI and populated-data acceptance remain open.
 
 The helper archives appdata, including `plugins/Bookshelf.Diagnostics.dll`,
 but it does not capture environment variables. If the optional diagnostics
@@ -101,8 +108,9 @@ candidate of the helper accepts `--provider-mode native-hardcover` or
 the temporary converter container. Configure the same mode in the permanent
 replacement container after migration. The helper bundled in the published
 BookshelfNG `.71` tag predates this option, and the ChaptarrNG provider and
-identity work is not in `.977`. The exact hosted rerun that includes this work
-is queued behind the PostgreSQL fix; converted-data acceptance remains open.
+identity work is not in `.977`. The exact hosted run on `50f58223` failed its
+PostgreSQL migration fixture; PR #131 now validates the correction in commit
+`e6e9b955`. Converted-data acceptance remains open.
 Do not use those published builds for a native Hardcover migration until the
 release-freeze gates are closed.
 
@@ -289,8 +297,16 @@ Windows, and PostgreSQL migration checks passed, but the source fix is not in
 Populated synthetic migration-22 evidence covers conversion and rollback,
 source-unchanged preview, and refusal of a future schema. This does not
 establish older-schema behavior on real data or PostgreSQL source conversion.
-The PostgreSQL candidate's `0211ed91` hosted run failed in its staged-target
-preflight; the fix is on `ef519cd7`, with the exact hosted rerun queued.
+The PostgreSQL candidate's exact run on `e67f28ed` failed because migration 10
+checked the public schema instead of the active staging schema. Commit
+`8f0bbc29` corrects the column migration. Its exact run then failed to
+compile because `IMigrationRunner` has no `VersionLoader` property. Commit
+`50f58223` reads the registered `IVersionTableMetaData` service instead;
+its PostgreSQL fixture then failed at migration 23 because an unqualified
+schema check examined `public.NamingConfig` and skipped a staging column. The
+current ChaptarrNG commit `e6e9b955` routes unqualified PostgreSQL checks
+through a schema-scoped processor and adds a focused regression test; PR #131
+is validating that code.
 Ambiguous formats are retained in both catalogs without monitoring until the
 operator classifies them; the converter does not infer their true type. Full
 provider and environment parity, every installation channel, and rollback on

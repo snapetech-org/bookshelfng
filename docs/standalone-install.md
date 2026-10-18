@@ -16,9 +16,19 @@ acceptance are complete. The helper backs up appdata; it does not copy external
 media/download mounts or automatically update a package, image, native
 installer, or Helm deployment. The release bridge remains disabled by default.
 The current PostgreSQL candidate is limited to one migration-158 schema. Its
-hosted run on `0211ed91` failed in the staged-target version preflight; a fix
-on `ef519cd7` is queued for exact-head hosted validation. Do not use it for
-operator data.
+exact run on `e67f28ed` failed because migration 10 checked `public.Editions`
+instead of the active staging schema and skipped `Subtitle`. Commit
+`8f0bbc29` adds the column through PostgreSQL's active search path. Its exact
+run failed to compile because `IMigrationRunner` has no `VersionLoader`
+property. Commit `50f58223` reads the registered `IVersionTableMetaData`
+service, but its fixture then failed at migration 23 because an unqualified
+schema check examined `public.NamingConfig` and skipped staging
+`EbookRenameBooks`. ChaptarrNG commit `e6e9b955` routes unqualified PostgreSQL
+checks through a schema-scoped processor and adds a regression test; PR #131 is
+validating that code. Do not use it for operator data.
+BookshelfNG's
+fail-closed publishing gate is under review in
+[PR #148](https://github.com/snapetech-org/bookshelfng/pull/148).
 
 BookshelfNG is a web application that can run directly on a supported host. It
 does not need SeerrNG or another service to launch, search catalogs, manage a

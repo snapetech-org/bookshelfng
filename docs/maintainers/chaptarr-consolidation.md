@@ -39,11 +39,17 @@ upgrade remain open.
 
 The current ChaptarrNG retirement branch adds PostgreSQL migration for one
 migration-158 source schema and native Hardcover identity handling. Its exact
-hosted run on `0211ed91` failed in the staged-target version preflight when the
-migration repair hook queried `VersionInfo` outside the active schema.
-ChaptarrNG commit `ef519cd7` scopes that query to the active schema; its exact
-hosted rerun is queued. The candidate remains unsupported for operator data,
-and its provider, database, feature, and channel acceptance gates are open.
+run on `e67f28ed` failed because migration 10 checked `public.Editions`
+instead of the active staging schema and skipped `Subtitle`. ChaptarrNG commit
+`8f0bbc29` adds the column through the active search path. Its exact run
+failed to compile because `IMigrationRunner` has no `VersionLoader` property.
+Commit `50f58223` reads the registered `IVersionTableMetaData` service, but its
+fixture then failed at migration 23 because an unqualified schema check
+examined `public.NamingConfig` and skipped staging `EbookRenameBooks`. ChaptarrNG
+commit `e6e9b955` routes unqualified PostgreSQL checks through a schema-scoped
+processor and adds a focused regression test; PR #131 is validating that code.
+The candidate remains unsupported for operator data, and its
+provider, database, feature, and channel acceptance gates are open.
 
 The migration bridge is disabled. ChaptarrNG AUR `0.9.977-1` is published;
 BookshelfNG's public AUR identity remains at `0.4.21.71-1` on the BookshelfNG

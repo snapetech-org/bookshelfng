@@ -43,11 +43,21 @@
 > pre-v14 BookshelfNG databases to `.71` before
 > switching. PostgreSQL migration is not supported by a published ChaptarrNG
 > build. The retirement candidate handles one migration-158 PostgreSQL schema.
-> Its hosted run on `0211ed91` failed when the migration repair hook queried
-> `VersionInfo` outside the staged schema. Commit `ef519cd7` scopes the check to
-> the active schema, and its exact hosted rerun is queued. Operator-data
-> acceptance remains open; do not use the candidate for an installation. The
-> legacy-channel bridges remain disabled. Use the standard ChaptarrNG migration commands
+> Its exact run on `e67f28ed` failed because migration 10 checked
+> `public.Editions` instead of the staging schema and skipped `Subtitle`.
+> Commit `8f0bbc29` adds the column through PostgreSQL's active search path.
+> Its exact run then failed to compile because `IMigrationRunner` has no
+> `VersionLoader` property. Commit `50f58223` reads the registered
+> `IVersionTableMetaData` service, but its fixture then failed at migration 23:
+> an unqualified schema check examined `public.NamingConfig`, skipped staging
+> `EbookRenameBooks`, and the following update failed. ChaptarrNG commit
+> `e6e9b955` adds a PostgreSQL processor that routes unqualified schema checks
+> to the active schema, plus a focused regression test. PR #131 is validating
+> that exact code revision.
+> Operator-data acceptance remains open;
+> do not use the candidate for an installation. BookshelfNG's freeze gate is
+> under review in [PR #148](https://github.com/snapetech-org/bookshelfng/pull/148).
+> The legacy-channel bridges remain disabled. Use the standard ChaptarrNG migration commands
 > in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md),
 > review its limits, and keep an independent backup.
 
@@ -60,8 +70,10 @@ Goodreads interpretation. Preview records that choice. The current source
 candidate of the handoff helper adds `--provider-mode goodreads|native-hardcover`
 to pass the choice to the temporary converter container. That helper change
 and provider support are not in the published `.71` helper or ChaptarrNG
-`.977` image. The exact hosted rerun that includes this provider work is queued
-behind the PostgreSQL fix, and converted-data acceptance remains open. Releases
+`.977` image. The exact hosted run on `50f58223` failed its PostgreSQL
+migration fixture. ChaptarrNG commit `e6e9b955` contains the schema-query
+correction and PR #131 is validating it; converted-data acceptance remains
+open. Releases
 remain frozen until the full retirement gates close.
 
 BookshelfNG's tagged image/release jobs, manual distribution retries, and the

@@ -23,10 +23,18 @@ rejects versions before migration 14 until the chain renames `Blacklist` to
 fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
 checks passed, but that fix is not in `.977`.
 The current retirement-branch PostgreSQL candidate supports one
-migration-158 source schema. Its hosted run on `0211ed91` failed during the
-staged-target version preflight; the fix is on `ef519cd7` and its exact hosted
-rerun is queued. PostgreSQL remains unsupported for installations until the
-candidate and operator-data acceptance gates pass.
+migration-158 source schema. Its exact run on `e67f28ed` failed because
+migration 10 checked `public.Editions` instead of the active staging schema
+and skipped `Subtitle`. Commit `8f0bbc29` adds the column through the active
+search path. Its exact run then failed to compile because `IMigrationRunner`
+has no `VersionLoader` property. Commit `50f58223` reads the registered
+`IVersionTableMetaData` service, but its fixture then failed at migration 23:
+an unqualified schema check examined `public.NamingConfig`, skipped staging
+`EbookRenameBooks`, and the following update failed. ChaptarrNG commit
+`e6e9b955` routes unqualified PostgreSQL schema checks through a scoped
+processor and adds a focused regression test; PR #131 is validating that code,
+and operator-data acceptance remains open. PostgreSQL remains unsupported for installations until
+the candidate passes all acceptance gates.
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be
