@@ -101,7 +101,12 @@ source fix is not available in `.977`. ChaptarrNG releases are frozen until
 feature parity, representative data migration and rollback, and channel
 acceptance are complete. Populated synthetic migration-22 tests cover
 conversion and rollback, but older-schema behavior on real data is not
-established. PostgreSQL source conversion remains unsupported. If the source
+established. A separate private populated migration-158 SQLite snapshot also
+passed preview, apply, and rollback with the public .977 Linux image. Preview
+left the source unchanged, and both backups passed integrity and foreign-key
+checks. Ambiguous media choices remain for human review, and this does not
+establish older-schema, PostgreSQL, feature-parity, or channel acceptance.
+PostgreSQL source conversion remains unsupported. If the source
 does not identify a format, ChaptarrNG preserves the work in both catalogs
 without monitoring and writes a private review file. This keeps conversion
 moving without guessing which format to search.
@@ -242,7 +247,10 @@ snapshot and individual gates. See the
 - **Send imports to BookLore.** BookLore is an optional supported app. Add it
   as a notification destination to upload imported files to its BookDrop
   review queue; BookshelfNG runs without BookLore. See the
-  [BookLore integration guide](docs/booklore-integration.md).
+  [BookLore integration guide](docs/booklore-integration.md). During a
+  ChaptarrNG migration, this saved connection remains configured for BookLore;
+  it is not automatically rewritten to BookOrbit. See the
+  [migration handoff](docs/migrate-from-bookshelfng-to-chaptarrng.md#booklore-and-bookorbit-handoff).
 - **Connect a Calibre Content Server.** Configure a Calibre library as a root
   folder to add imported books to the library, sync metadata, and convert into
   configured output formats.

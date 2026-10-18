@@ -72,6 +72,24 @@ documents a release containing it and the remaining acceptance gates close.
 
 Native Hardcover databases need the same provider mode during preview and apply. BookshelfNG commonly stores Hardcover work, author, edition, and series IDs as bare numbers. The ChaptarrNG candidate interprets them as Hardcover when `HARDCOVER=true` and `HARDCOVER_NATIVE` is not `false`; otherwise numeric IDs keep Goodreads identity. The helper candidate exposes `--provider-mode native-hardcover|goodreads`. These changes are not in the published `.71` helper or ChaptarrNG `.977` image. Exact-head validation on commit b5bd9527 passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed; converted-data acceptance remains open. Do not use those published builds for native Hardcover migration until the release-freeze gates close.
 
+## Populated SQLite rehearsal (2026-10-18)
+
+The public ChaptarrNG `v0.9.977` Linux/amd64 image passed preview, explicit
+apply, restore preview, and rollback against a private populated migration-158
+SQLite snapshot. The live BookshelfNG service and database were not used as the
+test target. Preview left the snapshot bytes unchanged and produced private
+media-review artifacts; no media map was supplied, so ambiguous format
+choices remain for operator review.
+
+Apply reached Chaptarr migration v120 and retained a migration-158 source
+backup matching the input snapshot's logical contents. Rollback restored the
+source database with matching logical contents and retained the converted
+database as a separate ChaptarrNG backup. The source, converted, and restored
+databases passed SQLite integrity and foreign-key checks. No user data or
+database files were committed. This is evidence for one populated SQLite
+schema and image; older schemas, PostgreSQL, installer handoffs, and feature
+parity remain open.
+
 ## What the helper does
 
 `scripts/bookshelfng-to-chaptarrng.sh` is a Bash wrapper for Linux or macOS
@@ -95,6 +113,31 @@ download mount paths when possible; copy those volumes separately if you are
 moving them to another host. The appdata archive can contain API keys, provider
 credentials, and library metadata, so keep it in private storage and do not
 upload or share it.
+
+## BookLore and BookOrbit handoff
+
+The converter preserves a BookshelfNG BookLore notification row, including its
+provider identity, saved settings and credentials, and `OnReleaseImport`
+trigger. It keeps the source row in the retained backup. It cannot infer that a
+saved BookLore URL or account belongs to a BookOrbit server, so it does not
+rewrite this connection.
+
+The current ChaptarrNG retirement candidate adds a separate BookOrbit Book
+Dock notification destination. Its API client has mock coverage for streaming,
+redirect refusal, credential and file rejection, and partial batches. An
+isolated BookOrbit v3.2.0 live contract run passed initial setup, login, Book
+Dock access, EPUB upload and listing, and unsupported-file rejection. This
+confirms upload admission, not BookOrbit's downstream processing of a
+production book or a transition using real BookshelfNG users and settings. The
+candidate is [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131)
+and is not included in public ChaptarrNG `v0.9.977`.
+
+After a ChaptarrNG build containing BookOrbit is available, add and test a
+separate BookOrbit connection in **Settings > Connect**. Keep the migrated
+BookLore connection until imported files appear in BookOrbit as expected; then
+disable or remove the old connection if it is no longer needed. For a partially
+rejected batch, inspect Book Dock before retrying because successful earlier
+uploads remain there.
 
 ## Prepare and snapshot
 
