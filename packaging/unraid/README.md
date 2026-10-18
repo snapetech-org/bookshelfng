@@ -13,13 +13,18 @@ SeerrNG integration is optional.
 > smoke passed with an empty database and rollback; the Community Apps template
 > update flow and populated operator data remain untested.
 
-## Installation and setup
+## Existing installations
 
-In Unraid, open **Apps**, search for **BookshelfNG**, and select **Install** on
-[the BookshelfNG listing](https://ca.unraid.net/apps/bookshelfng-1fdcqrv18pja7r).
-For a manual install, use [the template XML](templates/bookshelfng.xml) with Unraid's Docker
-template workflow. The image is `ghcr.io/snapetech-org/bookshelfng:main`; this moving tag tracks the
-Hardcover image used by the Community Apps template.
+Keep the current BookshelfNG image until you are ready to migrate. The legacy
+Community Apps template still points to BookshelfNG; the ChaptarrNG transition
+template has not yet been published. Read the
+[BookshelfNG-to-ChaptarrNG migration guide](https://github.com/snapetech-org/bookshelfng/blob/main/docs/migrate-from-bookshelfng-to-chaptarrng.md),
+upgrade BookshelfNG to `.71`, stop the service, and keep an independent appdata
+backup. New installations should use the
+[ChaptarrNG Unraid template](https://github.com/snapetech-org/chaptarrng-unraid).
+For a manual BookshelfNG install needed to inspect or roll back an existing
+library, use [the legacy template XML](templates/bookshelfng.xml); it installs
+`ghcr.io/snapetech-org/bookshelfng:main`.
 
 - Map persistent appdata to `/config` and your media to `/data`.
 - Map downloads to `/download`, matching your download client's container paths.

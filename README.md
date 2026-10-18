@@ -27,11 +27,13 @@ Support BookshelfNG on [Ko-fi](https://ko-fi.com/snapetech).
 Published containers and native release
 archives include the required runtime; source builds require the .NET 10 SDK.
 
-On Unraid, install [BookshelfNG from Community Apps](https://ca.unraid.net/apps/bookshelfng-1fdcqrv18pja7r).
-See the [Unraid installation guide](https://github.com/snapetech-org/bookshelfng-unraid#installation-and-setup)
-for persistent storage, download paths, and Hardcover setup. The package uses
-`ghcr.io/snapetech/bookshelfng:latest`, which tracks the Hardcover image; the
-upstream Bookshelf listing uses a different image. SeerrNG integration is optional.
+BookshelfNG `0.4.21.71` is the final source release. Existing Unraid
+installations should follow the
+[BookshelfNG-to-ChaptarrNG migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md)
+and keep an independent appdata backup. The BookshelfNG Community Apps template
+has not yet switched images. New Unraid installations should use the
+[ChaptarrNG Unraid template](https://github.com/snapetech-org/chaptarrng-unraid),
+which installs the standard maintained application.
 
 BookshelfNG is for people who want Readarr-style book automation with a choice
 of metadata providers. Goodreads-compatible metadata services and native
