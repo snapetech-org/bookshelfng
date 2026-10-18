@@ -18,6 +18,9 @@ leaves the source database unchanged, though it may write a report; it does not
 make an apply eligible. Wait for a supported destination build and closed
 acceptance gates before stopping or replacing BookshelfNG.
 
+ChaptarrNG PR #132 merged format-specific root setup to source `main` as
+`0f1fea44`, but that Quickstart change is not in the published `.977` release.
+
 BookshelfNG releases are frozen too. PR #148 merged its fail-closed publishing gate to `main` as `c6b4642`; its tagged image/release workflows, manual distribution retries, and legacy bridge require `BOOKSHELFNG_RELEASE_READY=true`, which remains unset. Neither application's release gate enables the other's publishing paths.
 
 For BookshelfNG `0.4.21.71` with a SQLite migration-158 database, use the

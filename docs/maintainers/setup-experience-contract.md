@@ -44,6 +44,12 @@ For new installs and ongoing setup, direct users to the supported ChaptarrNG
 release status and its Quickstart. BookshelfNG's remaining setup guidance is
 for safe migration and retirement only.
 
+ChaptarrNG PR #132 merged format-specific root setup to source `main` as
+`0f1fea44`; the exact-main Build run [39159951469](https://github.com/snapetech-org/chaptarrng/actions/runs/39159951469)
+passed Linux, macOS, Windows, PostgreSQL migration, and native-runner receipt
+checks. This Quickstart change is not in published `.977` while the release
+gate remains closed.
+
 ## Remaining tasks
 
 BookshelfNG is release-frozen, so these are migration-path and documentation

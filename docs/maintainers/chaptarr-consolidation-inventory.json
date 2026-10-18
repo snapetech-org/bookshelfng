@@ -6,16 +6,16 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "abc4e4fa8a86e1affc3f44ce9bdb24c869d7da07",
-  "targetCommit": "9f1ae60baf759bc361073fd0aee27e17a4c7f60f",
+  "sourceCommit": "03afe58298931712931f78090542baf31555b382",
+  "targetCommit": "0f1fea44ebc4de0d00adbb734569ecb5acdd15de",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 540,
-    "commitsNotInUpstreamHistory": 531,
-    "netChangedPaths": 1091,
+    "commits": 563,
+    "commitsNotInUpstreamHistory": 554,
+    "netChangedPaths": 1094,
     "fileStates": {
-      "no-mapped-target-file": 437,
+      "no-mapped-target-file": 440,
       "different-review-required": 493,
       "identical": 155,
       "deleted-in-bookshelf": 2,
@@ -10441,6 +10441,302 @@
         "docs/maintainers/chaptarr-consolidation.md",
         "docs/migrate-from-bookshelfng-to-chaptarrng.md"
       ]
+    },
+    {
+      "commit": "b15ca715c30598cc24b3ce454418c1025ee8f251",
+      "date": "2026-10-18",
+      "subject": "docs: update BookshelfNG migration readiness (#147)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "c6b464261dad89e898c1a57d228c458b9e0774b3",
+      "date": "2026-10-18",
+      "subject": "ci(release): freeze BookshelfNG publishing until retirement ready (#148)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        ".github/workflows/chaptarrng-release-bridge.yml",
+        ".github/workflows/release-distribution.yml",
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/require-bookshelfng-release-ready.sh",
+        "scripts/test-bookshelfng-release-readiness-gate.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh",
+        "scripts/test-chaptarrng-release-bridge.sh"
+      ]
+    },
+    {
+      "commit": "512b7e6b26e7bde606976e70163ec0aeeb7737a2",
+      "date": "2026-10-18",
+      "subject": "docs: refresh BookshelfNG retirement status (#149)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "497c1e1e8a34f23cc75cfd3fe0404d5981d8b60e",
+      "date": "2026-10-18",
+      "subject": "docs: clarify PostgreSQL startup diagnostics (#150)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "b76db437bbceb6618e63f8029ae89c70437b01c4",
+      "date": "2026-10-18",
+      "subject": "ci: target restricted JIT runner group",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/fork-safe-validation.yml"
+      ]
+    },
+    {
+      "commit": "d83df17376cc3253c66b8320b81c4d540f53995b",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): refresh migration candidate evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "fda0f1f0131f7b0b48cd7f20a6e0ef9c7bafeffc",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): refresh migration candidate evidence (#151)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "0becf747b868aecc14b1f7522fcbe9dbc017a374",
+      "date": "2026-10-18",
+      "subject": "Merge remote-tracking branch 'origin/main' into docs/bookshelf-retirement-evidence-20261018",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": []
+    },
+    {
+      "commit": "73181174b6e9f3b92723e852670dd0b2fb692054",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): document BookOrbit handoff",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "646b7b5c67c6f07824df121e11ceb797aa3931a4",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): record populated SQLite round trip",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "9412b868916d2d92beb449a4bb37eaaee996717e",
+      "date": "2026-10-18",
+      "subject": "Merge pull request #152 from snapetech-org/docs/bookshelf-retirement-evidence-20261018",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "5a696fe5abe55c027f76dcdcda8c56973eb52e05",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): refresh migration and AUR status (#153)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "charts/bookshelfng/README.md",
+        "distribution/windows/installer-net/README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "1d543971ccd5c34e237dfec2f27280cdf04f3801",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): record active AUR service rehearsal",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "d00e8ed0db258c3539f0c6dbcf7a500990989821",
+      "date": "2026-10-18",
+      "subject": "fix(migration): select populated legacy database safely",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh"
+      ]
+    },
+    {
+      "commit": "6f6b8822034483c3bf7a68b14974183847f21541",
+      "date": "2026-10-18",
+      "subject": "docs(migration): link safe two-instance consolidation",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "cee9926c3ce2b411e3739ff9db8012e068ac8b21",
+      "date": "2026-10-18",
+      "subject": "docs(migration): record torrent safety evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md"
+      ]
+    },
+    {
+      "commit": "5b2d07b3ec60c33a61d80f288923afb097c7d79f",
+      "date": "2026-10-18",
+      "subject": "docs(migration): record qBittorrent conflict behavior",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md"
+      ]
+    },
+    {
+      "commit": "de782d5ab91ef4d476f70a378ff94e439842cc85",
+      "date": "2026-10-18",
+      "subject": "Merge pull request #154 from snapetech-org/docs/aur-systemd-rehearsal-20261018",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "scripts/bookshelfng-to-chaptarrng.sh",
+        "scripts/test-bookshelfng-to-chaptarrng.sh"
+      ]
+    },
+    {
+      "commit": "4eef40999989f11858ea9d7a27b3fd5437b0de6e",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): mark safe database selection merged",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md"
+      ]
+    },
+    {
+      "commit": "274ae662e07c2e82f1cef7cc72d2f40f8ef641e9",
+      "date": "2026-10-18",
+      "subject": "Merge pull request #155 from snapetech-org/docs/retirement-status-after-pr154-20261018",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md"
+      ]
+    },
+    {
+      "commit": "2933d98281c362a6aafa1b474488e59116109b8f",
+      "date": "2026-10-18",
+      "subject": "docs: clarify published migration helper behavior (#156)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "db66bf506156bcd1c9ad4653b60514d5ad3acb07",
+      "date": "2026-10-18",
+      "subject": "docs: clarify BookshelfNG migration readiness (#157)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/README.md",
+        "docs/maintainers/setup-experience-contract.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "03afe58298931712931f78090542baf31555b382",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): make preview-only migration status clear",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/maintainers/setup-experience-contract.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
     }
   ],
   "files": [
@@ -10555,7 +10851,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "302abce3ae5233bc0c6aaaa568e041f74871da89"
+        "oid": "1ca1dbe9df5386728ab95962c9d7cae13432d246"
       },
       "targetBlob": {
         "mode": "100644",
@@ -10568,7 +10864,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "52d0ee3c7c2a32cd0053aedfbc397ff40d5f160a"
+        "oid": "2c3beba69b6be6bcea7c22fd6fa7a74c7144e7dd"
       },
       "targetBlob": null
     },
@@ -10578,11 +10874,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "17c993342d16691386198ac902ce64bd9007b307"
+        "oid": "dfde663c8ade6c4819a37d173be446b1c9cd80c3"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "d5998f1c2aa8c55c47e9579a941c576eeaef5aa6"
+        "oid": "f42d55614fbc90dea4c19d56a5e8ad226d588588"
       }
     },
     {
@@ -10627,7 +10923,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "685deca294bc118525e95f3b6f5c73b40dd59129"
+        "oid": "2768303b4f48649dadb1b0eea47ea837aef0bd9e"
       },
       "targetBlob": {
         "mode": "100644",
@@ -10875,11 +11171,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "f0e05c6e0d07373d12ae90f500604ae04566d279"
+        "oid": "809247d13a88d3364a03ae3b6760a02dac6c4834"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "0e4710ea2eabd28507a9e2ea429cc649a11aa277"
+        "oid": "25545dd33cc4460554148b07b1571e49517e7c55"
       }
     },
     {
@@ -10928,7 +11224,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "b3aa87ef91a479b4f4a6b7f60fd7590b11675c50"
+        "oid": "36ea581960bf73128c8fb8d5aa85c6a7c2da9b8a"
       },
       "targetBlob": null
     },
@@ -11168,7 +11464,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "6ebd1c0f90db63f806f5e84f2aba8f188f1118db"
+        "oid": "233ddbae3553a4226e546007b711b11730a8a098"
       },
       "targetBlob": null
     },
@@ -11288,7 +11584,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e6e33e2dd0d8f4657f7a90cc3655d9f548942cea"
+        "oid": "2db80287c53e17061898cfa8d6e6becaee3add8f"
       },
       "targetBlob": null
     },
@@ -11298,7 +11594,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "8ba88d3c773a5b68c56fedad44fc5027758a7f99"
+        "oid": "950cd5045182c747fdb9f25fbb2cbc95c447f9d5"
       },
       "targetBlob": null
     },
@@ -11338,7 +11634,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "cf1a8a596a2fc9c0a8b7e1093cf88491661b6b38"
+        "oid": "40a6a5b3231c90a49c9072d47989128d40af0169"
       },
       "targetBlob": null
     },
@@ -11371,7 +11667,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "85e9fe000fb62d51eee65afcd4d15eb1a8e94a05"
+        "oid": "32025bf5b99b9a618fb10b278ec7cf4523181f8d"
       },
       "targetBlob": null
     },
@@ -11474,7 +11770,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "db864224277521f9491aa705ac8795a81e1cb7c4"
+        "oid": "e2e8a0f3089a235c3e7201fdce6e58432f2a7416"
       },
       "targetBlob": null
     },
@@ -11494,7 +11790,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "41870cb504a9424de11cdf4fe530832c07bb16c6"
+        "oid": "da41a207f19e6502de35c4447fb54c2f8529c72e"
       },
       "targetBlob": null
     },
@@ -11504,7 +11800,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "b58ddcf7db896784e276ea2f709cd81aec385d49"
+        "oid": "7149c34a4a1c448e1928d17ca00ecf86e00f6846"
       },
       "targetBlob": null
     },
@@ -11514,7 +11810,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "2012519d55e6e8c38d227a16354042f06b1afba4"
+        "oid": "90e474581a908d97b3d4107daa04b1353e85512f"
       },
       "targetBlob": null
     },
@@ -11525,6 +11821,16 @@
       "sourceBlob": {
         "mode": "100644",
         "oid": "62effd1150f6d59460612e4f526e2545e7fd205d"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "docs/maintainers/setup-experience-contract.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "36c9e68951af4a9670090b9e264cd69f994f526a"
       },
       "targetBlob": null
     },
@@ -11544,7 +11850,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "63690b974fbd8534f5f9122ea8466b8862ce147e"
+        "oid": "35dd353e8eb87c09e9ec6f4a064b2ea68ea1b866"
       },
       "targetBlob": null
     },
@@ -11594,7 +11900,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5032117de29292137223aba7298c48505c4770ae"
+        "oid": "dfa2bd063fe15efa9adb07c7b58995f0cfa4fe8b"
       },
       "targetBlob": null
     },
@@ -13143,7 +13449,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "18967eeb6401240fbf5f06f98bff42035a9899bf"
+        "oid": "8f81be678e106f65e36aab227d3da01db4812828"
       },
       "targetBlob": {
         "mode": "100644",
@@ -13169,7 +13475,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a2960898f8811139eab304c490c167b8451f58ce"
+        "oid": "92a7988b20349741e0bcf8b40a7d2af4da21af2e"
       },
       "targetBlob": null
     },
@@ -14839,7 +15145,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100755",
-        "oid": "b44ec69b45c279d290a2ea71ef656cdfe1dca3c4"
+        "oid": "f95079c8ad02390b0ea8b86d0a7eb602dd744656"
       },
       "targetBlob": null
     },
@@ -14976,6 +15282,16 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "scripts/require-bookshelfng-release-ready.sh",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "538d1abc50458e9116957c7325d5d56370a04034"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "scripts/sync-unraid-package.sh",
       "targetPath": "scripts/sync-unraid-package.sh",
       "state": "different-review-required",
@@ -14989,12 +15305,22 @@
       }
     },
     {
+      "sourcePath": "scripts/test-bookshelfng-release-readiness-gate.sh",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "c8895727cfa6a4a168c4b8eaf42256fef5b75eeb"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "scripts/test-bookshelfng-to-chaptarrng.sh",
       "targetPath": null,
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100755",
-        "oid": "0a0b617ed82ce4d606ba13a63184fc161f0c92ea"
+        "oid": "84127b199f46183e597eb212ac8915d1e6fbc4b9"
       },
       "targetBlob": null
     },
@@ -15004,7 +15330,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "b3163d09720cb30272c772d0f4e7aae9e9fc2c6d"
+        "oid": "33b9bcaa265d6397213c14c5f1a55a493b0e0e6e"
       },
       "targetBlob": null
     },
@@ -17857,7 +18183,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "cdc2493e1b9e4b6119c3a02757fa2ce3fed82106"
+        "oid": "4d3a8fc963be844a8d9ef8162ebd673272d536b5"
       }
     },
     {

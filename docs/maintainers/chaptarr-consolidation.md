@@ -42,6 +42,13 @@ ChaptarrNG .977; this closes one populated SQLite round-trip check only.
 
 The ChaptarrNG retirement candidate adds older SQLite migration coverage, one-schema migration-158 PostgreSQL support, native Hardcover identity handling, and a separate BookOrbit Book Dock integration. PR #131 remains draft. Earlier exact-head run [39153630005](https://github.com/snapetech-org/chaptarrng/actions/runs/39153630005) on `cee4dfa0` passed Linux, macOS, and Windows builds and test suites, PostgreSQL migrations, release-note validation, native-runner receipt reconciliation, CodeQL, dependency review, and security checks. Windows reported 4,349 tests passed and none failed. These are candidate CI checks only; operator-data acceptance remains open. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). Provider, database, feature, and channel acceptance gates remain open.
 
+ChaptarrNG PR #132 also merged on 2026-10-18 as `0f1fea44`, adding
+format-specific root setup to Quickstart. Current-main Build run
+[39159951469](https://github.com/snapetech-org/chaptarrng/actions/runs/39159951469)
+passed Linux, macOS, Windows, PostgreSQL migration, and native-runner receipt
+reconciliation. The Quickstart improvement remains source-only; it is not in
+published `.977` while the ChaptarrNG release gate is closed.
+
 The migration bridge is disabled. ChaptarrNG AUR `0.9.977-1` is published;
 BookshelfNG's public AUR identity remains at `0.4.21.71-1` on the BookshelfNG
 payload. A local `bookshelfng-bin 0.9.977-1` candidate passed a network-disabled
@@ -103,16 +110,16 @@ preserved. The report identifies this as a lossy approximation between
 different algorithms. Converted-data acceptance remains open, and the change
 is not in public `.977`.
 
-The tracked path-level inventory was regenerated against BookshelfNG `main`
-`abc4e4fa` and ChaptarrNG `main` `9f1ae60b`. It covers 540 reachable post-fork
-commits (531 absent from the pinned Bookshelf lineage ref) and 1,091
-net-changed paths: 437 have no same-name mapped target, 493 differ and need
+The tracked path-level inventory snapshot was refreshed against BookshelfNG
+`03afe582` and ChaptarrNG `0f1fea44`. It covers 563 reachable post-fork
+commits (554 absent from the pinned Bookshelf lineage ref) and 1,094
+net-changed paths: 440 have no same-name mapped target, 493 differ and need
 review, 155 are identical, four are text-equivalent after branding/newline
 normalization, and two were deleted in BookshelfNG. This target includes
-ChaptarrNG PRs #127, #129, and #130, now merged. The source changes remain unpublished
-because the retirement release gate is closed. These counts identify a review queue;
-path or text similarity does not prove that behavior is equivalent or safely
-retired.
+ChaptarrNG PRs #127, #129, #130, and #132. The source changes remain
+unpublished because the retirement release gate is closed. These counts
+identify a review queue; path or text similarity does not prove that behavior
+is equivalent or safely retired.
 
 The detailed investigation below records historical candidate revisions and
 their test evidence. Its pinned source counts and older release/channel rows
