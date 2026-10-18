@@ -6,13 +6,13 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "0e0ef597c313483ad5e3c936df503d5fa09bc703",
+  "sourceCommit": "75321fd27647b3548124ae94785350949512f2b0",
   "targetCommit": "2334625b4ca57c22c39f09d6780830e4e4f1e79c",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 574,
-    "commitsNotInUpstreamHistory": 565,
+    "commits": 576,
+    "commitsNotInUpstreamHistory": 567,
     "netChangedPaths": 1094,
     "fileStates": {
       "no-mapped-target-file": 439,
@@ -10866,6 +10866,32 @@
       "paths": [
         "docs/maintainers/chaptarrng-distribution-bridge.md"
       ]
+    },
+    {
+      "commit": "0babcad84a87d3a60aa607574c7612c6211df8df",
+      "date": "2026-10-18",
+      "subject": "docs(parity): refresh inventory for distribution audit",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "75321fd27647b3548124ae94785350949512f2b0",
+      "date": "2026-10-18",
+      "subject": "docs(migration): fix fixture evidence links",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
     }
   ],
   "files": [
@@ -11300,7 +11326,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "65e1abd46b78a06d629d9f6058f1e0e943e35b04"
+        "oid": "444f583e7e7323871bfb0acdfe135b3d636e4404"
       },
       "targetBlob": {
         "mode": "100644",
@@ -11796,7 +11822,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "bd883b6fcce08b5d1f9ad7955a8ffc05e4d9f648"
+        "oid": "706e45d5f0aa77e259f06519bf214a2e4145ecef"
       },
       "targetBlob": null
     },
@@ -11899,7 +11925,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "fb38c0c591606c01b3997179c1d493e97cdfe35a"
+        "oid": "4ad05ca50660e11a3aa3fbebf6b4c85ba9b7c722"
       },
       "targetBlob": null
     },
@@ -11919,7 +11945,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "1b05ff6525517410be628505c4d54ab56ebcff3c"
+        "oid": "bd45ef211fee4ff5a9d1cabbe46f7fff860ca861"
       },
       "targetBlob": null
     },
@@ -11929,7 +11955,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "ed289ef09b09a9d9caec299dcbd4355c744847d2"
+        "oid": "483d1333f80fa10665282f98ef7b5ed6831a289d"
       },
       "targetBlob": null
     },
@@ -11939,7 +11965,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "0cc07944f5561ee199f6e34a17b9aa838ed08c5f"
+        "oid": "1baf48f40442182db3cc7261d82eab941739e6e5"
       },
       "targetBlob": null
     },
@@ -11979,7 +12005,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e27fc1273bb43f9b3d3730d56a6a8ccdebc8f7b4"
+        "oid": "e18143d972d69306441a49eae81e371e5c0e3cfd"
       },
       "targetBlob": null
     },
@@ -12029,7 +12055,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "0e0b63af77fa2c3d5879705d718b03c8af2cff5c"
+        "oid": "55446018e2c109b3122bcac52bdbbaa24e47161a"
       },
       "targetBlob": null
     },
