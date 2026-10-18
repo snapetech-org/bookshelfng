@@ -6,17 +6,17 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "276bbd83b49880d33c8bb85d402d16bf077f1610",
-  "targetCommit": "0f1fea44ebc4de0d00adbb734569ecb5acdd15de",
+  "sourceCommit": "10e0c8f8251ea1c6ace1665c737c30a9050b9b64",
+  "targetCommit": "2334625b4ca57c22c39f09d6780830e4e4f1e79c",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 564,
-    "commitsNotInUpstreamHistory": 555,
+    "commits": 568,
+    "commitsNotInUpstreamHistory": 559,
     "netChangedPaths": 1094,
     "fileStates": {
-      "no-mapped-target-file": 440,
-      "different-review-required": 493,
+      "no-mapped-target-file": 439,
+      "different-review-required": 494,
       "identical": 155,
       "deleted-in-bookshelf": 2,
       "text-equivalent-after-brand-and-newline-normalization": 4
@@ -10750,6 +10750,57 @@
         "docs/maintainers/setup-experience-contract.md",
         "docs/migrate-from-bookshelfng-to-chaptarrng.md"
       ]
+    },
+    {
+      "commit": "79f6e3de175265f1563b16087e9cc0e528370804",
+      "date": "2026-10-18",
+      "subject": "docs(parity): align inventory with current main snapshots",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "9d80c2d0096030cbcd2ffa651581e58ebbb8458a",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): refresh exact-head validation evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "6120456495fafc5a0108e2a0d8f0eddf2f824571",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): record latest PR validation",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "10e0c8f8251ea1c6ace1665c737c30a9050b9b64",
+      "date": "2026-10-18",
+      "subject": "docs(parity): record SeerrNG smoke evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
     }
   ],
   "files": [
@@ -10868,7 +10919,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "1cb69fd573c646c24567fc5a82fca7e2766930f2"
+        "oid": "48b6935208ccba7006bc7ae598573ff5a9978f65"
       }
     },
     {
@@ -11184,11 +11235,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "809247d13a88d3364a03ae3b6760a02dac6c4834"
+        "oid": "ee73722e13223526d8965d5d09919a5209542bf1"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "25545dd33cc4460554148b07b1571e49517e7c55"
+        "oid": "9a7e6252d97f2b3bf0d4facb9eb24ac51812f2b2"
       }
     },
     {
@@ -11671,7 +11722,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "16d7e14cea8335a072e43c56f3bb442ab9aa4930"
+        "oid": "2b47d62955d9f0622e494a70b53186611ebc4e04"
       }
     },
     {
@@ -11680,7 +11731,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "32025bf5b99b9a618fb10b278ec7cf4523181f8d"
+        "oid": "8ff9cc9315077b9eab1069641ab39a58eb99892d"
       },
       "targetBlob": null
     },
@@ -11783,7 +11834,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "0d9f08fefcdab2d12054d0ec4a42995fecfd116b"
+        "oid": "c16b04ad88a917399f56ee4640126b91655fb811"
       },
       "targetBlob": null
     },
@@ -11803,7 +11854,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "fb8dd67c8c858c45f47c0691dacfe55e78f08bed"
+        "oid": "a80c222cd396fb96dc34d5a08d349091a2ebb6a9"
       },
       "targetBlob": null
     },
@@ -11813,7 +11864,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "19eae9dd56527edc7d7a16e61bb65e1048d827e5"
+        "oid": "cb6bee5b13342ba1eb4acaecf9c960c4d7d42760"
       },
       "targetBlob": null
     },
@@ -11823,7 +11874,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "90e474581a908d97b3d4107daa04b1353e85512f"
+        "oid": "967c21fcf8c0e0e4c8b9423dc4eed89e09584a3a"
       },
       "targetBlob": null
     },
@@ -11863,7 +11914,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "57038c42286bc13178d1e483cb3c3b01656f31a5"
+        "oid": "8cbc7264131406a6b78141e074027bf21a35efc2"
       },
       "targetBlob": null
     },
@@ -11913,7 +11964,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "dfa2bd063fe15efa9adb07c7b58995f0cfa4fe8b"
+        "oid": "661f4134ba1416d718c1699ce42ddeae35cd1117"
       },
       "targetBlob": null
     },
@@ -15413,7 +15464,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "fa8399db043b0c1215d392906f9cbdb85f90c348"
+        "oid": "3b3fa331da94d2b89602b8a6919cd461ff864b19"
       }
     },
     {
@@ -15426,7 +15477,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "73a43fa92415c94a951cdeed227d1242b08b3bae"
+        "oid": "ebd13c330d29e1c2b2ff4d8d55964d9860f17518"
       }
     },
     {
@@ -15439,7 +15490,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "59b31c27d37f9cb733ae10b993f11b5865df71ef"
+        "oid": "3d4b598387b0d05de7e3ef59708b64fa20925588"
       }
     },
     {
@@ -16432,7 +16483,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "f3ec2c1219640bc947e77795dcd72e325c5dd0af"
+        "oid": "4afd81abbd8f057b4293f05c544767c49b2bd44b"
       }
     },
     {
@@ -16933,7 +16984,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "c237992e37ddcbe957d61a994dff03767c122836"
+        "oid": "fdd2f8e403c1175c5f2f50fbcf75d9a661707790"
       }
     },
     {
@@ -17489,7 +17540,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "14d8feb662d0dc6d7acc8706ec2d75d06bcddae2"
+        "oid": "fa576a3759d88b75d7d5028889dc2efece6da45f"
       }
     },
     {
@@ -18196,7 +18247,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "4d3a8fc963be844a8d9ef8162ebd673272d536b5"
+        "oid": "482d6ca8a098c1e713be9432c94d5e42c0015a61"
       }
     },
     {
@@ -18674,7 +18725,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "26aeed974a27b38c81fe179b2c932d932428133d"
+        "oid": "d747ff8040807f4bf8467d78ec1d048609eb3642"
       }
     },
     {
@@ -18687,7 +18738,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "69014d5adb6f537694074e2ca577caebb2960753"
+        "oid": "3b080d74a6a4abdefe2eb9ef0be117b608de5ea8"
       }
     },
     {
@@ -18731,13 +18782,16 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core/MetadataSource/Hardcover/HardcoverMetadataProxy.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/MetadataSource/Hardcover/HardcoverMetadataProxy.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "a1a3b633706a4e5f2f727b5d9f080adfc2938b87"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "17693fde4dcfb7ec6de039a49a868105fd397a2a"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/MetadataSource/IProvideSeriesInfo.cs",

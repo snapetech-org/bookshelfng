@@ -110,16 +110,18 @@ preserved. The report identifies this as a lossy approximation between
 different algorithms. Converted-data acceptance remains open, and the change
 is not in public `.977`.
 
-The tracked path-level inventory snapshot was refreshed against BookshelfNG
-`276bbd83` and ChaptarrNG `0f1fea44`. It covers 564 reachable post-fork
-commits (555 absent from the pinned Bookshelf lineage ref) and 1,094
-net-changed paths: 440 have no same-name mapped target, 493 differ and need
-review, 155 are identical, four are text-equivalent after branding/newline
-normalization, and two were deleted in BookshelfNG. This target includes
-ChaptarrNG PRs #127, #129, #130, and #132. The source changes remain
-unpublished because the retirement release gate is closed. These counts
-identify a review queue; path or text similarity does not prove that behavior
-is equivalent or safely retired.
+The tracked path-level inventory was regenerated on 2026-10-18 against
+BookshelfNG `10e0c8f8` and the ChaptarrNG PR #131 candidate
+`2334625b`. It covers 568 reachable post-fork commits (559 absent from the
+pinned Bookshelf lineage ref) and 1,094 net-changed paths: 439 have no
+same-name mapped target, 494 differ and need review, 155 are identical, four
+are text-equivalent after branding/newline normalization, and two were deleted
+in BookshelfNG. The target includes ChaptarrNG PRs #127, #129, #130, #132, and
+the current #131 candidate. The source changes remain unpublished because the
+retirement release gate is closed. These counts identify a review queue; path
+or text similarity does not prove that behavior is equivalent or safely
+retired. The machine-readable inventory is in
+`chaptarr-consolidation-inventory.json`.
 
 The detailed investigation below records historical candidate revisions and
 their test evidence. Its pinned source counts and older release/channel rows
