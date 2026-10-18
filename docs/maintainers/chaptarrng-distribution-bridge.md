@@ -29,11 +29,13 @@ merged to `main` as `c6b4642`; its variable is unset.
 ChaptarrNG AUR `0.9.977-1` is published. A local BookshelfNG-identity AUR
 candidate passed a network-disabled pacman upgrade from the published
 `0.4.21.71-1` package and downgrade back, preserving an environment override
-and synthetic data canary. Systemd was not running, and package-level
-database conversion/restore remain untested. The standard COPR package
-`chaptarrng 0.9.977-1` built successfully for Fedora 43, 44, 45, and Rawhide
-x86_64. The legacy COPR trigger remains disabled. Chocolatey `.977` passed package-transition smoke validation, but its
-push returned HTTP 403 and the live feed has no `chaptarrng` entry. The
+and synthetic data canary. The installed candidate also passed preview,
+conversion, and restore against a synthetic populated migration-158 database.
+Systemd was not running, and acceptance with operator data remains open. The
+standard COPR package `chaptarrng 0.9.977-1` built successfully for Fedora 43,
+44, 45, and Rawhide x86_64. The legacy COPR trigger remains disabled.
+Chocolatey `.977` passed package-transition smoke validation, but its push
+returned HTTP 403 and the live feed has no `chaptarrng` entry. The
 BookshelfNG AUR identity remains on its own `0.4.21.71-1` payload; the public
 Chocolatey identity remains at `0.4.21.70`. Feature and channel acceptance
 gates are still open. An isolated 2026-10-18 Docker image-switch and rollback
@@ -96,7 +98,7 @@ summaries report publisher outcomes, not completed retirement gates.
 | COPR `slskdn/bookshelfng` | Sends the ChaptarrNG tag to the existing package-scoped COPR webhook. COPR downloads and verifies the legacy `bookshelfng` source RPM built from the same ChaptarrNG archive. | The external COPR custom-source bootstrap must first accept `vMAJOR.MINOR.PATCH` tags. A successful webhook response does not prove that COPR built or published the package. |
 | Chocolatey `bookshelfng` | Builds both `chaptarrng` and `bookshelfng` packages from the checksummed standard Windows archive, then submits each identity with the existing Chocolatey credential. The legacy package keeps the existing service and `%ProgramData%\BookshelfNG\data` path while converting supported database data at normal startup. | Chocolatey moderation/approval, unsupported database inputs, and upgrade/rollback behavior outside the hosted Windows release test. |
 | BookshelfNG Helm OCI chart | Publishes a new chart version under the existing BookshelfNG OCI chart identity and pins it to the exact standard ChaptarrNG multi-architecture image digest while preserving the chart's resource names, PVC, labels, and port. | Existing releases do not upgrade themselves. Operators must apply a chart update, and pinned charts or image digests stay pinned. |
-| AUR `bookshelfng-bin` | The ChaptarrNG release workflow builds and submits both the new and legacy package identities using the ChaptarrNG AUR credential. | AUR review/build state and an installed-machine upgrade with real operator data. |
+| AUR `bookshelfng-bin` | The ChaptarrNG release workflow builds and submits both the new and legacy package identities using the ChaptarrNG AUR credential. | Active systemd handoff and acceptance with representative operator data; the synthetic package-level migration/restore rehearsal passed. |
 | Unraid Community Apps | A running BookshelfNG template that pulls a mutable BookshelfNG GHCR tag can receive the standard ChaptarrNG image after that alias moves. | The catalog listing, pinned image references, cached tags, template-specific volume/environment compatibility, and automatic rollout. |
 | Debian/PPA, AppImage, Flatpak, native archives, Windows setup, macOS, FreeBSD, YunoHost, and third-party catalogs | No universal redirect is implemented here. | Each package identity, feed, updater, signing key, and manual download path needs its own tested migration or a clear operator handoff. |
 

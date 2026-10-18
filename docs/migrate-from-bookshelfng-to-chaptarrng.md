@@ -23,11 +23,14 @@ older SQLite, one-schema
 PostgreSQL, native Hardcover, and BookOrbit support, but remains unsupported
 for operator data.
 
-A local AUR BookshelfNG-identity .977 package candidate passed a network-disabled
-pacman upgrade from the published .71 package and downgrade back, preserving
-an environment override and synthetic data canary. Systemd was not running,
-and package-level database conversion/restore remain untested. The candidate
-is unpublished; check the [package status](https://github.com/snapetech-org/chaptarrng/blob/main/packaging/README.md)
+A local AUR BookshelfNG-identity .977 package candidate passed an isolated,
+network-disabled pacman upgrade from the published .71 package and downgrade
+back, preserving an environment override and synthetic data canary. The
+installed candidate also passed preview, conversion to ChaptarrNG migration
+120, restore to BookshelfNG migration 158, and SQLite integrity/foreign-key
+checks against a synthetic populated database. Systemd was not running, and
+acceptance with operator data remains open. The candidate is unpublished; check
+the [package status](https://github.com/snapetech-org/chaptarrng/blob/main/packaging/README.md)
 for channel acceptance.
 
 
