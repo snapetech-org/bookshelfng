@@ -22,10 +22,24 @@ installation-channel upgrades are not covered. The release bridge remains
 disabled by default. Read the limits below before changing a running
 installation.
 
-PR #127 is still an unpublished candidate for supplemental catalogs,
-per-field metadata preferences, and exact ISBN, ASIN, provider-ID, or
-title/author recovery of unmapped files.
-Current-head hosted validation and operator acceptance remain open.
+ChaptarrNG PR #127 merged to `main` as `b3089a39`, adding supplemental
+catalogs, per-field metadata preferences, and exact ISBN, ASIN, provider-ID, or
+title/author recovery of unmapped files. Linux, macOS, Windows, PostgreSQL
+migration, CodeQL, dependency/security, and release-note checks passed on its
+exact head. Its source changes are not in the public `.977` image; provider and
+settings migration still need acceptance against converted operator data. The
+four provider-dispatch CodeQL findings on an earlier head were reviewed as
+false positives and dismissed with a rationale.
+
+ChaptarrNG PR #129 merged to `main` as `949ae3dd` with the opt-in M4B settings,
+track order and chapter titles, original-track fallback, and move/copy source
+handling. Its clean head passed the full hosted Linux, macOS, and Windows
+suites, PostgreSQL migration validation, CodeQL, dependency/security, and
+release-note checks. A synthetic two-track smoke against the `.977` image's
+m4b-tool produced AAC at 44.1 kHz stereo and preserved the supplied chapter
+titles and offsets. This checks the external converter and sidecar format, not
+the new importer end to end. Representative-media acceptance remains open,
+and the source change is not in public `.977`.
 
 Update an earlier BookshelfNG release to `0.4.21.71` and let it finish its
 database migration before replacing the application. This brings the source
@@ -41,6 +55,15 @@ module was installed and enabled, preserve its endpoint, token, and enable
 variables in the ChaptarrNG deployment. ChaptarrNG retains that explicit
 choice only when the old plugin marker is present; see its
 [optional diagnostics guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/OPTIONAL_DIAGNOSTICS.md).
+
+The appdata archive does not include the BookshelfNG M4B merge environment
+variables either. The public ChaptarrNG `v0.9.977` image does not honor
+`BOOKSHELF_M4B_MERGE`, `BOOKSHELF_M4B_AAC_BITRATE_KBPS`, or
+`BOOKSHELF_FFMPEG_PATH`. PR #129 merged the source compatibility implementation
+to ChaptarrNG `main`, but it is not in a published build. Keep the merge opt-in
+unset after switching until the ChaptarrNG
+[migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
+documents a release containing it and the remaining acceptance gates close.
 
 ## What the helper does
 

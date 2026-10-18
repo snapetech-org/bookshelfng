@@ -14,8 +14,23 @@
 > install-channel acceptance gates are complete. PR #128 merged fail-closed
 > release and distribution gates; they require `CHAPTARRNG_RELEASE_READY=true`,
 > which is unset. ChaptarrNG `.978` is a source version bump, not a release.
-> PR #127 remains an unpublished candidate for supplemental catalogs and exact
-> ISBN/ASIN/provider-ID and title/author recovery of unmapped files. Upgrade
+> ChaptarrNG PR #127 merged to `main` as `b3089a39`, adding supplemental
+> catalogs, per-field source preferences, and exact-identity recovery for
+> unmapped files. Its hosted platform, migration, security, and release-note
+> checks passed; the source change is not in public `.977`. Four
+> provider-dispatch CodeQL findings on an earlier head were reviewed as false
+> positives: provider IDs select allowlisted public metadata APIs and do not
+> grant access. ChaptarrNG PR #129 merged to `main` as `949ae3dd` with
+> BookshelfNG's opt-in M4B merge settings, tagged track ordering and chapter
+> titles, failed-conversion fallback, and successful move-mode source cleanup.
+> Its clean head passed hosted Linux, macOS, Windows, PostgreSQL migration,
+> CodeQL, dependency/security, and release-note checks. A synthetic two-track
+> smoke in the `.977` toolchain produced AAC at 44.1 kHz stereo with the two
+> supplied chapter titles and offsets. That checks m4b-tool and its chapter
+> sidecar, not the new importer end to end or representative library media.
+> M4B support is still absent from the public `.977` image; keep the merge
+> setting unset after migration until a release with this support passes the
+> remaining acceptance gates. Upgrade
 > pre-v14 BookshelfNG databases to `.71` before
 > switching. PostgreSQL migration and legacy-channel bridges remain
 > unsupported. Use the standard ChaptarrNG migration commands
@@ -115,12 +130,25 @@ moving without guessing which format to search.
 
 ChaptarrNG PR #128 merged release and distribution workflows that fail closed
 unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable remains unset.
-The current `.978` source version bump is not a published release. PR #127 is
-still an unpublished candidate for selectable supplemental catalogs,
+The current `.978` source version bump is not a published release. ChaptarrNG
+PR #127 merged as `b3089a39` and adds selectable supplemental catalogs,
 per-field metadata preferences, and exact-identity recovery for unmapped files.
 Its cross-catalog fallback queues a reviewable pending-author import and never
-attaches a file directly. Hosted validation and migration acceptance remain
-open.
+attaches a file directly. Exact-head hosted validation passed; provider/settings
+migration and behavior on converted operator data remain open.
+
+ChaptarrNG PR #129 merged to `main` as `949ae3dd`. The source now includes the
+opt-in BookshelfNG M4B merge settings, tagged track ordering and chapter
+titles, original-track fallback, and source cleanup only after a successful
+move-mode import; copy mode retains the originals. The clean head passed the
+full hosted Linux, macOS, and Windows suites, PostgreSQL migration validation,
+CodeQL, dependency/security, and release-note checks. A synthetic two-track
+smoke using the `.977` image's m4b-tool preserved the supplied chapter titles
+and offsets and produced AAC at 44.1 kHz stereo, about 128 kbps. It validates
+the external tool and sidecar format, not the importer end to end or
+representative real-world media. The feature is not in public `.977`; keep
+`BOOKSHELF_M4B_MERGE` unset after migration until the remaining acceptance
+gates close and a release containing it is available.
 
 BookshelfNG issue #114 is closed and implemented in its tagged `0.4.21.71`
 source. The same new-author path behavior is already in ChaptarrNG
@@ -328,6 +356,11 @@ different bitrate. When the merged file imports successfully in move mode,
 the original tracks are removed; copy mode and downloads that cannot be moved
 retain their source tracks. See the [capabilities and compatibility guide](docs/capabilities-and-compatibility.md#audiobook-m4b-merging)
 for the exact behavior and implementation references.
+
+ChaptarrNG's published `v0.9.977` does not honor these three BookshelfNG
+variables. A source-only compatibility candidate is being validated; this
+does not change the final BookshelfNG build or release. Keep the merge opt-in
+disabled after migration until a tested ChaptarrNG build documents support.
 
 ## Metadata sources
 
