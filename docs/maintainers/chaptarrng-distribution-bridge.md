@@ -1,20 +1,22 @@
 # BookshelfNG to ChaptarrNG distribution bridge
 
-## Current status — 2026-10-17
+## Current status — 2026-10-18
 
 BookshelfNG `0.4.21.71` is the published final source release and includes an
-appdata handoff helper. Issue #114 is closed. ChaptarrNG `v0.9.976` is
-published with the migration tools and an unmonitored dual-catalog fallback
-for records whose formats cannot be inferred. The bridge described below
-remains disabled; no BookshelfNG package identity or image alias has been
-redirected. ChaptarrNG AUR `0.9.976-1` is published. The standard COPR package `chaptarrng 0.9.976-1.fc44` and
-`0.9.976-1.fc46` is published for x86_64. Chocolatey `0.9.976` passed build and upgrade
-smoke but its publish was rejected with HTTP 403; public ChaptarrNG Chocolatey
-remains `0.9.973`. The BookshelfNG AUR identity remains on its own
-`0.4.21.71-1` payload; the Chocolatey identity remains at `0.4.21.70`.
-Migration support remains limited
-to the exact BookshelfNG migration-158 SQLite schema, and feature and channel
-acceptance gates are still open. Use this channel matrix as a gate inventory,
+appdata handoff helper. Issue #114 is closed. ChaptarrNG `v0.9.977` is
+published with the migration tools, the bundled BookshelfNG SQLite chain, and
+an unmonitored dual-catalog fallback for records whose formats cannot be
+inferred. Its pre-upgrade table guard rejects source versions before migration
+14 because they still use `Blacklist`; a version-aware fix is under hosted
+validation for a follow-up release. The bridge described below remains
+disabled; no BookshelfNG package identity or image alias has been redirected.
+ChaptarrNG AUR `0.9.977-1` is published. The standard COPR package
+`chaptarrng 0.9.977-1` built successfully for Fedora 43, 44, 45, and Rawhide
+x86_64. Chocolatey `.977` passed package-transition smoke validation, but its
+push returned HTTP 403 and the live feed has no `chaptarrng` entry. The
+BookshelfNG AUR identity remains on its own `0.4.21.71-1` payload; the public
+Chocolatey identity remains at `0.4.21.70`. Feature and channel acceptance
+gates are still open. Use this channel matrix as a gate inventory,
 not a report of completed redirects.
 
 The bridge workflow is a candidate for the BookshelfNG repository. It is

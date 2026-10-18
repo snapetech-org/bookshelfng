@@ -4,42 +4,46 @@
 
 BookshelfNG `0.4.21.71` is the published final source release. Its issue #114
 request is closed; the `.71` release contains the optional new-author path
-setting and the source-side appdata archive helper. ChaptarrNG `v0.9.976` is
-published with preview, apply, rollback, automatic startup conversion, and a
-safe fallback for records whose media format cannot be inferred. ChaptarrNG
+setting and the source-side appdata archive helper. ChaptarrNG `v0.9.977` is
+published with preview, apply, rollback, automatic startup conversion, an
+embedded source migration chain, and a safe fallback for records whose media
+format cannot be inferred. ChaptarrNG
 `v0.9.974` and later initialize missing new-author roots from configured
 format defaults without replacing explicit values or rewriting existing
 authors and files.
 
-The public ChaptarrNG `v0.9.976` supports BookshelfNG migration-158 SQLite.
-ChaptarrNG `main` now embeds the final BookshelfNG SQLite migration chain and
-applies it to a disposable copy before conversion; `v0.9.977` publication is
-pending hosted CI and release checks. A synthetic v22 fixture passes upgrade,
-conversion, rollback, non-mutating preview, and future-schema refusal. It is
-not evidence from real older-schema operator data. A populated Linux/amd64
+The public ChaptarrNG `v0.9.977` supports BookshelfNG migration-158 SQLite and
+applies the embedded source chain to a disposable copy before conversion. Its
+current table guard rejects schemas before migration 14 because they still
+use `Blacklist`; a version-aware allowlist fix and authentic migration-1
+rollback fixture are on a review branch with hosted CI pending. The populated
+synthetic v22 fixture passes its targeted local test and awaits the full
+hosted rerun. Neither is evidence from real older-schema operator data. A
+populated Linux/amd64
 rehearsal of the final schema accounted for all 127,177
 rows across 39 source tables. Its 81 media choices were technical test inputs,
 not reviewed classifications. The published `.976` converter now keeps
 unresolved works in both catalogs, unmonitored, and writes a private review
 file; operators still need to classify those works. The `.976` release
 workflow passed Linux, macOS, Windows, and PostgreSQL migration validation.
-ChaptarrNG `main` also packages an optional aggregate-only diagnostics module
-that preserves an existing BookshelfNG opt-in only when both the legacy flag
-and archived plugin marker are present; the `.977` artifact check is pending.
-This remains bounded evidence: older-schema behavior on real data, PostgreSQL
+ChaptarrNG `.977` packages an optional aggregate-only diagnostics module that
+preserves an existing BookshelfNG opt-in only when both the legacy flag and
+archived plugin marker are present. Its Linux, macOS, and Windows artifact
+checks passed; testing environment transfer on an installed migration remains
+open. This remains bounded evidence: older-schema behavior on real data, PostgreSQL
 source conversion, two populated BookshelfNG databases, every
 provider/environment contract,
 rollback on operator data, full feature parity, and each package-channel
 upgrade remain open.
 
-The migration bridge is disabled. ChaptarrNG AUR `0.9.976-1` is published;
+The migration bridge is disabled. ChaptarrNG AUR `0.9.977-1` is published;
 BookshelfNG's public AUR identity remains at `0.4.21.71-1` on the BookshelfNG
-payload. The standard COPR package `chaptarrng 0.9.976-1.fc44` and
-`0.9.976-1.fc46` is published for x86_64; the legacy COPR trigger was skipped. ChaptarrNG Chocolatey `0.9.976`
-built and passed upgrade smoke but its publish returned HTTP 403, leaving the
-public ChaptarrNG package at `0.9.973`; the BookshelfNG Chocolatey identity
-remains at `0.4.21.70`. GHCR published the standard image but did not redirect
-the legacy aliases. See the maintained
+payload. COPR built `chaptarrng 0.9.977-1` successfully for Fedora 43, 44, 45,
+and Rawhide x86_64; the legacy COPR trigger was skipped. ChaptarrNG Chocolatey
+`.977` built and passed the hosted package-transition smoke, but its publish
+returned HTTP 403 and the live feed has no `chaptarrng` entry. The BookshelfNG
+Chocolatey identity remains public at `0.4.21.70`. GHCR published the standard
+`.977` image but did not redirect legacy aliases. See the maintained
 [retirement status page](https://github.com/snapetech-org/chaptarrng/blob/main/docs/BOOKSHELFNG_RETIREMENT.md)
 and the user-facing
 [migration guide](../migrate-from-bookshelfng-to-chaptarrng.md) for the current
@@ -308,12 +312,13 @@ and library checks.
 Every one of the source's 39 tables needs an explicit preserve, transform,
 rebuild, or deliberate-reset disposition; no table may disappear by omission.
 
-The published `v0.9.976` converter is SQLite-only and supports the exact
-migration-158 Bookshelf schema. ChaptarrNG `main` adds the embedded SQLite
-migration chain for recognized source schemas through version 158, pending
-`v0.9.977` publication. Its synthetic v22 fixture validates source upgrade,
-conversion, preview immutability, and rollback. This does not establish
-real-data support for older schemas. The populated fixture validates a subset
+The published `v0.9.977` converter is SQLite-only, supports the exact
+migration-158 Bookshelf schema, and bundles the embedded source migration
+chain. Its current table guard rejects schemas before migration 14 because
+they still use `Blacklist`; a version-aware fix and authentic migration-1
+rollback fixture are under hosted validation. The populated synthetic v22
+fixture validates source upgrade, conversion, preview immutability, and
+rollback. This does not establish real-data support for older schemas. The populated fixture validates a subset
 of table dispositions; complete provider/configuration coverage, PostgreSQL
 import, and automatic discovery of a separate Bookshelf data directory remain
 open.

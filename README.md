@@ -2,12 +2,13 @@
 
 > **Final source tag:** BookshelfNG `0.4.21.71` is designated the final
 > release, and its GitHub release is published. The `.71` release includes
-> the source-side handoff helper. ChaptarrNG `v0.9.976` handles the final
-> migration-158 SQLite schema. The upcoming ChaptarrNG `v0.9.977` release adds
-> bundled upgrades for recognized older SQLite schemas; its hosted CI and
-> publication are still pending. Until it is published, upgrade BookshelfNG
-> to `.71` before switching. PostgreSQL migration and legacy-channel bridges
-> are still unsupported. Use the standard ChaptarrNG migration commands in the
+> the source-side handoff helper. ChaptarrNG `v0.9.977` is published with the
+> final migration-158 SQLite converter and a bundled source migration chain.
+> Its current table guard rejects source versions before migration 14 because
+> they still use `Blacklist`; an allowlist fix is under hosted validation for
+> a follow-up release. For now, upgrade BookshelfNG to `.71` before switching.
+> PostgreSQL migration and legacy-channel bridges remain unsupported. Use the
+> standard ChaptarrNG migration commands in the
 > [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md), review its
 > limits, and keep an independent backup.
 
@@ -86,13 +87,14 @@ migration status.
 The final BookshelfNG release includes a source-side helper that archives the
 entire appdata directory before it calls the standard ChaptarrNG preview,
 apply, or rollback command. The current ChaptarrNG release is
-[`v0.9.976`](https://github.com/snapetech-org/chaptarrng/releases/tag/v0.9.976).
-That release handles the final migration-158 SQLite schema. ChaptarrNG `main`
-now embeds the BookshelfNG SQLite migration chain for recognized older
-schemas; publication in `v0.9.977` is pending hosted CI and release checks. A
-synthetic migration-22 fixture passes upgrade, conversion, rollback, and
-non-mutating preview, but older-schema behavior on real data is not yet
-established. PostgreSQL source conversion remains unsupported. If the source
+[`v0.9.977`](https://github.com/snapetech-org/chaptarrng/releases/tag/v0.9.977).
+It handles the final migration-158 SQLite schema and bundles the BookshelfNG
+source migration chain. Its current pre-upgrade table guard rejects source
+versions before migration 14 because the chain has not yet renamed `Blacklist`
+to `Blocklist`; a version-aware fix is under hosted validation for a follow-up
+release. Populated synthetic migration-22 tests cover conversion and rollback,
+but older-schema behavior on real data is not established. PostgreSQL source
+conversion remains unsupported. If the source
 does not identify a format, ChaptarrNG preserves the work in both catalogs
 without monitoring and writes a private review file. This keeps conversion
 moving without guessing which format to search.

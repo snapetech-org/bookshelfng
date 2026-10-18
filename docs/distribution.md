@@ -8,9 +8,11 @@ release and sends the existing Discord announcement.
 
 BookshelfNG `0.4.21.71` is the published final source release. Its source-side
 helper takes a full appdata archive, then invokes the standard ChaptarrNG
-preview, apply, and rollback commands. ChaptarrNG `v0.9.976` is the published
-release used in the handoff guide. Conversion supports the exact BookshelfNG
-migration-158 SQLite schema. Ambiguous book formats are kept in both catalogs,
+preview, apply, and rollback commands. ChaptarrNG `v0.9.977` is the published
+release used in the handoff guide. It supports the exact BookshelfNG
+migration-158 SQLite schema and bundles the source migration chain; its current
+table guard rejects versions before migration 14 until the follow-up fix is
+released. Ambiguous book formats are kept in both catalogs,
 unmonitored, with a private review file; an operator-supplied media map is
 optional. One populated Linux/amd64 rehearsal retained all 39 source tables
 and rows, but its 81 test-map choices were not reviewed as correct

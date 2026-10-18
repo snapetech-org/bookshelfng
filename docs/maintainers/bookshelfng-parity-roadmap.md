@@ -1,17 +1,20 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
 **Reviewed:** 2026-10-18. **Status:** BookshelfNG `0.4.21.71` is the published
-final source release, and issue #114 is closed. ChaptarrNG `v0.9.976` is
-published with preview, apply, automatic startup conversion, rollback, and a
-safe fallback for books whose formats cannot be inferred. ChaptarrNG `main`
-now embeds the BookshelfNG SQLite migration chain for recognized schemas up
-to migration 158 on a disposable copy; this change is pending hosted CI and
-publication in `v0.9.977`. A synthetic migration-22 fixture passes upgrade,
-conversion, rollback, and source-unchanged preview, but does not establish
+final source release, and issue #114 is closed. ChaptarrNG `v0.9.977` is
+published with preview, apply, automatic startup conversion, rollback, an
+embedded BookshelfNG SQLite migration chain, and a safe fallback for books
+whose formats cannot be inferred. The published `.977` table guard rejects
+source versions before migration 14 because they still use `Blacklist`; a
+version-aware allowlist fix and authentic migration-1 rollback fixture are on
+a review branch with hosted CI pending. The populated synthetic v22 fixture
+passes the targeted local test, while the latest hosted migration test needs
+to validate the corrected fixture and source converter. Neither establishes
 older-schema behavior on real data. The verified populated-database input is
-the exact BookshelfNG migration-158 SQLite schema. The same pending ChaptarrNG
-release also packages the optional aggregate-only diagnostics replacement;
-its release artifact and preserved opt-in remain to be validated. One
+the exact BookshelfNG migration-158 SQLite schema. The optional aggregate-only
+diagnostics replacement is included in `.977`; artifact verification passed
+on Linux, macOS, and Windows. Migrated opt-in/environment handling remains to
+be exercised on an installed system. One
 populated Linux/amd64 run retained all 39 source tables and rows; 81 books
 needed media classification, and the test-map choices were not reviewed as
 correct. The current converter keeps unresolved records in both catalogs,
@@ -89,7 +92,7 @@ is the commit/path audit that must be fully dispositioned.
 | BookLore BookDrop uploads | Uploads imported books through BookLore's BookDrop API | Optional external app integration ported in the current ChaptarrNG candidate; seven proxy tests and one live BookLore v2.4.0 upload-contract test pass, including exact-byte file placement in BookDrop | **Open blocker.** Convert stored notification settings and credentials; preserve streaming, redirects, supported-format and size handling; test rejected files, recovery, and partial batches. The live contract proves API upload and file placement, not BookLore processing of a valid production book. BookLore [identifies BookOrbit as its official successor and says it is entering maintenance mode](https://github.com/booklore-app/booklore/blob/develop/README.md); test the successor path or record a legacy-user transition. |
 | Calibre, MyAnonamouse, Audiobookshelf sidecars, and SeerrNG integration | These standalone service and metadata workflows are present | Some native integrations and the SeerrNG contract exist; the full set is not proven equivalent | **Open blocker.** Disposition each integration and preserve its settings, API behavior, and stored associations. |
 | Previewable media moves, bulk moves, and extra-file handling | Preview, collision checks, registered sidecars, and format-aware paths | Chaptarr has different folder and organization behavior | **Open blocker.** Prove equivalent previews, collision and cross-device behavior, and that unknown/external files remain untouched. |
-| Optional privacy-preserving diagnostics | Separate module, explicit opt-in, aggregate-only event schema | ChaptarrNG `main` now packages an optional aggregate-only diagnostics module. It honors the legacy enable flag only when the archived BookshelfNG plugin marker is present and requires the operator to preserve endpoint/token environment variables. | **Candidate replacement implemented; pending `v0.9.977` release validation.** Verify the module is included in published artifacts and preserves the explicit opt-in without enabling diagnostics for other installs; then close this feature row. |
+| Optional privacy-preserving diagnostics | Separate module, explicit opt-in, aggregate-only event schema | ChaptarrNG `v0.9.977` publishes the optional aggregate-only module; it honors the legacy enable flag only when the archived BookshelfNG plugin marker is present and requires endpoint/token environment variables to be carried forward. Artifact verification passed on Linux, macOS, and Windows. | **Replacement published; migration gate open.** Verify an installed transition with and without the archived marker, preserved environment variables, and default-off behavior; then close this feature row. |
 | Scoped SeerrNG access, API aliases, proxy and request controls | Restricted key, compatibility routes, format-specific availability, and hardened proxy/auth boundaries | ChaptarrNG has its own facade and scoped key | **Open blocker.** Preserve existing permissions and configuration semantics; test unchanged SeerrNG settings, IDs, keys, and proxy deployments. |
 | Encrypted backups and restore | Passphrase-protected portable archives and per-format profiles | ChaptarrNG has encrypted backup support | **Open blocker.** Prove legacy archive recovery, secret handling, rollback, and profile conversion; never expose secrets in logs. |
 | .NET 10, dependency/security fixes, and platform builds | .NET 10 releases, broad native/package matrix, and maintained security/dependency patches | ChaptarrNG uses .NET 10 and has a different dependency/build matrix | **Open blocker.** Review every patch and supported platform; retain compatible fixes and run the target's required build and security checks. |
@@ -131,7 +134,9 @@ migration-lineage tests passed 2/2, and 29 rename/path-portability tests
 passed. An earlier pre-release hosted Windows run at the previous PR #100 head failed
 four migration/rollback tests. The validation engine now records a safe
 exception type and method frame without logging error text or paths. The later
-`v0.9.976` release workflow passed its Windows build/test job; this does not
+`v0.9.977` release workflow passed its Linux, macOS, and Windows build/test
+jobs and verified the optional diagnostics module in each standalone artifact;
+this does not
 establish populated real-data conversion or rollback on Windows. Preview, explicit apply, and ordinary startup were also exercised
 on separate copies of one real populated BookshelfNG migration-158 SQLite
 database using the standard Linux/amd64 image. Preview left the source hash
@@ -148,13 +153,15 @@ The released BookshelfNG `.69` database samples inspected earlier were empty;
 that earlier inspection is distinct from this one populated-database run.
 
 The BookshelfNG and ChaptarrNG databases have different schemas and identity
-models. The public ChaptarrNG `v0.9.976` converter handles the exact
-migration-158 SQLite schema; `main` adds an embedded older-schema SQLite
-chain intended for `v0.9.977`, pending hosted CI and release. A synthetic
+models. The public ChaptarrNG `v0.9.977` converter handles the exact
+migration-158 SQLite schema and bundles an older-schema SQLite chain. Its
+current table guard rejects versions before migration 14 because they use the
+historical `Blacklist` name; the correction and migration-1 rollback fixture
+are under hosted validation for a follow-up release. A populated synthetic
 migration-22 fixture exercises upgrade, conversion, rollback, and non-mutating
 preview. Unknown schemas and provider identities still fail closed with the
-source intact. The one populated-database run proves only the exact v158
-input, not older real databases, PostgreSQL, or other production data. The
+source intact. The one populated real-database rehearsal proves only the exact
+v158 input, not older real databases, PostgreSQL, or other production data. The
 converter stages a native ChaptarrNG database, validates it, retains a
 Bookshelf backup, and promotes only after its row-accounting checks. The
 evidence above does not prove PostgreSQL source conversion or every real-world

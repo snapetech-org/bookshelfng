@@ -3,8 +3,11 @@
 **Final release:** BookshelfNG `0.4.21.71` is published. This guide remains
 for existing installations. To move one to ChaptarrNG, use the
 [BookshelfNG handoff guide](migrate-from-bookshelfng-to-chaptarrng.md) and its
-source-side helper with the standard ChaptarrNG `v0.9.976` release. The
-converter supports the exact BookshelfNG migration-158 SQLite schema. It keeps
+source-side helper with the standard ChaptarrNG `v0.9.977` release. The
+converter supports the exact BookshelfNG migration-158 SQLite schema and
+bundles the source migration chain. Its current table guard rejects versions
+before migration 14; upgrade BookshelfNG to `.71` first or wait for the
+follow-up fix. It keeps
 ambiguous formats in both catalogs without monitoring and writes a private
 review file; a media map is optional. The helper backs up appdata; it does not
 copy external media/download mounts or automatically update a package, image,
