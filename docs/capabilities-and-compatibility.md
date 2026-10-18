@@ -330,6 +330,10 @@ approved multi-track audiobook downloads into a chaptered file. The standard
 Docker image includes FFmpeg. See the dedicated [M4B merging guide](audiobook-m4b-merging.md)
 for track ordering, conversion settings, source-file handling, native install
 configuration, and implementation references.
+The published ChaptarrNG `v0.9.977` does not honor these BookshelfNG settings;
+the source-only [ChaptarrNG PR #129](https://github.com/snapetech-org/chaptarrng/pull/129)
+remains under validation. Keep the merge opt-in unset after migration until a
+tested ChaptarrNG build documents support.
 
 ## Privacy and optional diagnostics
 

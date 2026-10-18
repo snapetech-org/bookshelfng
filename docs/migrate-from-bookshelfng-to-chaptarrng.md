@@ -24,8 +24,13 @@ installation.
 
 PR #127 is still an unpublished candidate for supplemental catalogs,
 per-field metadata preferences, and exact ISBN, ASIN, provider-ID, or
-title/author recovery of unmapped files.
-Current-head hosted validation and operator acceptance remain open.
+title/author recovery of unmapped files. The previous head's four
+provider-dispatch CodeQL findings were reviewed as false positives and
+dismissed with a rationale. Current CodeQL and C# analysis checks pass, while
+cross-platform build validation is pending. PR #129 is a separate unpublished candidate for
+BookshelfNG's opt-in M4B settings; its release-note contract is fixed and
+current-head checks are pending. Neither candidate is in the public `.977`
+image, and operator acceptance remains open.
 
 Update an earlier BookshelfNG release to `0.4.21.71` and let it finish its
 database migration before replacing the application. This brings the source
@@ -41,6 +46,14 @@ module was installed and enabled, preserve its endpoint, token, and enable
 variables in the ChaptarrNG deployment. ChaptarrNG retains that explicit
 choice only when the old plugin marker is present; see its
 [optional diagnostics guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/OPTIONAL_DIAGNOSTICS.md).
+
+The appdata archive does not include the BookshelfNG M4B merge environment
+variables either. The public ChaptarrNG `v0.9.977` image does not honor
+`BOOKSHELF_M4B_MERGE`, `BOOKSHELF_M4B_AAC_BITRATE_KBPS`, or
+`BOOKSHELF_FFMPEG_PATH`. The source-only [ChaptarrNG PR #129](https://github.com/snapetech-org/chaptarrng/pull/129)
+is being validated; keep the merge opt-in unset after switching until the ChaptarrNG
+[migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
+documents a tested build that supports it.
 
 ## What the helper does
 

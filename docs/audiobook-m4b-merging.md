@@ -28,6 +28,22 @@ The merge runs during completed-download processing. Existing library scans
 and manual imports are unchanged. Existing standalone M4B downloads are also
 left alone.
 
+## Moving this setting to ChaptarrNG
+
+The published ChaptarrNG `v0.9.977` does not honor
+`BOOKSHELF_M4B_MERGE`, `BOOKSHELF_M4B_AAC_BITRATE_KBPS`, or
+`BOOKSHELF_FFMPEG_PATH`. ChaptarrNG has native multipart and M4B conversion,
+but that does not make these BookshelfNG settings equivalent. The source-only
+[ChaptarrNG PR #129](https://github.com/snapetech-org/chaptarrng/pull/129) is
+under review and is not available in a published build. Preserve the settings
+in your deployment notes, but keep
+`BOOKSHELF_M4B_MERGE` unset after migration until the ChaptarrNG migration
+guide names a tested build that supports it.
+
+BookshelfNG's updater does not update the application's image or package to
+ChaptarrNG. Use the [migration guide](migrate-from-bookshelfng-to-chaptarrng.md)
+for the current database and installation steps.
+
 ## Implementation references
 
 - [M4B merge, conversion, validation, and cleanup](../src/NzbDrone.Core/MediaFiles/AudiobookM4bMergeService.cs)

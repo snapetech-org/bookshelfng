@@ -15,7 +15,15 @@
 > release and distribution gates; they require `CHAPTARRNG_RELEASE_READY=true`,
 > which is unset. ChaptarrNG `.978` is a source version bump, not a release.
 > PR #127 remains an unpublished candidate for supplemental catalogs and exact
-> ISBN/ASIN/provider-ID and title/author recovery of unmapped files. Upgrade
+> ISBN/ASIN/provider-ID and title/author recovery of unmapped files. Its previous
+> head triggered four provider-dispatch CodeQL findings. Review confirmed they
+> are false positives: provider IDs select allowlisted public metadata APIs and
+> do not grant access. The alerts were dismissed with that rationale, and the
+> current CodeQL and C# analysis checks pass; cross-platform build validation
+> is pending. PR #129 is an unpublished compatibility candidate for
+> BookshelfNG's opt-in M4B merge settings. Its release-note contract is fixed
+> and current-head hosted validation is pending; representative-media
+> acceptance remains open. Upgrade
 > pre-v14 BookshelfNG databases to `.71` before
 > switching. PostgreSQL migration and legacy-channel bridges remain
 > unsupported. Use the standard ChaptarrNG migration commands
@@ -121,6 +129,14 @@ per-field metadata preferences, and exact-identity recovery for unmapped files.
 Its cross-catalog fallback queues a reviewable pending-author import and never
 attaches a file directly. Hosted validation and migration acceptance remain
 open.
+
+ChaptarrNG PR #129 is an unpublished source candidate for the BookshelfNG
+M4B merge settings. It preserves opt-in behavior, track ordering and chapter
+titles, and falls back to importing the original parts when conversion fails.
+The latest hosted run is pending; representative M4B files and end-to-end
+move/copy behavior still need acceptance. The feature is not in the public
+`.977` image, so keep `BOOKSHELF_M4B_MERGE` unset after migration until a
+tested ChaptarrNG build documents it.
 
 BookshelfNG issue #114 is closed and implemented in its tagged `0.4.21.71`
 source. The same new-author path behavior is already in ChaptarrNG
@@ -328,6 +344,11 @@ different bitrate. When the merged file imports successfully in move mode,
 the original tracks are removed; copy mode and downloads that cannot be moved
 retain their source tracks. See the [capabilities and compatibility guide](docs/capabilities-and-compatibility.md#audiobook-m4b-merging)
 for the exact behavior and implementation references.
+
+ChaptarrNG's published `v0.9.977` does not honor these three BookshelfNG
+variables. A source-only compatibility candidate is being validated; this
+does not change the final BookshelfNG build or release. Keep the merge opt-in
+disabled after migration until a tested ChaptarrNG build documents support.
 
 ## Metadata sources
 
