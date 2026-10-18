@@ -31,14 +31,15 @@ settings migration still need acceptance against converted operator data. The
 four provider-dispatch CodeQL findings on an earlier head were reviewed as
 false positives and dismissed with a rationale.
 
-PR #129 remains an unpublished candidate for BookshelfNG's opt-in M4B
-settings. The exact source-code run on `05d78be4` failed the same four importer
-fixtures on Linux, macOS, and Windows. Linux diagnostics on `e46b8974` traced
-them to a missing `IBookService.GetBook` handler in the test proxy. Head
-`f47a7d6c` supplies the existing book-service stub; hosted validation is
-running. Representative media acceptance
-remains open. Neither change is in the public
-`.977` image.
+ChaptarrNG PR #129 merged to `main` as `949ae3dd` with the opt-in M4B settings,
+track order and chapter titles, original-track fallback, and move/copy source
+handling. Its clean head passed the full hosted Linux, macOS, and Windows
+suites, PostgreSQL migration validation, CodeQL, dependency/security, and
+release-note checks. A synthetic two-track smoke against the `.977` image's
+m4b-tool produced AAC at 44.1 kHz stereo and preserved the supplied chapter
+titles and offsets. This checks the external converter and sidecar format, not
+the new importer end to end. Representative-media acceptance remains open,
+and the source change is not in public `.977`.
 
 Update an earlier BookshelfNG release to `0.4.21.71` and let it finish its
 database migration before replacing the application. This brings the source
@@ -58,10 +59,11 @@ choice only when the old plugin marker is present; see its
 The appdata archive does not include the BookshelfNG M4B merge environment
 variables either. The public ChaptarrNG `v0.9.977` image does not honor
 `BOOKSHELF_M4B_MERGE`, `BOOKSHELF_M4B_AAC_BITRATE_KBPS`, or
-`BOOKSHELF_FFMPEG_PATH`. The source-only [ChaptarrNG PR #129](https://github.com/snapetech-org/chaptarrng/pull/129)
-is being validated; keep the merge opt-in unset after switching until the ChaptarrNG
+`BOOKSHELF_FFMPEG_PATH`. PR #129 merged the source compatibility implementation
+to ChaptarrNG `main`, but it is not in a published build. Keep the merge opt-in
+unset after switching until the ChaptarrNG
 [migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
-documents a tested build that supports it.
+documents a release containing it and the remaining acceptance gates close.
 
 ## What the helper does
 

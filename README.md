@@ -16,18 +16,21 @@
 > which is unset. ChaptarrNG `.978` is a source version bump, not a release.
 > ChaptarrNG PR #127 merged to `main` as `b3089a39`, adding supplemental
 > catalogs, per-field source preferences, and exact-identity recovery for
-> unmapped files. Linux, macOS, Windows, PostgreSQL migration, CodeQL,
-> dependency/security, and release-note checks passed on its exact head. The
-> source change is not in public `.977`. Four provider-dispatch CodeQL findings
-> on an earlier head were reviewed as false positives: provider IDs select
-> allowlisted public metadata APIs and do not grant access. PR #129 is an
-> unpublished compatibility candidate for BookshelfNG's opt-in M4B merge
-> settings. The exact source-code run on `05d78be4` failed the same four
-> importer fixtures on Linux, macOS, and Windows. Linux diagnostics on
-> `e46b8974` traced them to a missing `IBookService.GetBook` handler in the
-> test proxy. Head `f47a7d6c` supplies the existing book-service stub; its
-> hosted validation is running.
-> Representative-media acceptance remains open. Upgrade
+> unmapped files. Its hosted platform, migration, security, and release-note
+> checks passed; the source change is not in public `.977`. Four
+> provider-dispatch CodeQL findings on an earlier head were reviewed as false
+> positives: provider IDs select allowlisted public metadata APIs and do not
+> grant access. ChaptarrNG PR #129 merged to `main` as `949ae3dd` with
+> BookshelfNG's opt-in M4B merge settings, tagged track ordering and chapter
+> titles, failed-conversion fallback, and successful move-mode source cleanup.
+> Its clean head passed hosted Linux, macOS, Windows, PostgreSQL migration,
+> CodeQL, dependency/security, and release-note checks. A synthetic two-track
+> smoke in the `.977` toolchain produced AAC at 44.1 kHz stereo with the two
+> supplied chapter titles and offsets. That checks m4b-tool and its chapter
+> sidecar, not the new importer end to end or representative library media.
+> M4B support is still absent from the public `.977` image; keep the merge
+> setting unset after migration until a release with this support passes the
+> remaining acceptance gates. Upgrade
 > pre-v14 BookshelfNG databases to `.71` before
 > switching. PostgreSQL migration and legacy-channel bridges remain
 > unsupported. Use the standard ChaptarrNG migration commands
@@ -134,17 +137,18 @@ Its cross-catalog fallback queues a reviewable pending-author import and never
 attaches a file directly. Exact-head hosted validation passed; provider/settings
 migration and behavior on converted operator data remain open.
 
-ChaptarrNG PR #129 is an unpublished source candidate for the BookshelfNG
-M4B merge settings. It preserves opt-in behavior, track ordering and chapter
-titles, and falls back to importing the original parts when conversion fails.
-The exact source-code run on `05d78be4` failed the same four importer fixtures
-on Linux, macOS, and Windows. Linux diagnostics on `e46b8974` traced them to a
-missing `IBookService.GetBook` handler in the test proxy. Head `f47a7d6c`
-supplies the existing book-service stub; its hosted validation is running.
-Representative M4B files and
-end-to-end move/copy behavior still need acceptance. The feature is not in the
-public `.977` image, so keep `BOOKSHELF_M4B_MERGE` unset after migration until
-a tested ChaptarrNG build documents it.
+ChaptarrNG PR #129 merged to `main` as `949ae3dd`. The source now includes the
+opt-in BookshelfNG M4B merge settings, tagged track ordering and chapter
+titles, original-track fallback, and source cleanup only after a successful
+move-mode import; copy mode retains the originals. The clean head passed the
+full hosted Linux, macOS, and Windows suites, PostgreSQL migration validation,
+CodeQL, dependency/security, and release-note checks. A synthetic two-track
+smoke using the `.977` image's m4b-tool preserved the supplied chapter titles
+and offsets and produced AAC at 44.1 kHz stereo, about 128 kbps. It validates
+the external tool and sidecar format, not the importer end to end or
+representative real-world media. The feature is not in public `.977`; keep
+`BOOKSHELF_M4B_MERGE` unset after migration until the remaining acceptance
+gates close and a release containing it is available.
 
 BookshelfNG issue #114 is closed and implemented in its tagged `0.4.21.71`
 source. The same new-author path behavior is already in ChaptarrNG

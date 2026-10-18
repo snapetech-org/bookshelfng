@@ -330,13 +330,15 @@ approved multi-track audiobook downloads into a chaptered file. The standard
 Docker image includes FFmpeg. See the dedicated [M4B merging guide](audiobook-m4b-merging.md)
 for track ordering, conversion settings, source-file handling, native install
 configuration, and implementation references.
-The published ChaptarrNG `v0.9.977` does not honor these BookshelfNG settings;
-the source-only [ChaptarrNG PR #129](https://github.com/snapetech-org/chaptarrng/pull/129)
-has four importer assertions failing on all three hosted platforms. Linux
-diagnostics on `e46b8974` traced them to a missing `IBookService.GetBook`
-handler in the test proxy. Head `f47a7d6c` supplies the existing book-service
-stub; hosted validation is running. Keep the merge opt-in unset after migration
-until a tested ChaptarrNG build documents support.
+The published ChaptarrNG `v0.9.977` does not honor these BookshelfNG settings.
+ChaptarrNG PR #129 merged to `main` as `949ae3dd` with opt-in merge
+compatibility. Its clean head passed the hosted Linux, macOS, and Windows
+suites, PostgreSQL migration validation, CodeQL, dependency/security, and
+release-note checks. A synthetic two-track smoke in the `.977` image verified
+the external converter and chapter sidecar, but not the new importer end to
+end or representative-media behavior. Keep the merge opt-in unset after
+migration until a release with this support is available and the remaining
+acceptance gates close.
 
 ## Privacy and optional diagnostics
 
