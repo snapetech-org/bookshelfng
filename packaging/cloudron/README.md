@@ -2,9 +2,11 @@
 
 This is a legacy BookshelfNG package. It does not switch an installed Cloudron
 app to ChaptarrNG. The package identity, persistent volumes, and rollback need
-a separate tested migration. ChaptarrNG `v0.9.972` includes a converter for
-the supported migration-158 SQLite schema, but this package does not change
-the app identity or image. New deployments should use ChaptarrNG. See the
+a separate tested migration. ChaptarrNG `v0.9.977` is published with the
+migration-158 SQLite converter; its pre-migration-14 table-guard fix is under
+hosted validation. The published Cloudron manifest still pins the BookshelfNG
+`.37` image, and no Cloudron update to ChaptarrNG has been tested. New
+deployments should use ChaptarrNG. See the
 [migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 and [channel status](https://github.com/snapetech-org/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md).
 
