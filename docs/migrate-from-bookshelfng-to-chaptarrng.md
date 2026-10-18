@@ -11,7 +11,25 @@ unset. ChaptarrNG `.978` is a source version bump, not a release.
 
 BookshelfNG releases are frozen too. PR #148 merged its fail-closed publishing gate to `main` as `c6b4642`; its tagged image/release workflows, manual distribution retries, and legacy bridge require `BOOKSHELFNG_RELEASE_READY=true`, which remains unset. Neither application's release gate enables the other's publishing paths.
 
-The published converter accepts the exact BookshelfNG migration-158 SQLite schema and rejects versions before migration 14; upgrade older installs to BookshelfNG `.71` first. PR #126 merged a version-aware guard and migration-1 rollback fixture into ChaptarrNG `main`, but it is not in `.977`. Run [39132760214](https://github.com/snapetech-org/chaptarrng/actions/runs/39132760214) on `9c051d3d` reported NUnit source line 162 in `should_preview_convert_and_restore_a_current_bookshelf_postgres_schema`. The fixture seeds `BookImportMinimumMatchPercent` with that exact casing but the check queried lowercase, identifying a fixture expectation error. ChaptarrNG commit [b5bd9527](https://github.com/snapetech-org/chaptarrng/commit/b5bd9527) corrects the three retained-config checks. Exact-head run [39135608892](https://github.com/snapetech-org/chaptarrng/actions/runs/39135608892) on commit [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed. The candidate remains unsupported for operator data.
+The published converter accepts the exact BookshelfNG migration-158 SQLite
+schema and rejects versions before migration 14; upgrade older installs to
+BookshelfNG .71 first. PR #126 merged a version-aware guard and migration-1
+rollback fixture into ChaptarrNG main, but they are not in .977. Current
+candidate PR #131 is draft; its migration code snapshot
+[0d31609b](https://github.com/snapetech-org/chaptarrng/commit/0d31609b) passed
+Linux, macOS, and Windows builds, PostgreSQL migration, and release-note
+checks. Analysis, dependency, and security checks passed. The candidate adds
+older SQLite, one-schema
+PostgreSQL, native Hardcover, and BookOrbit support, but remains unsupported
+for operator data.
+
+A local AUR BookshelfNG-identity .977 package candidate passed a network-disabled
+pacman upgrade from the published .71 package and downgrade back, preserving
+an environment override and synthetic data canary. Systemd was not running,
+and package-level database conversion/restore remain untested. The candidate
+is unpublished; check the [package status](https://github.com/snapetech-org/chaptarrng/blob/main/packaging/README.md)
+for channel acceptance.
+
 
 ChaptarrNG PR #127 merged to `main` as `b3089a39`, adding supplemental
 catalogs, per-field metadata preferences, and exact ISBN, ASIN, provider-ID, or
