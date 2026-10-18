@@ -30,7 +30,14 @@
 > sidecar, not the new importer end to end or representative library media.
 > M4B support is still absent from the public `.977` image; keep the merge
 > setting unset after migration until a release with this support passes the
-> remaining acceptance gates. Upgrade
+> remaining acceptance gates. ChaptarrNG PR #130 merged to `main` as
+> `9f1ae60b` and maps the legacy `BookImportMinimumMatchPercent` to the closest
+> `BookMatchingStrictness` mode when no explicit mode exists: 50–66 is
+> Aggressive, 67–82 Balanced, and 83–99 Strict. Explicit Chaptarr settings
+> take precedence, invalid legacy values fail closed, and the source row is
+> preserved. This is a lossy policy approximation between different matching
+> algorithms; acceptance on converted operator data remains open. The change
+> is not in public `.977`. Upgrade
 > pre-v14 BookshelfNG databases to `.71` before
 > switching. PostgreSQL migration and legacy-channel bridges remain
 > unsupported. Use the standard ChaptarrNG migration commands
@@ -149,6 +156,15 @@ the external tool and sidecar format, not the importer end to end or
 representative real-world media. The feature is not in public `.977`; keep
 `BOOKSHELF_M4B_MERGE` unset after migration until the remaining acceptance
 gates close and a release containing it is available.
+
+ChaptarrNG PR #130 merged to `main` as `9f1ae60b`. When no explicit
+`BookMatchingStrictness` exists, it maps BookshelfNG's numeric
+`BookImportMinimumMatchPercent` to the closest mode: 50–66 to Aggressive,
+67–82 to Balanced, and 83–99 to Strict. Explicit Chaptarr settings take
+precedence; invalid legacy values fail closed; and the raw BookshelfNG row is
+retained while the report calls out the lossy approximation. The matching
+algorithms differ, so converted-library behavior still needs acceptance. This
+source change is not in public `.977`.
 
 BookshelfNG issue #114 is closed and implemented in its tagged `0.4.21.71`
 source. The same new-author path behavior is already in ChaptarrNG

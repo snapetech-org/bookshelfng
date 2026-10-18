@@ -77,13 +77,23 @@ end or representative library media. The source change is not in public
 real-data migration/rollback, settings parity, full feature parity, or
 installer/channel acceptance.
 
+ChaptarrNG PR #130 merged to `main` as `9f1ae60b`; hosted Linux, macOS,
+Windows, PostgreSQL migration, CodeQL, dependency/security, and release-note
+checks passed. When no explicit `BookMatchingStrictness` is configured, the
+converter maps legacy `BookImportMinimumMatchPercent` values 50–66 to
+Aggressive, 67–82 to Balanced, and 83–99 to Strict; an explicit mode takes
+precedence, invalid legacy values fail closed, and the original source row is
+preserved. The report identifies this as a lossy approximation between
+different algorithms. Converted-data acceptance remains open, and the change
+is not in public `.977`.
+
 The tracked path-level inventory was regenerated against BookshelfNG `main`
-`e4925778` and ChaptarrNG `main` `949ae3dd`. It covers 533 reachable post-fork
-commits (524 absent from the pinned Bookshelf lineage ref) and 1,091
+`abc4e4fa` and ChaptarrNG `main` `9f1ae60b`. It covers 540 reachable post-fork
+commits (531 absent from the pinned Bookshelf lineage ref) and 1,091
 net-changed paths: 437 have no same-name mapped target, 493 differ and need
 review, 155 are identical, four are text-equivalent after branding/newline
 normalization, and two were deleted in BookshelfNG. This target includes
-ChaptarrNG PRs #127 and #129, now merged. The source changes remain unpublished
+ChaptarrNG PRs #127, #129, and #130, now merged. The source changes remain unpublished
 because the retirement release gate is closed. These counts identify a review queue;
 path or text similarity does not prove that behavior is equivalent or safely
 retired.
@@ -258,11 +268,11 @@ behavior, feature parity, or any published package-channel bridge.
   schema baseline used for the read-only lineage tests.
 - The generated [inventory](chaptarr-consolidation-inventory.json) records
   every reachable commit after the parent of the first fork commit
-  `bde894431`, including maintenance and merged work. At current Bookshelf
-  main `5d696fb0` and ChaptarrNG PR #100 `561bf395`, it contains 426 commits
-  (417 absent from the pinned Bookshelf lineage ref `3ac41f7`) and 1,045
-  net-changed paths: 422 without a mapped Chaptarr path, 473 different mapped
-  files requiring review, 144 identical files, four text-equivalent files
+  `bde894431`, including maintenance and merged work. At BookshelfNG main
+  `abc4e4fa` and ChaptarrNG main `9f1ae60b`, it contains 540 commits (531
+  absent from the pinned Bookshelf lineage ref `3ac41f7`) and 1,091
+  net-changed paths: 437 without a mapped Chaptarr path, 493 different mapped
+  files requiring review, 155 identical files, four text-equivalent files
   after branding/newline normalization, and two deleted source paths. The
   inventory compares committed trees; current report edits are not included.
   These are path-level review states, not feature-parity counts.
@@ -272,8 +282,8 @@ Regenerate the tracked-source inventory with:
 ```sh
 python3 scripts/audit-chaptarr-consolidation.py \
   --chaptarr /path/to/chaptarrng-candidate \
-  --source 5d696fb0b3cba552fa12b912a825954e2473e0e6 \
-  --target 561bf3954d0bb2bcc3beb546accdec76f26718e4 \
+  --source abc4e4fa8a86e1affc3f44ce9bdb24c869d7da07 \
+  --target 9f1ae60baf759bc361073fd0aee27e17a4c7f60f \
   --upstream refs/remotes/audit-bookshelf/develop \
   --output docs/maintainers/chaptarr-consolidation-inventory.json
 ```
@@ -497,7 +507,7 @@ before release.
 | Rich book lookup; SeerrNG capabilities; paged books; format availability | Capability resource and Readarr facade exist | **Open blocker — integration parity unproven** | Test unchanged SeerrNG settings, IDs, keys, requests, pending work, and availability links against the exact candidate. |
 | Native Hardcover, pacing, retry headers, author reuse, and refresh-age policy | Native Hardcover and V5 metadata implementations exist in a different provider pipeline | **Open blocker — semantic parity unproven** | Compare cache lifetime, key isolation, batching, 429 handling, refresh rules, and identity routing; retain configured behavior. |
 | Supplemental catalogs: Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and Apify; per-field preferences | ChaptarrNG main after PR #127 (`b3089a39`) includes these adapters, selectable sources, qualified IDs, and per-field choices; hosted platform and security checks passed. Not in public `.977`. | **Source port merged; operator/settings acceptance open** | Preserve source selection/fallback, qualified IDs, field choices, provider-specific request constraints, and saved settings on converted operator data. |
-| Cross-catalog unmapped recovery; normalized title and identifier matching | ChaptarrNG main after PR #127 uses exact ISBN/ASIN/provider IDs or normalized title and author, checks media type and stable identities, and queues the existing pending-author import without attaching files. Hosted checks passed. | **Source port merged; behavioral/data acceptance open** | Verify no-false-match, ambiguity, converted provider IDs, `BookImportMinimumMatchPercent` behavior, and no-delete constraints on representative libraries. |
+| Cross-catalog unmapped recovery; normalized title and identifier matching | ChaptarrNG main after PR #127 uses exact ISBN/ASIN/provider IDs or normalized title and author, checks media type and stable identities, and queues the existing pending-author import without attaching files. PR #130 adds a lossy mapping from 50–66 to Aggressive, 67–82 to Balanced, and 83–99 to Strict when no explicit mode exists; invalid legacy values fail closed. Hosted checks passed. The source is not in public `.977`. | **Source port merged; behavioral/data acceptance open** | Verify no-false-match, ambiguity, converted provider IDs, the threshold approximation, and no-delete constraints on representative libraries. |
 | Multiple ebook/audio formats; per-format folders and profile overrides | Native media-specific models, roots, and profiles exist | **Open blocker — conversion and isolation unproven** | Convert all rows and references; verify fallback rules, sibling-format isolation, monitoring, imports, upgrades, scans, and renames. |
 | Weighted edition terms, preferred series, narrator evidence, and publisher/dramatized cases | The consolidation branch adds profile-based weighted edition scoring and preferred-series selection for filenames, ebook tags, Calibre, and AudioBookShelf metadata; Chaptarr's stronger match evidence stays ahead of the preference signal | **Partial candidate port; retirement blocker remains open** | Preserve weights, series choices, missing-evidence neutrality, tie behavior, and manual-review boundaries; verify the full Bookshelf edge-case set after profile/database conversion. |
 | Optional M4B merge, chapters, part order, and completion state | ChaptarrNG PR #129 merged to `main` as `949ae3dd`; its clean head passed hosted Linux, macOS, Windows, PostgreSQL migration, CodeQL, dependency/security, and release-note checks. It ports the opt-in setting, tagged track order and chapter titles, original-track fallback, and move/copy source handling. A synthetic two-track smoke preserved supplied chapter titles and offsets using the `.977` toolchain, but did not exercise the importer end to end or representative media. | **Source port merged; open blocker** | Validate chapter offsets, embedded source chapters, tags, conversion failures, source retention, and restart/resume behavior with representative media and move/copy deployments. |
