@@ -9,6 +9,11 @@ ChaptarrNG migration path documented in
 
 ## Apply the contract to the handoff
 
+**Current decision: read-only preview only.** Until data, parity, rollback,
+and installation-channel acceptance close, do not apply conversion, start
+ChaptarrNG against BookshelfNG appdata, or discard the source backup. Normal
+ChaptarrNG startup can convert a supported source database automatically.
+
 Keep the existing helper and migration workflow as the entry point. It should
 make the source version, supported migration path, backup location, preview
 result, and rollback option clear before applying changes. Preserve the
@@ -18,8 +23,9 @@ databases, and unpublished candidate builds.
 Use the migration preview to show what is recognized and what needs an
 operator decision. Do not guess formats for ambiguous books, merge independent
 libraries, copy media files, or rewrite external provider settings. Require
-explicit review before applying the conversion, then report verification
-results and the location of retained source/converted backups.
+explicit review before applying the conversion after the acceptance gates
+close, then report verification results and the location of retained
+source/converted backups.
 
 ## Contract
 
@@ -45,8 +51,8 @@ tasks. They do not authorize new setup UI or another migration tool.
 
 - [x] **B1 — P1: Keep the migration guide's go/no-go decision current.**
   Maintain the opening status in
-  \`docs/migrate-from-bookshelfng-to-chaptarrng.md\` alongside
-  \`docs/maintainers/chaptarr-consolidation.md\`. State the exact public
+  `docs/migrate-from-bookshelfng-to-chaptarrng.md` alongside
+  `docs/maintainers/chaptarr-consolidation.md`. State the exact public
   BookshelfNG source version, public ChaptarrNG converter version, supported
   database/schema, release-gate state, and whether the next action is “stop”
   or “preview.” Keep candidate-only support clearly marked as unavailable.

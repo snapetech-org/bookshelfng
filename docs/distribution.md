@@ -13,6 +13,11 @@ ChaptarrNG legacy bridge fail closed unless the BookshelfNG repository variable
 migration, feature parity, rollback, and every supported channel pass
 acceptance; a normal CI or manual build does not enable publishing.
 
+**Migration decision: keep BookshelfNG in service; preview only.** Do not
+apply the converter, install a bridge package, or start ChaptarrNG against
+BookshelfNG appdata. Normal ChaptarrNG startup converts supported source data
+automatically, and the public `.977` converter is not approved for cutover.
+
 BookshelfNG `0.4.21.71` is the published final source release. Its
 source-side helper takes a full appdata archive, then invokes the standard
 ChaptarrNG preview, apply, and rollback commands. ChaptarrNG `v0.9.977` remains
@@ -28,7 +33,7 @@ zero-byte `readarr.db` beside a populated `audioarr.db`; ChaptarrNG `.977`
 resolves the non-empty database independently. See the
 [migration guide](migrate-from-bookshelfng-to-chaptarrng.md) for the limits of
 each version.
-Exact-head run [39152023939](https://github.com/snapetech-org/chaptarrng/actions/runs/39152023939) on `ea6fcd46` passed Linux, macOS, and Windows builds and test suites, PostgreSQL migrations, release-note validation, native-runner receipt reconciliation, CodeQL, dependency review, and security checks. Windows reported 4,349 tests passed and none failed. These are candidate CI checks only; operator-data acceptance remains open. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). The candidate remains unsupported for operator data.
+Earlier exact-head run [39153630005](https://github.com/snapetech-org/chaptarrng/actions/runs/39153630005) on `cee4dfa0` passed Linux, macOS, and Windows builds and test suites, PostgreSQL migrations, release-note validation, native-runner receipt reconciliation, CodeQL, dependency review, and security checks. Windows reported 4,349 tests passed and none failed. These are candidate CI checks only; operator-data acceptance remains open. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). The candidate remains unsupported for operator data.
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be
@@ -58,7 +63,7 @@ for channel requirements and open acceptance gates.
 | --- | --- | --- |
 | GitHub Releases | Self-contained Windows, macOS, Linux, and FreeBSD archives; Windows x64 setup installer | Every asset has a SHA-256 file. Linux x86 and FreeBSD use the pinned .NET 10 runtime pack process. |
 | Debian / Ubuntu | `.deb` package | Installs a systemd service and `/var/lib/bookshelfng` data directory. |
-| Fedora / RPM | `.rpm` and COPR repository | Service package; COPR repository is `slskdn/bookshelfng`, built for Fedora 44 and Rawhide. |
+| Fedora / RPM | `.rpm` asset in the GitHub release; COPR repository `slskdn/bookshelfng` | The final `.71` release includes a service RPM. Current COPR metadata has no package entries for Fedora 43, 44, 45, or Rawhide x86_64; the old-identity bridge has not been published. |
 | Arch Linux | `bookshelfng-bin` on AUR | Binary package with systemd service files. |
 | Ubuntu PPA | Signed source package | Requires the Launchpad PPA and signing key configured in repository Actions secrets. |
 | Flatpak | `.flatpak` bundle on GitHub Releases | Uses Freedesktop Platform 26.08. This bundle is not a Flathub publication. |

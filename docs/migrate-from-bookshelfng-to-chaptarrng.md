@@ -20,10 +20,17 @@ acceptance gates before stopping or replacing BookshelfNG.
 
 BookshelfNG releases are frozen too. PR #148 merged its fail-closed publishing gate to `main` as `c6b4642`; its tagged image/release workflows, manual distribution retries, and legacy bridge require `BOOKSHELFNG_RELEASE_READY=true`, which remains unset. Neither application's release gate enables the other's publishing paths.
 
+For BookshelfNG `0.4.21.71` with a SQLite migration-158 database, use the
+public ChaptarrNG `.977` converter for a read-only preview. If BookshelfNG
+is older, finish upgrading it to `0.4.21.71` first. PostgreSQL source
+databases and unpublished converter candidates are outside the published
+path. A passing preview is not retirement acceptance or permission to
+discard the source backup.
+
 The published converter accepts the exact BookshelfNG migration-158 SQLite
 schema and rejects versions before migration 14; upgrade older installs to
 BookshelfNG .71 first. PR #126 merged a version-aware guard and migration-1
-rollback fixture into ChaptarrNG main, but they are not in .977. Current migration candidate [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) remains draft. Exact-head run [39152023939](https://github.com/snapetech-org/chaptarrng/actions/runs/39152023939) on `ea6fcd46` passed Linux, macOS, and Windows builds and test suites, PostgreSQL migrations, release-note validation, native-runner receipt reconciliation, CodeQL, dependency review, and security checks. Windows reported 4,349 tests passed and none failed. These are candidate CI checks only; operator-data acceptance remains open. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). It adds older SQLite, one-schema PostgreSQL, native Hardcover, and BookOrbit support, but remains unsupported for operator data.
+rollback fixture into ChaptarrNG main, but they are not in .977. Current migration candidate [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) remains draft. Earlier exact-head run [39153630005](https://github.com/snapetech-org/chaptarrng/actions/runs/39153630005) on `cee4dfa0` passed Linux, macOS, and Windows builds and test suites, PostgreSQL migrations, release-note validation, native-runner receipt reconciliation, CodeQL, dependency review, and security checks. Windows reported 4,349 tests passed and none failed. These are candidate CI checks only; operator-data acceptance remains open. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). It adds older SQLite, one-schema PostgreSQL, native Hardcover, and BookOrbit support, but remains unsupported for operator data.
 
 A local AUR BookshelfNG-identity .977 package candidate passed an isolated,
 network-disabled pacman upgrade from the published .71 package and downgrade
@@ -265,9 +272,14 @@ entries. Update the map using the new review file and run preview again. Do
 not guess from a filename or apply a technical test map as a real library
 classification.
 
-## Apply the conversion
+## Apply after acceptance gates close
 
-After preview passes, keep the source service stopped and run:
+> **Do not run this apply step during the current release freeze.** Apply and
+> normal ChaptarrNG startup against BookshelfNG appdata are not approved until
+> migration, parity, rollback, and installation-channel acceptance close.
+
+After the gates close and conversion is approved, keep the source service
+stopped and run:
 
 ```sh
 ./bookshelfng-to-chaptarrng.sh apply \
@@ -284,7 +296,7 @@ the independent appdata archive until the migrated installation has been
 checked. Do not run BookshelfNG and ChaptarrNG against the same data directory
 at the same time.
 
-Update the container or service to the standard ChaptarrNG image, preserving
+After approved conversion, update the container or service to the standard ChaptarrNG image, preserving
 the old appdata, media, download, and port mappings. ChaptarrNG's fresh-install
 default port is `8789`; migrated `config.xml` retains the old application port,
 so preserve the matching host/container mapping. The normal ChaptarrNG startup
@@ -347,6 +359,13 @@ not assume an existing BookshelfNG package or image will redirect itself.
 Keep the old installer or image reference available until the migration has
 been verified and rollback is no longer needed.
 
+A local Fedora 44 RPM transaction upgraded the published BookshelfNG `.71`
+package to a `.977` bridge candidate and downgraded back while preserving
+config/data canaries. It used `rpm --nodeps` and a mocked `systemctl`; it did
+not run a real service or migrate a database. The current legacy COPR repo has
+no package entries for Fedora 43, 44, 45, or Rawhide x86_64, so live DNF/COPR
+acceptance remains open. See the [distribution status](distribution.md).
+
 The published `.977` converter accepts the exact BookshelfNG migration-158
 SQLite schema and bundles the SQLite upgrade chain. Its table guard rejects
 versions before migration 14. PR #126 merged a version-aware fix and synthetic
@@ -356,7 +375,7 @@ Windows, and PostgreSQL migration checks passed, but the source fix is not in
 Populated synthetic migration-22 evidence covers conversion and rollback,
 source-unchanged preview, and refusal of a future schema. This does not
 establish older-schema behavior on real data or PostgreSQL source conversion.
-Earlier synthetic PostgreSQL snapshot [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed four migration cases plus Linux, macOS, and Windows validation. Exact-head run [39152023939](https://github.com/snapetech-org/chaptarrng/actions/runs/39152023939) on `ea6fcd46` passed Linux, macOS, and Windows builds and test suites, PostgreSQL migrations, release-note validation, native-runner receipt reconciliation, CodeQL, dependency review, and security checks. Windows reported 4,349 tests passed and none failed. These are candidate CI checks only; operator-data acceptance remains open. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). PostgreSQL conversion remains unsupported for operator data.
+Earlier synthetic PostgreSQL snapshot [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed four migration cases plus Linux, macOS, and Windows validation. Earlier exact-head run [39153630005](https://github.com/snapetech-org/chaptarrng/actions/runs/39153630005) on `cee4dfa0` passed Linux, macOS, and Windows builds and test suites, PostgreSQL migrations, release-note validation, native-runner receipt reconciliation, CodeQL, dependency review, and security checks. Windows reported 4,349 tests passed and none failed. These are candidate CI checks only; operator-data acceptance remains open. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). PostgreSQL conversion remains unsupported for operator data.
 Ambiguous formats are retained in both catalogs without monitoring until the
 operator classifies them; the converter does not infer their true type. Full
 provider and environment parity, every installation channel, and rollback on
