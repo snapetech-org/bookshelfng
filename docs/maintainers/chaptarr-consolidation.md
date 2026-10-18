@@ -111,8 +111,8 @@ different algorithms. Converted-data acceptance remains open, and the change
 is not in public `.977`.
 
 The tracked path-level inventory snapshot was refreshed against BookshelfNG
-`03afe582` and ChaptarrNG `0f1fea44`. It covers 563 reachable post-fork
-commits (554 absent from the pinned Bookshelf lineage ref) and 1,094
+`276bbd83` and ChaptarrNG `0f1fea44`. It covers 564 reachable post-fork
+commits (555 absent from the pinned Bookshelf lineage ref) and 1,094
 net-changed paths: 440 have no same-name mapped target, 493 differ and need
 review, 155 are identical, four are text-equivalent after branding/newline
 normalization, and two were deleted in BookshelfNG. This target includes

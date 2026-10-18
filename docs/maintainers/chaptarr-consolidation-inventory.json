@@ -6,13 +6,13 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "03afe58298931712931f78090542baf31555b382",
+  "sourceCommit": "276bbd83b49880d33c8bb85d402d16bf077f1610",
   "targetCommit": "0f1fea44ebc4de0d00adbb734569ecb5acdd15de",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 563,
-    "commitsNotInUpstreamHistory": 554,
+    "commits": 564,
+    "commitsNotInUpstreamHistory": 555,
     "netChangedPaths": 1094,
     "fileStates": {
       "no-mapped-target-file": 440,
@@ -10737,6 +10737,19 @@
         "docs/migrate-from-bookshelfng-to-chaptarrng.md",
         "docs/standalone-install.md"
       ]
+    },
+    {
+      "commit": "276bbd83b49880d33c8bb85d402d16bf077f1610",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): refresh parity snapshot for current Chaptarr main",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/setup-experience-contract.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
     }
   ],
   "files": [
@@ -11770,7 +11783,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e2e8a0f3089a235c3e7201fdce6e58432f2a7416"
+        "oid": "0d9f08fefcdab2d12054d0ec4a42995fecfd116b"
       },
       "targetBlob": null
     },
@@ -11790,7 +11803,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "da41a207f19e6502de35c4447fb54c2f8529c72e"
+        "oid": "fb8dd67c8c858c45f47c0691dacfe55e78f08bed"
       },
       "targetBlob": null
     },
@@ -11800,7 +11813,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "7149c34a4a1c448e1928d17ca00ecf86e00f6846"
+        "oid": "19eae9dd56527edc7d7a16e61bb65e1048d827e5"
       },
       "targetBlob": null
     },
@@ -11830,7 +11843,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "36c9e68951af4a9670090b9e264cd69f994f526a"
+        "oid": "e88b5d37cd57e32e97f694437d089edf3252980c"
       },
       "targetBlob": null
     },
@@ -11850,7 +11863,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "35dd353e8eb87c09e9ec6f4a064b2ea68ea1b866"
+        "oid": "57038c42286bc13178d1e483cb3c3b01656f31a5"
       },
       "targetBlob": null
     },
