@@ -18,7 +18,9 @@ optional. One populated Linux/amd64 rehearsal retained all 39 source tables
 and rows, but its 81 test-map choices were not reviewed as correct
 classifications. Older schemas, PostgreSQL source conversion, full
 provider/settings behavior, and rollback on every real deployment remain
-unverified.
+unverified. An isolated 2026-10-18 Docker image-switch and rollback smoke
+passed using the published `.71` and `.977` images with an empty database;
+it does not validate the Unraid Community Apps update flow.
 
 The helper does not copy media or download folders outside appdata or update
 an installation channel. Release-channel bridging remains disabled by

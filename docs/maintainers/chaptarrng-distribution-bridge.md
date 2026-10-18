@@ -16,8 +16,10 @@ x86_64. Chocolatey `.977` passed package-transition smoke validation, but its
 push returned HTTP 403 and the live feed has no `chaptarrng` entry. The
 BookshelfNG AUR identity remains on its own `0.4.21.71-1` payload; the public
 Chocolatey identity remains at `0.4.21.70`. Feature and channel acceptance
-gates are still open. Use this channel matrix as a gate inventory,
-not a report of completed redirects.
+gates are still open. An isolated 2026-10-18 Docker image-switch and rollback
+smoke passed on an empty migration-158 database; the old image started again
+on port 8787. The Unraid Community Apps template update remains untested. Use
+this channel matrix as a gate inventory, not a report of completed redirects.
 
 The bridge workflow is a candidate for the BookshelfNG repository. It is
 disabled unless the `CHAPTARRNG_MIGRATION_BRIDGE_ENABLED` repository variable

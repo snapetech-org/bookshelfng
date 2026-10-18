@@ -161,7 +161,12 @@ are under hosted validation for a follow-up release. A populated synthetic
 migration-22 fixture exercises upgrade, conversion, rollback, and non-mutating
 preview. Unknown schemas and provider identities still fail closed with the
 source intact. The one populated real-database rehearsal proves only the exact
-v158 input, not older real databases, PostgreSQL, or other production data. The
+v158 input, not older real databases, PostgreSQL, or other production data. A
+separate 2026-10-18 Docker image-switch smoke used the published BookshelfNG `.71`
+image to create an empty v158 database, converted it on ChaptarrNG `.977` startup,
+and restored it with the rollback command; the old image then started on port
+8787. The original database had 39 tables and passed SQLite integrity checks. This
+does not validate populated operator data or the Community Apps update flow. The
 converter stages a native ChaptarrNG database, validates it, retains a
 Bookshelf backup, and promotes only after its row-accounting checks. The
 evidence above does not prove PostgreSQL source conversion or every real-world

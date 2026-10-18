@@ -176,6 +176,18 @@ Before rollback, preview the exact backup you intend to restore. Rollback
 preserves the current ChaptarrNG database, including changes since conversion,
 as a separate backup. Start only BookshelfNG after a successful restore.
 
+## Published image handoff smoke test (2026-10-18)
+
+An isolated Linux/amd64 Docker rehearsal started the published BookshelfNG `.71`
+image with `/config`, `/data`, and `/download` mounts and generated an empty
+migration-158 database. After stopping it, ChaptarrNG `.977` used the same mounts
+and automatically converted the database to migration 120 while retaining the
+original source backup. Both databases passed SQLite integrity checks. Rollback
+preview and apply restored migration 158, and the BookshelfNG image started
+again on port 8787. A post-conversion setting remained in the retained ChaptarrNG
+backup. This is an empty-database image-switch rehearsal, not an Unraid Community
+Apps update test or evidence from populated operator data.
+
 ## Install-channel notes and support limits
 
 The helper handles appdata; it does not change how an installation receives
