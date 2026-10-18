@@ -101,7 +101,12 @@ source fix is not available in `.977`. ChaptarrNG releases are frozen until
 feature parity, representative data migration and rollback, and channel
 acceptance are complete. Populated synthetic migration-22 tests cover
 conversion and rollback, but older-schema behavior on real data is not
-established. PostgreSQL source conversion remains unsupported. If the source
+established. A separate private populated migration-158 SQLite snapshot also
+passed preview, apply, and rollback with the public .977 Linux image. Preview
+left the source unchanged, and both backups passed integrity and foreign-key
+checks. Ambiguous media choices remain for human review, and this does not
+establish older-schema, PostgreSQL, feature-parity, or channel acceptance.
+PostgreSQL source conversion remains unsupported. If the source
 does not identify a format, ChaptarrNG preserves the work in both catalogs
 without monitoring and writes a private review file. This keeps conversion
 moving without guessing which format to search.

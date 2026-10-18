@@ -47,7 +47,13 @@ artifact verification passed on Linux, macOS, and Windows. Migrated
 opt-in/environment handling remains to be exercised on an installed system.
 One populated Linux/amd64 run retained all 39 source tables and rows; 81 books
 needed media classification, and the test-map choices were not reviewed as
-correct. The current converter keeps unresolved records in both catalogs,
+correct. A separate private populated migration-158 SQLite snapshot passed
+preview, apply, and rollback on the public .977 Linux image on 2026-10-18. The
+preview source stayed unchanged; apply and rollback retained backups matching
+their logical database contents, and SQLite integrity and foreign-key checks
+passed. This validates one database round trip, not human classification of
+the 81 ambiguous records or installer and client continuity. The current
+converter keeps unresolved records in both catalogs,
 unmonitored, and writes a review file, but it does not classify them. The
 final-release decision and helper do not close the feature, data, or
 installation-channel acceptance gates. PostgreSQL, complete
