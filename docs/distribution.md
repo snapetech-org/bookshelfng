@@ -15,6 +15,11 @@ rejects versions before migration 14 until the chain renames `Blacklist` to
 `Blocklist`. PR #126 merged a version-aware fix and migration-1 rollback
 fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
 checks passed, but that fix is not in `.977`.
+The current retirement-branch PostgreSQL candidate supports one
+migration-158 source schema. Its hosted run on `0211ed91` failed during the
+staged-target version preflight; the fix is on `ef519cd7` and its exact hosted
+rerun is queued. PostgreSQL remains unsupported for installations until the
+candidate and operator-data acceptance gates pass.
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be

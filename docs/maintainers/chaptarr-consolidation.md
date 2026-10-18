@@ -37,6 +37,14 @@ provider/environment contract,
 rollback on operator data, full feature parity, and each package-channel
 upgrade remain open.
 
+The current ChaptarrNG retirement branch adds PostgreSQL migration for one
+migration-158 source schema and native Hardcover identity handling. Its exact
+hosted run on `0211ed91` failed in the staged-target version preflight when the
+migration repair hook queried `VersionInfo` outside the active schema.
+ChaptarrNG commit `ef519cd7` scopes that query to the active schema; its exact
+hosted rerun is queued. The candidate remains unsupported for operator data,
+and its provider, database, feature, and channel acceptance gates are open.
+
 The migration bridge is disabled. ChaptarrNG AUR `0.9.977-1` is published;
 BookshelfNG's public AUR identity remains at `0.4.21.71-1` on the BookshelfNG
 payload. COPR built `chaptarrng 0.9.977-1` successfully for Fedora 43, 44, 45,
@@ -72,7 +80,8 @@ and source cleanup only after successful move-mode import; copy mode retains
 the sources. A synthetic two-track smoke using the `.977` toolchain produced
 AAC at 44.1 kHz stereo and preserved the supplied chapter titles and offsets.
 That validates m4b-tool and its sidecar format, not the new importer end to
-end or representative library media. The source change is not in public
+end or representative library media. Focused importer tests cover selection,
+chapter/tag behavior, and fallback with a mocked converter. The source change is not in public
 `.977`; representative-media acceptance remains open. Neither merge closes
 real-data migration/rollback, settings parity, full feature parity, or
 installer/channel acceptance.

@@ -38,8 +38,10 @@ macOS, and Windows suites, PostgreSQL migration validation, CodeQL,
 dependency/security, and release-note checks. A synthetic two-track smoke in
 the `.977` image produced AAC at 44.1 kHz stereo and preserved the supplied
 chapter titles and offsets; it checks the external tool and sidecar format,
-not the new importer end to end. Representative-media acceptance remains
-open. Preserve these settings in deployment notes, but keep
+not the new importer end to end. Focused ChaptarrNG importer tests cover merge
+selection, chapter/tag behavior, and fallback with a mocked converter.
+Representative files and a full converter-to-import flow remain open.
+Preserve these settings in deployment notes, but keep
 `BOOKSHELF_M4B_MERGE` unset after migration until a release with this support
 is available and the remaining acceptance gates close.
 

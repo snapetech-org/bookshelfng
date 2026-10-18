@@ -15,6 +15,10 @@ feature parity, representative migration and rollback, and install-channel
 acceptance are complete. The helper backs up appdata; it does not copy external
 media/download mounts or automatically update a package, image, native
 installer, or Helm deployment. The release bridge remains disabled by default.
+The current PostgreSQL candidate is limited to one migration-158 schema. Its
+hosted run on `0211ed91` failed in the staged-target version preflight; a fix
+on `ef519cd7` is queued for exact-head hosted validation. Do not use it for
+operator data.
 
 BookshelfNG is a web application that can run directly on a supported host. It
 does not need SeerrNG or another service to launch, search catalogs, manage a

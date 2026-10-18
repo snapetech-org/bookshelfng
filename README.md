@@ -27,7 +27,9 @@
 > CodeQL, dependency/security, and release-note checks. A synthetic two-track
 > smoke in the `.977` toolchain produced AAC at 44.1 kHz stereo with the two
 > supplied chapter titles and offsets. That checks m4b-tool and its chapter
-> sidecar, not the new importer end to end or representative library media.
+> sidecar. Focused ChaptarrNG importer tests cover selection, chapter/tag
+> behavior, and fallback with a mocked converter; representative files and a
+> full converter-to-import run remain open.
 > M4B support is still absent from the public `.977` image; keep the merge
 > setting unset after migration until a release with this support passes the
 > remaining acceptance gates. ChaptarrNG PR #130 merged to `main` as
@@ -40,10 +42,12 @@
 > is not in public `.977`. Upgrade
 > pre-v14 BookshelfNG databases to `.71` before
 > switching. PostgreSQL migration is not supported by a published ChaptarrNG
-> build. An unreleased work-branch candidate handles one migration-158
-> PostgreSQL schema, but hosted validation and operator-data acceptance are
-> incomplete; do not use that candidate for an installation. Legacy-channel
-> bridges also remain unavailable. Use the standard ChaptarrNG migration commands
+> build. The retirement candidate handles one migration-158 PostgreSQL schema.
+> Its hosted run on `0211ed91` failed when the migration repair hook queried
+> `VersionInfo` outside the staged schema. Commit `ef519cd7` scopes the check to
+> the active schema, and its exact hosted rerun is queued. Operator-data
+> acceptance remains open; do not use the candidate for an installation. The
+> legacy-channel bridges remain disabled. Use the standard ChaptarrNG migration commands
 > in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md),
 > review its limits, and keep an independent backup.
 
@@ -55,8 +59,9 @@ Hardcover unless `HARDCOVER_NATIVE=false`; otherwise the importer keeps the
 Goodreads interpretation. Preview records that choice. The current source
 candidate of the handoff helper adds `--provider-mode goodreads|native-hardcover`
 to pass the choice to the temporary converter container. That helper change
-and provider support have not passed hosted and converted-data acceptance and
-are not in the published `.71` helper or ChaptarrNG `.977` image. Releases
+and provider support are not in the published `.71` helper or ChaptarrNG
+`.977` image. The exact hosted rerun that includes this provider work is queued
+behind the PostgreSQL fix, and converted-data acceptance remains open. Releases
 remain frozen until the full retirement gates close.
 
 [![.NET 10 LTS](https://img.shields.io/badge/.NET-10%20LTS-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/en-us/platform/support/policy)

@@ -20,9 +20,12 @@ migration-22 coverage is not proof from real older-schema data. PostgreSQL,
 two populated Bookshelf databases, and several external settings and
 installation-channel upgrades are not covered. An unreleased ChaptarrNG
 work-branch candidate stages conversion for one migration-158 PostgreSQL
-schema, but hosted validation and operator-data acceptance are incomplete; it
-is not supported for installations. The published migration path remains
-SQLite-only. The release bridge remains disabled by default. Read the limits
+schema. Its hosted run on `0211ed91` failed when the migration repair hook
+queried `VersionInfo` outside the active staging schema. Commit `ef519cd7`
+scopes the check to the active schema; the exact hosted rerun is queued.
+Operator-data acceptance remains open, and the candidate is not supported for
+installations. The published migration path remains SQLite-only. The release
+bridge remains disabled by default. Read the limits
 below before changing a running installation.
 
 ChaptarrNG PR #127 merged to `main` as `b3089a39`, adding supplemental
@@ -41,8 +44,10 @@ suites, PostgreSQL migration validation, CodeQL, dependency/security, and
 release-note checks. A synthetic two-track smoke against the `.977` image's
 m4b-tool produced AAC at 44.1 kHz stereo and preserved the supplied chapter
 titles and offsets. This checks the external converter and sidecar format, not
-the new importer end to end. Representative-media acceptance remains open,
-and the source change is not in public `.977`.
+the new importer end to end. Focused importer tests cover merge selection,
+chapter/tag behavior, and fallback with a mocked converter. Representative
+files and the full converter-to-import flow remain open, and the source change
+is not in public `.977`.
 
 ChaptarrNG PR #130 merged to `main` as `9f1ae60b`. When no explicit
 `BookMatchingStrictness` is set, ChaptarrNG maps BookshelfNG's numeric
@@ -62,7 +67,7 @@ ChaptarrNG `.977` while the release freeze is active. Stop BookshelfNG when it
 is idle, then run preview before switching. PostgreSQL BookshelfNG databases
 are not accepted by a published ChaptarrNG converter. Do not use the
 unreleased PostgreSQL candidate with operator data; retain the source database
-and wait for hosted and populated-data acceptance before considering it.
+while the exact hosted rerun and populated-data acceptance remain open.
 
 The helper archives appdata, including `plugins/Bookshelf.Diagnostics.dll`,
 but it does not capture environment variables. If the optional diagnostics
@@ -91,8 +96,10 @@ candidate of the helper accepts `--provider-mode native-hardcover` or
 the temporary converter container. Configure the same mode in the permanent
 replacement container after migration. The helper bundled in the published
 BookshelfNG `.71` tag predates this option, and the ChaptarrNG provider and
-identity work is not in `.977`; do not use those published builds for a native
-Hardcover migration until the release-freeze gates are closed.
+identity work is not in `.977`. The exact hosted rerun that includes this work
+is queued behind the PostgreSQL fix; converted-data acceptance remains open.
+Do not use those published builds for a native Hardcover migration until the
+release-freeze gates are closed.
 
 ## What the helper does
 
@@ -277,6 +284,8 @@ Windows, and PostgreSQL migration checks passed, but the source fix is not in
 Populated synthetic migration-22 evidence covers conversion and rollback,
 source-unchanged preview, and refusal of a future schema. This does not
 establish older-schema behavior on real data or PostgreSQL source conversion.
+The PostgreSQL candidate's `0211ed91` hosted run failed in its staged-target
+preflight; the fix is on `ef519cd7`, with the exact hosted rerun queued.
 Ambiguous formats are retained in both catalogs without monitoring until the
 operator classifies them; the converter does not infer their true type. Full
 provider and environment parity, every installation channel, and rollback on

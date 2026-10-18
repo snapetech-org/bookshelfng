@@ -14,6 +14,13 @@ Windows, and PostgreSQL migration checks passed. The source fix is not in
 The bridge described below remains disabled; no BookshelfNG package identity
 or image alias has been redirected.
 
+The active ChaptarrNG retirement candidate adds native Hardcover identity
+migration and PostgreSQL conversion for one migration-158 schema. Its hosted
+run on `0211ed91` failed during staged-target version preflight; ChaptarrNG
+commit `ef519cd7` scopes that check to the active schema, and the exact hosted
+rerun is queued. This candidate does not change bridge eligibility. Operator
+data, feature-parity, install-flow, and package-channel acceptance remain open.
+
 ChaptarrNG AUR `0.9.977-1` is published. The standard COPR package
 `chaptarrng 0.9.977-1` built successfully for Fedora 43, 44, 45, and Rawhide
 x86_64. Chocolatey `.977` passed package-transition smoke validation, but its

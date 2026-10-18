@@ -335,8 +335,9 @@ ChaptarrNG PR #129 merged to `main` as `949ae3dd` with opt-in merge
 compatibility. Its clean head passed the hosted Linux, macOS, and Windows
 suites, PostgreSQL migration validation, CodeQL, dependency/security, and
 release-note checks. A synthetic two-track smoke in the `.977` image verified
-the external converter and chapter sidecar, but not the new importer end to
-end or representative-media behavior. Keep the merge opt-in unset after
+the external converter and chapter sidecar. Focused importer tests cover merge
+selection, chapter/tag behavior, and fallback with a mocked converter; they do
+not validate representative files or a full converter-to-import flow. Keep the merge opt-in unset after
 migration until a release with this support is available and the remaining
 acceptance gates close.
 
