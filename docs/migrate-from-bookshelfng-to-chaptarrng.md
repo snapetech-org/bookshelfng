@@ -13,6 +13,20 @@ external settings and installation-channel upgrades are not covered. The
 release bridge remains disabled by default. Read the limits below before
 changing a running installation.
 
+If you are on an earlier BookshelfNG release, update to `0.4.21.71` first
+and let it complete its database migration before replacing the application.
+Stop BookshelfNG when it is idle, then run the ChaptarrNG preview against the
+resulting migration-158 SQLite database. ChaptarrNG does not run BookshelfNG's
+older database migrations. PostgreSQL BookshelfNG databases require a separate
+manual migration path and are not accepted by the current converter.
+
+The helper archives appdata, including `plugins/Bookshelf.Diagnostics.dll`,
+but it does not capture environment variables. If the optional diagnostics
+module was installed and enabled, preserve its endpoint, token, and enable
+variables in the ChaptarrNG deployment. ChaptarrNG retains that explicit
+choice only when the old plugin marker is present; see its
+[optional diagnostics guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/OPTIONAL_DIAGNOSTICS.md).
+
 ## What the helper does
 
 `scripts/bookshelfng-to-chaptarrng.sh` is a Bash wrapper for Linux or macOS
