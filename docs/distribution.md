@@ -22,7 +22,7 @@ rejects versions before migration 14 until the chain renames `Blacklist` to
 `Blocklist`. PR #126 merged a version-aware fix and migration-1 rollback
 fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
 checks passed, but that fix is not in `.977`.
-The current retirement-branch PostgreSQL candidate supports one migration-158 source schema. The PostgreSQL smoke run [39127070836](https://github.com/snapetech-org/chaptarrng/actions/runs/39127070836) on code head `21c41ad5` failed during application startup before the 300-second readiness limit (DryIoc exception, no NUnit totals). This does not establish a converter assertion failure. Follow PR #131 for current diagnostics. PostgreSQL remains unsupported for installations until the candidate passes all acceptance gates.
+The current retirement-branch PostgreSQL candidate supports one migration-158 source schema. The PostgreSQL smoke run [39128352662](https://github.com/snapetech-org/chaptarrng/actions/runs/39128352662) on code head `e908227b` failed during application startup before the 300-second readiness limit (DryIoc interpreter method token; exception class/cause unknown, no NUnit totals). This does not establish a converter assertion failure. Follow PR #131 for current diagnostics; corrected class/frame reporting is being validated on head `7eb58085`. PostgreSQL remains unsupported for installations until the candidate passes all acceptance gates.
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be
