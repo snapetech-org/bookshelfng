@@ -47,6 +47,18 @@
 > in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md),
 > review its limits, and keep an independent backup.
 
+The current ChaptarrNG retirement branch also ports the native Hardcover
+provider and translates the saved `HardcoverAuth` setting to
+`HardcoverApiToken`. Bare numeric provider IDs are interpreted according to
+the BookshelfNG mode in effect during migration: `HARDCOVER=true` selects
+Hardcover unless `HARDCOVER_NATIVE=false`; otherwise the importer keeps the
+Goodreads interpretation. Preview records that choice. The current source
+candidate of the handoff helper adds `--provider-mode goodreads|native-hardcover`
+to pass the choice to the temporary converter container. That helper change
+and provider support have not passed hosted and converted-data acceptance and
+are not in the published `.71` helper or ChaptarrNG `.977` image. Releases
+remain frozen until the full retirement gates close.
+
 [![.NET 10 LTS](https://img.shields.io/badge/.NET-10%20LTS-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/en-us/platform/support/policy)
 
 BookshelfNG is a self-hosted ebook and audiobook library manager descended

@@ -311,9 +311,15 @@ python3 scripts/audit-chaptarr-consolidation.py \
    populated conversion remain open.
 3. **Identity changes.** BookshelfNG has one book row with multiple formats;
    Chaptarr has provider-scoped identity and media-type-specific behavior.
-   Bare Hardcover and Goodreads IDs must not collide. Conversion needs durable
+   Its native Hardcover mode stores many primary provider IDs as bare numeric
+   values. The current ChaptarrNG migration candidate uses the same explicit
+   mode (`HARDCOVER=true`, unless `HARDCOVER_NATIVE=false`) to route those
+   values to Hardcover, and otherwise retains the Goodreads interpretation;
+   preview reports the selected dialect. The source-side helper candidate has
+   a `--provider-mode` option for applying one choice consistently. These
+   changes still need hosted and converted-data validation. Durable
    old-to-new author/book/edition/file maps and compatibility for existing
-   clients referring to numeric local IDs.
+   clients referring to numeric local IDs remain separate acceptance work.
 4. **Port changes.** BookshelfNG uses 8787; ChaptarrNG uses 8789. The legacy
    distribution must retain 8787, URL base, TLS settings and reverse-proxy paths.
 5. **Updater ownership.** BookshelfNG's `ReadarrCloudRequestBuilder` queries
@@ -548,7 +554,9 @@ path remains open.
 4. Map provider identity using explicit source lineage (`hardcover`/`softcover`)
    and stored provider identifiers. Preserve ebook/audio coexistence and all
    local foreign-key relationships. Record split records in an alias map used
-   by legacy API routes and SeerrNG reconciliation.
+   by legacy API routes and SeerrNG reconciliation. In native Hardcover mode,
+   run preview and apply with that provider mode enabled so bare numeric IDs
+   cannot be mistaken for Goodreads IDs.
 5. Validate row accounting, foreign references, file path/size preservation,
    profile selections, historical references, encrypted backup round trip and
    unchanged credentials. Rebuild target indexes/FTS from converted rows.

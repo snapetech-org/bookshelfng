@@ -30,6 +30,8 @@ grep -Fxq -- '-preview-bookshelf-migration' "$DOCKER_ARGS_FILE"
 grep -Fxq -- '-v' "$DOCKER_ARGS_FILE"
 grep -Fxq -- "$data_dir:/config" "$DOCKER_ARGS_FILE"
 grep -Fxq -- "$image" "$DOCKER_ARGS_FILE"
+grep -Fxq -- 'HARDCOVER=false' "$DOCKER_ARGS_FILE"
+grep -Fxq -- 'HARDCOVER_NATIVE=false' "$DOCKER_ARGS_FILE"
 
 archive="$(find "$backup_dir" -maxdepth 1 -type f -name 'bookshelfng-preview-*.tar.gz' -print -quit)"
 [[ -n "$archive" ]]
@@ -37,6 +39,11 @@ archive="$(find "$backup_dir" -maxdepth 1 -type f -name 'bookshelfng-preview-*.t
 tar -tzf "$archive" | grep -Fxq 'source config/readarr.db'
 tar -tzf "$archive" | grep -Fxq 'source config/config.xml'
 tar -tzf "$archive" | grep -Fxq 'source config/logs/Readarr.debug.txt'
+
+"$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \
+  --provider-mode native-hardcover
+grep -Fxq -- 'HARDCOVER=true' "$DOCKER_ARGS_FILE"
+grep -Fxq -- 'HARDCOVER_NATIVE=true' "$DOCKER_ARGS_FILE"
 
 before_count="$(find "$backup_dir" -maxdepth 1 -type f -name '*.tar.gz' | wc -l)"
 if "$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image latest 2>/dev/null; then
@@ -47,12 +54,20 @@ if "$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$ima
   echo 'apply without explicit stopped-service confirmation should have been rejected' >&2
   exit 1
 fi
+if "$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \
+  --provider-mode unknown 2>/dev/null; then
+  echo 'unknown provider mode should have been rejected' >&2
+  exit 1
+fi
 after_count="$(find "$backup_dir" -maxdepth 1 -type f -name '*.tar.gz' | wc -l)"
 [[ "$before_count" == "$after_count" ]]
 
-"$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" --confirm-stopped
+"$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \
+  --confirm-stopped --provider-mode native-hardcover
 grep -Fxq -- '-migrate-bookshelf' "$DOCKER_ARGS_FILE"
 grep -Fxq -- '-confirm-bookshelf-service-stopped' "$DOCKER_ARGS_FILE"
+grep -Fxq -- 'HARDCOVER=true' "$DOCKER_ARGS_FILE"
+grep -Fxq -- 'HARDCOVER_NATIVE=true' "$DOCKER_ARGS_FILE"
 
 printf 'rollback fixture\n' > "$data_dir/readarr.db.bookshelfng-backup-test.db"
 "$tool" rollback-preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \

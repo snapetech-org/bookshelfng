@@ -80,6 +80,20 @@ unset after switching until the ChaptarrNG
 [migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 documents a release containing it and the remaining acceptance gates close.
 
+Native Hardcover databases also need the provider mode preserved during
+conversion. BookshelfNG often stores its primary Hardcover work, author,
+edition, and series IDs as bare numbers. The ChaptarrNG work-branch candidate
+interprets those numbers as Hardcover when `HARDCOVER=true` and
+`HARDCOVER_NATIVE` is not `false`; in Goodreads mode, the same numbers stay
+Goodreads IDs. Preview reports the interpretation. The current source
+candidate of the helper accepts `--provider-mode native-hardcover` or
+`--provider-mode goodreads` on both preview and apply and passes that mode to
+the temporary converter container. Configure the same mode in the permanent
+replacement container after migration. The helper bundled in the published
+BookshelfNG `.71` tag predates this option, and the ChaptarrNG provider and
+identity work is not in `.977`; do not use those published builds for a native
+Hardcover migration until the release-freeze gates are closed.
+
 ## What the helper does
 
 `scripts/bookshelfng-to-chaptarrng.sh` is a Bash wrapper for Linux or macOS
@@ -150,6 +164,15 @@ target format, preview writes `readarr.db.bookshelf-media-review.json` beside
 the database and keeps those books in both ChaptarrNG catalogs without
 monitoring. This lets conversion continue without guessing which format to
 search. The file contains book titles and author names; keep it private.
+
+The helper downloaded from the published `.71` tag does not expose provider
+mode and runs the converter in Goodreads mode. Native Hardcover conversion is
+not supported by that helper or the public `.977` image. The current source
+candidate adds `--provider-mode native-hardcover` to preview and apply; use it
+only after the ChaptarrNG importer and helper candidate have passed hosted and
+converted-data acceptance and are distributed in a supported build. Use the
+same mode for preview and apply, then configure the replacement container with
+native Hardcover enabled.
 
 To choose formats before conversion, save a complete, source-matched
 `readarr.db.bookshelf-media-map.json`. Set each `mediaType` to `audiobook`,

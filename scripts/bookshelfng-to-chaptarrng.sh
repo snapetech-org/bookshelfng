@@ -5,14 +5,16 @@ usage() {
   cat <<'USAGE'
 Usage:
   bookshelfng-to-chaptarrng.sh snapshot --data-dir PATH --backup-dir PATH
-  bookshelfng-to-chaptarrng.sh preview  --data-dir PATH --backup-dir PATH --image IMAGE
-  bookshelfng-to-chaptarrng.sh apply   --data-dir PATH --backup-dir PATH --image IMAGE --confirm-stopped
+  bookshelfng-to-chaptarrng.sh preview  --data-dir PATH --backup-dir PATH --image IMAGE [--provider-mode goodreads|native-hardcover]
+  bookshelfng-to-chaptarrng.sh apply   --data-dir PATH --backup-dir PATH --image IMAGE --confirm-stopped [--provider-mode goodreads|native-hardcover]
   bookshelfng-to-chaptarrng.sh rollback-preview --data-dir PATH --backup-dir PATH --image IMAGE --bookshelf-backup FILE
   bookshelfng-to-chaptarrng.sh rollback --data-dir PATH --backup-dir PATH --image IMAGE --bookshelf-backup FILE --confirm-stopped
 
 IMAGE must be a versioned ghcr.io/snapetech-org/chaptarrng:vMAJOR.MINOR.PATCH
 tag or an immutable sha256 digest. Every action first archives the complete
-BookshelfNG appdata directory outside that directory.
+BookshelfNG appdata directory outside that directory. The provider mode is
+passed only to the temporary ChaptarrNG migration container; configure the
+same mode in the permanent replacement container after migration.
 USAGE
 }
 
@@ -36,6 +38,8 @@ backup_dir=""
 image=""
 bookshelf_backup=""
 confirm_stopped=false
+provider_mode="goodreads"
+provider_mode_set=false
 
 while (($#)); do
   case "$1" in
@@ -57,6 +61,12 @@ while (($#)); do
     --bookshelf-backup)
       (($# >= 2)) || fail '--bookshelf-backup needs a file name'
       bookshelf_backup="$2"
+      shift 2
+      ;;
+    --provider-mode)
+      (($# >= 2)) || fail '--provider-mode needs goodreads or native-hardcover'
+      provider_mode="$2"
+      provider_mode_set=true
       shift 2
       ;;
     --confirm-stopped)
@@ -114,6 +124,16 @@ case "$action" in
     ;;
 esac
 
+case "$provider_mode" in
+  goodreads|native-hardcover) ;;
+  *) fail '--provider-mode must be goodreads or native-hardcover' ;;
+esac
+
+case "$action" in
+  preview|apply) ;;
+  *) [[ "$provider_mode_set" == false ]] || fail '--provider-mode applies only to preview and apply' ;;
+esac
+
 case "$action" in
   rollback-preview|rollback)
     [[ -n "$bookshelf_backup" ]] || fail '--bookshelf-backup is required for rollback commands'
@@ -142,7 +162,17 @@ printf 'Database selected for the ChaptarrNG handoff: %s\n' "$(basename -- "$sou
 
 [[ "$action" != snapshot ]] || exit 0
 
-container_args=(run --rm --pull=always -v "$data_dir:/config" "$image" dotnet /app/Chaptarr.dll)
+container_args=(run --rm --pull=always)
+if [[ "$action" == preview || "$action" == apply ]]; then
+  if [[ "$provider_mode" == native-hardcover ]]; then
+    container_args+=(-e HARDCOVER=true -e HARDCOVER_NATIVE=true)
+    printf 'Provider mode for conversion: native Hardcover\n'
+  else
+    container_args+=(-e HARDCOVER=false -e HARDCOVER_NATIVE=false)
+    printf 'Provider mode for conversion: Goodreads\n'
+  fi
+fi
+container_args+=(-v "$data_dir:/config" "$image" dotnet /app/Chaptarr.dll)
 case "$action" in
   preview)
     container_args+=(-preview-bookshelf-migration -data=/config)
