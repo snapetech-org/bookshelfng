@@ -22,7 +22,13 @@ rejects versions before migration 14 until the chain renames `Blacklist` to
 `Blocklist`. PR #126 merged a version-aware fix and migration-1 rollback
 fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
 checks passed, but that fix is not in `.977`.
-Run [39132760214](https://github.com/snapetech-org/chaptarrng/actions/runs/39132760214) on `9c051d3d` reported NUnit source line 162 in `should_preview_convert_and_restore_a_current_bookshelf_postgres_schema`. The fixture seeds `BookImportMinimumMatchPercent` with that exact casing but the check queried lowercase, identifying a fixture expectation error. ChaptarrNG commit [b5bd9527](https://github.com/snapetech-org/chaptarrng/commit/b5bd9527) corrects the three retained-config checks. Exact-head run [39135608892](https://github.com/snapetech-org/chaptarrng/actions/runs/39135608892) on commit [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed. The candidate remains unsupported for operator data.
+BookshelfNG PR #154's empty-file selection fix is on BookshelfNG source `main`
+but is not in the published `.71` helper. The `.71` helper can print a
+zero-byte `readarr.db` beside a populated `audioarr.db`; ChaptarrNG `.977`
+resolves the non-empty database independently. See the
+[migration guide](migrate-from-bookshelfng-to-chaptarrng.md) for the limits of
+each version.
+Exact-head run [39152023939](https://github.com/snapetech-org/chaptarrng/actions/runs/39152023939) on `ea6fcd46` passed Linux, macOS, and Windows builds and test suites, PostgreSQL migrations, release-note validation, native-runner receipt reconciliation, CodeQL, dependency review, and security checks. Windows reported 4,349 tests passed and none failed. These are candidate CI checks only; operator-data acceptance remains open. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). The candidate remains unsupported for operator data.
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be

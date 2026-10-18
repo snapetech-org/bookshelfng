@@ -14,14 +14,7 @@ BookshelfNG releases are frozen too. PR #148 merged its fail-closed publishing g
 The published converter accepts the exact BookshelfNG migration-158 SQLite
 schema and rejects versions before migration 14; upgrade older installs to
 BookshelfNG .71 first. PR #126 merged a version-aware guard and migration-1
-rollback fixture into ChaptarrNG main, but they are not in .977. Current
-candidate PR #131 is draft; its migration code snapshot
-[0d31609b](https://github.com/snapetech-org/chaptarrng/commit/0d31609b) passed
-Linux, macOS, and Windows builds, PostgreSQL migration, and release-note
-checks. Analysis, dependency, and security checks passed. The candidate adds
-older SQLite, one-schema
-PostgreSQL, native Hardcover, and BookOrbit support, but remains unsupported
-for operator data.
+rollback fixture into ChaptarrNG main, but they are not in .977. Current migration candidate [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) remains draft. Exact-head run [39152023939](https://github.com/snapetech-org/chaptarrng/actions/runs/39152023939) on `ea6fcd46` passed Linux, macOS, and Windows builds and test suites, PostgreSQL migrations, release-note validation, native-runner receipt reconciliation, CodeQL, dependency review, and security checks. Windows reported 4,349 tests passed and none failed. These are candidate CI checks only; operator-data acceptance remains open. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). It adds older SQLite, one-schema PostgreSQL, native Hardcover, and BookOrbit support, but remains unsupported for operator data.
 
 A local AUR BookshelfNG-identity .977 package candidate passed an isolated,
 network-disabled pacman upgrade from the published .71 package and downgrade
@@ -127,10 +120,14 @@ parity remain open.
 `scripts/bookshelfng-to-chaptarrng.sh` is a Bash wrapper for Linux or macOS
 with Docker and `tar` available. It:
 
-1. Selects one non-empty regular `readarr.db` or `audioarr.db` in the appdata
-   directory. An empty candidate is ignored when selecting. The helper refuses
-   two non-empty source databases because it cannot determine whether they
-   belong together or merge them.
+1. The published `.71` helper requires a regular `readarr.db` or `audioarr.db`
+   and refuses two non-empty source databases. Its printed selection can name
+   a zero-byte `readarr.db` when a populated `audioarr.db` is beside it; the
+   helper passes the whole appdata directory to ChaptarrNG, whose resolver
+   ignores zero-byte legacy files and selects the populated database. The
+   current BookshelfNG `main` helper selects the sole non-empty regular file
+   before archiving, but that fix from PR #154 is not in the published `.71`
+   tag. Do not treat an empty-only database file as a valid migration source.
 2. Creates a mode-`0600` compressed archive of the full appdata directory in a
    backup directory you choose outside appdata.
 3. Runs the requested preview, apply, rollback-preview, or rollback command in
@@ -350,7 +347,7 @@ Windows, and PostgreSQL migration checks passed, but the source fix is not in
 Populated synthetic migration-22 evidence covers conversion and rollback,
 source-unchanged preview, and refusal of a future schema. This does not
 establish older-schema behavior on real data or PostgreSQL source conversion.
-Run [39132760214](https://github.com/snapetech-org/chaptarrng/actions/runs/39132760214) on `9c051d3d` reported NUnit source line 162 in `should_preview_convert_and_restore_a_current_bookshelf_postgres_schema`. The fixture seeds `BookImportMinimumMatchPercent` with that exact casing but the check queried lowercase, identifying a fixture expectation error. ChaptarrNG commit [b5bd9527](https://github.com/snapetech-org/chaptarrng/commit/b5bd9527) corrects the three retained-config checks. Exact-head run [39135608892](https://github.com/snapetech-org/chaptarrng/actions/runs/39135608892) on commit [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed. The candidate remains unsupported for operator data.
+Earlier synthetic PostgreSQL snapshot [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed four migration cases plus Linux, macOS, and Windows validation. Exact-head run [39152023939](https://github.com/snapetech-org/chaptarrng/actions/runs/39152023939) on `ea6fcd46` passed Linux, macOS, and Windows builds and test suites, PostgreSQL migrations, release-note validation, native-runner receipt reconciliation, CodeQL, dependency review, and security checks. Windows reported 4,349 tests passed and none failed. These are candidate CI checks only; operator-data acceptance remains open. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). PostgreSQL conversion remains unsupported for operator data.
 Ambiguous formats are retained in both catalogs without monitoring until the
 operator classifies them; the converter does not infer their true type. Full
 provider and environment parity, every installation channel, and rollback on
