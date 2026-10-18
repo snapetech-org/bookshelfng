@@ -33,9 +33,10 @@ false positives and dismissed with a rationale.
 
 PR #129 remains an unpublished candidate for BookshelfNG's opt-in M4B
 settings. The exact source-code run on `05d78be4` failed the same four importer
-fixtures on Linux, macOS, and Windows. The Linux diagnostic on `fe158f14`
-reproduced the failures. Head `e46b8974` adds importer details to the failing
-assertions; its hosted validation is running. Representative media acceptance
+fixtures on Linux, macOS, and Windows. Linux diagnostics on `e46b8974` traced
+them to a missing `IBookService.GetBook` handler in the test proxy. Head
+`f47a7d6c` supplies the existing book-service stub; hosted validation is
+running. Representative media acceptance
 remains open. Neither change is in the public
 `.977` image.
 

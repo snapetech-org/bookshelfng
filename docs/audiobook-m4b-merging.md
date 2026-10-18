@@ -37,9 +37,10 @@ but that does not make these BookshelfNG settings equivalent. The source-only
 [ChaptarrNG PR #129](https://github.com/snapetech-org/chaptarrng/pull/129) is
 under review and is not available in a published build. The exact source-code
 run on `05d78be4` failed the same four importer fixtures on Linux, macOS, and
-Windows. The Linux diagnostic on `fe158f14` reproduced the failures. Head
-`e46b8974` adds importer details to the failing assertions; its hosted
-validation is running. Representative-media acceptance remains open.
+Windows. Linux diagnostics on `e46b8974` traced them to a missing
+`IBookService.GetBook` handler in the test proxy. Head `f47a7d6c` supplies the
+existing book-service stub; hosted validation is running. Representative-media
+acceptance remains open.
 Preserve the settings in your deployment notes, but keep
 `BOOKSHELF_M4B_MERGE` unset after migration until the ChaptarrNG migration
 guide names a tested build that supports it.
