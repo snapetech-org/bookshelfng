@@ -3,11 +3,9 @@
 BookshelfNG is a Snapetech NG fork of Bookshelf for ebook and audiobook library
 management and acquisition. It works independently; SeerrNG integration is optional.
 
-> **Final release:** BookshelfNG `0.4.21.71` is published. The latest public ChaptarrNG release is `v0.9.977`; it accepts migration-158 SQLite and rejects older schemas. The unreleased older-schema SQLite and one-schema PostgreSQL candidate is in [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131); follow it for current exact-head validation.
+> **Final release:** BookshelfNG `0.4.21.71` is published. The latest public ChaptarrNG release is `v0.9.977`; it accepts migration-158 SQLite and rejects older schemas. The unreleased older-schema SQLite and one-schema PostgreSQL candidate is in [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131).
 >
-> PostgreSQL smoke run [39128352662](https://github.com/snapetech-org/chaptarrng/actions/runs/39128352662) on head `e908227b` exited during application startup before the 300-second readiness limit. Its safe receipt contained a DryIoc interpreter method token, but no verified exception class, underlying cause, or NUnit totals; the converter result is unknown. Follow PR #131 for current diagnostics; corrected class/frame reporting is being validated on head `7eb58085`. Do not use the candidate with operator data.
->
-> Follow-up exact-head validation for ChaptarrNG `e908227b` is running; the PR will record the result.
+> Run [39128814405](https://github.com/snapetech-org/chaptarrng/actions/runs/39128814405) on `7eb58085` first exposed recursive schema-check dispatch; commit `b1995dd9` fixed that path. The next exact-head run [39129297886](https://github.com/snapetech-org/chaptarrng/actions/runs/39129297886) reached the PostgreSQL conversion test but failed with `Npgsql.PostgresException`: the hosted database log reported `relation "books" does not exist` in the media-mapping query. Inspection found unquoted mixed-case SQL identifiers. Commit `cd0fc8f7` quotes identifiers in the source mapping and importer queries; exact-head hosted workflow [39129748102](https://github.com/snapetech-org/chaptarrng/actions/runs/39129748102) is running. Do not use the candidate with operator data.
 >
 > BookshelfNG's fail-closed release gate merged to `main` as `c6b4642`; its readiness variable remains unset and the published `.71` release remains the final release. Populated-data migration, rollback, and the Community Apps upgrade flow remain unaccepted.
 

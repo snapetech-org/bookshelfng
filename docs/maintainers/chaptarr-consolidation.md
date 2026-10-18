@@ -37,7 +37,7 @@ provider/environment contract,
 rollback on operator data, full feature parity, and each package-channel
 upgrade remain open.
 
-The current ChaptarrNG retirement branch adds PostgreSQL migration for one migration-158 source schema and native Hardcover identity handling. Earlier hosted runs corrected staging-schema lookup and migration-runner API issues. The PostgreSQL smoke run [39128352662](https://github.com/snapetech-org/chaptarrng/actions/runs/39128352662) on code head `e908227b` failed during application startup before the 300-second readiness limit (DryIoc interpreter method token; exception class/cause unknown, no NUnit totals). This does not establish a converter assertion failure. Follow PR #131 for current diagnostics. The candidate remains unsupported for operator data, and its provider, database, feature, and channel acceptance gates are open.
+The current ChaptarrNG retirement branch adds PostgreSQL migration for one migration-158 source schema and native Hardcover identity handling. Run [39129297886](https://github.com/snapetech-org/chaptarrng/actions/runs/39129297886) on `b1995dd9` reached the conversion test but failed with `Npgsql.PostgresException`; the hosted log reported `relation "books" does not exist` in the media-mapping query. The identifier correction is in [cd0fc8f7](https://github.com/snapetech-org/chaptarrng/commit/cd0fc8f7) and exact-head workflow [39129748102](https://github.com/snapetech-org/chaptarrng/actions/runs/39129748102) is running. The candidate remains unsupported for operator data; provider, database, feature, and channel acceptance gates remain open.
 
 The migration bridge is disabled. ChaptarrNG AUR `0.9.977-1` is published;
 BookshelfNG's public AUR identity remains at `0.4.21.71-1` on the BookshelfNG
