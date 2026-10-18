@@ -114,7 +114,7 @@ unset after switching until the ChaptarrNG
 [migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 documents a release containing it and the remaining acceptance gates close.
 
-Native Hardcover databases need the same provider mode during preview and apply. BookshelfNG commonly stores Hardcover work, author, edition, and series IDs as bare numbers. The ChaptarrNG candidate interprets them as Hardcover when `HARDCOVER=true` and `HARDCOVER_NATIVE` is not `false`; otherwise numeric IDs keep Goodreads identity. The helper candidate exposes `--provider-mode native-hardcover|goodreads`. These changes are not in the published `.71` helper or ChaptarrNG `.977` image. Exact-head validation on commit b5bd9527 passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed; converted-data acceptance remains open. Do not use those published builds for native Hardcover migration until the release-freeze gates close.
+Native Hardcover databases need the same provider mode during preview and apply. BookshelfNG commonly stores Hardcover work, author, edition, and series IDs as bare numbers. The ChaptarrNG candidate interprets them as Hardcover when `HARDCOVER=true` and `HARDCOVER_NATIVE` is not `false`; set `HARDCOVER=false` for a Goodreads-primary database. If the mode is unset or invalid, the current ChaptarrNG candidate fails closed when it encounters a bare numeric ID rather than silently assigning Goodreads identity. The helper candidate exposes `--provider-mode native-hardcover|goodreads`. BookshelfNG's `latest`, `main`, and `hardcover` Docker tags use native Hardcover mode; `softcover` uses Goodreads mode. ChaptarrNG is adding matching compatibility image targets for those mutable aliases, but the targets have not been published or enabled. These changes are not in the published `.71` helper or ChaptarrNG `.977` image. Exact-head validation on commit b5bd9527 passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed; converted-data acceptance remains open. Do not use those published builds for native Hardcover migration until the release-freeze gates close.
 
 ## Populated SQLite rehearsal (2026-10-18)
 
@@ -133,6 +133,28 @@ databases passed SQLite integrity and foreign-key checks. No user data or
 database files were committed. This is evidence for one populated SQLite
 schema and image; older schemas, PostgreSQL, installer handoffs, and feature
 parity remain open.
+
+## Provider-mode image-switch and rollback rehearsal (2026-10-18)
+
+A second isolated rehearsal used a populated synthetic migration-158 database
+served by the public BookshelfNG `.71` Hardcover image. It exposed a provider
+mode handoff hazard: the prior ChaptarrNG candidate, started without the
+source's `HARDCOVER=true`, mapped bare numeric IDs into Goodreads fields. The
+same image switch with `HARDCOVER=true` preserved author `hc:9001`, book
+`hc:9002`, and editions `hc:9003` and `hc:9004` in Hardcover fields; the
+converted database passed SQLite integrity and foreign-key checks and served
+the author and both format-specific books through the API.
+
+Rollback preview left the converted database and source backup hashes
+unchanged. Explicit rollback restored the BookshelfNG schema-158 database
+byte-for-byte, retained the ChaptarrNG database as a separate backup, and the
+released `.71` Hardcover image reopened the restored database and served the
+source records. This is synthetic handoff and rollback evidence; it does not
+establish operator-data or install-channel acceptance. The current ChaptarrNG
+candidate fails closed if provider mode is missing or invalid, and its
+compatibility image targets and alias bridge still need exact-head hosted
+validation. No release or image aliases were published. See [ChaptarrNG PR
+#131](https://github.com/snapetech-org/chaptarrng/pull/131).
 
 ## What the helper does
 
