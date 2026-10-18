@@ -22,7 +22,7 @@ rejects versions before migration 14 until the chain renames `Blacklist` to
 `Blocklist`. PR #126 merged a version-aware fix and migration-1 rollback
 fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
 checks passed, but that fix is not in `.977`.
-Run [39131142836](https://github.com/snapetech-org/chaptarrng/actions/runs/39131142836) on `0f7a77d` failed in the PostgreSQL test fixture after migration: `ReadConfigValue` queried the mixed-case `Config` table without quotes, producing `relation "config" does not exist`. This is a fixture SQL failure, not a converter assertion failure. Commit [ceef1797](https://github.com/snapetech-org/chaptarrng/commit/ceef1797) quotes the table; exact-head run [39131508562](https://github.com/snapetech-org/chaptarrng/actions/runs/39131508562) is validating it. The candidate remains unsupported for operator data.
+Run [39132008271](https://github.com/snapetech-org/chaptarrng/actions/runs/39132008271) on `63d38712` passed 2 of 3 PostgreSQL migration cases and failed one NUnit assertion in `should_preview_convert_and_restore_a_current_bookshelf_postgres_schema`; the bounded receipt omitted its message and source line, so the cause is unknown. ChaptarrNG commit [9c051d3d](https://github.com/snapetech-org/chaptarrng/commit/9c051d3d) adds an integer-only source-line diagnostic. Exact-head run [39132760214](https://github.com/snapetech-org/chaptarrng/actions/runs/39132760214) is still running. The candidate remains unsupported for operator data.
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be
