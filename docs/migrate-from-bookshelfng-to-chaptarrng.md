@@ -32,10 +32,10 @@ four provider-dispatch CodeQL findings on an earlier head were reviewed as
 false positives and dismissed with a rationale.
 
 PR #129 remains an unpublished candidate for BookshelfNG's opt-in M4B
-settings. Its earlier cross-platform run failed four new importer fixtures.
-Commit `18abee6` corrects the fixture media-info and disk-provider dependencies
-and exercises file transfers; exact-head hosted validation is pending.
-Representative-media acceptance remains open. Neither change is in the public
+settings. The exact source-code run on `05d78be4` failed the same four importer
+fixtures on Linux, macOS, and Windows. Workflow-only head `fe158f14` adds a
+PR-scoped Linux diagnostic rerun; that hosted run is pending. Representative
+media acceptance remains open. Neither change is in the public
 `.977` image.
 
 Update an earlier BookshelfNG release to `0.4.21.71` and let it finish its

@@ -22,10 +22,10 @@
 > on an earlier head were reviewed as false positives: provider IDs select
 > allowlisted public metadata APIs and do not grant access. PR #129 is an
 > unpublished compatibility candidate for BookshelfNG's opt-in M4B merge
-> settings. Its earlier cross-platform run failed four new importer fixtures.
-> Commit `18abee6` corrects the fixture dependencies and exercises real
-> temporary-file transfers; hosted validation is pending. Representative-media
-> acceptance remains open. Upgrade
+> settings. The exact source-code run on `05d78be4` failed the same four
+> importer fixtures on Linux, macOS, and Windows. Workflow-only head
+> `fe158f14` adds a PR-scoped Linux diagnostic rerun; that run is pending.
+> Representative-media acceptance remains open. Upgrade
 > pre-v14 BookshelfNG databases to `.71` before
 > switching. PostgreSQL migration and legacy-channel bridges remain
 > unsupported. Use the standard ChaptarrNG migration commands
@@ -135,13 +135,12 @@ migration and behavior on converted operator data remain open.
 ChaptarrNG PR #129 is an unpublished source candidate for the BookshelfNG
 M4B merge settings. It preserves opt-in behavior, track ordering and chapter
 titles, and falls back to importing the original parts when conversion fails.
-The previous hosted run on `5754162` failed four importer fixtures across the
-platforms. Commit `18abee6` fixes the fixture media-info and disk-provider
-dependencies and verifies file transfer; its hosted rerun is pending.
-Representative M4B files and end-to-end move/copy behavior still need
-acceptance. The feature is not in the public
-`.977` image, so keep `BOOKSHELF_M4B_MERGE` unset after migration until a
-tested ChaptarrNG build documents it.
+The exact source-code run on `05d78be4` failed the same four importer fixtures
+on Linux, macOS, and Windows. Workflow-only head `fe158f14` adds a PR-scoped
+Linux diagnostic rerun, which is pending. Representative M4B files and
+end-to-end move/copy behavior still need acceptance. The feature is not in the
+public `.977` image, so keep `BOOKSHELF_M4B_MERGE` unset after migration until
+a tested ChaptarrNG build documents it.
 
 BookshelfNG issue #114 is closed and implemented in its tagged `0.4.21.71`
 source. The same new-author path behavior is already in ChaptarrNG

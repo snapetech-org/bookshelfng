@@ -35,10 +35,11 @@ The published ChaptarrNG `v0.9.977` does not honor
 `BOOKSHELF_FFMPEG_PATH`. ChaptarrNG has native multipart and M4B conversion,
 but that does not make these BookshelfNG settings equivalent. The source-only
 [ChaptarrNG PR #129](https://github.com/snapetech-org/chaptarrng/pull/129) is
-under review and is not available in a published build. An earlier hosted run
-failed four importer fixtures; the current head corrects their media-info and
-disk-provider setup and is awaiting revalidation. Preserve the settings in
-your deployment notes, but keep
+under review and is not available in a published build. The exact source-code
+run on `05d78be4` failed the same four importer fixtures on Linux, macOS, and
+Windows. Workflow-only head `fe158f14` adds a PR-scoped Linux diagnostic
+rerun; its result is pending. Representative-media acceptance remains open.
+Preserve the settings in your deployment notes, but keep
 `BOOKSHELF_M4B_MERGE` unset after migration until the ChaptarrNG migration
 guide names a tested build that supports it.
 
