@@ -1,17 +1,19 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
-**Reviewed:** 2026-10-17. **Status:** BookshelfNG `0.4.21.71` is tagged as the
-final source release; its GitHub release is still a draft while platform
-archives are built, so `0.4.21.70` remains the latest published BookshelfNG
-release. ChaptarrNG `v0.9.975` is published with preview, apply, automatic
-startup conversion, and rollback commands. The verified migration input
-remains the exact BookshelfNG migration-158 SQLite schema. One populated
-Linux/amd64 run retained all 39 source tables and rows, while 81 media choices
-still required operator review. The final-release decision and helper do not
-close the feature, data, or installation-channel acceptance gates. Older
-schemas, PostgreSQL, complete settings/identity behavior, rollback on every
-real deployment, and package handoff remain open. This is a feature-level
-matrix, not a claim that similarly named features are equivalent.
+**Reviewed:** 2026-10-17. **Status:** BookshelfNG `0.4.21.71` is the published
+final source release, and issue #114 is closed. ChaptarrNG `v0.9.976` is
+published with preview, apply, automatic startup conversion, rollback, and a
+safe fallback for books whose formats cannot be inferred. The verified
+migration input remains the exact BookshelfNG migration-158 SQLite schema. One
+populated Linux/amd64 run retained all 39 source tables and rows; 81 books
+needed media classification, and the test-map choices were not reviewed as
+correct. The current converter keeps unresolved records in both catalogs,
+unmonitored, and writes a review file, but it does not classify them. The
+final-release decision and helper do not close the feature, data, or
+installation-channel acceptance gates. Older schemas, PostgreSQL, complete
+settings/identity behavior, rollback on every real deployment, and package
+handoff remain open. This is a feature-level matrix, not a claim that
+similarly named features are equivalent.
 
 **Confidence:** high for the listed BookshelfNG behavior at the pinned
 released source; moderate for whether ChaptarrNG contains a related
@@ -52,10 +54,10 @@ ChaptarrNG branches and open feature PRs count before release; the combined
 pins the current snapshot and tracks those blockers.
 
 The prior maintained-backlog snapshot `24b340f` is historical: PRs #69–#77
-have since merged. Current ChaptarrNG main, upstream, and candidate counts are
-listed above. Every open ChaptarrNG product, maintenance, security, and
-dependency change counts in the cumulative blocker set before and after merge
-or release and is tracked in the ChaptarrNG matrix.
+have since merged. The pinned source inventories remain historical snapshots. Every open
+ChaptarrNG product, maintenance, security, and dependency change counts in
+the cumulative blocker set before and after merge or release and is tracked
+in the ChaptarrNG matrix.
 
 ## Feature matrix
 
@@ -65,10 +67,10 @@ are tested. The current code-level findings and acceptance cases are recorded
 in the [consolidation report](chaptarr-consolidation.md); the linked inventory
 is the commit/path audit that must be fully dispositioned.
 
-| BookshelfNG capability | BookshelfNG has | ChaptarrNG candidate has | Retirement disposition and status |
+| BookshelfNG capability | BookshelfNG has | ChaptarrNG implementation has | Retirement disposition and status |
 | --- | --- | --- | --- |
-| One instance for ebooks and audiobooks; multiple compatible formats per book | Single book records can retain multiple ebook and audiobook files | Media-specific book and edition models exist | **Open blocker.** Convert records and all relationships; prove format isolation, monitoring, upgrades, and existing client behavior. |
-| Format-specific author paths, quality profiles, and metadata profiles | Optional per-format paths and profile overrides, with author defaults as fallback | Native media roots and profiles exist; new authors receive usable per-format roots automatically | **Partial parity.** ChaptarrNG `v0.9.974+` initializes missing new-author roots from configured defaults or the only compatible root, preserves explicit roots, leaves ambiguous defaults blank, and does not move existing files. BookshelfNG `0.4.21.71` adds the requested optional setting. The broader blocker remains open for profile override/fallback semantics and conversion of existing path/profile data; test imports, upgrades, renames, scans, and moves for both formats. |
+| One instance for ebooks and audiobooks; multiple compatible formats per book | Single book records can retain multiple ebook and audiobook files | Media-specific records exist; conversion preserves a selected edition per format and keeps unresolved records in both catalogs, unmonitored, with a review artifact | **Open blocker.** Convert and validate all rows and relationships; prove format isolation, monitoring, upgrades, real-data rollback, and existing client behavior. The fallback does not infer the true format. |
+| Format-specific author paths, quality profiles, and metadata profiles | Optional per-format paths and profile overrides, with author defaults as fallback | Native media roots and profiles exist; new authors receive usable per-format roots automatically | **Partial parity.** ChaptarrNG `v0.9.974+` initializes missing new-author roots from configured defaults or the only compatible root, preserves explicit roots, leaves ambiguous defaults blank, and does not move existing files. BookshelfNG `0.4.21.71` implements the optional setting requested in the now-closed issue #114. The broader blocker remains open for profile override/fallback semantics and conversion of existing path/profile data; test imports, upgrades, renames, scans, and moves for both formats. |
 | Native Hardcover metadata and request controls | Direct GraphQL provider, per-process pacing/cache, batched lookups, rate-limit recovery, and identity routing | Chaptarr has a separate resolver and consensus pipeline | **Open blocker.** Keep the configured behavior and identity boundaries or provide a tested replacement; a provider name alone is not parity. |
 | Selectable supplemental catalogs and per-field source preferences | Hardcover, Readarr-compatible API, Open Library, Google Books, LOC, Gutendex, Internet Archive, NDL, Europeana, and optional Apify adapters | No matching Bookshelf catalog set or source-selection model identified | **Open blocker.** Port adapters, settings, qualified identities, field choices, and fallback rules, or replace each with tested behavior. |
 | Cross-catalog recovery and import matching | Retry unmapped files across configured catalogs; ISBN/ASIN/provider-ID and normalized-name matching; configurable title threshold | Different resolver, FTS, and matching architecture | **Open blocker.** Port the observed cases and no-false-match/no-delete guarantees; do not transplant the old matching engine blindly. |
@@ -97,8 +99,9 @@ same application sources as the current integration head. Twenty-three
 focused migration fixtures also passed,
 including synthetic rollback after a post-migration write. The standard image passed preview,
 apply, and startup against separate copies of one real populated migration-158
-database; this is bounded evidence because 81 books still require operator-
-selected media classifications. The separate opt-in
+database; this is bounded evidence because 81 books had no derivable media
+format. The published fallback allows conversion to continue without guessing,
+but operators still need to review the format and monitoring intent. The separate opt-in
 Chromium run passed 3/3 on an earlier candidate snapshot. The focused converter
 coordinator fixture passes 5/5, and the populated importer/startup fixture
 passes 5/5, including profile mapping, notification/config/user rows,
@@ -118,10 +121,11 @@ cases, 29 metadata/ranking/series cases, 29 rename/path cases, and 6
 BookLore/TagLib cases, alongside the 5 converter-coordinator cases.
 The synthetic TagLib chapter-preservation fixture passed; focused
 migration-lineage tests passed 2/2, and 29 rename/path-portability tests
-passed. A hosted Windows run at the previous PR #100 head failed four
-migration/rollback tests. The validation engine now records a safe exception
-type and method frame without logging error text or paths; its current hosted
-rerun is queued. Preview, explicit apply, and ordinary startup were also exercised
+passed. An earlier pre-release hosted Windows run at the previous PR #100 head failed
+four migration/rollback tests. The validation engine now records a safe
+exception type and method frame without logging error text or paths. The later
+`v0.9.976` release workflow passed its Windows build/test job; this does not
+establish populated real-data conversion or rollback on Windows. Preview, explicit apply, and ordinary startup were also exercised
 on separate copies of one real populated BookshelfNG migration-158 SQLite
 database using the standard Linux/amd64 image. Preview left the source hash
 unchanged and accounted for all 127,177 rows; apply retained a backup matching
@@ -142,8 +146,9 @@ SQLite schema; unsupported schemas and provider identities fail closed with
 the source intact. The one populated-database run proves that exact input, not
 older schemas, PostgreSQL, or other production databases. The converter stages
 a native ChaptarrNG database, validates it, retains a Bookshelf backup, and
-promotes only after its row-accounting checks. This candidate is not a
-released migration tool.
+promotes only after its row-accounting checks. This migration tool is included
+in the public ChaptarrNG `v0.9.976` release. The evidence above does not prove
+older schemas, PostgreSQL source conversion, or every real-world data shape.
 
 Retirement also has a separate distribution gate. BookshelfNG's installed
 updater checks the Readarr-owned update service, so changing Snapetech release

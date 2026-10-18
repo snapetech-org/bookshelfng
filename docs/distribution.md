@@ -6,16 +6,17 @@ normal BookshelfNG build succeeds. It prepares the GitHub Release as a draft,
 builds platform archives and packages, attaches checksums, then publishes the
 release and sends the existing Discord announcement.
 
-BookshelfNG `0.4.21.71` is tagged as the final source release; its GitHub
-release is still being prepared, and `0.4.21.70` is the latest published
-version. The source-side helper takes a full appdata archive, then invokes the
-standard ChaptarrNG preview, apply, and rollback commands. ChaptarrNG
-`v0.9.975` is the matching published release. Conversion is supported for the exact BookshelfNG
-migration-158 SQLite schema; ambiguous book formats require an operator's
-media map. One populated Linux/amd64 conversion retained all 39 source tables
-and rows, but 81 media choices in that run were not reviewed as correct
-classifications. Older schemas, PostgreSQL, full provider/settings behavior,
-and rollback on every real deployment remain unverified.
+BookshelfNG `0.4.21.71` is the published final source release. Its source-side
+helper takes a full appdata archive, then invokes the standard ChaptarrNG
+preview, apply, and rollback commands. ChaptarrNG `v0.9.976` is the published
+release used in the handoff guide. Conversion supports the exact BookshelfNG
+migration-158 SQLite schema. Ambiguous book formats are kept in both catalogs,
+unmonitored, with a private review file; an operator-supplied media map is
+optional. One populated Linux/amd64 rehearsal retained all 39 source tables
+and rows, but its 81 test-map choices were not reviewed as correct
+classifications. Older schemas, PostgreSQL source conversion, full
+provider/settings behavior, and rollback on every real deployment remain
+unverified.
 
 The helper does not copy media or download folders outside appdata or update
 an installation channel. Release-channel bridging remains disabled by

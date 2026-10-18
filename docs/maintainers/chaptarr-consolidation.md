@@ -2,34 +2,35 @@
 
 ## Current status — 2026-10-17
 
-BookshelfNG `0.4.21.71` is tagged as the final source release. Its CI has passed
-the build, tests, release-note checks, and image scan; the release workflow is
-still building standalone platform archives. Until that draft is published,
-`0.4.21.70` is the latest public BookshelfNG release. The `.71` source contains
-the optional new-author path setting requested in issue #114.
-
-The latest published ChaptarrNG release is `v0.9.975`. It contains the
-preview/apply/restore tools, automatic startup conversion, and format-specific
-new-author path initialization (present since `v0.9.974`). ChaptarrNG fills
-missing roots from usable configured defaults automatically; it has no
-separate toggle, does not replace explicit values, and does not rewrite
-existing authors or move their files.
+BookshelfNG `0.4.21.71` is the published final source release. Its issue #114
+request is closed; the `.71` release contains the optional new-author path
+setting and the source-side appdata archive helper. ChaptarrNG `v0.9.976` is
+published with preview, apply, rollback, automatic startup conversion, and a
+safe fallback for records whose media format cannot be inferred. ChaptarrNG
+`v0.9.974` and later initialize missing new-author roots from configured
+format defaults without replacing explicit values or rewriting existing
+authors and files.
 
 The supported source database remains the exact BookshelfNG migration-158
-SQLite schema. The populated Linux/amd64 rehearsal retained all 39 source
-tables and rows, but 81 media choices were technical test inputs and were not
-reviewed as correct classifications. ChaptarrNG's published-image synthetic
-preview/apply/rollback/startup checks and the BookshelfNG source-helper
-contract test pass. Older schemas, PostgreSQL, two populated BookshelfNG
-databases, every provider/environment contract, rollback on operator data,
-full feature parity, and every package-channel upgrade remain unverified.
+SQLite schema. A populated Linux/amd64 rehearsal accounted for all 127,177
+rows across 39 source tables. Its 81 media choices were technical test inputs,
+not reviewed classifications. The published `.976` converter now keeps
+unresolved works in both catalogs, unmonitored, and writes a private review
+file; operators still need to classify those works. The `.976` release
+workflow passed Linux, macOS, Windows, and PostgreSQL migration validation.
+This remains bounded evidence: older schemas, PostgreSQL source conversion,
+two populated BookshelfNG databases, every provider/environment contract,
+rollback on operator data, full feature parity, and each package-channel
+upgrade remain open.
 
-The legacy bridge is still disabled. ChaptarrNG AUR `0.9.975-1` is published,
-and the standard COPR `0.9.975-1` build succeeded; the legacy COPR build was
-not triggered. The ChaptarrNG Chocolatey `0.9.975` push returned HTTP 403, so
-its public package is still `0.9.973`; BookshelfNG's public AUR and Chocolatey
-packages remain at `.70`. The scheduled BookshelfNG bridge run confirmed the
-gate was off and skipped all publishers. See the maintained
+The migration bridge is disabled. ChaptarrNG AUR `0.9.976-1` is published;
+BookshelfNG's public AUR identity remains at `0.4.21.71-1` on the BookshelfNG
+payload. The standard COPR package `chaptarrng 0.9.976-1.fc44` and
+`0.9.976-1.fc46` is published for x86_64; the legacy COPR trigger was skipped. ChaptarrNG Chocolatey `0.9.976`
+built and passed upgrade smoke but its publish returned HTTP 403, leaving the
+public ChaptarrNG package at `0.9.973`; the BookshelfNG Chocolatey identity
+remains at `0.4.21.70`. GHCR published the standard image but did not redirect
+the legacy aliases. See the maintained
 [retirement status page](https://github.com/snapetech-org/chaptarrng/blob/main/docs/BOOKSHELFNG_RETIREMENT.md)
 and the user-facing
 [migration guide](../migrate-from-bookshelfng-to-chaptarrng.md) for the current
@@ -37,7 +38,8 @@ channel checklist and operator procedure.
 
 The detailed investigation below records historical candidate revisions and
 their test evidence. Its pinned source counts and older release/channel rows
-are snapshots, not current publication status.
+are snapshots, not current publication status. BookshelfNG issue #144 remains
+open; full feature and channel acceptance is not complete.
 
 At the GitHub security audit for this work, neither repository had open
 CodeQL or Dependabot alerts. Secret scanning is disabled on both repositories,
@@ -111,9 +113,10 @@ service was not changed.
 
 Eighty-one books needed an explicit media choice because the source did not
 identify a single target format. The choices used for the technical apply
-exercise were not reviewed as correct classifications; a real conversion must
-stop for the operator to map each one. This run proves one exact populated
-SQLite schema and its standard-image path. It does not prove older schemas,
+exercise were not reviewed as correct classifications. ChaptarrNG `v0.9.976`
+keeps unresolved records in both catalogs without monitoring and writes a
+private review file, so an operator map is no longer required to continue.
+This run proves one exact populated SQLite schema and its standard-image path. It does not prove older schemas,
 PostgreSQL, every provider or setting, rollback on a real populated deployment, all client
 behavior, feature parity, or any published package-channel bridge.
 
@@ -296,7 +299,7 @@ and library checks.
 Every one of the source's 39 tables needs an explicit preserve, transform,
 rebuild, or deliberate-reset disposition; no table may disappear by omission.
 
-The current candidate is SQLite-only and only supports the exact migration-158
+The published converter is SQLite-only and supports the exact migration-158
 Bookshelf schema. The populated fixture validates a subset of table
 dispositions; complete provider/configuration coverage, PostgreSQL import, and
 automatic discovery of a separate Bookshelf data directory remain open.
@@ -330,22 +333,23 @@ tables, including derived search indexes. Bookshelf stores creator data in
 `AuthorMetadataId` and `ForeignBookId`. Chaptarr folds provider metadata into
 `Authors` and uses media-scoped `Books`/`Editions` relationships.
 
-The local ChaptarrNG integration worktree now has a SQLite staging coordinator
-and row importer wired into the full startup migration path. It accepts only
-the exact BookshelfNG migration-158 table set; older or altered schemas fail
-closed. It snapshots the source, migrates a native target, imports source rows
-with explicit row accounting, validates SQLite integrity and foreign keys,
-retains a Bookshelf backup, and promotes only after validation. The importer
-maps author metadata and profiles, splits mixed books, and carries editions,
-files, series, blocklist, settings, and supported history relationships. It
-preserves edition image and link arrays and maps narrator strings into the
-target narrator-name list. It preserves orphan file IDs and reserves their sequence values against future
-reuse. Unsupported provider IDs, multiple monitored editions, and ambiguous
-mixed-format monitoring state refuse conversion without changing source bytes.
-The coordinator fixtures pass 5/5; the populated startup/import fixture passes
-5/5. This remains candidate code, not a released converter. The populated
-migration-158 run above proves one real SQLite database only; broader data,
-configuration, rollback, and channel coverage remain open.
+The published ChaptarrNG converter uses a SQLite staging coordinator and row
+importer wired into the full startup migration path. It accepts only the exact
+BookshelfNG migration-158 table set; older or altered schemas fail closed. It
+snapshots the source, migrates a native target, imports source rows with
+explicit row accounting, validates SQLite integrity and foreign keys, retains
+a Bookshelf backup, and promotes only after validation. The importer maps
+author metadata and profiles, splits mixed books, and carries editions, files,
+series, blocklist, settings, and supported history relationships. It preserves
+edition image and link arrays, maps narrator strings into the target narrator
+list, and reserves orphan file IDs against future reuse. Unresolved format
+records are preserved in both catalogs without monitoring and reported in a
+private review file. Unsupported provider identities and multiple selected
+editions of one format still fail closed without changing source bytes. The
+coordinator fixtures passed 5/5 and the populated startup/import fixture
+passed 5/5 on the earlier candidate. The published migration-158 rehearsal
+proves one SQLite database only; broader data, configuration, real-data
+rollback, and channel coverage remain open.
 
 Several compatibility questions remain after the first populated fixture:
 

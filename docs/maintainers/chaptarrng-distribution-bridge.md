@@ -2,15 +2,20 @@
 
 ## Current status — 2026-10-17
 
-BookshelfNG `0.4.21.71` is tagged as the final source release and includes an
-appdata handoff helper. Its validation has passed, and the release workflow is
-building standalone archives; `.70` remains the latest published BookshelfNG
-release until the draft is published. The bridge described below remains
-disabled; no live package identity has been redirected. ChaptarrNG `v0.9.975`
-is the matching published release. Migration support remains limited to the
-exact BookshelfNG migration-158 SQLite schema, and channel acceptance gates
-are still open. Use this channel matrix as a gate inventory, not a report of
-completed redirects.
+BookshelfNG `0.4.21.71` is the published final source release and includes an
+appdata handoff helper. Issue #114 is closed. ChaptarrNG `v0.9.976` is
+published with the migration tools and an unmonitored dual-catalog fallback
+for records whose formats cannot be inferred. The bridge described below
+remains disabled; no BookshelfNG package identity or image alias has been
+redirected. ChaptarrNG AUR `0.9.976-1` is published. The standard COPR package `chaptarrng 0.9.976-1.fc44` and
+`0.9.976-1.fc46` is published for x86_64. Chocolatey `0.9.976` passed build and upgrade
+smoke but its publish was rejected with HTTP 403; public ChaptarrNG Chocolatey
+remains `0.9.973`. The BookshelfNG AUR identity remains on its own
+`0.4.21.71-1` payload; the Chocolatey identity remains at `0.4.21.70`.
+Migration support remains limited
+to the exact BookshelfNG migration-158 SQLite schema, and feature and channel
+acceptance gates are still open. Use this channel matrix as a gate inventory,
+not a report of completed redirects.
 
 The bridge workflow is a candidate for the BookshelfNG repository. It is
 disabled unless the `CHAPTARRNG_MIGRATION_BRIDGE_ENABLED` repository variable
