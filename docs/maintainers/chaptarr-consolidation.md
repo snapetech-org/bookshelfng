@@ -14,14 +14,15 @@ authors and files.
 
 The public ChaptarrNG `v0.9.977` supports BookshelfNG migration-158 SQLite and
 applies the embedded source chain to a disposable copy before conversion. Its
-current table guard rejects schemas before migration 14 because they still
-use `Blacklist`; a version-aware allowlist fix and authentic migration-1
-rollback fixture are on a review branch with hosted CI pending. The populated
-synthetic v22 fixture passes its targeted local test and awaits the full
-hosted rerun. Neither is evidence from real older-schema operator data. A
-populated Linux/amd64
-rehearsal of the final schema accounted for all 127,177
-rows across 39 source tables. Its 81 media choices were technical test inputs,
+table guard rejects schemas before migration 14 because they still use
+`Blacklist`. PR #126 merged a version-aware fix and synthetic migration-1
+rollback fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL
+migration checks passed. The source fix is not in `.977`, and releases remain
+frozen until the retirement gates close. The populated synthetic v22 fixture
+passes local and hosted validation but is not evidence from real older-schema
+operator data. A populated Linux/amd64 rehearsal of the final schema accounted
+for all 127,177 rows across 39 source tables. Its 81 media choices were
+technical test inputs,
 not reviewed classifications. The published `.976` converter now keeps
 unresolved works in both catalogs, unmonitored, and writes a private review
 file; operators still need to classify those works. The `.976` release
@@ -314,11 +315,13 @@ rebuild, or deliberate-reset disposition; no table may disappear by omission.
 
 The published `v0.9.977` converter is SQLite-only, supports the exact
 migration-158 Bookshelf schema, and bundles the embedded source migration
-chain. Its current table guard rejects schemas before migration 14 because
-they still use `Blacklist`; a version-aware fix and authentic migration-1
-rollback fixture are under hosted validation. The populated synthetic v22
-fixture validates source upgrade, conversion, preview immutability, and
-rollback. This does not establish real-data support for older schemas. The populated fixture validates a subset
+chain. Its table guard rejects schemas before migration 14 because they still
+use `Blacklist`. PR #126 merged a version-aware fix and synthetic migration-1
+rollback fixture into `main`, with hosted Linux, macOS, Windows, and PostgreSQL
+migration checks passed. The fix is not in `.977`; no release will be cut
+until the retirement gates close. The populated synthetic v22 fixture
+validates source upgrade, conversion, preview immutability, and rollback. This
+does not establish real-data support for older schemas. The populated fixture validates a subset
 of table dispositions; complete provider/configuration coverage, PostgreSQL
 import, and automatic discovery of a separate Bookshelf data directory remain
 open.

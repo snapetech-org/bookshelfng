@@ -2,29 +2,31 @@
 
 BookshelfNG `0.4.21.71` is the final published source release. It includes a
 source-side handoff helper that archives BookshelfNG appdata and invokes the
-standard ChaptarrNG migration commands. ChaptarrNG `v0.9.977` is the current
-published release used in the examples
-below. Keep its image tag versioned or use an immutable digest.
+standard ChaptarrNG migration commands. ChaptarrNG `v0.9.977` is the latest
+public release used in the examples below. Keep its image tag versioned or use
+an immutable digest. ChaptarrNG releases are frozen until the full retirement
+acceptance gates close.
 
-This process does not make every old installation automatically transferable.
 The published converter supports the exact BookshelfNG migration-158 SQLite
-schema and bundles BookshelfNG's SQLite migration chain. Its current table
-guard rejects versions before migration 14 because they still use `Blacklist`;
-upgrade those installations to the final BookshelfNG `0.4.21.71` release first,
-or wait for the follow-up fix now under hosted validation. Populated synthetic
-migration-22 coverage exercises conversion and rollback but is not proof from
-real older-schema data. PostgreSQL, two populated Bookshelf databases, and
-several external settings and installation-channel upgrades are not covered.
-The release bridge remains disabled by default. Read the limits below before
-changing a running installation.
+schema and bundles BookshelfNG's SQLite migration chain. It rejects versions
+before migration 14 because they still use `Blacklist`; upgrade those
+installations to the final BookshelfNG `.71` release first. PR #126 merged a
+version-aware guard and synthetic migration-1 rollback fixture into
+ChaptarrNG `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
+checks passed, but that source fix is not in `.977`. Populated synthetic
+migration-22 coverage is not proof from real older-schema data. PostgreSQL,
+two populated Bookshelf databases, and several external settings and
+installation-channel upgrades are not covered. The release bridge remains
+disabled by default. Read the limits below before changing a running
+installation.
 
 Update an earlier BookshelfNG release to `0.4.21.71` and let it finish its
 database migration before replacing the application. This brings the source
-to migration 158, which ChaptarrNG `.977` accepts. For databases before
-migration 14 that cannot be upgraded through BookshelfNG, wait for the
-ChaptarrNG follow-up release. Stop BookshelfNG when it is idle, then run
-preview before switching. PostgreSQL BookshelfNG databases require a separate
-manual migration path and are not accepted by the converter.
+to migration 158, which ChaptarrNG `.977` accepts. For a database before
+migration 14 that cannot be upgraded through BookshelfNG, do not switch to
+ChaptarrNG `.977` while the release freeze is active. Stop BookshelfNG when it
+is idle, then run preview before switching. PostgreSQL BookshelfNG databases
+require a separate manual migration path and are not accepted by the converter.
 
 The helper archives appdata, including `plugins/Bookshelf.Diagnostics.dll`,
 but it does not capture environment variables. If the optional diagnostics
@@ -199,8 +201,11 @@ Keep the old installer or image reference available until the migration has
 been verified and rollback is no longer needed.
 
 The published `.977` converter accepts the exact BookshelfNG migration-158
-SQLite schema and bundles the SQLite upgrade chain. Its table guard currently
-rejects versions before migration 14 until a version-aware fix is released.
+SQLite schema and bundles the SQLite upgrade chain. Its table guard rejects
+versions before migration 14. PR #126 merged a version-aware fix and synthetic
+migration-1 rollback fixture into ChaptarrNG `main`; hosted Linux, macOS,
+Windows, and PostgreSQL migration checks passed, but the source fix is not in
+`.977`. Releases are frozen until all retirement acceptance gates close.
 Populated synthetic migration-22 evidence covers conversion and rollback,
 source-unchanged preview, and refusal of a future schema. This does not
 establish older-schema behavior on real data or PostgreSQL source conversion.

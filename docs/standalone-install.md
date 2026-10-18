@@ -2,19 +2,19 @@
 
 **Final release:** BookshelfNG `0.4.21.71` is published. This guide remains
 for existing installations; new installations should use the maintained
-[ChaptarrNG releases](https://github.com/snapetech-org/chaptarrng/releases). To move an existing
-installation to ChaptarrNG, use the
-[BookshelfNG handoff guide](migrate-from-bookshelfng-to-chaptarrng.md) and its
-source-side helper with the standard ChaptarrNG `v0.9.977` release. The
-converter supports the exact BookshelfNG migration-158 SQLite schema and
-bundles the source migration chain. Its current table guard rejects versions
-before migration 14; upgrade BookshelfNG to `.71` first or wait for the
-follow-up fix. It keeps
-ambiguous formats in both catalogs without monitoring and writes a private
-review file; a media map is optional. The helper backs up appdata; it does not
-copy external media/download mounts or automatically update a package, image,
-native installer, or Helm deployment. The release bridge is disabled by
-default.
+[ChaptarrNG releases](https://github.com/snapetech-org/chaptarrng/releases).
+ChaptarrNG `v0.9.977` remains the latest public release. Its converter supports
+the exact BookshelfNG migration-158 SQLite schema and bundles the source
+migration chain, but rejects versions before migration 14. Upgrade BookshelfNG
+to `.71` before switching a database with an earlier schema.
+
+PR #126 merged a version-aware table guard and migration-1 rollback fixture
+into ChaptarrNG `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
+checks passed. The fix is not in `.977`. ChaptarrNG releases are frozen until
+feature parity, representative migration and rollback, and install-channel
+acceptance are complete. The helper backs up appdata; it does not copy external
+media/download mounts or automatically update a package, image, native
+installer, or Helm deployment. The release bridge remains disabled by default.
 
 BookshelfNG is a web application that can run directly on a supported host. It
 does not need SeerrNG or another service to launch, search catalogs, manage a

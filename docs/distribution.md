@@ -6,21 +6,27 @@ normal BookshelfNG build succeeds. It prepares the GitHub Release as a draft,
 builds platform archives and packages, attaches checksums, then publishes the
 release and sends the existing Discord announcement.
 
-BookshelfNG `0.4.21.71` is the published final source release. Its source-side
-helper takes a full appdata archive, then invokes the standard ChaptarrNG
-preview, apply, and rollback commands. ChaptarrNG `v0.9.977` is the published
-release used in the handoff guide. It supports the exact BookshelfNG
-migration-158 SQLite schema and bundles the source migration chain; its current
-table guard rejects versions before migration 14 until the follow-up fix is
-released. Ambiguous book formats are kept in both catalogs,
+BookshelfNG `0.4.21.71` is the published final source release. Its
+source-side helper takes a full appdata archive, then invokes the standard
+ChaptarrNG preview, apply, and rollback commands. ChaptarrNG `v0.9.977` remains
+the latest published release; it supports the exact BookshelfNG migration-158
+SQLite schema and bundles the source migration chain. The `.977` table guard
+rejects versions before migration 14 until the chain renames `Blacklist` to
+`Blocklist`. PR #126 merged a version-aware fix and migration-1 rollback
+fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
+checks passed, but that fix is not in `.977`.
+
+ChaptarrNG releases are frozen until the retirement feature, data, rollback,
+and install-channel acceptance gates close. No image or legacy alias will be
+updated during this freeze. Ambiguous book formats are kept in both catalogs,
 unmonitored, with a private review file; an operator-supplied media map is
 optional. One populated Linux/amd64 rehearsal retained all 39 source tables
 and rows, but its 81 test-map choices were not reviewed as correct
-classifications. Older schemas, PostgreSQL source conversion, full
-provider/settings behavior, and rollback on every real deployment remain
-unverified. An isolated 2026-10-18 Docker image-switch and rollback smoke
-passed using the published `.71` and `.977` images with an empty database;
-it does not validate the Unraid Community Apps update flow.
+classifications. Older-schema behavior on real data, PostgreSQL source
+conversion, full provider/settings behavior, and rollback on every real
+deployment remain unverified. An isolated 2026-10-18 Docker image-switch and
+rollback smoke passed using the published `.71` and `.977` images with an empty
+database; it does not validate the Unraid Community Apps update flow.
 
 The helper does not copy media or download folders outside appdata or update
 an installation channel. Release-channel bridging remains disabled by
