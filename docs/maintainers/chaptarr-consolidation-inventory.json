@@ -6,13 +6,13 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "e4925778eb49678fde4f6a44ef1ff8448ac88850",
-  "targetCommit": "949ae3ddd54a522d859f57f5bce0fd697e99a8a8",
+  "sourceCommit": "abc4e4fa8a86e1affc3f44ce9bdb24c869d7da07",
+  "targetCommit": "9f1ae60baf759bc361073fd0aee27e17a4c7f60f",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 533,
-    "commitsNotInUpstreamHistory": 524,
+    "commits": 540,
+    "commitsNotInUpstreamHistory": 531,
     "netChangedPaths": 1091,
     "fileStates": {
       "no-mapped-target-file": 437,
@@ -10340,6 +10340,107 @@
         "docs/maintainers/chaptarr-consolidation-inventory.json",
         "docs/maintainers/chaptarr-consolidation.md"
       ]
+    },
+    {
+      "commit": "df1d1a14b61fb2d298f43ee2332db712082f66eb",
+      "date": "2026-10-17",
+      "subject": "docs: update ChaptarrNG retirement readiness",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "fb3a13fca6774a86beb0ee0fdc942f55e5efa8d7",
+      "date": "2026-10-18",
+      "subject": "docs: refresh BookshelfNG retirement audit",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "6cc856145640aecf339652f89284e075e7de511c",
+      "date": "2026-10-18",
+      "subject": "docs: report failing Chaptarr M4B checks accurately",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "d11d5fc105058fc6c202d9aacb6e010e0cc3b5d6",
+      "date": "2026-10-18",
+      "subject": "docs: update M4B migration test status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "0abdc710ee5eb859a14b0bb4eba929be55d62845",
+      "date": "2026-10-18",
+      "subject": "docs: record M4B test fixture diagnosis",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "54728ba55a034bb87446ff84876e49545ba71980",
+      "date": "2026-10-18",
+      "subject": "docs: refresh ChaptarrNG retirement status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "abc4e4fa8a86e1affc3f44ce9bdb24c869d7da07",
+      "date": "2026-10-18",
+      "subject": "Merge pull request #146 from snapetech-org/codex/chaptarrng-retirement-handoff-20261018",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
     }
   ],
   "files": [
@@ -10774,11 +10875,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "961edf91e4ec64beec82cc42c1dcf2d57146ee9c"
+        "oid": "f0e05c6e0d07373d12ae90f500604ae04566d279"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "1dfa9b799b73effdcbe584f3cebb3f762595c5e7"
+        "oid": "0e4710ea2eabd28507a9e2ea429cc649a11aa277"
       }
     },
     {
@@ -11197,7 +11298,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "609a77cace139420b354e2696378c17cfa046f85"
+        "oid": "8ba88d3c773a5b68c56fedad44fc5027758a7f99"
       },
       "targetBlob": null
     },
@@ -11237,7 +11338,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5c15c51a0e9feae62b230e77ba0559606fd5ce95"
+        "oid": "cf1a8a596a2fc9c0a8b7e1093cf88491661b6b38"
       },
       "targetBlob": null
     },
@@ -11373,7 +11474,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "1024e09dde66c8dca139b4cae8683d3c6435e165"
+        "oid": "db864224277521f9491aa705ac8795a81e1cb7c4"
       },
       "targetBlob": null
     },
@@ -11393,7 +11494,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "87a2b93b8dcb8a31fecd5b5beac10a5092562a61"
+        "oid": "41870cb504a9424de11cdf4fe530832c07bb16c6"
       },
       "targetBlob": null
     },
@@ -11403,7 +11504,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "798dad9888143e448e8024222a34e93ecfd91b9e"
+        "oid": "b58ddcf7db896784e276ea2f709cd81aec385d49"
       },
       "targetBlob": null
     },
@@ -11443,7 +11544,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "3ae87547933647c3bb7e7e5d3060dd784ebf00e9"
+        "oid": "63690b974fbd8534f5f9122ea8466b8862ce147e"
       },
       "targetBlob": null
     },

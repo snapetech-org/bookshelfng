@@ -41,6 +41,16 @@ titles and offsets. This checks the external converter and sidecar format, not
 the new importer end to end. Representative-media acceptance remains open,
 and the source change is not in public `.977`.
 
+ChaptarrNG PR #130 merged to `main` as `9f1ae60b`. When no explicit
+`BookMatchingStrictness` is set, ChaptarrNG maps BookshelfNG's numeric
+`BookImportMinimumMatchPercent` to the closest mode: 50–66 to Aggressive,
+67–82 to Balanced, and 83–99 to Strict. An explicit Chaptarr mode takes
+precedence, but invalid legacy values still fail closed. The source `Config`
+row is retained and the migration report identifies the mapping as a lossy
+approximation. The algorithms have different semantics, so matching behavior
+on converted libraries still needs acceptance. This change is not in public
+`.977`.
+
 Update an earlier BookshelfNG release to `0.4.21.71` and let it finish its
 database migration before replacing the application. This brings the source
 to migration 158, which ChaptarrNG `.977` accepts. For a database before
@@ -249,8 +259,10 @@ for evidence and the remaining feature and channel inventory.
 
 BookshelfNG's `BookImportMinimumMatchPercent` defaults to 70 and accepts values
 from 50 through 99. It affects both fuzzy title parsing and import acceptance.
-The converter preserves the saved `Config` row, but ChaptarrNG currently
-ignores that legacy key and uses `BookMatchingStrictness`, which has different
-semantics. There is no verified value mapping. Review and validate ChaptarrNG's
-matching behavior before relying on automatic matching after conversion; this
-remains a retirement parity gate.
+ChaptarrNG `main` maps 50–66 to Aggressive, 67–82 to Balanced, and 83–99 to
+Strict when there is no explicit `BookMatchingStrictness`; an explicit mode
+takes precedence. Invalid legacy values fail closed. The source `Config` row
+is retained, and the migration report labels the mode translation as a lossy
+approximation. These modes do not reproduce the legacy fuzzy-search algorithm,
+so validate matching behavior on converted operator data before relying on
+automatic matches. The source change is not in public `.977`.
