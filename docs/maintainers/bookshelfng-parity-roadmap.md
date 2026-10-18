@@ -63,12 +63,14 @@ handoff remain open. PostgreSQL conversion is supported by no published Chaptarr
 The migration accepts one database per appdata directory. ChaptarrNG refuses
 two non-empty legacy database candidates rather than choosing or combining
 them; the BookshelfNG handoff helper ignores an empty candidate and refuses two
-populated candidates before it creates an archive. The helper selection fix
-and regression coverage are in BookshelfNG PR #154. For two independent
-installations, migrate each appdata directory separately. To make one combined
-library, use the manual two-instance media-consolidation runbook in the root
-README, then migrate the verified BookshelfNG instance; that workflow does not
-merge database history, profiles, monitoring, or settings.
+populated candidates before it creates an archive. This helper fix and its
+regression coverage merged in BookshelfNG PR #154 as `de782d5`; the exact-head
+build, analysis, CodeQL, dependency review, package-sync, and release-note
+checks passed. For two independent installations, migrate each appdata
+directory separately. To make one combined library, use the manual
+two-instance media-consolidation runbook in the root README, then migrate the
+verified BookshelfNG instance; that workflow does not merge database history,
+profiles, monitoring, or settings.
 
 This is a feature-level matrix, not a
 claim that similarly named features are equivalent.
