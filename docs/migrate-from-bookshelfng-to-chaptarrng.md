@@ -18,9 +18,12 @@ ChaptarrNG `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
 checks passed, but that source fix is not in `.977`. Populated synthetic
 migration-22 coverage is not proof from real older-schema data. PostgreSQL,
 two populated Bookshelf databases, and several external settings and
-installation-channel upgrades are not covered. The release bridge remains
-disabled by default. Read the limits below before changing a running
-installation.
+installation-channel upgrades are not covered. An unreleased ChaptarrNG
+work-branch candidate stages conversion for one migration-158 PostgreSQL
+schema, but hosted validation and operator-data acceptance are incomplete; it
+is not supported for installations. The published migration path remains
+SQLite-only. The release bridge remains disabled by default. Read the limits
+below before changing a running installation.
 
 ChaptarrNG PR #127 merged to `main` as `b3089a39`, adding supplemental
 catalogs, per-field metadata preferences, and exact ISBN, ASIN, provider-ID, or
@@ -57,7 +60,9 @@ to migration 158, which ChaptarrNG `.977` accepts. For a database before
 migration 14 that cannot be upgraded through BookshelfNG, do not switch to
 ChaptarrNG `.977` while the release freeze is active. Stop BookshelfNG when it
 is idle, then run preview before switching. PostgreSQL BookshelfNG databases
-require a separate manual migration path and are not accepted by the converter.
+are not accepted by a published ChaptarrNG converter. Do not use the
+unreleased PostgreSQL candidate with operator data; retain the source database
+and wait for hosted and populated-data acceptance before considering it.
 
 The helper archives appdata, including `plugins/Bookshelf.Diagnostics.dll`,
 but it does not capture environment variables. If the optional diagnostics

@@ -39,8 +39,11 @@
 > algorithms; acceptance on converted operator data remains open. The change
 > is not in public `.977`. Upgrade
 > pre-v14 BookshelfNG databases to `.71` before
-> switching. PostgreSQL migration and legacy-channel bridges remain
-> unsupported. Use the standard ChaptarrNG migration commands
+> switching. PostgreSQL migration is not supported by a published ChaptarrNG
+> build. An unreleased work-branch candidate handles one migration-158
+> PostgreSQL schema, but hosted validation and operator-data acceptance are
+> incomplete; do not use that candidate for an installation. Legacy-channel
+> bridges also remain unavailable. Use the standard ChaptarrNG migration commands
 > in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md),
 > review its limits, and keep an independent backup.
 

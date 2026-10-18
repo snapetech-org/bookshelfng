@@ -47,8 +47,11 @@ unmonitored, and writes a review file, but it does not classify them. The
 final-release decision and helper do not close the feature, data, or
 installation-channel acceptance gates. PostgreSQL, complete
 settings/identity behavior, rollback on every real deployment, and package
-handoff remain open. This is a feature-level matrix, not a claim that
-similarly named features are equivalent.
+handoff remain open. PostgreSQL conversion is supported by no published
+ChaptarrNG release. A work-branch candidate targets one migration-158
+PostgreSQL schema and has not passed hosted build or operator-data acceptance;
+it remains unsupported for installations. This is a feature-level matrix, not
+a claim that similarly named features are equivalent.
 
 BookshelfNG's `BookImportMinimumMatchPercent` defaults to 70, allows 50–99,
 and affects both fuzzy title parsing and import acceptance. ChaptarrNG `main`
