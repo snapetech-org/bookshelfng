@@ -11,9 +11,14 @@
 > ChaptarrNG `main`; hosted Linux, macOS, Windows, and PostgreSQL migration
 > checks passed. That fix is not in the published `.977` release. ChaptarrNG
 > releases are frozen until the BookshelfNG feature, data, rollback, and
-> install-channel acceptance gates are complete. Upgrade pre-v14 BookshelfNG
-> databases to `.71` before switching. PostgreSQL migration and legacy-channel
-> bridges remain unsupported. Use the standard ChaptarrNG migration commands
+> install-channel acceptance gates are complete. PR #128 merged fail-closed
+> release and distribution gates; they require `CHAPTARRNG_RELEASE_READY=true`,
+> which is unset. ChaptarrNG `.978` is a source version bump, not a release.
+> PR #127 remains an unpublished candidate for supplemental catalogs and exact
+> ISBN/ASIN/provider-ID and title/author recovery of unmapped files. Upgrade
+> pre-v14 BookshelfNG databases to `.71` before
+> switching. PostgreSQL migration and legacy-channel bridges remain
+> unsupported. Use the standard ChaptarrNG migration commands
 > in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md),
 > review its limits, and keep an independent backup.
 
@@ -107,6 +112,15 @@ established. PostgreSQL source conversion remains unsupported. If the source
 does not identify a format, ChaptarrNG preserves the work in both catalogs
 without monitoring and writes a private review file. This keeps conversion
 moving without guessing which format to search.
+
+ChaptarrNG PR #128 merged release and distribution workflows that fail closed
+unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable remains unset.
+The current `.978` source version bump is not a published release. PR #127 is
+still an unpublished candidate for selectable supplemental catalogs,
+per-field metadata preferences, and exact-identity recovery for unmapped files.
+Its cross-catalog fallback queues a reviewable pending-author import and never
+attaches a file directly. Hosted validation and migration acceptance remain
+open.
 
 BookshelfNG issue #114 is closed and implemented in its tagged `0.4.21.71`
 source. The same new-author path behavior is already in ChaptarrNG

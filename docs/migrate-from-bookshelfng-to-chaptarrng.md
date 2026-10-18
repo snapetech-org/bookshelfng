@@ -5,7 +5,9 @@ source-side handoff helper that archives BookshelfNG appdata and invokes the
 standard ChaptarrNG migration commands. ChaptarrNG `v0.9.977` is the latest
 public release used in the examples below. Keep its image tag versioned or use
 an immutable digest. ChaptarrNG releases are frozen until the full retirement
-acceptance gates close.
+acceptance gates close. PR #128 merged release and distribution workflows that
+fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
+unset. ChaptarrNG `.978` is a source version bump, not a release.
 
 The published converter supports the exact BookshelfNG migration-158 SQLite
 schema and bundles BookshelfNG's SQLite migration chain. It rejects versions
@@ -19,6 +21,11 @@ two populated Bookshelf databases, and several external settings and
 installation-channel upgrades are not covered. The release bridge remains
 disabled by default. Read the limits below before changing a running
 installation.
+
+PR #127 is still an unpublished candidate for supplemental catalogs,
+per-field metadata preferences, and exact ISBN, ASIN, provider-ID, or
+title/author recovery of unmapped files.
+Current-head hosted validation and operator acceptance remain open.
 
 Update an earlier BookshelfNG release to `0.4.21.71` and let it finish its
 database migration before replacing the application. This brings the source
@@ -216,3 +223,11 @@ every real-world deployment have not been established. Unsupported database
 lineages fail closed; do not bypass the check by renaming or editing the
 database. See the [consolidation report](maintainers/chaptarr-consolidation.md)
 for evidence and the remaining feature and channel inventory.
+
+BookshelfNG's `BookImportMinimumMatchPercent` defaults to 70 and accepts values
+from 50 through 99. It affects both fuzzy title parsing and import acceptance.
+The converter preserves the saved `Config` row, but ChaptarrNG currently
+ignores that legacy key and uses `BookMatchingStrictness`, which has different
+semantics. There is no verified value mapping. Review and validate ChaptarrNG's
+matching behavior before relying on automatic matching after conversion; this
+remains a retirement parity gate.

@@ -50,6 +50,18 @@ and the user-facing
 [migration guide](../migrate-from-bookshelfng-to-chaptarrng.md) for the current
 channel checklist and operator procedure.
 
+ChaptarrNG `v0.9.977` remains the latest public release; `.978` is a source
+version bump. PR #128 merged release and distribution workflows that fail
+closed unless `CHAPTARRNG_RELEASE_READY=true`, and the repository variable is
+unset. Do not publish a release, package, image, or channel update while
+retirement acceptance remains open. PR #127 at `6d437113` is an unpublished
+candidate for selectable supplemental catalogs and exact cross-catalog
+unmapped-file recovery through ISBN, ASIN, provider IDs, and normalized
+title/author evidence. Its exact-head hosted checks are still running; the
+local focused .NET test is blocked by the missing ImageSharp license. This
+candidate does not close real-data migration/rollback, settings parity, full
+feature parity, or installer/channel acceptance.
+
 The detailed investigation below records historical candidate revisions and
 their test evidence. Its pinned source counts and older release/channel rows
 are snapshots, not current publication status. BookshelfNG issue #144 remains
