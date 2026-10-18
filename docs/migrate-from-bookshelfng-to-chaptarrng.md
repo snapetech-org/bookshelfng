@@ -28,9 +28,20 @@ network-disabled pacman upgrade from the published .71 package and downgrade
 back, preserving an environment override and synthetic data canary. The
 installed candidate also passed preview, conversion to ChaptarrNG migration
 120, restore to BookshelfNG migration 158, and SQLite integrity/foreign-key
-checks against a synthetic populated database. Systemd was not running, and
-acceptance with operator data remains open. The candidate is unpublished; check
-the [package status](https://github.com/snapetech-org/chaptarrng/blob/main/packaging/README.md)
+checks against a synthetic populated database.
+
+A follow-up rehearsal booted systemd in an isolated Arch container. The public
+`.71` package started against the fixture; pacman then upgraded the active
+service to the local `.977` candidate. Its hooks stopped BookshelfNG and
+restarted ChaptarrNG, whose normal startup converted the database to migration
+120. Restore preview and apply returned it to migration 158 and retained the
+converted database as a backup. Pacman downgrade restored `.71`, and the
+BookshelfNG service started against the restored database. The environment
+override and data canary survived; integrity and foreign-key checks passed.
+`systemd-networkd-wait-online` was masked only inside the network-isolated test
+container. Representative operator data and host-specific settings remain
+open. The candidate is unpublished; check the
+[package status](https://github.com/snapetech-org/chaptarrng/blob/main/packaging/README.md)
 for channel acceptance.
 
 
