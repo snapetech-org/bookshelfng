@@ -6,13 +6,13 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "f102bd60a6fef50e126f5dea9a61cda70b1e50e3",
+  "sourceCommit": "0e0ef597c313483ad5e3c936df503d5fa09bc703",
   "targetCommit": "2334625b4ca57c22c39f09d6780830e4e4f1e79c",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 572,
-    "commitsNotInUpstreamHistory": 563,
+    "commits": 574,
+    "commitsNotInUpstreamHistory": 565,
     "netChangedPaths": 1094,
     "fileStates": {
       "no-mapped-target-file": 439,
@@ -10846,6 +10846,26 @@
         "docs/migrate-from-bookshelfng-to-chaptarrng.md",
         "docs/standalone-install.md"
       ]
+    },
+    {
+      "commit": "f83c87107015f5cfb0948ef37cdc1ef42fbe7c9f",
+      "date": "2026-10-18",
+      "subject": "docs(parity): pin current retirement inventory",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "0e0ef597c313483ad5e3c936df503d5fa09bc703",
+      "date": "2026-10-18",
+      "subject": "docs(parity): refresh candidate distribution status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarrng-distribution-bridge.md"
+      ]
     }
   ],
   "files": [
@@ -11879,7 +11899,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "6620969a8293fef46e6cb075f2ebf8cbac313c10"
+        "oid": "fb38c0c591606c01b3997179c1d493e97cdfe35a"
       },
       "targetBlob": null
     },
@@ -11899,7 +11919,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "9a7bd9afd9da377549613192292598df140a5a33"
+        "oid": "1b05ff6525517410be628505c4d54ab56ebcff3c"
       },
       "targetBlob": null
     },
@@ -11909,7 +11929,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a2da02a8ed5e9235f2c14eb31c978bb6845e5d40"
+        "oid": "ed289ef09b09a9d9caec299dcbd4355c744847d2"
       },
       "targetBlob": null
     },
@@ -11919,7 +11939,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "967c21fcf8c0e0e4c8b9423dc4eed89e09584a3a"
+        "oid": "0cc07944f5561ee199f6e34a17b9aa838ed08c5f"
       },
       "targetBlob": null
     },

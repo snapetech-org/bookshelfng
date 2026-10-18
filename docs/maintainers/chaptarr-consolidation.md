@@ -111,8 +111,8 @@ different algorithms. Converted-data acceptance remains open, and the change
 is not in public `.977`.
 
 The tracked path-level inventory was regenerated on 2026-10-18 against
-BookshelfNG `f102bd60` and the ChaptarrNG PR #131 candidate
-`2334625b`. It covers 572 reachable post-fork commits (563 absent from the
+BookshelfNG `0e0ef597` and the ChaptarrNG PR #131 candidate
+`2334625b`. It covers 574 reachable post-fork commits (565 absent from the
 pinned Bookshelf lineage ref) and 1,094 net-changed paths: 439 have no
 same-name mapped target, 494 differ and need review, 155 are identical, four
 are text-equivalent after branding/newline normalization, and two were deleted
