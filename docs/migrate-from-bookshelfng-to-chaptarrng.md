@@ -38,12 +38,15 @@ installation-channel continuity.
 ## Portable encrypted backups
 
 The unpublished ChaptarrNG PR #131 candidate at
-`51895d45e02e09ced36d4ca40a9bb1015839163c` can import and export portable
+`38be9422a0390c0b3d4d1c453ec14b25d3aa99a4` can import and export portable
 BookshelfNG `BKSENC01` `.enc` backups using the same passphrase. Its encryption
 service was checked against BookshelfNG's source implementation, and ChaptarrNG
 tests cover round trips, wrong passphrases, tampering, truncation, malformed
 files, and cleanup. The candidate's restore UI accepts the `.enc` file and
-prompts for its passphrase. The hosted exact-head Build is is running.
+prompts for its passphrase. Exact-head Build
+[39267876585](https://github.com/snapetech-org/chaptarrng/actions/runs/39267876585)
+is queued after two previous Build attempts uncovered and fixed implementation
+and test-fixture issues.
 
 This support is not in ChaptarrNG `v0.9.977`, so `.977` cannot restore or export
 these portable files. ChaptarrNG's scheduled `.zip.enc` files use a separate
