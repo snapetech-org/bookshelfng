@@ -1,11 +1,15 @@
 # BookshelfNG Helm chart
 
 **Legacy chart for existing BookshelfNG deployments.** ChaptarrNG `v0.9.977`
-includes the BookshelfNG SQLite converter in its standard image, but there is no
-Helm-specific upgrade bridge. Keep the current release, PVC, and independent
-backup until the operator has reviewed the migration guide and prepared the
-ChaptarrNG deployment. The handoff uses the same ChaptarrNG image as a fresh
-installation; no compatibility image is maintained. See the
+includes the BookshelfNG SQLite converter in its standard image. Draft
+ChaptarrNG PR #131 now contains a source-only, fail-closed chart candidate at
+[`charts/bookshelfng`](https://github.com/snapetech-org/chaptarrng/tree/codex/bookshelf-retirement-next-20261018/charts/bookshelfng)
+that preserves this release's Kubernetes resource identities. It is not
+published or accepted for production cutover: no installed PVC upgrade,
+GitOps sync, or Helm rollback has been validated. Keep the current release,
+PVC, and independent backup until the operator has reviewed the migration
+guide and the retirement gates close. The legacy OCI chart remains unchanged.
+See the
 [migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 and [channel status](https://github.com/snapetech-org/bookshelfng/blob/main/docs/maintainers/chaptarr-consolidation.md).
 

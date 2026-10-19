@@ -384,9 +384,12 @@ behavior, feature parity, or any published package-channel bridge.
   installed-app update path must be proven rather than inferred from the
   Chaptarr package.
 - The BookshelfNG Helm chart is `charts/bookshelfng` and serves port `8787`;
-  ChaptarrNG has no matching chart. A bridge must preserve the Helm release,
-  service, StatefulSet, and PVC identities and use a single writer during
-  SQLite conversion.
+  ChaptarrNG draft PR #131 contains a source-only same-name chart candidate.
+  It preserves the Helm release, service, StatefulSet, selector, port, `/config`
+  mount, and PVC identities. It requires explicit approval, source provider
+  mode, and an immutable image digest, and rejects more than one SQLite
+  writer. The chart is unpublished; installed PVC upgrade, GitOps sync, and
+  rollback acceptance remain open.
 - BookshelfNG branch: `codex/bookshelf-chaptarr-consolidation-20261012`.
 - The latest published BookshelfNG release is 0.4.21.71; ChaptarrNG v0.9.977 is the latest public destination release. The published .71 archive is the migration-158 source schema baseline for read-only lineage tests.
 - The generated [inventory](chaptarr-consolidation-inventory.json) covers every reachable commit after the parent of the first fork commit, including maintenance and merged work. At BookshelfNG source `61d3bc583bd707648d5565d983c5a698da14ed9f` and ChaptarrNG PR #131 head `a3d9ec8dd3552d90ed527309658a9c4cfed8b7ec`, it contains 621 commits (612 absent from the pinned Bookshelf lineage ref) and 1,102 net-changed paths: 423 without a mapped target, 509 requiring review, 164 identical, four text-equivalent after branding/newline normalization, and two deleted source paths. Schema v2 also provides 24 `candidateTargetPath` hints for otherwise-unmapped files whose basename appears exactly once in the target tree. Those hints are unconfirmed review leads; they do not change the unmapped count or establish a mapping or feature equivalence. The inventory compares committed trees; later report edits are not included. These are path-level review states, not feature-parity counts.
@@ -762,7 +765,7 @@ documented one-time handoff.
 | macOS/Linux/FreeBSD archives | Legacy named wrapper/payload and migration-aware launcher in new bridge assets | Manual replacement unless an existing owned updater is subscribed; verify each platform rather than assuming Linux proof |
 | AppImage | Legacy desktop/launcher/data identity and new bridge asset; inspect existing embedded update metadata | No blanket automatic update promise; demonstrate actual existing updater if any |
 | Flatpak bundle | Retain `com.snapetech.BookshelfNG` and its sandbox data; bridge build | A standalone bundle is not a subscribed Flathub remote; one-time bundle install may be needed |
-| Helm OCI chart | The merged candidate renders the existing chart identity pinned to the standard ChaptarrNG digest while preserving release, Service, StatefulSet, labels, port, and PVC names. Local lint/render/package checks pass. | Helm/GitOps upgrades require configured sync; test a real PVC upgrade, selectors, rollback, and one SQLite writer. |
+| Helm OCI chart | ChaptarrNG draft PR #131 adds a source-only, fail-closed same-name chart. `helm lint`, render, package, and exact StatefulSet/Service/PVC spec comparison against the current BookshelfNG chart pass locally. It requires explicit migration approval, provider mode, and an immutable ChaptarrNG image digest. | No ChaptarrNG chart is published, and the legacy OCI source remains unchanged. Test a real PVC upgrade, configured Helm/GitOps sync, selectors, installed rollback, and one SQLite writer before publishing or recommending cutover. |
 | YunoHost historical installs | BookshelfNG app id `bookshelfng` and port 8787 differ from ChaptarrNG app id `chaptarrng` and port 8789. BookshelfNG publishing is retired; inspect installed catalog identity and companion repo branch, then provide a tested upgrade under the old app id with its existing service, URL path, data directory, and rollback. | The ChaptarrNG app listing cannot update an installed BookshelfNG app. Existing installs are reachable only if the old package's configured repository still delivers the compatibility upgrade. |
 | Cloudron / Coop Cloud / StartOS catalog files | Verify which were actually accepted/published, then retain installed catalog IDs and data contract | A repository recipe/submission is not proof of an installed distribution channel |
 
