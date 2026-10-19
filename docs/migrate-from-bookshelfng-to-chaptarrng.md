@@ -9,25 +9,25 @@ acceptance gates close. PR #128 merged release and distribution workflows that
 fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
-Draft ChaptarrNG PR #131 is at documentation-only head
-`8912b7b3629248348c51daa0f1c39a6357e20ed7`. Exact-head Build
-[39334414682](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414682)
-passed Linux, macOS, and Windows, PostgreSQL migration, release-note contract,
-and the Windows migration-installer build, SQLite fingerprint smoke, and
-selected-data-directory smoke. CodeQL
-[39334411350](https://github.com/snapetech-org/chaptarrng/actions/runs/39334411350),
-security [39334414694](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414694),
-dependency review [39334414922](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414922),
-Helm identity [39334414735](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414735),
-and NuGet [39334412894](https://github.com/snapetech-org/chaptarrng/actions/runs/39334412894)
-passed. Disposable-fork validation was skipped by its external-fork gate. The
-Windows installer supports one SQLite database under the standard
-NT AUTHORITY\LocalService account; custom accounts, PostgreSQL, and multiple
-databases fail closed. Preview fingerprinting covers the database, WAL, and
-rollback journal, while ignoring the rebuildable `-shm` index. The exact-head
-installer build, fingerprint regression smoke, and selected data-directory
-smoke passed. A populated installed upgrade and rollback have not been
-rehearsed. PR #131 remains draft and publication remains frozen.
+Draft ChaptarrNG PR #131 is at code head
+`ebe838dd7a74780692350c9d02826f219919582b`. The new Windows smoke uses the
+actual installer against a disposable BookshelfNG `.71` service with populated
+migration-158 data. It injects a local `/ping` conflict to test automatic
+rollback, retries the upgrade, then runs explicit restore. The Windows-targeted
+harness compiles locally; its fixture passes SQLite integrity and foreign-key
+checks. Exact-head Build
+[39339777476](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777476)
+is still running, including the Windows installer/service smoke and PostgreSQL
+migration. Release-note contract, Security analysis
+[39339777368](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777368),
+Dependency review
+[39339777472](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777472),
+Helm identity
+[39339777453](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777453),
+and NuGet submission
+[39339771379](https://github.com/snapetech-org/chaptarrng/actions/runs/39339771379)
+passed. PR #131 remains draft and its installer is unpublished. Do not use it
+for production cutover.
 
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
