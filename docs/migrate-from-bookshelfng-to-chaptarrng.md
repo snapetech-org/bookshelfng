@@ -45,8 +45,11 @@ tests cover round trips, wrong passphrases, tampering, truncation, malformed
 files, and cleanup. The candidate's restore UI accepts the `.enc` file and
 prompts for its passphrase. Exact-head Build
 [39267876585](https://github.com/snapetech-org/chaptarrng/actions/runs/39267876585)
-is queued after two previous Build attempts uncovered and fixed implementation
-and test-fixture issues.
+passed Linux, macOS, Windows, PostgreSQL migration, release-note, and native
+runner receipt checks. CodeQL, security analysis, and dependency review also
+passed. Two earlier Build attempts exposed compile and test-fixture issues;
+the current exact-head run includes their fixes. The candidate remains
+unreleased and the migration acceptance gates remain open.
 
 This support is not in ChaptarrNG `v0.9.977`, so `.977` cannot restore or export
 these portable files. ChaptarrNG's scheduled `.zip.enc` files use a separate
