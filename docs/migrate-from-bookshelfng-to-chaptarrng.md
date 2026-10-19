@@ -101,8 +101,7 @@ also passed. The importer suite passed 43/43 and Compose configuration,
 not valid media. A separate real-tool importer check passed all six synthetic multipart M4B
 cases on candidate `12f290bd`; Linux CI now runs it in a pinned tool image.
 This does not establish operator-data correctness, pre-migration-14 or
-PostgreSQL operator-data support, representative M4B compatibility or embedded
-chapters, full request fulfillment, installed rollback, or channel handoff. No release or
+PostgreSQL operator-data support, representative M4B media compatibility and restart/resume, full request fulfillment, installed rollback, or channel handoff. No release or
 bridge was published; the release freeze remains active.
 
 ### Provider configuration before migration
@@ -199,8 +198,7 @@ ordering, chapter titles and offsets, metadata, registration, and Move/Copy
 source handling. Failure cases verify fallback to separate original-track
 imports in both modes when FFprobe cannot read a source and when `m4b-tool`
 fails after a controlled FFmpeg conversion error. Linux CI now runs these
-six cases through `integration/Dockerfile.m4b-test`. Representative files,
-embedded chapters, and restart/resume remain open; the source change is not
+six cases through `integration/Dockerfile.m4b-test`. Synthetic embedded-chapter Move/Copy and TagLib-write cases pass on c4fa; representative M4B files and restart/resume remain open; the source change is not
 in public `.977`.
 
 ChaptarrNG PR #130 merged to `main` as `9f1ae60b`. When no explicit

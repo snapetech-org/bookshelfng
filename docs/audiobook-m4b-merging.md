@@ -45,8 +45,7 @@ cases check track ordering, chapters, metadata, registration, and Move/Copy
 source handling. Failure cases
 verify fallback to separate original-track imports in both modes when FFprobe
 cannot read a source and when `m4b-tool` fails after a controlled FFmpeg
-conversion error. Representative files, embedded chapters, and restart/resume
-remain open. Preserve these
+conversion error. Synthetic embedded-chapter Move/Copy and TagLib-write cases pass on c4fa. Representative M4B files and restart/resume remain open. Preserve these
 settings in deployment notes, but keep `BOOKSHELF_M4B_MERGE` unset after
 migration until a release with this support is available and the remaining
 acceptance gates close.

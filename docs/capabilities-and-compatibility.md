@@ -342,8 +342,7 @@ and FFmpeg/FFprobe 6.1.1. Successful cases check tag order, chapter titles and
 offsets, output metadata, registration, and Move/Copy source handling. Failure
 cases verify fallback to separate original-track imports in both modes when
 FFprobe cannot read a source and when `m4b-tool` fails after a controlled
-FFmpeg conversion error. Representative files, embedded chapters, and
-restart/resume remain open. Keep the merge opt-in unset after migration until
+FFmpeg conversion error. Synthetic embedded-chapter Move/Copy and TagLib-write cases pass on c4fa. Representative M4B files and restart/resume remain open. Keep the merge opt-in unset after migration until
 a release with this support is available and the remaining acceptance gates
 close.
 
