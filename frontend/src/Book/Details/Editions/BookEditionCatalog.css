@@ -33,6 +33,7 @@
 }
 
 .unknown {
+  font-family: inherit;
   color: var(--darkGray);
   font-style: italic;
 }
