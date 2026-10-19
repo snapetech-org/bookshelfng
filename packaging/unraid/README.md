@@ -5,11 +5,11 @@ This repository publishes the standalone BookshelfNG Unraid Docker template.
 ebook and audiobook library management and acquisition. It works independently;
 SeerrNG integration is optional.
 
-> **Final release:** BookshelfNG `0.4.21.71` is published. The latest public ChaptarrNG release is `v0.9.977`; it accepts migration-158 SQLite and rejects older schemas. The unreleased older-schema SQLite and one-schema PostgreSQL candidate is in [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131).
+> **Latest published releases:** BookshelfNG `0.4.21.71` and ChaptarrNG `v0.9.977`. The published ChaptarrNG migration supports migration-158 SQLite; older schemas and PostgreSQL sources are unsupported by that release.
 >
-> Run [39128814405](https://github.com/snapetech-org/chaptarrng/actions/runs/39128814405) on `7eb58085` first exposed recursive schema-check dispatch; commit `b1995dd9` fixed that path. Run [39129297886](https://github.com/snapetech-org/chaptarrng/actions/runs/39129297886) then found unquoted mixed-case identifiers; commit `cd0fc8f7` corrected them. Run [39129748102](https://github.com/snapetech-org/chaptarrng/actions/runs/39129748102) found PostgreSQL also requires all selected media-mapping fields in `GROUP BY`; `0e1503d9` corrected that query and other source SQL. Run [39130146981](https://github.com/snapetech-org/chaptarrng/actions/runs/39130146981) on `0e1503d9` then reached `InsertRow` and failed because PostgreSQL rejected explicit IDs for `GENERATED ALWAYS` identity columns. Commit [030af3eb](https://github.com/snapetech-org/chaptarrng/commit/030af3eb) adds `OVERRIDING SYSTEM VALUE`; exact-head hosted workflow [39130479585](https://github.com/snapetech-org/chaptarrng/actions/runs/39130479585) is running. Do not use the candidate with operator data.
+> ChaptarrNG [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) remains a draft. Its candidate adds older SQLite migrations, a PostgreSQL source path, and BookshelfNG backup ZIP restore. Candidate validation, representative-data migration and rollback, and update-channel acceptance are not complete. Do not point ChaptarrNG at live BookshelfNG appdata or use the candidate restore flow for production migration.
 >
-> BookshelfNG's fail-closed release gate merged to `main` as `c6b4642`; its readiness variable remains unset and the published `.71` release remains the final release. Populated-data migration, rollback, and the Community Apps upgrade flow remain unaccepted.
+> The Unraid transition [PR #5](https://github.com/snapetech-org/bookshelfng-unraid/pull/5) also remains a draft. Its template-preservation check passes, but the real Community Applications upgrade and rollback flow has not been accepted. Both release-readiness gates remain unset; no migration bridge is published.
 
 ## Existing installations
 
