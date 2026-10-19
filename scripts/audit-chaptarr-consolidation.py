@@ -48,6 +48,71 @@ def normalized(data):
     return data.replace(b'Readarr', b'Chaptarr').replace(b'\r\n', b'\n')
 
 
+def load_review_decisions(path, source, target, changed_paths, source_tree, target_tree):
+    """Load exact-revision reviewed decisions for renamed or retired paths."""
+    if path is None:
+        return {}
+
+    data = json.loads(path.read_text())
+    if not isinstance(data, dict):
+        raise ValueError('review map must be a JSON object')
+    if data.get('schemaVersion') != 1:
+        raise ValueError('review map schemaVersion must be 1')
+    if data.get('sourceCommit') != source or data.get('targetCommit') != target:
+        raise ValueError('review map sourceCommit and targetCommit must match the pinned revisions')
+
+    entries = data.get('decisions', [])
+    if not isinstance(entries, list):
+        raise ValueError('review map decisions must be a JSON array')
+    decisions = {}
+    for decision in entries:
+        if not isinstance(decision, dict):
+            raise ValueError('review map decisions must contain JSON objects')
+        source_path = decision.get('sourcePath')
+        kind = decision.get('decision')
+        if not isinstance(source_path, str) or source_path not in changed_paths:
+            raise ValueError(f'review map contains an unknown or unchanged sourcePath: {source_path!r}')
+        if source_path not in source_tree:
+            raise ValueError(f'review map decisions require a source file present at the pinned revision: {source_path}')
+        if source_path in decisions:
+            raise ValueError(f'review map contains multiple decisions for: {source_path}')
+        if not isinstance(decision.get('rationale'), str) or not decision['rationale'].strip():
+            raise ValueError(f'review map decision requires a rationale: {source_path}')
+        if not isinstance(decision.get('evidence'), str) or not decision['evidence'].strip():
+            raise ValueError(f'review map decision requires evidence: {source_path}')
+
+        if kind == 'map':
+            target_path = decision.get('targetPath')
+            if not isinstance(decision.get('reviewedBy'), str) or not decision['reviewedBy'].strip():
+                raise ValueError(f'reviewed mapping requires reviewedBy: {source_path}')
+            if not isinstance(target_path, str) or target_path not in target_tree:
+                raise ValueError(f'reviewed mapping targetPath is missing from the pinned target tree: {source_path}')
+        elif kind == 'retire':
+            if not isinstance(decision.get('approvedBy'), str) or not decision['approvedBy'].strip():
+                raise ValueError(f'approved retirement requires approvedBy: {source_path}')
+            if not isinstance(decision.get('approvalReference'), str) or not decision['approvalReference'].strip():
+                raise ValueError(f'approved retirement requires approvalReference: {source_path}')
+        else:
+            raise ValueError(f'review map decision must be "map" or "retire": {source_path}')
+
+        decisions[source_path] = decision
+    return decisions
+
+
+def file_state(old, new, source_data=None, target_data=None):
+    if old is None:
+        return 'deleted-in-bookshelf'
+    if new is None:
+        return 'no-mapped-target-file'
+    if old == new:
+        return 'identical'
+    if (source_data is not None and target_data is not None
+            and old['mode'] == new['mode']
+            and normalized(source_data) == normalized(target_data)):
+        return 'text-equivalent-after-brand-and-newline-normalization'
+    return 'different-review-required'
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--bookshelf', type=pathlib.Path, default=pathlib.Path('.'))
@@ -57,6 +122,8 @@ def main():
     parser.add_argument('--fork-base', default='bde894431^')
     parser.add_argument('--upstream', default='refs/remotes/audit-bookshelf/develop')
     parser.add_argument('--output', type=pathlib.Path, required=True)
+    parser.add_argument('--review-map', type=pathlib.Path,
+                        help='Optional JSON file with exact-revision reviewed path decisions')
     args = parser.parse_args()
     source = revision(args.bookshelf, args.source)
     target = revision(args.chaptarr, args.target)
@@ -68,6 +135,11 @@ def main():
     for target_path in target_tree:
         target_paths_by_basename[pathlib.PurePosixPath(target_path).name].append(target_path)
     changed = set(git(args.bookshelf, 'diff', '--name-only', '-z', base, source).decode().split('\0')) - {''}
+    try:
+        reviewed_decisions = load_review_decisions(
+            args.review_map, source, target, changed, source_tree, target_tree)
+    except (OSError, json.JSONDecodeError, ValueError) as error:
+        parser.error(f'invalid review map: {error}')
     upstream_history = set(git(args.bookshelf, 'rev-list', upstream).decode().splitlines())
     commits = []
     for line in git(args.bookshelf, 'log', '--reverse', '--format=%H%x09%ad%x09%s', '--date=short', base + '..' + source).decode().splitlines():
@@ -81,37 +153,50 @@ def main():
         candidate = mapped_path(path)
         target_path = candidate if candidate in target_tree else path
         old = source_tree.get(path)
+        reviewed = reviewed_decisions.get(path)
+        if reviewed is not None and reviewed['decision'] == 'map':
+            target_path = reviewed['targetPath']
         new = target_tree.get(target_path)
         candidate_target_path = None
         if old is not None and new is None:
             candidate_target_path = unique_basename_candidate(path, target_paths_by_basename)
         candidate_target_blob = target_tree.get(candidate_target_path)
-        state = 'deleted-in-bookshelf' if old is None else 'no-mapped-target-file'
-        if old and new:
-            state = 'identical' if old == new else 'different-review-required'
-            if state != 'identical':
-                a = git(args.bookshelf, 'cat-file', 'blob', old['oid'])
-                b = git(args.chaptarr, 'cat-file', 'blob', new['oid'])
-                if old['mode'] == new['mode'] and normalized(a) == normalized(b):
-                    state = 'text-equivalent-after-brand-and-newline-normalization'
+        source_data = target_data = None
+        if old is not None and new is not None and old != new:
+            source_data = git(args.bookshelf, 'cat-file', 'blob', old['oid'])
+            target_data = git(args.chaptarr, 'cat-file', 'blob', new['oid'])
+        state = file_state(old, new, source_data, target_data)
+        if reviewed is not None and reviewed['decision'] == 'retire':
+            state = 'approved-retirement'
+            target_path = None
+            new = None
         file_entry = {'sourcePath': path, 'targetPath': target_path if new else None,
                       'state': state, 'sourceBlob': old, 'targetBlob': new}
+        if reviewed is not None:
+            reviewed_fields = ('decision', 'reviewedBy', 'approvedBy', 'approvalReference',
+                               'targetPath', 'rationale', 'evidence')
+            file_entry['reviewedDecision'] = {
+                key: reviewed[key] for key in reviewed_fields if key in reviewed
+            }
         if candidate_target_path is not None:
             file_entry['candidateTargetPath'] = candidate_target_path
             file_entry['candidateTargetBlob'] = candidate_target_blob
         files.append(file_entry)
     report = {
-        'schemaVersion': 2,
+        'schemaVersion': 3,
         'scope': 'All reachable commits since the first BookshelfNG fork commit parent; includes merged upstream work. File comparison covers net changes from that parent.',
         'limitations': ['Path and text equality do not prove feature parity.',
                        'Missing mapped paths may have replacements under other names.',
                        'Unique-basename candidate paths are heuristic review hints, not confirmed mappings or evidence of equivalence.',
+                       'Reviewed path mappings and approved retirements record decisions; they do not prove feature equivalence or migration safety.',
                        'No database, runtime, publisher, or upgrade validation is implied.'],
         'sourceCommit': source, 'targetCommit': target, 'forkBaseCommit': base,
         'bookshelfUpstreamCommit': upstream,
         'counts': {'commits': len(commits), 'commitsNotInUpstreamHistory': sum(not c['alsoInBookshelfUpstreamHistory'] for c in commits),
                    'netChangedPaths': len(files),
                    'uniqueBasenameCandidates': sum(f.get('candidateTargetPath') is not None for f in files),
+                   'reviewedMappings': sum(f.get('reviewedDecision', {}).get('decision') == 'map' for f in files),
+                   'approvedRetirements': sum(f.get('state') == 'approved-retirement' for f in files),
                    'fileStates': dict(collections.Counter(f['state'] for f in files))},
         'commits': commits, 'files': files,
     }

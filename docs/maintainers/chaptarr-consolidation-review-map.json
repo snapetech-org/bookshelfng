@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "330510905328abad3078ec0b8e935c456d9b5c9a",
+  "targetCommit": "93213b677a0bbb256aaf782c389a4f1a3d9c2ee7",
+  "decisions": [
+    {
+      "sourcePath": "docs.sh",
+      "decision": "map",
+      "targetPath": "scripts/docs.sh",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths name the documentation helper script; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "docs/maintainers/dependency-security.md",
+      "decision": "map",
+      "targetPath": "docs/dependency-security.md",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify the dependency-security guide; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "docs/maintainers/setup-experience-contract.md",
+      "decision": "map",
+      "targetPath": "docs/development/setup-experience-contract.md",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify the setup-experience contract; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "packaging/aur/bookshelfng.install",
+      "decision": "map",
+      "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.install",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify the BookshelfNG AUR install hook; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify DiagnosticsEventHandler in the renamed diagnostics module; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsReporter.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsReporter.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify DiagnosticsReporter in the renamed diagnostics module; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Api.Test/Books/BookStatisticsResourceFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify BookStatisticsResourceFixture; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Common.Test/DiskTests/DiskTransferServiceFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify DiskTransferServiceFixture; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/Direct/DirectDownloadPlaywrightBrowserFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify DirectDownloadPlaywrightBrowserFixture; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify QBittorrentProxyV2Fixture; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core.Test/Indexers/DirectDownload/DirectDownloadSettingsFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Indexers/DirectDownloadSettingsFixture.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify DirectDownloadSettingsFixture; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core.Test/MetadataSource/Hardcover/HardcoverMetadataProxyFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify HardcoverMetadataProxyFixture; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core.Test/NotificationTests/BookLore/BookLoreProxyFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify BookLoreProxyFixture; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both filenames carry migration ID 041 and the same migration name; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both filenames carry migration ID 042 and the same migration name; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both filenames carry migration ID 043 and the same migration name; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both filenames carry migration ID 044 and the same migration name; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both filenames carry migration ID 045 and the same migration name; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both filenames carry migration ID 046 and the same migration name; link the paths for direct comparison only."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Host/SecurityHeadersMiddleware.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs",
+      "reviewedBy": "Codex path review (2026-10-19)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Both paths identify SecurityHeadersMiddleware; link the paths for direct comparison only."
+    }
+  ]
+}

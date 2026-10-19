@@ -1,25 +1,28 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "scope": "All reachable commits since the first BookshelfNG fork commit parent; includes merged upstream work. File comparison covers net changes from that parent.",
   "limitations": [
     "Path and text equality do not prove feature parity.",
     "Missing mapped paths may have replacements under other names.",
     "Unique-basename candidate paths are heuristic review hints, not confirmed mappings or evidence of equivalence.",
+    "Reviewed path mappings and approved retirements record decisions; they do not prove feature equivalence or migration safety.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "61d3bc583bd707648d5565d983c5a698da14ed9f",
-  "targetCommit": "a3d9ec8dd3552d90ed527309658a9c4cfed8b7ec",
+  "sourceCommit": "330510905328abad3078ec0b8e935c456d9b5c9a",
+  "targetCommit": "93213b677a0bbb256aaf782c389a4f1a3d9c2ee7",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 621,
-    "commitsNotInUpstreamHistory": 612,
-    "netChangedPaths": 1102,
-    "uniqueBasenameCandidates": 24,
+    "commits": 641,
+    "commitsNotInUpstreamHistory": 632,
+    "netChangedPaths": 1103,
+    "uniqueBasenameCandidates": 4,
+    "reviewedMappings": 20,
+    "approvedRetirements": 0,
     "fileStates": {
-      "no-mapped-target-file": 423,
-      "different-review-required": 509,
-      "identical": 164,
+      "no-mapped-target-file": 394,
+      "different-review-required": 534,
+      "identical": 169,
       "deleted-in-bookshelf": 2,
       "text-equivalent-after-brand-and-newline-normalization": 4
     }
@@ -11438,6 +11441,238 @@
         "packaging/unraid/README.md",
         "packaging/unraid/docs/installation.md"
       ]
+    },
+    {
+      "commit": "3d2f00b090ff1007ae654f3f9b3b05938a8088fc",
+      "date": "2026-10-19",
+      "subject": "docs: refresh BookshelfNG retirement readiness",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "0fb0cc37a40da218a325ca1514f6890cd59755ce",
+      "date": "2026-10-19",
+      "subject": "docs: track current migration candidate validation",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "9e95c5c31448ac5af30e71067c9ddf88050c6a37",
+      "date": "2026-10-19",
+      "subject": "docs: clarify readiness-only update",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md"
+      ]
+    },
+    {
+      "commit": "317aa88e500f5a136e6adee425eafe27b81d4e85",
+      "date": "2026-10-19",
+      "subject": "docs: record candidate validation results",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "a7225fedab474c892f064d92c8bb240b735bd2fa",
+      "date": "2026-10-19",
+      "subject": "docs: distinguish synthetic M4B chapter acceptance",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md"
+      ]
+    },
+    {
+      "commit": "0ef9bcd45f34c3522705c1b382e2c8e5e7693657",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): record migration rehearsal limits",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "081c3265d28299f61ec8176a3a0c9f48065d12bf",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): clarify candidate validation checkpoint",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md"
+      ]
+    },
+    {
+      "commit": "d94afc54a9f98bc4d6f4e4225e7e9817cb51e8ef",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): sync M4B validation status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "740243c3245436d34c71fa00efd0b5a211851013",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): mark status update release-note-free",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": []
+    },
+    {
+      "commit": "2c9ed52b67fccc9f14a90c90ada36fb4d771a134",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): sync inventory and current head status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "54c46b92ea668e1cd1fc87b4a8ee7317b43c7213",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): record passing Unraid candidate check",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "ed3594272baf58635a5af03ad52e7356a0a6d242",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): sync inventory to current candidate",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "9bc18aa68c2d28645bef2a6b4d476c9ded9fe00d",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): sync current Unraid validation head",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "55c869436f4d9f6eb1746d759d07413d7e7c8886",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): record exact-head Chaptarr validation",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "7a5822d93722824e38ea7a615f67abe1218d5eb6",
+      "date": "2026-10-19",
+      "subject": "tooling(consolidation): surface unverified path candidates",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        ".github/workflows/build.yml",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "scripts/audit-chaptarr-consolidation.py",
+        "scripts/test-audit-chaptarr-consolidation.py"
+      ]
+    },
+    {
+      "commit": "ebf6ca95a9331be584daf505eda0dc31243019fd",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): record inventory tooling validation",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "482b000288d6fc05aa6274bd5a98623f43c6706c",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): refresh candidate validation status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "061eda06b04a342a25417907a5c6de4bcae99668",
+      "date": "2026-10-19",
+      "subject": "docs(retirement): correct diagnostics parity status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "e93a678a2151d202ef6bbfd51390ced5daf5113a",
+      "date": "2026-10-19",
+      "subject": "docs: update Helm retirement handoff status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "charts/bookshelfng/README.md",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "330510905328abad3078ec0b8e935c456d9b5c9a",
+      "date": "2026-10-19",
+      "subject": "docs: clarify internal retirement release notes",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
     }
   ],
   "files": [
@@ -11552,7 +11787,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "82527040d8313708b650e0b6873ff78f4cf19b91"
+        "oid": "abb200a369915fcc0a7ea582fe45a51bd5e3e2d1"
       },
       "targetBlob": {
         "mode": "100644",
@@ -11872,11 +12107,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "dcf64fcc5c0f9cba56c8683070b88f5a327dc54b"
+        "oid": "4faf85d9dc5b18d96108599a8a2760a6f669eb4f"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "ad72e6beda3eceedf7b76754e36c87a3435982f2"
+        "oid": "a64a52a30eb0de4a219b412e04db842c482ea83b"
       }
     },
     {
@@ -11911,103 +12146,133 @@
     },
     {
       "sourcePath": "charts/bookshelfng/Chart.yaml",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "charts/bookshelfng/Chart.yaml",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "bf464ef46f85efc5d5e1d522df286fdd6682cb69"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d792ff14e017f20018a01bf8df908633813d5d27"
+      }
     },
     {
       "sourcePath": "charts/bookshelfng/README.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "charts/bookshelfng/README.md",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "36ea581960bf73128c8fb8d5aa85c6a7c2da9b8a"
+        "oid": "23be810fd3b34e919976ee3cbd4264c3428e5ee4"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "4b37cc48e58f168d469c459a2fc1c67cbe9404bd"
+      }
     },
     {
       "sourcePath": "charts/bookshelfng/templates/NOTES.txt",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "charts/bookshelfng/templates/NOTES.txt",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2a1388eebde34120ea90db1f2aaf19c73b94abb1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "25af2c52c2a78e7ca8ce8ece1acefd071b041b30"
+      }
     },
     {
       "sourcePath": "charts/bookshelfng/templates/_helpers.tpl",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "charts/bookshelfng/templates/_helpers.tpl",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c1bb8820dbaab183c835423d5b239c8ce9f4e906"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c1bb8820dbaab183c835423d5b239c8ce9f4e906"
+      }
     },
     {
       "sourcePath": "charts/bookshelfng/templates/ingress.yaml",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "charts/bookshelfng/templates/ingress.yaml",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f7142a4990020b8530e336154f8693f07531e4cd"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f7142a4990020b8530e336154f8693f07531e4cd"
+      }
     },
     {
       "sourcePath": "charts/bookshelfng/templates/persistentvolumeclaim.yaml",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "charts/bookshelfng/templates/persistentvolumeclaim.yaml",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "071d32bf54ca26a3c856249eced01c6f8107d25e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "071d32bf54ca26a3c856249eced01c6f8107d25e"
+      }
     },
     {
       "sourcePath": "charts/bookshelfng/templates/service.yaml",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "charts/bookshelfng/templates/service.yaml",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3c7006aee62ef51d4c173f903c85a9c0985a3547"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "3c7006aee62ef51d4c173f903c85a9c0985a3547"
+      }
     },
     {
       "sourcePath": "charts/bookshelfng/templates/serviceaccount.yaml",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "charts/bookshelfng/templates/serviceaccount.yaml",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c1d2415287c5b9ada7fda489898d68864803b713"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c1d2415287c5b9ada7fda489898d68864803b713"
+      }
     },
     {
       "sourcePath": "charts/bookshelfng/templates/statefulset.yaml",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "charts/bookshelfng/templates/statefulset.yaml",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "425a5bdf3544158714fd1eeed94d39716cc04539"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0998ab09f33af5a849f9cc99bd3d33f29fff8d3c"
+      }
     },
     {
       "sourcePath": "charts/bookshelfng/values.yaml",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "charts/bookshelfng/values.yaml",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "59b8bbb548c48f73116fea3c2aa7cb393c83062b"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c83f756bd6ad4b85fdb9a258bde2e5507cd24530"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/.gitignore",
@@ -12291,17 +12556,22 @@
     },
     {
       "sourcePath": "docs.sh",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "scripts/docs.sh",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "87460b5999c2f39df180d64d02f5378e41cb75f5"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "scripts/docs.sh",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100755",
         "oid": "911dc8c7a5dd775295fc0f8973b8640eee192fe9"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "scripts/docs.sh",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths name the documentation helper script; link the paths for direct comparison only."
       }
     },
     {
@@ -12320,7 +12590,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "5a1ec22a86a8eb5871c547ce290a67d1e96d70a6"
+        "oid": "1c3cf9254340e3d665e4b9a4ada961a02fa4ca20"
       },
       "targetBlob": null
     },
@@ -12360,7 +12630,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "327b020276301e79e1fe2caa055b67dd315619ea"
+        "oid": "9df1d0c19d106fda35cd454352cbaa33298a6427"
       },
       "targetBlob": null
     },
@@ -12393,7 +12663,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "9ab6a09fb45fa0529f794d4797f7c15826f63d1b"
+        "oid": "0bf8ac2aa53825aba652b11569f532aa96740c94"
       },
       "targetBlob": null
     },
@@ -12496,7 +12766,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "b3639c2560c95edde3000af1739c9711a4c8ab1e"
+        "oid": "c50453dd5517e838aedc846d15c5975a7803e6a2"
       },
       "targetBlob": null
     },
@@ -12516,7 +12786,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "eac9d2b2bccb90c711c3d5c35041b834431614a2"
+        "oid": "08f5dc645cea10ab875ed738dc5a471238c9b5dd"
       },
       "targetBlob": null
     },
@@ -12526,7 +12796,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "9ee6fdc937eedcbb51294c7c1264e6a5dc478770"
+        "oid": "043ff822645de1a5a7ff2d7c034ada2ac5973eb1"
       },
       "targetBlob": null
     },
@@ -12536,38 +12806,48 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "bee47cc5b6534a3b7f6df8dfc6daf350381e199f"
+        "oid": "7a10be5d4ce819520c751bf15247d6eb11fe5895"
       },
       "targetBlob": null
     },
     {
       "sourcePath": "docs/maintainers/dependency-security.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "docs/dependency-security.md",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "62effd1150f6d59460612e4f526e2545e7fd205d"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "docs/dependency-security.md",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "3776cae4db398a6507c0752a5ae4a8ec560fa044"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "docs/dependency-security.md",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify the dependency-security guide; link the paths for direct comparison only."
       }
     },
     {
       "sourcePath": "docs/maintainers/setup-experience-contract.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "docs/development/setup-experience-contract.md",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "e88b5d37cd57e32e97f694437d089edf3252980c"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "docs/development/setup-experience-contract.md",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "4adc422e288dc1fb5e02be9de0f07d83c63cf3f3"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "docs/development/setup-experience-contract.md",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify the setup-experience contract; link the paths for direct comparison only."
       }
     },
     {
@@ -12586,7 +12866,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "61d1c68622d93d88a44a5ef9ada676d63e2ee38f"
+        "oid": "d7efc35c99341aa40471d994d7370c6114b581f7"
       },
       "targetBlob": null
     },
@@ -13948,17 +14228,22 @@
     },
     {
       "sourcePath": "packaging/aur/bookshelfng.install",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.install",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5a4464691a3013c78b610b279443310a6b2afe4c"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.install",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "e98d99fbaaa71175485827a58734d736b2d7d737"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.install",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify the BookshelfNG AUR install hook; link the paths for direct comparison only."
       }
     },
     {
@@ -14263,7 +14548,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a81d8df37fc592decd4e0e0f0f3e1cf370dd9f24"
+        "oid": "754f88d72cec90b820c8bce41ea19f09c2e23b3d"
       },
       "targetBlob": {
         "mode": "100644",
@@ -14289,7 +14574,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "29208797fb54395035657b438b568077a33b8800"
+        "oid": "e9cfcc95e4cf3b78d550d77843839f8a10601b41"
       },
       "targetBlob": null
     },
@@ -15955,7 +16240,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "58aa94d0af5e89e1547645c1c1a39d9174cff346"
+        "oid": "1056ff4d38ca2f3c05b4a759dda20e9c8592f5a8"
       },
       "targetBlob": null
     },
@@ -16155,6 +16440,16 @@
       }
     },
     {
+      "sourcePath": "scripts/test-audit-chaptarr-consolidation.py",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "f20a1c3903dbea40db30882ec2d61b5960735357"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "scripts/test-bookshelfng-release-readiness-gate.sh",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -16301,32 +16596,42 @@
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "fc0dca284e776666a78b08b2c43cc726fb5a2b92"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "6f811aca3d651db095fac8b706cd0015df120854"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify DiagnosticsEventHandler in the renamed diagnostics module; link the paths for direct comparison only."
       }
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsReporter.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsReporter.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c93e85d5a2aed7c22a582ba5bcaa8a4ed1862d08"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/Chaptarr.Diagnostics/DiagnosticsReporter.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "f98d8380bee5b31da339e8f746ee33a50a3c35cf"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsReporter.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify DiagnosticsReporter in the renamed diagnostics module; link the paths for direct comparison only."
       }
     },
     {
@@ -16387,17 +16692,22 @@
     },
     {
       "sourcePath": "src/NzbDrone.Api.Test/Books/BookStatisticsResourceFixture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ce67c8404975cd727d6bd96fa5683dd82e6d2f9a"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "3c7662cf5df858806b89fb5534886afa2f5675c5"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify BookStatisticsResourceFixture; link the paths for direct comparison only."
       }
     },
     {
@@ -16482,17 +16792,22 @@
     },
     {
       "sourcePath": "src/NzbDrone.Common.Test/DiskTests/DiskTransferServiceFixture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "8015ff93cbe400f6620a964e3a9f08b98c6c6402"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "ea9b0cf4b7a4cc39e0d030a24d79e81a0727d644"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify DiskTransferServiceFixture; link the paths for direct comparison only."
       }
     },
     {
@@ -16796,17 +17111,22 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/Direct/DirectDownloadPlaywrightBrowserFixture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ba861bb27821ec98bfcf50249507870fd8397b1f"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "ece4f87621c5011a11cae4a73425ce790b8058bd"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify DirectDownloadPlaywrightBrowserFixture; link the paths for direct comparison only."
       }
     },
     {
@@ -16871,17 +17191,22 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0cf6f600593943ef1d6f7bf57fad4ddc85ea012a"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "de27b7b979855803c2e8dc2ec9fb34bfdf4b333b"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify QBittorrentProxyV2Fixture; link the paths for direct comparison only."
       }
     },
     {
@@ -16952,17 +17277,22 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Indexers/DirectDownload/DirectDownloadSettingsFixture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Core.Test/Indexers/DirectDownloadSettingsFixture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2da6c8ec231f1e4c44212602dd489f605bc3d67b"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/Chaptarr.Core.Test/Indexers/DirectDownloadSettingsFixture.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "00cca0ca25e4b95b06e33083ad4150b3880019cb"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/Chaptarr.Core.Test/Indexers/DirectDownloadSettingsFixture.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify DirectDownloadSettingsFixture; link the paths for direct comparison only."
       }
     },
     {
@@ -17226,17 +17556,22 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/MetadataSource/Hardcover/HardcoverMetadataProxyFixture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "da74827257f34249a6794392f38ad83541eed4d8"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "c597fac3a62976918d954ba8d926fac7375c6c80"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify HardcoverMetadataProxyFixture; link the paths for direct comparison only."
       }
     },
     {
@@ -17261,17 +17596,22 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/NotificationTests/BookLore/BookLoreProxyFixture.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "8be864c5003d13b1bbd1e035b97f69a1a5dec1a1"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "156abd6e060bd7cf2aeb90d78aa92eb9f0c1dd03"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify BookLoreProxyFixture; link the paths for direct comparison only."
       }
     },
     {
@@ -17314,7 +17654,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "bc973958916acb0acd4f99690fd151883e551ac1"
+        "oid": "1bbead0ae57423080d9dcebf4ed3737aa680b987"
       }
     },
     {
@@ -17759,92 +18099,122 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c6bf05691302d6d3fbd8047f2d0d15d0e2ccb507"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "a615b4cc30927c3fa75580d3b6ab6b538415e964"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both filenames carry migration ID 041 and the same migration name; link the paths for direct comparison only."
       }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f171971c0a4190c3b79a007c2448bb2d01f25d02"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "834d91ad4a7d0c5a0905e7c55aac663a9b6a7674"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both filenames carry migration ID 042 and the same migration name; link the paths for direct comparison only."
       }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5169a74f522134a8ce1d4b0a1a54bf9fbabd8589"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "a82c2b2792f5048c57865df0689796092f26fe2e"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both filenames carry migration ID 043 and the same migration name; link the paths for direct comparison only."
       }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "83e2bf616c469a2e731ec1cb40dd1ea6a4a6d2ee"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "728282a200f863f8e1185397e57315cf317d0105"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both filenames carry migration ID 044 and the same migration name; link the paths for direct comparison only."
       }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3d81aed6df3836af0acb64afbbdedf5402952a85"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "06e17dd5a0e651d969eccc59def8ced6638f19a9"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both filenames carry migration ID 045 and the same migration name; link the paths for direct comparison only."
       }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5b050f9f00e6c4e62cec30b9e0f3e7946bd456fa"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "e13adf658d0629b5b777d4b6732ef221ecb65ed4"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both filenames carry migration ID 046 and the same migration name; link the paths for direct comparison only."
       }
     },
     {
@@ -20043,7 +20413,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "9f12af841e38f60f7d31cc20296624f94b39405e"
+        "oid": "a6700eb20807a6847b17707bf6712fd7d247e7b3"
       }
     },
     {
@@ -20061,17 +20431,22 @@
     },
     {
       "sourcePath": "src/NzbDrone.Host/SecurityHeadersMiddleware.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "00e7d808cfabad49319e11120f19140ecf899eee"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
         "oid": "8da283c4cabc64a9504c24a657631cf25ff28cb9"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex path review (2026-10-19)",
+        "targetPath": "src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs",
+        "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+        "evidence": "Both paths identify SecurityHeadersMiddleware; link the paths for direct comparison only."
       }
     },
     {

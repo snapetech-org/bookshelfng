@@ -9,6 +9,16 @@ acceptance gates close. PR #128 merged release and distribution workflows that
 fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
+Draft ChaptarrNG PR #131 is at docs-only head
+`93213b677a0bbb256aaf782c389a4f1a3d9c2ee7`, above application-code commit
+`0e881d921dd55aa89e12747557ccaadbb2352a21`. Exact-head validation of the docs
+follow-up is running as Build
+[39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744).
+The application-code commit passed its cross-platform Build, PostgreSQL
+migration, security, dependency, and release-note checks; its artifact also
+passed the synthetic populated migration-to-SeerrNG smoke documented below.
+This candidate remains unpublished and these checks do not approve migration.
+
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
 preview of the exact SQLite migration-158 schema. Both retirement and
@@ -66,15 +76,16 @@ on Linux, macOS, and Windows, including PostgreSQL migration smoke,
 release-note contract, native-runner receipt reconciliation, and the Linux
 pinned-tool M4B smoke. CodeQL, security/secret scan, dependency review, and
 NuGet submission passed; disposable-fork validation was skipped by its gate.
-The current PR head is docs/CI-only commit
-`a3d9ec8dd3552d90ed527309658a9c4cfed8b7ec`; exact-head Build
-[39297761439](https://github.com/snapetech-org/chaptarrng/actions/runs/39297761439)
-passed on Linux, Windows, and macOS, including PostgreSQL migration smoke,
-release-note validation, native-runner receipt reconciliation, and the Linux
-pinned-tool M4B check. CodeQL, security/secret scan, dependency review, and
-NuGet submission passed; disposable-fork validation was skipped by its gate.
-The candidate remains unreleased and the migration acceptance gates remain
-open.
+The current PR head is docs-only commit
+`93213b677a0bbb256aaf782c389a4f1a3d9c2ee7`; exact-head Build
+[39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744)
+is running. Application-code commit `0e881d921dd55aa89e12747557ccaadbb2352a21`
+passed exact-head Build [39313568727](https://github.com/snapetech-org/chaptarrng/actions/runs/39313568727)
+on Linux, Windows, and macOS, including PostgreSQL migration, release-note,
+receipt, and Linux pinned-tool M4B checks. CodeQL, security/dependency,
+dependency review, analysis, NuGet submission, and Helm identity checks passed;
+disposable-fork validation was skipped by its gate. The candidate remains
+unreleased and the migration acceptance gates remain open.
 
 This support is not in ChaptarrNG `v0.9.977`, so `.977` cannot restore or export
 these portable files. ChaptarrNG's scheduled `.zip.enc` files use a separate
