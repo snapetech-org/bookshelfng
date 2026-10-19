@@ -391,7 +391,8 @@ only when an otherwise-unmapped source file has one target-tree file with the
 same basename. Treat them as a search hint and pinned blob reference; confirm
 the implementation and behavior manually before changing the path disposition.
 The BookshelfNG Build workflow tests unique, missing, and ambiguous basename
-handling through `scripts/test-audit-chaptarr-consolidation.py`.
+handling through `scripts/test-audit-chaptarr-consolidation.py`. Main commit
+`7a5822d93722824e38ea7a615f67abe1218d5eb6` passed Build [39300427550](https://github.com/snapetech-org/bookshelfng/actions/runs/39300427550), including the full test and validation-receipt steps; CodeQL [39300427634](https://github.com/snapetech-org/bookshelfng/actions/runs/39300427634) and NuGet dependency submission [39300429597](https://github.com/snapetech-org/bookshelfng/actions/runs/39300429597) also passed.
 
 ## Hard compatibility boundaries
 
