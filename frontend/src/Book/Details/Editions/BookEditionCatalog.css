@@ -1,0 +1,38 @@
+.container {
+  margin-top: 20px;
+  border: 1px solid var(--borderColor);
+  border-radius: 4px;
+  background-color: var(--inputBackgroundColor);
+}
+
+.help,
+.message {
+  padding: 8px;
+  color: var(--darkGray);
+}
+
+.title,
+.narrators,
+.production,
+.abridgement,
+.duration,
+.language,
+.publisher,
+.status {
+  padding: 8px;
+}
+
+.title {
+  min-width: 220px;
+  text-align: left;
+}
+
+.duration {
+  white-space: nowrap;
+  font-family: monospace;
+}
+
+.unknown {
+  color: var(--darkGray);
+  font-style: italic;
+}

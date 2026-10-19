@@ -21,6 +21,7 @@ import OrganizePreviewModalConnector from 'Organize/OrganizePreviewModalConnecto
 import RetagPreviewModalConnector from 'Retag/RetagPreviewModalConnector';
 import translate from 'Utilities/String/translate';
 import BookDetailsHeaderConnector from './BookDetailsHeaderConnector';
+import BookEditionCatalog from './Editions/BookEditionCatalog';
 import styles from './BookDetails.css';
 
 class BookDetails extends Component {
@@ -260,6 +261,13 @@ class BookDetails extends Component {
                   {translate('FilesTotal', [bookFileCount])}
                 </Tab>
 
+                <Tab
+                  className={styles.tab}
+                  selectedClassName={styles.selectedTab}
+                >
+                  {translate('EditionCatalog')}
+                </Tab>
+
                 {
                   selectedTabIndex === 1 &&
                     <div className={styles.filterIcon}>
@@ -290,6 +298,10 @@ class BookDetails extends Component {
                   authorId={author.id}
                   bookId={id}
                 />
+              </TabPanel>
+
+              <TabPanel>
+                <BookEditionCatalog bookId={id} />
               </TabPanel>
             </Tabs>
           </div>

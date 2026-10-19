@@ -84,3 +84,5 @@ files.
 `GET /api/v1/book/{id}/editions/catalog` returns every known edition of a book with its narrator (BookshelfNG stores one narrator string per edition), language, format, publisher, release date, cover, whether it is the monitored selection, and whether a file exists. `production` and `abridged` are reported only when the edition's own title or disambiguation says so (full cast, GraphicAudio, abridged, unabridged); otherwise they are `unknown`. `GET /api/v1/system/capabilities` advertises `features.editionCatalog`, so older clients simply hide the edition cards.
 
 BookshelfNG cannot track a second performance of the same book alongside the first; that is a ChaptarrNG capability (`wantedEditionVariants`).
+
+In BookshelfNG itself, a book's details page has an **Editions and Narrations** tab listing every known edition with narrators, production, abridgement, language, publisher, and whether it is the selected edition or has a file. Details the metadata does not state read "Not provided".
