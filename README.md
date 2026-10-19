@@ -42,7 +42,13 @@
 > commit `b7e900d49648269d5118bbfba44289c0200b095b`. It pins the hosted SDK
 > selection to .NET `10.0.401`. Exact-head Build
 > [39297761439](https://github.com/snapetech-org/chaptarrng/actions/runs/39297761439)
-> tracks the current head; see the live run for its final result. No release or
+> passed on Linux, Windows, and macOS, including PostgreSQL migration smoke,
+> release-note validation, native-runner receipt reconciliation, and the Linux
+> pinned-tool M4B merge/fallback check. CodeQL, security/secret scan,
+> dependency review, and NuGet submission also passed; disposable-fork
+> validation was skipped by its external-fork gate. This is code validation
+> only. PR #131 remains draft; representative-data acceptance, semantic
+> parity, installed rollback, and channel handoff remain open. No release or
 > bridge was published.
 >
 > Follow-up request lifecycle probe (2026-10-19): draft ChaptarrNG PR #131 commit `d97136040e5f76f6aa0b140d5c0ed74f8de7501e` adds [`integration/seerrng-request-lifecycle.mjs`](https://github.com/snapetech-org/chaptarrng/blob/d97136040e5f76f6aa0b140d5c0ed74f8de7501e/integration/seerrng-request-lifecycle.mjs), wired into `integration/seerrng-smoke.compose.yml`. It passed against the prebuilt Linux candidate `0.9.978.0` from Build [39239940373](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940373) (application snapshot `0612cb4c90b75818e5349eb868cc0638825de02a`) and SeerrNG source `b810153c`: the real `ReadarrAPI` adapter created, polled, and cancelled a synthetic unavailable-author import, and ChaptarrNG returned terminal `Failed` / `Cancelled by user`. `node --check`, Prettier, and Compose configuration validation passed. The earlier Compose run used a temporary runtime image. A follow-up source-build run on 2026-10-19 built through the checked-in `Dockerfile.build` from ChaptarrNG PR #131 head `7cfb5d87` and passed both scripts after the harness prepared its disposable `/books` volume as UID/GID `99:100`. Successful fulfillment, retries, availability/history, converted records, saved operator settings, and operator acceptance remain open. This proves the synthetic cancellation path only; successful fulfillment, retries, availability/history, converted-record behavior, unchanged production settings, and operator acceptance remain open.

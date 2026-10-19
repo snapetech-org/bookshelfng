@@ -69,8 +69,12 @@ NuGet submission passed; disposable-fork validation was skipped by its gate.
 The current PR head is docs/CI-only commit
 `a3d9ec8dd3552d90ed527309658a9c4cfed8b7ec`; exact-head Build
 [39297761439](https://github.com/snapetech-org/chaptarrng/actions/runs/39297761439)
-tracks that head. The candidate remains unreleased and the migration
-acceptance gates remain open.
+passed on Linux, Windows, and macOS, including PostgreSQL migration smoke,
+release-note validation, native-runner receipt reconciliation, and the Linux
+pinned-tool M4B check. CodeQL, security/secret scan, dependency review, and
+NuGet submission passed; disposable-fork validation was skipped by its gate.
+The candidate remains unreleased and the migration acceptance gates remain
+open.
 
 This support is not in ChaptarrNG `v0.9.977`, so `.977` cannot restore or export
 these portable files. ChaptarrNG's scheduled `.zip.enc` files use a separate
