@@ -46,6 +46,8 @@ review, security scan, and NuGet checks pass. CodeQL
 passes; cross-platform Build
 [39205452341](https://github.com/snapetech-org/chaptarrng/actions/runs/39205452341) passed Linux, macOS, Windows, PostgreSQL migration, release-note, and native-runner receipt checks. This UI remains source-only in public ChaptarrNG `.977`.
 
+The current PR #131 candidate is code head [50e4cc14](https://github.com/snapetech-org/chaptarrng/commit/50e4cc14cf9cf87bbfeebbbb114cadbbeab6b5a3), which merges ChaptarrNG main at 95f112e7 and includes the stable master container alias. The focused alias regression script passes locally. Exact-head Build [39219378504](https://github.com/snapetech-org/chaptarrng/actions/runs/39219378504) passed: Linux 4,412/0 failed, macOS 4,407/0, Windows 4,373/0, PostgreSQL migration fixtures 53/0, and all four validation receipts reconciled. CodeQL [39219375419](https://github.com/snapetech-org/chaptarrng/actions/runs/39219375419), security [39219378250](https://github.com/snapetech-org/chaptarrng/actions/runs/39219378250), NuGet submission [39219376642](https://github.com/snapetech-org/chaptarrng/actions/runs/39219376642), and dependency review [39219378382](https://github.com/snapetech-org/chaptarrng/actions/runs/39219378382) passed. The previous code head 6d6df4f9 also passed full exact-head validation on Build [39213714490](https://github.com/snapetech-org/chaptarrng/actions/runs/39213714490), full attempt 3. Representative-data migration and rollback, feature parity, installed rollback, and update-channel acceptance remain open. The candidate remains draft and is not approved for production migration; do not point ChaptarrNG at live BookshelfNG appdata or use its restore flow for production.
+
 ChaptarrNG PR #132 merged format-specific root setup to source `main` as
 `0f1fea44`, but that Quickstart change is not in the published `.977` release.
 
@@ -61,7 +63,7 @@ discard the source backup.
 The published converter accepts the exact BookshelfNG migration-158 SQLite
 schema and rejects versions before migration 14; upgrade older installs to
 BookshelfNG .71 first. PR #126 merged a version-aware guard and migration-1
-rollback fixture into ChaptarrNG `main`, but they are not in `.977`. Current migration candidate [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131)
+rollback fixture into ChaptarrNG `main`, but they are not in `.977`. Earlier migration candidate checkpoint [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131)
 remains draft. Exact-head run
 [39196795646](https://github.com/snapetech-org/chaptarrng/actions/runs/39196795646)
 passed on head 2c0401fc: Linux, macOS, and Windows build/tests, PostgreSQL
