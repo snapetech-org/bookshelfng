@@ -69,7 +69,7 @@ with native Hardcover mode and no network access; this is not broad operator
 acceptance. Ambiguous media, PostgreSQL operator data, feature parity, real
 installed rollback, SeerrNG workflows, and installer/channel acceptance remain
 open. The candidate remains unpublished and unsupported for operator cutover;
-the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/f5f57644/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
+the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/codex/bookshelf-retirement-next-20261018/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
 
 A local AUR BookshelfNG-identity .977 package candidate passed an isolated,
 network-disabled pacman upgrade from the published .71 package and downgrade
@@ -459,7 +459,7 @@ Windows, and PostgreSQL migration checks passed, but the source fix is not in
 Populated synthetic migration-22 evidence covers conversion and rollback,
 source-unchanged preview, and refusal of a future schema. This does not
 establish older-schema behavior on real data or PostgreSQL source conversion.
-Earlier synthetic PostgreSQL snapshot [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed four migration cases plus Linux, macOS, and Windows validation. The later exact-head run [39175250100](https://github.com/snapetech-org/chaptarrng/actions/runs/39175250100) on PR head `e4db2d46` passed the platform suites, all 4 PostgreSQL fixture cases, release-note and receipt checks, CodeQL, dependency review, secret scan, and NuGet submission. That PostgreSQL test remains limited to one migration-158 synthetic schema and does not establish operator-data acceptance; PostgreSQL conversion remains unsupported in published releases. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) and the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/f5f57644/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
+Earlier synthetic PostgreSQL snapshot [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed four migration cases plus Linux, macOS, and Windows validation. The later exact-head run [39175250100](https://github.com/snapetech-org/chaptarrng/actions/runs/39175250100) on PR head `e4db2d46` passed the platform suites, all 4 PostgreSQL fixture cases, release-note and receipt checks, CodeQL, dependency review, secret scan, and NuGet submission. That PostgreSQL test remains limited to one migration-158 synthetic schema and does not establish operator-data acceptance; PostgreSQL conversion remains unsupported in published releases. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) and the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/codex/bookshelf-retirement-next-20261018/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
 Ambiguous formats are retained in both catalogs without monitoring until the
 operator classifies them; the converter does not infer their true type. Full
 provider and environment parity, every installation channel, and rollback on
