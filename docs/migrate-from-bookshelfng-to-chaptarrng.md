@@ -47,19 +47,30 @@ image switch.
 
 ## Portable encrypted backups
 
-The unpublished ChaptarrNG PR #131 candidate at
-`38be9422a0390c0b3d4d1c453ec14b25d3aa99a4` can import and export portable
-BookshelfNG `BKSENC01` `.enc` backups using the same passphrase. Its encryption
-service was checked against BookshelfNG's source implementation, and ChaptarrNG
-tests cover round trips, wrong passphrases, tampering, truncation, malformed
-files, and cleanup. The candidate's restore UI accepts the `.enc` file and
+The unpublished ChaptarrNG PR #131 application code at
+`b7e900d49648269d5118bbfba44289c0200b095b` can import and export portable
+BookshelfNG `BKSENC01` `.enc` backups using the same passphrase. The portable
+format was introduced earlier in the branch. The implementation was
+cross-checked against BookshelfNG's source; ChaptarrNG tests cover round
+trips, wrong passphrases, tampering, truncation, malformed files, and cleanup.
+The candidate's restore UI accepts the `.enc` file and
 prompts for its passphrase. Exact-head Build
 [39267876585](https://github.com/snapetech-org/chaptarrng/actions/runs/39267876585)
 passed Linux, macOS, Windows, PostgreSQL migration, release-note, and native
 runner receipt checks. CodeQL, security analysis, and dependency review also
 passed. Two earlier Build attempts exposed compile and test-fixture issues;
-the current exact-head run includes their fixes. The candidate remains
-unreleased and the migration acceptance gates remain open.
+the `38be9422` exact-head run includes their fixes. The current candidate at
+`b7e900d49648269d5118bbfba44289c0200b095b` passed Build
+[39292223717](https://github.com/snapetech-org/chaptarrng/actions/runs/39292223717)
+on Linux, macOS, and Windows, including PostgreSQL migration smoke,
+release-note contract, native-runner receipt reconciliation, and the Linux
+pinned-tool M4B smoke. CodeQL, security/secret scan, dependency review, and
+NuGet submission passed; disposable-fork validation was skipped by its gate.
+The current PR head is documentation-only commit
+`6ed97b534bbb3e4c10263b3022de9b83fa175522`; exact-head Build
+[39295478568](https://github.com/snapetech-org/chaptarrng/actions/runs/39295478568)
+tracks that head. The candidate remains unreleased and the migration
+acceptance gates remain open.
 
 This support is not in ChaptarrNG `v0.9.977`, so `.977` cannot restore or export
 these portable files. ChaptarrNG's scheduled `.zip.enc` files use a separate

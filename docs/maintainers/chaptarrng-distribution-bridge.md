@@ -30,8 +30,9 @@ standard COPR package `chaptarrng 0.9.977-1` built successfully for Fedora 43,
 44, 45, and Rawhide x86_64. The legacy COPR trigger remains disabled.
 Chocolatey `.977` passed package-transition smoke validation, but its push
 returned HTTP 403 and the live feed has no `chaptarrng` entry. The
-BookshelfNG AUR identity remains on its own `0.4.21.71-1` payload; the public
-Chocolatey identity remains at `0.4.21.70`. Feature and channel acceptance
+BookshelfNG AUR identity remains on its own `0.4.21.71-1` payload; the
+published Chocolatey `bookshelfng` package remains at `0.4.21.70`, while the
+latest GitHub release is `0.4.21.71`. Feature and channel acceptance
 gates are still open. An isolated 2026-10-18 Docker image-switch and rollback
 smoke passed on an empty migration-158 database; the old image started again
 on port 8787. The Unraid Community Apps template update remains untested. Use
