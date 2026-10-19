@@ -10,23 +10,24 @@ fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
 Draft ChaptarrNG PR #131 is at documentation-only head
-`8912b7b3629248348c51daa0f1c39a6357e20ed7`; its application-code parent
-`7b4c66e3` passed exact-head Build
-[39332160991](https://github.com/snapetech-org/chaptarrng/actions/runs/39332160991),
-CodeQL [39332156121](https://github.com/snapetech-org/chaptarrng/actions/runs/39332156121),
-security [39332161129](https://github.com/snapetech-org/chaptarrng/actions/runs/39332161129),
-dependency review [39332160785](https://github.com/snapetech-org/chaptarrng/actions/runs/39332160785),
-Helm identity [39332161144](https://github.com/snapetech-org/chaptarrng/actions/runs/39332161144),
-and NuGet [39332162427](https://github.com/snapetech-org/chaptarrng/actions/runs/39332162427).
-Disposable-fork validation was skipped by its external-fork gate. Exact-head
-checks are rerunning for the docs-only commit. The Windows installer supports
-one SQLite database under the standard NT AUTHORITY\LocalService account;
-custom accounts, PostgreSQL, and multiple databases fail closed. Preview
-fingerprinting covers the database, WAL, and rollback journal, while ignoring
-the rebuildable `-shm` index. Its build, fingerprint regression smoke, and
-selected data-directory smoke passed on the application-code parent. A
-populated installed upgrade and rollback have not been rehearsed. PR #131
-remains draft and publication remains frozen.
+`8912b7b3629248348c51daa0f1c39a6357e20ed7`. Exact-head Build
+[39334414682](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414682)
+passed Linux, macOS, and Windows, PostgreSQL migration, release-note contract,
+and the Windows migration-installer build, SQLite fingerprint smoke, and
+selected-data-directory smoke. CodeQL
+[39334411350](https://github.com/snapetech-org/chaptarrng/actions/runs/39334411350),
+security [39334414694](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414694),
+dependency review [39334414922](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414922),
+Helm identity [39334414735](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414735),
+and NuGet [39334412894](https://github.com/snapetech-org/chaptarrng/actions/runs/39334412894)
+passed. Disposable-fork validation was skipped by its external-fork gate. The
+Windows installer supports one SQLite database under the standard
+NT AUTHORITY\LocalService account; custom accounts, PostgreSQL, and multiple
+databases fail closed. Preview fingerprinting covers the database, WAL, and
+rollback journal, while ignoring the rebuildable `-shm` index. The exact-head
+installer build, fingerprint regression smoke, and selected data-directory
+smoke passed. A populated installed upgrade and rollback have not been
+rehearsed. PR #131 remains draft and publication remains frozen.
 
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
@@ -43,8 +44,8 @@ SQLite database using the standard `NT AUTHORITY\LocalService` account. It
 fails closed on custom service accounts, PostgreSQL, and multiple databases;
 it checks preview immutability for the database, WAL, and rollback journal
 (SQLite rebuilds its transient `-shm` index) and attempts rollback after a
-failed service handoff. The exact-head installer build and Windows
-checks are pending. No installed Bookshelf-to-Chaptarr upgrade or rollback has
+failed service handoff. The exact-head migration-installer build and both
+Windows smoke checks passed. No installed Bookshelf-to-Chaptarr upgrade or rollback has
 been rehearsed, so do not use it for a production cutover. The manual service
 handoff remains a documented candidate path only.
 

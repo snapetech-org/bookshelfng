@@ -1,19 +1,20 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
 **Current candidate (2026-10-19):** ChaptarrNG PR #131 is at documentation-only head
-`8912b7b3629248348c51daa0f1c39a6357e20ed7`. Its application-code parent
-`7b4c66e3` passed Build [39332160991](https://github.com/snapetech-org/chaptarrng/actions/runs/39332160991),
-CodeQL [39332156121](https://github.com/snapetech-org/chaptarrng/actions/runs/39332156121),
-security [39332161129](https://github.com/snapetech-org/chaptarrng/actions/runs/39332161129),
-dependency review [39332160785](https://github.com/snapetech-org/chaptarrng/actions/runs/39332160785),
-Helm identity [39332161144](https://github.com/snapetech-org/chaptarrng/actions/runs/39332161144),
-and NuGet [39332162427](https://github.com/snapetech-org/chaptarrng/actions/runs/39332162427).
-Its Windows installer build, fingerprint regression smoke, and selected
-data-directory smoke passed. Exact-head checks are rerunning for this
-documentation-only commit; disposable-fork validation remains skipped by its
-external-fork gate. No installed BookshelfNG service upgrade or rollback has
-been accepted. PR #131 remains draft and publication remains frozen.
-Representative data, semantic parity, installed rollback, and channel
+`8912b7b3629248348c51daa0f1c39a6357e20ed7`. Exact-head Build
+[39334414682](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414682)
+passed Linux, macOS, and Windows, PostgreSQL migration, release-note contract,
+and the Windows migration-installer build, SQLite fingerprint smoke, and
+selected-data-directory smoke. CodeQL
+[39334411350](https://github.com/snapetech-org/chaptarrng/actions/runs/39334411350),
+security [39334414694](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414694),
+dependency review [39334414922](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414922),
+Helm identity [39334414735](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414735),
+and NuGet [39334412894](https://github.com/snapetech-org/chaptarrng/actions/runs/39334412894)
+passed. Disposable-fork validation remains skipped by its external-fork gate.
+The installer is unpublished; no installed BookshelfNG service upgrade or
+rollback has been accepted. PR #131 remains draft and publication remains
+frozen. Representative data, semantic parity, installed rollback, and channel
 acceptance remain open.
 
 Prior PR #131 validation (2026-10-19): application-code snapshot `0612cb4c90b75818e5349eb868cc0638825de02a` passed exact-head Build [39239940373](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940373): Linux, macOS, and Windows tests, PostgreSQL migration smoke, native-runner receipt reconciliation, and release-note contract passed. CodeQL [39239934583](https://github.com/snapetech-org/chaptarrng/actions/runs/39239934583), security [39239940344](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940344), NuGet submission [39239932165](https://github.com/snapetech-org/chaptarrng/actions/runs/39239932165), and dependency review [39239940313](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940313) passed. Disposable-fork validation [39239940512](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940512) was skipped by its external-fork gate. SeerrNG's adapter and request-route suite at source commit `b810153c` passed 4 files / 283 tests. The Linux artifact also passed the earlier empty-library API and authorization smoke. A populated source-build smoke for later code is recorded below.

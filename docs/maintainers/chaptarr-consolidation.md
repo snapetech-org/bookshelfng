@@ -8,20 +8,20 @@ publication is frozen, and use the exact `release-note: none` trailer in their
 PR description or direct-push commit message.
 
 Current candidate status (2026-10-19): ChaptarrNG PR #131 is at
-documentation-only head `8912b7b3629248348c51daa0f1c39a6357e20ed7`. Its
-application-code parent `7b4c66e3` passed Build
-[39332160991](https://github.com/snapetech-org/chaptarrng/actions/runs/39332160991),
-CodeQL [39332156121](https://github.com/snapetech-org/chaptarrng/actions/runs/39332156121),
-security [39332161129](https://github.com/snapetech-org/chaptarrng/actions/runs/39332161129),
-dependency review [39332160785](https://github.com/snapetech-org/chaptarrng/actions/runs/39332160785),
-Helm identity [39332161144](https://github.com/snapetech-org/chaptarrng/actions/runs/39332161144),
-and NuGet [39332162427](https://github.com/snapetech-org/chaptarrng/actions/runs/39332162427).
-Its Windows installer build, fingerprint regression smoke, and selected
-data-directory smoke passed. Exact-head checks are rerunning for this
-documentation-only commit; disposable-fork validation remains skipped by its
-external-fork gate. The installer remains unpublished, no installed BookshelfNG
-service upgrade or rollback has been accepted, and no release, package, image,
-or bridge was published.
+documentation-only head `8912b7b3629248348c51daa0f1c39a6357e20ed7`. Exact-head
+Build [39334414682](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414682)
+passed Linux, macOS, and Windows, PostgreSQL migration, release-note contract,
+and the Windows migration-installer build, SQLite fingerprint smoke, and
+selected-data-directory smoke. CodeQL
+[39334411350](https://github.com/snapetech-org/chaptarrng/actions/runs/39334411350),
+security [39334414694](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414694),
+dependency review [39334414922](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414922),
+Helm identity [39334414735](https://github.com/snapetech-org/chaptarrng/actions/runs/39334414735),
+and NuGet [39334412894](https://github.com/snapetech-org/chaptarrng/actions/runs/39334412894)
+passed; disposable-fork validation remains skipped by its external-fork gate.
+The installer remains unpublished. No installed BookshelfNG service upgrade
+or rollback has been accepted, and no release, package, image, or bridge was
+published.
 
 The Windows migration installer build, SQLite fingerprint regression smoke,
 and selected-data-directory smoke passed. The candidate installer supports
