@@ -55,7 +55,21 @@ discard the source backup.
 The published converter accepts the exact BookshelfNG migration-158 SQLite
 schema and rejects versions before migration 14; upgrade older installs to
 BookshelfNG .71 first. PR #126 merged a version-aware guard and migration-1
-rollback fixture into ChaptarrNG `main`, but they are not in `.977`. Current migration candidate [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) remains draft. Earlier exact-head run [39175250100](https://github.com/snapetech-org/chaptarrng/actions/runs/39175250100) passed on PR head `e4db2d46` (CI merge candidate `724029a2`): Linux, macOS, and Windows suites; the 4/4 PostgreSQL fixture; release-note and runner-receipt validation; CodeQL; dependency review; secret scan; and NuGet submission. The final Linux artifact refused conversion without provider mode, preserved Goodreads and Hardcover identities with explicit modes, converted during normal startup, served the synthetic author and both format records, and restored the source byte-for-byte on rollback. A SeerrNG restricted-key smoke passed on an earlier head. Implementation head `f5f57644` passed exact-head hosted validation in [run 39190896072](https://github.com/snapetech-org/chaptarrng/actions/runs/39190896072): Linux, macOS, and Windows builds; PostgreSQL migration; release-note; CodeQL; dependency review; dependency and secret scan; NuGet submission; and native runner receipt reconciliation all passed. Disposable-fork validation was skipped by its gate. Fifty-two focused importer, catalog, and capability tests pass locally. These checks do not establish operator-data, feature-parity, or install-channel acceptance. The candidate adds older SQLite, one-schema PostgreSQL, native Hardcover, and BookOrbit support, but remains unsupported for operator data; see the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/f5f57644/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
+rollback fixture into ChaptarrNG `main`, but they are not in `.977`. Current migration candidate [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131)
+remains draft. Exact-head run
+[39196795646](https://github.com/snapetech-org/chaptarrng/actions/runs/39196795646)
+passed on head 2c0401fc: Linux, macOS, and Windows build/tests, PostgreSQL
+migration fixtures, release-note validation, CodeQL, dependency/secret scans,
+NuGet submission, and runner-receipt reconciliation. The previous run found
+four Windows media-move fixtures that used POSIX-only paths; native temporary
+paths fixed them. Disposable-fork validation was skipped by its gate. Fifty-two
+focused importer, catalog, and capability tests pass locally. A populated
+migration-158 SQLite copy passed preview, apply, restore preview, and rollback
+with native Hardcover mode and no network access; this is not broad operator
+acceptance. Ambiguous media, PostgreSQL operator data, feature parity, real
+installed rollback, SeerrNG workflows, and installer/channel acceptance remain
+open. The candidate remains unpublished and unsupported for operator cutover;
+the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/f5f57644/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
 
 A local AUR BookshelfNG-identity .977 package candidate passed an isolated,
 network-disabled pacman upgrade from the published .71 package and downgrade
