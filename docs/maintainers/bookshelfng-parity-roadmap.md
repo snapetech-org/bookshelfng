@@ -91,7 +91,8 @@ passed Linux, macOS, PostgreSQL, release-note, CodeQL, dependency, and security
 checks but exposed four Windows fixture failures caused by hardcoded POSIX
 paths; `2c0401fc` makes the fixture paths native and fully qualified. Exact-head
 run [39196795646](https://github.com/snapetech-org/chaptarrng/actions/runs/39196795646)
-is running. The candidate remains draft and unpublished.
+passed on head 2c0401fc, including Windows tests. The candidate remains draft
+and unpublished.
 
 Candidate build `0.9.978.0` passed migration preview, apply, rollback preview,
 and rollback on a disposable copy of a private populated migration-158 SQLite

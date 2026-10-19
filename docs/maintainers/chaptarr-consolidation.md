@@ -267,8 +267,8 @@ behavior, feature parity, or any published package-channel bridge.
   files and created one untracked declaration; the PostgreSQL receipt used the
   clean committed tree. ChaptarrNG PR #77 merged as `ee2efc55` on October 13,
   moving the frontend build after receipt export and adding a workflow-order
-  regression check. Current integration-branch hosted checks are a separate
-  pending validation.
+  regression check. PR #100's required hosted checks passed before merge; its Windows rerun is
+  noted below. Current PR #131 validation is tracked separately.
 
   The focused converter coordinator fixture passes 5/5 and the current
   populated importer/startup fixture passes 5/5. The fixture exercises mixed
@@ -294,8 +294,9 @@ behavior, feature parity, or any published package-channel bridge.
   BookLore-user transition. Separate focused
   reruns passed 16 migration-safety cases, 29 metadata/ranking/series cases,
   and 29 rename/path cases. A hosted Windows run on the prior PR #100 head
-  failed four migration/rollback tests; the current exact-head hosted rerun is
-  queued.
+  failed four migration/rollback tests; the corrected exact-head rerun passed
+  in [run 38638159695](https://github.com/snapetech-org/chaptarrng/actions/runs/38638159695)
+  before PR #100 merged as fa5384e.
 - ChaptarrNG feature snapshot: `24b340fffc43eb0883995a21665d3d051eb66abe`.
   Its historical comparison against `origin/main` at `660cc034` showed 317
   commits ahead and 4 behind across 703 paths. PR #76 later integrated the
