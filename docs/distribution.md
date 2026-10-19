@@ -55,11 +55,13 @@ and install-channel acceptance gates close. No image or legacy alias will be
 updated during this freeze. Ambiguous book formats are kept in both catalogs,
 unmonitored, with a private review file; an operator-supplied media map is
 optional. On 2026-10-19, candidate build `0.9.978.0` passed preview, apply,
-restore preview, and rollback against a disposable copy of populated
-migration-158 SQLite data with `HARDCOVER=true` and networking disabled. The
-source snapshot remained unchanged, integrity and foreign-key checks passed,
-and rollback restored a byte-identical source backup while preserving the
-converted database separately. This is one candidate SQLite rehearsal, not
+restore preview, and rollback against a task-scoped copy of populated
+migration-158 SQLite data with `HARDCOVER=true`. The live BookshelfNG service
+remained running; candidate commands targeted only the separate copy, and
+network access was not blocked for those commands. The source snapshot remained
+unchanged, integrity and foreign-key checks passed, and rollback restored a
+byte-identical source backup while preserving the converted database
+separately. This is one candidate SQLite rehearsal, not
 production approval. Do not use published `.977` for native Hardcover data:
 it maps bare numeric IDs to Goodreads regardless of `HARDCOVER`. Older-schema
 behavior on real data, PostgreSQL source conversion, ambiguous-media review,

@@ -83,10 +83,12 @@ round-trip preview and integrity checks did not test provider identity; do not
 apply `.977` to a native Hardcover database. The unpublished candidate requires
 explicit provider mode and, with `HARDCOVER=true`, passed a populated
 migration-158 SQLite preview, apply, restore preview, and rollback on a
-disposable copy with networking disabled. The source snapshot remained
+task-scoped copy. The live BookshelfNG service remained running; these
+candidate commands did not block network access. The source snapshot remained
 unchanged. Apply passed integrity and foreign-key checks; rollback restored a
 byte-identical retained source backup and preserved the converted database
-separately.
+separately. Native Hardcover identities were retained for migrated authors,
+books, and editions.
 
 That data exercise exposed positive file references to missing editions and
 history rows whose source book disagreed with the referenced file. The current

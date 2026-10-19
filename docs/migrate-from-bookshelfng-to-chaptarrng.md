@@ -25,15 +25,25 @@ do not apply `.977` to native Hardcover data. The unpublished candidate
 requires an explicit provider mode.
 
 On 2026-10-19, candidate build `0.9.978.0` passed preview, apply, rollback
-preview, and rollback on a disposable copy of populated migration-158 SQLite
-data with `HARDCOVER=true` and networking disabled. Preview did not change the
-source database. Apply passed integrity and foreign-key checks; rollback
+preview, and rollback against a task-scoped copy of populated migration-158
+SQLite data with `HARDCOVER=true`. The live BookshelfNG service remained
+running; candidate commands targeted only the separate copy, and network
+access was not blocked for those commands. Preview did not change the source
+copy. Apply passed integrity and foreign-key checks; rollback
 preview left the converted database and source backup unchanged; explicit
 rollback restored a byte-identical source backup and retained the converted
 database separately. The private source snapshot remained unchanged. This
 verifies one candidate SQLite round trip, not cutover readiness, ambiguous-media
 classification, older schemas, PostgreSQL operator data, feature parity, or
 installation-channel continuity.
+
+The `.978` Linux app artifact from Build
+[39267876585](https://github.com/snapetech-org/chaptarrng/actions/runs/39267876585)
+also started against a fresh converted schema-121 copy using the published
+`.977` runtime image, empty scratch mounts for configured media roots, and an
+internal-only network; `/ping` returned HTTP 200. This verifies candidate app
+startup with converted data, not candidate image packaging or an installed
+image switch.
 
 ## Portable encrypted backups
 
@@ -135,10 +145,11 @@ migration fixtures, release-note validation, CodeQL, dependency/secret scans,
 NuGet submission, and runner-receipt reconciliation. The previous run found
 four Windows media-move fixtures that used POSIX-only paths; native temporary
 paths fixed them. Disposable-fork validation was skipped by its gate. Fifty-two
-focused importer, catalog, and capability tests pass locally. A populated
+focused importer, catalog, and capability tests pass locally. The populated
 migration-158 SQLite copy passed preview, apply, restore preview, and rollback
-with native Hardcover mode and no network access; this is not broad operator
-acceptance. Ambiguous media, PostgreSQL operator data, feature parity, real
+with native Hardcover mode; network access was not blocked for those
+candidate commands. This is not broad operator acceptance. Ambiguous media,
+PostgreSQL operator data, feature parity, real
 installed rollback, SeerrNG workflows, and installer/channel acceptance remain
 open. The candidate remains unpublished and unsupported for operator cutover;
 the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/codex/bookshelf-retirement-next-20261018/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
