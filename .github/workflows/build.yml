@@ -278,6 +278,7 @@ jobs:
           tags: |
             type=raw,value=hardcover,enable=${{ github.ref_type == 'tag' }}
             type=raw,value=main,enable=${{ github.ref_type == 'tag' }}
+            type=raw,value=master,enable=${{ github.ref_type == 'tag' }}
             type=raw,value=latest,enable=${{ github.ref_type == 'tag' }}
             type=raw,value=hardcover-dev,enable=${{ github.ref_type != 'tag' }}
             type=raw,value=hardcover-v${{ needs.build.outputs.build_version }},enable=${{ github.ref_type == 'tag' }}
