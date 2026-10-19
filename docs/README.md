@@ -44,9 +44,3 @@ metadata provider configuration.
 | [Setup experience contract](maintainers/setup-experience-contract.md) | Keep setup work focused on the existing, fail-closed migration to ChaptarrNG during retirement |
 | [BookshelfNG feature inventory and ChaptarrNG retirement matrix](maintainers/bookshelfng-parity-roadmap.md) | BookshelfNG enhancements that must be ported or replaced before this fork can retire |
 | [BookshelfNG to ChaptarrNG consolidation report](maintainers/chaptarr-consolidation.md) | Full source inventory, database conversion contract, distribution bridge, evidence, and release gates |
-
-## Edition catalog for SeerrNG
-
-`GET /api/v1/book/{id}/editions/catalog` returns every known edition of a book with its narrator (BookshelfNG stores one narrator string per edition), language, format, publisher, release date, cover, whether it is the monitored selection, and whether a file exists. `production` and `abridged` are reported only when the edition's own title or disambiguation says so (full cast, GraphicAudio, abridged, unabridged); otherwise they are `unknown`. `GET /api/v1/system/capabilities` advertises `features.editionCatalog`, so older clients simply hide the edition cards.
-
-BookshelfNG cannot track a second performance of the same book alongside the first; that is a ChaptarrNG capability (`wantedEditionVariants`).

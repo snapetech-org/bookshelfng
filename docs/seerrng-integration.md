@@ -78,3 +78,9 @@ Moving from two separate BookshelfNG databases requires an explicit media and
 metadata migration; BookshelfNG does not merge databases, histories, profiles,
 or settings automatically. Back up both databases and media before moving any
 files.
+
+## Edition catalog for SeerrNG
+
+`GET /api/v1/book/{id}/editions/catalog` returns every known edition of a book with its narrator (BookshelfNG stores one narrator string per edition), language, format, publisher, release date, cover, whether it is the monitored selection, and whether a file exists. `production` and `abridged` are reported only when the edition's own title or disambiguation says so (full cast, GraphicAudio, abridged, unabridged); otherwise they are `unknown`. `GET /api/v1/system/capabilities` advertises `features.editionCatalog`, so older clients simply hide the edition cards.
+
+BookshelfNG cannot track a second performance of the same book alongside the first; that is a ChaptarrNG capability (`wantedEditionVariants`).
