@@ -66,9 +66,9 @@ on Linux, macOS, and Windows, including PostgreSQL migration smoke,
 release-note contract, native-runner receipt reconciliation, and the Linux
 pinned-tool M4B smoke. CodeQL, security/secret scan, dependency review, and
 NuGet submission passed; disposable-fork validation was skipped by its gate.
-The current PR head is documentation-only commit
-`6ed97b534bbb3e4c10263b3022de9b83fa175522`; exact-head Build
-[39295478568](https://github.com/snapetech-org/chaptarrng/actions/runs/39295478568)
+The current PR head is docs/CI-only commit
+`a3d9ec8dd3552d90ed527309658a9c4cfed8b7ec`; exact-head Build
+[39297761439](https://github.com/snapetech-org/chaptarrng/actions/runs/39297761439)
 tracks that head. The candidate remains unreleased and the migration
 acceptance gates remain open.
 

@@ -37,10 +37,11 @@
 > submission passed; disposable-fork validation was skipped by its gate. This
 > is code validation only; representative data, parity, installed rollback,
 > and channel acceptance remain open. No release or bridge was published.
-> The current ChaptarrNG PR #131 head is documentation-only commit
-> `6ed97b534bbb3e4c10263b3022de9b83fa175522` on top of tested application-code
-> commit `b7e900d49648269d5118bbfba44289c0200b095b`. Exact-head Build
-> [39295478568](https://github.com/snapetech-org/chaptarrng/actions/runs/39295478568)
+> The current ChaptarrNG PR #131 head is docs/CI-only commit
+> `a3d9ec8dd3552d90ed527309658a9c4cfed8b7ec` on top of tested application-code
+> commit `b7e900d49648269d5118bbfba44289c0200b095b`. It pins the hosted SDK
+> selection to .NET `10.0.401`. Exact-head Build
+> [39297761439](https://github.com/snapetech-org/chaptarrng/actions/runs/39297761439)
 > tracks the current head; see the live run for its final result. No release or
 > bridge was published.
 >
