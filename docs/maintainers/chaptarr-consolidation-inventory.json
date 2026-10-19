@@ -1,9 +1,10 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "scope": "All reachable commits since the first BookshelfNG fork commit parent; includes merged upstream work. File comparison covers net changes from that parent.",
   "limitations": [
     "Path and text equality do not prove feature parity.",
     "Missing mapped paths may have replacements under other names.",
+    "Unique-basename candidate paths are heuristic review hints, not confirmed mappings or evidence of equivalence.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
   "sourceCommit": "61d3bc583bd707648d5565d983c5a698da14ed9f",
@@ -14,6 +15,7 @@
     "commits": 621,
     "commitsNotInUpstreamHistory": 612,
     "netChangedPaths": 1102,
+    "uniqueBasenameCandidates": 24,
     "fileStates": {
       "no-mapped-target-file": 423,
       "different-review-required": 509,
@@ -12015,7 +12017,12 @@
         "mode": "100644",
         "oid": "a34f36bc8166624dd95fbae3fc9fe4ab46cd687a"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": ".gitignore",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "f951d2788e5079d39b31826f3b97ab9b704a8b08"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/App.xaml",
@@ -12065,7 +12072,12 @@
         "mode": "100644",
         "oid": "4d736c19ec5ff475609182bf1152633c566d1458"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/NuGet.config",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "44ac030f4ce3d7aace7fc1941531b94293150730"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/BackupService.cs",
@@ -12075,7 +12087,12 @@
         "mode": "100644",
         "oid": "7aede131f94bdd741a9d1c7c64782bab99fd841f"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/NzbDrone.Core/Backup/BackupService.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "ae0f4f09f751e8e8c794b749f31155850b277949"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/IUiReporter.cs",
@@ -12225,7 +12242,12 @@
         "mode": "100644",
         "oid": "d6b7ef32c8478a48c3994dcadc86837f4371184d"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": ".gitignore",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "f951d2788e5079d39b31826f3b97ab9b704a8b08"
+      }
     },
     {
       "sourcePath": "distribution/windows/setup/readarr.iss",
@@ -12275,7 +12297,12 @@
         "mode": "100644",
         "oid": "87460b5999c2f39df180d64d02f5378e41cb75f5"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "scripts/docs.sh",
+      "candidateTargetBlob": {
+        "mode": "100755",
+        "oid": "911dc8c7a5dd775295fc0f8973b8640eee192fe9"
+      }
     },
     {
       "sourcePath": "docs/README.md",
@@ -12521,7 +12548,12 @@
         "mode": "100644",
         "oid": "62effd1150f6d59460612e4f526e2545e7fd205d"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "docs/dependency-security.md",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "3776cae4db398a6507c0752a5ae4a8ec560fa044"
+      }
     },
     {
       "sourcePath": "docs/maintainers/setup-experience-contract.md",
@@ -12531,7 +12563,12 @@
         "mode": "100644",
         "oid": "e88b5d37cd57e32e97f694437d089edf3252980c"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "docs/development/setup-experience-contract.md",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "4adc422e288dc1fb5e02be9de0f07d83c63cf3f3"
+      }
     },
     {
       "sourcePath": "docs/media-storage.md",
@@ -13917,7 +13954,12 @@
         "mode": "100644",
         "oid": "5a4464691a3013c78b610b279443310a6b2afe4c"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.install",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "e98d99fbaaa71175485827a58734d736b2d7d737"
+      }
     },
     {
       "sourcePath": "packaging/catalogs/README.md",
@@ -16265,7 +16307,12 @@
         "mode": "100644",
         "oid": "fc0dca284e776666a78b08b2c43cc726fb5a2b92"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "6f811aca3d651db095fac8b706cd0015df120854"
+      }
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsReporter.cs",
@@ -16275,7 +16322,12 @@
         "mode": "100644",
         "oid": "c93e85d5a2aed7c22a582ba5bcaa8a4ed1862d08"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/Chaptarr.Diagnostics/DiagnosticsReporter.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "f98d8380bee5b31da339e8f746ee33a50a3c35cf"
+      }
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/README.md",
@@ -16341,7 +16393,12 @@
         "mode": "100644",
         "oid": "ce67c8404975cd727d6bd96fa5683dd82e6d2f9a"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "3c7662cf5df858806b89fb5534886afa2f5675c5"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Api.Test/Config/MetadataProviderConfigResourceFixture.cs",
@@ -16431,7 +16488,12 @@
         "mode": "100644",
         "oid": "8015ff93cbe400f6620a964e3a9f08b98c6c6402"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "ea9b0cf4b7a4cc39e0d030a24d79e81a0727d644"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Common.Test/Http/HttpClientFixture.cs",
@@ -16740,7 +16802,12 @@
         "mode": "100644",
         "oid": "ba861bb27821ec98bfcf50249507870fd8397b1f"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "ece4f87621c5011a11cae4a73425ce790b8058bd"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/DownloadStationTests/TorrentDownloadStationFixture.cs",
@@ -16810,7 +16877,12 @@
         "mode": "100644",
         "oid": "0cf6f600593943ef1d6f7bf57fad4ddc85ea012a"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "de27b7b979855803c2e8dc2ec9fb34bfdf4b333b"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/SabnzbdTests/SabnzbdFixture.cs",
@@ -16886,7 +16958,12 @@
         "mode": "100644",
         "oid": "2da6c8ec231f1e4c44212602dd489f605bc3d67b"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/Chaptarr.Core.Test/Indexers/DirectDownloadSettingsFixture.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "00cca0ca25e4b95b06e33083ad4150b3880019cb"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/MediaCoverTests/ImageResizerFixture.cs",
@@ -17155,7 +17232,12 @@
         "mode": "100644",
         "oid": "da74827257f34249a6794392f38ad83541eed4d8"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "c597fac3a62976918d954ba8d926fac7375c6c80"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/MusicTests/MoveArtistServiceFixture.cs",
@@ -17185,7 +17267,12 @@
         "mode": "100644",
         "oid": "8be864c5003d13b1bbd1e035b97f69a1a5dec1a1"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "156abd6e060bd7cf2aeb90d78aa92eb9f0c1dd03"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/ParserTests/ParsingServiceTests/ParseBookTitleFuzzyFixture.cs",
@@ -17678,7 +17765,12 @@
         "mode": "100644",
         "oid": "c6bf05691302d6d3fbd8047f2d0d15d0e2ccb507"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "a615b4cc30927c3fa75580d3b6ab6b538415e964"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs",
@@ -17688,7 +17780,12 @@
         "mode": "100644",
         "oid": "f171971c0a4190c3b79a007c2448bb2d01f25d02"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "834d91ad4a7d0c5a0905e7c55aac663a9b6a7674"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs",
@@ -17698,7 +17795,12 @@
         "mode": "100644",
         "oid": "5169a74f522134a8ce1d4b0a1a54bf9fbabd8589"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "a82c2b2792f5048c57865df0689796092f26fe2e"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs",
@@ -17708,7 +17810,12 @@
         "mode": "100644",
         "oid": "83e2bf616c469a2e731ec1cb40dd1ea6a4a6d2ee"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "728282a200f863f8e1185397e57315cf317d0105"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs",
@@ -17718,7 +17825,12 @@
         "mode": "100644",
         "oid": "3d81aed6df3836af0acb64afbbdedf5402952a85"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "06e17dd5a0e651d969eccc59def8ced6638f19a9"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs",
@@ -17728,7 +17840,12 @@
         "mode": "100644",
         "oid": "5b050f9f00e6c4e62cec30b9e0f3e7946bd456fa"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "e13adf658d0629b5b777d4b6732ef221ecb65ed4"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs",
@@ -19950,7 +20067,12 @@
         "mode": "100644",
         "oid": "00e7d808cfabad49319e11120f19140ecf899eee"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "8da283c4cabc64a9504c24a657631cf25ff28cb9"
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Host/SeerrIntegrationPathMiddleware.cs",

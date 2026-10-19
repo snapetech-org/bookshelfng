@@ -54,6 +54,9 @@ jobs:
       - name: Test hosted runner policy
         run: python3 scripts/test_workflow_runner_policy.py
 
+      - name: Test consolidation inventory path hints
+        run: python3 scripts/test-audit-chaptarr-consolidation.py
+
       - name: Test the COPR migration source bridge
         run: |
           bash -n packaging/rpm/copr-source.sh scripts/test-copr-source.sh

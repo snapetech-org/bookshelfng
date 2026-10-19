@@ -37,6 +37,12 @@ def mapped_path(path):
             .replace('NzbDrone.Core.Test/', 'Chaptarr.Core.Test/'))
 
 
+def unique_basename_candidate(path, target_paths_by_basename):
+    """Return a review hint only when the target has one matching basename."""
+    matches = target_paths_by_basename.get(pathlib.PurePosixPath(path).name, [])
+    return matches[0] if len(matches) == 1 else None
+
+
 def normalized(data):
     # Only establish textual rename equivalence; never infer behavior from it.
     return data.replace(b'Readarr', b'Chaptarr').replace(b'\r\n', b'\n')
@@ -58,6 +64,9 @@ def main():
     upstream = revision(args.bookshelf, args.upstream)
     source_tree = tree(args.bookshelf, source)
     target_tree = tree(args.chaptarr, target)
+    target_paths_by_basename = collections.defaultdict(list)
+    for target_path in target_tree:
+        target_paths_by_basename[pathlib.PurePosixPath(target_path).name].append(target_path)
     changed = set(git(args.bookshelf, 'diff', '--name-only', '-z', base, source).decode().split('\0')) - {''}
     upstream_history = set(git(args.bookshelf, 'rev-list', upstream).decode().splitlines())
     commits = []
@@ -73,6 +82,10 @@ def main():
         target_path = candidate if candidate in target_tree else path
         old = source_tree.get(path)
         new = target_tree.get(target_path)
+        candidate_target_path = None
+        if old is not None and new is None:
+            candidate_target_path = unique_basename_candidate(path, target_paths_by_basename)
+        candidate_target_blob = target_tree.get(candidate_target_path)
         state = 'deleted-in-bookshelf' if old is None else 'no-mapped-target-file'
         if old and new:
             state = 'identical' if old == new else 'different-review-required'
@@ -81,18 +94,25 @@ def main():
                 b = git(args.chaptarr, 'cat-file', 'blob', new['oid'])
                 if old['mode'] == new['mode'] and normalized(a) == normalized(b):
                     state = 'text-equivalent-after-brand-and-newline-normalization'
-        files.append({'sourcePath': path, 'targetPath': target_path if new else None,
-                      'state': state, 'sourceBlob': old, 'targetBlob': new})
+        file_entry = {'sourcePath': path, 'targetPath': target_path if new else None,
+                      'state': state, 'sourceBlob': old, 'targetBlob': new}
+        if candidate_target_path is not None:
+            file_entry['candidateTargetPath'] = candidate_target_path
+            file_entry['candidateTargetBlob'] = candidate_target_blob
+        files.append(file_entry)
     report = {
-        'schemaVersion': 1,
+        'schemaVersion': 2,
         'scope': 'All reachable commits since the first BookshelfNG fork commit parent; includes merged upstream work. File comparison covers net changes from that parent.',
         'limitations': ['Path and text equality do not prove feature parity.',
                        'Missing mapped paths may have replacements under other names.',
+                       'Unique-basename candidate paths are heuristic review hints, not confirmed mappings or evidence of equivalence.',
                        'No database, runtime, publisher, or upgrade validation is implied.'],
         'sourceCommit': source, 'targetCommit': target, 'forkBaseCommit': base,
         'bookshelfUpstreamCommit': upstream,
         'counts': {'commits': len(commits), 'commitsNotInUpstreamHistory': sum(not c['alsoInBookshelfUpstreamHistory'] for c in commits),
-                   'netChangedPaths': len(files), 'fileStates': dict(collections.Counter(f['state'] for f in files))},
+                   'netChangedPaths': len(files),
+                   'uniqueBasenameCandidates': sum(f.get('candidateTargetPath') is not None for f in files),
+                   'fileStates': dict(collections.Counter(f['state'] for f in files))},
         'commits': commits, 'files': files,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
