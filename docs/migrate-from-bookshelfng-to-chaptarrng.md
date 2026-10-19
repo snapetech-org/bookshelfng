@@ -11,9 +11,12 @@ unset. ChaptarrNG `.978` is a source version bump, not a release.
 
 Draft ChaptarrNG PR #131 is at docs-only head
 `93213b677a0bbb256aaf782c389a4f1a3d9c2ee7`, above application-code commit
-`0e881d921dd55aa89e12747557ccaadbb2352a21`. Exact-head validation of the docs
-follow-up is running as Build
-[39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744).
+`0e881d921dd55aa89e12747557ccaadbb2352a21`. Exact-head Build
+[39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744)
+passed on Linux, macOS, and Windows, with PostgreSQL migration, release-note,
+and native-runner receipt checks passing in full attempt 3. CodeQL, analysis,
+security/dependency, dependency-review, NuGet, and Helm identity checks passed;
+disposable-fork validation was skipped by its external-fork gate.
 The application-code commit passed its cross-platform Build, PostgreSQL
 migration, security, dependency, and release-note checks; its artifact also
 passed the synthetic populated migration-to-SeerrNG smoke documented below.
@@ -79,7 +82,9 @@ NuGet submission passed; disposable-fork validation was skipped by its gate.
 The current PR head is docs-only commit
 `93213b677a0bbb256aaf782c389a4f1a3d9c2ee7`; exact-head Build
 [39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744)
-is running. Application-code commit `0e881d921dd55aa89e12747557ccaadbb2352a21`
+passed in full attempt 3 on Linux, macOS, and Windows. PostgreSQL migration,
+release-note contract, and native-runner receipt reconciliation also passed.
+Application-code commit `0e881d921dd55aa89e12747557ccaadbb2352a21`
 passed exact-head Build [39313568727](https://github.com/snapetech-org/chaptarrng/actions/runs/39313568727)
 on Linux, Windows, and macOS, including PostgreSQL migration, release-note,
 receipt, and Linux pinned-tool M4B checks. CodeQL, security/dependency,
@@ -129,6 +134,12 @@ cases on candidate `12f290bd`; Linux CI now runs it in a pinned tool image.
 This does not establish operator-data correctness, pre-migration-14 or
 PostgreSQL operator-data support, representative M4B media compatibility and restart/resume, full request fulfillment, installed rollback, or channel handoff. No release or
 bridge was published; the release freeze remains active.
+
+### Exact-head artifact repeat (2026-10-19)
+
+The Linux artifact from exact-head Build [39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744), for draft PR #131 head `93213b677a0bbb256aaf782c389a4f1a3d9c2ee7`, was run through the checked-in SeerrNG Compose smoke on 2026-10-19. SeerrNG server code was rebuilt at commit `22f3bbc5874752b50a3b1206ca0bd3ebe0309f95` in a disposable worktree. The harness used a task-tagged runtime image based on the public `.977` image with the candidate app artifact copied in; it did not build or publish a candidate image.
+
+Against a disposable populated migration-158 database, ChaptarrNG `0.9.978.0` accepted SeerrNG's restricted key for the audiobook and ebook library capabilities, denied administrative and unrelated command access, and passed SeerrNG's real `ReadarrAPI` pending-import create, poll, and cancel flow. The task's containers, volumes, temporary image, and worktree were removed after the run. This repeat strengthens synthetic API and request-lifecycle evidence; it does not validate image packaging, successful acquisition, operator data, live settings, installed rollback, or update channels.
 
 ### Provider configuration before migration
 
