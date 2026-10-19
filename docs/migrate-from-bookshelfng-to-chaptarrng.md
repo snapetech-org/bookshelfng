@@ -35,6 +35,23 @@ verifies one candidate SQLite round trip, not cutover readiness, ambiguous-media
 classification, older schemas, PostgreSQL operator data, feature parity, or
 installation-channel continuity.
 
+## Portable encrypted backups
+
+The unpublished ChaptarrNG PR #131 candidate at
+`51895d45e02e09ced36d4ca40a9bb1015839163c` can import and export portable
+BookshelfNG `BKSENC01` `.enc` backups using the same passphrase. Its encryption
+service was checked against BookshelfNG's source implementation, and ChaptarrNG
+tests cover round trips, wrong passphrases, tampering, truncation, malformed
+files, and cleanup. The candidate's restore UI accepts the `.enc` file and
+prompts for its passphrase. The hosted exact-head Build is is running.
+
+This support is not in ChaptarrNG `v0.9.977`, so `.977` cannot restore or export
+these portable files. ChaptarrNG's scheduled `.zip.enc` files use a separate
+format and are not interchangeable. Keep BookshelfNG running and retain a
+separate appdata/database backup; portable backup compatibility does not approve
+production cutover or close the remaining parity and rollback gates. See the
+[candidate backup guide](https://github.com/snapetech-org/chaptarrng/blob/codex/bookshelf-retirement-next-20261018/docs/BOOKSHELFNG_ENCRYPTED_BACKUPS.md).
+
 BookshelfNG source snapshot `6e1a62e12` includes an Editions and Narrations
 book-details tab backed by `GET /api/v1/book/{id}/editions/catalog`.
 ChaptarrNG `main` now includes that tab and the series narrator comparison;
@@ -65,9 +82,11 @@ Hardcover identities. Capability discovery, restricted service-key denial of
 administrative and unrelated commands, and the pending add/poll/cancel flow
 also passed. The importer suite passed 43/43 and Compose configuration,
 `node --check`, and Prettier checks passed. These are synthetic placeholders,
-not valid media. The run does not establish operator-data correctness,
-pre-migration-14 or PostgreSQL operator-data support, M4B processing, full
-request fulfillment, installed rollback, or channel handoff. No release or
+not valid media. A separate real-tool importer check passed all six synthetic multipart M4B
+cases on candidate `12f290bd`; Linux CI now runs it in a pinned tool image.
+This does not establish operator-data correctness, pre-migration-14 or
+PostgreSQL operator-data support, representative M4B compatibility or embedded
+chapters, full request fulfillment, installed rollback, or channel handoff. No release or
 bridge was published; the release freeze remains active.
 
 ### Provider configuration before migration
@@ -156,15 +175,16 @@ suites, PostgreSQL migration validation, CodeQL, dependency/security, and
 release-note checks. A synthetic two-track smoke against the `.977` image's
 m4b-tool produced AAC at 44.1 kHz stereo and preserved the supplied chapter
 titles and offsets. This checks the external converter and sidecar format.
-ChaptarrNG draft PR #131 at commit `bdd7518f` adds a six-case tool-enabled
-synthetic importer smoke that passed locally in an isolated Linux container
-with `m4b-tool` 0.5.2, `mp4v2` 2.1.1, and FFmpeg/FFprobe 6.1.1. Successful
-cases check tag ordering, chapter titles and offsets, metadata, registration,
-and Move/Copy source handling. Failure cases verify fallback to separate
-original-track imports in both modes when FFprobe cannot read a source and
-when `m4b-tool` fails after a controlled FFmpeg conversion error. Representative
-files, embedded chapters, and restart/resume remain open; the source change
-is not in public `.977`.
+ChaptarrNG draft PR #131 at candidate `12f290bd` passed the six-case
+tool-enabled synthetic importer smoke 6/6 in the checked-in Debian Bookworm
+image with `m4b-tool` 0.5.2 and `mp4v2` 2.1.1. Successful cases check tag
+ordering, chapter titles and offsets, metadata, registration, and Move/Copy
+source handling. Failure cases verify fallback to separate original-track
+imports in both modes when FFprobe cannot read a source and when `m4b-tool`
+fails after a controlled FFmpeg conversion error. Linux CI now runs these
+six cases through `integration/Dockerfile.m4b-test`. Representative files,
+embedded chapters, and restart/resume remain open; the source change is not
+in public `.977`.
 
 ChaptarrNG PR #130 merged to `main` as `9f1ae60b`. When no explicit
 `BookMatchingStrictness` is set, ChaptarrNG maps BookshelfNG's numeric
