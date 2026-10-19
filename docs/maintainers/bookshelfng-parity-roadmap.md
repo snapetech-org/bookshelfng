@@ -53,8 +53,10 @@ and Copy-mode source retention. Failure cases verify fallback to separate
 original-track imports in both modes when FFprobe cannot read a source and
 when `m4b-tool` fails after a controlled FFmpeg conversion error. Linux CI now
 runs the test through `integration/Dockerfile.m4b-test`; mocked fallback tests
-also remain. Representative files, embedded chapters, and restart/resume remain
-open. The source change remains unpublished.
+also remain. The candidate now retags a generated merge with TagLibSharp and
+checks that chapter titles and offsets survive the write; hosted validation is
+pending. Representative media, ingestion of embedded chapters from source
+files, and restart/resume remain open. The source change remains unpublished.
 ChaptarrNG PR #130 merged to `main` as `9f1ae60b` with a policy mapping from
 BookshelfNG's numeric `BookImportMinimumMatchPercent` to `BookMatchingStrictness`
 when no explicit Chaptarr mode exists: 50–66 maps to Aggressive, 67–82 to
