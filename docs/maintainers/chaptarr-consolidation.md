@@ -66,12 +66,9 @@ its source book without unsafe file or edition links. Focused importer,
 edition-catalog, series-catalog, and capability tests pass 52/52 locally. This is one populated SQLite
 candidate rehearsal; ambiguous-media review, older real schemas, PostgreSQL
 operator data, full feature parity, installed rollback, and channel acceptance
-remain open. Previous exact-head run
-[39182438062](https://github.com/snapetech-org/chaptarrng/actions/runs/39182438062)
-passed on PR #131 head `bdd7518`; current implementation head `f5f57644` passed exact-head
-hosted validation in [run 39190896072](https://github.com/snapetech-org/chaptarrng/actions/runs/39190896072). Linux, macOS, and Windows builds; PostgreSQL migration; release-note; CodeQL; dependency review; dependency and secret scan; NuGet submission; and native runner receipt reconciliation all passed. Disposable-fork validation was skipped by its gate. All release and bridge gates remain closed.
+remain open. All release and bridge gates remain closed.
 
-The ChaptarrNG retirement candidate adds older SQLite migration coverage, one-schema migration-158 PostgreSQL support, native Hardcover identity handling, and a separate BookOrbit Book Dock integration. PR #131 remains draft. Earlier exact-head run [39175250100](https://github.com/snapetech-org/chaptarrng/actions/runs/39175250100) on PR head `e4db2d46` passed Linux, macOS, and Windows suites, all 4 PostgreSQL fixture cases, release-note and runner-receipt validation, CodeQL, dependency review, secret scan, and NuGet submission. The final Linux artifact passed synthetic provider-mode refusal, Goodreads and Hardcover identity mapping, automatic startup conversion, populated API, and byte-for-byte rollback checks. The SeerrNG populated-library and restricted-key smoke passed on an earlier head. After merging the newer `main` edition catalog, PR #131 implementation head `f5f57644` passed exact-head hosted validation in [run 39190896072](https://github.com/snapetech-org/chaptarrng/actions/runs/39190896072); 52 focused importer, catalog, and capability tests pass locally. This does not establish operator-data acceptance. See the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/f5f57644/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md) and [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). Provider, database, feature, installed rollback, and channel acceptance gates remain open.
+The ChaptarrNG retirement candidate adds older SQLite migration coverage, one-schema migration-158 PostgreSQL support, native Hardcover identity handling, a separate BookOrbit Book Dock integration, SeerrNG edition-catalog compatibility, and previewable media moves. PR #131 remains draft. Code head `2c0401fc` passed exact-head hosted run [39196795646](https://github.com/snapetech-org/chaptarrng/actions/runs/39196795646), including Linux, macOS, and Windows suites, all four PostgreSQL fixtures, release-note and runner-receipt validation, CodeQL, dependency review, secret scan, and NuGet submission. The current docs-only head `898b72fd` is undergoing exact-head hosted validation in [run 39198708193](https://github.com/snapetech-org/chaptarrng/actions/runs/39198708193). Fifty-two focused importer, catalog, and capability tests pass locally. The populated SQLite copy-only round trip is documented in the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/898b72fd/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md); it does not establish operator-data acceptance. Provider, database, feature, installed rollback, and channel acceptance gates remain open. Earlier runs on `e4db2d46` and `f5f57644` are historical candidate checkpoints, not current-head validation. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131).
 
 ChaptarrNG PR #132 also merged on 2026-10-18 as `0f1fea44`, adding
 format-specific root setup to Quickstart. Current-main Build run
@@ -149,11 +146,11 @@ different algorithms. Converted-data acceptance remains open, and the change
 is not in public `.977`.
 
 The tracked path-level inventory was regenerated on 2026-10-19 against
-BookshelfNG `main` at `962fa8426717969489678b6df30bf133b46a958c` and the
-ChaptarrNG PR #131 candidate at `f5f576443c594e0d44505a7a24b8f7badeef02a1`.
-It covers 586 reachable post-fork commits (577 absent from the pinned
-Bookshelf lineage ref) and 1,096 net-changed paths: 439 have no same-name
-mapped target, 496 differ and need review, 155 are identical, four are
+BookshelfNG `main` at `87e6b2ab8f1c8429f72ec43224b65a772313dfc7` and the
+ChaptarrNG PR #131 candidate at `898b72fd37b18d192e40ba4547e2331f88cce1a1`.
+It covers 597 reachable post-fork commits (588 absent from the pinned
+Bookshelf lineage ref) and 1,096 net-changed paths: 430 have no same-name
+mapped target, 500 differ and need review, 160 are identical, four are
 text-equivalent after branding/newline normalization, and two were deleted in
 BookshelfNG. The target includes ChaptarrNG PRs #127, #129, #130, #132, and
 the current #131 candidate. The candidate is unpublished because the
@@ -183,13 +180,10 @@ moderate for broader conversion behavior, and low for retirement readiness.
 > and release-channel observations below are evidence recorded on October 14.
 > They are retained as history; the current status above supersedes them.
 
-The generated path inventory was refreshed against BookshelfNG `main` at
-`962fa8426717969489678b6df30bf133b46a958c` and the ChaptarrNG PR #131
-candidate at `f5f576443c594e0d44505a7a24b8f7badeef02a1`. It covers 585
-reachable post-fork commits (577 absent from the pinned Bookshelf lineage
-ref) and 1,096 net-changed paths: 439 unmapped, 496 different, 155 identical,
-four text-equivalent after normalization, and two deleted. These path-level
-states are an audit queue, not a semantic parity result.
+The review inventory was refreshed again on 2026-10-19. Its current source
+and target pins and path states are recorded above. This October 14 section
+retains the code, pull-request, and release-channel observations from that
+snapshot; those observations are historical, not current status.
 
 At this review, BookshelfNG `main` is `5d696fb0`; ChaptarrNG `main` is
 `6731a436`, compared with upstream `develop` at `e67374f4`. ChaptarrNG `main`
@@ -351,8 +345,8 @@ Regenerate the tracked-source inventory with:
 python3 scripts/audit-chaptarr-consolidation.py \
   --bookshelf /path/to/bookshelfng \
   --chaptarr /path/to/chaptarrng-candidate \
-  --source 962fa8426717969489678b6df30bf133b46a958c \
-  --target f5f576443c594e0d44505a7a24b8f7badeef02a1 \
+  --source 87e6b2ab8f1c8429f72ec43224b65a772313dfc7 \
+  --target 898b72fd37b18d192e40ba4547e2331f88cce1a1 \
   --upstream refs/remotes/audit-bookshelf/develop \
   --output docs/maintainers/chaptarr-consolidation-inventory.json
 ```
@@ -744,7 +738,7 @@ must be reported as unverified/unpublished, not a successful migration channel.
 
 | Area | Current evidence | Remaining blocker |
 | --- | --- | --- |
-| BookshelfNG source inventory | Regenerated at source `962fa8426717969489678b6df30bf133b46a958c` and target `f5f576443c594e0d44505a7a24b8f7badeef02a1`: 586 reachable commits, 577 absent from the pinned Bookshelf lineage ref, and 1,096 changed paths (439 unmapped, 496 different, 155 identical, four text-equivalent, two deleted). | Disposition every path as retained, ported, equivalent, or explicitly retired. Path classification does not establish feature equivalence; current report edits after those pins are not in the generated inventory. |
+| BookshelfNG source inventory | Regenerated at source `87e6b2ab8f1c8429f72ec43224b65a772313dfc7` and target `898b72fd37b18d192e40ba4547e2331f88cce1a1`: 597 reachable commits, 588 absent from the pinned Bookshelf lineage ref, and 1,096 changed paths (430 unmapped, 500 different, 160 identical, four text-equivalent, two deleted). | Disposition every path as retained, ported, equivalent, or explicitly retired. Path classification does not establish feature equivalence; report edits after those pins are not in the generated inventory. |
 | ChaptarrNG Bookshelf feature port | PR #73 merged as `5d8fffae`; current retirement work is tracked in draft ChaptarrNG PR #131. Earlier local migration evidence includes 4,065 Core tests (0 failures, 3 skipped), 23 focused migration fixtures, and preview/apply/startup against separate copies of a populated migration-158 database. The preview preserved the source hash and accounted for every source row; the retained backup matched the source table definitions and rows; the v119 target passed integrity and foreign-key checks. A later candidate run added a populated preview/apply/rollback rehearsal with native Hardcover mode and retained the original source. BookLore v2.4.0 upload/file placement and BookOrbit v3.2.0 upload admission have each passed isolated live API checks. | Ambiguous media choices still need review. Older-schema and PostgreSQL acceptance, parity, representative M4B files, real-deployment rollback, hosted current-head checks, downstream BookLore/BookOrbit processing, and a real BookLore-user transition remain open. |
 | ChaptarrNG maintained and active features | ChaptarrNG `main` at `6731a436` is 606 commits ahead and zero behind upstream `develop` at `e67374f4`, across 1,485 net-changed paths. PR #100 at `561bf395` is 25 commits ahead of main across 359 paths. Open product/security/validation work includes PRs #78, #100, #103, and #105–#109, with open dependency updates also in scope. | Every released and unreleased capability remains an individual ChaptarrNG-to-upstream blocker; see the itemized table linked above. |
 | Bookshelf database compatibility | The standard Linux/amd64 candidate passed preview, explicit apply, and ordinary startup on separate copies of one real populated migration-158 SQLite database. Preview accounted for every source row without changing the source; the retained backup matched the source table definitions and rows; the v119 target passed integrity and foreign-key checks. A later unpublished candidate completed preview, apply, restore preview, and rollback on another populated migration-158 SQLite copy, including explicit native Hardcover mode; the source backup was restored byte-for-byte and the converted database was preserved separately. A separate copy-only rehearsal against populated operator SQLite data with native Hardcover mode passed preview, apply, restore preview, and rollback; integrity and foreign-key checks passed, rollback restored the retained source backup byte-for-byte, and the converted database remained available separately. The rehearsal did not touch the live services. Ambiguous media choices still need review. | Only migration-158 SQLite inputs are proven by these rehearsals. Older schemas, PostgreSQL, complete provider/settings contracts, first-login hash upgrade, source numeric-ID client compatibility, in-place rollback on an installed service, feature parity, and release/channel bridges remain open. |

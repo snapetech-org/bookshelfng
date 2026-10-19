@@ -33,7 +33,17 @@ zero-byte `readarr.db` beside a populated `audioarr.db`; ChaptarrNG `.977`
 resolves the non-empty database independently. See the
 [migration guide](migrate-from-bookshelfng-to-chaptarrng.md) for the limits of
 each version.
-Previous exact-head run [39182438062](https://github.com/snapetech-org/chaptarrng/actions/runs/39182438062) passed on PR #131 head `bdd7518`. Implementation head `f5f57644` passed exact-head hosted validation in [run 39190896072](https://github.com/snapetech-org/chaptarrng/actions/runs/39190896072): Linux, macOS, and Windows builds; PostgreSQL migration; release-note; CodeQL; dependency review; dependency and secret scan; NuGet submission; and native runner receipt reconciliation all passed. Disposable-fork validation was skipped by its gate. Fifty-two focused importer, edition-catalog, and capability tests pass locally after merging `main`. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) and the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/f5f57644/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
+ChaptarrNG PR #131's code head `2c0401fc` passed exact-head hosted run
+[39196795646](https://github.com/snapetech-org/chaptarrng/actions/runs/39196795646):
+Linux, macOS, and Windows build/tests, PostgreSQL migration fixtures,
+release-note validation, CodeQL, dependency review, dependency/secret scans,
+NuGet submission, and runner-receipt reconciliation. Four Windows media-move
+fixtures failed on the preceding run because they assumed POSIX paths; the
+native temporary-path follow-up passes. The current docs-only PR head
+`898b72fd` is undergoing hosted validation in [run 39198708193](https://github.com/snapetech-org/chaptarrng/actions/runs/39198708193). Disposable-fork validation
+was skipped by its gate. Fifty-two focused importer, catalog, and capability
+tests pass locally. These are candidate checks, not operator-data or
+installation-channel acceptance. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) and the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/898b72fd/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be
