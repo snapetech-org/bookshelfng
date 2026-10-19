@@ -73,12 +73,12 @@ suites, PostgreSQL migration validation, CodeQL, dependency/security, and
 release-note checks. A synthetic two-track smoke against the `.977` image's
 m4b-tool produced AAC at 44.1 kHz stereo and preserved the supplied chapter
 titles and offsets. This checks the external converter and sidecar format.
-ChaptarrNG draft PR #131 at commit `403052d5` adds a tool-enabled synthetic
+ChaptarrNG draft PR #131 at commit `e8aa46ca` adds a tool-enabled synthetic
 importer smoke that passed locally in an isolated Linux container with
 `m4b-tool` 0.5.2, `mp4v2` 2.1.1, and FFmpeg/FFprobe 6.1.1. It checks tag-based
 ordering, chapter titles and offsets, output metadata, library registration,
-and Move-mode cleanup. Representative files, embedded chapters, real-tool
-failure recovery, Copy-mode source retention, and restart/resume remain open;
+Move-mode cleanup, and Copy-mode source retention. Representative files,
+embedded chapters, real-tool failure recovery, and restart/resume remain open;
 the source change is not in public `.977`.
 
 ChaptarrNG PR #130 merged to `main` as `9f1ae60b`. When no explicit

@@ -38,12 +38,12 @@ macOS, and Windows suites, PostgreSQL migration validation, CodeQL,
 dependency/security, and release-note checks. A synthetic two-track smoke in
 the `.977` image produced AAC at 44.1 kHz stereo and preserved the supplied
 chapter titles and offsets; it checks the external tool and sidecar format.
-ChaptarrNG draft PR #131 at commit `403052d5` adds a separate tool-enabled
+ChaptarrNG draft PR #131 at commit `e8aa46ca` adds a separate tool-enabled
 synthetic importer smoke. It passed locally in an isolated Linux container
 with `m4b-tool` 0.5.2, `mp4v2` 2.1.1, and FFmpeg/FFprobe 6.1.1, checking track
-order, chapters, metadata, registration, and Move-mode cleanup. Representative
-files, embedded chapters, real-tool failure recovery, Copy-mode retention, and
-restart/resume remain open. Preserve these settings in deployment notes, but
+order, chapters, metadata, registration, Move-mode cleanup, and Copy-mode
+source retention. Representative files, embedded chapters, real-tool failure
+recovery, and restart/resume remain open. Preserve these settings in deployment notes, but
 keep `BOOKSHELF_M4B_MERGE` unset after migration until a release with this
 support is available and the remaining acceptance gates close.
 

@@ -336,12 +336,12 @@ compatibility. Its clean head passed the hosted Linux, macOS, and Windows
 suites, PostgreSQL migration validation, CodeQL, dependency/security, and
 release-note checks. A synthetic two-track smoke in the `.977` image verified
 the external converter and chapter sidecar. ChaptarrNG draft PR #131 at commit
-`403052d5` adds a separate tool-enabled synthetic importer smoke that passed
+`e8aa46ca` adds a separate tool-enabled synthetic importer smoke that passed
 locally in an isolated Linux container with `m4b-tool` 0.5.2, `mp4v2` 2.1.1,
 and FFmpeg/FFprobe 6.1.1. It checks tag order, chapter titles/offsets, output
-metadata, registration, and Move-mode cleanup. Representative files, embedded
-chapters, real-tool failure recovery, Copy-mode retention, and restart/resume
-remain open. Keep the merge opt-in unset after migration until a release with
+metadata, registration, Move-mode cleanup, and Copy-mode source retention.
+Representative files, embedded chapters, real-tool failure recovery, and
+restart/resume remain open. Keep the merge opt-in unset after migration until a release with
 this support is available and the remaining acceptance gates close.
 
 ## Privacy and optional diagnostics
