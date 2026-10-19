@@ -6,17 +6,17 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "75321fd27647b3548124ae94785350949512f2b0",
-  "targetCommit": "1a0a1cf78b404fe86d7b266facd8e843e435d9b4",
+  "sourceCommit": "9a04c2eb2ed385a1a3f484ec4c4451a7d3bcc0d7",
+  "targetCommit": "2f8c3b7f77d632fbd48d4f39b605480c79a48823",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 576,
-    "commitsNotInUpstreamHistory": 567,
-    "netChangedPaths": 1094,
+    "commits": 585,
+    "commitsNotInUpstreamHistory": 576,
+    "netChangedPaths": 1096,
     "fileStates": {
       "no-mapped-target-file": 439,
-      "different-review-required": 494,
+      "different-review-required": 496,
       "identical": 155,
       "deleted-in-bookshelf": 2,
       "text-equivalent-after-brand-and-newline-normalization": 4
@@ -10892,6 +10892,121 @@
         "docs/migrate-from-bookshelfng-to-chaptarrng.md",
         "docs/standalone-install.md"
       ]
+    },
+    {
+      "commit": "26fc8ed87208acee6e7c7e0bf825feb9e0d338fe",
+      "date": "2026-10-18",
+      "subject": "docs(parity): pin updated source documentation",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
+    },
+    {
+      "commit": "252d70d3e571beb0c8a67f973fadec526a4e5130",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): refresh migration candidate evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "a670494f7845d4d9ae787517434e04bf352c86ef",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): mark evidence refresh internal",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": []
+    },
+    {
+      "commit": "a324bb0397d7618b3fb59663f4d26788e11ba3eb",
+      "date": "2026-10-18",
+      "subject": "docs(migration): record provider-mode handoff evidence (#158)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "3c1930f9d3168cafd57c725fa6eee3845b6e6a75",
+      "date": "2026-10-18",
+      "subject": "docs(migration): refresh exact-head retirement status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "e9a750044788baf3f05dbd54d3881b36085ffbe3",
+      "date": "2026-10-18",
+      "subject": "Merge pull request #159 from snapetech-org/docs/refresh-retirement-evidence-20261019",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "0b5a2b16a9b4dede1f8739f90d6fcabc4f95f34b",
+      "date": "2026-10-18",
+      "subject": "docs(migration): record real M4B importer smoke (#160)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "6ccc2cd1b65dfb9b213440e46cb704234fdbddfc",
+      "date": "2026-10-18",
+      "subject": "docs(migration): record real M4B failure fallback (#161)",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/audiobook-m4b-merging.md",
+        "docs/capabilities-and-compatibility.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "9a04c2eb2ed385a1a3f484ec4c4451a7d3bcc0d7",
+      "date": "2026-10-18",
+      "subject": "feat(seerrng): list edition narrators for SeerrNG edition cards",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "release-notes/seerrng-edition-catalog.md",
+        "src/NzbDrone.Api.Test/System/SystemControllerFixture.cs",
+        "src/Readarr.Api.V1/Books/BookController.cs",
+        "src/Readarr.Api.V1/Books/EditionCatalogResource.cs",
+        "src/Readarr.Api.V1/System/SystemController.cs"
+      ]
     }
   ],
   "files": [
@@ -11326,11 +11441,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "444f583e7e7323871bfb0acdfe135b3d636e4404"
+        "oid": "a79ddf8672adabf3e540da194fdddf86795606ac"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "762f1a568ed67b89e9166dbcc2ff5fe47594c3cf"
+        "oid": "ebc6551ff946d8b85e0b1f825568e843d2d728c9"
       }
     },
     {
@@ -11749,7 +11864,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "950cd5045182c747fdb9f25fbb2cbc95c447f9d5"
+        "oid": "5a1ec22a86a8eb5871c547ce290a67d1e96d70a6"
       },
       "targetBlob": null
     },
@@ -11789,7 +11904,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "40a6a5b3231c90a49c9072d47989128d40af0169"
+        "oid": "327b020276301e79e1fe2caa055b67dd315619ea"
       },
       "targetBlob": null
     },
@@ -11822,7 +11937,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "706e45d5f0aa77e259f06519bf214a2e4145ecef"
+        "oid": "dc565b87134057d595309501bf0db37800867792"
       },
       "targetBlob": null
     },
@@ -11925,7 +12040,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "4ad05ca50660e11a3aa3fbebf6b4c85ba9b7c722"
+        "oid": "24d6d57f451515f388614731c024211b4bdb4e60"
       },
       "targetBlob": null
     },
@@ -11945,7 +12060,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "bd45ef211fee4ff5a9d1cabbe46f7fff860ca861"
+        "oid": "d12ff72b19803b876d1076d3f4154a558a40ca0e"
       },
       "targetBlob": null
     },
@@ -11955,7 +12070,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "483d1333f80fa10665282f98ef7b5ed6831a289d"
+        "oid": "facec347c16251c8ac9410b1400076ad6d899257"
       },
       "targetBlob": null
     },
@@ -11965,7 +12080,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "1baf48f40442182db3cc7261d82eab941739e6e5"
+        "oid": "d00647a0c32d87cc975657d42e1958a8930feca8"
       },
       "targetBlob": null
     },
@@ -12005,7 +12120,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e18143d972d69306441a49eae81e371e5c0e3cfd"
+        "oid": "1f5513c82ffa7de30ef7b06ffadeb642d620c00e"
       },
       "targetBlob": null
     },
@@ -12055,7 +12170,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "55446018e2c109b3122bcac52bdbbaa24e47161a"
+        "oid": "72a53a9876c82ac57b410e42f228d04e77187fdf"
       },
       "targetBlob": null
     },
@@ -15232,6 +15347,19 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "release-notes/seerrng-edition-catalog.md",
+      "targetPath": "release-notes/seerrng-edition-catalog.md",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "5725d6578ed410fb4ce5fa615bcd813b78888058"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1a3a1672e76015acfbf6c6825e1816b3b22628bd"
+      }
+    },
+    {
       "sourcePath": "release-notes/yunohost-package.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -15716,7 +15844,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "b8a20d4eda1de1f2a76631ed8320c2b995f5a880"
+        "oid": "dc2bc5b53b689e3c183a8770f68ac035a79f4674"
       },
       "targetBlob": null
     },
@@ -19817,11 +19945,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "647d0208914cacdfb80b10be9af8925db2564264"
+        "oid": "a664a5af78879549039fd1339eea899d7cd6936c"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "53fd8e006246cecc678a6131320aa494e1e0b858"
+        "oid": "5ccda731883d5714aa45707e13850e4c56000f76"
       }
     },
     {
@@ -19874,6 +20002,19 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "c83879ea4f73c57ef5cd576faba487be868020cd"
+      }
+    },
+    {
+      "sourcePath": "src/Readarr.Api.V1/Books/EditionCatalogResource.cs",
+      "targetPath": "src/Chaptarr.Api.V1/Books/EditionCatalogResource.cs",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "7789839e6e8e9c99f3f4d23c32edfdef934c4a1e"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "65f0699b1e8b7dfb7ce20f9338104d0b5214aebf"
       }
     },
     {
@@ -20126,7 +20267,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "388775f1ed9ff75fae7a0b499d43c6a32203c8f3"
+        "oid": "eaa4eb87b379b770a68ca9801d4aa214db653bb8"
       },
       "targetBlob": {
         "mode": "100644",

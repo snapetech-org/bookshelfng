@@ -13,10 +13,32 @@ unset. ChaptarrNG `.978` is a source version bump, not a release.
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
 preview of the exact SQLite migration-158 schema. Both retirement and
 publishing gates remain open, so `.977` is not approved for migration and
-unpublished `.978` source must not be used with operator data. A schema preview
-leaves the source database unchanged, though it may write a report; it does not
-make an apply eligible. Wait for a supported destination build and closed
-acceptance gates before stopping or replacing BookshelfNG.
+unpublished `.978` source is not approved for production cutover. A schema
+preview leaves the source database unchanged, though it may write a report;
+it does not make an apply eligible. Wait for a supported destination build and
+closed acceptance gates before stopping or replacing BookshelfNG.
+
+**Provider identity warning:** the published `.977` importer maps bare numeric
+IDs to Goodreads regardless of `HARDCOVER`. A native Hardcover database can
+therefore pass structural checks while acquiring the wrong provider identity;
+do not apply `.977` to native Hardcover data. The unpublished candidate
+requires an explicit provider mode.
+
+On 2026-10-19, candidate build `0.9.978.0` passed preview, apply, rollback
+preview, and rollback on a disposable copy of populated migration-158 SQLite
+data with `HARDCOVER=true` and networking disabled. Preview did not change the
+source database. Apply passed integrity and foreign-key checks; rollback
+preview left the converted database and source backup unchanged; explicit
+rollback restored a byte-identical source backup and retained the converted
+database separately. The private source snapshot remained unchanged. This
+verifies one candidate SQLite round trip, not cutover readiness, ambiguous-media
+classification, older schemas, PostgreSQL operator data, feature parity, or
+installation-channel continuity.
+
+BookshelfNG `main` at `9a04c2eb2` adds
+`GET /api/v1/book/{id}/editions/catalog` and advertises `editionCatalog` for
+SeerrNG. The unpublished ChaptarrNG PR #131 now implements the same route and
+capability; this work remains source-only.
 
 ChaptarrNG PR #132 merged format-specific root setup to source `main` as
 `0f1fea44`, but that Quickstart change is not in the published `.977` release.
@@ -33,7 +55,7 @@ discard the source backup.
 The published converter accepts the exact BookshelfNG migration-158 SQLite
 schema and rejects versions before migration 14; upgrade older installs to
 BookshelfNG .71 first. PR #126 merged a version-aware guard and migration-1
-rollback fixture into ChaptarrNG `main`, but they are not in `.977`. Current migration candidate [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) remains draft. Exact-head run [39175250100](https://github.com/snapetech-org/chaptarrng/actions/runs/39175250100) passed on PR head `e4db2d46` (CI merge candidate `724029a2`): Linux, macOS, and Windows suites; the 4/4 PostgreSQL fixture; release-note and runner-receipt validation; CodeQL; dependency review; secret scan; and NuGet submission. The final Linux artifact refused conversion without provider mode, preserved Goodreads and Hardcover identities with explicit modes, converted during normal startup, served the synthetic author and both format records, and restored the source byte-for-byte on rollback. A SeerrNG restricted-key smoke passed on an earlier head. These checks do not establish operator-data, feature-parity, or install-channel acceptance. The candidate adds older SQLite, one-schema PostgreSQL, native Hardcover, and BookOrbit support, but remains unsupported for operator data; see the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/04341488/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
+rollback fixture into ChaptarrNG `main`, but they are not in `.977`. Current migration candidate [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) remains draft. Earlier exact-head run [39175250100](https://github.com/snapetech-org/chaptarrng/actions/runs/39175250100) passed on PR head `e4db2d46` (CI merge candidate `724029a2`): Linux, macOS, and Windows suites; the 4/4 PostgreSQL fixture; release-note and runner-receipt validation; CodeQL; dependency review; secret scan; and NuGet submission. The final Linux artifact refused conversion without provider mode, preserved Goodreads and Hardcover identities with explicit modes, converted during normal startup, served the synthetic author and both format records, and restored the source byte-for-byte on rollback. A SeerrNG restricted-key smoke passed on an earlier head. These checks do not establish operator-data, feature-parity, or install-channel acceptance. The candidate adds older SQLite, one-schema PostgreSQL, native Hardcover, and BookOrbit support, but remains unsupported for operator data; see the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/2f8c3b7f/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
 
 A local AUR BookshelfNG-identity .977 package candidate passed an isolated,
 network-disabled pacman upgrade from the published .71 package and downgrade
@@ -138,6 +160,26 @@ databases passed SQLite integrity and foreign-key checks. No user data or
 database files were committed. This is evidence for one populated SQLite
 schema and image; older schemas, PostgreSQL, installer handoffs, and feature
 parity remain open.
+
+## Candidate populated SQLite rehearsal (2026-10-19)
+
+An unpublished ChaptarrNG candidate build reporting `0.9.978.0` completed
+preview, explicit apply, rollback preview, and explicit rollback on a
+disposable copy of populated migration-158 SQLite data. The test used
+`HARDCOVER=true`, disabled network access, and did not touch the original
+BookshelfNG service or snapshot.
+
+Migration preview left the source unchanged. Apply passed integrity and
+foreign-key checks and retained the schema-158 source backup. Rollback preview
+left both databases unchanged. Explicit rollback restored a byte-identical
+copy of the retained source backup and preserved the converted database
+separately. Private database contents, identifiers, counts, and hashes are
+omitted.
+
+This validates one candidate migration-158 SQLite round trip. It does not
+classify ambiguous formats, validate older schemas or PostgreSQL operator
+data, establish full feature parity, or authorize a production switch. Keep
+the BookshelfNG service in place until every retirement gate closes.
 
 ## Provider-mode image-switch and rollback rehearsal (2026-10-18)
 
@@ -403,7 +445,7 @@ Windows, and PostgreSQL migration checks passed, but the source fix is not in
 Populated synthetic migration-22 evidence covers conversion and rollback,
 source-unchanged preview, and refusal of a future schema. This does not
 establish older-schema behavior on real data or PostgreSQL source conversion.
-Earlier synthetic PostgreSQL snapshot [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed four migration cases plus Linux, macOS, and Windows validation. The later exact-head run [39175250100](https://github.com/snapetech-org/chaptarrng/actions/runs/39175250100) on PR head `e4db2d46` passed the platform suites, all 4 PostgreSQL fixture cases, release-note and receipt checks, CodeQL, dependency review, secret scan, and NuGet submission. That PostgreSQL test remains limited to one migration-158 synthetic schema and does not establish operator-data acceptance; PostgreSQL conversion remains unsupported in published releases. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) and the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/04341488/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
+Earlier synthetic PostgreSQL snapshot [`43bc6363`](https://github.com/snapetech-org/chaptarrng/commit/43bc6363) passed four migration cases plus Linux, macOS, and Windows validation. The later exact-head run [39175250100](https://github.com/snapetech-org/chaptarrng/actions/runs/39175250100) on PR head `e4db2d46` passed the platform suites, all 4 PostgreSQL fixture cases, release-note and receipt checks, CodeQL, dependency review, secret scan, and NuGet submission. That PostgreSQL test remains limited to one migration-158 synthetic schema and does not establish operator-data acceptance; PostgreSQL conversion remains unsupported in published releases. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) and the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/2f8c3b7f/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
 Ambiguous formats are retained in both catalogs without monitoring until the
 operator classifies them; the converter does not infer their true type. Full
 provider and environment parity, every installation channel, and rollback on

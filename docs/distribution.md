@@ -33,16 +33,22 @@ zero-byte `readarr.db` beside a populated `audioarr.db`; ChaptarrNG `.977`
 resolves the non-empty database independently. See the
 [migration guide](migrate-from-bookshelfng-to-chaptarrng.md) for the limits of
 each version.
-Exact-head run [39175250100](https://github.com/snapetech-org/chaptarrng/actions/runs/39175250100) on PR head `e4db2d46` passed Linux, macOS, Windows, all 4 PostgreSQL fixture cases, release-note and receipt checks, CodeQL, dependency review, secret scan, and NuGet submission. The final Linux artifact passed synthetic provider-mode refusal, Goodreads and Hardcover identity mapping, automatic-startup conversion, API, and byte-for-byte rollback. These are candidate checks only. Operator-data, feature-parity, installed rollback, and channel acceptance remain open; no channel change is authorized. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) and the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/04341488/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
+Previous exact-head run [39182438062](https://github.com/snapetech-org/chaptarrng/actions/runs/39182438062) passed on PR #131 head `bdd7518`. The 2026-10-19 importer and edition-catalog follow-up still needs exact-head hosted validation. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) and the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/2f8c3b7f/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be
 updated during this freeze. Ambiguous book formats are kept in both catalogs,
 unmonitored, with a private review file; an operator-supplied media map is
-optional. One populated Linux/amd64 rehearsal retained all 39 source tables
-and rows, but its 81 test-map choices were not reviewed as correct
-classifications. Older-schema behavior on real data, PostgreSQL source
-conversion, full provider/settings behavior, and rollback on every real
+optional. On 2026-10-19, candidate build `0.9.978.0` passed preview, apply,
+restore preview, and rollback against a disposable copy of populated
+migration-158 SQLite data with `HARDCOVER=true` and networking disabled. The
+source snapshot remained unchanged, integrity and foreign-key checks passed,
+and rollback restored a byte-identical source backup while preserving the
+converted database separately. This is one candidate SQLite rehearsal, not
+production approval. Do not use published `.977` for native Hardcover data:
+it maps bare numeric IDs to Goodreads regardless of `HARDCOVER`. Older-schema
+behavior on real data, PostgreSQL source conversion, ambiguous-media review,
+full provider/settings behavior, feature parity, and rollback on every real
 deployment remain unverified. An isolated 2026-10-18 Docker image-switch and
 rollback smoke passed using the published `.71` and `.977` images with an empty
 database; it does not validate the Unraid Community Apps update flow.
