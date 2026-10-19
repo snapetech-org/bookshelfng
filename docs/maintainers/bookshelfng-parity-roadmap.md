@@ -52,14 +52,14 @@ populated-database input is the exact BookshelfNG migration-158 SQLite schema.
 The optional aggregate-only diagnostics replacement is included in `.977`;
 artifact verification passed on Linux, macOS, and Windows. Migrated
 opt-in/environment handling remains to be exercised on an installed system.
-One populated Linux/amd64 run retained all 39 source tables and rows; 81 books
+One populated Linux/amd64 run retained the source tables and rows; some books
 needed media classification, and the test-map choices were not reviewed as
 correct. A separate private populated migration-158 SQLite snapshot passed
 preview, apply, and rollback on the public .977 Linux image on 2026-10-18. The
 preview source stayed unchanged; apply and rollback retained backups matching
 their logical database contents, and SQLite integrity and foreign-key checks
 passed. This validates one database round trip, not human classification of
-the 81 ambiguous records or installer and client continuity. The current
+the ambiguous records or installer and client continuity. The current
 converter keeps unresolved records in both catalogs,
 unmonitored, and writes a review file, but it does not classify them. The
 final-release decision and helper do not close the feature, data, or
@@ -175,7 +175,7 @@ same application sources as the current integration head. Twenty-three
 focused migration fixtures also passed,
 including synthetic rollback after a post-migration write. The standard image passed preview,
 apply, and startup against separate copies of one real populated migration-158
-database; this is bounded evidence because 81 books had no derivable media
+database; this is bounded evidence because some books had no derivable media
 format. The published fallback allows conversion to continue without guessing,
 but operators still need to review the format and monitoring intent. The separate opt-in
 Chromium run passed 3/3 on an earlier candidate snapshot. The focused converter
@@ -206,11 +206,11 @@ this does not
 establish populated real-data conversion or rollback on Windows. Preview, explicit apply, and ordinary startup were also exercised
 on separate copies of one real populated BookshelfNG migration-158 SQLite
 database using the standard Linux/amd64 image. Preview left the source hash
-unchanged and accounted for all 127,177 rows; apply retained a backup matching
-all 39 source table definitions and every row; normal startup served the UI
+unchanged and accounted for every source row; apply retained a backup matching
+the source table definitions and rows; normal startup served the UI
 and retained the existing port, URL base, API key, SSL setting, and Docker
 image-pull update mechanism. The live BookshelfNG service was not changed.
-The 81 media choices used for apply were test-only and were not reviewed as
+The media choices used for apply were test-only and were not reviewed as
 correct library classifications. Real-data validation for older BookshelfNG
 schemas, PostgreSQL, complete provider/settings behavior, rollback on a real
 populated deployment, full feature-by-feature semantic acceptance, populated-library SeerrNG

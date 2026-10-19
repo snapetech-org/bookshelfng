@@ -153,13 +153,6 @@ retained while the report calls out the lossy approximation. The matching
 algorithms differ, so converted-library behavior still needs acceptance. This
 source change is not in public `.977`.
 
-BookshelfNG issue #114 is closed and implemented in its tagged `0.4.21.71`
-source. The same new-author path behavior is already in ChaptarrNG
-`v0.9.974` and later;
-ChaptarrNG uses configured format roots automatically and does not offer a
-separate toggle. Neither implementation moves existing files or rewrites
-existing authors when the setting is enabled or the application is upgraded.
-
 The helper does not copy media or download folders mounted outside appdata,
 translate every environment setting or external service, or update a pinned
 image or package on its own. Keep the same media/download mounts where possible,

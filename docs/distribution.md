@@ -39,9 +39,9 @@ ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be
 updated during this freeze. Ambiguous book formats are kept in both catalogs,
 unmonitored, with a private review file; an operator-supplied media map is
-optional. One populated Linux/amd64 rehearsal retained all 39 source tables
-and rows, but its 81 test-map choices were not reviewed as correct
-classifications. Older-schema behavior on real data, PostgreSQL source
+optional. One populated Linux/amd64 rehearsal retained the source tables and
+rows, but the test-map choices were not reviewed as correct classifications.
+Older-schema behavior on real data, PostgreSQL source
 conversion, full provider/settings behavior, and rollback on every real
 deployment remain unverified. An isolated 2026-10-18 Docker image-switch and
 rollback smoke passed using the published `.71` and `.977` images with an empty
