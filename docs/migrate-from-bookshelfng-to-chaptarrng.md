@@ -46,7 +46,27 @@ review, security scan, and NuGet checks pass. CodeQL
 passes; cross-platform Build
 [39205452341](https://github.com/snapetech-org/chaptarrng/actions/runs/39205452341) passed Linux, macOS, Windows, PostgreSQL migration, release-note, and native-runner receipt checks. This UI remains source-only in public ChaptarrNG `.977`.
 
-ChaptarrNG PR #131 remains draft. Its application-code snapshot is `50e4cc14cf9cf87bbfeebbbb114cadbbeab6b5a3`, which merges current main at `95f112e7` and includes the stable `master` image alias; the current documentation-only PR head is `f0acc9dce90da958b73ba4ed7bbf05f40bde3a29`. The alias regression script passes locally. Exact-head Build [39221717722](https://github.com/snapetech-org/chaptarrng/actions/runs/39221717722) passed against that PR head (merge candidate `c859c45e6eeff894789a3e884df96a4c8fd057ac`): Linux 4,412 passed/0 failed, macOS 4,407/0, Windows 4,373/0, and PostgreSQL migration fixtures 53/0; all four validation receipts reconciled. CodeQL [39221713053](https://github.com/snapetech-org/chaptarrng/actions/runs/39221713053), security analysis [39221717638](https://github.com/snapetech-org/chaptarrng/actions/runs/39221717638), NuGet submission [39221720997](https://github.com/snapetech-org/chaptarrng/actions/runs/39221720997), and dependency review [39221717657](https://github.com/snapetech-org/chaptarrng/actions/runs/39221717657) passed. The release-note contract passed; disposable-fork validation was skipped by its external-fork gate. Keep the release freeze in place; representative-data, parity disposition, installed-rollback, and update-channel acceptance remain open. The previous code head `6d6df4f9` also passed full exact-head validation on Build [39213714490](https://github.com/snapetech-org/chaptarrng/actions/runs/39213714490), full attempt 3. Representative-data migration and rollback, feature parity, installed rollback, and update-channel acceptance remain open. The candidate remains draft and is not approved for production migration; do not point ChaptarrNG at live BookshelfNG appdata or use its restore flow for production.
+ChaptarrNG PR #131 remains draft at code head `a111b5754421cccaafc756abcf4efe226f86d7eb`. Exact-head Build [39230899323](https://github.com/snapetech-org/chaptarrng/actions/runs/39230899323) passed Linux, macOS, and Windows tests, PostgreSQL migration smoke, and native receipt reconciliation. CodeQL [39230892934](https://github.com/snapetech-org/chaptarrng/actions/runs/39230892934), security [39230899375](https://github.com/snapetech-org/chaptarrng/actions/runs/39230899375), NuGet [39230915422](https://github.com/snapetech-org/chaptarrng/actions/runs/39230915422), dependency review [39230899544](https://github.com/snapetech-org/chaptarrng/actions/runs/39230899544), and the release-note contract passed. Disposable-fork validation was skipped by its external-fork gate. These are source checks only; representative data, feature parity, installed rollback, and update-channel acceptance remain open. Keep the release freeze in place.
+
+### Provider configuration before migration
+
+The retirement candidate includes the legacy Hardcover public-list and
+reading-status import provider. Goodreads owned-book import lists and
+Goodreads bookshelf/owned-book write notifications are not supported by the
+destination. Those integrations depend on Goodreads OAuth API operations;
+Goodreads announced it would stop issuing developer keys and retire those
+tools. The migration preview reports the affected row ID, implementation, and
+settings contract, then blocks apply. Reconfigure or remove those providers in
+BookshelfNG and run preview again. The report does not print credentials or
+settings. See the [Goodreads API deprecation notice](https://www.goodreads.com/topic/show/21788520-api-deprecation).
+
+Legacy `GoodreadsBookshelf` import-list rows also require manual handling even
+though ChaptarrNG has a public-shelf provider with the same implementation
+name. BookshelfNG's rows include OAuth tokens and account settings; ChaptarrNG's
+public-shelf provider does not use them. The candidate detects those
+populated unsupported saved fields, disables the staged row, names the fields without
+printing their values, and blocks apply. Reconfigure the public shelf after an
+approved migration or remove the legacy row before previewing again.
 
 ChaptarrNG PR #132 merged format-specific root setup to source `main` as
 `0f1fea44`, but that Quickstart change is not in the published `.977` release.
