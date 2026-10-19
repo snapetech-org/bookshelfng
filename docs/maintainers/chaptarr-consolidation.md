@@ -353,9 +353,7 @@ behavior, feature parity, or any published package-channel bridge.
   branch `codex/bookshelfng-unraid-transition-20261018`, now at
   `be85341452f601183156ee29d1ee349eb3820fd9` after syncing current `main`.
   Its README and installation page point at ChaptarrNG PR #131 head `6ed97b53`.
-  The template-preservation check for the previous head passed in run
-  [39294169892](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39294169892);
-  validation for the current head is tracked in run
+  The template-preservation check passed on this exact head in run
   [39296294459](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39296294459).
   The candidate keeps the Bookshelf container/template identity, port `8787`,
   `/config`, `/data`, `/download`, and PUID/PGID/TZ, while changing the image to
