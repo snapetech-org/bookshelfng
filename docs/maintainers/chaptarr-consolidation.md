@@ -2,6 +2,24 @@
 
 ## Current status — 2026-10-19
 
+Latest exact-head validation: ChaptarrNG draft PR #131 is at
+`a3d9ec8dd3552d90ed527309658a9c4cfed8b7ec`. Build
+[39297761439](https://github.com/snapetech-org/chaptarrng/actions/runs/39297761439)
+passed Linux, macOS, Windows, PostgreSQL migration smoke, release-note
+contract, and native-runner receipt reconciliation. CodeQL
+[39297757961](https://github.com/snapetech-org/chaptarrng/actions/runs/39297757961),
+security/dependency scan
+[39297761173](https://github.com/snapetech-org/chaptarrng/actions/runs/39297761173),
+dependency review
+[39297761454](https://github.com/snapetech-org/chaptarrng/actions/runs/39297761454),
+and NuGet submission
+[39297754032](https://github.com/snapetech-org/chaptarrng/actions/runs/39297754032)
+passed. Disposable-fork validation was skipped by its external-fork gate.
+This closes hosted code validation for that exact candidate head only; the
+representative-data, parity, successful provider/SeerrNG workflows, real
+media, installed rollback, installer/channel, distribution, and operator
+acceptance gates remain open. No release or bridge was published.
+
 M4B validation update (2026-10-19): ChaptarrNG PR #131 commit
 `c4fa8125095f583ad9eee534f70328e8eef1b44c` fixes Move-mode cleanup after a
 successful profile-based multipart merge. Embedded-chapter tests first exposed
