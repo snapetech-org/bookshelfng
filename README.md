@@ -132,10 +132,15 @@ full hosted Linux, macOS, and Windows suites, PostgreSQL migration validation,
 CodeQL, dependency/security, and release-note checks. A synthetic two-track
 smoke using the `.977` image's m4b-tool preserved the supplied chapter titles
 and offsets and produced AAC at 44.1 kHz stereo, about 128 kbps. It validates
-the external tool and sidecar format, not the importer end to end or
-representative real-world media. The feature is not in public `.977`; keep
-`BOOKSHELF_M4B_MERGE` unset after migration until the remaining acceptance
-gates close and a release containing it is available.
+the external tool and sidecar format. ChaptarrNG draft PR #131 at commit
+`403052d5` adds a separate tool-enabled synthetic importer smoke that passed
+locally in an isolated Linux container with `m4b-tool` 0.5.2, `mp4v2` 2.1.1,
+and FFmpeg/FFprobe 6.1.1. It checks tag-based order, chapter titles and offsets,
+metadata, library registration, and Move-mode source cleanup. Representative
+media, embedded chapters, real-tool failure recovery, Copy-mode source
+retention, and restart/resume remain open. The feature is not in public
+`.977`; keep `BOOKSHELF_M4B_MERGE` unset after migration until the remaining
+acceptance gates close and a release containing it is available.
 
 ChaptarrNG PR #130 merged to `main` as `9f1ae60b`. When no explicit
 `BookMatchingStrictness` exists, it maps BookshelfNG's numeric
