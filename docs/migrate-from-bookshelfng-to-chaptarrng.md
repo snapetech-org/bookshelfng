@@ -9,32 +9,24 @@ acceptance gates close. PR #128 merged release and distribution workflows that
 fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
-Draft ChaptarrNG PR #131 is at application-code head
-`0387f71574de1281bb04dbecc69e399fbf5ea354`. Build
-[39330259392](https://github.com/snapetech-org/chaptarrng/actions/runs/39330259392),
-CodeQL [39330253928](https://github.com/snapetech-org/chaptarrng/actions/runs/39330253928),
-security/dependency scan
-[39330259394](https://github.com/snapetech-org/chaptarrng/actions/runs/39330259394),
-dependency review
-[39330259257](https://github.com/snapetech-org/chaptarrng/actions/runs/39330259257),
-and Helm identity
-[39330259387](https://github.com/snapetech-org/chaptarrng/actions/runs/39330259387)
-passed. Build [39330259392](https://github.com/snapetech-org/chaptarrng/actions/runs/39330259392)
-is in progress and its release-note contract passed. CodeQL
-[39330253928](https://github.com/snapetech-org/chaptarrng/actions/runs/39330253928)
-is in progress with three language analyses passed; NuGet submission
-[39330265134](https://github.com/snapetech-org/chaptarrng/actions/runs/39330265134)
-is in progress. The candidate adds an unpublished Windows
-migration installer for a single SQLite database under the standard
-`NT AUTHORITY\LocalService` account. It fails closed on custom service accounts,
-PostgreSQL, and multiple databases, verifies preview immutability across SQLite
-sidecars, and attempts rollback if the service handoff fails. The prior
-`7cf9bfab` Build failed its Windows health smoke because the test probed the
-wrong default port. Build [39329918996](https://github.com/snapetech-org/chaptarrng/actions/runs/39329918996)
-on installer commit `6534c171` then failed the release-note contract because
-the new note exceeded 400 characters; follow-up `0387f715` shortened it and
-exact-head checks restarted. The installer remains unpublished; CI does not
-approve migration.
+Draft ChaptarrNG PR #131 is at documentation-only head
+`8912b7b3629248348c51daa0f1c39a6357e20ed7`; its application-code parent
+`7b4c66e3` passed exact-head Build
+[39332160991](https://github.com/snapetech-org/chaptarrng/actions/runs/39332160991),
+CodeQL [39332156121](https://github.com/snapetech-org/chaptarrng/actions/runs/39332156121),
+security [39332161129](https://github.com/snapetech-org/chaptarrng/actions/runs/39332161129),
+dependency review [39332160785](https://github.com/snapetech-org/chaptarrng/actions/runs/39332160785),
+Helm identity [39332161144](https://github.com/snapetech-org/chaptarrng/actions/runs/39332161144),
+and NuGet [39332162427](https://github.com/snapetech-org/chaptarrng/actions/runs/39332162427).
+Disposable-fork validation was skipped by its external-fork gate. Exact-head
+checks are rerunning for the docs-only commit. The Windows installer supports
+one SQLite database under the standard NT AUTHORITY\LocalService account;
+custom accounts, PostgreSQL, and multiple databases fail closed. Preview
+fingerprinting covers the database, WAL, and rollback journal, while ignoring
+the rebuildable `-shm` index. Its build, fingerprint regression smoke, and
+selected data-directory smoke passed on the application-code parent. A
+populated installed upgrade and rollback have not been rehearsed. PR #131
+remains draft and publication remains frozen.
 
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
@@ -49,8 +41,9 @@ The BookshelfNG Windows WPF installer still installs BookshelfNG. ChaptarrNG
 PR #131 now includes an unpublished migration-only WPF installer for one
 SQLite database using the standard `NT AUTHORITY\LocalService` account. It
 fails closed on custom service accounts, PostgreSQL, and multiple databases;
-it checks preview immutability across SQLite sidecars and attempts rollback
-after a failed service handoff. The exact-head installer build and Windows
+it checks preview immutability for the database, WAL, and rollback journal
+(SQLite rebuilds its transient `-shm` index) and attempts rollback after a
+failed service handoff. The exact-head installer build and Windows
 checks are pending. No installed Bookshelf-to-Chaptarr upgrade or rollback has
 been rehearsed, so do not use it for a production cutover. The manual service
 handoff remains a documented candidate path only.
@@ -174,6 +167,17 @@ public-list and reading-status provider. It carries complete saved credentials
 and settings forward, blocks missing or partial credentials for OAuth-only
 providers, and keeps public shelves available without OAuth when a valid
 numeric user ID is saved. Preview omits all settings values and credentials.
+
+The candidate checks every configured indexer, download client, import list,
+notification, and metadata provider against a matching Chaptarr implementation
+and settings contract. It preserves a row's settings only when the contract and
+serialized fields are supported. Unsupported implementations, contracts, or
+fields are disabled in the staged target and reported as blockers before
+promotion, without exposing credential values. This protects the source backup
+and prevents a partially compatible provider from starting with default
+settings. A matching contract still does not prove the saved credentials work
+with the live provider; test those connections and behaviors using representative
+converted data before approving a cutover.
 
 This source compatibility does not prove Goodreads accepts a saved credential.
 Goodreads stopped issuing new developer keys and announced API retirement, so

@@ -8,19 +8,19 @@
     "Reviewed path mappings and approved retirements record decisions; they do not prove feature equivalence or migration safety.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "330510905328abad3078ec0b8e935c456d9b5c9a",
-  "targetCommit": "0387f71574de1281bb04dbecc69e399fbf5ea354",
+  "sourceCommit": "959c3e8d97d8e3614948be47c23390b1962caabd",
+  "targetCommit": "8912b7b3629248348c51daa0f1c39a6357e20ed7",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 641,
-    "commitsNotInUpstreamHistory": 632,
-    "netChangedPaths": 1103,
+    "commits": 646,
+    "commitsNotInUpstreamHistory": 637,
+    "netChangedPaths": 1104,
     "uniqueBasenameCandidates": 1,
     "reviewedMappings": 20,
     "approvedRetirements": 0,
     "fileStates": {
-      "no-mapped-target-file": 377,
+      "no-mapped-target-file": 378,
       "different-review-required": 550,
       "identical": 170,
       "deleted-in-bookshelf": 2,
@@ -11673,6 +11673,70 @@
       "paths": [
         "docs/maintainers/chaptarr-consolidation.md"
       ]
+    },
+    {
+      "commit": "14032c9466b1d35f06a46d2a58239588723f63f0",
+      "date": "2026-10-19",
+      "subject": "docs: pin BookshelfNG retirement audit",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation-review-map.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "scripts/audit-chaptarr-consolidation.py",
+        "scripts/test-audit-chaptarr-consolidation.py"
+      ]
+    },
+    {
+      "commit": "f9c3f404249dd6e170abdd94e2e1bc54ec61d764",
+      "date": "2026-10-19",
+      "subject": "docs: refresh packaged Unraid handoff status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "d1c5bf7f05296de4ab66e8d2907440dc2bb893fa",
+      "date": "2026-10-19",
+      "subject": "docs: refresh Bookshelf retirement evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "packaging/unraid/README.md",
+        "packaging/unraid/docs/installation.md"
+      ]
+    },
+    {
+      "commit": "4ec35b21e2f67297db241b258174857d49b4f187",
+      "date": "2026-10-19",
+      "subject": "docs: refresh BookshelfNG retirement handoff evidence",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation-review-map.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md",
+        "packaging/unraid/README.md"
+      ]
+    },
+    {
+      "commit": "959c3e8d97d8e3614948be47c23390b1962caabd",
+      "date": "2026-10-19",
+      "subject": "docs: summarize remaining parity review clusters",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
     }
   ],
   "files": [
@@ -11791,7 +11855,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "75c095770099bf9532b7ae06d26d3519555c662e"
+        "oid": "9ce1fac3dc4b9dc2dde11443eaa7f89fd026a788"
       }
     },
     {
@@ -12107,11 +12171,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "4faf85d9dc5b18d96108599a8a2760a6f669eb4f"
+        "oid": "39a5ca7c830942302a39938f317c89d7ab3a7239"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "cf9a2f551dfce97cb98c832e297d70884983fc35"
+        "oid": "3f2ffa67ef32447003352224680fa2489c3df81a"
       }
     },
     {
@@ -12362,7 +12426,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "8aff90aa7afb4f84a156143685562cc56205cc59"
+        "oid": "a2b71143eb82265737af0030439987ade0bf3273"
       }
     },
     {
@@ -12479,7 +12543,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "64a9e8030f01682b6dcfd558aa16ec2c0bf1252c"
+        "oid": "8f5d9bdd242d52054c4b840ef0f9736559bcf88b"
       }
     },
     {
@@ -12577,7 +12641,7 @@
       "candidateTargetPath": "distribution/windows/installer-net/upgrade-helpers/rollback.ps1",
       "candidateTargetBlob": {
         "mode": "100644",
-        "oid": "ba775a6aa8bb54ce9fcaf8b0d195d723f1caa805"
+        "oid": "299c26adcb20b8feca2829432f742ee361191c36"
       }
     },
     {
@@ -12802,7 +12866,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "c50453dd5517e838aedc846d15c5975a7803e6a2"
+        "oid": "77ca80006b6e5a67e0d4fb07b0af545a2866c955"
       },
       "targetBlob": null
     },
@@ -12822,7 +12886,17 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "08f5dc645cea10ab875ed738dc5a471238c9b5dd"
+        "oid": "263fd86631711f2e79c24232758a239ff8758afb"
+      },
+      "targetBlob": null
+    },
+    {
+      "sourcePath": "docs/maintainers/chaptarr-consolidation-review-map.json",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "6d0713ea2fde33f0331ec30784f1f8d59ee20a55"
       },
       "targetBlob": null
     },
@@ -12832,7 +12906,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "043ff822645de1a5a7ff2d7c034ada2ac5973eb1"
+        "oid": "f1e3cc4275bee08ad971f38bbcdb584f96932765"
       },
       "targetBlob": null
     },
@@ -12902,7 +12976,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "d7efc35c99341aa40471d994d7370c6114b581f7"
+        "oid": "4dda796bb241f61a1ba95f8f2002b14a8c9255c2"
       },
       "targetBlob": null
     },
@@ -14584,7 +14658,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "754f88d72cec90b820c8bce41ea19f09c2e23b3d"
+        "oid": "1faaf099a67df741392a8722a4913a911de32bb5"
       },
       "targetBlob": {
         "mode": "100644",
@@ -14610,7 +14684,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "e9cfcc95e4cf3b78d550d77843839f8a10601b41"
+        "oid": "ca00ae724ed4e062804c378f741ca9fee6170351"
       },
       "targetBlob": null
     },
@@ -16276,7 +16350,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "1056ff4d38ca2f3c05b4a759dda20e9c8592f5a8"
+        "oid": "7ec4cd71164f36e6b81b570d631482c9e17fb8d2"
       },
       "targetBlob": null
     },
@@ -16481,7 +16555,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "f20a1c3903dbea40db30882ec2d61b5960735357"
+        "oid": "c4a97c54d14641d907c4a55cc6f8dcbda388b9e8"
       },
       "targetBlob": null
     },
