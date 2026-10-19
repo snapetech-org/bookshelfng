@@ -39,11 +39,16 @@ Linux, macOS, and Windows build/tests, PostgreSQL migration fixtures,
 release-note validation, CodeQL, dependency review, dependency/secret scans,
 NuGet submission, and runner-receipt reconciliation. Four Windows media-move
 fixtures failed on the preceding run because they assumed POSIX paths; the
-native temporary-path follow-up passes. The current docs-only PR head
-`898b72fd` is undergoing hosted validation in [run 39198708193](https://github.com/snapetech-org/chaptarrng/actions/runs/39198708193). Disposable-fork validation
-was skipped by its gate. Fifty-two focused importer, catalog, and capability
+native temporary-path follow-up passes. Docs-only checkpoint `898b72fd` passed hosted run [39198708193](https://github.com/snapetech-org/chaptarrng/actions/runs/39198708193). Docs-only checkpoint `ddec3e81` also passed [run 39199730309](https://github.com/snapetech-org/chaptarrng/actions/runs/39199730309). Earlier docs-only head `353aeba1` passed exact-head validation in [run 39201211634](https://github.com/snapetech-org/chaptarrng/actions/runs/39201211634); CodeQL, dependency/security, dependency-review, and NuGet checks passed too. Fifty-two focused importer, catalog, and capability
 tests pass locally. These are candidate checks, not operator-data or
-installation-channel acceptance. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) and the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/898b72fd/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
+installation-channel acceptance. See [ChaptarrNG PR #131](https://github.com/snapetech-org/chaptarrng/pull/131) and the [fixture evidence](https://github.com/snapetech-org/chaptarrng/blob/8b4c6e23/docs/maintainers/BOOKSHELFNG_MIGRATION_FIXTURE_EVIDENCE.md).
+The integrated candidate snapshot `8b4c6e23` also includes current ChaptarrNG
+`main`'s Editions tab and series narrator comparison. Translation, TypeScript,
+targeted ESLint/Stylelint, and release-note preview checks pass locally. Its
+release-note contract, dependency review, security scan, and NuGet checks pass.
+CodeQL [39205449712](https://github.com/snapetech-org/chaptarrng/actions/runs/39205449712)
+passes; cross-platform Build
+[39205452341](https://github.com/snapetech-org/chaptarrng/actions/runs/39205452341) passed Linux, macOS, Windows, PostgreSQL migration, release-note, and native-runner receipt checks.
 
 ChaptarrNG releases are frozen until the retirement feature, data, rollback,
 and install-channel acceptance gates close. No image or legacy alias will be

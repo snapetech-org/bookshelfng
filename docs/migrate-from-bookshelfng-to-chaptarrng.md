@@ -35,10 +35,16 @@ verifies one candidate SQLite round trip, not cutover readiness, ambiguous-media
 classification, older schemas, PostgreSQL operator data, feature parity, or
 installation-channel continuity.
 
-BookshelfNG `main` at `9a04c2eb2` adds
-`GET /api/v1/book/{id}/editions/catalog` and advertises `editionCatalog` for
-SeerrNG. The unpublished ChaptarrNG PR #131 now implements the same route and
-capability; this work remains source-only.
+BookshelfNG source snapshot `6e1a62e12` includes an Editions and Narrations
+book-details tab backed by `GET /api/v1/book/{id}/editions/catalog`.
+ChaptarrNG `main` now includes that tab and the series narrator comparison;
+PR #131 code snapshot `8b4c6e23` integrates current `main` with the migration
+and rollback changes. Local translation, type, targeted ESLint/Stylelint,
+and release-note preview checks pass. Its release-note contract, dependency
+review, security scan, and NuGet checks pass. CodeQL
+[39205449712](https://github.com/snapetech-org/chaptarrng/actions/runs/39205449712)
+passes; cross-platform Build
+[39205452341](https://github.com/snapetech-org/chaptarrng/actions/runs/39205452341) passed Linux, macOS, Windows, PostgreSQL migration, release-note, and native-runner receipt checks. This UI remains source-only in public ChaptarrNG `.977`.
 
 ChaptarrNG PR #132 merged format-specific root setup to source `main` as
 `0f1fea44`, but that Quickstart change is not in the published `.977` release.

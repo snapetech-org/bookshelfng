@@ -6,18 +6,18 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "87e6b2ab8f1c8429f72ec43224b65a772313dfc7",
-  "targetCommit": "898b72fd37b18d192e40ba4547e2331f88cce1a1",
+  "sourceCommit": "6e1a62e1251a7015ea46bdf381b551a1ced55c40",
+  "targetCommit": "8b4c6e239b5bfb76e6576dba39221cf32d565daf",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 597,
-    "commitsNotInUpstreamHistory": 588,
-    "netChangedPaths": 1096,
+    "commits": 604,
+    "commitsNotInUpstreamHistory": 595,
+    "netChangedPaths": 1101,
     "fileStates": {
-      "no-mapped-target-file": 430,
-      "different-review-required": 500,
-      "identical": 160,
+      "no-mapped-target-file": 431,
+      "different-review-required": 503,
+      "identical": 161,
       "deleted-in-bookshelf": 2,
       "text-equivalent-after-brand-and-newline-normalization": 4
     }
@@ -11154,6 +11154,84 @@
         "docs/maintainers/bookshelfng-parity-roadmap.md",
         "docs/maintainers/chaptarr-consolidation.md"
       ]
+    },
+    {
+      "commit": "af75548a4f57cfdb8f5d7dd8707fca409170ca51",
+      "date": "2026-10-18",
+      "subject": "docs(seerrng): document the edition catalog endpoint",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/README.md"
+      ]
+    },
+    {
+      "commit": "96ea7312918631996be18cbac1634328bfece93d",
+      "date": "2026-10-18",
+      "subject": "docs(seerrng): move the edition catalog notes into the integration guide",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/README.md",
+        "docs/seerrng-integration.md"
+      ]
+    },
+    {
+      "commit": "2365849002c1b5e11b53182bd3a57cb0651c66cd",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): refresh current migration inventory",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/chaptarr-consolidation-inventory.json",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/standalone-install.md"
+      ]
+    },
+    {
+      "commit": "4c17365706575a3f4f67976eb032e05662d815bb",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): refresh parity and channel status",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md",
+        "docs/maintainers/chaptarrng-distribution-bridge.md",
+        "docs/migrate-from-bookshelfng-to-chaptarrng.md"
+      ]
+    },
+    {
+      "commit": "10696c8eb81924218896c9a2808fe6b30df9bfb0",
+      "date": "2026-10-18",
+      "subject": "feat(ui): editions and narrations tab on book details",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "docs/seerrng-integration.md",
+        "frontend/src/Book/Details/BookDetails.js",
+        "frontend/src/Book/Details/Editions/BookEditionCatalog.css",
+        "frontend/src/Book/Details/Editions/BookEditionCatalog.css.d.ts",
+        "frontend/src/Book/Details/Editions/BookEditionCatalog.js",
+        "src/NzbDrone.Core/Localization/Core/en.json"
+      ]
+    },
+    {
+      "commit": "5e7cda415136ee1ac6230472412cfc603226312b",
+      "date": "2026-10-18",
+      "subject": "fix(ui): keep Not provided text in the table font",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "frontend/src/Book/Details/Editions/BookEditionCatalog.css"
+      ]
+    },
+    {
+      "commit": "6e1a62e1251a7015ea46bdf381b551a1ced55c40",
+      "date": "2026-10-18",
+      "subject": "fix(ui): keep edition placeholders in the table font",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "frontend/src/Book/Details/Editions/BookEditionCatalog.css",
+        "release-notes/added-editions-and-narrations-tab.md"
+      ]
     }
   ],
   "files": [
@@ -11588,11 +11666,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "21249b67e9ace0baf8090ecc2e8a3a1340a430ef"
+        "oid": "fad465bfe29f1943857a0e76322edeffac78990a"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "c6d8ea6bd8665f00246d35a9961718757955e26c"
+        "oid": "921a2d47cfb8041e942cd4a33bff54eac3fc200a"
       }
     },
     {
@@ -12084,7 +12162,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "2f02d8b14fa557032fedb1375b1dea2ab714132f"
+        "oid": "1ad557b8eaec094b7369329d40022cc2da43d6fa"
       },
       "targetBlob": null
     },
@@ -12187,7 +12265,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "3277f732e66f33fa6ffda57839decac362b87992"
+        "oid": "f26fba022118fe8af90200f439242778ec72f77f"
       },
       "targetBlob": null
     },
@@ -12207,7 +12285,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "62396d8f3bea08b1cf371139f1ce157239b973b5"
+        "oid": "28560c285b583e00e8f6575d7567d29cb997ff05"
       },
       "targetBlob": null
     },
@@ -12217,7 +12295,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "9a47b5c0f623cad7d1a12de644715c748673b8a3"
+        "oid": "090c79ea4926fdaab08c16edc176bbf039128b8a"
       },
       "targetBlob": null
     },
@@ -12227,7 +12305,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "d00647a0c32d87cc975657d42e1958a8930feca8"
+        "oid": "6b6b4832c3389fdaae6becbe6f6f291ab9990458"
       },
       "targetBlob": null
     },
@@ -12267,7 +12345,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "ce1ff5632567146c18131f599bccab5bc287610a"
+        "oid": "1a668c65e0713c85971ba32045dcfb05461a2cd6"
       },
       "targetBlob": null
     },
@@ -12297,7 +12375,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "ffbcf56f2b116e4c582dc777e6cf0e136bdc2308"
+        "oid": "07c2bff9e2a31c61846c4b6de8e619e1d95cd1c5"
       },
       "targetBlob": null
     },
@@ -12317,7 +12395,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "485dacbb9424d449900ce523c44a15a4c3ae1d2a"
+        "oid": "9ea4835bb5484c6244d1a7d399f21c206db948aa"
       },
       "targetBlob": null
     },
@@ -12540,6 +12618,58 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "c1c4b5a469d06e034a2303aeabd0b439ed1bc38b"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Book/Details/BookDetails.js",
+      "targetPath": "frontend/src/Book/Details/BookDetails.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "b85294dd65a5a70e72cb70a4c6f55795fe87a9aa"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "795b8c6c666afafa19a5763e7cc33b969d8e3a68"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Book/Details/Editions/BookEditionCatalog.css",
+      "targetPath": "frontend/src/Book/Details/Editions/BookEditionCatalog.css",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "53cc8947bf67e71a51b80041cb096b971138e231"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "4ee4cb8c9a26c70a7271dd545cfc8d4acd4b8275"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Book/Details/Editions/BookEditionCatalog.css.d.ts",
+      "targetPath": "frontend/src/Book/Details/Editions/BookEditionCatalog.css.d.ts",
+      "state": "identical",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "f72a2c80bc5bddc20f5a026ccbd187d277d6a99f"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "f72a2c80bc5bddc20f5a026ccbd187d277d6a99f"
+      }
+    },
+    {
+      "sourcePath": "frontend/src/Book/Details/Editions/BookEditionCatalog.js",
+      "targetPath": "frontend/src/Book/Details/Editions/BookEditionCatalog.js",
+      "state": "different-review-required",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "699366e19bdf8f870a216afd91f7e86b6878c0d9"
+      },
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "dff6a427fe7d0c4ff1ff58f518e0f6b9ad2e7078"
       }
     },
     {
@@ -14466,6 +14596,16 @@
       "targetBlob": null
     },
     {
+      "sourcePath": "release-notes/added-editions-and-narrations-tab.md",
+      "targetPath": null,
+      "state": "no-mapped-target-file",
+      "sourceBlob": {
+        "mode": "100644",
+        "oid": "de3a86f0b6dc4965545f7482d44cf5e59828737c"
+      },
+      "targetBlob": null
+    },
+    {
       "sourcePath": "release-notes/added-existing-torrent-adoption.md",
       "targetPath": null,
       "state": "no-mapped-target-file",
@@ -15515,7 +15655,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "0363555d15e0f43791a46856c6127a39fa4a8ba7"
+        "oid": "1ac70b1972ed1ae452a5e11926e32f3e9327c1d4"
       }
     },
     {
@@ -15710,7 +15850,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "1d1ccfc34bdbace5c97084a53cde3f57cf371011"
+        "oid": "0d5d75fb447aeec22a014d6b49a528dab1a463fd"
       }
     },
     {
@@ -18633,11 +18773,11 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "b4432c89f517e4737adaf7e1809ed5043eb04e23"
+        "oid": "b2b1aed1241348ef07258438afc2b2f2d4c8efcd"
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "25476462546c8f03214a67217026887175958217"
+        "oid": "a4fa959dda80ab224b3168e812593b40a40464f0"
       }
     },
     {
