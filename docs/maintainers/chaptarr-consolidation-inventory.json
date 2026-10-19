@@ -6,13 +6,13 @@
     "Missing mapped paths may have replacements under other names.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
-  "sourceCommit": "9a04c2eb2ed385a1a3f484ec4c4451a7d3bcc0d7",
+  "sourceCommit": "962fa8426717969489678b6df30bf133b46a958c",
   "targetCommit": "f5f576443c594e0d44505a7a24b8f7badeef02a1",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
-    "commits": 585,
-    "commitsNotInUpstreamHistory": 576,
+    "commits": 586,
+    "commitsNotInUpstreamHistory": 577,
     "netChangedPaths": 1096,
     "fileStates": {
       "no-mapped-target-file": 439,
@@ -11007,6 +11007,18 @@
         "src/Readarr.Api.V1/Books/EditionCatalogResource.cs",
         "src/Readarr.Api.V1/System/SystemController.cs"
       ]
+    },
+    {
+      "commit": "962fa8426717969489678b6df30bf133b46a958c",
+      "date": "2026-10-18",
+      "subject": "docs(retirement): redact private migration totals",
+      "alsoInBookshelfUpstreamHistory": false,
+      "paths": [
+        "README.md",
+        "docs/distribution.md",
+        "docs/maintainers/bookshelfng-parity-roadmap.md",
+        "docs/maintainers/chaptarr-consolidation.md"
+      ]
     }
   ],
   "files": [
@@ -11441,7 +11453,7 @@
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "a79ddf8672adabf3e540da194fdddf86795606ac"
+        "oid": "1bc6e4ba9ebf0fb68dec9d93d70aa1d188efd332"
       },
       "targetBlob": {
         "mode": "100644",
@@ -11937,7 +11949,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "dc565b87134057d595309501bf0db37800867792"
+        "oid": "b950efc7fecc72776f9669584acbb4c594c61e42"
       },
       "targetBlob": null
     },
@@ -12040,7 +12052,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "24d6d57f451515f388614731c024211b4bdb4e60"
+        "oid": "11d516d88dda76cc335fd342aceda9d76204f021"
       },
       "targetBlob": null
     },
@@ -12070,7 +12082,7 @@
       "state": "no-mapped-target-file",
       "sourceBlob": {
         "mode": "100644",
-        "oid": "facec347c16251c8ac9410b1400076ad6d899257"
+        "oid": "38b39447fcef94e4c86a763e0eab05ee2df02013"
       },
       "targetBlob": null
     },
