@@ -201,6 +201,20 @@ namespace Readarr.Api.V1.Books
             };
         }
 
+        /// <summary>
+        /// Every known edition of a book with its narration details, for clients that let a person
+        /// choose a performance. Unknown details stay unknown.
+        /// </summary>
+        [HttpGet("{id:int}/editions/catalog")]
+        public List<EditionCatalogResource> EditionCatalog(int id)
+        {
+            return _editionService.GetEditionsByBook(id)
+                .OrderByDescending(e => e.Monitored)
+                .ThenBy(e => e.Title)
+                .Select(e => e.ToCatalogResource())
+                .ToList();
+        }
+
         [HttpGet("{id:int}/overview")]
         public object Overview(int id)
         {

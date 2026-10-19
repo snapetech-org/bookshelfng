@@ -17,5 +17,14 @@ namespace NzbDrone.Api.Test.System
             response["contract"].Value<string>().Should().Be("seerrng-bookshelf");
             response["features"]["formatSpecificAvailabilityStatistics"].Value<bool>().Should().BeTrue();
         }
+
+        [Test]
+        public void should_advertise_the_edition_catalog()
+        {
+            var controller = new SystemController(null, null, null, null, null, null, null, null, null, null, null);
+            var response = JObject.FromObject(controller.GetSeerrCapabilities());
+
+            response["features"]["editionCatalog"].Value<bool>().Should().BeTrue();
+        }
     }
 }
