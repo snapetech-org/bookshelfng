@@ -351,10 +351,10 @@ behavior, feature parity, or any published package-channel bridge.
   Bookshelf identity, request, or history continuity.
 - Unraid companion: `bookshelfng-unraid` transition work is on draft PR #5,
   branch `codex/bookshelfng-unraid-transition-20261018`, now at
-  `be85341452f601183156ee29d1ee349eb3820fd9` after syncing current `main`.
+  `f5ab9276432ecdcc95c26240dc981f3b46f41f48` after syncing current `main`.
   Its README and installation page point at ChaptarrNG PR #131 head `a3d9ec8d`.
   The template-preservation check passed on this exact head in run
-  [39296294459](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39296294459).
+  [39298063928](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39298063928).
   The candidate keeps the Bookshelf container/template identity, port `8787`,
   `/config`, `/data`, `/download`, and PUID/PGID/TZ, while changing the image to
   `ghcr.io/snapetech/chaptarrng:latest`. It has not been merged or exercised
