@@ -2,6 +2,11 @@
 
 ## Current status — 2026-10-19
 
+This handoff report records internal retirement evidence, not a user-facing
+release. Keep retirement-only documentation changes out of release notes while
+publication is frozen, and use the exact `release-note: none` trailer in their
+PR description or direct-push commit message.
+
 Latest exact-head validation: ChaptarrNG draft PR #131 is at
 `a3d9ec8dd3552d90ed527309658a9c4cfed8b7ec`. Build
 [39297761439](https://github.com/snapetech-org/chaptarrng/actions/runs/39297761439)
