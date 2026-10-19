@@ -235,6 +235,11 @@ queue; path or text similarity does not prove that behavior is equivalent or
 safely retired. The complete machine-readable path ledger is in
 [`chaptarr-consolidation-inventory.json`](chaptarr-consolidation-inventory.json).
 
+The current 550 semantic-review paths are concentrated in `src/NzbDrone.Core`
+(173), `src/TagLibSharp` (128), `frontend/src` (86), `src/Readarr.Api.V1`
+(29), and `distribution/windows` (16). These are source-file counts for
+sequencing direct comparisons, not feature counts or a risk ranking.
+
 The detailed investigation below records historical candidate revisions and
 their test evidence. Its pinned source counts and older release/channel rows
 are snapshots, not current publication status. BookshelfNG issue #144 remains
