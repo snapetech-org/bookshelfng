@@ -3,16 +3,18 @@
 BookshelfNG is a Snapetech NG fork of Bookshelf for ebook and audiobook library
 management and acquisition. It works independently; SeerrNG integration is optional.
 
-> **Latest published releases:** BookshelfNG `0.4.21.71` and ChaptarrNG `v0.9.977`. The published ChaptarrNG migration supports migration-158 SQLite; older schemas and PostgreSQL sources are unsupported by that release.
+> **Published state:** BookshelfNG `0.4.21.71` and ChaptarrNG `v0.9.977` remain the latest releases. The published converter is preview-only for migration-158 SQLite. While [BookshelfNG issue #144](https://github.com/snapetech-org/bookshelfng/issues/144) remains open, do not apply migration or start ChaptarrNG against BookshelfNG appdata.
 >
-> ChaptarrNG PR #131 remains draft. Its application-code snapshot is `50e4cc14cf9cf87bbfeebbbb114cadbbeab6b5a3`, which merges current main at `95f112e7` and includes the stable `master` image alias; the current documentation-only PR head is `f0acc9dce90da958b73ba4ed7bbf05f40bde3a29`. The alias regression script passes locally. Exact-head Build [39221717722](https://github.com/snapetech-org/chaptarrng/actions/runs/39221717722) passed against that PR head (merge candidate `c859c45e6eeff894789a3e884df96a4c8fd057ac`): Linux 4,412 passed/0 failed, macOS 4,407/0, Windows 4,373/0, and PostgreSQL migration fixtures 53/0; all four validation receipts reconciled. CodeQL [39221713053](https://github.com/snapetech-org/chaptarrng/actions/runs/39221713053), security analysis [39221717638](https://github.com/snapetech-org/chaptarrng/actions/runs/39221717638), NuGet submission [39221720997](https://github.com/snapetech-org/chaptarrng/actions/runs/39221720997), and dependency review [39221717657](https://github.com/snapetech-org/chaptarrng/actions/runs/39221717657) passed. The release-note contract passed; disposable-fork validation was skipped by its external-fork gate. Keep the release freeze in place; representative-data, parity disposition, installed-rollback, and update-channel acceptance remain open. Do not point ChaptarrNG at live BookshelfNG appdata or use the candidate restore flow for production migration.
+> ChaptarrNG PR #131 remains draft. Candidate commit `12f290bd` built through its checked-in `Dockerfile.build` and passed a populated synthetic migration-158 smoke: normal startup converted the database, and SeerrNG read both migrated formats. The importer suite passed 43/43. This does not prove representative operator-data acceptance, valid M4B processing, installed rollback, or channel handoff; parity and release gates remain open. See the [source-build run record](https://github.com/snapetech-org/chaptarrng/blob/codex/bookshelf-retirement-next-20261018/integration/README.md#populated-migration-source-build-run-2026-10-19).
 >
 > The Unraid transition [PR #5](https://github.com/snapetech-org/bookshelfng-unraid/pull/5) also remains a draft. Its template-preservation check passes, but the real Community Applications upgrade and rollback flow has not been accepted. Both release-readiness gates remain unset; no migration bridge is published.
 
 ## Existing installations
 
-Keep the current BookshelfNG image until you are ready to migrate. The legacy
-Community Apps template on `main` still points to BookshelfNG. A transition
+Keep the current BookshelfNG image. The cutover is frozen: read-only preview is
+allowed, but do not apply migration or switch an existing appdata directory to
+ChaptarrNG while BookshelfNG issue #144 remains open. The legacy Community Apps
+template on `main` still points to BookshelfNG. A transition
 candidate preserves its appdata path, port, media/download mappings, user IDs,
 timezone, and Hardcover settings while switching to the standard ChaptarrNG
 image. It is not published and must remain on its feature branch until the
@@ -20,9 +22,9 @@ application release and Unraid update-flow gates pass. The XML and
 settings-preservation check passed; run
 `python3 scripts/test-transition-template.py` to repeat it.
 Read the
-[BookshelfNG-to-ChaptarrNG migration guide](https://github.com/snapetech-org/bookshelfng/blob/main/docs/migrate-from-bookshelfng-to-chaptarrng.md),
-upgrade BookshelfNG to `.71`, stop the service, and keep an independent
-appdata backup before switching. New installations should use the
+[BookshelfNG-to-ChaptarrNG migration guide](https://github.com/snapetech-org/bookshelfng/blob/main/docs/migrate-from-bookshelfng-to-chaptarrng.md).
+When cutover is approved, upgrade BookshelfNG to `.71`, stop the service, and
+keep an independent appdata backup before switching. New installations should use the
 [ChaptarrNG Unraid template](https://github.com/snapetech-org/chaptarrng-unraid).
 For a manual BookshelfNG install needed to inspect or roll back an existing
 library, use [the legacy template XML](../templates/bookshelfng.xml); it installs
