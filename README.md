@@ -133,12 +133,14 @@ CodeQL, dependency/security, and release-note checks. A synthetic two-track
 smoke using the `.977` image's m4b-tool preserved the supplied chapter titles
 and offsets and produced AAC at 44.1 kHz stereo, about 128 kbps. It validates
 the external tool and sidecar format. ChaptarrNG draft PR #131 at commit
-`e8aa46ca` adds a separate tool-enabled synthetic importer smoke that passed
+`bdd7518f` adds a six-case tool-enabled synthetic importer smoke that passed
 locally in an isolated Linux container with `m4b-tool` 0.5.2, `mp4v2` 2.1.1,
-and FFmpeg/FFprobe 6.1.1. It checks tag-based order, chapter titles and offsets,
-metadata, library registration, Move-mode cleanup, and Copy-mode source
-retention. Representative media, embedded chapters, real-tool failure recovery,
-and restart/resume remain open. The feature is not in public
+and FFmpeg/FFprobe 6.1.1. Successful cases check tagged order, chapter titles
+and offsets, metadata, registration, and Move/Copy source handling. Failure
+cases check fallback to separate original-track imports in both modes when
+FFprobe cannot read a source and when `m4b-tool` fails after a controlled
+FFmpeg conversion error. Representative media, embedded chapters, and
+restart/resume remain open. The feature is not in public
 `.977`; keep `BOOKSHELF_M4B_MERGE` unset after migration until the remaining
 acceptance gates close and a release containing it is available.
 
