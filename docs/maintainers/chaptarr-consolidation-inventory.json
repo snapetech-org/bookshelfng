@@ -9,20 +9,20 @@
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
   "sourceCommit": "330510905328abad3078ec0b8e935c456d9b5c9a",
-  "targetCommit": "93213b677a0bbb256aaf782c389a4f1a3d9c2ee7",
+  "targetCommit": "0387f71574de1281bb04dbecc69e399fbf5ea354",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
     "commits": 641,
     "commitsNotInUpstreamHistory": 632,
     "netChangedPaths": 1103,
-    "uniqueBasenameCandidates": 4,
+    "uniqueBasenameCandidates": 1,
     "reviewedMappings": 20,
     "approvedRetirements": 0,
     "fileStates": {
-      "no-mapped-target-file": 394,
-      "different-review-required": 534,
-      "identical": 169,
+      "no-mapped-target-file": 377,
+      "different-review-required": 550,
+      "identical": 170,
       "deleted-in-bookshelf": 2,
       "text-equivalent-after-brand-and-newline-normalization": 4
     }
@@ -11791,7 +11791,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "2cbe6e708e8491ff5c113accd87f2eec01561e7f"
+        "oid": "75c095770099bf9532b7ae06d26d3519555c662e"
       }
     },
     {
@@ -12111,7 +12111,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "a64a52a30eb0de4a219b412e04db842c482ea83b"
+        "oid": "cf9a2f551dfce97cb98c832e297d70884983fc35"
       }
     },
     {
@@ -12276,178 +12276,211 @@
     },
     {
       "sourcePath": "distribution/windows/installer-net/.gitignore",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/.gitignore",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "a34f36bc8166624dd95fbae3fc9fe4ab46cd687a"
       },
-      "targetBlob": null,
-      "candidateTargetPath": ".gitignore",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
-        "oid": "f951d2788e5079d39b31826f3b97ab9b704a8b08"
+        "oid": "87af9ac6fbc056f84d9ef11ae83b3b17a15b99ff"
       }
     },
     {
       "sourcePath": "distribution/windows/installer-net/App.xaml",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/App.xaml",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "10cbda765669eb106c07e0a893e5d0df018fcf72"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "0260106af53090691254ad19944ee01614c493e5"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/App.xaml.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/App.xaml.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5d75ce7d75d3a642171e2f81cf979e813a136db1"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "db33d6a9505ed7955a05407178728ee7e4f5a24b"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/MainWindow.xaml",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/MainWindow.xaml",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "42aaf95605a15f2ebb351e1cda379d4db8da1048"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "c38f22132fd3223f8d0683f08fe2a68ed26c7dcc"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/MainWindow.xaml.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/MainWindow.xaml.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3b93e18aea49807a4647776621b77e8f7770030d"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "02960572247f801cd81fbae04d754b979b6276aa"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/NuGet.config",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/NuGet.config",
+      "state": "identical",
       "sourceBlob": {
         "mode": "100644",
         "oid": "4d736c19ec5ff475609182bf1152633c566d1458"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/NuGet.config",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
-        "oid": "44ac030f4ce3d7aace7fc1941531b94293150730"
+        "oid": "4d736c19ec5ff475609182bf1152633c566d1458"
       }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/BackupService.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/Pipeline/BackupService.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "7aede131f94bdd741a9d1c7c64782bab99fd841f"
       },
-      "targetBlob": null,
-      "candidateTargetPath": "src/NzbDrone.Core/Backup/BackupService.cs",
-      "candidateTargetBlob": {
+      "targetBlob": {
         "mode": "100644",
-        "oid": "ae0f4f09f751e8e8c794b749f31155850b277949"
+        "oid": "8aff90aa7afb4f84a156143685562cc56205cc59"
       }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/IUiReporter.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/Pipeline/IUiReporter.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "470ad22b395802f142070dc4ff578a00e9326ea7"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "098e009056db3c550c085f9138b45b05e9894615"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/InstallPipeline.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/Pipeline/InstallPipeline.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "50c32e982bee028638d6d581d63508409e3017b2"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "9b1e676ef25876c1e97172e94e0835df580db834"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/PayloadExtractor.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/Pipeline/PayloadExtractor.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3e8b9668fc883990bedeb68f25f855e59c1cff47"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "a3ece279efbf57fc92d26d8658e7ff4ef9303411"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/PowerShellRunner.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/Pipeline/PowerShellRunner.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3bb086a20ded4204225ed0a0dcf3d0132c73ede7"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "570b1c923833d49f53a08c0db031091d28e2f029"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/ProcessStreamer.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/Pipeline/ProcessStreamer.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "557d1b50f26ab4f661c46946c904d89e4c4bfe05"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2ca9158a7de561bd108b910631199d869bbb8817"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/RegistryService.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/Pipeline/RegistryService.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b57a63f31880d6cb842c17e19c44646c5be97d9e"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "6700aa7d9edc5c84c67c7d26df9d543740634140"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/RollbackRunner.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/Pipeline/RollbackRunner.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "80926bb28d4a5b3d06895bbafcc373ba61f254cc"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "1dd53ea2bd04b28cd3e4b4bcc6887839ff099b65"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Pipeline/ServiceLifecycle.cs",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/Pipeline/ServiceLifecycle.cs",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5eb44c03d3f86b7a1313e2939dd942bb04a3f016"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "98a199bbacf3a217f96b4d69c518560028dad1ce"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/README.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/README.md",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "233ddbae3553a4226e546007b711b11730a8a098"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "64a9e8030f01682b6dcfd558aa16ec2c0bf1252c"
+      }
     },
     {
       "sourcePath": "distribution/windows/installer-net/Readarr.Installer.csproj",
@@ -12481,13 +12514,16 @@
     },
     {
       "sourcePath": "distribution/windows/installer-net/app.manifest",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "distribution/windows/installer-net/app.manifest",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "69f9bade2be45015ef7f6765a35834641452a241"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "4d0b979b0125934ebfc84ef98794252074bdd275"
+      }
     },
     {
       "sourcePath": "distribution/windows/setup/Rollback-To-Pre-Upgrade.bat",
@@ -12507,12 +12543,7 @@
         "mode": "100644",
         "oid": "d6b7ef32c8478a48c3994dcadc86837f4371184d"
       },
-      "targetBlob": null,
-      "candidateTargetPath": ".gitignore",
-      "candidateTargetBlob": {
-        "mode": "100644",
-        "oid": "f951d2788e5079d39b31826f3b97ab9b704a8b08"
-      }
+      "targetBlob": null
     },
     {
       "sourcePath": "distribution/windows/setup/readarr.iss",
@@ -12542,7 +12573,12 @@
         "mode": "100644",
         "oid": "c34954cc139aeae1399e138c3046889decdfa73b"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "candidateTargetPath": "distribution/windows/installer-net/upgrade-helpers/rollback.ps1",
+      "candidateTargetBlob": {
+        "mode": "100644",
+        "oid": "ba775a6aa8bb54ce9fcaf8b0d195d723f1caa805"
+      }
     },
     {
       "sourcePath": "docker/Dockerfile",

@@ -9,18 +9,32 @@ acceptance gates close. PR #128 merged release and distribution workflows that
 fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
-Draft ChaptarrNG PR #131 is at docs-only head
-`93213b677a0bbb256aaf782c389a4f1a3d9c2ee7`, above application-code commit
-`0e881d921dd55aa89e12747557ccaadbb2352a21`. Exact-head Build
-[39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744)
-passed on Linux, macOS, and Windows, with PostgreSQL migration, release-note,
-and native-runner receipt checks passing in full attempt 3. CodeQL, analysis,
-security/dependency, dependency-review, NuGet, and Helm identity checks passed;
-disposable-fork validation was skipped by its external-fork gate.
-The application-code commit passed its cross-platform Build, PostgreSQL
-migration, security, dependency, and release-note checks; its artifact also
-passed the synthetic populated migration-to-SeerrNG smoke documented below.
-This candidate remains unpublished and these checks do not approve migration.
+Draft ChaptarrNG PR #131 is at application-code head
+`0387f71574de1281bb04dbecc69e399fbf5ea354`. Build
+[39330259392](https://github.com/snapetech-org/chaptarrng/actions/runs/39330259392),
+CodeQL [39330253928](https://github.com/snapetech-org/chaptarrng/actions/runs/39330253928),
+security/dependency scan
+[39330259394](https://github.com/snapetech-org/chaptarrng/actions/runs/39330259394),
+dependency review
+[39330259257](https://github.com/snapetech-org/chaptarrng/actions/runs/39330259257),
+and Helm identity
+[39330259387](https://github.com/snapetech-org/chaptarrng/actions/runs/39330259387)
+passed. Build [39330259392](https://github.com/snapetech-org/chaptarrng/actions/runs/39330259392)
+is in progress and its release-note contract passed. CodeQL
+[39330253928](https://github.com/snapetech-org/chaptarrng/actions/runs/39330253928)
+is in progress with three language analyses passed; NuGet submission
+[39330265134](https://github.com/snapetech-org/chaptarrng/actions/runs/39330265134)
+is in progress. The candidate adds an unpublished Windows
+migration installer for a single SQLite database under the standard
+`NT AUTHORITY\LocalService` account. It fails closed on custom service accounts,
+PostgreSQL, and multiple databases, verifies preview immutability across SQLite
+sidecars, and attempts rollback if the service handoff fails. The prior
+`7cf9bfab` Build failed its Windows health smoke because the test probed the
+wrong default port. Build [39329918996](https://github.com/snapetech-org/chaptarrng/actions/runs/39329918996)
+on installer commit `6534c171` then failed the release-note contract because
+the new note exceeded 400 characters; follow-up `0387f715` shortened it and
+exact-head checks restarted. The installer remains unpublished; CI does not
+approve migration.
 
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
@@ -30,6 +44,16 @@ unpublished `.978` source is not approved for production cutover. A schema
 preview leaves the source database unchanged, though it may write a report;
 it does not make an apply eligible. Wait for a supported destination build and
 closed acceptance gates before stopping or replacing BookshelfNG.
+
+The BookshelfNG Windows WPF installer still installs BookshelfNG. ChaptarrNG
+PR #131 now includes an unpublished migration-only WPF installer for one
+SQLite database using the standard `NT AUTHORITY\LocalService` account. It
+fails closed on custom service accounts, PostgreSQL, and multiple databases;
+it checks preview immutability across SQLite sidecars and attempts rollback
+after a failed service handoff. The exact-head installer build and Windows
+checks are pending. No installed Bookshelf-to-Chaptarr upgrade or rollback has
+been rehearsed, so do not use it for a production cutover. The manual service
+handoff remains a documented candidate path only.
 
 **Provider identity warning:** the published `.977` importer maps bare numeric
 IDs to Goodreads regardless of `HARDCOVER`. A native Hardcover database can
@@ -79,7 +103,7 @@ on Linux, macOS, and Windows, including PostgreSQL migration smoke,
 release-note contract, native-runner receipt reconciliation, and the Linux
 pinned-tool M4B smoke. CodeQL, security/secret scan, dependency review, and
 NuGet submission passed; disposable-fork validation was skipped by its gate.
-The current PR head is docs-only commit
+The prior PR head was docs-only commit
 `93213b677a0bbb256aaf782c389a4f1a3d9c2ee7`; exact-head Build
 [39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744)
 passed in full attempt 3 on Linux, macOS, and Windows. PostgreSQL migration,
