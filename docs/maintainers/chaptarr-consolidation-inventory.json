@@ -1,11 +1,12 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "scope": "All reachable commits since the first BookshelfNG fork commit parent; includes merged upstream work. File comparison covers net changes from that parent.",
   "limitations": [
     "Path and text equality do not prove feature parity.",
     "Missing mapped paths may have replacements under other names.",
     "Unique-basename candidate paths are heuristic review hints, not confirmed mappings or evidence of equivalence.",
     "Reviewed path mappings and approved retirements record decisions; they do not prove feature equivalence or migration safety.",
+    "Recorded feature dispositions are maintainer decisions at the pinned revisions; they do not prove runtime or migration behavior.",
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
   "sourceCommit": "70a703fe8bccb969089898971c695a388472ddb2",
@@ -19,6 +20,9 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 25,
     "approvedRetirements": 0,
+    "reviewedDispositions": 0,
+    "undispositionedPaths": 1115,
+    "dispositionStates": {},
     "fileStates": {
       "no-mapped-target-file": 376,
       "different-review-required": 557,

@@ -39,7 +39,7 @@ metadata provider configuration.
 
 ## Fork consolidation and retirement
 
-Current status: ChaptarrNG PR #131 is merged to `main`, but the latest public release is still `v0.9.977`; keep BookshelfNG in service and follow issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) for open acceptance gates.
+Current status: ChaptarrNG PR #131 is merged to `main`, but the latest public release is still `v0.9.977`; keep BookshelfNG in service and follow issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) for open acceptance gates. The pinned source-path inventory has 0 reviewed dispositions out of 1,115 changed paths.
 
 | Guide | Covers |
 | --- | --- |

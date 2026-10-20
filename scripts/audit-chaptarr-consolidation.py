@@ -12,6 +12,9 @@ import pathlib
 import subprocess
 
 
+DISPOSITIONS = {'retained', 'ported', 'equivalent', 'retired'}
+
+
 def git(repo, *args):
     return subprocess.check_output(['git', '-C', str(repo), *args])
 
@@ -99,6 +102,62 @@ def load_review_decisions(path, source, target, changed_paths, source_tree, targ
     return decisions
 
 
+def load_disposition_decisions(path, source, target, changed_paths, target_tree):
+    """Load exact-revision feature dispositions for changed source paths."""
+    if path is None:
+        return {}
+
+    data = json.loads(path.read_text())
+    if not isinstance(data, dict):
+        raise ValueError('disposition map must be a JSON object')
+    if data.get('schemaVersion') != 1:
+        raise ValueError('disposition map schemaVersion must be 1')
+    if data.get('sourceCommit') != source or data.get('targetCommit') != target:
+        raise ValueError('disposition map sourceCommit and targetCommit must match the pinned revisions')
+
+    entries = data.get('dispositions', [])
+    if not isinstance(entries, list):
+        raise ValueError('disposition map dispositions must be a JSON array')
+    decisions = {}
+    for entry in entries:
+        if not isinstance(entry, dict):
+            raise ValueError('disposition map entries must contain JSON objects')
+        source_path = entry.get('sourcePath')
+        disposition = entry.get('disposition')
+        if not isinstance(source_path, str) or source_path not in changed_paths:
+            raise ValueError(f'disposition map contains an unknown or unchanged sourcePath: {source_path!r}')
+        if source_path in decisions:
+            raise ValueError(f'disposition map contains multiple decisions for: {source_path}')
+        if not isinstance(disposition, str) or disposition not in DISPOSITIONS:
+            raise ValueError(f'disposition must be one of {sorted(DISPOSITIONS)}: {source_path}')
+        for field in ('feature', 'rationale', 'evidence'):
+            if not isinstance(entry.get(field), str) or not entry[field].strip():
+                raise ValueError(f'disposition requires {field}: {source_path}')
+
+        if disposition == 'retired':
+            for field in ('approvedBy', 'approvalReference'):
+                if not isinstance(entry.get(field), str) or not entry[field].strip():
+                    raise ValueError(f'approved retirement requires {field}: {source_path}')
+            target_paths = entry.get('targetPaths', [])
+            if target_paths != []:
+                raise ValueError(f'retired disposition must not claim targetPaths: {source_path}')
+        else:
+            if not isinstance(entry.get('reviewedBy'), str) or not entry['reviewedBy'].strip():
+                raise ValueError(f'reviewed disposition requires reviewedBy: {source_path}')
+            target_paths = entry.get('targetPaths')
+            if (not isinstance(target_paths, list) or not target_paths
+                    or any(not isinstance(target_path, str) for target_path in target_paths)):
+                raise ValueError(f'{disposition} disposition requires targetPaths: {source_path}')
+            if len(target_paths) != len(set(target_paths)):
+                raise ValueError(f'disposition targetPaths must be unique: {source_path}')
+            for target_path in target_paths:
+                if target_path not in target_tree:
+                    raise ValueError(f'disposition targetPath is missing from the pinned target tree: {source_path}: {target_path}')
+
+        decisions[source_path] = entry
+    return decisions
+
+
 def file_state(old, new, source_data=None, target_data=None):
     if old is None:
         return 'deleted-in-bookshelf'
@@ -124,6 +183,10 @@ def main():
     parser.add_argument('--output', type=pathlib.Path, required=True)
     parser.add_argument('--review-map', type=pathlib.Path,
                         help='Optional JSON file with exact-revision reviewed path decisions')
+    parser.add_argument('--disposition-map', type=pathlib.Path,
+                        help='Optional JSON file with exact-revision feature dispositions for changed paths')
+    parser.add_argument('--require-complete-dispositions', action='store_true',
+                        help='Fail unless the disposition map covers every changed source path')
     args = parser.parse_args()
     source = revision(args.bookshelf, args.source)
     target = revision(args.chaptarr, args.target)
@@ -138,8 +201,22 @@ def main():
     try:
         reviewed_decisions = load_review_decisions(
             args.review_map, source, target, changed, source_tree, target_tree)
+        disposition_decisions = load_disposition_decisions(
+            args.disposition_map, source, target, changed, target_tree)
+        for source_path in reviewed_decisions.keys() & disposition_decisions.keys():
+            review_retired = reviewed_decisions[source_path]['decision'] == 'retire'
+            disposition_retired = disposition_decisions[source_path]['disposition'] == 'retired'
+            if review_retired != disposition_retired:
+                raise ValueError(f'review and disposition maps disagree about retirement: {source_path}')
     except (OSError, json.JSONDecodeError, ValueError) as error:
-        parser.error(f'invalid review map: {error}')
+        parser.error(f'invalid review or disposition map: {error}')
+    if args.require_complete_dispositions:
+        if args.disposition_map is None:
+            parser.error('--require-complete-dispositions requires --disposition-map')
+        missing_dispositions = changed - set(disposition_decisions)
+        if missing_dispositions:
+            examples = ', '.join(sorted(missing_dispositions)[:5])
+            parser.error(f'disposition map is incomplete: {len(missing_dispositions)} changed paths have no disposition; examples: {examples}')
     upstream_history = set(git(args.bookshelf, 'rev-list', upstream).decode().splitlines())
     commits = []
     for line in git(args.bookshelf, 'log', '--reverse', '--format=%H%x09%ad%x09%s', '--date=short', base + '..' + source).decode().splitlines():
@@ -166,10 +243,17 @@ def main():
             source_data = git(args.bookshelf, 'cat-file', 'blob', old['oid'])
             target_data = git(args.chaptarr, 'cat-file', 'blob', new['oid'])
         state = file_state(old, new, source_data, target_data)
-        if reviewed is not None and reviewed['decision'] == 'retire':
+        disposition = disposition_decisions.get(path)
+        retired = (
+            (reviewed is not None and reviewed['decision'] == 'retire')
+            or (disposition is not None and disposition['disposition'] == 'retired')
+        )
+        if retired:
             state = 'approved-retirement'
             target_path = None
             new = None
+            candidate_target_path = None
+            candidate_target_blob = None
         file_entry = {'sourcePath': path, 'targetPath': target_path if new else None,
                       'state': state, 'sourceBlob': old, 'targetBlob': new}
         if reviewed is not None:
@@ -178,17 +262,25 @@ def main():
             file_entry['reviewedDecision'] = {
                 key: reviewed[key] for key in reviewed_fields if key in reviewed
             }
+        if disposition is not None:
+            file_entry['reviewedDisposition'] = {
+                key: disposition[key] for key in (
+                    'disposition', 'feature', 'reviewedBy', 'approvedBy',
+                    'approvalReference', 'targetPaths', 'rationale', 'evidence')
+                if key in disposition
+            }
         if candidate_target_path is not None:
             file_entry['candidateTargetPath'] = candidate_target_path
             file_entry['candidateTargetBlob'] = candidate_target_blob
         files.append(file_entry)
     report = {
-        'schemaVersion': 3,
+        'schemaVersion': 4,
         'scope': 'All reachable commits since the first BookshelfNG fork commit parent; includes merged upstream work. File comparison covers net changes from that parent.',
         'limitations': ['Path and text equality do not prove feature parity.',
                        'Missing mapped paths may have replacements under other names.',
                        'Unique-basename candidate paths are heuristic review hints, not confirmed mappings or evidence of equivalence.',
                        'Reviewed path mappings and approved retirements record decisions; they do not prove feature equivalence or migration safety.',
+                       'Recorded feature dispositions are maintainer decisions at the pinned revisions; they do not prove runtime or migration behavior.',
                        'No database, runtime, publisher, or upgrade validation is implied.'],
         'sourceCommit': source, 'targetCommit': target, 'forkBaseCommit': base,
         'bookshelfUpstreamCommit': upstream,
@@ -197,6 +289,9 @@ def main():
                    'uniqueBasenameCandidates': sum(f.get('candidateTargetPath') is not None for f in files),
                    'reviewedMappings': sum(f.get('reviewedDecision', {}).get('decision') == 'map' for f in files),
                    'approvedRetirements': sum(f.get('state') == 'approved-retirement' for f in files),
+                   'reviewedDispositions': len(disposition_decisions),
+                   'undispositionedPaths': len(changed) - len(disposition_decisions),
+                   'dispositionStates': dict(collections.Counter(d['disposition'] for d in disposition_decisions.values())),
                    'fileStates': dict(collections.Counter(f['state'] for f in files))},
         'commits': commits, 'files': files,
     }

@@ -166,6 +166,127 @@ class ReviewedPathDecisionTests(unittest.TestCase):
             self.load([mapping, mapping])
 
 
+class ReviewedFeatureDispositionTests(unittest.TestCase):
+    source = "a" * 40
+    target = "b" * 40
+    changed = {"src/Bookshelf/Old.cs", "src/Bookshelf/Removed.cs"}
+    target_tree = {
+        "src/Chaptarr/New.cs": {"mode": "100644", "oid": "target-blob"},
+    }
+
+    def load(self, dispositions):
+        report = {
+            "schemaVersion": 1,
+            "sourceCommit": self.source,
+            "targetCommit": self.target,
+            "dispositions": dispositions,
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "disposition-map.json"
+            path.write_text(json.dumps(report))
+            return AUDIT.load_disposition_decisions(
+                path, self.source, self.target, self.changed, self.target_tree
+            )
+
+    def test_accepts_reviewed_port_with_target_and_evidence(self):
+        decisions = self.load(
+            [
+                {
+                    "sourcePath": "src/Bookshelf/Old.cs",
+                    "disposition": "ported",
+                    "feature": "Bookshelf import workflow",
+                    "targetPaths": ["src/Chaptarr/New.cs"],
+                    "reviewedBy": "maintainer",
+                    "rationale": "The behavior was ported into the target service.",
+                    "evidence": "Compared source and target code; focused regression tests cover the contract.",
+                }
+            ]
+        )
+
+        self.assertEqual(
+            decisions["src/Bookshelf/Old.cs"]["disposition"], "ported"
+        )
+
+    def test_rejects_disposition_target_missing_from_pinned_tree(self):
+        with self.assertRaisesRegex(ValueError, "missing from the pinned target tree"):
+            self.load(
+                [
+                    {
+                        "sourcePath": "src/Bookshelf/Old.cs",
+                        "disposition": "equivalent",
+                        "feature": "Bookshelf import workflow",
+                        "targetPaths": ["src/Chaptarr/Missing.cs"],
+                        "reviewedBy": "maintainer",
+                        "rationale": "The target is equivalent.",
+                        "evidence": "Reviewed behavior and regression coverage.",
+                    }
+                ]
+            )
+
+    def test_rejects_stale_disposition_revision_pins(self):
+        report = {
+            "schemaVersion": 1,
+            "sourceCommit": "c" * 40,
+            "targetCommit": self.target,
+            "dispositions": [],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "disposition-map.json"
+            path.write_text(json.dumps(report))
+            with self.assertRaisesRegex(ValueError, "must match the pinned revisions"):
+                AUDIT.load_disposition_decisions(
+                    path, self.source, self.target, self.changed, self.target_tree
+                )
+
+    def test_retirement_requires_maintainer_approval_reference(self):
+        with self.assertRaisesRegex(ValueError, "requires approvalReference"):
+            self.load(
+                [
+                    {
+                        "sourcePath": "src/Bookshelf/Removed.cs",
+                        "disposition": "retired",
+                        "feature": "Obsolete integration",
+                        "approvedBy": "maintainer",
+                        "rationale": "No supported use remains.",
+                        "evidence": "Reviewed provider usage and migration behavior.",
+                    }
+                ]
+            )
+
+    def test_accepts_approved_retirement_with_evidence(self):
+        decisions = self.load(
+            [
+                {
+                    "sourcePath": "src/Bookshelf/Removed.cs",
+                    "disposition": "retired",
+                    "feature": "Obsolete integration",
+                    "approvedBy": "maintainer",
+                    "approvalReference": "issue #456",
+                    "rationale": "No supported use remains.",
+                    "evidence": "Reviewed provider usage and migration behavior.",
+                }
+            ]
+        )
+
+        self.assertEqual(
+            decisions["src/Bookshelf/Removed.cs"]["approvalReference"], "issue #456"
+        )
+
+    def test_rejects_duplicate_dispositions_for_a_source_path(self):
+        disposition = {
+            "sourcePath": "src/Bookshelf/Old.cs",
+            "disposition": "ported",
+            "feature": "Bookshelf import workflow",
+            "targetPaths": ["src/Chaptarr/New.cs"],
+            "reviewedBy": "maintainer",
+            "rationale": "The behavior was ported into the target service.",
+            "evidence": "Compared source and target behavior.",
+        }
+
+        with self.assertRaisesRegex(ValueError, "multiple decisions"):
+            self.load([disposition, disposition])
+
+
 class FileStateTests(unittest.TestCase):
     def test_reports_reviewed_path_mapping_as_a_comparison_not_equivalence(self):
         state = AUDIT.file_state(
@@ -203,20 +324,28 @@ class AuditCliReviewDecisionTests(unittest.TestCase):
         self.git(repo, "commit", "-qm", message)
         return self.git(repo, "rev-parse", "HEAD")
 
-    def run_audit(self, source, target, base, source_commit, target_commit, review_map, output):
+    def run_audit(
+        self, source, target, base, source_commit, target_commit, review_map,
+        output, disposition_map=None, require_complete_dispositions=False,
+    ):
+        command = [
+            "python3",
+            str(SCRIPT),
+            "--bookshelf", str(source),
+            "--chaptarr", str(target),
+            "--source", source_commit,
+            "--target", target_commit,
+            "--fork-base", base,
+            "--upstream", base,
+            "--review-map", str(review_map),
+            "--output", str(output),
+        ]
+        if disposition_map is not None:
+            command.extend(["--disposition-map", str(disposition_map)])
+        if require_complete_dispositions:
+            command.append("--require-complete-dispositions")
         subprocess.run(
-            [
-                "python3",
-                str(SCRIPT),
-                "--bookshelf", str(source),
-                "--chaptarr", str(target),
-                "--source", source_commit,
-                "--target", target_commit,
-                "--fork-base", base,
-                "--upstream", base,
-                "--review-map", str(review_map),
-                "--output", str(output),
-            ],
+            command,
             check=True,
             capture_output=True,
             text=True,
@@ -270,8 +399,10 @@ class AuditCliReviewDecisionTests(unittest.TestCase):
                 row for row in inventory["files"]
                 if row["sourcePath"] == "src/Bookshelf/Old.cs"
             )
-            self.assertEqual(inventory["schemaVersion"], 3)
+            self.assertEqual(inventory["schemaVersion"], 4)
             self.assertEqual(inventory["counts"]["reviewedMappings"], 1)
+            self.assertEqual(inventory["counts"]["reviewedDispositions"], 0)
+            self.assertEqual(inventory["counts"]["undispositionedPaths"], 1)
             self.assertEqual(entry["targetPath"], "src/Chaptarr/New.cs")
             self.assertEqual(entry["state"], "different-review-required")
             self.assertEqual(entry["reviewedDecision"]["decision"], "map")
@@ -325,6 +456,222 @@ class AuditCliReviewDecisionTests(unittest.TestCase):
             self.assertEqual(entry["state"], "approved-retirement")
             self.assertIsNone(entry["targetPath"])
             self.assertEqual(entry["reviewedDecision"]["approvalReference"], "issue #456")
+
+    def test_cli_requires_a_complete_path_disposition_map_when_requested(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "bookshelf"
+            target = root / "chaptarr"
+            self.init_repo(source)
+            self.init_repo(target)
+
+            (source / "README.md").write_text("base\n")
+            base = self.commit(source, "base")
+            (source / "src/Bookshelf").mkdir(parents=True)
+            (source / "src/Bookshelf/Old.cs").write_text("legacy implementation\n")
+            source_commit = self.commit(source, "add legacy path")
+            (target / "src/Chaptarr").mkdir(parents=True)
+            (target / "src/Chaptarr/New.cs").write_text("replacement implementation\n")
+            target_commit = self.commit(target, "add replacement path")
+
+            review_map = root / "review-map.json"
+            review_map.write_text(json.dumps({
+                "schemaVersion": 1,
+                "sourceCommit": source_commit,
+                "targetCommit": target_commit,
+                "decisions": [],
+            }))
+            disposition_map = root / "disposition-map.json"
+            disposition_map.write_text(json.dumps({
+                "schemaVersion": 1,
+                "sourceCommit": source_commit,
+                "targetCommit": target_commit,
+                "dispositions": [
+                    {
+                        "sourcePath": "src/Bookshelf/Old.cs",
+                        "disposition": "ported",
+                        "feature": "Bookshelf import workflow",
+                        "targetPaths": ["src/Chaptarr/New.cs"],
+                        "reviewedBy": "maintainer",
+                        "rationale": "The behavior was ported into the target service.",
+                        "evidence": "Compared source and target code; focused regression tests cover the contract.",
+                    }
+                ],
+            }))
+            output = root / "inventory.json"
+            inventory = self.run_audit(
+                source, target, base, source_commit, target_commit,
+                review_map, output, disposition_map,
+                require_complete_dispositions=True,
+            )
+
+            entry = next(
+                row for row in inventory["files"]
+                if row["sourcePath"] == "src/Bookshelf/Old.cs"
+            )
+            self.assertEqual(inventory["counts"]["reviewedDispositions"], 1)
+            self.assertEqual(inventory["counts"]["undispositionedPaths"], 0)
+            self.assertEqual(
+                entry["reviewedDisposition"]["disposition"], "ported"
+            )
+
+    def test_cli_rejects_incomplete_disposition_map_when_requested(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "bookshelf"
+            target = root / "chaptarr"
+            self.init_repo(source)
+            self.init_repo(target)
+
+            (source / "README.md").write_text("base\n")
+            base = self.commit(source, "base")
+            (source / "src/Bookshelf").mkdir(parents=True)
+            (source / "src/Bookshelf/Old.cs").write_text("legacy implementation\n")
+            source_commit = self.commit(source, "add legacy path")
+            (target / "README.md").write_text("target\n")
+            target_commit = self.commit(target, "target")
+
+            review_map = root / "review-map.json"
+            review_map.write_text(json.dumps({
+                "schemaVersion": 1,
+                "sourceCommit": source_commit,
+                "targetCommit": target_commit,
+                "decisions": [],
+            }))
+            disposition_map = root / "disposition-map.json"
+            disposition_map.write_text(json.dumps({
+                "schemaVersion": 1,
+                "sourceCommit": source_commit,
+                "targetCommit": target_commit,
+                "dispositions": [],
+            }))
+            output = root / "inventory.json"
+
+            with self.assertRaises(subprocess.CalledProcessError) as error:
+                self.run_audit(
+                    source, target, base, source_commit, target_commit,
+                    review_map, output, disposition_map,
+                    require_complete_dispositions=True,
+                )
+
+            self.assertIn("1 changed paths have no disposition", error.exception.stderr)
+
+    def test_cli_records_retired_disposition_as_approved_retirement(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "bookshelf"
+            target = root / "chaptarr"
+            self.init_repo(source)
+            self.init_repo(target)
+
+            (source / "README.md").write_text("base\n")
+            base = self.commit(source, "base")
+            (source / "src/Bookshelf").mkdir(parents=True)
+            (source / "src/Bookshelf/Removed.cs").write_text("retired source\n")
+            source_commit = self.commit(source, "add legacy path")
+            (target / "README.md").write_text("target\n")
+            target_commit = self.commit(target, "target")
+
+            review_map = root / "review-map.json"
+            review_map.write_text(json.dumps({
+                "schemaVersion": 1,
+                "sourceCommit": source_commit,
+                "targetCommit": target_commit,
+                "decisions": [],
+            }))
+            disposition_map = root / "disposition-map.json"
+            disposition_map.write_text(json.dumps({
+                "schemaVersion": 1,
+                "sourceCommit": source_commit,
+                "targetCommit": target_commit,
+                "dispositions": [
+                    {
+                        "sourcePath": "src/Bookshelf/Removed.cs",
+                        "disposition": "retired",
+                        "feature": "Obsolete integration",
+                        "approvedBy": "maintainer",
+                        "approvalReference": "issue #456",
+                        "rationale": "No supported use remains.",
+                        "evidence": "Reviewed provider usage and migration behavior.",
+                    }
+                ],
+            }))
+            output = root / "inventory.json"
+            inventory = self.run_audit(
+                source, target, base, source_commit, target_commit,
+                review_map, output, disposition_map,
+            )
+
+            entry = next(
+                row for row in inventory["files"]
+                if row["sourcePath"] == "src/Bookshelf/Removed.cs"
+            )
+            self.assertEqual(inventory["counts"]["approvedRetirements"], 1)
+            self.assertEqual(entry["state"], "approved-retirement")
+            self.assertIsNone(entry["targetPath"])
+            self.assertEqual(
+                entry["reviewedDisposition"]["approvalReference"], "issue #456"
+            )
+
+    def test_cli_rejects_conflicting_retirement_decisions(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "bookshelf"
+            target = root / "chaptarr"
+            self.init_repo(source)
+            self.init_repo(target)
+
+            (source / "README.md").write_text("base\n")
+            base = self.commit(source, "base")
+            (source / "src/Bookshelf").mkdir(parents=True)
+            (source / "src/Bookshelf/Old.cs").write_text("legacy implementation\n")
+            source_commit = self.commit(source, "add legacy path")
+            (target / "src/Chaptarr").mkdir(parents=True)
+            (target / "src/Chaptarr/New.cs").write_text("replacement implementation\n")
+            target_commit = self.commit(target, "add replacement path")
+
+            review_map = root / "review-map.json"
+            review_map.write_text(json.dumps({
+                "schemaVersion": 1,
+                "sourceCommit": source_commit,
+                "targetCommit": target_commit,
+                "decisions": [
+                    {
+                        "sourcePath": "src/Bookshelf/Old.cs",
+                        "decision": "map",
+                        "targetPath": "src/Chaptarr/New.cs",
+                        "reviewedBy": "maintainer",
+                        "rationale": "The target path is mapped for comparison.",
+                        "evidence": "Reviewed the path relationship.",
+                    }
+                ],
+            }))
+            disposition_map = root / "disposition-map.json"
+            disposition_map.write_text(json.dumps({
+                "schemaVersion": 1,
+                "sourceCommit": source_commit,
+                "targetCommit": target_commit,
+                "dispositions": [
+                    {
+                        "sourcePath": "src/Bookshelf/Old.cs",
+                        "disposition": "retired",
+                        "feature": "Obsolete integration",
+                        "approvedBy": "maintainer",
+                        "approvalReference": "issue #456",
+                        "rationale": "No supported use remains.",
+                        "evidence": "Reviewed provider usage and migration behavior.",
+                    }
+                ],
+            }))
+            output = root / "inventory.json"
+
+            with self.assertRaises(subprocess.CalledProcessError) as error:
+                self.run_audit(
+                    source, target, base, source_commit, target_commit,
+                    review_map, output, disposition_map,
+                )
+
+            self.assertIn("disagree about retirement", error.exception.stderr)
 
 
 if __name__ == "__main__":

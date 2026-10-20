@@ -27,8 +27,9 @@
 > absent from the pinned Bookshelf lineage), and 1,115 changed paths remain
 > (376 unmapped, 557 semantic reviews, 176 identical, four text-equivalent,
 > two deleted); 25 path mappings were rechecked and no retirements are approved.
-> Path mappings
-> do not prove feature parity. See the
+> The schema-v4 inventory records 0 reviewed source-path dispositions out of
+> 1,115, so all paths still need a retained/ported/equivalent/retired decision.
+> Path mappings do not prove feature parity. See the
 > [parity roadmap](docs/maintainers/bookshelfng-parity-roadmap.md) and
 > [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md).
 
