@@ -416,9 +416,10 @@ behavior, feature parity, or any published package-channel bridge.
   `6ae104976df445f8def9dabae6f10c3cda2c92d4`. Template-preservation check
   [39340267938](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39340267938)
   passed on earlier candidate head `8711752bf6d0ac61201fc3f87a11b9e494ddea2f`;
-  GitHub reports no checks for the current PR head. It validates XML and saved
-  settings only, not live Community Applications upgrade/rollback or
-  representative-data migration.
+  a local `python3 scripts/test-transition-template.py` check passed on the
+  current head, though GitHub reports no hosted checks for it. The test
+  validates XML and saved settings only, not live Community Applications
+  upgrade/rollback or representative-data migration.
   The candidate keeps the Bookshelf container/template identity, port `8787`,
   `/config`, `/data`, `/download`, and PUID/PGID/TZ, while changing the image to
   `ghcr.io/snapetech/chaptarrng:latest`. It has not been merged or exercised
