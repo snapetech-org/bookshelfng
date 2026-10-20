@@ -70,6 +70,126 @@
       "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d and ChaptarrNG target 29852b1334ee049e30de84b44806932a3e9364f4 both resolve LICENSE to blob 9cecc1d4669ee8af2ca727a5d8cde10cd8b2d7cc with the same mode. This establishes file-level retention for this path; integration and behavior remain separate acceptance questions."
     },
     {
+      "sourcePath": "Logo/1024.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/1024.png is a BookshelfNG logo asset at blob 0dc9d1a766e35e91fcacd8fdec98b487d2170103. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/1024.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/128.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/128.png is a BookshelfNG logo asset at blob ca126f822f9de2b9ed93a87fa7717bc7b6899211. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/128.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/16.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/16.png is a BookshelfNG logo asset at blob c90a045ddbae2b29872f78dde36a91a4c4b41b99. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/16.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/256.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/256.png is a BookshelfNG logo asset at blob a0d49df232b6b5827be19e3bd2ecff736042c564. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/256.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/32.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/32.png is a BookshelfNG logo asset at blob af662ab5602449b3033eef5e43ab517eb10bdbdf. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/32.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/400.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/400.png is a BookshelfNG logo asset at blob c714e8fa49ac6107b852d2a964b97bff0aca2ace. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/400.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/48.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/48.png is a BookshelfNG logo asset at blob a933268acb57f19293a17c68199ceb5132c603d9. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/48.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/512.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/512.png is a BookshelfNG logo asset at blob 5577a7f5a8bc984abf8fda9df73187c11d5ec928. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/512.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/64.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/64.png is a BookshelfNG logo asset at blob c217d5471c134a174ce5e3644584460647846a12. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/64.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/800.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/800.png is a BookshelfNG logo asset at blob 324327a6bcd10c573d42e1badb481c33e071040a. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/800.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/96-Outline-White.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/96-Outline-White.png is a BookshelfNG logo asset at blob 0ebf6a3c3371da6c2cdc9ac0d191708f9d8d6584. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/96-Outline-White.png); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "Logo/Readarr.svg",
+      "disposition": "retired",
+      "feature": "BookshelfNG product-brand logo asset",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/Readarr.svg is a BookshelfNG logo asset at blob 821f74d17574a6ae50441d6383c8aa29fc29f56a. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/Chaptarr.svg); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
       "sourcePath": "charts/bookshelfng/templates/_helpers.tpl",
       "disposition": "retained",
       "feature": "Retained shared file: charts/bookshelfng/templates/_helpers.tpl",
