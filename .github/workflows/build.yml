@@ -45,6 +45,9 @@ jobs:
           bash -n scripts/require-bookshelfng-release-ready.sh scripts/test-bookshelfng-release-readiness-gate.sh
           bash scripts/test-bookshelfng-release-readiness-gate.sh
 
+      - name: Check stable container image aliases
+        run: python3 scripts/check-stable-container-aliases.py
+
       - name: Require retirement acceptance before tagged publication
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
         env:
@@ -283,6 +286,7 @@ jobs:
             type=raw,value=main,enable=${{ github.ref_type == 'tag' }}
             type=raw,value=master,enable=${{ github.ref_type == 'tag' }}
             type=raw,value=latest,enable=${{ github.ref_type == 'tag' }}
+            type=raw,value=stable,enable=${{ github.ref_type == 'tag' }}
             type=raw,value=hardcover-dev,enable=${{ github.ref_type != 'tag' }}
             type=raw,value=hardcover-v${{ needs.build.outputs.build_version }},enable=${{ github.ref_type == 'tag' }}
             type=sha,suffix=-hardcover
@@ -335,6 +339,12 @@ jobs:
             IMAGE_FLAVOR=hardcover
             METADATA_URL=https://hardcover.bookinfo.pro
             HARDCOVER=true
+
+      - name: Verify stable image tags share one manifest
+        env:
+          HARDCOVER_DIGEST: ${{ steps.hardcover_image.outputs.digest }}
+          HARDCOVER_VERSION_TAG: hardcover-v${{ needs.build.outputs.build_version }}
+        run: bash scripts/verify-stable-container-aliases.sh
 
       - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
         with:

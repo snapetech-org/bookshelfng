@@ -2,4 +2,5 @@
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
+python3 "$repo_root/scripts/check-stable-container-aliases.py"
 exec bash "$repo_root/.githooks/sync-packages.sh" pre-push
