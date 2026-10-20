@@ -2,27 +2,30 @@
 
 BookshelfNG `0.4.21.71` remains its final published release. ChaptarrNG
 `v0.9.977` remains the latest public release. ChaptarrNG's migration candidate
-code snapshot is `65c0400aa43588504b3788c9ec6898dc7e6881b5`. It includes the
+code snapshot is `55f6ae1a2eac79e2af4ae9a7a2d92cd827ab5ad1`. It includes the
 Books index Both filter with format-scoped status, monitoring, and profiles,
-the combined Bookshelf Formats view, interactive series-pack search, and
-hash-based torrent adoption. Exact-head Build
-[39468166089](https://github.com/snapetech-org/chaptarrng/actions/runs/39468166089)
-is queued for Linux, macOS, Windows, and PostgreSQL migrations. Focused
-frontend tests, type-check, translation-key, ESLint, Stylelint, production
-webpack, and Semgrep checks pass locally. See the
+the combined Bookshelf Formats view, interactive series-pack search,
+hash-based torrent adoption, edition/narrator retry actions, audiobook-scoped
+SeerrNG narrator operations, and responsive UI shell/theme updates. Exact-head
+Build [39474807076](https://github.com/snapetech-org/chaptarrng/actions/runs/39474807076)
+passed Linux, Windows, and PostgreSQL migration jobs. Windows installer
+upgrade/rollback checks passed; macOS was cancelled before runner setup on both
+attempts, so there is no macOS result. CodeQL, Security Analysis, Semgrep CE,
+Trivy, and dependency submission passed. Focused lint, type-check,
+translation-key, and production webpack checks pass locally. See the
 [maintainer readiness report](maintainers/chaptarr-consolidation.md) for the
 current status.
 
 The current source includes staged migration and rollback, provider and backup
 compatibility, and a Windows installer candidate that keeps the legacy service
 registration until ChaptarrNG passes its health check. Its deferred-removal and
-rollback smoke is running with the Windows Build. These changes are not in
+rollback checks passed in the Windows Build. These changes are not in
 public `.977` and do not authorize a production cutover.
 
 Release publication and the migration bridge remain frozen; readiness
 variables are unset, and BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
 remains open. The full path audit pins target
-`65c0400aa43588504b3788c9ec6898dc7e6881b5` and still has 642 of 1,116 paths
+`cc9be068bd0b8d430a640a0b0562026ed2929c6b` and still has 615 of 1,116 paths
 unresolved. Representative operator data and real rollback,
 semantic feature parity, provider/SeerrNG workflows, representative media and
 recovery, installed update-channel handoff, and operator acceptance remain
