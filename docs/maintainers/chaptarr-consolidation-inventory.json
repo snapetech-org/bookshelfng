@@ -9,7 +9,7 @@
     "No database, runtime, publisher, or upgrade validation is implied."
   ],
   "sourceCommit": "959c3e8d97d8e3614948be47c23390b1962caabd",
-  "targetCommit": "3f54017db05fd769bea4403205bf9b35aeed6e80",
+  "targetCommit": "1a1c7320530c4c17184b35a727ef9d14ccbcd8ec",
   "forkBaseCommit": "c21c4134fdb710481ed69db05bf943b0acdbbf60",
   "bookshelfUpstreamCommit": "3ac41f7e31427684a37138e8e539b7e6c7b73869",
   "counts": {
@@ -12762,7 +12762,7 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "fd88ac1b6799673d040b4eac2eb4c43b360941d8"
+        "oid": "c8e661d8fb21a501d6ca8e33aa4d1f6fff13376f"
       }
     },
     {
@@ -14637,7 +14637,7 @@
         "reviewedBy": "Codex path review (2026-10-19)",
         "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.env",
         "rationale": "Both files describe the environment file used by the BookshelfNG package identity; link them for direct comparison without claiming the variables are equivalent.",
-        "evidence": "The source documents optional BookshelfNG runtime settings; the target documents ChaptarrNG under the legacy BookshelfNG identity. The AUR and RPM target copies are byte-identical at 3f54017d."
+        "evidence": "The source documents optional BookshelfNG runtime settings; the target documents ChaptarrNG under the legacy BookshelfNG identity. The AUR and RPM target copies are byte-identical at 1a1c7320."
       }
     },
     {
@@ -14657,7 +14657,7 @@
         "reviewedBy": "Codex path review (2026-10-19)",
         "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.service",
         "rationale": "Both files define the systemd service for the BookshelfNG package identity; link them for direct comparison without claiming behavioral equivalence.",
-        "evidence": "The source starts BookshelfNG while the target starts ChaptarrNG against retained BookshelfNG appdata. The AUR and RPM target copies are byte-identical at 3f54017d."
+        "evidence": "The source starts BookshelfNG while the target starts ChaptarrNG against retained BookshelfNG appdata. The AUR and RPM target copies are byte-identical at 1a1c7320."
       }
     },
     {
@@ -14677,7 +14677,7 @@
         "reviewedBy": "Codex path review (2026-10-19)",
         "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.sysusers",
         "rationale": "Both files define the system user for the BookshelfNG package identity; link them for direct comparison without claiming account behavior is equivalent.",
-        "evidence": "The source creates the BookshelfNG service account; the target retains that account for ChaptarrNG migration. The AUR and RPM target copies are byte-identical at 3f54017d."
+        "evidence": "The source creates the BookshelfNG service account; the target retains that account for ChaptarrNG migration. The AUR and RPM target copies are byte-identical at 1a1c7320."
       }
     },
     {
@@ -14697,7 +14697,7 @@
         "reviewedBy": "Codex path review (2026-10-19)",
         "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.tmpfiles",
         "rationale": "Both files define the appdata directory for the BookshelfNG package identity; link them for direct comparison without claiming the setup is equivalent.",
-        "evidence": "The source creates /var/lib/bookshelfng and the target preserves that path for the compatibility package. The AUR and RPM target copies are byte-identical at 3f54017d."
+        "evidence": "The source creates /var/lib/bookshelfng and the target preserves that path for the compatibility package. The AUR and RPM target copies are byte-identical at 1a1c7320."
       }
     },
     {

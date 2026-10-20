@@ -5,24 +5,29 @@
 > Releases remain frozen until the migration, feature-parity, rollback, and installation-channel acceptance gates close. BookshelfNG PR #148 merged to `main` as `c6b4642`; the fail-closed publisher gate is in place, its readiness variable remains unset, and no release has followed `.71`. ChaptarrNG release publication is separately gated and remains frozen.
 > The readiness-ledger updates on `main` are documentation only; they do not change the published `.71` release or reopen a publication gate.
 > BookshelfNG source commit `6e1a62e12` passes push CI [39205619456](https://github.com/snapetech-org/bookshelfng/actions/runs/39205619456), manual Build [39205642055](https://github.com/snapetech-org/bookshelfng/actions/runs/39205642055), release-note contract [39205619376](https://github.com/snapetech-org/bookshelfng/actions/runs/39205619376), and CodeQL [39205619644](https://github.com/snapetech-org/bookshelfng/actions/runs/39205619644). The manual run skipped image publishing, distribution, and release jobs.
-> Consolidation audit schema v3 now supports exact-revision path decisions. Its pinned map links 25 likely counterpart paths for direct review, has no unconfirmed basename hints, records zero approved retirements, and does not infer feature parity. At ChaptarrNG candidate 3f54017d, the inventory has 1,104 changed paths: 372 remain unmapped and 556 require semantic review. The 13 audit-tool tests pass locally; BookshelfNG Build [39317318315](https://github.com/snapetech-org/bookshelfng/actions/runs/39317318315) and follow-up Build [39317910281](https://github.com/snapetech-org/bookshelfng/actions/runs/39317910281) both passed; package sync and all publishing jobs were skipped. The inventory now pins ChaptarrNG candidate `3f54017d`. The earlier schema-v2 checkpoint and its hosted evidence are retained in the [consolidation report](docs/maintainers/chaptarr-consolidation.md).
-> Current ChaptarrNG retirement candidate: PR #131 is draft at code head
-> 3f54017db05fd769bea4403205bf9b35aeed6e80. Exact-head Build
-> [39369239189](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239189),
-> CodeQL [39369235014](https://github.com/snapetech-org/chaptarrng/actions/runs/39369235014),
-> Security Analysis [39369239208](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239208),
-> dependency review [39369239224](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239224),
-> and Helm validation [39369239215](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239215)
-> are queued; Trivy and Semgrep runs are pending. The previous exact-head
-> candidate 7ff38a58 passed the full Linux, macOS, Windows, and PostgreSQL
-> Build, including native-runner receipt reconciliation; all CodeQL languages,
-> security analysis, Trivy, dependency review, and NuGet checks also passed.
-> The new head includes main's fail-closed release guard and security fixes to
-> the installer smoke and Dependabot configuration; those changes still need
-> exact-head CI. No release or bridge is authorized. Representative operator
-> data, feature-parity disposition, provider fulfillment, installed rollback,
-> installer/channel handoff, and operator acceptance remain open. Keep
-> BookshelfNG in service; do not apply production migration.
+> Consolidation audit schema v3 now supports exact-revision path decisions. Its pinned map links 25 likely counterpart paths for direct review, has no unconfirmed basename hints, records zero approved retirements, and does not infer feature parity. At ChaptarrNG candidate 1a1c7320, the inventory has 1,104 changed paths: 372 remain unmapped and 556 require semantic review. The 13 audit-tool tests pass locally; BookshelfNG Build [39317318315](https://github.com/snapetech-org/bookshelfng/actions/runs/39317318315) and follow-up Build [39317910281](https://github.com/snapetech-org/bookshelfng/actions/runs/39317910281) both passed; package sync and all publishing jobs were skipped. The inventory now pins ChaptarrNG candidate `1a1c7320`. The earlier schema-v2 checkpoint and its hosted evidence are retained in the [consolidation report](docs/maintainers/chaptarr-consolidation.md).
+> ChaptarrNG PR #131 remains draft at candidate head
+> `1a1c7320530c4c17184b35a727ef9d14ccbcd8ec`. At the 2026-10-20 04:38 UTC
+> status check, exact-head Build [39370145050](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145050)
+> had its macOS and Windows jobs in progress; Linux, PostgreSQL migration, and
+> release-note contract were queued. CodeQL [39370141179](https://github.com/snapetech-org/chaptarrng/actions/runs/39370141179),
+> Security Analysis [39370145142](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145142),
+> dependency review [39370145010](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145010),
+> Helm validation [39370145008](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145008),
+> and NuGet submission [39370138436](https://github.com/snapetech-org/chaptarrng/actions/runs/39370138436)
+> were queued. Trivy [39370145017](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145017)
+> and Semgrep [39370145016](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145016)
+> were pending. An earlier exact-head candidate, `7ff38a58`, passed Linux, macOS,
+> Windows, PostgreSQL migration, native-runner receipt reconciliation, all CodeQL
+> languages, security analysis, Trivy, dependency review, and NuGet submission.
+> The intervening main-merge candidate `3f54017d` exposed a macOS validation
+> failure: its receipt showed SDK 10.0.401 while the validation task required
+> 10.0.402, so the validation engine skipped its planned tests. Candidate
+> `1a1c7320` aligns global.json and Docker SDK images with .NET 10.0.402; exact-head
+> validation is now running. Representative operator data, exhaustive feature
+> parity, provider fulfillment, installed rollback, installer/update-channel
+> handoff, and operator acceptance remain open. No release, package, image, or
+> bridge is authorized; keep BookshelfNG in service.
 >
 > Exact-head artifact repeat (2026-10-19): the Linux artifact from PR #131 Build [39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744) passed the checked-in SeerrNG Compose smoke with synthetic migrated audiobook and ebook records. Using SeerrNG rebuilt from `22f3bbc5874752b50a3b1206ca0bd3ebe0309f95`, it verified restricted-key access, administrative/unrelated command denial, and pending import create/poll/cancel. The candidate app artifact ran in a temporary image based on public `.977`; this did not validate candidate image packaging, successful acquisition, operator data, installed rollback, or channel handoff. Full details are in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md#exact-head-artifact-repeat-2026-10-19).
 > **Migration decision: keep BookshelfNG in service.** Do not apply the converter or start ChaptarrNG against BookshelfNG appdata; normal ChaptarrNG startup converts a supported source database automatically. A passing preview is not cutover approval. See the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md).

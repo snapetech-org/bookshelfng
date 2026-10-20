@@ -9,25 +9,28 @@ acceptance gates close. PR #128 merged release and distribution workflows that
 fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
-Current candidate status (2026-10-19): ChaptarrNG PR #131 is at code head
-`3f54017db05fd769bea4403205bf9b35aeed6e80`. Exact-head Build
-[39369239189](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239189),
-CodeQL [39369235014](https://github.com/snapetech-org/chaptarrng/actions/runs/39369235014),
-Security Analysis [39369239208](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239208),
-dependency review [39369239224](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239224),
-Helm validation [39369239215](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239215),
-and NuGet submission [39369235545](https://github.com/snapetech-org/chaptarrng/actions/runs/39369235545)
-are queued; Trivy and Semgrep are pending. The previous exact-head candidate
-`7ff38a58` passed Linux, macOS, Windows, PostgreSQL migration, native-runner
-receipt reconciliation, all CodeQL languages, security analysis, Trivy,
-dependency review, and NuGet submission. The new head merges main's
-fail-closed publication guard and includes installer-smoke SQL hardening and
-Dependabot cooldowns; exact-head validation is still running. PR #131 remains
-draft and unpublished. Representative operator data, semantic feature-parity
-disposition, provider fulfillment, installed rollback, installer/update-channel
+Current ChaptarrNG retirement candidate: PR #131 remains draft at code head
+`1a1c7320530c4c17184b35a727ef9d14ccbcd8ec`. At the 2026-10-20 04:38 UTC
+status check, exact-head Build [39370145050](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145050)
+had its macOS and Windows jobs in progress; Linux, PostgreSQL migration, and
+release-note contract were queued. CodeQL [39370141179](https://github.com/snapetech-org/chaptarrng/actions/runs/39370141179),
+Security Analysis [39370145142](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145142),
+dependency review [39370145010](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145010),
+Helm validation [39370145008](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145008),
+and NuGet submission [39370138436](https://github.com/snapetech-org/chaptarrng/actions/runs/39370138436)
+were queued. Trivy [39370145017](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145017)
+and Semgrep [39370145016](https://github.com/snapetech-org/chaptarrng/actions/runs/39370145016)
+were pending. An earlier exact-head candidate, `7ff38a58`, passed Linux, macOS,
+Windows, PostgreSQL migration, native-runner receipt reconciliation, all CodeQL
+languages, security analysis, Trivy, dependency review, and NuGet submission.
+The intervening main-merge candidate `3f54017d` exposed a macOS validation
+failure: its receipt showed SDK 10.0.401 while the validation task required
+10.0.402, so the validation engine skipped its planned tests. Candidate
+`1a1c7320` aligns global.json and the Docker SDK images with .NET 10.0.402;
+exact-head validation is now running. Representative operator data, exhaustive
+feature parity, provider fulfillment, installed rollback, installer/update-channel
 handoff, and operator acceptance remain open. No release, package, image, or
-bridge is authorized. Keep BookshelfNG in service; do not apply production
-migration.
+bridge is authorized; keep BookshelfNG in service.
 
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
