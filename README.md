@@ -19,7 +19,7 @@
 > remains draft pending real-data and Community Applications acceptance.
 >
 > The latest generated path inventory compares BookshelfNG source `70a703fe`
-> with ChaptarrNG `main` at `5ebbc9f2`: 670 reachable post-fork commits (661
+> with ChaptarrNG `main` at `8448e90d`: 670 reachable post-fork commits (661
 > absent from the pinned Bookshelf lineage), and 1,115 changed paths remain
 > (376 unmapped, 557 semantic reviews, 176 identical, four text-equivalent,
 > two deleted); 25 path mappings were rechecked and no retirements are approved.
