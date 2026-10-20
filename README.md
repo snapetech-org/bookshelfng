@@ -5,19 +5,22 @@
 > Releases remain frozen until the migration, feature-parity, rollback, and installation-channel acceptance gates close. BookshelfNG PR #148 merged to `main` as `c6b4642`; the fail-closed publisher gate is in place, its readiness variable remains unset, and no release has followed `.71`. ChaptarrNG release publication is separately gated and remains frozen.
 > The readiness-ledger updates on `main` are documentation only; they do not change the published `.71` release or reopen a publication gate.
 > BookshelfNG source commit `6e1a62e12` passes push CI [39205619456](https://github.com/snapetech-org/bookshelfng/actions/runs/39205619456), manual Build [39205642055](https://github.com/snapetech-org/bookshelfng/actions/runs/39205642055), release-note contract [39205619376](https://github.com/snapetech-org/bookshelfng/actions/runs/39205619376), and CodeQL [39205619644](https://github.com/snapetech-org/bookshelfng/actions/runs/39205619644). The manual run skipped image publishing, distribution, and release jobs.
-> Consolidation audit schema v3 now supports exact-revision path decisions. Its pinned map links 20 likely counterpart paths for direct review, leaves one basename hint unconfirmed, records zero approved retirements, and does not infer feature parity. The inventory has 1,104 changed paths: 378 remain unmapped and 550 require semantic review. The 13 audit-tool tests pass locally; BookshelfNG Build [39317318315](https://github.com/snapetech-org/bookshelfng/actions/runs/39317318315) and follow-up Build [39317910281](https://github.com/snapetech-org/bookshelfng/actions/runs/39317910281) both passed; package sync and all publishing jobs were skipped. The earlier schema-v2 checkpoint and its hosted evidence are retained in the [consolidation report](docs/maintainers/chaptarr-consolidation.md).
+> Consolidation audit schema v3 now supports exact-revision path decisions. Its pinned map links 25 likely counterpart paths for direct review, has no unconfirmed basename hints, records zero approved retirements, and does not infer feature parity. The inventory has 1,104 changed paths: 373 remain unmapped and 555 require semantic review. The 13 audit-tool tests pass locally; BookshelfNG Build [39317318315](https://github.com/snapetech-org/bookshelfng/actions/runs/39317318315) and follow-up Build [39317910281](https://github.com/snapetech-org/bookshelfng/actions/runs/39317910281) both passed; package sync and all publishing jobs were skipped. The inventory now pins ChaptarrNG candidate `7ff38a58`. The earlier schema-v2 checkpoint and its hosted evidence are retained in the [consolidation report](docs/maintainers/chaptarr-consolidation.md).
 > Current candidate status (2026-10-19): ChaptarrNG PR #131 is at code head
-> `a6d7908e937c870a4b2d3209f5aafbb9b640f6cd`. Exact-head Build
-> [39357519729](https://github.com/snapetech-org/chaptarrng/actions/runs/39357519729) is queued; the previous code head
-> `e4b909ff` is under hosted validation in Build
-> [39357406142](https://github.com/snapetech-org/chaptarrng/actions/runs/39357406142). On code head `969fb20b`, Build [39353846035](https://github.com/snapetech-org/chaptarrng/actions/runs/39353846035) first stopped on HTTP 403 while
-> downloading the pinned BookshelfNG `.71` archive; retrying that old code then
-> failed when raw WAL fingerprinting read `readarr.db-wal` while the SQLite
-> guard held it open. Rollback also left the service marked for deletion while
-> a PowerShell `ServiceController` handle remained open. Commit `e4b909ff` adds
-> archive retry/backoff and captures raw fingerprints outside the guard lifetime;
-> commit `a6d7908e` disposes the service handle before waiting for removal. The
-> exact Linux artifact from `969fb20b` passed the populated migration and
+> `7ff38a58530814d73da280b297eb3ed215bd2c83`. Exact-head Build
+> [39365402673](https://github.com/snapetech-org/chaptarrng/actions/runs/39365402673)
+> has started; the Windows build job is in progress and the PostgreSQL, macOS,
+> and Linux jobs remain queued. Exact-head security analysis [39365402528](https://github.com/snapetech-org/chaptarrng/actions/runs/39365402528) is queued.
+> Previous Build [39363004742](https://github.com/snapetech-org/chaptarrng/actions/runs/39363004742)
+> passed PostgreSQL migration, Linux/macOS builds, Windows tests, installer
+> build, and SQLite fingerprint smoke. Its service round-trip passed
+> migration, health checks, and explicit restore, but cleanup could not remove
+> Readarr while the smoke process was still alive; final SCM status was STOPPED.
+> Commit `7ff38a58` defers service deletion to a separate cleanup process after
+> the smoke exits. Earlier runs exposed a transient archive HTTP 403 and raw
+> WAL fingerprinting while SQLite held the file open; `e4b909ff` added
+> retry/backoff and moved raw fingerprint capture outside the guard lifetime.
+> The exact Linux artifact from `969fb20b` passed populated migration and
 > SeerrNG lifecycle smokes with synthetic records. PR #131 remains draft and
 > unpublished. No release, package, image, or bridge was published.
 > Representative operator data, exhaustive semantic disposition, provider
@@ -785,3 +788,7 @@ which records what is shared, what this fork maintains, and what would need to
 be available before SeerrNG could replace it.
 
 Copyright 2025–2026.
+
+## Security scanning
+
+Run scripts/security-scan-local.sh for local Semgrep Community Edition and applicable Trivy scans. Public GitHub Actions workflows run these scans on changes and weekly, alongside any existing CodeQL workflow. See docs/security-scanning.md for offline setup and updates. Run scripts/install-security-hooks.sh once to enable the staged Semgrep pre-commit hook.

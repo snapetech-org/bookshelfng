@@ -10,21 +10,23 @@ fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
 Current candidate status (2026-10-19): ChaptarrNG PR #131 is at code head
-`a6d7908e937c870a4b2d3209f5aafbb9b640f6cd`. Exact-head Build
-[39357519729](https://github.com/snapetech-org/chaptarrng/actions/runs/39357519729)
-is running. The previous head `969fb20b` passed Linux, macOS, PostgreSQL,
-Windows tests, installer build, and the SQLite guard smoke. Its first Windows
-service test stopped on HTTP 403 downloading the pinned BookshelfNG `.71`
-archive; a retry then failed because raw WAL fingerprinting tried to read
-`readarr.db-wal` while the SQLite guard held it open. Rollback also found the
-service marked for deletion while its PowerShell `ServiceController` handle
-remained open. The current candidate retries transient archive failures,
-keeps the `PRAGMA data_version` guard through confirmation while capturing
-raw fingerprints outside its lifetime, and disposes that service handle
-before waiting for deletion. The exact Linux artifact from `969fb20b` passed
-populated migration and SeerrNG lifecycle smokes with synthetic data. PR #131
-remains draft and unpublished; no release, package, image, or bridge was
-published.
+`7ff38a58530814d73da280b297eb3ed215bd2c83`. Exact-head Build
+[39365402673](https://github.com/snapetech-org/chaptarrng/actions/runs/39365402673)
+has started; the Windows build job is in progress and the PostgreSQL, macOS,
+and Linux jobs remain queued. Exact-head security analysis [39365402528](https://github.com/snapetech-org/chaptarrng/actions/runs/39365402528) is queued.
+Previous Build [39363004742](https://github.com/snapetech-org/chaptarrng/actions/runs/39363004742)
+passed PostgreSQL migration, Linux/macOS, Windows tests, installer build, and
+SQLite fingerprint smoke. Its service round-trip passed migration, health
+checks, and explicit restore, but final cleanup could not remove Readarr while
+the smoke process was still alive; SCM reported STOPPED. The current candidate
+records a cleanup manifest and removes test services in a separate process
+after the smoke exits. Earlier runs exposed a transient archive HTTP 403 and a
+raw WAL read while SQLite held it open. The candidate retries transient
+archive failures, keeps the `PRAGMA data_version` guard through confirmation,
+and captures raw fingerprints outside its lifetime. The exact Linux artifact
+from `969fb20b` passed populated migration and SeerrNG lifecycle smokes with
+synthetic data. PR #131 remains draft and unpublished; no release, package,
+image, or bridge was published.
 Representative operator data, semantic disposition, provider fulfillment,
 installation-channel handoff, and operator acceptance remain open. Keep
 BookshelfNG in service; do not apply production migration.
