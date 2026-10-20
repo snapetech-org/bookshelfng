@@ -18,10 +18,12 @@
 > provider workflows, and supported channel handoff. The Unraid transition PR
 > remains draft pending real-data and Community Applications acceptance.
 >
-> The latest generated path inventory compares BookshelfNG source `f49fcfb5`
-> with ChaptarrNG `main` at `5ebbc9f2`: 1,115 changed paths remain (376 unmapped,
-> 557 semantic reviews, 176 identical, four text-equivalent, two deleted); 25
-> path mappings were rechecked and no retirements are approved. Path mappings
+> The latest generated path inventory compares BookshelfNG source `70a703fe`
+> with ChaptarrNG `main` at `5ebbc9f2`: 670 reachable post-fork commits (661
+> absent from the pinned Bookshelf lineage), and 1,115 changed paths remain
+> (376 unmapped, 557 semantic reviews, 176 identical, four text-equivalent,
+> two deleted); 25 path mappings were rechecked and no retirements are approved.
+> Path mappings
 > do not prove feature parity. See the
 > [parity roadmap](docs/maintainers/bookshelfng-parity-roadmap.md) and
 > [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md).

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceCommit": "f49fcfb5832405cf065be12bc061bfcb360e8911",
+  "sourceCommit": "70a703fe8bccb969089898971c695a388472ddb2",
   "targetCommit": "5ebbc9f2b9a18d7b954a52db7e2fa69f24ab6d47",
   "decisions": [
     {
@@ -9,7 +9,7 @@
       "targetPath": "distribution/windows/installer-net/upgrade-helpers/rollback.ps1",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both scripts implement Windows rollback handling and should be compared directly; their backup contracts and service flows differ, so the mapping does not assert functional equivalence.",
-      "evidence": "The source restores a pre-upgrade Readarr backup from installer registry metadata; the target restores retained BookshelfNG state after Chaptarr migration. Link the scripts for direct review only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "The source restores a pre-upgrade Readarr backup from installer registry metadata; the target restores retained BookshelfNG state after Chaptarr migration. Link the scripts for direct review only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.env",
@@ -17,7 +17,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.env",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files describe the environment file used by the BookshelfNG package identity; link them for direct comparison without claiming the variables are equivalent.",
-      "evidence": "The source documents optional BookshelfNG runtime settings; the target documents ChaptarrNG under the legacy BookshelfNG identity. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "The source documents optional BookshelfNG runtime settings; the target documents ChaptarrNG under the legacy BookshelfNG identity. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.service",
@@ -25,7 +25,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.service",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files define the systemd service for the BookshelfNG package identity; link them for direct comparison without claiming behavioral equivalence.",
-      "evidence": "The source starts BookshelfNG while the target starts ChaptarrNG against retained BookshelfNG appdata. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "The source starts BookshelfNG while the target starts ChaptarrNG against retained BookshelfNG appdata. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.sysusers",
@@ -33,7 +33,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.sysusers",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files define the system user for the BookshelfNG package identity; link them for direct comparison without claiming account behavior is equivalent.",
-      "evidence": "The source creates the BookshelfNG service account; the target retains that account for ChaptarrNG migration. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "The source creates the BookshelfNG service account; the target retains that account for ChaptarrNG migration. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.tmpfiles",
@@ -41,7 +41,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.tmpfiles",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files define the appdata directory for the BookshelfNG package identity; link them for direct comparison without claiming the setup is equivalent.",
-      "evidence": "The source creates /var/lib/bookshelfng and the target preserves that path for the compatibility package. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "The source creates /var/lib/bookshelfng and the target preserves that path for the compatibility package. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "docs.sh",
@@ -49,7 +49,7 @@
       "targetPath": "scripts/docs.sh",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths name the documentation helper script; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths name the documentation helper script; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "docs/maintainers/dependency-security.md",
@@ -57,7 +57,7 @@
       "targetPath": "docs/dependency-security.md",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify the dependency-security guide; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify the dependency-security guide; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "docs/maintainers/setup-experience-contract.md",
@@ -65,7 +65,7 @@
       "targetPath": "docs/development/setup-experience-contract.md",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify the setup-experience contract; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify the setup-experience contract; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "packaging/aur/bookshelfng.install",
@@ -73,7 +73,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.install",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify the BookshelfNG AUR install hook; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify the BookshelfNG AUR install hook; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs",
@@ -81,7 +81,7 @@
       "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify DiagnosticsEventHandler in the renamed diagnostics module; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify DiagnosticsEventHandler in the renamed diagnostics module; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsReporter.cs",
@@ -89,7 +89,7 @@
       "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsReporter.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify DiagnosticsReporter in the renamed diagnostics module; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify DiagnosticsReporter in the renamed diagnostics module; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Api.Test/Books/BookStatisticsResourceFixture.cs",
@@ -97,7 +97,7 @@
       "targetPath": "src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify BookStatisticsResourceFixture; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify BookStatisticsResourceFixture; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Common.Test/DiskTests/DiskTransferServiceFixture.cs",
@@ -105,7 +105,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify DiskTransferServiceFixture; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify DiskTransferServiceFixture; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/Direct/DirectDownloadPlaywrightBrowserFixture.cs",
@@ -113,7 +113,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify DirectDownloadPlaywrightBrowserFixture; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify DirectDownloadPlaywrightBrowserFixture; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs",
@@ -121,7 +121,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify QBittorrentProxyV2Fixture; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify QBittorrentProxyV2Fixture; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Indexers/DirectDownload/DirectDownloadSettingsFixture.cs",
@@ -129,7 +129,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Indexers/DirectDownloadSettingsFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify DirectDownloadSettingsFixture; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify DirectDownloadSettingsFixture; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/MetadataSource/Hardcover/HardcoverMetadataProxyFixture.cs",
@@ -137,7 +137,7 @@
       "targetPath": "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify HardcoverMetadataProxyFixture; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify HardcoverMetadataProxyFixture; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/NotificationTests/BookLore/BookLoreProxyFixture.cs",
@@ -145,7 +145,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify BookLoreProxyFixture; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify BookLoreProxyFixture; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs",
@@ -153,7 +153,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 041 and the same migration name; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 041 and the same migration name; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs",
@@ -161,7 +161,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 042 and the same migration name; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 042 and the same migration name; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs",
@@ -169,7 +169,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 043 and the same migration name; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 043 and the same migration name; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs",
@@ -177,7 +177,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 044 and the same migration name; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 044 and the same migration name; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs",
@@ -185,7 +185,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 045 and the same migration name; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 045 and the same migration name; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs",
@@ -193,7 +193,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 046 and the same migration name; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 046 and the same migration name; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Host/SecurityHeadersMiddleware.cs",
@@ -201,7 +201,7 @@
       "targetPath": "src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify SecurityHeadersMiddleware; link the paths for direct comparison only. Revalidated at exact source f49fcfb5 and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify SecurityHeadersMiddleware; link the paths for direct comparison only. Revalidated at exact source 70a703fe and ChaptarrNG target 5ebbc9f2: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     }
   ]
 }
