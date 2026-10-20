@@ -290,6 +290,166 @@
       "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d and ChaptarrNG target 29852b1334ee049e30de84b44806932a3e9364f4 both resolve patches/braces/package.json to blob 17dc34403efad0f63024e6e6513da18c2c85b4c4 with the same mode. This establishes file-level retention for this path; integration and behavior remain separate acceptance questions."
     },
     {
+      "sourcePath": "release-notes/2026-09-27-unraid-user-installation-guidance.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-09-27-unraid-user-installation-guidance.md is a tracked release-note fragment at blob da5bd71002c8610d6c2cbce4874aee248585c57a. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-09-30-unraid-latest-image-tag.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-09-30-unraid-latest-image-tag.md is a tracked release-note fragment at blob 0429f22221b5682966b8b7a2cf073ad2444085df. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-09-30-yunohost-service-isolation.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-09-30-yunohost-service-isolation.md is a tracked release-note fragment at blob bad6d408ef7767abccfc4061d9dfbbd3611490ed. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-10-04-seerrng-format-availability.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-10-04-seerrng-format-availability.md is a tracked release-note fragment at blob af42273ecddc83d2aa06cb43143f28381fb96f74. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-10-06-encrypted-portable-backups.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-10-06-encrypted-portable-backups.md is a tracked release-note fragment at blob 30cdf8161214f96b0e8079afeb4135c084890969. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-10-06-format-specific-author-profiles.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-10-06-format-specific-author-profiles.md is a tracked release-note fragment at blob df6b2cb7dc51c3164938f693be40fa6dbea5852d. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-10-06-stop-yunohost-publishing.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-10-06-stop-yunohost-publishing.md is a tracked release-note fragment at blob 99192f503d99abd1e6a606e358ce65e8fcc1aba5. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-10-11-fixed-imagesharp-vulnerabilities.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-10-11-fixed-imagesharp-vulnerabilities.md is a tracked release-note fragment at blob 8d773aebd22da8398067cee8d9e953c1799e011d. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-10-12-upstream-parity-guide.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-10-12-upstream-parity-guide.md is a tracked release-note fragment at blob aa10194cfcc62d37697d90a64b05167bb0c0d089. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-10-13-bookshelf-chaptarr-transition-guidance.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-10-13-bookshelf-chaptarr-transition-guidance.md is a tracked release-note fragment at blob f3eebb775039637c009e4268e1ffb680e892ba9b. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-10-17-unraid-main-image-channel.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-10-17-unraid-main-image-channel.md is a tracked release-note fragment at blob fdd0ed29cafc3634709da3a5a371d7cd41992aa1. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-10-19-stable-container-aliases.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-10-19-stable-container-aliases.md is a tracked release-note fragment at blob 70203164a43423b05a68265ec45c8dde73d0a875. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/2026-10-19-synced-stable-container-aliases.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/2026-10-19-synced-stable-container-aliases.md is a tracked release-note fragment at blob 577c52334066ac5de410487d7df0f262a3ce39a4. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/20260925-catalog-packaging.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20260925-catalog-packaging.md is a tracked release-note fragment at blob 570ae3301b27d6db6c0b11e410b15f86089d8ad4. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/20261011-validation-engine.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20261011-validation-engine.md is a tracked release-note fragment at blob 351634b2d6e1fd298c624111cae1d5f3bc2ceb20. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/20261012-postcss-selector-parser-security.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20261012-postcss-selector-parser-security.md is a tracked release-note fragment at blob 9e1b3eec934011295cbf337c7131b31bfbfa0048. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
       "sourcePath": "release-notes/20261012-validation-environment-isolation.md",
       "disposition": "retained",
       "feature": "Retained shared file: release-notes/20261012-validation-environment-isolation.md",
@@ -310,6 +470,1309 @@
       "reviewedBy": "Codex (2026-10-20)",
       "rationale": "The file remains at the same relative path in ChaptarrNG with identical Git blob content at the pinned source and target snapshots.",
       "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d and ChaptarrNG target 29852b1334ee049e30de84b44806932a3e9364f4 both resolve release-notes/20261012-validation-playwright-cache.md to blob 2da009b6ea7fac2947d02b9e72446d27b1c7efe1 with the same mode. This establishes file-level retention for this path; integration and behavior remain separate acceptance questions."
+    },
+    {
+      "sourcePath": "release-notes/20261013-bookshelf-consolidation-status.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20261013-bookshelf-consolidation-status.md is a tracked release-note fragment at blob 83ff5c59d01f955a2c6420c8d8a06a64d11e79ff. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/20261013-bounded-validation-task-pool.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20261013-bounded-validation-task-pool.md is a tracked release-note fragment at blob 7ef6e1dbdbe13a8c1a99cc7b4f381de55ceea940. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/20261013-chaptarr-transition-status.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20261013-chaptarr-transition-status.md is a tracked release-note fragment at blob 64c060b28144a46e966ea6bfbfe8440d29d5b738. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/20261013-docker-context-credential-exclusion.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20261013-docker-context-credential-exclusion.md is a tracked release-note fragment at blob 0651538d0f8ca6bf5da4d3187d7a8b9fca76d7a9. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/20261013-pr-runner-isolation.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20261013-pr-runner-isolation.md is a tracked release-note fragment at blob 059bc3a8ffab032fbeef229c3afacf0eb61780f4. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/20261014-org-repository-links.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20261014-org-repository-links.md is a tracked release-note fragment at blob 1918567ea8bedd9d6d92e91d29b6fd5105813f00. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/20261014-trusted-main-runner-pool.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20261014-trusted-main-runner-pool.md is a tracked release-note fragment at blob 0f41acc492cc1d978204a0a186ecfea9f80e00bc. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/20261014-validation-permission-results.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/20261014-validation-permission-results.md is a tracked release-note fragment at blob 40e3208780c3470afcde82a537feb697e1df0535. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/README.md",
+      "disposition": "ported",
+      "feature": "BookshelfNG release-note process documentation",
+      "targetPaths": [
+        ".github/pull_request_template.md",
+        "release-notes/README.md",
+        "announcements/README.md"
+      ],
+      "reviewedBy": "Codex (2026-10-20)",
+      "rationale": "ChaptarrNG retains the release-note process in its own contributor template, fragment guide, and announcement instructions. The ChaptarrNG workflow uses its own release channels and webhook configuration, so the BookshelfNG-specific instructions are not copied verbatim.",
+      "evidence": "BookshelfNG c63eb84813392cdb398d9e6bf4446694952f256d contains release-notes/README.md at blob 0a6bd6ffa334c9806164a77cbe924184ae04621e. At ChaptarrNG 29852b1334ee049e30de84b44806932a3e9364f4, .github/pull_request_template.md and release-notes/README.md describe the fragment schema, append-only rule, preview, and release-note opt-out; announcements/README.md describes the ChaptarrNG release webhook. This ports the process to native ChaptarrNG documentation; it does not establish the parity of features described by historical fragments."
+    },
+    {
+      "sourcePath": "release-notes/accept-library-of-congress-record-urls.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/accept-library-of-congress-record-urls.md is a tracked release-note fragment at blob 581a4be1ec0a058b78a47f678d05b9b4dfd1b090. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/add-standalone-distributions.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/add-standalone-distributions.md is a tracked release-note fragment at blob f29d1c9ce4a1d6907fbea304200d61ee4dc26f1e. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/add-windows-setup-installer.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/add-windows-setup-installer.md is a tracked release-note fragment at blob dc1b86d1d295a3dde5a4cf2752c7b00b32105f4d. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-audiobookshelf-opf-metadata.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-audiobookshelf-opf-metadata.md is a tracked release-note fragment at blob 971672ece5d4fa6d91514518e720023950092726. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-auto-format-specific-author-paths.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-auto-format-specific-author-paths.md is a tracked release-note fragment at blob cfad4abdeff539e441734dbf03499ebe463ee3d5. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-booklore-import-uploads.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-booklore-import-uploads.md is a tracked release-note fragment at blob eec56f08c5532c0d27105b0144094b9d7d7de21d. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-build-release-announcements.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-build-release-announcements.md is a tracked release-note fragment at blob 2b4293bea38424b2fe293564718b9e4197d98473. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-bulk-media-move.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-bulk-media-move.md is a tracked release-note fragment at blob 2192c9c73ad2e582244a714a6aae617b49af2526. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-chaptered-audiobook-import.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-chaptered-audiobook-import.md is a tracked release-note fragment at blob c35e15211976b3b5f3c8479304adf06025880ab4. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-configurable-import-match-threshold.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-configurable-import-match-threshold.md is a tracked release-note fragment at blob 9aadac7715f236192a2b258483ea79df66fb65c2. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-cross-catalog-edition-fallback.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-cross-catalog-edition-fallback.md is a tracked release-note fragment at blob 584480abdda44150d5ded150ec391ffc3342ee35. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-cross-catalog-unmapped-recovery.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-cross-catalog-unmapped-recovery.md is a tracked release-note fragment at blob 5a7e6576e71161c0bbb63bf770772b7f49b95a7f. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-direct-ebook-downloads.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-direct-ebook-downloads.md is a tracked release-note fragment at blob 73c3a11d9ce8a79004042615a096b0e94d34d7fe. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-editions-and-narrations-tab.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-editions-and-narrations-tab.md is a tracked release-note fragment at blob de3a86f0b6dc4965545f7482d44cf5e59828737c. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-existing-torrent-adoption.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-existing-torrent-adoption.md is a tracked release-note fragment at blob 534d91af7d7d30f237be4328435ba424a2c6c198. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-github-sponsor-button.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-github-sponsor-button.md is a tracked release-note fragment at blob 8b5cafc43aa001aad6f357c64c7ca04c50ea6c02. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-kofi-support.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-kofi-support.md is a tracked release-note fragment at blob 85355de795634f1eeebaa537fab894c06c1ff9e5. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-metadata-provider-settings.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-metadata-provider-settings.md is a tracked release-note fragment at blob 7421fd63faeef8d434ec9af0635e72c0c31ae08e. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-move-sidecars-on-rename.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-move-sidecars-on-rename.md is a tracked release-note fragment at blob 8ba72ec768cba72d40c2d327fb5d7e10b0923a6d. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-narrator-aware-matching.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-narrator-aware-matching.md is a tracked release-note fragment at blob 992f7650dab9a7a268dbc5377aa351a4d68eddc2. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-narrator-search-and-tags.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-narrator-search-and-tags.md is a tracked release-note fragment at blob f5f673ebed3b9a87f198822b8503b8640b838b47. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-optional-metadata-catalogs.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-optional-metadata-catalogs.md is a tracked release-note fragment at blob c2d57a396001129d7778a52ac890d25df059ba64. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-paged-book-list-api.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-paged-book-list-api.md is a tracked release-note fragment at blob 4c470c1d85e8397cca52a118eba24dd41ce95537. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-per-field-metadata-source-preferences.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-per-field-metadata-source-preferences.md is a tracked release-note fragment at blob 27dbbf8585e9e497962651dd5e2ba7326e92183e. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-previewable-media-moves.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-previewable-media-moves.md is a tracked release-note fragment at blob 13a3fd28f1e96df15575d02e425e745c31c2152e. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-public-metadata-catalogs.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-public-metadata-catalogs.md is a tracked release-note fragment at blob 784b302c17dd3c3f56f2662c9165219fb16e2a0b. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-selectable-metadata-catalogs.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-selectable-metadata-catalogs.md is a tracked release-note fragment at blob 6d293207e1aa26d4bcab198c0311101073e74204. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-series-pack-search.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-series-pack-search.md is a tracked release-note fragment at blob 8207054624178ee81f5104d275ad0ca7b478d51c. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-unraid-package.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-unraid-package.md is a tracked release-note fragment at blob f68d9da5c4b8653215052739ae71bbc87f480e43. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-unraid-standalone-template.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-unraid-standalone-template.md is a tracked release-note fragment at blob 1f83f100082b6b94b88c4d549bb81e27d0f44028. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/added-weighted-edition-preferences.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/added-weighted-edition-preferences.md is a tracked release-note fragment at blob a45939ec8b2412c62fa5c000aa647144c4a5b455. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-add-item-search-mode.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-add-item-search-mode.md is a tracked release-note fragment at blob 054bb68246099f46c1a96207123a7fe111b8fa48. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-capabilities-and-compatibility-docs.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-capabilities-and-compatibility-docs.md is a tracked release-note fragment at blob dacf2b8541dd3248dd3bd4180543f97088b0ea48. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-complete-source-build-instructions.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-complete-source-build-instructions.md is a tracked release-note fragment at blob f8460c5b4b8fd89e3ede33674252ec1263833f3d. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-copr-webhook.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-copr-webhook.md is a tracked release-note fragment at blob 27eac573feb4fe93f29af4f525df15cf5b3ffe78. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-discord-curated-announcement.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-discord-curated-announcement.md is a tracked release-note fragment at blob 962bf83e0c03a1f0a0434afded2d50c3045f694b. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-docker-and-source-build-instructions.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-docker-and-source-build-instructions.md is a tracked release-note fragment at blob 3088aafa01ae59f634b60e6821a6b40911b73360. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-dotnet-10-build-target.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-dotnet-10-build-target.md is a tracked release-note fragment at blob 708d3bab3a671c088e489729bbc927150a025493. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-dotnet-10-linux-x86-freebsd.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-dotnet-10-linux-x86-freebsd.md is a tracked release-note fragment at blob 17276a0f868daaac6c55e96f8b38242709aa1998. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-dotnet-10-readme-badge.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-dotnet-10-readme-badge.md is a tracked release-note fragment at blob f58dbe060a938e2e38d508771aed2bf2ff9bdd58. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-folder-write-diagnostics.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-folder-write-diagnostics.md is a tracked release-note fragment at blob 06f0c8fcffc456a93216235fbd70dca30d66b436. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-fork-release-links.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-fork-release-links.md is a tracked release-note fragment at blob 16fe0d53717322e68cea7c5f943dc064203a58ce. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-hardcover-daily-quota-reserve.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-hardcover-daily-quota-reserve.md is a tracked release-note fragment at blob 0c2ea790444eca9c5e0780bea74110bcfc4e643a. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-hardcover-profile-default-docs.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-hardcover-profile-default-docs.md is a tracked release-note fragment at blob 77a3758da774186755fe057ce6207a398add15ff. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-hardcover-request-efficiency.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-hardcover-request-efficiency.md is a tracked release-note fragment at blob 859cb9f2d944a9be3601e8559ecc1bed75810a2f. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-ng-icon-badges.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-ng-icon-badges.md is a tracked release-note fragment at blob 8093fdc5b764739cee6f68522c4992bcc306e45d. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-optional-import-match-threshold.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-optional-import-match-threshold.md is a tracked release-note fragment at blob fa6b4a9791c3b8f44a4c131e308531cb73f3ed90. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-readme-documentation-index.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-readme-documentation-index.md is a tracked release-note fragment at blob 6991d0707e7c5a03b7e80720117aa8f23c07a7f9. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-standalone-inherited-workflow-docs.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-standalone-inherited-workflow-docs.md is a tracked release-note fragment at blob 107469372ef1c14b0f3ea6eb29a0c444a48fe962. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/changed-supported-book-file-formats-docs.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/changed-supported-book-file-formats-docs.md is a tracked release-note fragment at blob d47e0b5a7ea83fc59b9093fb223372e3e42172db. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/clarify-canonical-unraid-template.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/clarify-canonical-unraid-template.md is a tracked release-note fragment at blob 803ff87a7b54d70726ae01c7801c7623afd58016. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/clarify-single-instance-ebook-audiobook-docs.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/clarify-single-instance-ebook-audiobook-docs.md is a tracked release-note fragment at blob 7c1ffc1174ed16992a6204a3a42f4c03dd3c9edc. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/clarify-standalone-package-installation.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/clarify-standalone-package-installation.md is a tracked release-note fragment at blob 81216b26faf4d2a6dc4624118709fa7fa442e3c3. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/document-author-metadata-refresh.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/document-author-metadata-refresh.md is a tracked release-note fragment at blob 2da4c4ba00a1ed0535ee25c9a1df7e9b8370b647. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/enabled-public-book-catalog-fallbacks.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/enabled-public-book-catalog-fallbacks.md is a tracked release-note fragment at blob a85e3e82d879f51a3a872a887972a49241791cbb. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/final-bookshelfng-release-and-transfer-tool.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/final-bookshelfng-release-and-transfer-tool.md is a tracked release-note fragment at blob 3a07014acf06161c12537839c6a0ff3bab000cdf. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/first-run-account-setup.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/first-run-account-setup.md is a tracked release-note fragment at blob 62a848b98d26e938972bc64ca878e709f895ca6c. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fix-api-request-body-binding.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fix-api-request-body-binding.md is a tracked release-note fragment at blob 6e659529a5feb638bfdb4bae1f240f466115656b. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fix-author-add-with-incomplete-work-metadata.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fix-author-add-with-incomplete-work-metadata.md is a tracked release-note fragment at blob cadb59e4d27108a1247bce6d4e136c9ac6eac013. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fix-author-search-without-links.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fix-author-search-without-links.md is a tracked release-note fragment at blob f3507c37a0fd38f65664df1a6b137481e451da75. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fix-blank-ui-after-router-update.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fix-blank-ui-after-router-update.md is a tracked release-note fragment at blob 9278ff00cd395cb1f8cecbe4835a377816c5088a. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fix-book-search-without-edition-links.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fix-book-search-without-edition-links.md is a tracked release-note fragment at blob 1d9237b8dbbc542d213fbd29e7a94640a9dd51ae. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fix-sabnzbd-category-validation.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fix-sabnzbd-category-validation.md is a tracked release-note fragment at blob 802cd65bf61e8d6a4fbeb14c784abf73c2f1cb2a. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fix-sabnzbd-default-category-sorting.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fix-sabnzbd-default-category-sorting.md is a tracked release-note fragment at blob 09c84eef132f1e389efdadedbb2a106d0b2ce949. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-additional-catalog-details.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-additional-catalog-details.md is a tracked release-note fragment at blob 8cd7d839054cf2498851940bcd0b273a03ee6553. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-audiobook-import-completeness.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-audiobook-import-completeness.md is a tracked release-note fragment at blob 6cadd5f999add31ffc87eacafb9753f75bfafade. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-author-retention-on-metadata-miss.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-author-retention-on-metadata-miss.md is a tracked release-note fragment at blob 259cc6435811cb84038cf69a5660c7fcd108ce52. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-author-series-tab-render-crash.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-author-series-tab-render-crash.md is a tracked release-note fragment at blob 22c5f4cc13b24d9069fe592ff153d9e330f05a17. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-best-fuzzy-book-match.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-best-fuzzy-book-match.md is a tracked release-note fragment at blob 1d3990845e62485a0d731b3fc1320ff44b8bcc88. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-book-import-title-matching.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-book-import-title-matching.md is a tracked release-note fragment at blob 7672d16a34e80287ab1e2ab93c45a0dd0577ddf7. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-bookinfo-search-missing-author-data.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-bookinfo-search-missing-author-data.md is a tracked release-note fragment at blob 2f19a8275e6056a960cadb5c048645d6739bc109. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-booklore-redirected-uploads.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-booklore-redirected-uploads.md is a tracked release-note fragment at blob ddf40a7ce345b2bcaeca2a476542137cde56503c. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-canonical-author-duplicates.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-canonical-author-duplicates.md is a tracked release-note fragment at blob be360efa283486792f40cb01650d97dba8ae2edf. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-chocolatey-service-upgrades.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-chocolatey-service-upgrades.md is a tracked release-note fragment at blob e8859c2674112a49ffbfd6691b877e2adbd1e9c4. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-clear-legacy-vorbis-narrator.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-clear-legacy-vorbis-narrator.md is a tracked release-note fragment at blob f9e00230f7572d1eb50733b9f949067696558780. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-concurrent-book-identification.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-concurrent-book-identification.md is a tracked release-note fragment at blob 5b981c5fd3812f816ab6a67cc625c307e45c4095. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-container-executable-and-api-key-compatibility.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-container-executable-and-api-key-compatibility.md is a tracked release-note fragment at blob c1d115d87e57f02df8ee7023a965be9f52707a95. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-create-empty-author-folders.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-create-empty-author-folders.md is a tracked release-note fragment at blob e7cc0707a2c2cc22446e5c887f78271d07417ef2. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-direct-download-javascript-links.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-direct-download-javascript-links.md is a tracked release-note fragment at blob 90cae9f53048e959673a212e53291ee371336d9f. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-dotnet-10-container-runtime.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-dotnet-10-container-runtime.md is a tracked release-note fragment at blob 7694f01694d9563feaaa27f74c994a3e6e3a90c7. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-dotnet-10-runtime-compatibility.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-dotnet-10-runtime-compatibility.md is a tracked release-note fragment at blob 16636f2e53c1f979da07e36cf1f10fefe0240c7b. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-dotnet-10-ui-login-redirect.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-dotnet-10-ui-login-redirect.md is a tracked release-note fragment at blob a7983c5554d8106d119c09feb7ca3d46e9e92643. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-folder-writable-check.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-folder-writable-check.md is a tracked release-note fragment at blob e980186a91702b6c9e12a34255918fa963f40822. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-folder-write-check-path-length.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-folder-write-check-path-length.md is a tracked release-note fragment at blob 52577dd9dd0bd90782d23bc29468e6e903736702. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-hardcover-author-catalog-results.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-hardcover-author-catalog-results.md is a tracked release-note fragment at blob 5f52f8d87991bcf1893597d9ce3a77dc5fda66bd. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-http-log-forging.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-http-log-forging.md is a tracked release-note fragment at blob f57929a62ab76d23d01e6c622f4ab0b80e99e012. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-http-log-method.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-http-log-method.md is a tracked release-note fragment at blob e5eaf3894f12101424d1d6b9da28efbf991a7ac2. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-import-safety-and-reliability.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-import-safety-and-reliability.md is a tracked release-note fragment at blob 546fa84d28e01375a55b1692c098c1d4e7b7b938. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-independent-author-image-source.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-independent-author-image-source.md is a tracked release-note fragment at blob 1c4b35866ac8a463ce8d800815aecc0f6cb82c60. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-metadata-environment-credential-layout.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-metadata-environment-credential-layout.md is a tracked release-note fragment at blob 4c90e9160db071e7e263838f77822454beae147b. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-mp4-chapter-metadata.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-mp4-chapter-metadata.md is a tracked release-note fragment at blob dd4a0c360854c2bd209d190d9b9adb053a514804. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-multiple-book-formats.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-multiple-book-formats.md is a tracked release-note fragment at blob c519ab70b46b63ca57c5fca01d944f7eddacd715. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-multiple-vorbis-narrators.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-multiple-vorbis-narrators.md is a tracked release-note fragment at blob ddabb6fa175abc71df8e9f4c831204141e7ab56c. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-preferred-series-selection.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-preferred-series-selection.md is a tracked release-note fragment at blob 378a0bf1b4b84218cecf0a4939b81fb912545ca1. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-queue-ignore-unmatched-downloads.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-queue-ignore-unmatched-downloads.md is a tracked release-note fragment at blob 23497a1ec4549c009dfe1efac46700fcef625eb4. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-react-dnd-v16-build.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-react-dnd-v16-build.md is a tracked release-note fragment at blob 645ad0c38c18ec2fc5f9720ab32d4c0f62b1b73a. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-release-publisher-preflight.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-release-publisher-preflight.md is a tracked release-note fragment at blob d6604dcf2d7eb5eb975b018b7b6dd542b2988fd6. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-sidecars-shared-author-folder.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-sidecars-shared-author-folder.md is a tracked release-note fragment at blob 618ff3097bb0eb49a7e61e0647e2d5ca948c2702. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-source-build-ui-install.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-source-build-ui-install.md is a tracked release-note fragment at blob 884a511512340f0666046c1e68ebe5cdf874934d. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-supplemental-author-profile-lookup.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-supplemental-author-profile-lookup.md is a tracked release-note fragment at blob a6d32e74693c093491f2660ab1acb3de78d8c012. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-swagger-openapi-security.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-swagger-openapi-security.md is a tracked release-note fragment at blob 13b3625c93b3c10e961191841502349b16fd41c5. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-unknown-audiobook-part-order.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-unknown-audiobook-part-order.md is a tracked release-note fragment at blob 8d27df01f6515144859d9ab92b7f0420ff95be39. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-unraid-xml-scan-warnings.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-unraid-xml-scan-warnings.md is a tracked release-note fragment at blob 5434ed35dd513c347bc639cb4998012d952075b1. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-vorbis-narrator-performer-collision.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-vorbis-narrator-performer-collision.md is a tracked release-note fragment at blob 0b77bf6608f7787f796d8bc3fb918526eedd48e9. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-vorbis-narrator-tag-compatibility.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-vorbis-narrator-tag-compatibility.md is a tracked release-note fragment at blob c7dbe658afb3cd8f6caef27f39c4ab82cec41a21. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-windows-standalone-launcher.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-windows-standalone-launcher.md is a tracked release-note fragment at blob 1b0aea04970ea8d460b32f82c2867c970fb2ed86. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/fixed-yunohost-root-url.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/fixed-yunohost-root-url.md is a tracked release-note fragment at blob c610f0fbd9f4a501a755531c91c81ea81d8d221c. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/improved-media-move-guidance.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/improved-media-move-guidance.md is a tracked release-note fragment at blob 6472343445b9437a6d86c350412269b2834fbb0c. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/improved-ui-and-api-diagnostics.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/improved-ui-and-api-diagnostics.md is a tracked release-note fragment at blob 2936cc9c06957b02e8e87408f541868570a14ec6. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/jellyfin-books-folder-layout.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/jellyfin-books-folder-layout.md is a tracked release-note fragment at blob 9577a7b4138ac0471e0be3c35471158589a47d5c. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/metadata-sidecars-follow-format-paths.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/metadata-sidecars-follow-format-paths.md is a tracked release-note fragment at blob be883f7c4735cce4a6025f1393fb3651c5b3e9e6. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/report-package-channel-status.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/report-package-channel-status.md is a tracked release-note fragment at blob be86a0cd4fa6f41fef3bc1897748c653953ef953. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/require-explicit-bookshelf-provider-mode.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/require-explicit-bookshelf-provider-mode.md is a tracked release-note fragment at blob 7744506ae9810504ab20b296aee7fc1a3fedf15b. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/security-api-auth-and-proxy-defaults.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/security-api-auth-and-proxy-defaults.md is a tracked release-note fragment at blob b6c2de1b2c59f9c5cd27ebca16cfffa22d62b447. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/security-booklore-login-redirects.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/security-booklore-login-redirects.md is a tracked release-note fragment at blob 6594baf4abbd4cd0b6ed8755938a326abcf7179f. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/security-cross-origin-redirects.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/security-cross-origin-redirects.md is a tracked release-note fragment at blob d32db8d6a9ab018cb779d17652315f1638516a39. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/security-dependency-audit.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/security-dependency-audit.md is a tracked release-note fragment at blob 029e12dc47eef997281ddc2635cd2f05617139b8. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/security-patch-frontend-build-dependencies.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/security-patch-frontend-build-dependencies.md is a tracked release-note fragment at blob aecba58d4806a0a476785187dab74ea3cd4b3266. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/security-prevent-forged-download-and-media-move-logs.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/security-prevent-forged-download-and-media-move-logs.md is a tracked release-note fragment at blob 2ba54c4a958e80e1524e1f05e2522ecf3f86b0c5. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/seerrng-edition-catalog.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/seerrng-edition-catalog.md is a tracked release-note fragment at blob 5725d6578ed410fb4ce5fa615bcd813b78888058. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
+    },
+    {
+      "sourcePath": "release-notes/yunohost-package.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG historical release-note fragment",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
+      "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, release-notes/yunohost-package.md is a tracked release-note fragment at blob b34136e06ee5c31637d688bf5ba3747aeeeab9fb. ChaptarrNG keeps its own release-note and changelog history at pinned target 29852b1334ee049e30de84b44806932a3e9364f4. The source repository and its Git history preserve this record; this decision covers only the historical note path and does not retire the described runtime behavior."
     },
     {
       "sourcePath": "scripts/install-security-hooks.sh",
