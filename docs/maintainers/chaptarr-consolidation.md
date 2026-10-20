@@ -29,10 +29,15 @@ green status.
 The new source code is on `main`, but it is not published or approved for
 operator cutover. Keep BookshelfNG running and do not apply the ChaptarrNG
 converter to operator data. BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
-remains open. Its local SQLite artifact is empty, so representative populated
-databases and media are still needed for acceptance. Unraid PR #5 remains a
-draft pending representative-data rollback and Community Applications UI
-acceptance.
+remains open. The repository's checked-in SQLite fixture remains empty. A
+separate, task-scoped copy-only rehearsal using populated operator SQLite data
+in native Hardcover mode passed preview, apply, restore preview, and rollback;
+the source copy remained unchanged, rollback restored the retained backup
+byte-for-byte, and integrity and foreign-key checks passed. This is one
+database round trip, not representative acceptance; ambiguous media, older
+schemas, PostgreSQL operator data, and representative media behavior remain
+open. Unraid PR #5 remains a draft pending representative-data rollback and
+Community Applications UI acceptance.
 
 The inventory is repinned to BookshelfNG source `70a703fe8bccb969089898971c695a388472ddb2`
 and ChaptarrNG target `8448e90d8bc4e69472fc853265175d9a11c9720d`: 670 reachable
