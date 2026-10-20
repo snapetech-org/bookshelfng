@@ -526,11 +526,23 @@ handling, reviewed mappings, stale pins, duplicate decisions, approved
 retirements, complete and incomplete disposition maps, invalid target paths,
 and missing retirement approvals through
 `scripts/test-audit-chaptarr-consolidation.py`. The local test suite passes
-23/23 tests. Hosted Build [39317318315](https://github.com/snapetech-org/bookshelfng/actions/runs/39317318315)
-on commit `14032c9466b1d35f06a46d2a58239588723f63f0` passed the audit tests;
-follow-up main Build [39317910281](https://github.com/snapetech-org/bookshelfng/actions/runs/39317910281)
-on commit `f9c3f404249dd6e170abdd94e2e1bc54ec61d764` also passed. Package
-sync and all publishing jobs were skipped. An earlier tooling checkpoint, main commit
+23/23 tests. Current BookshelfNG `main` commit
+`9fcc0aea927c3f052d69d8051bcb5e436c717ae4` passed exact Build
+[39386658595](https://github.com/snapetech-org/bookshelfng/actions/runs/39386658595),
+Semgrep, Trivy, release-note, dependency-submission, and package-sync checks.
+The mirrored Unraid `main` commit `23bebe2acdb932551ee0562a97d5c217329306f0`
+passed Build [39386647719](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39386647719),
+Semgrep, Trivy, release-note, and package-sync checks. Unraid transition PR
+[#5](https://github.com/snapetech-org/bookshelfng-unraid/pull/5) at head
+`e615e37e7768f1cce84bb1af57da229bff1e038d` passed its exact-head build,
+template, dependency, package-sync, release-note, Trivy, and Semgrep checks;
+image and standalone publication jobs were skipped. The candidate remains draft
+pending populated-data and Community Applications upgrade/rollback acceptance.
+Earlier tooling receipts include hosted Build [39317318315](https://github.com/snapetech-org/bookshelfng/actions/runs/39317318315)
+on commit `14032c9466b1d35f06a46d2a58239588723f63f0` and follow-up main Build
+[39317910281](https://github.com/snapetech-org/bookshelfng/actions/runs/39317910281)
+on commit `f9c3f404249dd6e170abdd94e2e1bc54ec61d764`, both of which passed the
+audit tests. An earlier tooling checkpoint, main commit
 `7a5822d93722824e38ea7a615f67abe1218d5eb6`, passed Build [39300427550](https://github.com/snapetech-org/bookshelfng/actions/runs/39300427550), CodeQL [39300427634](https://github.com/snapetech-org/bookshelfng/actions/runs/39300427634), and NuGet submission [39300429597](https://github.com/snapetech-org/bookshelfng/actions/runs/39300429597).
 
 ## Hard compatibility boundaries

@@ -16,6 +16,16 @@
 > across Linux, macOS, Windows, PostgreSQL migration, and native-runner receipt
 > validation. This does not close the retirement acceptance gates.
 >
+> BookshelfNG audit-tool commit `9fcc0aea` passed exact-main Build
+> [39386658595](https://github.com/snapetech-org/bookshelfng/actions/runs/39386658595);
+> its Unraid mirror `23bebe2a` passed Build
+> [39386647719](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39386647719).
+> The Unraid transition candidate at `e615e37e` passed its exact-head build,
+> template, dependency, package-sync, release-note, Trivy, and Semgrep checks,
+> but remains draft for real-data and Community Applications acceptance.
+> Publication jobs were skipped. The v4 path inventory still has 0/1,115
+> dispositions, so the audit tooling does not close parity.
+>
 > The merge did not publish a release or authorize production cutover. Keep
 > BookshelfNG in service. Issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
 > remains open for representative operator data, rollback, feature disposition,
