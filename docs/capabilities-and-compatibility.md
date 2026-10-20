@@ -335,8 +335,9 @@ ChaptarrNG PR #129 merged to `main` as `949ae3dd` with opt-in merge
 compatibility. Its clean head passed the hosted Linux, macOS, and Windows
 suites, PostgreSQL migration validation, CodeQL, dependency/security, and
 release-note checks. A synthetic two-track smoke in the `.977` image verified
-the external converter and chapter sidecar. ChaptarrNG draft PR #131 at commit
-`bdd7518f` adds a six-case tool-enabled synthetic importer smoke that passed
+the external converter and chapter sidecar. At the 2026-10-19 checkpoint,
+then-draft ChaptarrNG PR #131 at commit `bdd7518f` added a six-case
+tool-enabled synthetic importer smoke that passed
 locally in an isolated Linux container with `m4b-tool` 0.5.2, `mp4v2` 2.1.1,
 and FFmpeg/FFprobe 6.1.1. Successful cases check tag order, chapter titles and
 offsets, output metadata, registration, and Move/Copy source handling. Failure

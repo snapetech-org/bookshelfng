@@ -18,7 +18,7 @@ Keep the existing helper and migration workflow as the entry point. It should
 make the source version, supported migration path, backup location, preview
 result, and rollback option clear before applying changes. Preserve the
 current fail-closed behavior for unsupported schemas, ambiguous source
-databases, and unpublished candidate builds.
+databases, and unreleased source builds.
 
 Use the migration preview to show what is recognized and what needs an
 operator decision. Do not guess formats for ambiguous books, merge independent
@@ -32,7 +32,7 @@ source/converted backups.
 - Keep current BookshelfNG settings and migration behavior as the source of
   truth; do not add a parallel onboarding path.
 - State which behavior belongs to the final `.71` release and which is only
-  present in an unpublished candidate.
+  present in merged but unreleased source.
 - Ask for confirmation only when an operation changes user data or starts a
   migration; make preview and inspection read-only.
 - Explain unsupported paths before a user stops the old service or changes

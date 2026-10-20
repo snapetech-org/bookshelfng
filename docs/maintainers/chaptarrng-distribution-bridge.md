@@ -1,20 +1,24 @@
 # BookshelfNG to ChaptarrNG distribution bridge
 
-## Current status — 2026-10-18
+## Current status — 2026-10-20
 
-BookshelfNG `0.4.21.71` is the published final source release and includes
-an appdata handoff helper. Issue #114 is closed. ChaptarrNG `v0.9.977` is the
-latest public release with migration tools, the bundled BookshelfNG SQLite
-chain, and an unmonitored dual-catalog fallback for records whose formats
-cannot be inferred. Its pre-upgrade guard rejects versions before migration
-14 because they still use `Blacklist`. PR #126 merged a version-aware fix and
-migration-1 rollback fixture into ChaptarrNG `main`; hosted Linux, macOS,
-Windows, and PostgreSQL migration checks passed. The source fix is not in
-`.977`, and ChaptarrNG releases are frozen until all retirement gates close.
-The bridge described below remains disabled; no BookshelfNG package identity
-or image alias has been redirected.
+BookshelfNG `0.4.21.71` remains the final published release; ChaptarrNG
+`v0.9.977` remains the latest public release. ChaptarrNG PR [#131](https://github.com/snapetech-org/chaptarrng/pull/131)
+merged to `main` as `d2bcba7953a14d2d726f47005a660314cc5e4c26`. Exact-head
+Build [39374140961](https://github.com/snapetech-org/chaptarrng/actions/runs/39374140961)
+passed Linux, macOS, Windows, PostgreSQL migration, release-note, and runner
+receipt checks, including the synthetic Windows Bookshelf service upgrade and
+rollback round trip. CodeQL, dependency review, Semgrep CE, Trivy, NuGet, and
+Helm resource-identity validation passed. The separate GHAS Semgrep OSS check
+remains failed with reviewed SQL-format and fixed-test-path findings; see PR
+#131 for the manual review and focused local scan results.
 
-The ChaptarrNG retirement candidate remains draft [PR #131](https://github.com/snapetech-org/chaptarrng/pull/131). It adds older SQLite support, one migration-158 PostgreSQL schema, native Hardcover identity migration, a separately configured BookOrbit Book Dock destination, SeerrNG edition-catalog compatibility, and previewable media moves. Code head `2c0401fc` passed exact-head run [39196795646](https://github.com/snapetech-org/chaptarrng/actions/runs/39196795646), including Linux, macOS, Windows, PostgreSQL fixtures, release-note, security, dependency, NuGet, and runner-receipt checks. Docs-only checkpoint `898b72fd` passed hosted run [39198708193](https://github.com/snapetech-org/chaptarrng/actions/runs/39198708193). Docs-only checkpoint `ddec3e81` also passed [run 39199730309](https://github.com/snapetech-org/chaptarrng/actions/runs/39199730309). Earlier docs-only head `353aeba1` passed exact-head validation in [run 39201211634](https://github.com/snapetech-org/chaptarrng/actions/runs/39201211634); CodeQL, dependency/security, dependency-review, and NuGet checks passed too. Disposable-fork validation was skipped by its gate. Retirement candidate code snapshot `8b4c6e23` integrates current ChaptarrNG `main`, including the Editions and Narrations tab and series narrator comparison, and carries the migration, rollback, provider-identity, and media-move work. Local translation, TypeScript, targeted ESLint/Stylelint, and release-note preview pass. Its release-note contract, dependency review, security scan, and NuGet checks pass. CodeQL run [39205449712](https://github.com/snapetech-org/chaptarrng/actions/runs/39205449712) passes; exact-head cross-platform Build [39205452341](https://github.com/snapetech-org/chaptarrng/actions/runs/39205452341) passed Linux, macOS, Windows, PostgreSQL migration, release-note, and native-runner receipt checks. Operator-data and channel acceptance remain open. A populated migration-158 SQLite copy passed an isolated preview/apply/restore/rollback rehearsal, but it does not establish operator-data, full feature-parity, installed rollback, or channel acceptance. The candidate remains unsupported for cutover and the bridge remains disabled. BookshelfNG’s publisher freeze gate merged to `main` as `c6b4642`; its readiness variable is unset.
+The source merge does not redirect or publish any BookshelfNG identity. Keep
+both publication gates closed, keep the migration bridge disabled, and keep
+BookshelfNG in service until issue #144's representative-data, rollback,
+feature-parity, provider, and update-channel acceptance gates close. Unraid
+transition PR #5 remains draft until real-data rollback and Community
+Applications UI acceptance.
 
 ChaptarrNG AUR `0.9.977-1` is published. A local BookshelfNG-identity AUR
 candidate passed a network-disabled pacman upgrade from the published
@@ -38,7 +42,7 @@ smoke passed on an empty migration-158 database; the old image started again
 on port 8787. The Unraid Community Apps template update remains untested. Use
 this channel matrix as a gate inventory, not a report of completed redirects.
 
-The bridge workflow is a candidate for the BookshelfNG repository. Publishing
+The bridge workflow is present in the BookshelfNG repository, but publishing
 requires both `BOOKSHELFNG_RELEASE_READY=true` and
 `CHAPTARRNG_MIGRATION_BRIDGE_ENABLED=true`; both variables are unset. The first
 gate also blocks BookshelfNG tag-triggered images/releases and manual package

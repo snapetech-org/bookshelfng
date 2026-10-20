@@ -38,8 +38,8 @@ macOS, and Windows suites, PostgreSQL migration validation, CodeQL,
 dependency/security, and release-note checks. A synthetic two-track smoke in
 the `.977` image produced AAC at 44.1 kHz stereo and preserved the supplied
 chapter titles and offsets; it checks the external tool and sidecar format.
-ChaptarrNG draft PR #131 at commit `bdd7518f` adds a six-case tool-enabled
-synthetic importer smoke. It passed locally in an isolated Linux container
+At the 2026-10-19 checkpoint, then-draft ChaptarrNG PR #131 at commit
+`bdd7518f` added a six-case tool-enabled synthetic importer smoke. It passed locally in an isolated Linux container
 with `m4b-tool` 0.5.2, `mp4v2` 2.1.1, and FFmpeg/FFprobe 6.1.1. Successful
 cases check track ordering, chapters, metadata, registration, and Move/Copy
 source handling. Failure cases

@@ -39,6 +39,8 @@ metadata provider configuration.
 
 ## Fork consolidation and retirement
 
+Current status: ChaptarrNG PR #131 is merged to `main`, but the latest public release is still `v0.9.977`; keep BookshelfNG in service and follow issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) for open acceptance gates.
+
 | Guide | Covers |
 | --- | --- |
 | [Setup experience contract](maintainers/setup-experience-contract.md) | Keep setup work focused on the existing, fail-closed migration to ChaptarrNG during retirement |
