@@ -1,18 +1,16 @@
 # Move a BookshelfNG installation to ChaptarrNG
 
 BookshelfNG `0.4.21.71` remains its final published release. ChaptarrNG
-`v0.9.977` remains the latest public release. ChaptarrNG's migration candidate
-code snapshot is `55f6ae1a2eac79e2af4ae9a7a2d92cd827ab5ad1`. It includes the
-Books index Both filter with format-scoped status, monitoring, and profiles,
-the combined Bookshelf Formats view, interactive series-pack search,
-hash-based torrent adoption, edition/narrator retry actions, audiobook-scoped
-SeerrNG narrator operations, and responsive UI shell/theme updates. Exact-head
-Build [39474807076](https://github.com/snapetech-org/chaptarrng/actions/runs/39474807076)
-passed Linux, Windows, and PostgreSQL migration jobs. Windows installer
-upgrade/rollback checks passed; macOS was cancelled before runner setup on both
-attempts, so there is no macOS result. CodeQL, Security Analysis, Semgrep CE,
-Trivy, and dependency submission passed. Focused lint, type-check,
-translation-key, and production webpack checks pass locally. See the
+`v0.9.977` remains the latest public release. Current ChaptarrNG code is at
+`cfaaa418199662fad7d209aa5f4e62bceb723148`. It includes row-format author editing, root-folder profile resets,
+stale-request protection and retry controls in book details, visible bulk
+monitoring errors with selection preserved for retry, duplicate-safe local
+book adds, manual edition preservation, and bare numeric Hardcover/Goodreads
+lookup. Exact-head Build
+[39517289908](https://github.com/snapetech-org/chaptarrng/actions/runs/39517289908) has passed the Ubuntu workflow regression suite
+and frontend type-check; platform, installer, and .NET tests are running.
+CodeQL, Security Analysis, Semgrep CE, Trivy, and NuGet submission passed.
+See the
 [maintainer readiness report](maintainers/chaptarr-consolidation.md) for the
 current status.
 
@@ -24,9 +22,13 @@ public `.977` and do not authorize a production cutover.
 
 Release publication and the migration bridge remain frozen; readiness
 variables are unset, and BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
-remains open. The full path audit pins target
-`a36df289b0c958604d466fed317f476c01fca11f` and still has 593 of 1,116 paths
-unresolved. Representative operator data and real rollback,
+remains open. The full path audit pins BookshelfNG source
+`2811718076d84777a1b1132e4e5d2abd21231229` to ChaptarrNG target
+`cfaaa418199662fad7d209aa5f4e62bceb723148`. It covers 732 post-fork commits,
+723 absent from pinned upstream history, and 1,119 changed paths; 81 paths have
+review mappings and 603 have feature dispositions. Another 516 remain
+undispositioned. The canonical ledger gives the current state breakdown.
+Representative operator data and real rollback,
 semantic feature parity, provider/SeerrNG workflows, representative media and
 recovery, installed update-channel handoff, and operator acceptance remain
 open. Keep BookshelfNG in service and do not start ChaptarrNG against
@@ -651,3 +653,4 @@ is retained, and the migration report labels the mode translation as a lossy
 approximation. These modes do not reproduce the legacy fuzzy-search algorithm,
 so validate matching behavior on converted operator data before relying on
 automatic matches. The source change is not in public `.977`.
+[maintainer readiness report](maintainers/chaptarr-consolidation.md) for the current status.

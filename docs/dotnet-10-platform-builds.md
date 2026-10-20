@@ -1,5 +1,12 @@
 # .NET 10 builds for Linux x86 and FreeBSD
 
+> **BookshelfNG source-build notes.** The custom Linux x86 and FreeBSD runtime
+> packs described here are specific to BookshelfNG's source build. ChaptarrNG
+> does not include those packs or advertise these commands as supported
+> ChaptarrNG build targets. Use the
+> [ChaptarrNG README](https://github.com/snapetech-org/chaptarrng#readme) for
+> the maintained destination's current platform and build information.
+
 BookshelfNG targets .NET 10 on the same platforms it packages: Windows x64 and
 x86, macOS x64, Linux x64 and x86, Linux musl x64 and ARM64, and FreeBSD x64.
 The standard .NET SDK supplies the packs for the mainstream targets. Linux x86

@@ -1,7 +1,16 @@
 # Security policy
 
-Use a supported BookshelfNG release and keep the host, container image,
-reverse proxy, and operating system updated.
+BookshelfNG `0.4.21.71` is the final public release. New BookshelfNG releases
+are frozen while the migration and retirement gates in
+[issue #144](https://github.com/snapetech-org/bookshelfng/issues/144) remain
+open, so this version is not receiving routine security updates. Keep the
+existing service running until the migration path is accepted; do not point
+ChaptarrNG at its appdata or switch an installation based on an unpublished
+candidate. See the current
+[retirement status](docs/maintainers/chaptarr-consolidation.md) before any
+cutover. Vulnerabilities affecting the maintained destination should also be
+reported through the
+[ChaptarrNG security policy](https://github.com/snapetech-org/chaptarrng/blob/main/SECURITY.md).
 
 Report suspected vulnerabilities through GitHub's private vulnerability
 reporting for this repository. If that feature is unavailable, contact a

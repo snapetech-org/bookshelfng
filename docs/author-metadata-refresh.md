@@ -1,4 +1,11 @@
-# Author metadata storage an| Author-ID not-found log | The provider did not return a usable author record. BookshelfNG keeps the existing author and leaves its metadata freshness unchanged; check the following “Keeping author” warning. |
+# Author metadata storage and refresh
+
+> This page documents BookshelfNG's policy. Current ChaptarrNG `main` keeps
+> the freshness gate for book-added metadata refreshes and also requests an
+> author-scoped folder rescan so files already on disk can be found. See the
+> [ChaptarrNG author refresh guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/AUTHOR_METADATA_REFRESH.md)
+> for the destination behavior and its release status.
+
 BookshelfNG keeps the current author catalog data in its application database.
 The database is the durable cache: the app does not need a separate permanent
 in-memory cache to remember an author it already knows. Provider responses may
@@ -151,7 +158,7 @@ refresh:
 | `Couldn't refresh info for <author>` | The command caught a provider or refresh exception. Include the preceding provider error and HTTP status when reporting it. |
 | `Hardcover ... pausing all requests until ... UTC` | Hardcover supplied a rate-limit reset and the process entered cooldown. |
 | `Hardcover rate limit pause is active ... no request was sent` | A call reached the client during that cooldown and was rejected locally without another HTTP request. |
-| `Could not find author with id <id>` | The provider lookup returned the explicit not-found path; inspect the following refresh log for whether the local author was retained or removed. |
+| `Could not find author with id <id>` | The provider lookup returned the explicit not-found path. BookshelfNG keeps the existing local author and does not refresh its metadata freshness; check the following warning for details. |
 
 The refresh policy writes trace-level messages for the missing/30-day rule,
 12-hour guard, continuing-author rule, and recent-release rule. If the ordinary

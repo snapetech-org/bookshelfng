@@ -47,6 +47,18 @@ def unique_basename_candidate(path, target_paths_by_basename):
     return matches[0] if len(matches) == 1 else None
 
 
+def validate_target_evidence(evidence, target, target_paths, target_tree, context):
+    """Require reviewed evidence to identify the exact pinned target objects."""
+    if target not in evidence:
+        raise ValueError(f'{context} evidence must cite the pinned target commit')
+    for target_path in target_paths:
+        target_blob = target_tree[target_path]['oid']
+        if target_blob not in evidence:
+            raise ValueError(
+                f'{context} evidence must cite the pinned target blob for {target_path}'
+            )
+
+
 def normalized(data):
     # Only establish textual rename equivalence; never infer behavior from it.
     return data.replace(b'Readarr', b'Chaptarr').replace(b'\r\n', b'\n')
@@ -237,11 +249,17 @@ def load_review_decisions(path, source, target, changed_paths, source_tree, targ
                 raise ValueError(f'reviewed mapping requires reviewedBy: {source_path}')
             if not isinstance(target_path, str) or target_path not in target_tree:
                 raise ValueError(f'reviewed mapping targetPath is missing from the pinned target tree: {source_path}')
+            validate_target_evidence(
+                decision['evidence'], target, [target_path], target_tree,
+                f'review map decision for {source_path}',
+            )
         elif kind == 'retire':
             if not isinstance(decision.get('approvedBy'), str) or not decision['approvedBy'].strip():
                 raise ValueError(f'approved retirement requires approvedBy: {source_path}')
             if not isinstance(decision.get('approvalReference'), str) or not decision['approvalReference'].strip():
                 raise ValueError(f'approved retirement requires approvalReference: {source_path}')
+            if target not in decision['evidence']:
+                raise ValueError(f'retirement evidence must cite the pinned target commit: {source_path}')
         else:
             raise ValueError(f'review map decision must be "map" or "retire": {source_path}')
 
@@ -288,6 +306,8 @@ def load_disposition_decisions(path, source, target, changed_paths, target_tree)
             target_paths = entry.get('targetPaths', [])
             if target_paths != []:
                 raise ValueError(f'retired disposition must not claim targetPaths: {source_path}')
+            if target not in entry['evidence']:
+                raise ValueError(f'retirement evidence must cite the pinned target commit: {source_path}')
         else:
             if not isinstance(entry.get('reviewedBy'), str) or not entry['reviewedBy'].strip():
                 raise ValueError(f'reviewed disposition requires reviewedBy: {source_path}')
@@ -300,6 +320,10 @@ def load_disposition_decisions(path, source, target, changed_paths, target_tree)
             for target_path in target_paths:
                 if target_path not in target_tree:
                     raise ValueError(f'disposition targetPath is missing from the pinned target tree: {source_path}: {target_path}')
+            validate_target_evidence(
+                entry['evidence'], target, target_paths, target_tree,
+                f'disposition for {source_path}',
+            )
 
         decisions[source_path] = entry
     return decisions

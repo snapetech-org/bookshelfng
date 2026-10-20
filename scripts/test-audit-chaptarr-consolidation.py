@@ -81,7 +81,7 @@ class ReviewedPathDecisionTests(unittest.TestCase):
                     "targetPath": "src/Chaptarr/New.cs",
                     "reviewedBy": "maintainer",
                     "rationale": "The target implements the same responsibility.",
-                    "evidence": "Reviewed source and target behavior; see PR #123.",
+                    "evidence": f"Reviewed source and target behavior at {self.target}; target blob target-blob; see PR #123.",
                 }
             ]
         )
@@ -89,6 +89,21 @@ class ReviewedPathDecisionTests(unittest.TestCase):
         self.assertEqual(
             decisions["src/Bookshelf/Old.cs"]["targetPath"], "src/Chaptarr/New.cs"
         )
+
+    def test_rejects_mapping_evidence_without_current_target_blob(self):
+        with self.assertRaisesRegex(ValueError, "pinned target blob"):
+            self.load(
+                [
+                    {
+                        "sourcePath": "src/Bookshelf/Old.cs",
+                        "decision": "map",
+                        "targetPath": "src/Chaptarr/New.cs",
+                        "reviewedBy": "maintainer",
+                        "rationale": "A reviewed mapping.",
+                        "evidence": f"Reviewed at {self.target}; stale-blob.",
+                    }
+                ]
+            )
 
     def test_rejects_stale_revision_pins(self):
         report = {
@@ -144,7 +159,7 @@ class ReviewedPathDecisionTests(unittest.TestCase):
                     "approvedBy": "maintainer",
                     "approvalReference": "issue #456",
                     "rationale": "The capability is no longer supported.",
-                    "evidence": "Maintainer review confirmed no supported use remains.",
+                    "evidence": f"Maintainer review at {self.target} confirmed no supported use remains.",
                 }
             ]
         )
@@ -160,7 +175,7 @@ class ReviewedPathDecisionTests(unittest.TestCase):
             "targetPath": "src/Chaptarr/New.cs",
             "reviewedBy": "maintainer",
             "rationale": "A reviewed mapping.",
-            "evidence": "Reviewed source and target.",
+            "evidence": f"Reviewed source and target at {self.target}; target blob target-blob.",
         }
         with self.assertRaisesRegex(ValueError, "multiple decisions"):
             self.load([mapping, mapping])
@@ -198,7 +213,7 @@ class ReviewedFeatureDispositionTests(unittest.TestCase):
                     "targetPaths": ["src/Chaptarr/New.cs"],
                     "reviewedBy": "maintainer",
                     "rationale": "The behavior was ported into the target service.",
-                    "evidence": "Compared source and target code; focused regression tests cover the contract.",
+                    "evidence": f"Compared source and target at {self.target}; target blob target-blob. Focused regression tests cover the contract.",
                 }
             ]
         )
@@ -206,6 +221,22 @@ class ReviewedFeatureDispositionTests(unittest.TestCase):
         self.assertEqual(
             decisions["src/Bookshelf/Old.cs"]["disposition"], "ported"
         )
+
+    def test_rejects_disposition_evidence_without_current_target_blob(self):
+        with self.assertRaisesRegex(ValueError, "pinned target blob"):
+            self.load(
+                [
+                    {
+                        "sourcePath": "src/Bookshelf/Old.cs",
+                        "disposition": "equivalent",
+                        "feature": "Bookshelf import workflow",
+                        "targetPaths": ["src/Chaptarr/New.cs"],
+                        "reviewedBy": "maintainer",
+                        "rationale": "The target is equivalent.",
+                        "evidence": f"Reviewed at {self.target}; stale-blob.",
+                    }
+                ]
+            )
 
     def test_rejects_disposition_target_missing_from_pinned_tree(self):
         with self.assertRaisesRegex(ValueError, "missing from the pinned target tree"):
@@ -263,7 +294,7 @@ class ReviewedFeatureDispositionTests(unittest.TestCase):
                     "approvedBy": "maintainer",
                     "approvalReference": "issue #456",
                     "rationale": "No supported use remains.",
-                    "evidence": "Reviewed provider usage and migration behavior.",
+                    "evidence": f"Reviewed provider usage at {self.target} and migration behavior.",
                 }
             ]
         )
@@ -280,7 +311,7 @@ class ReviewedFeatureDispositionTests(unittest.TestCase):
             "targetPaths": ["src/Chaptarr/New.cs"],
             "reviewedBy": "maintainer",
             "rationale": "The behavior was ported into the target service.",
-            "evidence": "Compared source and target behavior.",
+            "evidence": f"Compared source and target at {self.target}; target blob target-blob.",
         }
 
         with self.assertRaisesRegex(ValueError, "multiple decisions"):
@@ -439,7 +470,7 @@ class AuditCliReviewDecisionTests(unittest.TestCase):
                                 "targetPath": "src/Chaptarr/New.cs",
                                 "reviewedBy": "maintainer",
                                 "rationale": "The target owns the same integration role.",
-                                "evidence": "Reviewed implementation and focused tests.",
+                                "evidence": f"Reviewed at {target_commit}; target blob {AUDIT.tree(target, target_commit)['src/Chaptarr/New.cs']['oid']}. Focused tests cover the contract.",
                             }
                         ],
                     }
@@ -496,7 +527,7 @@ class AuditCliReviewDecisionTests(unittest.TestCase):
                                 "approvedBy": "maintainer",
                                 "approvalReference": "issue #456",
                                 "rationale": "The integration is no longer supported.",
-                                "evidence": "Maintainer reviewed dependent workflows.",
+                                "evidence": f"Maintainer reviewed dependent workflows at target {target_commit}.",
                             }
                         ],
                     }
@@ -553,7 +584,7 @@ class AuditCliReviewDecisionTests(unittest.TestCase):
                         "targetPaths": ["src/Chaptarr/New.cs"],
                         "reviewedBy": "maintainer",
                         "rationale": "The behavior was ported into the target service.",
-                        "evidence": "Compared source and target code; focused regression tests cover the contract.",
+                        "evidence": f"Compared source and target at {target_commit}; target blob {AUDIT.tree(target, target_commit)['src/Chaptarr/New.cs']['oid']}. Focused regression tests cover the contract.",
                     }
                 ],
             }))
@@ -651,7 +682,7 @@ class AuditCliReviewDecisionTests(unittest.TestCase):
                         "approvedBy": "maintainer",
                         "approvalReference": "issue #456",
                         "rationale": "No supported use remains.",
-                        "evidence": "Reviewed provider usage and migration behavior.",
+                        "evidence": f"Reviewed provider usage at target {target_commit} and migration behavior.",
                     }
                 ],
             }))
@@ -701,7 +732,7 @@ class AuditCliReviewDecisionTests(unittest.TestCase):
                         "targetPath": "src/Chaptarr/New.cs",
                         "reviewedBy": "maintainer",
                         "rationale": "The target path is mapped for comparison.",
-                        "evidence": "Reviewed the path relationship.",
+                        "evidence": f"Reviewed the path relationship at {target_commit}; target blob {AUDIT.tree(target, target_commit)['src/Chaptarr/New.cs']['oid']}.",
                     }
                 ],
             }))
@@ -718,7 +749,7 @@ class AuditCliReviewDecisionTests(unittest.TestCase):
                         "approvedBy": "maintainer",
                         "approvalReference": "issue #456",
                         "rationale": "No supported use remains.",
-                        "evidence": "Reviewed provider usage and migration behavior.",
+                        "evidence": f"Reviewed provider usage at target {target_commit} and migration behavior.",
                     }
                 ],
             }))
