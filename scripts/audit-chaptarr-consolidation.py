@@ -9,6 +9,7 @@ import collections
 import hashlib
 import json
 import pathlib
+import re
 import subprocess
 
 
@@ -49,6 +50,152 @@ def unique_basename_candidate(path, target_paths_by_basename):
 def normalized(data):
     # Only establish textual rename equivalence; never infer behavior from it.
     return data.replace(b'Readarr', b'Chaptarr').replace(b'\r\n', b'\n')
+
+
+_CSHARP_OPERATORS = tuple(sorted((
+    '>>>=', '>>=', '<<=', '??=', '>>>', '=>', '==', '!=', '<=', '>=',
+    '++', '--', '&&', '||', '??', '?.', '::', '+=', '-=', '*=', '/=',
+    '%=', '&=', '|=', '^=', '<<', '>>', '->',
+), key=len, reverse=True))
+_CSHARP_NUMBER = re.compile(
+    r'(?:0[xX][0-9A-Fa-f_]+|0[bB][01_]+|'
+    r'(?:[0-9][0-9_]*(?:\.[0-9_]*)?|\.[0-9][0-9_]*)(?:[eE][+-]?[0-9_]+)?)'
+    r'[uUlLfFdDmM]*'
+)
+
+
+def csharp_token_stream(data, include_comments=False):
+    """Return C# tokens with whitespace removed, or None if unsupported.
+
+    String and character literal text stays intact. Comments are omitted unless
+    requested, in which case their text is included with whitespace collapsed.
+    Interpolated and raw strings are conservatively left for manual review.
+    """
+    try:
+        text = data.decode('utf-8-sig')
+    except UnicodeDecodeError:
+        return None
+
+    tokens = []
+    index = 0
+    length = len(text)
+    while index < length:
+        char = text[index]
+
+        if char.isspace():
+            index += 1
+            continue
+        if text.startswith('//', index):
+            newline = text.find('\n', index + 2)
+            end = length if newline < 0 else newline
+            if include_comments:
+                tokens.append(('comment', re.sub(r'\s+', ' ', text[index:end]).strip()))
+            index = length if newline < 0 else newline + 1
+            continue
+        if text.startswith('/*', index):
+            end = text.find('*/', index + 2)
+            if end < 0:
+                return None
+            if include_comments:
+                tokens.append(('comment', re.sub(r'\s+', ' ', text[index:end + 2]).strip()))
+            index = end + 2
+            continue
+
+        # C# raw strings have quote-count delimiters and interpolated strings
+        # contain expression syntax. Leave both to a syntax-aware reviewer.
+        prefix_end = index
+        while prefix_end < length and text[prefix_end] == '$':
+            prefix_end += 1
+        if prefix_end < length and text[prefix_end] == '"':
+            quote_end = prefix_end
+            while quote_end < length and text[quote_end] == '"':
+                quote_end += 1
+            if quote_end - prefix_end >= 3:
+                return None
+            if prefix_end > index:
+                return None
+        if text.startswith('@$"', index) or text.startswith('$@"', index) or text.startswith('$"', index):
+            return None
+
+        # Ordinary and verbatim string literals are retained as single tokens.
+        verbatim = text.startswith('@"', index)
+        if char == '"' or verbatim:
+            start = index
+            index += 2 if verbatim else 1
+            while index < length:
+                if verbatim:
+                    if text.startswith('""', index):
+                        index += 2
+                        continue
+                    if text[index] == '"':
+                        index += 1
+                        break
+                else:
+                    if text[index] == '\\':
+                        index += 2
+                        continue
+                    if text[index] == '"':
+                        index += 1
+                        break
+                index += 1
+            else:
+                return None
+            tokens.append(text[start:index])
+            continue
+
+        if char == "'":
+            start = index
+            index += 1
+            while index < length:
+                if text[index] == '\\':
+                    index += 2
+                    continue
+                if text[index] == "'":
+                    index += 1
+                    break
+                index += 1
+            else:
+                return None
+            tokens.append(text[start:index])
+            continue
+
+        if char == '@' and index + 1 < length and (text[index + 1].isalpha() or text[index + 1] == '_'):
+            start = index
+            index += 2
+            while index < length and (text[index].isalnum() or text[index] == '_'):
+                index += 1
+            tokens.append(text[start:index])
+            continue
+
+        if char.isalpha() or char == '_':
+            start = index
+            index += 1
+            while index < length and (text[index].isalnum() or text[index] == '_'):
+                index += 1
+            tokens.append(text[start:index])
+            continue
+
+        if char.isdigit() or (char == '.' and index + 1 < length and text[index + 1].isdigit()):
+            number = _CSHARP_NUMBER.match(text, index)
+            if number is None:
+                return None
+            tokens.append(number.group(0))
+            index = number.end()
+            continue
+
+        operator = next((candidate for candidate in _CSHARP_OPERATORS if text.startswith(candidate, index)), None)
+        if operator is not None:
+            tokens.append(operator)
+            index += len(operator)
+            continue
+
+        if char.isascii() and not char.isalnum() and char not in '\\':
+            tokens.append(char)
+            index += 1
+            continue
+        return None
+
+    return tokens
 
 
 def load_review_decisions(path, source, target, changed_paths, source_tree, target_tree):
@@ -158,7 +305,7 @@ def load_disposition_decisions(path, source, target, changed_paths, target_tree)
     return decisions
 
 
-def file_state(old, new, source_data=None, target_data=None):
+def file_state(old, new, source_data=None, target_data=None, source_path=None):
     if old is None:
         return 'deleted-in-bookshelf'
     if new is None:
@@ -169,6 +316,15 @@ def file_state(old, new, source_data=None, target_data=None):
             and old['mode'] == new['mode']
             and normalized(source_data) == normalized(target_data)):
         return 'text-equivalent-after-brand-and-newline-normalization'
+    if (source_path is not None and source_path.endswith('.cs')
+            and source_data is not None and target_data is not None):
+        source_tokens = csharp_token_stream(source_data)
+        target_tokens = csharp_token_stream(target_data)
+        source_comments = csharp_token_stream(source_data, include_comments=True)
+        target_comments = csharp_token_stream(target_data, include_comments=True)
+        if (source_tokens is not None and source_tokens == target_tokens
+                and source_comments is not None and source_comments == target_comments):
+            return 'code-equivalent-after-csharp-trivia-normalization'
     return 'different-review-required'
 
 
@@ -242,7 +398,7 @@ def main():
         if old is not None and new is not None and old != new:
             source_data = git(args.bookshelf, 'cat-file', 'blob', old['oid'])
             target_data = git(args.chaptarr, 'cat-file', 'blob', new['oid'])
-        state = file_state(old, new, source_data, target_data)
+        state = file_state(old, new, source_data, target_data, path)
         disposition = disposition_decisions.get(path)
         retired = (
             (reviewed is not None and reviewed['decision'] == 'retire')
@@ -280,6 +436,7 @@ def main():
                        'Missing mapped paths may have replacements under other names.',
                        'Unique-basename candidate paths are heuristic review hints, not confirmed mappings or evidence of equivalence.',
                        'Reviewed path mappings and approved retirements record decisions; they do not prove feature equivalence or migration safety.',
+                       'C# token equivalence is limited to files with supported literal syntax and matching comment text after whitespace normalization; it does not prove project inclusion, runtime behavior, or feature parity.',
                        'Recorded feature dispositions are maintainer decisions at the pinned revisions; they do not prove runtime or migration behavior.',
                        'No database, runtime, publisher, or upgrade validation is implied.'],
         'sourceCommit': source, 'targetCommit': target, 'forkBaseCommit': base,
@@ -292,7 +449,9 @@ def main():
                    'reviewedDispositions': len(disposition_decisions),
                    'undispositionedPaths': len(changed) - len(disposition_decisions),
                    'dispositionStates': dict(collections.Counter(d['disposition'] for d in disposition_decisions.values())),
-                   'fileStates': dict(collections.Counter(f['state'] for f in files))},
+                   'fileStates': dict(collections.Counter(f['state'] for f in files)),
+                   'undispositionedFileStates': dict(collections.Counter(
+                       f['state'] for f in files if 'reviewedDisposition' not in f))},
         'commits': commits, 'files': files,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

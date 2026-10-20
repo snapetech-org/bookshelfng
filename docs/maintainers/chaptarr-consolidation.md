@@ -71,10 +71,10 @@ The refreshed inventory pins BookshelfNG source snapshot
 `c63eb84813392cdb398d9e6bf4446694952f256d` to ChaptarrNG target snapshot
 `29852b1334ee049e30de84b44806932a3e9364f4`. It covers 679 reachable post-fork
 commits (670 absent from the pinned upstream history) and 1,116 changed paths:
-377 unmapped, 557 requiring semantic review, 176 identical, four renamed project files ported after project-reference review, and two absent from the Bookshelf snapshot.
-The review map records 25 path correspondences. The disposition map has 180
-reviewed paths (176 retained and 4 ported), 936 undispositioned paths, and zero
-approved retirements. These are file-level review states, not feature-parity
+377 paths without a mapped target, 428 undispositioned paths requiring direct semantic review, 176 retained identical paths, 129 equivalent paths (118 C# paths checked automatically, 8 more checked with Roslyn, and 3 license/build/documentation files reviewed), four ported project files, and two paths absent from the Bookshelf snapshot.
+The review map records 25 path correspondences. The disposition map has 309
+reviewed paths (176 retained, 129 equivalent, and 4 ported), 807
+undispositioned paths, and zero approved retirements. These are file-level review states, not feature-parity
 counts; file similarity or identical bytes do not establish integration,
 runtime behavior, or migration safety.
 
@@ -285,17 +285,20 @@ The current path-level inventory pins BookshelfNG source
 `c63eb84813392cdb398d9e6bf4446694952f256d` to ChaptarrNG target snapshot
 `29852b1334ee049e30de84b44806932a3e9364f4`. It covers 679 reachable post-fork
 commits (670 absent from the pinned upstream history) and 1,116 changed paths:
-377 unmapped, 557 requiring semantic review, 176 identical, four renamed project files ported after project-reference review, and two paths absent from the Bookshelf snapshot. Schema v4 records 25
+377 paths without a mapped target, 428 undispositioned paths requiring direct semantic review, 176 retained identical paths, 129 equivalent paths (118 C# paths checked automatically, 8 more checked with Roslyn, and 3 license/build/documentation files reviewed), four ported project files, and two paths absent from the Bookshelf snapshot. Schema v4 records 25
 rechecked path correspondences, no unconfirmed basename hints, no approved
-retirements, and 180 reviewed source-path dispositions out of 1,116. PRs #127,
+retirements, and 309 reviewed source-path dispositions out of 1,116 (176 retained,
+129 equivalent, and 4 ported). PRs #127,
 #129, #130, and #131 are included in ChaptarrNG `main`.
 The source remains unpublished because the retirement release gate is closed. These counts identify a review queue; path or text similarity does not prove that behavior is equivalent or
-safely retired. The complete machine-readable path ledger is in
+safely retired. The C# token state is limited to supported literal syntax and
+requires comment text to match after whitespace normalization. It establishes
+source-level code equivalence only, not project inclusion, runtime behavior,
+or feature parity. The complete machine-readable path ledger is in
 [`chaptarr-consolidation-inventory.json`](chaptarr-consolidation-inventory.json).
 
-The current 557 semantic-review paths are concentrated in `src/NzbDrone.Core`
-(173), `src/TagLibSharp` (128), `frontend/src` (86), `src/Readarr.Api.V1`
-(29), and `distribution/windows` (17). These are source-file counts for
+The current 428 undispositioned direct semantic-review paths are concentrated in `src/NzbDrone.Core` (172), `frontend/src` (86), `src/Readarr.Api.V1` (29),
+`distribution/windows` (17), and `src/NzbDrone.Common` (12). These are source-file counts for
 sequencing direct comparisons, not feature counts or a risk ranking.
 
 The detailed investigation below records historical candidate revisions and
@@ -480,7 +483,7 @@ behavior, feature parity, or any published package-channel bridge.
   rollback acceptance remain open.
 - BookshelfNG branch used for the earlier cross-project audit: `codex/bookshelf-chaptarr-consolidation-20261012`.
 - The latest published BookshelfNG release is 0.4.21.71; ChaptarrNG v0.9.977 is the latest public destination release. The published .71 archive is the migration-158 source schema baseline for read-only lineage tests.
-- The generated [inventory](chaptarr-consolidation-inventory.json) covers every reachable commit after the parent of the first fork commit, including maintenance and merged work. It is pinned to BookshelfNG source `c63eb84813392cdb398d9e6bf4446694952f256d` and ChaptarrNG target `29852b1334ee049e30de84b44806932a3e9364f4`: 679 commits (670 absent from the pinned upstream history) and 1,116 changed paths (377 unmapped, 557 requiring semantic review, 176 identical, four project files ported with Chaptarr project references, and two paths absent from the Bookshelf snapshot). The review map records 25 rechecked path correspondences and no unconfirmed basename hints. The separate disposition map currently records 180/1,116 changed paths. Path mappings make files directly comparable but do not establish behavior or feature equivalence. These are path-level review states, not feature-parity counts.
+- The generated [inventory](chaptarr-consolidation-inventory.json) covers every reachable commit after the parent of the first fork commit, including maintenance and merged work. It is pinned to BookshelfNG source `c63eb84813392cdb398d9e6bf4446694952f256d` and ChaptarrNG target `29852b1334ee049e30de84b44806932a3e9364f4`: 679 commits (670 absent from the pinned upstream history) and 1,116 changed paths: 377 without mapped targets, 428 undispositioned semantic differences, 176 retained identical paths, 129 equivalent paths (118 C# paths checked automatically, 8 with Roslyn, and 3 license/build/documentation files), four ported project files, and two paths absent from the Bookshelf snapshot. The review map records 25 rechecked path correspondences and no unconfirmed basename hints. The separate disposition map currently records 309/1,116 changed paths. A conservative C# token check classifies 118 files as source-equivalent after whitespace normalization; it preserves literal text, requires comments to match apart from whitespace, and skips interpolated/raw strings. Path mappings make files directly comparable but do not establish behavior or feature equivalence. These are path-level review states, not feature-parity counts.
 
 Regenerate the tracked-source inventory with:
 
@@ -516,7 +519,7 @@ target revisions. `retained`, `ported`, and `equivalent` entries require a
 reviewer and one or more target paths that exist at the pinned target revision.
 `retired` entries require a named approver and an approval reference. The
 `--require-complete-dispositions` flag fails if any changed path is missing a
-decision; the current map records 180 of 1,116 paths, leaving 936 undispositioned.
+decision; the current map records 309 of 1,116 paths, leaving 807 undispositioned.
 These records make review coverage auditable but do not prove runtime behavior,
 migration safety, or operator acceptance. The inventory is schema v4.
 
@@ -550,8 +553,8 @@ The BookshelfNG Build workflow tests unique, missing, and ambiguous basename
 handling, reviewed mappings, stale pins, duplicate decisions, approved
 retirements, complete and incomplete disposition maps, invalid target paths,
 and missing retirement approvals through
-`scripts/test-audit-chaptarr-consolidation.py`. The local test suite passes
-23/23 tests. Current BookshelfNG `main` commit
+`scripts/test-audit-chaptarr-consolidation.py`. The local audit-tool suite passes
+29/29 tests. Current BookshelfNG `main` commit
 `9fcc0aea927c3f052d69d8051bcb5e436c717ae4` passed exact Build
 [39386658595](https://github.com/snapetech-org/bookshelfng/actions/runs/39386658595),
 Semgrep, Trivy, release-note, dependency-submission, and package-sync checks.
@@ -814,7 +817,7 @@ before release.
 | Encrypted backups and format-scoped profiles | Merged PR #131 includes recognized BookshelfNG ZIP restore with lineage/version validation, staged restore, and normal-startup conversion, plus portable BKSENC01 `.enc` export and restore (introduced at candidate `38be9422`, present in code commit `b7e900d4` and application-code commit `0e881d92`). The encryption service was cross-checked against BookshelfNG source; tests cover round-trip, wrong passphrases, tampering, truncation, malformed input, staging cleanup, and preserving an existing destination. Build [39313568727](https://github.com/snapetech-org/chaptarrng/actions/runs/39313568727) passed on Linux, macOS, and Windows, including PostgreSQL migration, release-note, receipt, and Linux pinned-tool M4B checks. Prior docs-only PR head `93213b67` passed exact-head Build 39316535744 on Linux, macOS, Windows, PostgreSQL migration, release-note contract, and native-runner receipt reconciliation. Public `.977` still lacks these restore and encrypted-backup paths. | **Source implementation merged; acceptance remains open** | Test legacy archive recovery, secret handling, profile conversion, and rollback on representative data; never expose credentials in logs. |
 | .NET 10, platform builds, ImageSharp removal, and security/dependency fixes | .NET 10 is present; target has different dependencies and still uses licensed ImageSharp | **Open blocker — patch-by-patch review pending** | Review each security and dependency change; retain compatible fixes and prove supported OS/architecture builds. |
 | Release notes, announcements, package sync, and validation workflow | ChaptarrNG has separate release and validation workflows | **Open blocker — legacy identities not bridged** | Preserve old package/container IDs through tested compatibility artifacts; complete required per-repository validation without duplicate publication. |
-| Every remaining fork change in the pinned source inventory | The inventory pins BookshelfNG `c63eb84813392cdb398d9e6bf4446694952f256d` to ChaptarrNG target snapshot `29852b1334ee049e30de84b44806932a3e9364f4`: 679 reachable post-fork commits, 670 absent from the pinned upstream history, and 1,116 changed paths (377 unmapped, 557 requiring semantic review, 176 identical, four project files ported with Chaptarr project references, two paths absent from the Bookshelf snapshot). Schema v4 records 25 rechecked path mappings, no unconfirmed basename hints, no approved retirements, and 180 reviewed dispositions out of 1,116 paths. Mappings only support direct comparison. The complete ledger and pinned decision maps are [`chaptarr-consolidation-inventory.json`](chaptarr-consolidation-inventory.json), [`chaptarr-consolidation-review-map.json`](chaptarr-consolidation-review-map.json), and [`chaptarr-consolidation-disposition-map.json`](chaptarr-consolidation-disposition-map.json). | **Open blocker — exhaustive semantic disposition pending** | Account for every path as retained, ported, proven equivalent, or explicitly retired after impact review. |
+| Every remaining fork change in the pinned source inventory | The inventory pins BookshelfNG `c63eb84813392cdb398d9e6bf4446694952f256d` to ChaptarrNG target snapshot `29852b1334ee049e30de84b44806932a3e9364f4`: 679 reachable post-fork commits, 670 absent from the pinned upstream history, and 1,116 changed paths: 377 without mapped targets, 428 undispositioned semantic differences, 176 retained identical paths, 129 equivalent paths (118 C# paths checked automatically, 8 with Roslyn, and 3 license/build/documentation files), four ported project files, and two paths absent from the Bookshelf snapshot. Schema v4 records 25 rechecked path mappings, no unconfirmed basename hints, no approved retirements, and 309 reviewed dispositions out of 1,116 paths (176 retained, 129 equivalent, and 4 ported). Mappings only support direct comparison. The complete ledger and pinned decision maps are [`chaptarr-consolidation-inventory.json`](chaptarr-consolidation-inventory.json), [`chaptarr-consolidation-review-map.json`](chaptarr-consolidation-review-map.json), and [`chaptarr-consolidation-disposition-map.json`](chaptarr-consolidation-disposition-map.json). | **Open blocker — exhaustive semantic disposition pending** | Account for every path as retained, ported, proven equivalent, or explicitly retired after impact review. |
 
 The commit/path inventory remains the exhaustive review ledger. Every
 behavioral change must be retained, ported, or proven equivalent; packaging
@@ -958,7 +961,7 @@ must be reported as unverified/unpublished, not a successful migration channel.
 
 | Area | Current evidence | Status | Required action |
 | --- | --- | --- | --- |
-| BookshelfNG source inventory | Regenerated at BookshelfNG source `c63eb84813392cdb398d9e6bf4446694952f256d` and ChaptarrNG target `29852b1334ee049e30de84b44806932a3e9364f4`: 679 reachable commits, 670 absent from the pinned upstream history, and 1,116 changed paths (377 unmapped, 557 semantic review, 176 identical, four project files ported with Chaptarr project references, two paths absent from the Bookshelf snapshot). Schema v4 records 25 rechecked path mappings, zero unconfirmed basename hints, zero approved retirements, and 180 reviewed dispositions out of 1,116. | Path classifications do not establish semantic feature equivalence. | Disposition every path as retained, ported, proven equivalent, or explicitly retired; obtain an explicit maintainer decision for any retirement. |
+| BookshelfNG source inventory | Regenerated at BookshelfNG source `c63eb84813392cdb398d9e6bf4446694952f256d` and ChaptarrNG target `29852b1334ee049e30de84b44806932a3e9364f4`: 679 reachable commits, 670 absent from the pinned upstream history, and 1,116 changed paths (377 without mapped targets, 428 undispositioned semantic differences, 176 identical, 129 equivalent—118 C# files checked automatically, 8 with Roslyn, and 3 license/build/documentation files—four project files ported with Chaptarr project references, and two paths absent from the Bookshelf snapshot). Schema v4 records 25 rechecked path mappings, zero unconfirmed basename hints, zero approved retirements, and 309 reviewed dispositions out of 1,116; 807 paths remain undispositioned. | Path classifications do not establish semantic feature equivalence. | Disposition every path as retained, ported, proven equivalent, or explicitly retired; obtain an explicit maintainer decision for any retirement. |
 | ChaptarrNG Bookshelf feature port | PR #131 merged the source implementation to ChaptarrNG `main` as `d2bcba79`, including the migration, settings/provider, backup, media-move, Editions and Narrations, BookOrbit, SeerrNG, and Windows installer work. Earlier local migration and isolated integration rehearsals remain synthetic or limited to one data copy. | Source implementation is present on `main`; release and operator acceptance remain open. | Review ambiguous media and validate conversion, rollback, provider fulfillment, representative M4B, downstream BookLore/BookOrbit behavior, SeerrNG request/fulfillment, and installed channels on representative deployments. |
 | ChaptarrNG maintained and active features | At the earlier cross-project audit, ChaptarrNG `main` at `6731a436` was 606 commits ahead and zero behind upstream `develop` at `e67374f4`, across 1,485 net-changed paths. PR #100 at `561bf395` was 25 commits ahead of main across 359 paths; the audit also recorded PRs #78, #100, #103, and #105–#109 and open dependency updates. Recheck current upstream status before using this historical audit. | Historical upstream audit; current open PR/feature set not rechecked. | The earlier audit tracked upstream parity as a separate gate; refresh the ChaptarrNG-to-upstream comparison and carry forward only changes still open. Recheck current upstream changes and reconcile any remaining fork behavior before closing the Bookshelf retirement gate. |
 | Bookshelf database compatibility | Merged ChaptarrNG PR #131 adds the embedded historical SQLite migration chain, migration-158 PostgreSQL source migration support, staged conversion/rollback handling, provider-setting checks, and a Windows migration installer. The exact-head synthetic Windows service round trip passed upgrade, automatic rollback, explicit restore, and data-directory checks. | Source code is merged but unpublished; representative older SQLite and PostgreSQL operator data, ambiguous-media decisions, full provider behavior, installed operator rollback, and all channel handoffs remain unaccepted. | Keep BookshelfNG in service. Validate representative populated source databases and media, source immutability, correct identities/settings/history/files, and real rollback before any production cutover. |

@@ -308,6 +308,61 @@ class FileStateTests(unittest.TestCase):
 
         self.assertEqual(state, "text-equivalent-after-brand-and-newline-normalization")
 
+    def test_ignores_csharp_comments_and_whitespace_but_keeps_literal_text(self):
+        source = b'class A { string Name = "the same text"; /* source note */ int Count = 1; }'
+        target = b'class A{string Name="the same text";// target note\nint Count=1;}'
+
+        self.assertEqual(
+            AUDIT.csharp_token_stream(source),
+            AUDIT.csharp_token_stream(target),
+        )
+        self.assertNotEqual(
+            AUDIT.csharp_token_stream(source, include_comments=True),
+            AUDIT.csharp_token_stream(target, include_comments=True),
+        )
+
+    def test_csharp_token_stream_preserves_string_and_character_literals(self):
+        self.assertNotEqual(
+            AUDIT.csharp_token_stream(b'string value = "two words";'),
+            AUDIT.csharp_token_stream(b'string value = "twowords";'),
+        )
+        self.assertNotEqual(
+            AUDIT.csharp_token_stream(b"char value = 'a';"),
+            AUDIT.csharp_token_stream(b"char value = 'b';"),
+        )
+
+    def test_csharp_token_stream_preserves_operator_boundaries(self):
+        self.assertNotEqual(
+            AUDIT.csharp_token_stream(b'int value = left + +right;'),
+            AUDIT.csharp_token_stream(b'int value = left++right;'),
+        )
+
+    def test_csharp_token_stream_leaves_interpolated_and_raw_strings_unclassified(self):
+        self.assertIsNone(AUDIT.csharp_token_stream(b'$"value {item}"'))
+        self.assertIsNone(AUDIT.csharp_token_stream(b'"""raw value"""'))
+
+    def test_reports_csharp_token_equivalence_as_a_file_state(self):
+        state = AUDIT.file_state(
+            {"mode": "100644", "oid": "source"},
+            {"mode": "100644", "oid": "target"},
+            b"class A { /* same note */ int Count = 1; }",
+            b"class A{/* same\n note */int Count=1;}",
+            "src/TagLibSharp/Audio.cs",
+        )
+
+        self.assertEqual(state, "code-equivalent-after-csharp-trivia-normalization")
+
+    def test_different_csharp_comment_content_stays_for_review(self):
+        state = AUDIT.file_state(
+            {"mode": "100644", "oid": "source"},
+            {"mode": "100644", "oid": "target"},
+            b"class A { /* source note */ int Count = 1; }",
+            b"class A { /* target note */ int Count = 1; }",
+            "src/TagLibSharp/Audio.cs",
+        )
+
+        self.assertEqual(state, "different-review-required")
+
 
 class AuditCliReviewDecisionTests(unittest.TestCase):
     def git(self, repo, *args):
@@ -403,6 +458,10 @@ class AuditCliReviewDecisionTests(unittest.TestCase):
             self.assertEqual(inventory["counts"]["reviewedMappings"], 1)
             self.assertEqual(inventory["counts"]["reviewedDispositions"], 0)
             self.assertEqual(inventory["counts"]["undispositionedPaths"], 1)
+            self.assertEqual(
+                inventory["counts"]["undispositionedFileStates"],
+                {"different-review-required": 1},
+            )
             self.assertEqual(entry["targetPath"], "src/Chaptarr/New.cs")
             self.assertEqual(entry["state"], "different-review-required")
             self.assertEqual(entry["reviewedDecision"]["decision"], "map")
