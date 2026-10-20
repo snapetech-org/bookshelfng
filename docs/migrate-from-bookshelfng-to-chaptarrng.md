@@ -6,13 +6,13 @@ BookshelfNG `0.4.21.71` remains its final published release. ChaptarrNG
 [39423725592](https://github.com/snapetech-org/chaptarrng/actions/runs/39423725592)
 failed two Linux/macOS auth tests because the SeerrNG test context omitted its
 HTTP method. The current commit sets GET explicitly; corrected Build
-[39425383048](https://github.com/snapetech-org/chaptarrng/actions/runs/39425383048) is queued. Security analysis, Semgrep CE, Trivy, and NuGet dependency submission passed on this head; the push check is still running. No current-head result is claimed. See the
+[39425383048](https://github.com/snapetech-org/chaptarrng/actions/runs/39425383048) is running: PostgreSQL passed, Linux and Windows are in their test stages, and macOS is queued. Security analysis, Semgrep CE, Trivy, and NuGet dependency submission passed on this head; the push check is still running. No current-head result is claimed. See the
 [maintainer readiness report](maintainers/chaptarr-consolidation.md) for status.
 
 The current source includes staged migration and rollback, provider and backup
 compatibility, and a Windows installer candidate that keeps the legacy service
 registration until ChaptarrNG passes its health check. Its deferred-removal and
-rollback smoke is queued with the Windows Build. These changes are not in
+rollback smoke is running with the Windows Build. These changes are not in
 public `.977` and do not authorize a production cutover.
 
 Release publication and the migration bridge remain frozen; readiness
