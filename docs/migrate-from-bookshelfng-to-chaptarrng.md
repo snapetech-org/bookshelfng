@@ -10,31 +10,24 @@ fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
 Current candidate status (2026-10-19): ChaptarrNG PR #131 is at code head
-`7ff38a58530814d73da280b297eb3ed215bd2c83`. Exact-head Build
-[39365402673](https://github.com/snapetech-org/chaptarrng/actions/runs/39365402673)
-passed the PostgreSQL migration, Linux, macOS, and Windows jobs, including the
-installer service round-trip, deferred cleanup, and selected data-directory
-check. Build is waiting only on native-runner receipt reconciliation.
-Exact-head Security Analysis
-[39365402528](https://github.com/snapetech-org/chaptarrng/actions/runs/39365402528)
-passed. Trivy, Python and JavaScript/TypeScript CodeQL analyses, and NuGet
-submission passed; C# and Actions CodeQL analyses remain pending.
-Previous Build [39363004742](https://github.com/snapetech-org/chaptarrng/actions/runs/39363004742)
-passed PostgreSQL migration, Linux/macOS, Windows tests, installer build, and
-SQLite fingerprint smoke. Its service round-trip passed migration, health
-checks, and explicit restore, but final cleanup could not remove Readarr while
-the smoke process was still alive; SCM reported STOPPED. The current candidate
-records a cleanup manifest and removes test services in a separate process
-after the smoke exits. Earlier runs exposed a transient archive HTTP 403 and a
-raw WAL read while SQLite held it open. The candidate retries transient
-archive failures, keeps the `PRAGMA data_version` guard through confirmation,
-and captures raw fingerprints outside its lifetime. The exact Linux artifact
-from `969fb20b` passed populated migration and SeerrNG lifecycle smokes with
-synthetic data. PR #131 remains draft and unpublished; no release, package,
-image, or bridge was published.
-Representative operator data, semantic disposition, provider fulfillment,
-installation-channel handoff, and operator acceptance remain open. Keep
-BookshelfNG in service; do not apply production migration.
+`3f54017db05fd769bea4403205bf9b35aeed6e80`. Exact-head Build
+[39369239189](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239189),
+CodeQL [39369235014](https://github.com/snapetech-org/chaptarrng/actions/runs/39369235014),
+Security Analysis [39369239208](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239208),
+dependency review [39369239224](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239224),
+Helm validation [39369239215](https://github.com/snapetech-org/chaptarrng/actions/runs/39369239215),
+and NuGet submission [39369235545](https://github.com/snapetech-org/chaptarrng/actions/runs/39369235545)
+are queued; Trivy and Semgrep are pending. The previous exact-head candidate
+`7ff38a58` passed Linux, macOS, Windows, PostgreSQL migration, native-runner
+receipt reconciliation, all CodeQL languages, security analysis, Trivy,
+dependency review, and NuGet submission. The new head merges main's
+fail-closed publication guard and includes installer-smoke SQL hardening and
+Dependabot cooldowns; exact-head validation is still running. PR #131 remains
+draft and unpublished. Representative operator data, semantic feature-parity
+disposition, provider fulfillment, installed rollback, installer/update-channel
+handoff, and operator acceptance remain open. No release, package, image, or
+bridge is authorized. Keep BookshelfNG in service; do not apply production
+migration.
 
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
