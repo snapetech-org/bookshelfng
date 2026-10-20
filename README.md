@@ -7,31 +7,22 @@
 > BookshelfNG source commit `6e1a62e12` passes push CI [39205619456](https://github.com/snapetech-org/bookshelfng/actions/runs/39205619456), manual Build [39205642055](https://github.com/snapetech-org/bookshelfng/actions/runs/39205642055), release-note contract [39205619376](https://github.com/snapetech-org/bookshelfng/actions/runs/39205619376), and CodeQL [39205619644](https://github.com/snapetech-org/bookshelfng/actions/runs/39205619644). The manual run skipped image publishing, distribution, and release jobs.
 > Consolidation audit schema v3 now supports exact-revision path decisions. Its pinned map links 20 likely counterpart paths for direct review, leaves one basename hint unconfirmed, records zero approved retirements, and does not infer feature parity. The inventory has 1,104 changed paths: 378 remain unmapped and 550 require semantic review. The 13 audit-tool tests pass locally; BookshelfNG Build [39317318315](https://github.com/snapetech-org/bookshelfng/actions/runs/39317318315) and follow-up Build [39317910281](https://github.com/snapetech-org/bookshelfng/actions/runs/39317910281) both passed; package sync and all publishing jobs were skipped. The earlier schema-v2 checkpoint and its hosted evidence are retained in the [consolidation report](docs/maintainers/chaptarr-consolidation.md).
 > Current candidate status (2026-10-19): ChaptarrNG PR #131 is at code head
-> `ebe838dd7a74780692350c9d02826f219919582b`. It adds a disposable Windows
-> service round-trip through the actual installer: a pinned BookshelfNG `.71`
-> binary, populated migration-158 fixture, disabled provider sync, an injected
-> local `/ping` conflict to exercise automatic rollback, a successful retry,
-> and explicit restore. The harness checks service health, database lineage
-> and integrity, populated rows, data-directory preservation, and LocalService.
-> The Windows-targeted harness compiles locally; fixture integrity and
-> foreign-key checks pass. Exact-head Build
-> [39339777476](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777476)
-> is still running, including the Windows installer/service smoke and
-> PostgreSQL migration. Release-note contract, Security analysis
-> [39339777368](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777368),
-> Dependency review
-> [39339777472](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777472),
-> Helm identity
-> [39339777453](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777453),
-> and NuGet submission
-> [39339771379](https://github.com/snapetech-org/chaptarrng/actions/runs/39339771379)
-> passed. Actions, JavaScript/TypeScript, and Python CodeQL analyses passed;
-> C# analysis is still running. Disposable-fork validation is skipped by its
-> external-fork gate. PR #131 remains draft; its installer is unpublished.
-> No release, package, image, or bridge was published. Representative operator
-> data, semantic disposition, provider fulfillment, distribution-channel
-> handoff, and operator acceptance remain open. Keep BookshelfNG running; do
-> not apply production migration.
+> `a6d7908e937c870a4b2d3209f5aafbb9b640f6cd`. Exact-head Build
+> [39357519729](https://github.com/snapetech-org/chaptarrng/actions/runs/39357519729) is queued; the previous code head
+> `e4b909ff` is under hosted validation in Build
+> [39357406142](https://github.com/snapetech-org/chaptarrng/actions/runs/39357406142). On code head `969fb20b`, Build [39353846035](https://github.com/snapetech-org/chaptarrng/actions/runs/39353846035) first stopped on HTTP 403 while
+> downloading the pinned BookshelfNG `.71` archive; retrying that old code then
+> failed when raw WAL fingerprinting read `readarr.db-wal` while the SQLite
+> guard held it open. Rollback also left the service marked for deletion while
+> a PowerShell `ServiceController` handle remained open. Commit `e4b909ff` adds
+> archive retry/backoff and captures raw fingerprints outside the guard lifetime;
+> commit `a6d7908e` disposes the service handle before waiting for removal. The
+> exact Linux artifact from `969fb20b` passed the populated migration and
+> SeerrNG lifecycle smokes with synthetic records. PR #131 remains draft and
+> unpublished. No release, package, image, or bridge was published.
+> Representative operator data, exhaustive semantic disposition, provider
+> fulfillment, installation-channel handoff, and operator acceptance remain open.
+> Keep BookshelfNG in service; do not apply production migration.
 >
 > Exact-head artifact repeat (2026-10-19): the Linux artifact from PR #131 Build [39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744) passed the checked-in SeerrNG Compose smoke with synthetic migrated audiobook and ebook records. Using SeerrNG rebuilt from `22f3bbc5874752b50a3b1206ca0bd3ebe0309f95`, it verified restricted-key access, administrative/unrelated command denial, and pending import create/poll/cancel. The candidate app artifact ran in a temporary image based on public `.977`; this did not validate candidate image packaging, successful acquisition, operator data, installed rollback, or channel handoff. Full details are in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md#exact-head-artifact-repeat-2026-10-19).
 > **Migration decision: keep BookshelfNG in service.** Do not apply the converter or start ChaptarrNG against BookshelfNG appdata; normal ChaptarrNG startup converts a supported source database automatically. A passing preview is not cutover approval. See the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md).

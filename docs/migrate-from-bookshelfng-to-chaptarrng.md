@@ -9,25 +9,25 @@ acceptance gates close. PR #128 merged release and distribution workflows that
 fail closed unless `CHAPTARRNG_RELEASE_READY=true`; the repository variable is
 unset. ChaptarrNG `.978` is a source version bump, not a release.
 
-Draft ChaptarrNG PR #131 is at code head
-`ebe838dd7a74780692350c9d02826f219919582b`. The new Windows smoke uses the
-actual installer against a disposable BookshelfNG `.71` service with populated
-migration-158 data. It injects a local `/ping` conflict to test automatic
-rollback, retries the upgrade, then runs explicit restore. The Windows-targeted
-harness compiles locally; its fixture passes SQLite integrity and foreign-key
-checks. Exact-head Build
-[39339777476](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777476)
-is still running, including the Windows installer/service smoke and PostgreSQL
-migration. Release-note contract, Security analysis
-[39339777368](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777368),
-Dependency review
-[39339777472](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777472),
-Helm identity
-[39339777453](https://github.com/snapetech-org/chaptarrng/actions/runs/39339777453),
-and NuGet submission
-[39339771379](https://github.com/snapetech-org/chaptarrng/actions/runs/39339771379)
-passed. PR #131 remains draft and its installer is unpublished. Do not use it
-for production cutover.
+Current candidate status (2026-10-19): ChaptarrNG PR #131 is at code head
+`a6d7908e937c870a4b2d3209f5aafbb9b640f6cd`. Exact-head Build
+[39357519729](https://github.com/snapetech-org/chaptarrng/actions/runs/39357519729)
+is running. The previous head `969fb20b` passed Linux, macOS, PostgreSQL,
+Windows tests, installer build, and the SQLite guard smoke. Its first Windows
+service test stopped on HTTP 403 downloading the pinned BookshelfNG `.71`
+archive; a retry then failed because raw WAL fingerprinting tried to read
+`readarr.db-wal` while the SQLite guard held it open. Rollback also found the
+service marked for deletion while its PowerShell `ServiceController` handle
+remained open. The current candidate retries transient archive failures,
+keeps the `PRAGMA data_version` guard through confirmation while capturing
+raw fingerprints outside its lifetime, and disposes that service handle
+before waiting for deletion. The exact Linux artifact from `969fb20b` passed
+populated migration and SeerrNG lifecycle smokes with synthetic data. PR #131
+remains draft and unpublished; no release, package, image, or bridge was
+published.
+Representative operator data, semantic disposition, provider fulfillment,
+installation-channel handoff, and operator acceptance remain open. Keep
+BookshelfNG in service; do not apply production migration.
 
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
