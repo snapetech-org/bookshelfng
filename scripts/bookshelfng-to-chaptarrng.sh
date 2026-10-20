@@ -5,22 +5,38 @@ usage() {
   cat <<'USAGE'
 Usage:
   bookshelfng-to-chaptarrng.sh snapshot --data-dir PATH --backup-dir PATH
-  bookshelfng-to-chaptarrng.sh preview  --data-dir PATH --backup-dir PATH --image IMAGE [--provider-mode goodreads|native-hardcover]
-  bookshelfng-to-chaptarrng.sh apply   --data-dir PATH --backup-dir PATH --image IMAGE --confirm-stopped [--provider-mode goodreads|native-hardcover]
+  bookshelfng-to-chaptarrng.sh preview  --data-dir PATH --backup-dir PATH --image IMAGE --provider-mode goodreads|native-hardcover
+  bookshelfng-to-chaptarrng.sh apply   --data-dir PATH --backup-dir PATH --image IMAGE --confirm-stopped --provider-mode goodreads|native-hardcover
   bookshelfng-to-chaptarrng.sh rollback-preview --data-dir PATH --backup-dir PATH --image IMAGE --bookshelf-backup FILE
   bookshelfng-to-chaptarrng.sh rollback --data-dir PATH --backup-dir PATH --image IMAGE --bookshelf-backup FILE --confirm-stopped
 
 IMAGE must be a versioned ghcr.io/snapetech-org/chaptarrng:vMAJOR.MINOR.PATCH
 tag or an immutable sha256 digest. Every action first archives the complete
-BookshelfNG appdata directory outside that directory. The provider mode is
-passed only to the temporary ChaptarrNG migration container; configure the
-same mode in the permanent replacement container after migration.
+BookshelfNG appdata directory outside that directory. Preview and apply require
+an explicit provider mode. The mode is passed only to the temporary ChaptarrNG
+migration container; configure the same mode in the permanent replacement
+container after migration. Native Hardcover mode requires a versioned ChaptarrNG
+tag v0.9.978 or newer; digest references cannot be checked for that capability.
 USAGE
 }
 
 fail() {
   printf 'Error: %s\n' "$*" >&2
   exit 2
+}
+
+require_native_hardcover_capable_image() {
+  local major minor patch
+  if [[ ! "$image" =~ ^ghcr\.io/snapetech-org/chaptarrng:v([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+    fail 'native-hardcover requires a versioned ChaptarrNG image tag v0.9.978 or newer; digest references cannot be checked for provider-mode support'
+  fi
+
+  major=$((10#${BASH_REMATCH[1]}))
+  minor=$((10#${BASH_REMATCH[2]}))
+  patch=$((10#${BASH_REMATCH[3]}))
+  if (( major < 0 || (major == 0 && minor < 9) || (major == 0 && minor == 9 && patch < 978) )); then
+    fail 'native-hardcover requires a versioned ChaptarrNG image tag v0.9.978 or newer; this image does not support native provider identity migration'
+  fi
 }
 
 action="${1:-}"
@@ -38,7 +54,7 @@ backup_dir=""
 image=""
 bookshelf_backup=""
 confirm_stopped=false
-provider_mode="goodreads"
+provider_mode=""
 provider_mode_set=false
 
 while (($#)); do
@@ -133,13 +149,16 @@ case "$action" in
     ;;
 esac
 
-case "$provider_mode" in
-  goodreads|native-hardcover) ;;
-  *) fail '--provider-mode must be goodreads or native-hardcover' ;;
-esac
-
 case "$action" in
-  preview|apply) ;;
+  preview|apply)
+    [[ "$provider_mode_set" == true ]] ||
+      fail "$action requires --provider-mode goodreads or native-hardcover; do not guess provider identity"
+    case "$provider_mode" in
+      goodreads) ;;
+      native-hardcover) require_native_hardcover_capable_image ;;
+      *) fail '--provider-mode must be goodreads or native-hardcover' ;;
+    esac
+    ;;
   *) [[ "$provider_mode_set" == false ]] || fail '--provider-mode applies only to preview and apply' ;;
 esac
 

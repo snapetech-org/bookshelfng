@@ -303,7 +303,7 @@ unset after switching until the ChaptarrNG
 [migration guide](https://github.com/snapetech-org/chaptarrng/blob/main/docs/MIGRATE_FROM_BOOKSHELFNG.md)
 documents a release containing it and the remaining acceptance gates close.
 
-Native Hardcover databases need the same provider mode during preview and apply. BookshelfNG commonly stores Hardcover work, author, edition, and series IDs as bare numbers. The merged ChaptarrNG source interprets them as Hardcover when `HARDCOVER=true` and `HARDCOVER_NATIVE` is not `false`; set `HARDCOVER=false` for a Goodreads-primary database. If the mode is unset or invalid, the merged ChaptarrNG source fails closed when it encounters a bare numeric ID rather than silently assigning Goodreads identity. The checked-in helper exposes `--provider-mode native-hardcover|goodreads`. BookshelfNG's `latest`, `main`, and `hardcover` Docker tags use native Hardcover mode; `softcover` uses Goodreads mode. Merged ChaptarrNG source includes matching compatibility image targets for those mutable aliases, but the targets have not been published or enabled. These changes are not in the published `.71` helper or ChaptarrNG `.977` image. Exact-head validation on commit b5bd9527 passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed; converted-data acceptance remains open. Do not use those published builds for native Hardcover migration until the release-freeze gates close.
+Native Hardcover databases need the same provider mode during preview and apply. BookshelfNG commonly stores Hardcover work, author, edition, and series IDs as bare numbers. The merged ChaptarrNG source interprets them as Hardcover when `HARDCOVER=true` and `HARDCOVER_NATIVE` is not `false`; set `HARDCOVER=false` for a Goodreads-primary database. If the mode is unset or invalid, the merged ChaptarrNG source fails closed when it encounters a bare numeric ID rather than silently assigning Goodreads identity. The current-source helper requires `--provider-mode native-hardcover|goodreads` for both preview and apply. Native Hardcover also requires a versioned ChaptarrNG image tag `v0.9.978` or newer; `.977` and digest-only references are rejected because the helper cannot verify provider-mode support from a digest. BookshelfNG's `latest`, `main`, and `hardcover` Docker tags use native Hardcover mode; `softcover` uses Goodreads mode. Merged ChaptarrNG source includes matching compatibility image targets for those mutable aliases, but the targets have not been published or enabled. These changes are not in the published `.71` helper or ChaptarrNG `.977` image. Exact-head validation on commit b5bd9527 passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed; converted-data acceptance remains open. Do not use those published builds for native Hardcover migration until the release-freeze gates close.
 
 ## Populated SQLite rehearsal (2026-10-18)
 
@@ -379,7 +379,9 @@ with Docker and `tar` available. It:
 2. Creates a mode-`0600` compressed archive of the full appdata directory in a
    backup directory you choose outside appdata.
 3. Runs the requested preview, apply, rollback-preview, or rollback command in
-   the versioned standard ChaptarrNG image.
+   the versioned standard ChaptarrNG image. Current-source preview and apply
+   require an explicit `--provider-mode`; the helper refuses to guess whether
+   bare numeric provider IDs mean Goodreads or native Hardcover.
 
 Each BookshelfNG installation uses one active database. If these files belong
 to two independently operated installations, migrate each installation from
@@ -485,12 +487,14 @@ search. The file contains book titles and author names; keep it private.
 
 The helper downloaded from the published `.71` tag does not expose provider
 mode and runs the converter in Goodreads mode. Native Hardcover conversion is
-not supported by that helper or the public `.977` image. The current source
-candidate adds `--provider-mode native-hardcover` to preview and apply; use it
-only after the ChaptarrNG importer and helper candidate have passed hosted and
-converted-data acceptance and are distributed in a supported build. Use the
-same mode for preview and apply, then configure the replacement container with
-native Hardcover enabled.
+not supported by that helper or the public `.977` image. The current-source
+helper requires `--provider-mode goodreads` or `--provider-mode native-hardcover`
+for preview and apply. For native Hardcover it also requires a versioned image
+tag `v0.9.978` or newer and rejects digest references because their capability
+cannot be verified. Use native mode only after the ChaptarrNG importer and
+helper candidate have passed hosted and converted-data acceptance and are
+distributed in a supported build. Use the same mode for preview and apply,
+then configure the replacement container with native Hardcover enabled.
 
 To choose formats before conversion, save a complete, source-matched
 `readarr.db.bookshelf-media-map.json`. Set each `mediaType` to `audiobook`,

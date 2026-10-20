@@ -24,8 +24,29 @@ export PATH="$fakebin:$PATH"
 
 tool="$repo_root/scripts/bookshelfng-to-chaptarrng.sh"
 image='ghcr.io/snapetech-org/chaptarrng:v0.9.973'
+native_image='ghcr.io/snapetech-org/chaptarrng:v0.9.978'
 
-"$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image"
+if "$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" 2>/dev/null; then
+  echo 'preview without an explicit provider mode should have been rejected' >&2
+  exit 1
+fi
+[[ -z "$(find "$backup_dir" -maxdepth 1 -type f -print -quit)" ]]
+
+if "$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \
+  --provider-mode native-hardcover 2>/dev/null; then
+  echo 'native Hardcover with an unsupported image version should have been rejected' >&2
+  exit 1
+fi
+if "$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" \
+  --image 'ghcr.io/snapetech-org/chaptarrng@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' \
+  --provider-mode native-hardcover 2>/dev/null; then
+  echo 'native Hardcover with an unverified image digest should have been rejected' >&2
+  exit 1
+fi
+[[ -z "$(find "$backup_dir" -maxdepth 1 -type f -print -quit)" ]]
+
+"$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \
+  --provider-mode goodreads
 grep -Fxq -- '-preview-bookshelf-migration' "$DOCKER_ARGS_FILE"
 grep -Fxq -- '-v' "$DOCKER_ARGS_FILE"
 grep -Fxq -- "$data_dir:/config" "$DOCKER_ARGS_FILE"
@@ -40,7 +61,7 @@ tar -tzf "$archive" | grep -Fxq 'source config/readarr.db'
 tar -tzf "$archive" | grep -Fxq 'source config/config.xml'
 tar -tzf "$archive" | grep -Fxq 'source config/logs/Readarr.debug.txt'
 
-"$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \
+"$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$native_image" \
   --provider-mode native-hardcover
 grep -Fxq -- 'HARDCOVER=true' "$DOCKER_ARGS_FILE"
 grep -Fxq -- 'HARDCOVER_NATIVE=true' "$DOCKER_ARGS_FILE"
@@ -76,12 +97,19 @@ fi
 [[ -z "$(find "$symlink_backup_dir" -maxdepth 1 -type f -print -quit)" ]]
 
 before_count="$(find "$backup_dir" -maxdepth 1 -type f -name '*.tar.gz' | wc -l)"
-if "$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image latest 2>/dev/null; then
+if "$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image latest \
+  --provider-mode goodreads 2>/dev/null; then
   echo 'mutable image tag should have been rejected' >&2
   exit 1
 fi
-if "$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" 2>/dev/null; then
+if "$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \
+  --provider-mode goodreads 2>/dev/null; then
   echo 'apply without explicit stopped-service confirmation should have been rejected' >&2
+  exit 1
+fi
+if "$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \
+  --confirm-stopped 2>/dev/null; then
+  echo 'apply without an explicit provider mode should have been rejected' >&2
   exit 1
 fi
 if "$tool" preview --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \
@@ -92,7 +120,7 @@ fi
 after_count="$(find "$backup_dir" -maxdepth 1 -type f -name '*.tar.gz' | wc -l)"
 [[ "$before_count" == "$after_count" ]]
 
-"$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$image" \
+"$tool" apply --data-dir "$data_dir" --backup-dir "$backup_dir" --image "$native_image" \
   --confirm-stopped --provider-mode native-hardcover
 grep -Fxq -- '-migrate-bookshelf' "$DOCKER_ARGS_FILE"
 grep -Fxq -- '-confirm-bookshelf-service-stopped' "$DOCKER_ARGS_FILE"
