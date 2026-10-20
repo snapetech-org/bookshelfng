@@ -112,14 +112,9 @@ if [[ -f "$worktree_dir/$source_manifest_path" ]]; then
 	done < "$worktree_dir/$source_manifest_path"
 fi
 
-while IFS= read -r source_path; do
-	source_file="$source_stage/$source_path"
-	target_file="$worktree_dir/$source_path"
-	if [[ -e "$source_file" || -L "$source_file" ]]; then
-		mkdir -p "$(dirname "$target_file")"
-		rsync --archive "$source_file" "$target_file"
-	fi
-done < "$new_manifest"
+if [[ -s "$new_manifest" ]]; then
+	rsync --archive --relative --files-from="$new_manifest" "$source_stage/" "$worktree_dir/"
+fi
 
 : > "$new_package_docs_manifest"
 declare -A new_package_doc_files=()
@@ -150,12 +145,9 @@ done
 rsync --archive "$source_dir/README.md" "$worktree_dir/README.md"
 rsync --archive "$source_dir/ca_profile.xml" "$worktree_dir/ca_profile.xml"
 rsync --archive --delete "$source_dir/templates/" "$worktree_dir/templates/"
-while IFS= read -r package_doc_path; do
-	package_doc_file="$source_dir/docs/$package_doc_path"
-	target_doc_file="$worktree_dir/docs/$package_doc_path"
-	mkdir -p "$(dirname "$target_doc_file")"
-	rsync --archive "$package_doc_file" "$target_doc_file"
-done < "$new_package_docs_manifest"
+if [[ -s "$new_package_docs_manifest" ]]; then
+	rsync --archive --relative --files-from="$new_package_docs_manifest" "$source_dir/docs/" "$worktree_dir/docs/"
+fi
 
 mkdir -p "$(dirname "$worktree_dir/$renamed_readme")"
 rsync --archive "$source_stage/README.md" "$worktree_dir/$renamed_readme"
