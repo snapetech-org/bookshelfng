@@ -39,7 +39,7 @@ metadata provider configuration.
 
 ## Fork consolidation and retirement
 
-Current status: ChaptarrNG PR #131 is merged to `main`, but the latest public release is still `v0.9.977`; keep BookshelfNG in service and follow issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) for open acceptance gates. BookshelfNG audit-tool Build [39386658595](https://github.com/snapetech-org/bookshelfng/actions/runs/39386658595) and mirrored Unraid Build [39386647719](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39386647719) passed. The schema-v4 inventory still has 0/1,115 reviewed dispositions.
+Current status (2026-10-20): ChaptarrNG PR #131 is merged to `main`, while the latest public release remains `v0.9.977`; keep BookshelfNG in service and follow issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) for open acceptance gates. The BookshelfNG audit-tool Build [39386658595](https://github.com/snapetech-org/bookshelfng/actions/runs/39386658595) passed. ChaptarrNG application snapshot `3254c15b` passed Build [39387591772](https://github.com/snapetech-org/chaptarrng/actions/runs/39387591772), including Linux, macOS, Windows, PostgreSQL migrations, and receipt reconciliation. The refreshed schema-v4 inventory pins `c63eb848` to `3254c15b`: 180/1,116 changed paths have file dispositions; 936 remain open for semantic disposition.
 
 | Guide | Covers |
 | --- | --- |

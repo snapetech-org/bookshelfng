@@ -1,47 +1,14 @@
 # BookshelfNG
 
-> **Retirement status — 2026-10-20:** BookshelfNG `0.4.21.71` remains its final
-> public release; ChaptarrNG `v0.9.977` remains the latest public release.
-> ChaptarrNG PR [#131](https://github.com/snapetech-org/chaptarrng/pull/131)
-> merged to `main` as `d2bcba7953a14d2d726f47005a660314cc5e4c26` after exact-head
-> Build [39374140961](https://github.com/snapetech-org/chaptarrng/actions/runs/39374140961)
-> passed Linux, macOS, Windows (including the Windows installer service
-> upgrade/rollback round trip), PostgreSQL migration, release-note, and runner
-> receipt checks. CodeQL, dependency, Semgrep CE, Trivy, NuGet, and Helm checks
-> passed. The separate GHAS Semgrep OSS check remains failed with 12 reviewed
-> SQL-format alerts and 3 fixed-fixture path warnings; focused local SQL-rule
-> scans returned zero findings. See the [consolidation report](docs/maintainers/chaptarr-consolidation.md).
-> The merged ChaptarrNG `main` head `8448e90d` also passed post-merge Build
-> [39382585956](https://github.com/snapetech-org/chaptarrng/actions/runs/39382585956)
-> across Linux, macOS, Windows, PostgreSQL migration, and native-runner receipt
-> validation. This does not close the retirement acceptance gates.
+> **Retirement status — 2026-10-20:** BookshelfNG `0.4.21.71` remains its final public release; ChaptarrNG `v0.9.977` remains the latest public release. ChaptarrNG PR [#131](https://github.com/snapetech-org/chaptarrng/pull/131) merged to `main` as `d2bcba7953a14d2d726f47005a660314cc5e4c26` from validated application head `87c57a2bffd25a5ecbda40b9c63fd6d82993c54`. The merged migration, provider, backup, installer, UI, and integration work is source-only; it does not authorize production cutover.
 >
-> BookshelfNG audit-tool commit `9fcc0aea` passed exact-main Build
-> [39386658595](https://github.com/snapetech-org/bookshelfng/actions/runs/39386658595);
-> its Unraid mirror `23bebe2a` passed Build
-> [39386647719](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39386647719).
-> The Unraid transition candidate at `e615e37e` passed its exact-head build,
-> template, dependency, package-sync, release-note, Trivy, and Semgrep checks,
-> but remains draft for real-data and Community Applications acceptance.
-> Publication jobs were skipped. The v4 path inventory still has 0/1,115
-> dispositions, so the audit tooling does not close parity.
+> ChaptarrNG application snapshot `3254c15b` passed exact-head Build [39387591772](https://github.com/snapetech-org/chaptarrng/actions/runs/39387591772) on Linux, macOS, Windows, PostgreSQL migrations, and native-runner receipt reconciliation. Its security, Semgrep CE, Trivy, dependency-submission, and push checks passed; the release-note job was skipped for that docs-only source update. BookshelfNG audit-tool code at `9fcc0aea` passed Build [39386658595](https://github.com/snapetech-org/bookshelfng/actions/runs/39386658595). No release or cutover was authorized.
 >
-> The merge did not publish a release or authorize production cutover. Keep
-> BookshelfNG in service. Issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
-> remains open for representative operator data, rollback, feature disposition,
-> provider workflows, and supported channel handoff. The Unraid transition PR
-> remains draft pending real-data and Community Applications acceptance.
+> Unraid transition PR [#5](https://github.com/snapetech-org/bookshelfng-unraid/pull/5) remains draft at `1261a9f8`. Its exact-head build, template, package-sync, dependency, release-note, Semgrep, and Trivy checks passed; publication jobs were skipped. The actual Community Applications update/rollback flow and representative operator-data migration remain open.
 >
-> The latest generated path inventory compares BookshelfNG source `70a703fe`
-> with ChaptarrNG `main` at `8448e90d`: 670 reachable post-fork commits (661
-> absent from the pinned Bookshelf lineage), and 1,115 changed paths remain
-> (376 unmapped, 557 semantic reviews, 176 identical, four text-equivalent,
-> two deleted); 25 path mappings were rechecked and no retirements are approved.
-> The schema-v4 inventory records 0 reviewed source-path dispositions out of
-> 1,115, so all paths still need a retained/ported/equivalent/retired decision.
-> Path mappings do not prove feature parity. See the
-> [parity roadmap](docs/maintainers/bookshelfng-parity-roadmap.md) and
-> [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md).
+> The refreshed schema-v4 inventory pins BookshelfNG `c63eb848` to ChaptarrNG `3254c15b`: 679 reachable post-fork commits (670 absent from the pinned Bookshelf lineage) and 1,116 changed paths. It records 25 reviewed path mappings and 180 reviewed file dispositions (176 retained, 4 ported); 936 paths still need semantic disposition, and no retirements are approved. See the [consolidation report](docs/maintainers/chaptarr-consolidation.md) and [parity roadmap](docs/maintainers/bookshelfng-parity-roadmap.md).
+>
+> No release, tag, package, image, installer, or migration bridge was published. Keep BookshelfNG in service; issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) remains open for representative data, rollback, parity, provider workflows, channel handoff, and operator acceptance. The readiness variables remain unset.
 
 > Exact-head artifact repeat (2026-10-19): the Linux artifact from PR #131 Build [39316535744](https://github.com/snapetech-org/chaptarrng/actions/runs/39316535744) passed the checked-in SeerrNG Compose smoke with synthetic migrated audiobook and ebook records. Using SeerrNG rebuilt from `22f3bbc5874752b50a3b1206ca0bd3ebe0309f95`, it verified restricted-key access, administrative/unrelated command denial, and pending import create/poll/cancel. The candidate app artifact ran in a temporary image based on public `.977`; this did not validate candidate image packaging, successful acquisition, operator data, installed rollback, or channel handoff. Full details are in the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md#exact-head-artifact-repeat-2026-10-19).
 > **Migration decision: keep BookshelfNG in service.** Do not apply the converter or start ChaptarrNG against BookshelfNG appdata; normal ChaptarrNG startup converts a supported source database automatically. A passing preview is not cutover approval. See the [migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md).
