@@ -25,7 +25,7 @@ C# token/comment
 comparison establishes only source-level equivalence; it does not establish
 overall feature or runtime equivalence.
 
-ChaptarrNG main at `29852b13` includes BookshelfNG's explicit trusted proxy and
+ChaptarrNG commit `29852b13` introduced BookshelfNG's explicit trusted proxy and
 CORS allowlists, per-client rate limit, bounded general body size, and request-ID
 response header. The restore endpoint keeps its separate 1 GiB upload limit.
 The first Build at `36623faf` found compile errors in its new fixture. Follow-up

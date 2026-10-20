@@ -9,11 +9,16 @@ application head `87c57a2bffd25a5ecbda40b9c63fd6d82993c54`. BookshelfNG
 new release, package, image, installer, or migration bridge was published.
 The merged source remains unapproved for operator cutover.
 
-Current ChaptarrNG `main` at `00cf7b1a` also accepts raw SQLite Bookshelf
+ChaptarrNG application snapshot `00cf7b1a` also accepts raw SQLite Bookshelf
 backup uploads with `.db` and legacy `.xml` filename suffixes. The `.xml`
 suffix is filename compatibility only; the uploaded content must still be
 SQLite. This source-only restore-path fix is not in public `.977` and does not
 approve production migration.
+
+The audit remains pinned to that application snapshot. ChaptarrNG has since
+made documentation-only status updates in `README.md`, `docs/FORK_FEATURES.md`,
+and `docs/BOOKSHELFNG_RETIREMENT.md`; none overlaps a reviewed target path, so
+the recorded file dispositions remain valid at the pinned revision.
 
 The prior ChaptarrNG main snapshot `3254c15b5e964dae513c6d16758e8b749a77db4b` passed
 exact-head Build [39387591772](https://github.com/snapetech-org/chaptarrng/actions/runs/39387591772).
@@ -78,9 +83,7 @@ The refreshed inventory pins BookshelfNG source snapshot
 `00cf7b1a46984ec11661e745a314c19e5eaac6e3`. It covers 679 reachable post-fork
 commits (670 absent from the pinned upstream history) and 1,116 changed paths:
 239 paths without mapped targets, 408 undispositioned semantic differences, 176 retained identical paths, 129 equivalent paths (118 C# paths checked automatically, 8 with Roslyn, and 3 license/build/documentation files), six ported files (four project files, the release-note process guide, and the contributor guide), 158 approved non-runtime retirements (145 historical release-note fragments, 12 BookshelfNG logo assets, and one obsolete Readarr Azure Pipelines definition), and two paths absent from the Bookshelf snapshot.
-The review map records 25 path correspondences. The disposition map now records 469 reviewed paths (176 retained, 129 equivalent, 6 ported, and 158 non-runtime artifact retirements (145 release-note fragments, 12 logo assets, and one obsolete Azure pipeline)), leaving 647 undispositioned paths. These retirement decisions cover historical notes, BookshelfNG branding, and obsolete Azure CI only; no runtime feature retirement is approved. These are file-level review states, not feature-parity
-counts; file similarity or identical bytes do not establish integration,
-runtime behavior, or migration safety.
+The review map records 25 path correspondences. The disposition map now records 469 reviewed paths (176 retained, 129 equivalent, 6 ported, and 158 non-runtime artifact retirements (145 release-note fragments, 12 logo assets, and one obsolete Azure pipeline)), leaving 647 undispositioned paths: 239 paths without mapped targets and 408 semantic differences requiring review. These retirement decisions cover historical notes, BookshelfNG branding, and obsolete Azure CI only; no runtime feature retirement is approved. A follow-up exact mode/blob scan found no additional same-path, byte-identical candidates among the 647 unresolved paths. They still need reviewed mappings or semantic dispositions. These are file-level review states, not feature-parity counts; file similarity or identical bytes do not establish integration, runtime behavior, or migration safety.
 
 The 145 retired note paths are past BookshelfNG release fragments. ChaptarrNG
 keeps its own append-only release history; copying those fragments into its
