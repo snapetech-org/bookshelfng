@@ -140,6 +140,13 @@ preparation script is [`packaging/rpm/copr-source.sh`](../packaging/rpm/copr-sou
 Build output from `main` is not sent to third-party package stores; store
 updates are tied to verified stable release tags.
 
+Before a Chocolatey upload, the package verifier checks the exact package ID
+and version, copyright metadata, unresolved installer placeholders, and
+PowerShell syntax. The legacy `bookshelfng` package also has to retain the
+existing BookshelfNG service upgrade and start path. CI exercises the verifier
+with valid and intentionally invalid package fixtures. This check does not
+enable publishing or change the release freeze.
+
 ## First publication setup
 
 Before the first external upload, register `bookshelfng` on the Chocolatey

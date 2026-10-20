@@ -30,6 +30,17 @@ env:
   BUILD_SOURCEBRANCHNAME: ${{ github.head_ref || github.ref_name }}
 
 jobs:
+  test-chocolatey-package-verifier:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Test Chocolatey package verifier
+        shell: pwsh
+        run: ./scripts/test-chocolatey-package-verifier.ps1
+
   build:
     # All builds use GitHub-hosted runners.
     runs-on: ubuntu-latest
