@@ -130,12 +130,12 @@ fi
 
 git -C "$worktree_dir" add --all
 if ! git -C "$worktree_dir" diff --cached --quiet; then
-	git -C "$worktree_dir" commit -m "chore: sync full source and Unraid package from $short_source_commit"
+	git -C "$worktree_dir" -c core.hooksPath=/dev/null commit -m "chore: sync full source and Unraid package from $short_source_commit"
 fi
 
 new_head="$(git -C "$worktree_dir" rev-parse HEAD)"
 if [[ "$new_head" != "$remote_head" ]]; then
-	GIT_TERMINAL_PROMPT=0 git -C "$worktree_dir" push "$remote" "HEAD:refs/heads/$branch"
+	GIT_TERMINAL_PROMPT=0 git -C "$worktree_dir" -c core.hooksPath=/dev/null push "$remote" "HEAD:refs/heads/$branch"
 	echo "Synced source commit $short_source_commit and Unraid package to $target_dir ($branch)."
 else
 	echo "Unraid source and package are already synced at $target_dir ($branch)."

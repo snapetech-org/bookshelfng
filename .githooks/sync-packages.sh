@@ -4,7 +4,16 @@ set -uo pipefail
 trigger="${1:-manual}"
 source_commit="${2:-}"
 repo_root="$(git rev-parse --show-toplevel)"
+origin_url="$(git -C "$repo_root" remote get-url origin 2>/dev/null || true)"
+source_repo="${origin_url%/}"
+source_repo="${source_repo##*/}"
+source_repo="${source_repo%.git}"
 overall_status=0
+
+if [[ "$source_repo" == "bookshelfng-unraid" || "$source_repo" == "chaptarrng-unraid" ]]; then
+	echo "Skipping source sync inside the Unraid companion repository '$source_repo'."
+	exit 0
+fi
 
 # Git exports the current repository context to hooks. Clear it before the
 # package scripts run Git commands against their separate checkouts.
