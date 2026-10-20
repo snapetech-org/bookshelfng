@@ -79,6 +79,12 @@ image switch.
 
 ## Portable encrypted backups
 
+Current ChaptarrNG `main` also accepts raw SQLite Bookshelf backup uploads
+whose filename ends in `.db` or the legacy `.xml` suffix. `.xml` is only a
+filename compatibility suffix; the content must still be SQLite. This upload
+support is not in public `v0.9.977`, and a successful restore upload does not
+approve a BookshelfNG migration or cutover.
+
 Merged but unpublished ChaptarrNG application code at
 `b7e900d49648269d5118bbfba44289c0200b095b` can import and export portable
 BookshelfNG `BKSENC01` `.enc` backups using the same passphrase. The portable
