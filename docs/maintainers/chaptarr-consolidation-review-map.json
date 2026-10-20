@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceCommit": "c63eb84813392cdb398d9e6bf4446694952f256d",
-  "targetCommit": "cc9be068bd0b8d430a640a0b0562026ed2929c6b",
+  "targetCommit": "a36df289b0c958604d466fed317f476c01fca11f",
   "decisions": [
     {
       "sourcePath": "distribution/windows/setup/upgrade-helpers/rollback.ps1",
@@ -9,7 +9,7 @@
       "targetPath": "distribution/windows/installer-net/upgrade-helpers/rollback.ps1",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both scripts implement Windows rollback handling and should be compared directly; their backup contracts and service flows differ, so the mapping does not assert functional equivalence.",
-      "evidence": "The source restores a pre-upgrade Readarr backup from installer registry metadata; the target restores retained BookshelfNG state after Chaptarr migration. Link the scripts for direct review only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "The source restores a pre-upgrade Readarr backup from installer registry metadata; the target restores retained BookshelfNG state after Chaptarr migration. Link the scripts for direct review only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "docs.sh",
@@ -17,7 +17,7 @@
       "targetPath": "scripts/docs.sh",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths name the documentation helper script; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths name the documentation helper script; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "docs/capabilities-and-compatibility.md",
@@ -25,7 +25,7 @@
       "targetPath": "docs/FORK_FEATURES.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target guide consolidates the current format feature matrix, compatibility notes, migration state, and retirement restrictions. This is documentation coverage only, not feature-equivalence evidence.",
-      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/capabilities-and-compatibility.md to blob 0df5e7b1f882521cf1ffe8b2b109d36d1e4ced4a; ChaptarrNG target cc9be068bd0b8d430a640a0b0562026ed2929c6b resolves docs/FORK_FEATURES.md to blob 72d0c530f4306c251ddf9c06d4c6622c7053897a. The pinned source guide and target guide both exist. ChaptarrNG target cc9be068 includes the current migration and source-only status; this maps documentation only and does not claim implementation parity."
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/capabilities-and-compatibility.md to blob 0df5e7b1f882521cf1ffe8b2b109d36d1e4ced4a; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/FORK_FEATURES.md to blob 72d0c530f4306c251ddf9c06d4c6622c7053897a. The pinned source guide and target guide both exist. ChaptarrNG target a36df289 includes the current migration and source-only status; this maps documentation only and does not claim implementation parity."
     },
     {
       "sourcePath": "docs/encrypted-backups.md",
@@ -33,7 +33,7 @@
       "targetPath": "docs/BOOKSHELFNG_ENCRYPTED_BACKUPS.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The BookshelfNG guide documents its portable encrypted archive format and API; the ChaptarrNG guide documents that compatibility contract alongside ChaptarrNG backup behavior.",
-      "evidence": "BookshelfNG source c63eb848 and ChaptarrNG target cc9be068 contain these pinned documentation paths. The pinned source and target backup guides both exist. The target documents portable BookshelfNG backup import/export and its API contract; this does not establish acceptance with operator backup archives."
+      "evidence": "BookshelfNG source c63eb848 and ChaptarrNG target a36df289 contain these pinned documentation paths. The pinned source and target backup guides both exist. The target documents portable BookshelfNG backup import/export and its API contract; this does not establish acceptance with operator backup archives."
     },
     {
       "sourcePath": "docs/maintainers/dependency-security.md",
@@ -41,7 +41,7 @@
       "targetPath": "docs/dependency-security.md",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify the dependency-security guide; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify the dependency-security guide; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "docs/maintainers/setup-experience-contract.md",
@@ -49,7 +49,7 @@
       "targetPath": "docs/development/setup-experience-contract.md",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify the setup-experience contract; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify the setup-experience contract; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "docs/migrate-from-bookshelfng-to-chaptarrng.md",
@@ -57,7 +57,7 @@
       "targetPath": "docs/MIGRATE_FROM_BOOKSHELFNG.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target guide documents supported source schemas, provider identity hazards, backup, preview/apply separation, rollback limits, and current acceptance gates. This is operator-documentation coverage only, not migration acceptance.",
-      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/migrate-from-bookshelfng-to-chaptarrng.md to blob 5640c4b46d454a60c21e4e9988c332a306d5a39b; ChaptarrNG target cc9be068bd0b8d430a640a0b0562026ed2929c6b resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 09906361752f571b72b0481267d5eed9a5aaa4f6. Compared the pinned BookshelfNG migration guide with ChaptarrNG target cc9be068. The target documents the currently supported flow and its limits; real operator-data and installed-channel acceptance remain open."
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/migrate-from-bookshelfng-to-chaptarrng.md to blob 5640c4b46d454a60c21e4e9988c332a306d5a39b; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 09906361752f571b72b0481267d5eed9a5aaa4f6. Compared the pinned BookshelfNG migration guide with ChaptarrNG target a36df289. The target documents the currently supported flow and its limits; real operator-data and installed-channel acceptance remain open."
     },
     {
       "sourcePath": "docs/seerrng-integration.md",
@@ -65,7 +65,7 @@
       "targetPath": "docs/SEERRNG_INTEGRATION.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target guide documents ChaptarrNG’s Readarr-compatible SeerrNG contract, including the audiobook-scoped narrator routes and restricted-key limits. This maps integration documentation only, not end-to-end provider or client acceptance.",
-      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/seerrng-integration.md to blob 07c2bff9e2a31c61846c4b6de8e619e1d95cd1c5; ChaptarrNG target cc9be068bd0b8d430a640a0b0562026ed2929c6b resolves docs/SEERRNG_INTEGRATION.md to blob 577300b152fe61faed03b15cece03af659603000. Compared the pinned BookshelfNG SeerrNG guide with ChaptarrNG target cc9be068. The target documents the current edition catalog, audiobook narrator query, and non-overriding preference update contract; full SeerrNG workflow acceptance remains open."
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/seerrng-integration.md to blob 07c2bff9e2a31c61846c4b6de8e619e1d95cd1c5; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/SEERRNG_INTEGRATION.md to blob 577300b152fe61faed03b15cece03af659603000. Compared the pinned BookshelfNG SeerrNG guide with ChaptarrNG target a36df289. The target documents the current edition catalog, audiobook narrator query, and non-overriding preference update contract; full SeerrNG workflow acceptance remains open."
     },
     {
       "sourcePath": "packaging/aur/bookshelfng.install",
@@ -73,7 +73,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.install",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify the BookshelfNG AUR install hook; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify the BookshelfNG AUR install hook; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.env",
@@ -81,7 +81,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.env",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files describe the environment file used by the BookshelfNG package identity; link them for direct comparison without claiming the variables are equivalent.",
-      "evidence": "The source documents optional BookshelfNG runtime settings; the target documents ChaptarrNG under the legacy BookshelfNG identity. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "The source documents optional BookshelfNG runtime settings; the target documents ChaptarrNG under the legacy BookshelfNG identity. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.service",
@@ -89,7 +89,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.service",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files define the systemd service for the BookshelfNG package identity; link them for direct comparison without claiming behavioral equivalence.",
-      "evidence": "The source starts BookshelfNG while the target starts ChaptarrNG against retained BookshelfNG appdata. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "The source starts BookshelfNG while the target starts ChaptarrNG against retained BookshelfNG appdata. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.sysusers",
@@ -97,7 +97,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.sysusers",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files define the system user for the BookshelfNG package identity; link them for direct comparison without claiming account behavior is equivalent.",
-      "evidence": "The source creates the BookshelfNG service account; the target retains that account for ChaptarrNG migration. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "The source creates the BookshelfNG service account; the target retains that account for ChaptarrNG migration. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.tmpfiles",
@@ -105,7 +105,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.tmpfiles",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files define the appdata directory for the BookshelfNG package identity; link them for direct comparison without claiming the setup is equivalent.",
-      "evidence": "The source creates /var/lib/bookshelfng and the target preserves that path for the compatibility package. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "The source creates /var/lib/bookshelfng and the target preserves that path for the compatibility package. The AUR and RPM target copies are byte-identical at 730ba5e8. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs",
@@ -113,7 +113,7 @@
       "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify DiagnosticsEventHandler in the renamed diagnostics module; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify DiagnosticsEventHandler in the renamed diagnostics module; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsReporter.cs",
@@ -121,7 +121,7 @@
       "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsReporter.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify DiagnosticsReporter in the renamed diagnostics module; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify DiagnosticsReporter in the renamed diagnostics module; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Api.Test/Books/BookStatisticsResourceFixture.cs",
@@ -129,7 +129,7 @@
       "targetPath": "src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify BookStatisticsResourceFixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify BookStatisticsResourceFixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Common.Test/DiskTests/DiskTransferServiceFixture.cs",
@@ -137,7 +137,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify DiskTransferServiceFixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify DiskTransferServiceFixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/Direct/DirectDownloadPlaywrightBrowserFixture.cs",
@@ -145,7 +145,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify DirectDownloadPlaywrightBrowserFixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify DirectDownloadPlaywrightBrowserFixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs",
@@ -153,7 +153,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify QBittorrentProxyV2Fixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify QBittorrentProxyV2Fixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Indexers/DirectDownload/DirectDownloadSettingsFixture.cs",
@@ -161,7 +161,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Indexers/DirectDownloadSettingsFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify DirectDownloadSettingsFixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify DirectDownloadSettingsFixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/MetadataSource/Hardcover/HardcoverMetadataProxyFixture.cs",
@@ -169,7 +169,7 @@
       "targetPath": "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
       "reviewedBy": "Codex path mapping review (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "At exact BookshelfNG source c63eb848 and ChaptarrNG target cc9be068, both fixture paths are present. The ChaptarrNG fixture adds rate-limit pause, daily-quota reserve, work-detail cache, and narrator assertions. The mapping identifies corresponding files for direct review only; it does not claim behavior equivalence."
+      "evidence": "At exact BookshelfNG source c63eb848 and ChaptarrNG target a36df289, both fixture paths are present. The ChaptarrNG fixture adds rate-limit pause, daily-quota reserve, work-detail cache, and narrator assertions. The mapping identifies corresponding files for direct review only; it does not claim behavior equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/NotificationTests/BookLore/BookLoreProxyFixture.cs",
@@ -177,7 +177,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify BookLoreProxyFixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify BookLoreProxyFixture; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs",
@@ -185,7 +185,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 041 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 041 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs",
@@ -193,7 +193,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 042 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 042 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs",
@@ -201,7 +201,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 043 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 043 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs",
@@ -209,7 +209,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 044 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 044 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs",
@@ -217,7 +217,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 045 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 045 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs",
@@ -225,7 +225,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both filenames carry migration ID 046 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both filenames carry migration ID 046 and the same migration name; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "src/NzbDrone.Host/SecurityHeadersMiddleware.cs",
@@ -233,7 +233,7 @@
       "targetPath": "src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "Both paths identify SecurityHeadersMiddleware; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target cc9be068: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
+      "evidence": "Both paths identify SecurityHeadersMiddleware; link the paths for direct comparison only. Revalidated at exact source c63eb848 and ChaptarrNG target a36df289: both pinned paths remain present. This confirms path mapping only, not semantic equivalence."
     },
     {
       "sourcePath": "distribution/windows/installer-net/Readarr.Installer.csproj",
@@ -241,7 +241,7 @@
       "targetPath": "distribution/windows/installer-net/ChaptarrNG.Installer.csproj",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The installer project identity and assembly were renamed to ChaptarrNG while retaining the migration-only Windows installer role.",
-      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves distribution/windows/installer-net/Readarr.Installer.csproj to blob 77940fb100b7c2ecfa9f3a2c7d6a05c332cbfcc5; ChaptarrNG target cc9be068bd0b8d430a640a0b0562026ed2929c6b resolves distribution/windows/installer-net/ChaptarrNG.Installer.csproj to blob 7686f38d1703df9e0fde3e29d9a38c4a8ddb5459. Reviewed the source and target roles directly. This mapping only identifies code for feature review and is not a claim of semantic or operational parity."
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves distribution/windows/installer-net/Readarr.Installer.csproj to blob 77940fb100b7c2ecfa9f3a2c7d6a05c332cbfcc5; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves distribution/windows/installer-net/ChaptarrNG.Installer.csproj to blob 7686f38d1703df9e0fde3e29d9a38c4a8ddb5459. Reviewed the source and target roles directly. This mapping only identifies code for feature review and is not a claim of semantic or operational parity."
     },
     {
       "sourcePath": "distribution/windows/setup/upgrade-helpers/do-backup.ps1",
@@ -249,7 +249,7 @@
       "targetPath": "distribution/windows/installer-net/Pipeline/BackupService.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The legacy pre-upgrade backup script maps to the ChaptarrNG backup service. The implementation changed from API-first backup with rotation to a retained, integrity-checked migration copy; the mapping is for feature review, not exact behavior equivalence.",
-      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves distribution/windows/setup/upgrade-helpers/do-backup.ps1 to blob 91b0c84c58b77213f0d6988bb3b0a3dac1bd34ca; ChaptarrNG target cc9be068bd0b8d430a640a0b0562026ed2929c6b resolves distribution/windows/installer-net/Pipeline/BackupService.cs to blob c192f67c47b07bb7431bed7c830080c1a8c07b7a. Reviewed the source and target roles directly. This mapping only identifies code for feature review and is not a claim of semantic or operational parity."
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves distribution/windows/setup/upgrade-helpers/do-backup.ps1 to blob 91b0c84c58b77213f0d6988bb3b0a3dac1bd34ca; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves distribution/windows/installer-net/Pipeline/BackupService.cs to blob c192f67c47b07bb7431bed7c830080c1a8c07b7a. Reviewed the source and target roles directly. This mapping only identifies code for feature review and is not a claim of semantic or operational parity."
     },
     {
       "sourcePath": "distribution/windows/setup/Rollback-To-Pre-Upgrade.bat",
@@ -257,7 +257,7 @@
       "targetPath": "distribution/windows/installer-net/MainWindow.xaml.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The legacy batch entry point maps to the ChaptarrNG installer Restore BookshelfNG action and explicit restore mode. The ChaptarrNG UI delegates to its migration-specific rollback pipeline; this mapping does not claim line-for-line equivalence.",
-      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves distribution/windows/setup/Rollback-To-Pre-Upgrade.bat to blob fd454769fd0222eff7a6593859acd616284a2f7f; ChaptarrNG target cc9be068bd0b8d430a640a0b0562026ed2929c6b resolves distribution/windows/installer-net/MainWindow.xaml.cs to blob 02960572247f801cd81fbae04d754b979b6276aa. Reviewed the source and target roles directly. This mapping only identifies code for feature review and is not a claim of semantic or operational parity."
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves distribution/windows/setup/Rollback-To-Pre-Upgrade.bat to blob fd454769fd0222eff7a6593859acd616284a2f7f; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves distribution/windows/installer-net/MainWindow.xaml.cs to blob 02960572247f801cd81fbae04d754b979b6276aa. Reviewed the source and target roles directly. This mapping only identifies code for feature review and is not a claim of semantic or operational parity."
     },
     {
       "sourcePath": "README.md",
@@ -265,7 +265,7 @@
       "targetPath": "README.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target README provides the current ChaptarrNG product overview, migration status, source-only feature notes, safety warning, and links to detailed migration documentation. This is documentation coverage only, not feature-equivalence evidence.",
-      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves README.md to blob 4b030a61bbdc1f0341bc9fcd57a32092f56bc99b; ChaptarrNG target cc9be068bd0b8d430a640a0b0562026ed2929c6b resolves README.md to blob de7a7a9373780c2674b95733063a0749dfcf86c7. Compared the pinned BookshelfNG root README with ChaptarrNG target cc9be068. The target README links the current migration guide and states the release freeze and appdata restrictions; this is a documentation port only."
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves README.md to blob 4b030a61bbdc1f0341bc9fcd57a32092f56bc99b; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves README.md to blob 1c923d89e27951992e18a0e5e483c98856781ae7. Compared the pinned BookshelfNG root README with ChaptarrNG target a36df289. The target README links the current migration guide and states the release freeze and appdata restrictions; this is a documentation port only."
     },
     {
       "sourcePath": "packaging/unraid/README.md",
@@ -273,7 +273,7 @@
       "targetPath": "packaging/unraid/README.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target package guide states the ChaptarrNG Unraid configuration, current release freeze, appdata restrictions, candidate status, and open Community Applications acceptance. This is operator-documentation coverage only; it does not establish update or rollback acceptance.",
-      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves packaging/unraid/README.md to blob bd6020c4cb0f3bcabe056185be133163f4d3499f; ChaptarrNG target cc9be068bd0b8d430a640a0b0562026ed2929c6b resolves packaging/unraid/README.md to blob 5546b11c2a3438e419ae38e546d15b4c730d2c63. Compared the pinned BookshelfNG Unraid guide with ChaptarrNG target cc9be068. The target documents the safe handoff restrictions and current Community Applications acceptance gap; this maps documentation only."
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves packaging/unraid/README.md to blob bd6020c4cb0f3bcabe056185be133163f4d3499f; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves packaging/unraid/README.md to blob 5546b11c2a3438e419ae38e546d15b4c730d2c63. Compared the pinned BookshelfNG Unraid guide with ChaptarrNG target a36df289. The target documents the safe handoff restrictions and current Community Applications acceptance gap; this maps documentation only."
     },
     {
       "sourcePath": "packaging/unraid/docs/installation.md",
@@ -281,7 +281,135 @@
       "targetPath": "docs/MIGRATE_FROM_BOOKSHELFNG.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The ChaptarrNG migration guide contains the existing-installation Unraid handoff, including backup, appdata, provider-mode, health-check, rollback, and current acceptance restrictions. This is documentation coverage only, not installed-channel acceptance.",
-      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves packaging/unraid/docs/installation.md to blob 22a6ddf203e59e9d4ab5ccec4ad579ea55b22f18; ChaptarrNG target cc9be068bd0b8d430a640a0b0562026ed2929c6b resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 09906361752f571b72b0481267d5eed9a5aaa4f6. Compared the Unraid handoff section with the pinned target migration guide. The target documents the safe handoff procedure and open Community Applications acceptance; this mapping does not claim the live UI or rollback flow was accepted."
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves packaging/unraid/docs/installation.md to blob 22a6ddf203e59e9d4ab5ccec4ad579ea55b22f18; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 09906361752f571b72b0481267d5eed9a5aaa4f6. Compared the Unraid handoff section with the pinned target migration guide. The target documents the safe handoff procedure and open Community Applications acceptance; this mapping does not claim the live UI or rollback flow was accepted."
+    },
+    {
+      "sourcePath": "docs/README.md",
+      "decision": "map",
+      "targetPath": "docs/README.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The ChaptarrNG docs index organizes the current migration, feature, integration, operations, and development guides; its root README provides the project overview and quick start.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/README.md to blob 07f70e2668731d6139f291d68d1361085bfe06ef; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/README.md to blob 6d4bc709ffbe26307f5e0a0916d209696da29f64. Compared the pinned source guide with the target documentation. This is documentation coverage only; it does not claim feature parity or operator acceptance."
+    },
+    {
+      "sourcePath": "docs/audiobook-m4b-merging.md",
+      "decision": "map",
+      "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target retirement guide records the opt-in BookshelfNG M4B environment settings and source-only state; the fork feature guide describes current merge behavior and fallback.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/audiobook-m4b-merging.md to blob fdb99716624c229a422b5b7e67ae7674e6c1c027; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/BOOKSHELFNG_RETIREMENT.md to blob c60d83d5cf3ee59ca79bfd55c31de8dd20785de7. Compared the pinned source guide with the target documentation. This documents the migration and feature contract only; representative media and restart/resume acceptance remain open."
+    },
+    {
+      "sourcePath": "docs/audiobookshelf-metadata.md",
+      "decision": "map",
+      "targetPath": "docs/EXTERNAL_LIBRARY_INTEGRATIONS.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target external-integration guide covers AudioBookShelf sidecars and synchronization; the feature guide records narrator and metadata-profile behavior.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/audiobookshelf-metadata.md to blob e3d335c59646112b9e2bba552d35a306602e90b3; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/EXTERNAL_LIBRARY_INTEGRATIONS.md to blob c53e57f32220e34b939c6628aee0f8e2d32e1514. Compared the pinned source guide with the target documentation. This is documentation coverage only; it does not establish parity for every audio tag or external-library version."
+    },
+    {
+      "sourcePath": "docs/booklore-integration.md",
+      "decision": "map",
+      "targetPath": "docs/BOOKLORE_INTEGRATION.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target guide covers BookLore BookDrop setup, canonical URLs, upload behavior, and the migration rule that saved BookLore settings are not silently reassigned to BookOrbit.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/booklore-integration.md to blob 3cc7b122eba21f480bae342a0e8ceb3f1865e172; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/BOOKLORE_INTEGRATION.md to blob e992967fa0fdb3fa455661e8dbe84d94b08fd3de. Compared the pinned source guide with the target documentation. This is documentation coverage only; live provider acceptance remains open."
+    },
+    {
+      "sourcePath": "docs/catalog-metadata-and-unmapped-files.md",
+      "decision": "map",
+      "targetPath": "docs/MIGRATE_FROM_BOOKSHELFNG.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target guides cover supplemental catalogs and field preferences, unmapped-file recovery, and the identity and ambiguity rules used by the candidate.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/catalog-metadata-and-unmapped-files.md to blob 5c4192481ac1f071372408b4c59bc164fc0d9e86; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 09906361752f571b72b0481267d5eed9a5aaa4f6. Compared the pinned source guide with the target documentation. This is documentation coverage only; it does not prove matching or recovery behavior against operator libraries."
+    },
+    {
+      "sourcePath": "docs/development/validation-engine.md",
+      "decision": "map",
+      "targetPath": "docs/development/validation-engine.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The same-path ChaptarrNG guide documents the current local and hosted validation engine, task progress, runner routing, and receipt contract.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/development/validation-engine.md to blob d5e6e85115da1930860df40aa263a2445e29480c; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/development/validation-engine.md to blob c8e661d8fb21a501d6ca8e33aa4d1f6fff13376f. Compared the pinned source guide with the target documentation. This maps developer documentation only; it does not imply that all platform checks have passed."
+    },
+    {
+      "sourcePath": "docs/distribution.md",
+      "decision": "map",
+      "targetPath": "packaging/README.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The ChaptarrNG package overview and retirement guide document maintained destinations, publication boundaries, and the legacy-channel acceptance state.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/distribution.md to blob 0bf8ac2aa53825aba652b11569f532aa96740c94; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves packaging/README.md to blob ab0e18ce72525066e1cb21cfbb2384af1bac7625. Compared the pinned source guide with the target documentation. This is documentation coverage only; package publication and installed-channel acceptance remain separate gates."
+    },
+    {
+      "sourcePath": "docs/import-matching-and-formats.md",
+      "decision": "map",
+      "targetPath": "docs/FORK_FEATURES.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target feature guide covers format-scoped imports, matching, edition preferences, and metadata profiles; the supplemental metadata guide documents provider selection.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/import-matching-and-formats.md to blob 7ea0aa8a77c2fba0eb168766ee0d1218af600722; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/FORK_FEATURES.md to blob 72d0c530f4306c251ddf9c06d4c6622c7053897a. Compared the pinned source guide with the target documentation. This is documentation coverage only; representative matching and format acceptance remain open."
+    },
+    {
+      "sourcePath": "docs/integrations/snapetech-mcp.md",
+      "decision": "map",
+      "targetPath": "docs/integrations/snapetech-mcp.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The same-path ChaptarrNG guide documents the MCP tools, API access, and credential and data boundaries.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/integrations/snapetech-mcp.md to blob 2c046e022cff24caa754a604935c8cef92a4b5e9; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/integrations/snapetech-mcp.md to blob 6b96cdf9b43657bd9f392ab24f7be39104e1ef65. Compared the pinned source guide with the target documentation. This maps integration documentation only; it does not establish service availability or live credential acceptance."
+    },
+    {
+      "sourcePath": "docs/media-storage.md",
+      "decision": "map",
+      "targetPath": "docs/FORK_FEATURES.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target feature guide describes format-aware media moves and file safety; the migration guide covers preserved roots, review, rollback, and update-channel limits.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/media-storage.md to blob eaa088c7888a40d0ac4847f85e28c80dfbff131d; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/FORK_FEATURES.md to blob 72d0c530f4306c251ddf9c06d4c6622c7053897a. Compared the pinned source guide with the target documentation. This is documentation coverage only; representative libraries and partial-failure recovery remain open."
+    },
+    {
+      "sourcePath": "docs/reporting-issues.md",
+      "decision": "map",
+      "targetPath": "docs/REPORTING_ISSUES.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The ChaptarrNG guide adapts the request-correlation, log-location, environment-detail, SeerrNG, and migration-reporting guidance and adds ChaptarrNG-specific names and privacy advice.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/reporting-issues.md to blob 7c83501bf8577905f4970987a3e5c1f7c3ab68f5; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/REPORTING_ISSUES.md to blob 67c8ac9af81df405febcfd9fd9bf97c901be1754. Compared the pinned source guide with the target documentation. This is support-documentation coverage only; it does not establish a resolution or service-level commitment."
+    },
+    {
+      "sourcePath": "docs/search-and-downloads.md",
+      "decision": "map",
+      "targetPath": "docs/FORK_FEATURES.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target feature guide documents direct ebook downloads, interactive search, torrent adoption, and queue workflows; the root README supplies current Direct Download setup.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/search-and-downloads.md to blob b6ceb0936e3bad7726fde3fd431e6ddf7222a976; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/FORK_FEATURES.md to blob 72d0c530f4306c251ddf9c06d4c6622c7053897a. Compared the pinned source guide with the target documentation. This is documentation coverage only; provider and download-client acceptance on operator configurations remains open."
+    },
+    {
+      "sourcePath": "docs/series-pack-search.md",
+      "decision": "map",
+      "targetPath": "docs/BOOKSHELFNG_WORKFLOW_PARITY.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target workflow map records series-pack search and Manual Import review; the feature guide tracks the current capability and its acceptance checks.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/series-pack-search.md to blob 4c7629579b9024ecd99281a460a3f2743f33c278; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/BOOKSHELFNG_WORKFLOW_PARITY.md to blob 315f6f7cfe8c1c016569271abd7353824a2e8317. Compared the pinned source guide with the target documentation. This is documentation coverage only; it does not claim pack acquisition or multi-book import acceptance."
+    },
+    {
+      "sourcePath": "docs/standalone-install.md",
+      "decision": "map",
+      "targetPath": "packaging/README.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The ChaptarrNG root README and package overview document maintained installation choices; the retirement guide records which legacy identities remain unpublished.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/standalone-install.md to blob 0ddbb9261c58425c51d7d9b0fc08f1dc854f7000; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves packaging/README.md to blob ab0e18ce72525066e1cb21cfbb2384af1bac7625. Compared the pinned source guide with the target documentation. This is destination-installation documentation coverage only; it does not authorize an installed migration or channel switch."
+    },
+    {
+      "sourcePath": "docs/maintainers/bookshelfng-parity-roadmap.md",
+      "decision": "map",
+      "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target retirement guide carries current migration gates and the feature guide carries the cumulative capability matrix.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/maintainers/bookshelfng-parity-roadmap.md to blob 18b23f71991e199ed13d7ddeb591be93ad299df5; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/BOOKSHELFNG_RETIREMENT.md to blob c60d83d5cf3ee59ca79bfd55c31de8dd20785de7. Compared the pinned source guide with the target documentation. This ports the operator and capability summaries only; the detailed BookshelfNG path ledger remains maintained in the source repository."
+    },
+    {
+      "sourcePath": "docs/maintainers/chaptarrng-distribution-bridge.md",
+      "decision": "map",
+      "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target retirement and migration guides record the current channel handoff status, release gates, per-channel limitations, and operator migration restrictions.",
+      "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d resolves docs/maintainers/chaptarrng-distribution-bridge.md to blob baa6319be98d91fc7be8b7a816a1acf3c1f1d5c5; ChaptarrNG target a36df289b0c958604d466fed317f476c01fca11f resolves docs/BOOKSHELFNG_RETIREMENT.md to blob c60d83d5cf3ee59ca79bfd55c31de8dd20785de7. Compared the pinned source guide with the target documentation. This is a destination-facing summary; it does not claim any legacy publisher or installed channel has been accepted."
     }
   ]
 }

@@ -25,7 +25,7 @@ public `.977` and do not authorize a production cutover.
 Release publication and the migration bridge remain frozen; readiness
 variables are unset, and BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
 remains open. The full path audit pins target
-`cc9be068bd0b8d430a640a0b0562026ed2929c6b` and still has 615 of 1,116 paths
+`a36df289b0c958604d466fed317f476c01fca11f` and still has 593 of 1,116 paths
 unresolved. Representative operator data and real rollback,
 semantic feature parity, provider/SeerrNG workflows, representative media and
 recovery, installed update-channel handoff, and operator acceptance remain
