@@ -59,6 +59,17 @@
       "evidence": "BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d and ChaptarrNG target 29852b1334ee049e30de84b44806932a3e9364f4 both resolve .github/workflows/trivy-filesystem.yml to blob f709b7e4ecd03aad53c85c4e0853e0df1ba817c4 with the same mode. This establishes file-level retention for this path; integration and behavior remain separate acceptance questions."
     },
     {
+      "sourcePath": "CONTRIBUTING.md",
+      "disposition": "ported",
+      "feature": "Contributor guidance",
+      "targetPaths": [
+        "CONTRIBUTING.md"
+      ],
+      "reviewedBy": "Codex (2026-10-20)",
+      "rationale": "The BookshelfNG source path was removed after the fork-base Readarr wiki stub became obsolete. ChaptarrNG retains a current repository-specific contributor guide covering its workflows, build, testing, and package synchronization.",
+      "evidence": "BookshelfNG fork-base CONTRIBUTING.md is blob ea4f21b1b27324bf58ea9441b4de34e7ce235697 and only points contributors to the Readarr wiki; it is absent at pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d. ChaptarrNG 29852b1334ee049e30de84b44806932a3e9364f4 retains its own CONTRIBUTING.md at blob d021deeaa3af11c40fdcd22ec37daad6e33a6d41 with current ChaptarrNG-specific contribution and development instructions."
+    },
+    {
       "sourcePath": "LICENSE",
       "disposition": "retained",
       "feature": "Retained shared file: LICENSE",
@@ -188,6 +199,16 @@
       "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
       "rationale": "This asset carries BookshelfNG product branding. The maintained destination uses ChaptarrNG-branded assets instead, so the BookshelfNG logo should not be carried into the drop-in replacement. Preserve the original asset in BookshelfNG repository history; this retires branding only, not runtime behavior.",
       "evidence": "At pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d, Logo/Readarr.svg is a BookshelfNG logo asset at blob 821f74d17574a6ae50441d6383c8aa29fc29f56a. The target snapshot uses ChaptarrNG branding at its logo slots (including Logo/Chaptarr.svg); keeping the source brand asset is not part of product behavior parity."
+    },
+    {
+      "sourcePath": "azure-pipelines.yml",
+      "disposition": "retired",
+      "feature": "Legacy Azure Pipelines build definition",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+      "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "The fork-base pipeline is a Readarr Azure DevOps build definition targeting .NET 6 and legacy develop/master branches. BookshelfNG removed it and ChaptarrNG uses its own GitHub Actions workflows. It does not carry runtime or operator migration behavior.",
+      "evidence": "BookshelfNG fork-base azure-pipelines.yml is blob b6c9a5098c621f0c74abd205fcfa05036d05a08c and identifies Readarr 0.4.19/.NET 6; it is absent from pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d and ChaptarrNG target 29852b1334ee049e30de84b44806932a3e9364f4. ChaptarrNG's pinned .github/workflows tree contains its own build, release, security, and package workflows. Retire only this obsolete CI configuration."
     },
     {
       "sourcePath": "charts/bookshelfng/templates/_helpers.tpl",

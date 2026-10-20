@@ -20,28 +20,27 @@
     "netChangedPaths": 1116,
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 25,
-    "approvedRetirements": 157,
-    "reviewedDispositions": 467,
-    "undispositionedPaths": 649,
+    "approvedRetirements": 158,
+    "reviewedDispositions": 469,
+    "undispositionedPaths": 647,
     "dispositionStates": {
       "retained": 176,
-      "retired": 157,
-      "ported": 5,
+      "ported": 6,
+      "retired": 158,
       "equivalent": 129
     },
     "fileStates": {
       "no-mapped-target-file": 239,
       "different-review-required": 420,
       "identical": 176,
-      "deleted-in-bookshelf": 2,
-      "approved-retirement": 157,
+      "deleted-in-bookshelf": 1,
+      "approved-retirement": 158,
       "code-equivalent-after-csharp-trivia-normalization": 118,
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
       "no-mapped-target-file": 239,
-      "different-review-required": 408,
-      "deleted-in-bookshelf": 2
+      "different-review-required": 408
     }
   },
   "commits": [
@@ -12506,6 +12505,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "d021deeaa3af11c40fdcd22ec37daad6e33a6d41"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Contributor guidance",
+        "reviewedBy": "Codex (2026-10-20)",
+        "targetPaths": [
+          "CONTRIBUTING.md"
+        ],
+        "rationale": "The BookshelfNG source path was removed after the fork-base Readarr wiki stub became obsolete. ChaptarrNG retains a current repository-specific contributor guide covering its workflows, build, testing, and package synchronization.",
+        "evidence": "BookshelfNG fork-base CONTRIBUTING.md is blob ea4f21b1b27324bf58ea9441b4de34e7ce235697 and only points contributors to the Readarr wiki; it is absent at pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d. ChaptarrNG 29852b1334ee049e30de84b44806932a3e9364f4 retains its own CONTRIBUTING.md at blob d021deeaa3af11c40fdcd22ec37daad6e33a6d41 with current ChaptarrNG-specific contribution and development instructions."
       }
     },
     {
@@ -12788,9 +12797,18 @@
     {
       "sourcePath": "azure-pipelines.yml",
       "targetPath": null,
-      "state": "deleted-in-bookshelf",
+      "state": "approved-retirement",
       "sourceBlob": null,
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Legacy Azure Pipelines build definition",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "The fork-base pipeline is a Readarr Azure DevOps build definition targeting .NET 6 and legacy develop/master branches. BookshelfNG removed it and ChaptarrNG uses its own GitHub Actions workflows. It does not carry runtime or operator migration behavior.",
+        "evidence": "BookshelfNG fork-base azure-pipelines.yml is blob b6c9a5098c621f0c74abd205fcfa05036d05a08c and identifies Readarr 0.4.19/.NET 6; it is absent from pinned BookshelfNG source c63eb84813392cdb398d9e6bf4446694952f256d and ChaptarrNG target 29852b1334ee049e30de84b44806932a3e9364f4. ChaptarrNG's pinned .github/workflows tree contains its own build, release, security, and package workflows. Retire only this obsolete CI configuration."
+      }
     },
     {
       "sourcePath": "build.sh",
