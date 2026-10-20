@@ -17,7 +17,6 @@ elif ! git -C "$repo_root" rev-parse --verify --quiet "$source_commit^{commit}" 
 	exit 1
 fi
 
-# Worktree directory names are arbitrary, so identify the product from its Git remote.
 origin_url="$(git -C "$repo_root" remote get-url origin 2>/dev/null || true)"
 source_repo="${origin_url%/}"
 source_repo="${source_repo##*/}"
@@ -36,10 +35,16 @@ override_name="${source_repo^^}_UNRAID_REPO"
 target_dir="${!override_name:-$(dirname "$repo_root")/$target_repo}"
 remote=origin
 branch=main
-source_path=packaging/unraid
+package_path=packaging/unraid
+source_manifest_path=.bookshelfng-source-files
+source_commit_path=.bookshelfng-source-commit
+package_docs_manifest_path=.bookshelfng-package-doc-files
+renamed_readme=docs/bookshelfng-source/README.md
+renamed_unraid_note=docs/bookshelfng-source/release-notes/2026-09-27-unraid-user-installation-guidance.md
+source_unraid_note=release-notes/2026-09-27-unraid-user-installation-guidance.md
 
-if ! git -C "$repo_root" cat-file -e "$source_commit:$source_path" >/dev/null 2>&1; then
-	echo "No committed Unraid package source exists at $source_path in $source_commit; cannot sync." >&2
+if ! git -C "$repo_root" cat-file -e "$source_commit:$package_path" >/dev/null 2>&1; then
+	echo "No committed Unraid package source exists at $package_path in $source_commit; cannot sync." >&2
 	exit 1
 fi
 
@@ -65,6 +70,8 @@ esac
 scratch_dir="$(mktemp -d "${TMPDIR:-/tmp}/${target_repo}-sync.XXXXXX")"
 worktree_dir="$scratch_dir/worktree"
 source_stage="$scratch_dir/source"
+new_manifest="$scratch_dir/source-files"
+new_package_docs_manifest="$scratch_dir/package-doc-files"
 mkdir -p "$source_stage"
 
 cleanup() {
@@ -83,60 +90,93 @@ fi
 
 remote_head="$(git -C "$target_dir" rev-parse "refs/remotes/$remote/$branch")"
 git -C "$target_dir" worktree add --detach "$worktree_dir" "$remote_head"
+git -C "$repo_root" archive --format=tar "$source_commit" | tar -xf - -C "$source_stage"
 
-# Fetch the exact source commit selected by post-commit or pre-push. This lets a
-# push from a topic-named local branch sync only when its destination is main.
-git -C "$worktree_dir" fetch --no-tags "$repo_root" "$source_commit"
-if ! git -C "$worktree_dir" cat-file -e "$source_commit^{commit}" >/dev/null 2>&1; then
-	echo "Could not fetch source commit $source_commit into the Unraid checkout." >&2
-	exit 1
+# The Unraid repository owns its root README and legacy installation note.
+# Mirror the application README and the colliding source note under docs instead.
+: > "$new_manifest"
+declare -A new_source_files=()
+while IFS= read -r -d '' source_path; do
+	case "$source_path" in
+		README.md|ca_profile.xml|templates/*|docs/installation.md|docs/bookshelfng-source/*|"$source_unraid_note"|"$source_manifest_path"|"$source_commit_path"|"$package_docs_manifest_path") continue ;;
+	esac
+	new_source_files["$source_path"]=1
+	printf '%s\n' "$source_path" >> "$new_manifest"
+done < <(git -C "$repo_root" ls-tree -r -z --name-only "$source_commit")
+
+if [[ -f "$worktree_dir/$source_manifest_path" ]]; then
+	while IFS= read -r old_source_path; do
+		if [[ -n "$old_source_path" && -z "${new_source_files[$old_source_path]+present}" ]]; then
+			git -C "$worktree_dir" rm --ignore-unmatch -- "$old_source_path" >/dev/null
+		fi
+	done < "$worktree_dir/$source_manifest_path"
 fi
 
-if ! git -C "$worktree_dir" merge-base --is-ancestor "$source_commit" HEAD; then
-	short_source_commit="$(git -C "$repo_root" rev-parse --short "$source_commit")"
-	git -C "$worktree_dir" merge --no-commit --no-ff --allow-unrelated-histories -X ours "$source_commit"
-else
-	short_source_commit="$(git -C "$repo_root" rev-parse --short "$source_commit")"
+while IFS= read -r source_path; do
+	source_file="$source_stage/$source_path"
+	target_file="$worktree_dir/$source_path"
+	if [[ -e "$source_file" || -L "$source_file" ]]; then
+		mkdir -p "$(dirname "$target_file")"
+		rsync --archive "$source_file" "$target_file"
+	fi
+done < "$new_manifest"
+
+: > "$new_package_docs_manifest"
+declare -A new_package_doc_files=()
+if [[ -d "$source_stage/$package_path/docs" ]]; then
+	while IFS= read -r -d '' package_doc_file; do
+		package_doc_path="${package_doc_file#"$source_stage/$package_path/docs/"}"
+		new_package_doc_files["$package_doc_path"]=1
+		printf '%s\n' "$package_doc_path" >> "$new_package_docs_manifest"
+	done < <(find "$source_stage/$package_path/docs" \( -type f -o -type l \) -print0)
 fi
 
-git -C "$repo_root" archive --format=tar "$source_commit" "$source_path" | tar -xf - -C "$source_stage"
-source_dir="$source_stage/$source_path"
+if [[ -f "$worktree_dir/$package_docs_manifest_path" ]]; then
+	while IFS= read -r old_package_doc_path; do
+		if [[ -n "$old_package_doc_path" && -z "${new_package_doc_files[$old_package_doc_path]+present}" ]]; then
+			git -C "$worktree_dir" rm --ignore-unmatch -- "docs/$old_package_doc_path" >/dev/null
+		fi
+	done < "$worktree_dir/$package_docs_manifest_path"
+fi
 
+source_dir="$source_stage/$package_path"
 for required_file in README.md ca_profile.xml "templates/$source_repo.xml"; do
 	if [[ ! -f "$source_dir/$required_file" ]]; then
-		echo "The committed Unraid package source is missing $source_path/$required_file." >&2
+		echo "The committed Unraid package source is missing $package_path/$required_file." >&2
 		exit 1
 	fi
 done
 
-# The companion keeps its Unraid package README at the repository root. Keep
-# the application repository's README alongside the code so it is mirrored too.
 rsync --archive "$source_dir/README.md" "$worktree_dir/README.md"
 rsync --archive "$source_dir/ca_profile.xml" "$worktree_dir/ca_profile.xml"
 rsync --archive --delete "$source_dir/templates/" "$worktree_dir/templates/"
-if [[ -d "$source_dir/docs" ]]; then
-	rsync --archive --delete "$source_dir/docs/" "$worktree_dir/docs/"
-elif [[ -d "$worktree_dir/docs" ]]; then
-	rm -rf -- "$worktree_dir/docs"
-fi
+while IFS= read -r package_doc_path; do
+	package_doc_file="$source_dir/docs/$package_doc_path"
+	target_doc_file="$worktree_dir/docs/$package_doc_path"
+	mkdir -p "$(dirname "$target_doc_file")"
+	rsync --archive "$package_doc_file" "$target_doc_file"
+done < "$new_package_docs_manifest"
 
-mkdir -p "$worktree_dir/docs/bookshelfng-source"
-git -C "$worktree_dir" show "$source_commit:README.md" > "$worktree_dir/docs/bookshelfng-source/README.md"
-source_unraid_note="release-notes/2026-09-27-unraid-user-installation-guidance.md"
-if git -C "$worktree_dir" cat-file -e "$source_commit:$source_unraid_note" 2>/dev/null; then
-	mkdir -p "$worktree_dir/docs/bookshelfng-source/release-notes"
-	git -C "$worktree_dir" show "$source_commit:$source_unraid_note" > "$worktree_dir/docs/bookshelfng-source/$source_unraid_note"
+mkdir -p "$(dirname "$worktree_dir/$renamed_readme")"
+rsync --archive "$source_stage/README.md" "$worktree_dir/$renamed_readme"
+if [[ -f "$source_stage/$source_unraid_note" ]]; then
+	mkdir -p "$(dirname "$worktree_dir/$renamed_unraid_note")"
+	rsync --archive "$source_stage/$source_unraid_note" "$worktree_dir/$renamed_unraid_note"
 fi
+cp "$new_manifest" "$worktree_dir/$source_manifest_path"
+cp "$new_package_docs_manifest" "$worktree_dir/$package_docs_manifest_path"
+printf '%s\n' "$source_commit" > "$worktree_dir/$source_commit_path"
 
 git -C "$worktree_dir" add --all
 if ! git -C "$worktree_dir" diff --cached --quiet; then
+	short_source_commit="$(git -C "$repo_root" rev-parse --short "$source_commit")"
 	git -C "$worktree_dir" -c core.hooksPath=/dev/null commit -m "chore: sync full source and Unraid package from $short_source_commit"
 fi
 
 new_head="$(git -C "$worktree_dir" rev-parse HEAD)"
 if [[ "$new_head" != "$remote_head" ]]; then
 	GIT_TERMINAL_PROMPT=0 git -C "$worktree_dir" -c core.hooksPath=/dev/null push "$remote" "HEAD:refs/heads/$branch"
-	echo "Synced source commit $short_source_commit and Unraid package to $target_dir ($branch)."
+	echo "Synced source commit $(git -C "$repo_root" rev-parse --short "$source_commit") and Unraid package to $target_dir ($branch)."
 else
 	echo "Unraid source and package are already synced at $target_dir ($branch)."
 fi
