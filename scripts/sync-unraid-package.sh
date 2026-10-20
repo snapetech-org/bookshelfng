@@ -4,9 +4,17 @@ set -euo pipefail
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(git -C "$script_dir/.." rev-parse --show-toplevel)"
 source_branch="$(git -C "$repo_root" branch --show-current)"
-if [[ "$source_branch" != "main" ]]; then
-	echo "Skipping Unraid package sync from '$source_branch'; only main may update the companion repository."
-	exit 0
+source_commit="${1:-}"
+
+if [[ -z "$source_commit" ]]; then
+	if [[ "$source_branch" != "main" ]]; then
+		echo "Skipping Unraid package sync from '$source_branch'; only main may update the companion repository."
+		exit 0
+	fi
+	source_commit="$(git -C "$repo_root" rev-parse HEAD)"
+elif ! git -C "$repo_root" rev-parse --verify --quiet "$source_commit^{commit}" >/dev/null; then
+	echo "Unraid sync source is not a commit in $repo_root: $source_commit" >&2
+	exit 1
 fi
 
 # Worktree directory names are arbitrary, so identify the product from its Git remote.
@@ -18,7 +26,7 @@ source_repo="${source_repo%.git}"
 case "$source_repo" in
 	bookshelfng|chaptarrng) ;;
 	*)
-		echo "Unraid package sync is not configured for the source repository '$source_repo'." >&2
+		echo "Unraid sync is not configured for the source repository '$source_repo'." >&2
 		exit 1
 		;;
 esac
@@ -30,8 +38,8 @@ remote=origin
 branch=main
 source_path=packaging/unraid
 
-if ! git -C "$repo_root" cat-file -e "HEAD:$source_path" >/dev/null 2>&1; then
-	echo "No committed Unraid package source exists at $source_path; cannot sync." >&2
+if ! git -C "$repo_root" cat-file -e "$source_commit:$source_path" >/dev/null 2>&1; then
+	echo "No committed Unraid package source exists at $source_path in $source_commit; cannot sync." >&2
 	exit 1
 fi
 
@@ -54,10 +62,45 @@ case "$remote_url" in
 		;;
 esac
 
-staging_dir="$(mktemp -d)"
-trap 'rm -rf "$staging_dir"' EXIT
-git -C "$repo_root" archive --format=tar HEAD "$source_path" | tar -xf - -C "$staging_dir"
-source_dir="$staging_dir/$source_path"
+scratch_dir="$(mktemp -d "${TMPDIR:-/tmp}/${target_repo}-sync.XXXXXX")"
+worktree_dir="$scratch_dir/worktree"
+source_stage="$scratch_dir/source"
+mkdir -p "$source_stage"
+
+cleanup() {
+	if [[ -d "$worktree_dir" ]]; then
+		git -C "$target_dir" worktree remove --force "$worktree_dir" >/dev/null 2>&1 || true
+	fi
+	rm -rf -- "$scratch_dir"
+}
+trap cleanup EXIT
+
+git -C "$target_dir" fetch --prune "$remote"
+if ! git -C "$target_dir" show-ref --verify --quiet "refs/remotes/$remote/$branch"; then
+	echo "Remote '$remote' has no '$branch' branch in $target_dir." >&2
+	exit 1
+fi
+
+remote_head="$(git -C "$target_dir" rev-parse "refs/remotes/$remote/$branch")"
+git -C "$target_dir" worktree add --detach "$worktree_dir" "$remote_head"
+
+# Fetch the exact source commit selected by post-commit or pre-push. This lets a
+# push from a topic-named local branch sync only when its destination is main.
+git -C "$worktree_dir" fetch --no-tags "$repo_root" "$source_commit"
+if ! git -C "$worktree_dir" cat-file -e "$source_commit^{commit}" >/dev/null 2>&1; then
+	echo "Could not fetch source commit $source_commit into the Unraid checkout." >&2
+	exit 1
+fi
+
+if ! git -C "$worktree_dir" merge-base --is-ancestor "$source_commit" HEAD; then
+	short_source_commit="$(git -C "$repo_root" rev-parse --short "$source_commit")"
+	git -C "$worktree_dir" merge --no-commit --no-ff --allow-unrelated-histories -X ours "$source_commit"
+else
+	short_source_commit="$(git -C "$repo_root" rev-parse --short "$source_commit")"
+fi
+
+git -C "$repo_root" archive --format=tar "$source_commit" "$source_path" | tar -xf - -C "$source_stage"
+source_dir="$source_stage/$source_path"
 
 for required_file in README.md ca_profile.xml "templates/$source_repo.xml"; do
 	if [[ ! -f "$source_dir/$required_file" ]]; then
@@ -66,79 +109,34 @@ for required_file in README.md ca_profile.xml "templates/$source_repo.xml"; do
 	fi
 done
 
-if ! git -C "$target_dir" show-ref --verify --quiet "refs/heads/$branch"; then
-	echo "The Unraid companion checkout must have a local '$branch' branch." >&2
-	exit 1
-fi
-
-git -C "$target_dir" fetch --prune "$remote"
-if ! git -C "$target_dir" show-ref --verify --quiet "refs/remotes/$remote/$branch"; then
-	echo "Remote '$remote' has no '$branch' branch in $target_dir." >&2
-	exit 1
-fi
-
-current_branch="$(git -C "$target_dir" branch --show-current)"
-status_output="$(git -C "$target_dir" status --porcelain --untracked-files=all)"
-if [[ -n "$status_output" ]]; then
-	if [[ "$current_branch" != "$branch" ]]; then
-		echo "Unraid companion checkout has local changes on '$current_branch'; switch to '$branch' after cleaning it." >&2
-		exit 1
-	fi
-
-	local_head="$(git -C "$target_dir" rev-parse HEAD)"
-	remote_head="$(git -C "$target_dir" rev-parse "refs/remotes/$remote/$branch")"
-	if [[ "$local_head" != "$remote_head" ]]; then
-		echo "Unraid companion checkout has local changes and is not at $remote/$branch; update it before syncing." >&2
-		exit 1
-	fi
-
-	while IFS= read -r status_line; do
-		path="${status_line:3}"
-		case "$path" in
-			README.md|ca_profile.xml|docs/*|templates/*) ;;
-			*)
-				echo "Unraid companion checkout has unrelated local changes: $path" >&2
-				exit 1
-				;;
-		esac
-
-		if [[ ! -f "$source_dir/$path" || ! -f "$target_dir/$path" ]] || ! cmp -s "$source_dir/$path" "$target_dir/$path"; then
-			echo "Unraid companion checkout has a local change that differs from committed package source: $path" >&2
-			exit 1
-		fi
-	done <<< "$status_output"
-else
-	if [[ "$current_branch" != "$branch" ]]; then
-		git -C "$target_dir" switch "$branch"
-	fi
-	local_head="$(git -C "$target_dir" rev-parse HEAD)"
-	remote_head="$(git -C "$target_dir" rev-parse "refs/remotes/$remote/$branch")"
-	if ! git -C "$target_dir" merge-base --is-ancestor "$local_head" "$remote_head"; then
-		echo "Unraid companion checkout has local commits that are not on $remote/$branch; reconcile them before syncing." >&2
-		exit 1
-	fi
-	git -C "$target_dir" merge --ff-only "$remote/$branch"
-fi
-
-rsync --archive "$source_dir/README.md" "$target_dir/README.md"
-rsync --archive "$source_dir/ca_profile.xml" "$target_dir/ca_profile.xml"
-rsync --archive --delete "$source_dir/templates/" "$target_dir/templates/"
+# The companion keeps its Unraid package README at the repository root. Keep
+# the application repository's README alongside the code so it is mirrored too.
+rsync --archive "$source_dir/README.md" "$worktree_dir/README.md"
+rsync --archive "$source_dir/ca_profile.xml" "$worktree_dir/ca_profile.xml"
+rsync --archive --delete "$source_dir/templates/" "$worktree_dir/templates/"
 if [[ -d "$source_dir/docs" ]]; then
-	rsync --archive --delete "$source_dir/docs/" "$target_dir/docs/"
-elif [[ -d "$target_dir/docs" ]]; then
-	rm -rf "$target_dir/docs"
+	rsync --archive --delete "$source_dir/docs/" "$worktree_dir/docs/"
+elif [[ -d "$worktree_dir/docs" ]]; then
+	rm -rf -- "$worktree_dir/docs"
 fi
 
-managed_paths=(README.md ca_profile.xml templates)
-if [[ -d "$source_dir/docs" || -e "$target_dir/docs" ]] || [[ -n "$(git -C "$target_dir" ls-files -- docs)" ]]; then
-	managed_paths+=(docs)
-fi
-git -C "$target_dir" add --all -- "${managed_paths[@]}"
-
-source_commit="$(git -C "$repo_root" rev-parse --short HEAD)"
-if ! git -C "$target_dir" diff --cached --quiet; then
-	git -C "$target_dir" commit -m "chore: sync Unraid package from $source_commit"
+mkdir -p "$worktree_dir/docs/bookshelfng-source"
+git -C "$worktree_dir" show "$source_commit:README.md" > "$worktree_dir/docs/bookshelfng-source/README.md"
+source_unraid_note="release-notes/2026-09-27-unraid-user-installation-guidance.md"
+if git -C "$worktree_dir" cat-file -e "$source_commit:$source_unraid_note" 2>/dev/null; then
+	mkdir -p "$worktree_dir/docs/bookshelfng-source/release-notes"
+	git -C "$worktree_dir" show "$source_commit:$source_unraid_note" > "$worktree_dir/docs/bookshelfng-source/$source_unraid_note"
 fi
 
-GIT_TERMINAL_PROMPT=0 git -C "$target_dir" push "$remote" "HEAD:refs/heads/$branch"
-echo "Synced $source_path to $target_dir ($branch)."
+git -C "$worktree_dir" add --all
+if ! git -C "$worktree_dir" diff --cached --quiet; then
+	git -C "$worktree_dir" commit -m "chore: sync full source and Unraid package from $short_source_commit"
+fi
+
+new_head="$(git -C "$worktree_dir" rev-parse HEAD)"
+if [[ "$new_head" != "$remote_head" ]]; then
+	GIT_TERMINAL_PROMPT=0 git -C "$worktree_dir" push "$remote" "HEAD:refs/heads/$branch"
+	echo "Synced source commit $short_source_commit and Unraid package to $target_dir ($branch)."
+else
+	echo "Unraid source and package are already synced at $target_dir ($branch)."
+fi

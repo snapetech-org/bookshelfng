@@ -16,7 +16,7 @@
   <ReadMe>https://github.com/snapetech-org/bookshelfng-unraid/blob/main/docs/installation.md</ReadMe>
   <Category>MediaApp:Books</Category>
   <ExtraSearchTerms>bookshelfng bookshelf readarr hardcover ebook audiobook seerrng</ExtraSearchTerms>
-  <Changes>Use the stable latest tag for the Hardcover image. Stable releases keep main and latest in sync. BookshelfNG runs independently with optional SeerrNG integration.</Changes>
+  <Changes>Use the stable latest tag for the Hardcover image. Stable releases keep stable, main, master, and latest on the same verified image digest. BookshelfNG runs independently with optional SeerrNG integration.</Changes>
   <Requires>Docker and persistent appdata. Configure this app independently before connecting it to SeerrNG.</Requires>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
 

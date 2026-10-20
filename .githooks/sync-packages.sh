@@ -2,6 +2,7 @@
 set -uo pipefail
 
 trigger="${1:-manual}"
+source_commit="${2:-}"
 repo_root="$(git rev-parse --show-toplevel)"
 overall_status=0
 
@@ -11,7 +12,7 @@ while IFS= read -r git_environment_variable; do
 	unset "$git_environment_variable"
 done < <(git -C "$repo_root" rev-parse --local-env-vars)
 
-echo "Running Unraid package sync ($trigger)."
+echo "Running Unraid source and package sync ($trigger)."
 
 for script in sync-unraid-package.sh; do
 	sync_script="$repo_root/scripts/$script"
@@ -21,17 +22,25 @@ for script in sync-unraid-package.sh; do
 		continue
 	fi
 
-	if bash "$sync_script"; then
+	if [[ -n "$source_commit" ]]; then
+		if bash "$sync_script" "$source_commit"; then
+			:
+		else
+			sync_status=$?
+			echo "Unraid sync failed: $script (exit $sync_status)." >&2
+			overall_status=1
+		fi
+	elif bash "$sync_script"; then
 		:
 	else
 		sync_status=$?
-		echo "Package sync failed: $script (exit $sync_status)." >&2
+		echo "Unraid sync failed: $script (exit $sync_status)." >&2
 		overall_status=1
 	fi
 done
 
 if [[ "$overall_status" -ne 0 ]]; then
-	echo "Package sync did not complete; $trigger is failing." >&2
+	echo "Unraid source and package sync did not complete; $trigger is failing." >&2
 fi
 
 exit "$overall_status"

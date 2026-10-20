@@ -30,8 +30,9 @@ keep an independent appdata backup before switching. New installations should us
 [ChaptarrNG Unraid template](https://github.com/snapetech-org/chaptarrng-unraid).
 For a manual BookshelfNG install needed to inspect or roll back an existing
 library, use [the legacy template XML](templates/bookshelfng.xml); it installs
-`ghcr.io/snapetech-org/bookshelfng:latest`. Stable releases keep `:main`,
-`:master`, and `:latest` on the same image; branch builds use development tags.
+`ghcr.io/snapetech-org/bookshelfng:latest`. Stable releases keep `:stable`,
+`:main`, `:master`, and `:latest` on the same verified image digest; branch
+builds use development tags.
 
 - Map persistent appdata to `/config` and your media to `/data`.
 - Map downloads to `/download`, matching your download client's container paths.
