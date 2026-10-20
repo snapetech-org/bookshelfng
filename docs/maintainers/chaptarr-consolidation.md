@@ -2,188 +2,13 @@
 
 ## Current status — 2026-10-20
 
-ChaptarrNG PR [#131](https://github.com/snapetech-org/chaptarrng/pull/131)
-merged to `main` as `d2bcba7953a14d2d726f47005a660314cc5e4c26` from validated
-application head `87c57a2bffd25a5ecbda40b9c63fd6d82993c54`. BookshelfNG
-`0.4.21.71` and ChaptarrNG `v0.9.977` remain the latest public releases; no
-new release, package, image, installer, or migration bridge was published.
-The merged source remains unapproved for operator cutover.
+BookshelfNG `0.4.21.71` remains its final public release; ChaptarrNG `v0.9.977` remains the latest public release. ChaptarrNG `main` is at `71b3aa6f5f34b5557d6c639ae4d1fc7002015c72`. The previous exact-head Build [39423725592](https://github.com/snapetech-org/chaptarrng/actions/runs/39423725592) passed PostgreSQL migrations but failed two Linux/macOS auth tests because the SeerrNG test context omitted its HTTP method. Commit `71b3aa6f5f34b5557d6c639ae4d1fc7002015c72` sets GET explicitly; corrected exact-head Build [39425383048](https://github.com/snapetech-org/chaptarrng/actions/runs/39425383048) is queued. Security analysis [39425382968](https://github.com/snapetech-org/chaptarrng/actions/runs/39425382968), Semgrep CE [39425382964](https://github.com/snapetech-org/chaptarrng/actions/runs/39425382964), Trivy [39425383089](https://github.com/snapetech-org/chaptarrng/actions/runs/39425383089), and NuGet dependency submission [39425383979](https://github.com/snapetech-org/chaptarrng/actions/runs/39425383979) passed on this head; the push check remains in progress. No current-head Build result is claimed.
 
-ChaptarrNG application snapshot `00cf7b1a` also accepts raw SQLite Bookshelf
-backup uploads with `.db` and legacy `.xml` filename suffixes. The `.xml`
-suffix is filename compatibility only; the uploaded content must still be
-SQLite. This source-only restore-path fix is not in public `.977` and does not
-approve production migration.
+The schema-v4 audit pins BookshelfNG source `c63eb84813392cdb398d9e6bf4446694952f256d` to ChaptarrNG `main` at `71b3aa6f5f34b5557d6c639ae4d1fc7002015c72`: 679 post-fork commits, 670 absent from the pinned upstream history, and 1,116 changed paths. It records 29 reviewed mappings and 473 file dispositions (176 retained, 129 equivalent, 10 ported, and 158 retired non-runtime artifacts). Another 643 paths remain open: 235 have no mapped target and 408 need semantic review. These are path-level review states, not feature-parity counts. No runtime feature retirement is approved.
 
-The audit remains pinned to that application snapshot. ChaptarrNG has since
-made documentation-only status updates in `README.md`, `docs/FORK_FEATURES.md`,
-and `docs/BOOKSHELFNG_RETIREMENT.md`; none overlaps a reviewed target path, so
-the recorded file dispositions remain valid at the pinned revision.
+The merged Windows installer candidate preserves the prior Bookshelf service registration through ChaptarrNG health verification. It defers legacy service removal until the installer releases its service handles; rollback restores or recreates the service with its original startup policy. The current Windows hosted smoke is queued with Build [39425383048](https://github.com/snapetech-org/chaptarrng/actions/runs/39425383048).
 
-The prior ChaptarrNG main snapshot `3254c15b5e964dae513c6d16758e8b749a77db4b` passed
-exact-head Build [39387591772](https://github.com/snapetech-org/chaptarrng/actions/runs/39387591772).
-Its Build passed Linux, macOS, Windows, PostgreSQL migrations, and native-runner
-receipt reconciliation. The separate security, Semgrep CE, Trivy, dependency-
-submission, and push checks passed; the release-note contract was skipped for
-that docs-only source update. BookshelfNG audit-tool
-commit `9fcc0aea927c3f052d69d8051bcb5e436c717ae4` passed Build
-[39386658595](https://github.com/snapetech-org/bookshelfng/actions/runs/39386658595)
-and Semgrep, Trivy, package-sync, release-note, and dependency-submission
-checks. The pinned BookshelfNG source snapshot `c63eb84813392cdb398d9e6bf4446694952f256d`
-passed its push and security checks before this documentation refresh. Unraid main
-`296caed2e6b7c4f9c32a52d41bdf381478eb5422` passed CI
-[39387608787](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39387608787)
-and its package-sync, security, and release-note checks.
-
-ChaptarrNG application snapshot `29852b1334ee049e30de84b44806932a3e9364f4` ports
-BookshelfNG's trusted-proxy allowlist, opt-in CORS origins, per-client
-fixed-window limit, bounded global request-body size, and request-ID response
-header. The general body cap defaults to 16 MiB; the backup restore endpoint
-retains its separate 1 GiB allowance. Exact-head Build
-[39392889130](https://github.com/snapetech-org/chaptarrng/actions/runs/39392889130)
-found test fixture compile errors. Follow-up `aac32822` fixed the imports but
-exposed the explicit request-size metadata interface. Commit
-`29852b1334ee049e30de84b44806932a3e9364f4` corrects the assertion, and exact-head
-Build [39394240337](https://github.com/snapetech-org/chaptarrng/actions/runs/39394240337)
-passed Linux, macOS, Windows, PostgreSQL migrations, and native-runner receipt
-reconciliation. Windows passed the migration installer fingerprint, service
-upgrade, rollback, cleanup, and selected-data-directory checks. Security
-analysis, Semgrep CE, Trivy, and dependency submission also passed. The
-release-note contract was skipped because no release was prepared. This
-source-only change is not in public `.977` and does not close the migration or
-operator acceptance gates.
-
-The exact-head Linux artifact converted the checked-in synthetic schema-158
-fixture on normal startup to schema 121 and retained an integrity-checked
-source backup. SeerrNG read both formats through its real adapter, verified
-Hardcover identities and restricted-key access, and completed a synthetic
-pending-import cancellation. The fixture media files are placeholders; this
-is not media-processing or operator-data acceptance.
-
-Unraid transition PR [#5](https://github.com/snapetech-org/bookshelfng-unraid/pull/5)
-remains draft at candidate head `1261a9f8403d88a53178b33a9f7ffeb1922d7dff`.
-Its exact-head build, template, package-sync, dependency, release-note, Semgrep,
-and Trivy checks passed; image and standalone publication jobs were skipped.
-The actual Community Applications update/rollback flow and representative-data
-migration/rollback remain open, so the candidate is not approved for the live
-catalog.
-
-Keep BookshelfNG running and do not apply the ChaptarrNG converter to operator
-data. Issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
-remains open. A task-scoped copy-only rehearsal using one populated SQLite
-database in native Hardcover mode passed preview, apply, restore preview, and
-rollback; the source copy remained unchanged and the retained backup was
-restored byte-for-byte. This one round trip does not establish representative
-acceptance. Ambiguous media, older-schema operator data, PostgreSQL operator
-data, provider fulfillment, representative media behavior, installed rollback,
-and channel handoff remain open.
-
-The refreshed inventory pins BookshelfNG source snapshot
-`c63eb84813392cdb398d9e6bf4446694952f256d` to ChaptarrNG target snapshot
-`00cf7b1a46984ec11661e745a314c19e5eaac6e3`. It covers 679 reachable post-fork
-commits (670 absent from the pinned upstream history) and 1,116 changed paths:
-239 paths without mapped targets, 408 undispositioned semantic differences, 176 retained identical paths, 129 equivalent paths (118 C# paths checked automatically, 8 with Roslyn, and 3 license/build/documentation files), six ported files (four project files, the release-note process guide, and the contributor guide), 158 approved non-runtime retirements (145 historical release-note fragments, 12 BookshelfNG logo assets, and one obsolete Readarr Azure Pipelines definition), and two paths absent from the Bookshelf snapshot.
-The review map records 25 path correspondences. The disposition map now records 469 reviewed paths (176 retained, 129 equivalent, 6 ported, and 158 non-runtime artifact retirements (145 release-note fragments, 12 logo assets, and one obsolete Azure pipeline)), leaving 647 undispositioned paths: 239 paths without mapped targets and 408 semantic differences requiring review. These retirement decisions cover historical notes, BookshelfNG branding, and obsolete Azure CI only; no runtime feature retirement is approved. A follow-up exact mode/blob scan found no additional same-path, byte-identical candidates among the 647 unresolved paths. They still need reviewed mappings or semantic dispositions. These are file-level review states, not feature-parity counts; file similarity or identical bytes do not establish integration, runtime behavior, or migration safety.
-
-The 145 retired note paths are past BookshelfNG release fragments. ChaptarrNG
-keeps its own append-only release history; copying those fragments into its
-active release set would announce old changes again. The 12 retired logo paths
-are BookshelfNG-specific brand assets; ChaptarrNG uses its own logo assets. The
-two source paths absent from the pinned BookshelfNG snapshot are now both
-dispositioned: the obsolete Readarr wiki stub is covered by ChaptarrNG's current
-contributor guide, and the legacy .NET 6 Azure Pipelines file is retired because
-ChaptarrNG uses maintained GitHub Actions workflows.
-original notes and logos remain in BookshelfNG repository history. The release-note
-process guide is ported to ChaptarrNG's contributor template, fragment guide,
-and announcement instructions. Capabilities described by historical fragments
-remain in the separate feature-parity review.
-
-The package-sync workflow now runs its read-only verifier on BookshelfNG
-`main`. The branch-guard test recognizes both the source and mirrored Unraid
-repository remotes, and generated package-sync commits explicitly use
-`release-note: none`. The branch-guard test passes from both local checkouts;
-exact-head BookshelfNG CI [39381883785](https://github.com/snapetech-org/bookshelfng/actions/runs/39381883785)
-and BookshelfNG-Unraid CI
-[39381879547](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39381879547)
-passed. Package-sync checks [39381883811](https://github.com/snapetech-org/bookshelfng/actions/runs/39381883811)
-and [39381879575](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39381879575)
-and release-note contracts [39381883824](https://github.com/snapetech-org/bookshelfng/actions/runs/39381883824)
-and [39381879520](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39381879520)
-also passed.
-
-Retirement acceptance remains open for full feature disposition, representative
-SQLite/PostgreSQL data and rollback, ambiguous-media review, provider and
-SeerrNG fulfillment, representative M4B processing, installed rollback, and
-package/image/Unraid/native-installer/Helm/pinned/offline update-channel handoff.
-No release, tag, package, image, compatibility bridge, or installer-channel
-switch is authorized until those gates close.
-
-M4B validation update (2026-10-19): ChaptarrNG PR #131 commit
-`c4fa8125095f583ad9eee534f70328e8eef1b44c` fixes Move-mode cleanup after a
-successful profile-based multipart merge. Embedded-chapter tests first exposed
-that source tracks remained; fixture isolation alone did not resolve it.
-Exact-head Build
-[39288736177](https://github.com/snapetech-org/chaptarrng/actions/runs/39288736177)
-passed Linux's full suite and pinned-tool M4B checks, PostgreSQL migration
-smoke, and release-note contract. Windows build and full test steps passed. The macOS job was cancelled before a runner started, so the cross-platform matrix is incomplete. CodeQL, security, dependency-review, and NuGet checks passed.
-Representative media, restart/resume, and operator acceptance remain open.
-No release or bridge was published.
-
-Prior ChaptarrNG candidate validation (2026-10-19): PR #131 application-code snapshot `0612cb4c90b75818e5349eb868cc0638825de02a` passed exact-head Build [39239940373](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940373), including Linux, macOS, Windows, PostgreSQL migration, native-runner receipt, and release-note checks. CodeQL [39239934583](https://github.com/snapetech-org/chaptarrng/actions/runs/39239934583), security [39239940344](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940344), NuGet [39239932165](https://github.com/snapetech-org/chaptarrng/actions/runs/39239932165), and dependency review [39239940313](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940313) passed; disposable-fork validation [39239940512](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940512) was skipped by its external-fork gate. SeerrNG's client adapter/request-route suite passed 4 files / 283 tests, and the Linux artifact passed the earlier empty-library restricted-key API smoke.
-
-Follow-up request lifecycle probe (2026-10-19): then-draft ChaptarrNG PR #131 commit `d97136040e5f76f6aa0b140d5c0ed74f8de7501e` added [`integration/seerrng-request-lifecycle.mjs`](https://github.com/snapetech-org/chaptarrng/blob/d97136040e5f76f6aa0b140d5c0ed74f8de7501e/integration/seerrng-request-lifecycle.mjs), wired into `integration/seerrng-smoke.compose.yml`. It passed against the prebuilt Linux candidate `0.9.978.0` from Build [39239940373](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940373) (application snapshot `0612cb4c90b75818e5349eb868cc0638825de02a`) and SeerrNG source `b810153c`: the real `ReadarrAPI` adapter created, polled, and cancelled a synthetic unavailable-author import, and ChaptarrNG returned terminal `Failed` / `Cancelled by user`. `node --check`, Prettier, and Compose configuration validation passed. Both smoke scripts then passed in the isolated Compose stack with a temporary runtime image assembled from the same artifact; the checked-in Dockerfile build path was bypassed. This proves the synthetic cancellation path only; successful fulfillment, retries, availability/history, converted-record behavior, unchanged production settings, and operator acceptance remain open.
-
-Populated migration-to-SeerrNG source smoke (2026-10-19): ChaptarrNG candidate
-commit `12f290bde5c04d29202775c0e9eeafb5fc20608f` built through the checked-in
-`Dockerfile.build`, and SeerrNG was at commit `fdc439aa9`. A disposable named
-volume was seeded with the shared synthetic BookshelfNG migration-158 fixture;
-normal startup converted it to schema 121 and retained the source backup.
-With `HARDCOVER=true`, the converted target persisted `HardcoverEnabled=true`.
-SeerrNG's real `ReadarrAPI` read both migrated formats and checked Hardcover
-identities. Capability discovery, restricted-key denial of administrative
-and unrelated command routes, and the pending add/poll/cancel path passed. The
-importer suite passed 43/43; Compose config, `node --check`, and Prettier checks
-passed. Placeholder `.m4b`/`.epub` files are not valid media. This synthetic
-run does not close representative-data, M4B, older-schema, PostgreSQL
-operator-data, feature-parity, installed-rollback, or channel gates. No release
-or bridge was published; issue #144 remains open.
-
-BookshelfNG `0.4.21.71` is the published final source release. Its issue #114
-request is closed; the `.71` release contains the optional new-author path
-setting and the source-side appdata archive helper. ChaptarrNG `v0.9.977` is
-published with preview, apply, rollback, automatic startup conversion, an
-embedded source migration chain, and a safe fallback for records whose media
-format cannot be inferred. ChaptarrNG
-`v0.9.974` and later initialize missing new-author roots from configured
-format defaults without replacing explicit values or rewriting existing
-authors and files.
-
-The public ChaptarrNG `v0.9.977` supports BookshelfNG migration-158 SQLite and
-applies the embedded source chain to a disposable copy before conversion. Its
-table guard rejects schemas before migration 14 because they still use
-`Blacklist`. PR #126 merged a version-aware fix and synthetic migration-1
-rollback fixture into `main`; hosted Linux, macOS, Windows, and PostgreSQL
-migration checks passed. The source fix is not in `.977`, and releases remain
-frozen until the retirement gates close. The populated synthetic v22 fixture
-passes local and hosted validation but is not evidence from real older-schema
-operator data. A populated Linux/amd64 rehearsal of the final schema accounted
-for the source rows. Its test media choices were technical inputs, not reviewed
-classifications. The published `.977` converter keeps
-unresolved works in both catalogs, unmonitored, and writes a private review
-file; operators still need to classify those works. The `.976` release
-workflow passed Linux, macOS, Windows, and PostgreSQL migration validation.
-ChaptarrNG `.977` packages an optional aggregate-only diagnostics module that
-preserves an existing BookshelfNG opt-in only when both the legacy flag and
-archived plugin marker are present. Its Linux, macOS, and Windows artifact
-checks passed; testing environment transfer on an installed migration remains
-open. This remains bounded evidence: older-schema behavior on real data,
-PostgreSQL source conversion, merging two populated source databases in one
-appdata directory (deliberately refused as ambiguous), every
-provider/environment contract,
-in-place rollback on an installed service, full feature parity, and most
-package-channel acceptance remain open. A separate private populated migration-158
-SQLite snapshot passed preview, apply, restore preview, and rollback on public
-ChaptarrNG .977; this closes one populated SQLite round-trip check only.
+Release publication remains frozen; readiness variables are unset, issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) remains open, and BookshelfNG must stay in service. Representative operator data and rollback, complete semantic feature disposition, successful provider fulfillment, full SeerrNG workflows, representative media/restart recovery, real installer and distribution-channel handoff, and operator acceptance remain open. The evidence checkpoints below are retained as historical validation and must not be read as current-head results.
 
 ## Earlier candidate evidence checkpoints — 2026-10-19
 
@@ -301,8 +126,8 @@ preserved. The report identifies this as a lossy approximation between
 different algorithms. Converted-data acceptance remains open, and the change
 is not in public `.977`.
 
-The current path-level inventory pins BookshelfNG source
-`c63eb84813392cdb398d9e6bf4446694952f256d` to ChaptarrNG target snapshot
+Historical path-level inventory checkpoint (2026-10-19): BookshelfNG source
+`c63eb84813392cdb398d9e6bf4446694952f256d` was compared with ChaptarrNG target
 `29852b1334ee049e30de84b44806932a3e9364f4`. It covers 679 reachable post-fork
 commits (670 absent from the pinned upstream history) and 1,116 changed paths:
 239 paths without mapped targets, 408 undispositioned semantic differences, 176 retained identical paths, 129 equivalent paths (118 C# paths checked automatically, 8 with Roslyn, and 3 license/build/documentation files), six ported files (four project files, the release-note process guide, and the contributor guide), 158 approved non-runtime retirements (145 historical release-note fragments, 12 BookshelfNG logo assets, and one obsolete Readarr Azure Pipelines definition), and two paths absent from the Bookshelf snapshot. Schema v4 records 25
@@ -504,7 +329,7 @@ behavior, feature parity, or any published package-channel bridge.
   rollback acceptance remain open.
 - BookshelfNG branch used for the earlier cross-project audit: `codex/bookshelf-chaptarr-consolidation-20261012`.
 - The latest published BookshelfNG release is 0.4.21.71; ChaptarrNG v0.9.977 is the latest public destination release. The published .71 archive is the migration-158 source schema baseline for read-only lineage tests.
-- The generated [inventory](chaptarr-consolidation-inventory.json) covers every reachable commit after the parent of the first fork commit, including maintenance and merged work. It is pinned to BookshelfNG source `c63eb84813392cdb398d9e6bf4446694952f256d` and ChaptarrNG target `00cf7b1a46984ec11661e745a314c19e5eaac6e3`: 679 commits (670 absent from the pinned upstream history) and 1,116 changed paths: 239 paths without mapped targets, 408 undispositioned semantic differences, 176 retained identical paths, 129 equivalent paths (118 C# paths checked automatically, 8 with Roslyn, and 3 license/build/documentation files), six ported files (four project files, the release-note process guide, and the contributor guide), 158 approved non-runtime retirements (145 historical release-note fragments, 12 BookshelfNG logo assets, and one obsolete Readarr Azure Pipelines definition), and two paths absent from the Bookshelf snapshot. The review map records 25 rechecked path correspondences and no unconfirmed basename hints. The disposition map records 469/1,116 changed paths; 647 still need disposition. A conservative C# token check classifies 118 files as source-equivalent after whitespace normalization; it preserves literal text, requires comments to match apart from whitespace, and skips interpolated/raw strings. Path mappings make files directly comparable but do not establish behavior or feature equivalence. These are path-level review states, not feature-parity counts.
+- The generated [inventory](chaptarr-consolidation-inventory.json) covers all reachable commits after the first fork parent, including merged upstream work. It pins BookshelfNG source `c63eb84813392cdb398d9e6bf4446694952f256d` to ChaptarrNG target `71b3aa6f5f34b5557d6c639ae4d1fc7002015c72`: 679 commits (670 absent from upstream) and 1,116 changed paths. It records 29 reviewed mappings and 473 dispositions (176 retained, 129 equivalent, 10 ported, 158 non-runtime retirements); 643 paths remain open (235 unmapped, 408 needing semantic review). The review map preserves path-level review only; the 118-file C# token check is not runtime or feature-parity proof.
 
 Regenerate the tracked-source inventory with:
 
@@ -513,7 +338,7 @@ python3 scripts/audit-chaptarr-consolidation.py \
   --bookshelf /path/to/bookshelfng \
   --chaptarr /path/to/chaptarrng-candidate \
   --source c63eb84813392cdb398d9e6bf4446694952f256d \
-  --target 00cf7b1a46984ec11661e745a314c19e5eaac6e3 \
+  --target 71b3aa6f5f34b5557d6c639ae4d1fc7002015c72 \
   --fork-base c21c4134fdb710481ed69db05bf943b0acdbbf60 \
   --upstream 3ac41f7e31427684a37138e8e539b7e6c7b73869 \
   --review-map docs/maintainers/chaptarr-consolidation-review-map.json \
@@ -540,7 +365,7 @@ target revisions. `retained`, `ported`, and `equivalent` entries require a
 reviewer and one or more target paths that exist at the pinned target revision.
 `retired` entries require a named approver and an approval reference. The
 `--require-complete-dispositions` flag fails if any changed path is missing a
-decision; the current map records 469 of 1,116 paths, leaving 647 undispositioned.
+decision; the current map records 473 of 1,116 paths, leaving 643 undispositioned.
 These records make review coverage auditable but do not prove runtime behavior,
 migration safety, or operator acceptance. The inventory is schema v4.
 
@@ -838,7 +663,7 @@ before release.
 | Encrypted backups and format-scoped profiles | Merged PR #131 includes recognized BookshelfNG ZIP restore with lineage/version validation, staged restore, and normal-startup conversion, plus portable BKSENC01 `.enc` export and restore (introduced at candidate `38be9422`, present in code commit `b7e900d4` and application-code commit `0e881d92`). The encryption service was cross-checked against BookshelfNG source; tests cover round-trip, wrong passphrases, tampering, truncation, malformed input, staging cleanup, and preserving an existing destination. Build [39313568727](https://github.com/snapetech-org/chaptarrng/actions/runs/39313568727) passed on Linux, macOS, and Windows, including PostgreSQL migration, release-note, receipt, and Linux pinned-tool M4B checks. Prior docs-only PR head `93213b67` passed exact-head Build 39316535744 on Linux, macOS, Windows, PostgreSQL migration, release-note contract, and native-runner receipt reconciliation. Public `.977` still lacks these restore and encrypted-backup paths. | **Source implementation merged; acceptance remains open** | Test legacy archive recovery, secret handling, profile conversion, and rollback on representative data; never expose credentials in logs. |
 | .NET 10, platform builds, ImageSharp removal, and security/dependency fixes | .NET 10 is present; target has different dependencies and still uses licensed ImageSharp | **Open blocker — patch-by-patch review pending** | Review each security and dependency change; retain compatible fixes and prove supported OS/architecture builds. |
 | Release notes, announcements, package sync, and validation workflow | ChaptarrNG has separate release and validation workflows | **Open blocker — legacy identities not bridged** | Preserve old package/container IDs through tested compatibility artifacts; complete required per-repository validation without duplicate publication. |
-| Every remaining fork change in the pinned source inventory | The inventory pins BookshelfNG `c63eb84813392cdb398d9e6bf4446694952f256d` to ChaptarrNG target snapshot `00cf7b1a46984ec11661e745a314c19e5eaac6e3`: 679 reachable post-fork commits, 670 absent from the pinned upstream history, and 1,116 changed paths: 239 paths without mapped targets, 408 undispositioned semantic differences, 176 retained identical paths, 129 equivalent paths (118 C# paths checked automatically, 8 with Roslyn, and 3 license/build/documentation files), six ported files (four project files, the release-note process guide, and the contributor guide), 158 approved non-runtime retirements (145 historical release-note fragments, 12 BookshelfNG logo assets, and one obsolete Readarr Azure Pipelines definition), and two paths absent from the Bookshelf snapshot. Schema v4 records 25 rechecked path mappings, no unconfirmed basename hints, and 469 reviewed dispositions out of 1,116 paths (176 retained, 129 equivalent, 6 ported, and 158 non-runtime artifact retirements (145 release-note fragments, 12 logo assets, and one obsolete Azure pipeline)). No runtime feature retirement is approved; 647 paths remain open. Mappings only support direct comparison. The complete ledger and pinned decision maps are [`chaptarr-consolidation-inventory.json`](chaptarr-consolidation-inventory.json), [`chaptarr-consolidation-review-map.json`](chaptarr-consolidation-review-map.json), and [`chaptarr-consolidation-disposition-map.json`](chaptarr-consolidation-disposition-map.json). | **Open blocker — exhaustive semantic disposition pending** | Account for every path as retained, ported, proven equivalent, or explicitly retired after impact review. |
+| Every remaining fork change in the pinned source inventory | The inventory pins BookshelfNG `c63eb84813392cdb398d9e6bf4446694952f256d` to ChaptarrNG target `71b3aa6f5f34b5557d6c639ae4d1fc7002015c72`: 679 post-fork commits, 670 absent from upstream history, 1,116 changed paths, 29 reviewed mappings, 473 dispositions, and 643 unresolved paths (235 unmapped and 408 requiring semantic review). It includes 176 retained, 129 equivalent, 10 ported, and 158 approved non-runtime retirements. No runtime feature retirement is approved. | Path classifications do not establish semantic feature equivalence. | Disposition every remaining path as retained, ported, proven equivalent, or explicitly approved for retirement. |
 
 The commit/path inventory remains the exhaustive review ledger. Every
 behavioral change must be retained, ported, or proven equivalent; packaging
@@ -982,7 +807,7 @@ must be reported as unverified/unpublished, not a successful migration channel.
 
 | Area | Current evidence | Status | Required action |
 | --- | --- | --- | --- |
-| BookshelfNG source inventory | Regenerated at BookshelfNG source `c63eb84813392cdb398d9e6bf4446694952f256d` and ChaptarrNG target `00cf7b1a46984ec11661e745a314c19e5eaac6e3`: 679 reachable commits, 670 absent from the pinned upstream history, and 1,116 changed paths (239 without mapped targets, 408 undispositioned semantic differences, 176 identical, 129 equivalent—118 C# files checked automatically, 8 with Roslyn, and 3 license/build/documentation files—six ported files: four project files with Chaptarr references, the release-note process guide, and the contributor guide; 158 approved non-runtime retirements (145 historical release-note fragments, 12 BookshelfNG logo assets, and one obsolete Readarr Azure Pipelines definition); and two paths absent from the Bookshelf snapshot). Schema v4 records 25 rechecked path mappings, zero unconfirmed basename hints, and 469 reviewed dispositions out of 1,116; 647 paths remain undispositioned. No runtime feature retirement is approved. | Path classifications do not establish semantic feature equivalence. | Disposition every path as retained, ported, proven equivalent, or explicitly retired; obtain an explicit maintainer decision for any retirement. |
+| BookshelfNG source inventory | Regenerated against source `c63eb84813392cdb398d9e6bf4446694952f256d` and ChaptarrNG target `71b3aa6f5f34b5557d6c639ae4d1fc7002015c72`: 679 commits, 1,116 paths, 29 reviewed mappings, 473 dispositions, and 643 unresolved paths. | Path classifications do not establish semantic feature equivalence. | Review and disposition every remaining path; keep production acceptance gates separate. |
 | ChaptarrNG Bookshelf feature port | PR #131 merged the source implementation to ChaptarrNG `main` as `d2bcba79`, including the migration, settings/provider, backup, media-move, Editions and Narrations, BookOrbit, SeerrNG, and Windows installer work. Earlier local migration and isolated integration rehearsals remain synthetic or limited to one data copy. | Source implementation is present on `main`; release and operator acceptance remain open. | Review ambiguous media and validate conversion, rollback, provider fulfillment, representative M4B, downstream BookLore/BookOrbit behavior, SeerrNG request/fulfillment, and installed channels on representative deployments. |
 | ChaptarrNG maintained and active features | At the earlier cross-project audit, ChaptarrNG `main` at `6731a436` was 606 commits ahead and zero behind upstream `develop` at `e67374f4`, across 1,485 net-changed paths. PR #100 at `561bf395` was 25 commits ahead of main across 359 paths; the audit also recorded PRs #78, #100, #103, and #105–#109 and open dependency updates. Recheck current upstream status before using this historical audit. | Historical upstream audit; current open PR/feature set not rechecked. | The earlier audit tracked upstream parity as a separate gate; refresh the ChaptarrNG-to-upstream comparison and carry forward only changes still open. Recheck current upstream changes and reconcile any remaining fork behavior before closing the Bookshelf retirement gate. |
 | Bookshelf database compatibility | Merged ChaptarrNG PR #131 adds the embedded historical SQLite migration chain, migration-158 PostgreSQL source migration support, staged conversion/rollback handling, provider-setting checks, and a Windows migration installer. The exact-head synthetic Windows service round trip passed upgrade, automatic rollback, explicit restore, and data-directory checks. | Source code is merged but unpublished; representative older SQLite and PostgreSQL operator data, ambiguous-media decisions, full provider behavior, installed operator rollback, and all channel handoffs remain unaccepted. | Keep BookshelfNG in service. Validate representative populated source databases and media, source immutability, correct identities/settings/history/files, and real rollback before any production cutover. |

@@ -1,33 +1,29 @@
 # Move a BookshelfNG installation to ChaptarrNG
 
-BookshelfNG `0.4.21.71` is the final published source release. ChaptarrNG
-`v0.9.977` remains the latest public release; keep its image tag versioned or
-use an immutable digest. ChaptarrNG PR [#131](https://github.com/snapetech-org/chaptarrng/pull/131)
-merged to `main` on 2026-10-20 as
-`d2bcba7953a14d2d726f47005a660314cc5e4c26` from validated code head
-`87c57a2bffd25a5ecbda40b9c63fd6d82993c54d`. It includes migration coverage
-for recognized older SQLite schemas, migration-158 PostgreSQL source
-migration support, provider identity/settings compatibility, portable backup
-restore, and the Windows installer handoff. These additions are in source `main`; they
-are not in public `.977` and are not approved for production cutover.
+BookshelfNG `0.4.21.71` remains its final published release. ChaptarrNG
+`v0.9.977` remains the latest public release. ChaptarrNG `main` is at
+`71b3aa6f5f34b5557d6c639ae4d1fc7002015c72`. The previous exact-head Build
+[39423725592](https://github.com/snapetech-org/chaptarrng/actions/runs/39423725592)
+failed two Linux/macOS auth tests because the SeerrNG test context omitted its
+HTTP method. The current commit sets GET explicitly; corrected Build
+[39425383048](https://github.com/snapetech-org/chaptarrng/actions/runs/39425383048) is queued. Security analysis, Semgrep CE, Trivy, and NuGet dependency submission passed on this head; the push check is still running. No current-head result is claimed. See the
+[maintainer readiness report](maintainers/chaptarr-consolidation.md) for status.
 
-Exact-head Build [39374140961](https://github.com/snapetech-org/chaptarrng/actions/runs/39374140961)
-passed Linux, macOS, Windows, PostgreSQL migration, release-note, and runner
-receipt checks. The Windows job also passed its migration-installer fingerprint
-and synthetic Bookshelf service upgrade, automatic rollback, explicit restore,
-and selected-data-directory checks. CodeQL, dependency review, Semgrep CE,
-Trivy, NuGet, and Helm resource-identity checks passed. The separate GHAS
-Semgrep OSS check remains failed with 12 manually reviewed SQL-format alerts
-and 3 fixed-test-path warnings; focused local scans of the SQL rule returned
-zero findings. Disposable-fork validation was skipped by its external-fork
-gate. See the [maintainer readiness report](maintainers/chaptarr-consolidation.md).
+The current source includes staged migration and rollback, provider and backup
+compatibility, and a Windows installer candidate that keeps the legacy service
+registration until ChaptarrNG passes its health check. Its deferred-removal and
+rollback smoke is queued with the Windows Build. These changes are not in
+public `.977` and do not authorize a production cutover.
 
-Release publication remains frozen, and BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
-remains open. Representative databases and media, real-data rollback, full
-feature disposition, provider/SeerrNG workflows, and installed update-channel
-handoff are not accepted. Keep BookshelfNG in service and do not start
-ChaptarrNG against BookshelfNG appdata. PR #128's release workflow gate still
-requires `CHAPTARRNG_RELEASE_READY=true`; the repository setting remains unset.
+Release publication and the migration bridge remain frozen; readiness
+variables are unset, and BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
+remains open. The full path audit pins target `71b3aa6f5f34b5557d6c639ae4d1fc7002015c72` and still has 643
+of 1,116 paths unresolved. Representative operator data and real rollback,
+semantic feature parity, provider/SeerrNG workflows, representative media and
+recovery, installed update-channel handoff, and operator acceptance remain
+open. Keep BookshelfNG in service and do not start ChaptarrNG against
+BookshelfNG appdata. The `CHAPTARRNG_RELEASE_READY` repository variable remains
+unset.
 
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
@@ -310,6 +306,18 @@ unset after switching until the ChaptarrNG
 documents a release containing it and the remaining acceptance gates close.
 
 Native Hardcover databases need the same provider mode during preview and apply. BookshelfNG commonly stores Hardcover work, author, edition, and series IDs as bare numbers. The merged ChaptarrNG source interprets them as Hardcover when `HARDCOVER=true` and `HARDCOVER_NATIVE` is not `false`; set `HARDCOVER=false` for a Goodreads-primary database. If the mode is unset or invalid, the merged ChaptarrNG source fails closed when it encounters a bare numeric ID rather than silently assigning Goodreads identity. The current-source helper requires `--provider-mode native-hardcover|goodreads` for both preview and apply. Native Hardcover also requires a versioned ChaptarrNG image tag `v0.9.978` or newer; `.977` and digest-only references are rejected because the helper cannot verify provider-mode support from a digest. BookshelfNG's `latest`, `main`, and `hardcover` Docker tags use native Hardcover mode; `softcover` uses Goodreads mode. Merged ChaptarrNG source includes matching compatibility image targets for those mutable aliases, but the targets have not been published or enabled. These changes are not in the published `.71` helper or ChaptarrNG `.977` image. Exact-head validation on commit b5bd9527 passed all 4 synthetic PostgreSQL migration cases, including normal-startup conversion with backup retention; Linux, macOS, and Windows platform validation also passed; converted-data acceptance remains open. Do not use those published builds for native Hardcover migration until the release-freeze gates close.
+
+The appdata archive does not capture API-authentication environment variables.
+Current ChaptarrNG `main` preserves the legacy
+`BOOKSHELF_ALLOW_API_KEY_QUERY=false` switch when
+`CHAPTARR__AUTH__ALLOWAPIKEYQUERY` is unset, and accepts
+`BOOKSHELF_SEERRNG_API_KEY` when `CHAPTARR__AUTH__SEERRAPIKEY` is unset. An
+explicit ChaptarrNG value takes precedence. The legacy SeerrNG credential
+keeps the restricted book-service policy: it cannot read global configuration
+or health routes, and book-file and history requests must include one positive
+`bookId`. These environment fallbacks are source-only and are not in public
+ChaptarrNG `v0.9.977`; preserve the variables in the deployment configuration,
+but do not treat their presence as approval to cut over.
 
 ## Populated SQLite rehearsal (2026-10-18)
 
