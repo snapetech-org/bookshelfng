@@ -411,12 +411,14 @@ behavior, feature parity, or any published package-channel bridge.
   release-note checks; image and deployment jobs were skipped for the PR. Its
   VM smoke used an empty Chaptarr library, so it does not prove populated
   Bookshelf identity, request, or history continuity.
-- Unraid companion: `bookshelfng-unraid` transition work is on draft PR #5,
-  branch `codex/bookshelfng-unraid-transition-20261018`, at
-  `69f53b434f7be565e5ca3bb8b734942758460451`. Its README and installation page
-  point at ChaptarrNG PR #131 head `93213b67`. Local template validation and
-  hosted template check [39317048739](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39317048739)
-  passed on this companion commit.
+- Unraid companion: `bookshelfng-unraid` transition work remains on draft PR #5,
+  branch `codex/bookshelfng-unraid-transition-20261018`, at current head
+  `6ae104976df445f8def9dabae6f10c3cda2c92d4`. Template-preservation check
+  [39340267938](https://github.com/snapetech-org/bookshelfng-unraid/actions/runs/39340267938)
+  passed on earlier candidate head `8711752bf6d0ac61201fc3f87a11b9e494ddea2f`;
+  GitHub reports no checks for the current PR head. It validates XML and saved
+  settings only, not live Community Applications upgrade/rollback or
+  representative-data migration.
   The candidate keeps the Bookshelf container/template identity, port `8787`,
   `/config`, `/data`, `/download`, and PUID/PGID/TZ, while changing the image to
   `ghcr.io/snapetech/chaptarrng:latest`. It has not been merged or exercised
