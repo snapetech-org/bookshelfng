@@ -162,7 +162,9 @@ printf '%s\n' "$source_commit" > "$worktree_dir/$source_commit_path"
 git -C "$worktree_dir" add --all
 if ! git -C "$worktree_dir" diff --cached --quiet; then
 	short_source_commit="$(git -C "$repo_root" rev-parse --short "$source_commit")"
-	git -C "$worktree_dir" -c core.hooksPath=/dev/null commit -m "chore: sync full source and Unraid package from $short_source_commit"
+	git -C "$worktree_dir" -c core.hooksPath=/dev/null commit \
+		-m "chore: sync full source and Unraid package from $short_source_commit" \
+		-m "release-note: none"
 fi
 
 new_head="$(git -C "$worktree_dir" rev-parse HEAD)"

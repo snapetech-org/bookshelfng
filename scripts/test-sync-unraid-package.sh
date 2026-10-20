@@ -4,8 +4,8 @@ set -euo pipefail
 source_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 origin="$(git -C "$source_root" remote get-url origin)"
 case "$origin" in
-  *bookshelfng.git|*bookshelfng) project=bookshelfng ;;
-  *chaptarrng.git|*chaptarrng) project=chaptarrng ;;
+  *bookshelfng-unraid.git|*bookshelfng-unraid|*bookshelfng.git|*bookshelfng) project=bookshelfng ;;
+  *chaptarrng-unraid.git|*chaptarrng-unraid|*chaptarrng.git|*chaptarrng) project=chaptarrng ;;
   *) echo "Unrecognized package source repository." >&2; exit 2 ;;
 esac
 
@@ -15,7 +15,7 @@ repo="$work/$project"
 mkdir -p "$repo/scripts"
 cp "$source_root/scripts/sync-unraid-package.sh" "$repo/scripts/"
 git -C "$repo" init --quiet --initial-branch=codex/hook-test
-git -C "$repo" remote add origin "$origin"
+git -C "$repo" remote add origin "https://github.com/snapetech-org/${project}.git"
 git -C "$repo" config user.name 'Package Hook Test'
 git -C "$repo" config user.email 'package-hook-test@example.invalid'
 git -C "$repo" add scripts/sync-unraid-package.sh
