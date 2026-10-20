@@ -12,8 +12,13 @@ unset. ChaptarrNG `.978` is a source version bump, not a release.
 Current candidate status (2026-10-19): ChaptarrNG PR #131 is at code head
 `7ff38a58530814d73da280b297eb3ed215bd2c83`. Exact-head Build
 [39365402673](https://github.com/snapetech-org/chaptarrng/actions/runs/39365402673)
-has started; the Windows build job is in progress and the PostgreSQL, macOS,
-and Linux jobs remain queued. Exact-head security analysis [39365402528](https://github.com/snapetech-org/chaptarrng/actions/runs/39365402528) is queued.
+passed the PostgreSQL migration, Linux, macOS, and Windows jobs, including the
+installer service round-trip, deferred cleanup, and selected data-directory
+check. Build is waiting only on native-runner receipt reconciliation.
+Exact-head Security Analysis
+[39365402528](https://github.com/snapetech-org/chaptarrng/actions/runs/39365402528)
+passed. Trivy, Python and JavaScript/TypeScript CodeQL analyses, and NuGet
+submission passed; C# and Actions CodeQL analyses remain pending.
 Previous Build [39363004742](https://github.com/snapetech-org/chaptarrng/actions/runs/39363004742)
 passed PostgreSQL migration, Linux/macOS, Windows tests, installer build, and
 SQLite fingerprint smoke. Its service round-trip passed migration, health
