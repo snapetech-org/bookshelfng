@@ -109,6 +109,10 @@ try {
   }
 
   Write-Output 'Chocolatey package verifier tests passed.'
+  # The expected-rejection cases leave a nonzero native exit code behind.
+  # Clear it so PowerShell action wrappers do not report this successful test
+  # script as failed when they propagate the last native process status.
+  $global:LASTEXITCODE = 0
 } finally {
   if (Test-Path -LiteralPath $tempRoot) {
     Remove-Item -LiteralPath $tempRoot -Recurse -Force
