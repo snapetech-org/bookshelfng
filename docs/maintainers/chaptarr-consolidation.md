@@ -26,6 +26,14 @@ fixtures. Focused local scans of the affected SQL rule returned zero findings.
 This reviewed check exception is recorded in PR #131; it is not reported as a
 green status.
 
+Post-merge ChaptarrNG `main` at
+`8448e90d8bc4e69472fc853265175d9a11c9720d` passed Build
+[39382585956](https://github.com/snapetech-org/chaptarrng/actions/runs/39382585956)
+on Linux, macOS, and Windows, including the Windows migration-installer
+upgrade and rollback checks, plus PostgreSQL migration and native-runner
+receipt validation. This is current-main source validation only; it does not
+close operator-data, feature-parity, or channel acceptance.
+
 The new source code is on `main`, but it is not published or approved for
 operator cutover. Keep BookshelfNG running and do not apply the ChaptarrNG
 converter to operator data. BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)

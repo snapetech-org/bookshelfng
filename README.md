@@ -11,6 +11,10 @@
 > passed. The separate GHAS Semgrep OSS check remains failed with 12 reviewed
 > SQL-format alerts and 3 fixed-fixture path warnings; focused local SQL-rule
 > scans returned zero findings. See the [consolidation report](docs/maintainers/chaptarr-consolidation.md).
+> The merged ChaptarrNG `main` head `8448e90d` also passed post-merge Build
+> [39382585956](https://github.com/snapetech-org/chaptarrng/actions/runs/39382585956)
+> across Linux, macOS, Windows, PostgreSQL migration, and native-runner receipt
+> validation. This does not close the retirement acceptance gates.
 >
 > The merge did not publish a release or authorize production cutover. Keep
 > BookshelfNG in service. Issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
