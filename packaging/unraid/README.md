@@ -5,11 +5,9 @@ This repository publishes the standalone BookshelfNG Unraid Docker template.
 ebook and audiobook library management and acquisition. It works independently;
 SeerrNG integration is optional.
 
-> **Published state (2026-10-20):** BookshelfNG `0.4.21.71` and ChaptarrNG `v0.9.977` remain the latest releases. ChaptarrNG PR [#131](https://github.com/snapetech-org/chaptarrng/pull/131) merged to `main` as `d2bcba7953a14d2d726f47005a660314cc5e4c26` from validated head `87c57a2bffd25a5ecbda40b9c63fd6d82993c54`; Build [39374140961](https://github.com/snapetech-org/chaptarrng/actions/runs/39374140961) passed its Linux, macOS, Windows, PostgreSQL, and installer upgrade/rollback checks. This source remains unpublished and is not approved for cutover. While [BookshelfNG issue #144](https://github.com/snapetech-org/bookshelfng/issues/144) remains open, keep BookshelfNG running and do not apply migration or start ChaptarrNG against its appdata.
+> **Published state (2026-10-20):** BookshelfNG `0.4.21.71` and ChaptarrNG `v0.9.977` remain the latest releases. ChaptarrNG PR [#131](https://github.com/snapetech-org/chaptarrng/pull/131) is merged to `main`, but its migration and compatibility work is unpublished and not approved for cutover. BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) remains open; keep BookshelfNG running and do not apply migration or start ChaptarrNG against its appdata.
 >
-> The Unraid handoff PR [#5](https://github.com/snapetech-org/bookshelfng-unraid/pull/5) remains a draft. Its template-preservation check is `python3 scripts/test-transition-template.py`; it validates the XML and preserved settings, not a live Community Applications update, rollback, or populated-data migration. Hosted check status is shown on the PR. Keep both release-readiness gates unset; no bridge is published.
->
-
+> The legacy handoff remains a draft in [Unraid PR #5](https://github.com/snapetech-org/bookshelfng-unraid/pull/5) at candidate `1261a9f8`. Its exact-head build, template, package-sync, dependency, release-note, Semgrep, and Trivy checks passed. Publication jobs were skipped. Actual Community Applications update/rollback and representative-data migration/rollback remain open, so the `main` template continues to point at BookshelfNG. Keep the release-readiness gates unset.
 
 ## Existing installations
 
