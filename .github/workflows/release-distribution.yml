@@ -1011,12 +1011,15 @@ jobs:
           $script = Get-Content $installScript -Raw
           $archiveRoot = "BookshelfNG-$env:TAG-win-x64"
           $script = $script.Replace('__RELEASE_TAG__', $env:TAG).Replace('__ARCHIVE_ROOT__', $archiveRoot).Replace('__ARCHIVE__', $archive).Replace('__SHA256__', $checksum)
-          if ($script -match '__[A-Z_]+__') { throw 'The Chocolatey install script still has an unresolved release placeholder.' }
+          if ($script -match '__[A-Z0-9_]+__') { throw 'The Chocolatey install script still has an unresolved release placeholder.' }
           [System.IO.File]::WriteAllText($installScript, $script, $utf8NoBom)
           choco pack $nuspec --outputdirectory $packageDir
-          $package = Get-ChildItem $packageDir -Filter '*.nupkg' | Select-Object -First 1
+          if ($LASTEXITCODE -ne 0) { throw 'Chocolatey could not pack the BookshelfNG package.' }
+          $package = Get-Item -LiteralPath (Join-Path $packageDir "bookshelfng.$env:VERSION.nupkg") -ErrorAction SilentlyContinue
           if (-not $package) { throw 'Chocolatey package was not built.' }
+          & ./scripts/verify-chocolatey-package.ps1 -PackagePath $package.FullName -PackageId bookshelfng -Version $env:VERSION -RequireBookshelfNGServiceUpgrade
           choco push $package.FullName --source https://push.chocolatey.org/ --api-key $env:CHOCOLATEY_API_KEY
+          if ($LASTEXITCODE -ne 0) { throw 'Chocolatey rejected the BookshelfNG package upload.' }
 
   publish-helm:
     name: Publish signed Helm OCI chart

@@ -18,6 +18,13 @@ $SourceRoot = (Resolve-Path -LiteralPath $SourceRoot).Path
 New-Item -ItemType Directory -Force -Path $OutputDirectory | Out-Null
 $OutputDirectory = (Resolve-Path -LiteralPath $OutputDirectory).Path
 $archiveHash = (Get-FileHash -LiteralPath $ArchivePath -Algorithm SHA256).Hash.ToLowerInvariant()
+$chocolateyRoot = Join-Path $SourceRoot 'packaging/chocolatey'
+$legacyRoot = Join-Path $SourceRoot 'packaging/legacy/chocolatey'
+$packageVerifier = Join-Path $PSScriptRoot 'verify-chocolatey-package.ps1'
+
+if (-not (Test-Path -LiteralPath $packageVerifier -PathType Leaf)) {
+  throw 'The Chocolatey package verifier is missing.'
+}
 
 function Build-Package {
   param(
@@ -37,13 +44,45 @@ function Build-Package {
 
   $nuspecPath = Join-Path $packageDir "$PackageName.nuspec"
   $nuspecText = (Get-Content -LiteralPath $nuspecPath -Raw).Replace('__VERSION__', $Version)
+
+  [xml] $parsedNuspec = $nuspecText
+  if ($parsedNuspec.DocumentElement.LocalName -ne 'package') {
+    throw "$PackageName nuspec has no package root element."
+  }
+  $metadata = $parsedNuspec.SelectSingleNode("/*[local-name()='package']/*[local-name()='metadata']")
+  if (-not $metadata) { throw "$PackageName nuspec has no metadata element." }
+  $copyright = $metadata.SelectSingleNode("*[local-name()='copyright']")
+  if (-not $copyright -or [string]::IsNullOrWhiteSpace($copyright.InnerText)) {
+    if ($PackageId -ne 'bookshelfng') {
+      throw "$PackageName nuspec is missing a non-empty copyright field."
+    }
+
+    $copyrightTemplatePath = Join-Path $chocolateyRoot 'chaptarrng.nuspec.in'
+    if (-not (Test-Path -LiteralPath $copyrightTemplatePath -PathType Leaf)) {
+      throw 'The ChaptarrNG copyright source nuspec is missing.'
+    }
+    [xml] $copyrightTemplate = Get-Content -LiteralPath $copyrightTemplatePath -Raw
+    $copyrightSource = $copyrightTemplate.SelectSingleNode("/*[local-name()='package']/*[local-name()='metadata']/*[local-name()='copyright']")
+    if (-not $copyrightSource -or [string]::IsNullOrWhiteSpace($copyrightSource.InnerText)) {
+      throw 'The ChaptarrNG copyright source nuspec has no non-empty copyright field.'
+    }
+    $existingIdentity = $metadata.SelectSingleNode("*[local-name()='owners']")
+    if (-not $existingIdentity) { $existingIdentity = $metadata.SelectSingleNode("*[local-name()='authors']") }
+    if (-not $existingIdentity) {
+      throw "$PackageName nuspec has no authors or owners element for a valid copyright insertion point."
+    }
+    $copyrightNode = $parsedNuspec.CreateElement('copyright', $parsedNuspec.DocumentElement.NamespaceURI)
+    $copyrightNode.InnerText = $copyrightSource.InnerText
+    $metadata.InsertAfter($copyrightNode, $existingIdentity) | Out-Null
+    $nuspecText = $parsedNuspec.OuterXml
+  }
   [System.IO.File]::WriteAllText($nuspecPath, $nuspecText, [System.Text.UTF8Encoding]::new($false))
 
   $installPath = Join-Path $toolsDir 'chocolateyinstall.ps1'
   $installText = (Get-Content -LiteralPath $installPath -Raw).
     Replace('__VERSION__', $Version).
     Replace('__ARCHIVE_SHA256__', $archiveHash)
-  if ($installText -match '__[A-Z_]+__') {
+  if ($installText -match '__[A-Z0-9_]+__') {
     throw "$PackageName install script has an unresolved release placeholder."
   }
   $tokens = $null
@@ -53,10 +92,9 @@ function Build-Package {
   [System.IO.File]::WriteAllText($installPath, $installText, [System.Text.UTF8Encoding]::new($false))
 
   [xml] $parsedNuspec = Get-Content -LiteralPath $nuspecPath -Raw
-  $ns = [System.Xml.XmlNamespaceManager]::new($parsedNuspec.NameTable)
-  $ns.AddNamespace('n', 'http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd')
-  $actualId = $parsedNuspec.SelectSingleNode('/n:package/n:metadata/n:id', $ns).InnerText
-  $actualVersion = $parsedNuspec.SelectSingleNode('/n:package/n:metadata/n:version', $ns).InnerText
+  $metadata = $parsedNuspec.SelectSingleNode("/*[local-name()='package']/*[local-name()='metadata']")
+  $actualId = $metadata.SelectSingleNode("*[local-name()='id']").InnerText
+  $actualVersion = $metadata.SelectSingleNode("*[local-name()='version']").InnerText
   if ($actualId -ne $PackageId -or $actualVersion -ne $Version) {
     throw "$PackageName package identity/version is $actualId/$actualVersion, expected $PackageId/$Version."
   }
@@ -67,10 +105,18 @@ function Build-Package {
   if (-not (Test-Path -LiteralPath $packagePath -PathType Leaf)) {
     throw "Chocolatey did not create $PackageId.$Version.nupkg."
   }
-}
 
-$chocolateyRoot = Join-Path $SourceRoot 'packaging/chocolatey'
-$legacyRoot = Join-Path $SourceRoot 'packaging/legacy/chocolatey'
+  $verifyArguments = @{
+    PackagePath = $packagePath
+    PackageId = $PackageId
+    Version = $Version
+  }
+  if ($PackageId -eq 'bookshelfng') {
+    & $packageVerifier @verifyArguments -RequireBookshelfNGServiceUpgrade
+  } else {
+    & $packageVerifier @verifyArguments
+  }
+}
 
 Build-Package `
   -PackageName 'chaptarrng' `

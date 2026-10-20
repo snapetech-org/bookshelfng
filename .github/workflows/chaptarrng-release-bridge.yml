@@ -361,6 +361,7 @@ jobs:
         $ErrorActionPreference = 'Stop'
         $package = Join-Path $env:RUNNER_TEMP "packages/chaptarrng.$env:VERSION.nupkg"
         if (-not (Test-Path $package)) { throw 'The ChaptarrNG Chocolatey package artifact is missing.' }
+        & ./scripts/verify-chocolatey-package.ps1 -PackagePath $package -PackageId chaptarrng -Version $env:VERSION
         choco push $package --source https://push.chocolatey.org/ --api-key $env:CHOCOLATEY_API_KEY
         if ($LASTEXITCODE -ne 0) { throw 'Chocolatey rejected the ChaptarrNG package upload.' }
         $marker = "bookshelfng-bridge-v$env:VERSION-chocolatey-new"
@@ -394,6 +395,7 @@ jobs:
         $ErrorActionPreference = 'Stop'
         $package = Join-Path $env:RUNNER_TEMP "packages/bookshelfng.$env:VERSION.nupkg"
         if (-not (Test-Path $package)) { throw 'The BookshelfNG Chocolatey bridge artifact is missing.' }
+        & ./scripts/verify-chocolatey-package.ps1 -PackagePath $package -PackageId bookshelfng -Version $env:VERSION -RequireBookshelfNGServiceUpgrade
         choco push $package --source https://push.chocolatey.org/ --api-key $env:CHOCOLATEY_API_KEY
         if ($LASTEXITCODE -ne 0) { throw 'Chocolatey rejected the BookshelfNG bridge package upload.' }
         $marker = "bookshelfng-bridge-v$env:VERSION-chocolatey-legacy"
