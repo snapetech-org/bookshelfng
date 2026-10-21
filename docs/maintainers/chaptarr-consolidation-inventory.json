@@ -21,13 +21,13 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 102,
     "approvedRetirements": 239,
-    "reviewedDispositions": 822,
-    "undispositionedPaths": 297,
+    "reviewedDispositions": 827,
+    "undispositionedPaths": 292,
     "dispositionStates": {
       "retired": 239,
       "retained": 177,
-      "ported": 271,
-      "equivalent": 135
+      "ported": 273,
+      "equivalent": 138
     },
     "fileStates": {
       "approved-retirement": 239,
@@ -39,7 +39,7 @@
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "different-review-required": 229,
+      "different-review-required": 224,
       "no-mapped-target-file": 68
     }
   },
@@ -22250,6 +22250,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "9150ed7e22cd93ff01cb6b267a39e1e98416ea8b"
+      },
+      "reviewedDisposition": {
+        "disposition": "equivalent",
+        "feature": "Disk provider interface contract",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Common/Disk/IDiskProvider.cs"
+        ],
+        "rationale": "All source interface members remain present and unchanged. ChaptarrNG adds FileExistsCanonical and GetFileLinkCount members for destination-specific behavior; those additions do not alter the BookshelfNG contract.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Common/Disk/IDiskProvider.cs to blob d7e7205dfc017b1ec5a5afb659614bbf71b83589. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Common/Disk/IDiskProvider.cs to blob 9150ed7e22cd93ff01cb6b267a39e1e98416ea8b. Pinned diff review: the only changes add the FileExistsCanonical and GetFileLinkCount declarations. All existing source declarations retain their signatures and ordering. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -25960,6 +25970,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "edbda1a156a36b019b276e1cdcfea9d85127c54e"
+      },
+      "reviewedDisposition": {
+        "disposition": "equivalent",
+        "feature": "Removing invalid media cover images",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Core/Housekeeping/Housekeepers/DeleteBadMediaCovers.cs"
+        ],
+        "rationale": "The only implementation change calls the array-offset overload of ReadExactly for the same buffer and full length. It preserves the same complete-read-or-throw behavior; cover validation and cleanup are unchanged.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Housekeeping/Housekeepers/DeleteBadMediaCovers.cs to blob 0331134b44ed6faaa43efd5caed3d21126251ae1. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/Housekeeping/Housekeepers/DeleteBadMediaCovers.cs to blob edbda1a156a36b019b276e1cdcfea9d85127c54e. Pinned diff review: imageStream.ReadExactly(buffer) becomes imageStream.ReadExactly(buffer, 0, buffer.Length); no other code changes. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -26032,6 +26052,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "86393da85cd3d831c9001c21d50f4a0c1c05b6ff"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Hardcover import-list HTTP requests",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportRequestGenerator.cs"
+        ],
+        "rationale": "The request endpoint, query/body, authentication headers, and serialization are retained. The User-Agent now identifies the destination as ChaptarrNG instead of Readarr, preserving the integration while using the correct product identity.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportRequestGenerator.cs to blob 82c1169bc241231b84871539bb9a46c1f71e86f7. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportRequestGenerator.cs to blob 86393da85cd3d831c9001c21d50f4a0c1c05b6ff. Pinned diff review: the only changed statement is the User-Agent brand from \"Readarr (Hardcover Import)\" to \"ChaptarrNG (Hardcover Import)\"; request construction is otherwise unchanged. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -27509,6 +27539,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "3bfc332b0903b0ed5aa31a7de7e31f3182e529df"
+      },
+      "reviewedDisposition": {
+        "disposition": "equivalent",
+        "feature": "Download protocol delay-profile selection",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Core/Profiles/Delay/DelayProfile.cs"
+        ],
+        "rationale": "Torrent and Usenet delay selection is unchanged. The target handles Direct explicitly with zero, matching the source switch default for that protocol.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Profiles/Delay/DelayProfile.cs to blob bd0bcc0e2720715e709c6ee1626371fcb029e61e. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/Profiles/Delay/DelayProfile.cs to blob 3bfc332b0903b0ed5aa31a7de7e31f3182e529df. Pinned diff review: the only change adds DownloadProtocol.Direct => 0 before the existing zero-valued default; Torrent and Usenet branches are unchanged. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -28094,6 +28134,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "a5142a8a6e002257eeee7082f4b197897aab39f9"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Mono symbolic-link path resolution and diagnostics",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Mono/Disk/SymbolicLinkResolver.cs"
+        ],
+        "rationale": "The symbolic-link traversal, error handling, and returned paths are unchanged. ChaptarrNG routes the three path-bearing log statements through its safe logging extensions instead of stripping line endings manually, preserving diagnostics while applying destination log sanitization.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Mono/Disk/SymbolicLinkResolver.cs to blob d4fb779acbde45735029bf925e005d3e65a9b1bb. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Mono/Disk/SymbolicLinkResolver.cs to blob a5142a8a6e002257eeee7082f4b197897aab39f9. Pinned diff review: behavior is unchanged; the three modified statements are Warn, Debug, and Trace logging calls replaced by WarnSafe, DebugSafe, and TraceSafe. The target adds the instrumentation namespace import. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
