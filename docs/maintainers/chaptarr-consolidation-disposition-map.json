@@ -8660,6 +8660,20 @@
       "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant.",
       "rationale": "These tests exercise the BookshelfNG-only source-path auditor and its exact-revision disposition rules. They remain with the auditor in the BookshelfNG maintainer repository and do not provide ChaptarrNG runtime test coverage. Retire them from the ChaptarrNG product tree only; preserve them in BookshelfNG while the retirement audit is active.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/test-audit-chaptarr-consolidation.py to blob 917581699f3d3049a9050b0441b7827587b07eff (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 has no product-tree counterpart. These are maintainer audit/validation artifacts, not application features; preserve them in the BookshelfNG source repository while acceptance work is in progress."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Integration.Test/ApiTests/EncryptedBackupFixture.cs",
+      "disposition": "ported",
+      "feature": "Portable BookshelfNG encrypted backup export and restore",
+      "targetPaths": [
+        "src/Chaptarr.Api.V1/System/Backup/BackupController.cs",
+        "src/Chaptarr.Core.Test/Backup/BookshelfBackupControllerFixture.cs",
+        "src/Chaptarr.Core.Test/Backup/BookshelfEncryptedBackupServiceFixture.cs",
+        "src/Chaptarr.Core.Test/Backup/BackupServiceRestoreValidationFixture.cs"
+      ],
+      "reviewedBy": "Codex test-contract review (2026-10-21)",
+      "rationale": "The BookshelfNG integration fixture exercised encrypted export, expected ZIP members, wrong-passphrase rejection, and restore with the accepted passphrase. ChaptarrNG splits this contract across focused controller, encryption-service, and backup-service fixtures: the controller fixture encrypts and decrypts an exported backup, checks its .enc download and no-store behavior, rejects a wrong passphrase, and restores a valid upload; the encryption-service fixture decrypts a backup produced by BookshelfNG; the backup-service fixture verifies the generated archive contains Config.xml, the database, and INFO. The coverage moved from an integration host to controller/service tests. Those tests and this path disposition do not establish live HTTP routing or installed-channel acceptance.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Integration.Test/ApiTests/EncryptedBackupFixture.cs to blob 5f190f5a9dae2cb8398541e95a4ce3298777ef50 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Api.V1/System/Backup/BackupController.cs to blob f92359b1633b83505f9d0449c3eab062c049cd3b (mode 100644); its `encrypted` route returns application/octet-stream. The target also resolves src/Chaptarr.Core.Test/Backup/BookshelfBackupControllerFixture.cs to blob 51775ae0876abb9c0f0b1b6ba8ba8a897b5a32b1 (mode 100644), src/Chaptarr.Core.Test/Backup/BookshelfEncryptedBackupServiceFixture.cs to blob 097ee70d10f1332ac17e68ec8ea5b6e346ac4292 (mode 100644), and src/Chaptarr.Core.Test/Backup/BackupServiceRestoreValidationFixture.cs to blob 14d3ceadfb6dc40eed8692a33e22f628d9b74ac9 (mode 100644). Source and target test contracts were reviewed by test method and assertion; test-layer differences remain stated above."
     }
   ]
 }
