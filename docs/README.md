@@ -39,7 +39,7 @@ metadata provider configuration.
 
 ## Fork consolidation and retirement
 
-BookshelfNG 0.4.21.71 and ChaptarrNG v0.9.977 remain the latest public app releases. ChaptarrNG main is [501624e7](https://github.com/snapetech-org/chaptarrng/commit/501624e7b1edf67064ee981fe6aac349cfa26253). A candidate-only Debian bridge recipe now builds the ChaptarrNG archive under the existing bookshelfng package identity. An isolated dpkg upgrade/downgrade round-trip passed with the public `.71` package and candidate `.977` package, preserving a modified config and data canary; dependency checks and systemd were mocked. Live service/database acceptance, PPA, other channel acceptance, feature parity, and operator sign-off remain open. Keep BookshelfNG in service and publication frozen.
+BookshelfNG 0.4.21.71 and ChaptarrNG v0.9.977 remain the latest public app releases. ChaptarrNG [main](https://github.com/snapetech-org/chaptarrng/tree/main) has a candidate-only Debian bridge recipe under the existing bookshelfng package identity. An isolated dpkg upgrade/downgrade round-trip passed with the public `.71` package and candidate `.977` package, preserving a modified config and data canary; dependency checks and systemd were mocked. Live service/database acceptance, PPA, other channel acceptance, feature parity, and operator sign-off remain open. Keep BookshelfNG in service and publication frozen.
 
 The path inventory is still pinned to ChaptarrNG snapshot 4d9c4b2d; its open-path counts are historical and must be re-reviewed against current main before retirement.
 

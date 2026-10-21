@@ -2,7 +2,7 @@
 
 ## Current status — 2026-10-21
 
-BookshelfNG 0.4.21.71 and ChaptarrNG v0.9.977 remain the latest public app releases. ChaptarrNG main is [501624e7](https://github.com/snapetech-org/chaptarrng/commit/501624e7b1edf67064ee981fe6aac349cfa26253). The release freeze remains active.
+BookshelfNG 0.4.21.71 and ChaptarrNG v0.9.977 remain the latest public app releases. ChaptarrNG [main](https://github.com/snapetech-org/chaptarrng/tree/main) is the current target; the release freeze remains active.
 
 ChaptarrNG main now contains a candidate-only Debian bridge builder under the BookshelfNG package identity. A local candidate was built from the checksum-verified public ChaptarrNG v0.9.977 Linux x64 archive; inspection of the checksum-verified BookshelfNG 0.4.21.71-1 package confirmed the old package identity and environment-file conffile. An isolated dpkg transaction upgraded that actual package to the candidate and downgraded back while preserving a modified environment file and data canary. Dpkg dependencies were bypassed and systemd was mocked; no live service or database migration ran. PPA publication, real host acceptance, and operator-data rollback remain open. No compatibility package was published.
 
