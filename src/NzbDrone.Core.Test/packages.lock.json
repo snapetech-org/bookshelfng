@@ -72,11 +72,11 @@
       },
       "System.IO.Abstractions.TestingHelpers": {
         "type": "Direct",
-        "requested": "[17.2.26, )",
-        "resolved": "17.2.26",
-        "contentHash": "idInRmbmAlVpWrSvEWJLOAo4HZUYQeKCNHTih3f0PXkeGvuZ/kDxMciHvQ8kzgaWVZ68dBz6V1O/gCBV2NOHdQ==",
+        "requested": "[22.3.0, )",
+        "resolved": "22.3.0",
+        "contentHash": "18NddvxRHmpwirzjhMOZ2u0oCdlxUvNQV2hQXPIygEnbAoo0sYOzWY4Jf5WQs/QSOIOBYSFpvq3A003d7HFmTQ==",
         "dependencies": {
-          "System.IO.Abstractions": "17.2.26"
+          "TestableIO.System.IO.Abstractions.TestingHelpers": "22.3.0"
         }
       },
       "BouncyCastle.Cryptography": {
@@ -590,13 +590,27 @@
         "resolved": "17.2.26",
         "contentHash": "BO+O9ed2RQC9A+mdclTfvVHXtqGFZ3C72brUtDfbjrhU0RVf6nxpTbvd6wc03B5nGau2aTfUEKLH3PWp8O25Ag=="
       },
+      "TestableIO.System.IO.Abstractions.TestingHelpers": {
+        "type": "Transitive",
+        "resolved": "22.3.0",
+        "contentHash": "kJsKJjXcjSvh0H89afGlsngJHj8n7f1q7juNiLUCbtJr+m208TG6z2RfjCVlGosfgaHBnNhgs0zFy2Z0V1XnZA==",
+        "dependencies": {
+          "TestableIO.System.IO.Abstractions.Wrappers": "22.3.0",
+          "Testably.Abstractions.FileSystem.Interface": "10.4.0"
+        }
+      },
       "TestableIO.System.IO.Abstractions.Wrappers": {
         "type": "Transitive",
-        "resolved": "17.2.26",
-        "contentHash": "xCSeI+J+6Naa1UG6OcZ233TKkIz14OFuQ99765OlTyQSz7U9ozN4rjUemZsRTikIgd1YBvsyH0gYt1/bNyNsUw==",
+        "resolved": "22.3.0",
+        "contentHash": "9TsOEcwIGJXHjkZ/lIpg6KnoRjxpZZ/LpMvNddcXEvmcxWKZdbhSy2UWMpy3oN8klbQ3dcpxbp9AddQk0zE+Kg==",
         "dependencies": {
-          "TestableIO.System.IO.Abstractions": "17.2.26"
+          "Testably.Abstractions.FileSystem.Interface": "10.4.0"
         }
+      },
+      "Testably.Abstractions.FileSystem.Interface": {
+        "type": "Transitive",
+        "resolved": "10.4.0",
+        "contentHash": "7G5NzIjs7544Dit0uuvYOOAzD8E4alQS2ENPGT3HV1Ks/1r55O7X4d9g6L273n70IDkgqNdBCmrkWxJLn0xCZA=="
       },
       "readarr.common": {
         "type": "Project",
@@ -673,7 +687,7 @@
           "RestSharp": "[106.15.0, )",
           "RestSharp.Serializers.SystemTextJson": "[106.15.0, )",
           "System.IO.Abstractions": "[17.2.26, )",
-          "System.IO.Abstractions.TestingHelpers": "[17.2.26, )"
+          "System.IO.Abstractions.TestingHelpers": "[22.3.0, )"
         }
       },
       "readarr.windows": {
