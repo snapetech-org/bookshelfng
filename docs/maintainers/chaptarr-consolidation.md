@@ -2,9 +2,9 @@
 
 ## Current status — 2026-10-21
 
-BookshelfNG `0.4.21.71` remains the final public release; ChaptarrNG `v0.9.977` remains the latest public release. ChaptarrNG `main` now contains the 10-RID standalone archive candidate at code and main head [`4d9c4b2d`](https://github.com/snapetech-org/chaptarrng/commit/4d9c4b2db0f438f05d81fb109aa6c32924ec5e85). Exact-head Build [39573719771](https://github.com/snapetech-org/chaptarrng/actions/runs/39573719771) and no-publication standalone validation [39573719493](https://github.com/snapetech-org/chaptarrng/actions/runs/39573719493) are in progress. Security analysis [39573719545](https://github.com/snapetech-org/chaptarrng/actions/runs/39573719545), Trivy [39573719526](https://github.com/snapetech-org/chaptarrng/actions/runs/39573719526), Semgrep [39573719587](https://github.com/snapetech-org/chaptarrng/actions/runs/39573719587), and dependency submission [39573720905](https://github.com/snapetech-org/chaptarrng/actions/runs/39573720905) passed; CodeQL [39573719260](https://github.com/snapetech-org/chaptarrng/actions/runs/39573719260) is in progress. No release, package, image, installer, or migration bridge has been published.
+BookshelfNG `0.4.21.71` remains the final public release; ChaptarrNG `v0.9.977` remains the latest public release. ChaptarrNG `main` is now [`ac9d0f67`](https://github.com/snapetech-org/chaptarrng/commit/ac9d0f675ccf8b58e649f0b1c8128bfd8d3e1358); its Build workflow is [39582456911](https://github.com/snapetech-org/chaptarrng/actions/runs/39582456911). Standalone no-publication validation [39582093706](https://github.com/snapetech-org/chaptarrng/actions/runs/39582093706) on candidate `d71ec42e` has passed nine archive targets and the focused runtime-pack permission regression; the combined Linux x86 and FreeBSD runtime-pack build is still running. The prior attempt [39573719493](https://github.com/snapetech-org/chaptarrng/actions/runs/39573719493) failed in those two archive jobs; GNU tar now preserves metadata on existing shared .NET directories with `--no-overwrite-dir`. No release, package, image, installer, or migration bridge has been published.
 
-The schema-v4 audit pins BookshelfNG source `2811718076d84777a1b1132e4e5d2abd21231229` to ChaptarrNG code candidate `4d9c4b2db0f438f05d81fb109aa6c32924ec5e85`: 1,119 changed paths, 102 reviewed mappings, and 856 explicit dispositions (177 retained, 143 equivalent, 297 ported, and 239 repository-only retirements). Another 263 paths remain open (66 without mapped targets and 197 requiring semantic review). No runtime feature retirement is approved; path review is not feature-parity proof. AUR and RPM legacy recipes are mapped to ChaptarrNG retained-identity templates; their local rehearsals used synthetic data and do not establish live-feed or real-systemd acceptance. Recent path reviews span Hardcover identity, metadata, and imports; Mono disk and symlink behavior; HTTP request and auth handling; platform project wiring; cover reads; delay fallback; blocklist decisions; color-impaired styling; and format-aware search, edition, queue, and book-index presentation. Migration and installed-channel acceptance remain separate gates.
+The schema-v4 audit remains pinned to BookshelfNG source `2811718076d84777a1b1132e4e5d2abd21231229` and ChaptarrNG snapshot `4d9c4b2db0f438f05d81fb109aa6c32924ec5e85`: 1,119 changed paths, 102 reviewed mappings, and 856 explicit dispositions (177 retained, 143 equivalent, 297 ported, and 239 repository-only retirements). Another 263 paths remain open (66 without mapped targets and 197 requiring semantic review). Current ChaptarrNG `main` has advanced to `ac9d0f67`; the pinned audit was not regenerated, so newer changes have not been dispositioned. No runtime feature retirement is approved; path review is not feature-parity proof. AUR and RPM legacy recipes are mapped to ChaptarrNG retained-identity templates; their local rehearsals used synthetic data and do not establish live-feed or real-systemd acceptance. Recent path reviews span Hardcover identity, metadata, and imports; Mono disk and symlink behavior; HTTP request and auth handling; platform project wiring; cover reads; delay fallback; blocklist decisions; color-impaired styling; and format-aware search, edition, queue, and book-index presentation. Migration and installed-channel acceptance remain separate gates.
 
 Release publication remains frozen; readiness variables are unset, issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) remains open, and BookshelfNG must stay in service. Representative operator-data migration and rollback, remaining semantic parity, installed Windows and Unraid handoff/rollback, provider fulfillment, SeerrNG workflows, and operator acceptance remain open.
 
@@ -144,12 +144,12 @@ source-level code equivalence only, not project inclusion, runtime behavior,
 or feature parity. The complete machine-readable path ledger is in
 [`chaptarr-consolidation-inventory.json`](chaptarr-consolidation-inventory.json).
 
-The current 324 undispositioned semantic-review paths are largest in
-`src/NzbDrone.Core/Books` (20), `src/NzbDrone.Core/MediaFiles` (19),
-`frontend/src/Settings` (16), `src/NzbDrone.Core/DecisionEngine` (15), and
-`src/NzbDrone.Core/Datastore` and `src/NzbDrone.Core/MetadataSource` (10 each).
-Another 141 changed paths have no mapped target file. These are source-file
-counts for sequencing direct comparisons, not feature counts or a risk ranking.
+The pinned audit has 197 undispositioned semantic-review paths, largest in
+`src/NzbDrone.Core/MediaFiles` (17), `src/NzbDrone.Core/DecisionEngine` (14),
+`frontend/src/Settings` (13), `src/NzbDrone.Core/Download` (9), and
+`frontend/src/Store` (8). Another 66 changed paths have no mapped target file.
+These are source-file counts for sequencing direct comparisons, not feature
+counts or a risk ranking.
 
 The detailed investigation below records historical candidate revisions and
 their test evidence. Its pinned source counts and older release/channel rows
