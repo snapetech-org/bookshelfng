@@ -21,13 +21,13 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 102,
     "approvedRetirements": 239,
-    "reviewedDispositions": 831,
-    "undispositionedPaths": 288,
+    "reviewedDispositions": 836,
+    "undispositionedPaths": 283,
     "dispositionStates": {
       "retired": 239,
       "retained": 177,
-      "ported": 277,
-      "equivalent": 138
+      "ported": 280,
+      "equivalent": 140
     },
     "fileStates": {
       "approved-retirement": 239,
@@ -39,7 +39,7 @@
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "different-review-required": 220,
+      "different-review-required": 215,
       "no-mapped-target-file": 68
     }
   },
@@ -22224,6 +22224,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "c73e13f85ccf356c775f41dfaa3b0ad96b229a67"
+      },
+      "reviewedDisposition": {
+        "disposition": "equivalent",
+        "feature": "Destination collision exception",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Common/Disk/DestinationAlreadyExistsException.cs"
+        ],
+        "rationale": "All active constructors and exception behavior are unchanged. The target adds only an unused commented-out serialization constructor and its namespace import.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Common/Disk/DestinationAlreadyExistsException.cs to blob d96bb22e96a94cbe9b92d835bc1bc2650e81cc59. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Common/Disk/DestinationAlreadyExistsException.cs to blob c73e13f85ccf356c775f41dfaa3b0ad96b229a67. Pinned diff review: the only additions are using System.Runtime.Serialization and a commented constructor; no executable code changes. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -22394,6 +22404,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "6d95570ae050233a30da494d4d27a834ac068a7d"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application console and platform build wiring",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Console/Chaptarr.Console.csproj"
+        ],
+        "rationale": "The target names the executable Chaptarr, uses the matching icon, and wires the Chaptarr host plus platform-specific Mono or Windows projects by runtime identifier. The project graph is intentionally different; hosted platform validation remains a separate gate.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Console/Readarr.Console.csproj to blob a3ce3277b56d63b1b76b9fc7353efbf01a9c8943. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Console/Chaptarr.Console.csproj to blob 6d95570ae050233a30da494d4d27a834ac068a7d. Pinned diff review: the target changes the executable/icon identity, replaces the Host project reference, and conditionally references the Mono or Windows implementation. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -29368,6 +29388,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "afda8c4fe793aadcd35ddbc3578828d93455e773"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "No-authentication scheme claims",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/Chaptarr.Http/Authentication/NoAuthenticationHandler.cs"
+        ],
+        "rationale": "The target keeps the same no-authentication claims and successful authentication result, but derives both the identity and ticket scheme from the configured Scheme.Name instead of hard-coding \"NoAuth\".",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Http/Authentication/NoAuthenticationHandler.cs to blob a14574eaf66ac16b1150e01eabe402e8d203279a. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/Chaptarr.Http/Authentication/NoAuthenticationHandler.cs to blob afda8c4fe793aadcd35ddbc3578828d93455e773. Pinned diff review: claim construction is unchanged; only the authentication scheme label is taken from Scheme.Name. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -29446,6 +29476,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "fcb099cafb833e0e75219f8f5e999a8d3b733b72"
+      },
+      "reviewedDisposition": {
+        "disposition": "equivalent",
+        "feature": "HTTP version response header",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/Chaptarr.Http/Middleware/VersionMiddleware.cs"
+        ],
+        "rationale": "The target appends the same version value only when the API response does not already contain the header. Its Chaptarr namespace and Append API preserve the BookshelfNG middleware behavior.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Http/Middleware/VersionMiddleware.cs to blob df0cf9772df8dc9dde5e12670b1321f2787a9aed. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/Chaptarr.Http/Middleware/VersionMiddleware.cs to blob fcb099cafb833e0e75219f8f5e999a8d3b733b72. Pinned diff review: namespace and extension import are renamed; the guarded header write changes from the indexer to Append. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -29459,6 +29499,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "7afefd1a3d0b6cc3892add7cbb300123fd728d0c"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "HTTP assembly project wiring",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/Chaptarr.Http/Chaptarr.Http.csproj"
+        ],
+        "rationale": "The target builds the HTTP code under Chaptarr project identities and includes OpenID Connect and SQLite references. This is destination project/dependency wiring; it does not claim the package graphs are equivalent.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Http/Readarr.Http.csproj to blob 10f678e899bc9a4d5ff7239793e6d733736c9505. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/Chaptarr.Http/Chaptarr.Http.csproj to blob 7afefd1a3d0b6cc3892add7cbb300123fd728d0c. Pinned diff review: target project references are renamed to Chaptarr and the project adds OpenIdConnect and Microsoft.Data.Sqlite package references. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
