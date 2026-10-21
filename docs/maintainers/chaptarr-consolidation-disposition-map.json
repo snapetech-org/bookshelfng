@@ -7367,6 +7367,99 @@
       "reviewedBy": "Codex implementation-and-fixture review (2026-10-21)",
       "rationale": "ChaptarrNG preserves the optional HTTPS OTLP diagnostics reporter and legacy Bookshelf environment aliases, while adding an explicit default-off enable gate and an allowlist for four aggregate event names. Focused reporter and plugin-path fixtures cover configuration validation, event restrictions, default-off behavior, and marker-gated legacy module discovery; existing installs still require operator acceptance of the opt-in setting.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/DiagnosticsReporter.cs to blob c93e85d5a2aed7c22a582ba5bcaa8a4ed1862d08 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Diagnostics/DiagnosticsReporter.cs to blob f98d8380bee5b31da339e8f746ee33a50a3c35cf (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Diagnostics/DiagnosticsReporterFixture.cs to blob 5c134b766e1cb889b0bc8b0041cb3b314b06a17c (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Host/DiagnosticsPluginPathResolver.cs to blob 604f5d89043d52a798584afa268fe4fbfc9ae48e (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Diagnostics/DiagnosticsPluginPathResolverFixture.cs to blob 2056ddc2a923c6143a342a723f5618e6adc6f9fa (mode 100644). This source-level disposition does not establish installed-channel or operator acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs",
+      "disposition": "ported",
+      "feature": "BookshelfNG historical SQLite source migration",
+      "targetPaths": [
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs",
+        "src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs",
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
+      ],
+      "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs to blob c6bf05691302d6d3fbd8047f2d0d15d0e2ccb507 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs to blob a615b4cc30927c3fa75580d3b6ab6b538415e964 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs",
+      "disposition": "ported",
+      "feature": "BookshelfNG historical SQLite source migration",
+      "targetPaths": [
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs",
+        "src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs",
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
+      ],
+      "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs to blob f171971c0a4190c3b79a007c2448bb2d01f25d02 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs to blob 834d91ad4a7d0c5a0905e7c55aac663a9b6a7674 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs",
+      "disposition": "ported",
+      "feature": "BookshelfNG historical SQLite source migration",
+      "targetPaths": [
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs",
+        "src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs",
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
+      ],
+      "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs to blob 5169a74f522134a8ce1d4b0a1a54bf9fbabd8589 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs to blob a82c2b2792f5048c57865df0689796092f26fe2e (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs",
+      "disposition": "ported",
+      "feature": "BookshelfNG historical SQLite source migration",
+      "targetPaths": [
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs",
+        "src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs",
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
+      ],
+      "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs to blob 83e2bf616c469a2e731ec1cb40dd1ea6a4a6d2ee (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs to blob 728282a200f863f8e1185397e57315cf317d0105 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs",
+      "disposition": "ported",
+      "feature": "BookshelfNG historical SQLite source migration",
+      "targetPaths": [
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs",
+        "src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs",
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
+      ],
+      "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs to blob 3d81aed6df3836af0acb64afbbdedf5402952a85 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs to blob 06e17dd5a0e651d969eccc59def8ced6638f19a9 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs",
+      "disposition": "ported",
+      "feature": "BookshelfNG historical SQLite source migration",
+      "targetPaths": [
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs",
+        "src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs",
+        "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
+      ],
+      "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs to blob 5b050f9f00e6c4e62cec30b9e0f3e7946bd456fa (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs to blob e13adf658d0629b5b777d4b6732ef221ecb65ed4 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs",
+      "disposition": "ported",
+      "feature": "BookshelfNG migration controller and source handoff",
+      "targetPaths": [
+        "src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs",
+        "src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs",
+        "src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseConverterFixture.cs",
+        "src/Chaptarr.Core.Test/Datastore/BookshelfPostgresDatabaseConverterFixture.cs",
+        "src/Chaptarr.Core.Test/Datastore/MigrationLineageReconciliationFixture.cs"
+      ],
+      "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG retains the native migration path and adds explicit BookshelfNG conversion, source-chain, preview, restore, SQLite, and candidate PostgreSQL routing. Focused converter/importer fixtures cover staging, source preservation, fail-closed behavior, and rollback. This source-level disposition does not establish populated operator-data, installed-channel, or production rollback acceptance.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob 9031640234280e168cf27096d5115ba6d6ae3fac (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob fdd2f8e403c1175c5f2f50fbcf75d9a661707790 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseConverterFixture.cs to blob cfb21c7651aac98aab52666aacaca4c48a8a06f3 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfPostgresDatabaseConverterFixture.cs to blob 19337cce3ed9efa3acd666ef95e00cc087e422d9 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/MigrationLineageReconciliationFixture.cs to blob a48581d626e738a99ab77b02f5d52d7727132774 (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
     }
   ]
 }

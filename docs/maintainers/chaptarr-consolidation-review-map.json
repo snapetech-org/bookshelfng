@@ -674,6 +674,14 @@
       "reviewedBy": "Codex implementation-and-fixture review (2026-10-21)",
       "rationale": "The BookshelfNG diagnostics project is represented by ChaptarrNG\u2019s renamed diagnostics project, which references the Chaptarr Core project and builds the optional diagnostics assembly. Project-name and framework metadata are adapted to the destination repository.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj to blob a8942209813aa20508739d887e4cbe60eee10123 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj to blob 33a79b29c57dde82e4e6aa7357f0aff6bcaf3b37 (mode 100644). This path mapping does not establish installed-channel or operator acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs",
+      "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG retains the native migration path and adds explicit BookshelfNG conversion, source-chain, preview, restore, SQLite, and candidate PostgreSQL routing. Focused converter/importer fixtures cover staging, source preservation, fail-closed behavior, and rollback. This source-level disposition does not establish populated operator-data, installed-channel, or production rollback acceptance.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob 9031640234280e168cf27096d5115ba6d6ae3fac (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob fdd2f8e403c1175c5f2f50fbcf75d9a661707790 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseConverterFixture.cs to blob cfb21c7651aac98aab52666aacaca4c48a8a06f3 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfPostgresDatabaseConverterFixture.cs to blob 19337cce3ed9efa3acd666ef95e00cc087e422d9 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/MigrationLineageReconciliationFixture.cs to blob a48581d626e738a99ab77b02f5d52d7727132774 (mode 100644). This path map does not establish representative-data or installed acceptance."
     }
   ]
 }
