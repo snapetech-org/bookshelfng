@@ -2,18 +2,11 @@
 
 BookshelfNG `0.4.21.71` remains its final published release. ChaptarrNG
 `v0.9.977` remains the latest public release. Current ChaptarrNG code is at
-`f30dcec8c882c0169a544eee337f1d628e76e5d4`. It includes row-format author editing,
-root-folder defaults and safe author-root backfill, stale-request protection
-and retry controls in book details, visible bulk-monitoring errors with
-selection preserved for retry, duplicate-safe local book adds, manual edition
-preservation, and bare numeric Hardcover/Goodreads lookup. Exact-head Build
-[39520269403](https://github.com/snapetech-org/chaptarrng/actions/runs/39520269403)
-passed Linux, Windows, and macOS build/test jobs, PostgreSQL migration smoke,
-and native-runner receipt reconciliation. Security Analysis, Semgrep CE,
-Trivy, and NuGet submission passed. No CodeQL run is attached to this source
-commit; the release-note contract was skipped on the main push. Local frontend
-tests pass 57/57; typecheck and translation-key checks pass. The release
-remains frozen; this source is not approved for production cutover.
+[`102d9cbe`](https://github.com/snapetech-org/chaptarrng/commit/102d9cbe09c47ca683b1daeb339252b58a2037f3). It carries the previously merged migration and setup work and restores Direct Download catalog support for KEPUB, MOBI, and AZW3, KEPUB detail-page links, and the standard Books/Ebook release category. Exact-head Build
+[39524671037](https://github.com/snapetech-org/chaptarrng/actions/runs/39524671037)
+is running. Security Analysis, Semgrep CE, Trivy, and NuGet submission passed.
+The release-note contract was skipped on the main push. The release remains
+frozen; this source is not approved for production cutover.
 
 The current source includes staged migration and rollback, provider and backup
 compatibility, and a Windows installer candidate that keeps the legacy service
@@ -25,16 +18,15 @@ Release publication and the migration bridge remain frozen; readiness
 variables are unset, and BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
 remains open. The full path audit pins BookshelfNG source
 `2811718076d84777a1b1132e4e5d2abd21231229` to ChaptarrNG target
-`fca915df6e79a79d3143e7a04f13e2a7b52d3bbc`. It covers 732 post-fork commits,
+`102d9cbe09c47ca683b1daeb339252b58a2037f3`. It covers 732 post-fork commits,
 723 absent from pinned upstream history, and 1,119 changed paths; 81 paths have
-review mappings and 603 have feature dispositions. Another 516 remain
-undispositioned. The canonical ledger gives the current state breakdown.
-Representative operator data and real rollback,
-semantic feature parity, provider/SeerrNG workflows, representative media and
-recovery, installed update-channel handoff, and operator acceptance remain
-open. Keep BookshelfNG in service and do not start ChaptarrNG against
-BookshelfNG appdata. The `CHAPTARRNG_RELEASE_READY` repository variable remains
-unset.
+review mappings and 618 have feature dispositions. Another 501 remain
+undispositioned (143 unmapped, 358 requiring semantic review). The direct-download review dispositioned 15 paths; hosted regression tests are pending. The canonical ledger gives the current state breakdown.
+Representative operator data and real rollback, semantic feature parity,
+provider/SeerrNG workflows, representative media and recovery, installed
+update-channel handoff, and operator acceptance remain open. Keep BookshelfNG
+in service and do not start ChaptarrNG against BookshelfNG appdata. The
+`CHAPTARRNG_RELEASE_READY` repository variable remains unset.
 
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support
