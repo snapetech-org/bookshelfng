@@ -7961,6 +7961,19 @@
       "reviewedBy": "Codex code and test review (2026-10-21)",
       "rationale": "The target replaces the legacy direct organize call with an explicit destination plan, while preserving edition-based naming, destination-folder creation, move/copy transfer, stored-path updates, file-date handling, and permissions. The new planner adds safeguards for format roots, physical author folders, colocation, library conversion, and writable destinations.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MediaFiles/BookFileMovingService.cs to blob fa651c5b8d30ac3d0c23d38501bc65caebc19b4b (mode 100644); its legacy author move builds the named path, creates needed folders under the configured root, transfers the file, updates the stored path and file date, and restores permissions. ChaptarrNG target 6fc744ef3db7aba815e7669f3794260c236a5a2a resolves src/NzbDrone.Core/MediaFiles/BookFileMovingService.cs to blob f05b75753e5fa8c5a5fcdbc6e6b1124de5f9b41a (mode 100644), and src/Chaptarr.Core.Test/MediaFiles/BookFileMovingServiceFixture.cs to blob cbe32e1e09916187853ce7dad31a69a226684d26 (mode 100644). The target retains move/copy and hardlink handling and adds explicit planning, physical-versus-canonical author-folder selection, ebook colocation, library-conversion placement, root containment, and destination write checks. The focused fixture passed 15/15 locally with .NET SDK 10.0.402; it covers destination planning, import-path routing, invalid context and same-path guards, and library-conversion folders. This supports the per-path port disposition but does not establish representative filesystem transfer rollback or installed migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/MetadataSource/Hardcover/HardcoverMetadataProxy.cs",
+      "disposition": "ported",
+      "feature": "Native Hardcover metadata and search behavior",
+      "targetPaths": [
+        "src/NzbDrone.Core/MetadataSource/Hardcover/HardcoverMetadataProxy.cs",
+        "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
+        "src/Chaptarr.Core.Test/MetadataSource/HardcoverSearchClientFixture.cs"
+      ],
+      "reviewedBy": "Codex code and test review (2026-10-21)",
+      "rationale": "The target retains the legacy native Hardcover metadata queries and result parsing. ChaptarrNG uses its own saved Hardcover token setting, returns narrator names as a list for multi-narrator support, and updates the user-agent and error text to its product identity.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MetadataSource/Hardcover/HardcoverMetadataProxy.cs to blob a1a3b633706a4e5f2f727b5d9f080adfc2938b87 (mode 100644). ChaptarrNG target 6fc744ef3db7aba815e7669f3794260c236a5a2a resolves src/NzbDrone.Core/MetadataSource/Hardcover/HardcoverMetadataProxy.cs to blob 17693fde4dcfb7ec6de039a49a868105fd397a2a (mode 100644); src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs to blob 44a641b87995e00a865d28ba6547496acbc29743 (mode 100644); and src/Chaptarr.Core.Test/MetadataSource/HardcoverSearchClientFixture.cs to blob 23e79b81f43650c5943408287d432c10a916f078 (mode 100644). Source review found only product-brand, credential-setting, and narrator-list contract changes; the native metadata/search operations remain. The focused proxy/search suite passed 45/45 locally with .NET SDK 10.0.402. This supports the per-path port disposition but does not establish live credentials, provider fulfillment, migration, or operator acceptance."
     }
   ]
 }

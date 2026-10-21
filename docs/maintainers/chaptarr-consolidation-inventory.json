@@ -21,11 +21,11 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 85,
     "approvedRetirements": 171,
-    "reviewedDispositions": 713,
-    "undispositionedPaths": 406,
+    "reviewedDispositions": 714,
+    "undispositionedPaths": 405,
     "dispositionStates": {
       "retained": 177,
-      "ported": 232,
+      "ported": 233,
       "retired": 171,
       "equivalent": 133
     },
@@ -40,7 +40,7 @@
     },
     "undispositionedFileStates": {
       "no-mapped-target-file": 136,
-      "different-review-required": 270
+      "different-review-required": 269
     }
   },
   "commits": [
@@ -26381,6 +26381,18 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "17693fde4dcfb7ec6de039a49a868105fd397a2a"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Native Hardcover metadata and search behavior",
+        "reviewedBy": "Codex code and test review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Core/MetadataSource/Hardcover/HardcoverMetadataProxy.cs",
+          "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
+          "src/Chaptarr.Core.Test/MetadataSource/HardcoverSearchClientFixture.cs"
+        ],
+        "rationale": "The target retains the legacy native Hardcover metadata queries and result parsing. ChaptarrNG uses its own saved Hardcover token setting, returns narrator names as a list for multi-narrator support, and updates the user-agent and error text to its product identity.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MetadataSource/Hardcover/HardcoverMetadataProxy.cs to blob a1a3b633706a4e5f2f727b5d9f080adfc2938b87 (mode 100644). ChaptarrNG target 6fc744ef3db7aba815e7669f3794260c236a5a2a resolves src/NzbDrone.Core/MetadataSource/Hardcover/HardcoverMetadataProxy.cs to blob 17693fde4dcfb7ec6de039a49a868105fd397a2a (mode 100644); src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs to blob 44a641b87995e00a865d28ba6547496acbc29743 (mode 100644); and src/Chaptarr.Core.Test/MetadataSource/HardcoverSearchClientFixture.cs to blob 23e79b81f43650c5943408287d432c10a916f078 (mode 100644). Source review found only product-brand, credential-setting, and narrator-list contract changes; the native metadata/search operations remain. The focused proxy/search suite passed 45/45 locally with .NET SDK 10.0.402. This supports the per-path port disposition but does not establish live credentials, provider fulfillment, migration, or operator acceptance."
       }
     },
     {
