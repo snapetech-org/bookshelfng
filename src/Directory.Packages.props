@@ -33,7 +33,7 @@
     <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="10.0.13" />
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.13" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.13" />
-    <PackageVersion Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.13" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="10.0.13" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
     <PackageVersion Include="Microsoft.Win32.Registry" Version="5.0.0" />
@@ -42,8 +42,8 @@
     <PackageVersion Include="MonoTorrent" Version="3.0.2" />
     <PackageVersion Include="NBuilder" Version="6.1.0" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.4" />
-    <PackageVersion Include="NLog.Extensions.Logging" Version="6.2.1" />
-    <PackageVersion Include="NLog" Version="6.2.1" />
+    <PackageVersion Include="NLog.Extensions.Logging" Version="6.2.2" />
+    <PackageVersion Include="NLog" Version="6.2.2" />
     <PackageVersion Include="NLog.Targets.Syslog" Version="7.0.0" />
     <PackageVersion Include="Npgsql" Version="10.0.3" />
     <PackageVersion Include="NUnit3TestAdapter" Version="4.6.0" />
@@ -53,13 +53,13 @@
     <PackageVersion Include="RestSharp.Serializers.SystemTextJson" Version="106.15.0" />
     <PackageVersion Include="RestSharp" Version="106.15.0" />
     <PackageVersion Include="Selenium.Support" Version="3.141.0" />
-    <PackageVersion Include="Selenium.WebDriver.ChromeDriver" Version="155.0.8059.7900" />
+    <PackageVersion Include="Selenium.WebDriver.ChromeDriver" Version="155.0.8059.8400" />
     <PackageVersion Include="SharpZipLib" Version="1.4.2" />
     <PackageVersion Include="SkiaSharp" Version="4.153.1" />
     <PackageVersion Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="4.153.1" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.1.118" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.3.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.3.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.3.1" />
     <PackageVersion Include="System.Configuration.ConfigurationManager" Version="10.0.13" />
     <PackageVersion Include="System.Data.SQLite.Core.Servarr" Version="1.0.115.5-18" />
     <PackageVersion Include="System.IO.Abstractions.TestingHelpers" Version="17.2.26" />
