@@ -41,7 +41,7 @@ metadata provider configuration.
 
 BookshelfNG 0.4.21.71 and ChaptarrNG v0.9.977 remain the latest public app releases. ChaptarrNG [main](https://github.com/snapetech-org/chaptarrng/tree/main) has a candidate-only Debian bridge recipe under the existing bookshelfng package identity. An isolated dpkg upgrade/downgrade round-trip passed with the public `.71` package and candidate `.977` package, preserving a modified config and data canary; dependency checks and systemd were mocked. Live service/database acceptance, PPA, other channel acceptance, feature parity, and operator sign-off remain open. Keep BookshelfNG in service and publication frozen.
 
-The path inventory is still pinned to ChaptarrNG snapshot 4d9c4b2d; its open-path counts are historical and must be re-reviewed against current main before retirement.
+The current path inventory compares BookshelfNG source `e2d1088e` with ChaptarrNG code snapshot `3c6e0363`; 348 of 1,119 paths remain open. The audit is path evidence only, not feature-parity or migration acceptance.
 
 | Guide | Covers |
 | --- | --- |
