@@ -5878,6 +5878,17 @@
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MetadataSource/IProvideSeriesInfo.cs to blob f03bd1057e9846b620e153116c1a182c68dc1915 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/MetadataSource/IProvideSeriesInfo.cs to blob c22f161547c672d602591ef27a1a247798449da8 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
+      "sourcePath": "src/NzbDrone.Core/MetadataSource/ISearchForNewBook.cs",
+      "disposition": "ported",
+      "feature": "Interactive and media-specific book catalog search",
+      "targetPaths": [
+        "src/NzbDrone.Core/MetadataSource/ISearchForNewBook.cs"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The source BookLookupController explicitly requested interactive search through the interface boolean. ChaptarrNG replaces that UI/context flag with an optional media type, forwards the requested audiobook or ebook scope into provider search, and filters the results to that format. Native Hardcover lookup retains interactive quota behavior, which the focused search fixture verifies. This preserves interactive lookup while extending it to the target\u2019s separate media catalogs.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MetadataSource/ISearchForNewBook.cs to blob 28670330a24f52038bc17536b026b1069d672eec (mode 100644); its BookLookupController is pinned at 12885018c97727340ee6a250cbad92de3516a719 and calls SearchForNewBook with interactiveSearch=true. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/MetadataSource/ISearchForNewBook.cs to blob 5ee98f889bf7960154dbd609679607a0a84d5e4f (mode 100644). Target supporting files are pinned at: src/Chaptarr.Api.V1/Books/BookLookupController.cs (232db8a8b9abf0f3a462ffaabee7a119f76ee069); src/NzbDrone.Core/MetadataSource/BookInfo/BookInfoProxy.cs (d747ff8040807f4bf8467d78ec1d048609eb3642); src/Chaptarr.Core.Test/MetadataSource/BookInfo/BookInfoProxyHardcoverSearchCacheFixture.cs (15d09e81cef904ef9ef8929a108470b851fa6493); src/Chaptarr.Core.Test/Api/BookLookupControllerProviderLookupFixture.cs (19ed4003fa0ad13109ea916ac1d8ccc7204ddc45). The target BookLookupController forwards requestedMediaType and filters results; BookInfoProxy passes media scope to provider searches; focused fixtures assert the interactive native-provider request and format-specific behavior. This supports the interface path disposition; live provider availability and operator acceptance remain separate."
+    },
+    {
       "sourcePath": "src/NzbDrone.Core/Notifications/BookLore/BookLore.cs",
       "disposition": "retained",
       "feature": "Retained shared file: src/NzbDrone.Core/Notifications/BookLore/BookLore.cs",
