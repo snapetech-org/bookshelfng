@@ -21,12 +21,12 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 102,
     "approvedRetirements": 239,
-    "reviewedDispositions": 852,
-    "undispositionedPaths": 267,
+    "reviewedDispositions": 853,
+    "undispositionedPaths": 266,
     "dispositionStates": {
       "retired": 239,
       "retained": 177,
-      "ported": 293,
+      "ported": 294,
       "equivalent": 143
     },
     "fileStates": {
@@ -39,7 +39,7 @@
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "different-review-required": 199,
+      "different-review-required": 198,
       "no-mapped-target-file": 68
     }
   },
@@ -29156,6 +29156,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "0968bbe01d22ff8787d1e2881710c0ffa4cb88af"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Legacy book-import match threshold validation and migration",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/Chaptarr.Api.V1/Config/MediaManagementConfigController.cs"
+        ],
+        "rationale": "The source API validated the legacy numeric BookImportMinimumMatchPercent range. ChaptarrNG configures categorical BookMatchingStrictness instead, so its resource intentionally omits the obsolete numeric property. The migration maps supported legacy values to the closest mode, retains the original numeric row, gives an explicit ChaptarrNG mode precedence, and fails closed on invalid values. The mapping is lossy because the matching algorithms differ; this is a migration port, not algorithmic equivalence.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Config/MediaManagementConfigController.cs to blob a779fe20df2464226b4644668e6094218612f58c (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/Chaptarr.Api.V1/Config/MediaManagementConfigController.cs to blob 0968bbe01d22ff8787d1e2881710c0ffa4cb88af (mode 100644). The target resource, migration helper/importer, fixture, and operator guide are pinned at: src/Chaptarr.Api.V1/Config/MediaManagementConfigResource.cs (95cc094ce278eb96d50a8e81fcab5730214cf942); src/NzbDrone.Core/Datastore/BookshelfMatchSettingMigration.cs (61fcccd3653da66f0414d9c0c8d3f118882eeac8); src/NzbDrone.Core/Datastore/BookshelfDatabaseImporter.cs (c24283119c9872fd8c12f4174cf0df2924e906cf); src/Chaptarr.Core.Test/Datastore/BookshelfMatchSettingMigrationFixture.cs (1e685c90007b967e5260cc29305f9807c4321c79); docs/MIGRATE_FROM_BOOKSHELFNG.md (ac1509bc5071c8298cfc0df4857006829494709c). The fixture covers each mapped policy band and rejects values outside the 50\u201399 range; importer code preserves the source row, validates the explicit target mode, and stops conversion before promotion for invalid legacy values. The migration guide labels the policy mapping as lossy. Acceptance against representative converted operator data remains separate."
       }
     },
     {
