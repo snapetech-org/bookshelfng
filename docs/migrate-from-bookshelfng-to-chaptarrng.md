@@ -1,21 +1,24 @@
 # Move a BookshelfNG installation to ChaptarrNG
 
-BookshelfNG `0.4.21.71` remains its final public release; ChaptarrNG `v0.9.977` remains the latest public release. ChaptarrNG `main` is at [`ac85470a`](https://github.com/snapetech-org/chaptarrng/commit/ac85470a2587c69aa44812ba360c36ac61fd8465). Recent fixes restore exact Direct Download ebook format matching, preserve unrelated ebook containers during audiobook upgrades, reinstate the configured free-space check for imports, and make bulk library and import-list actions retryable. ChaptarrNG main also restores the opt-in `Move Extra Files on Rename` setting, preserves it through migration and backups, and moves configured sidecars only after a safe rename. Exact-head Build [39530803846](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803846), CodeQL [39530803013](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803013), dependency submission [39530802921](https://github.com/snapetech-org/chaptarrng/actions/runs/39530802921), and Semgrep [39530803931](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803931) are running; Security analysis [39530803879](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803879) and Trivy [39530803839](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803839) passed. No release, package, image, or migration bridge was published; operator-data, rollback, integration, and installed channel acceptance remain open. This source is not approved for production cutover.
+BookshelfNG `0.4.21.71` remains its final public release; ChaptarrNG `v0.9.977` remains the latest public release. ChaptarrNG `main` is at [`ac85470a`](https://github.com/snapetech-org/chaptarrng/commit/ac85470a2587c69aa44812ba360c36ac61fd8465). Recent fixes restore exact Direct Download ebook format matching, preserve unrelated ebook containers during audiobook upgrades, reinstate the configured free-space check for imports, and make bulk library and import-list actions retryable. ChaptarrNG main also restores the opt-in `Move Extra Files on Rename` setting, preserves it through migration and backups, and moves configured sidecars only after a safe rename. Exact-head Build [39530803846](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803846) remains in progress: Linux and PostgreSQL tests passed, the Windows test step failed before installer checks, and macOS is still running. CodeQL [39530803013](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803013), dependency submission [39530802921](https://github.com/snapetech-org/chaptarrng/actions/runs/39530802921), Semgrep [39530803931](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803931), Security analysis [39530803879](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803879), and Trivy [39530803839](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803839) passed. No release, package, image, or migration bridge was published; operator-data, rollback, integration, and installed channel acceptance remain open. This source is not approved for production cutover.
 
 The current source includes staged migration and rollback, provider and backup
 compatibility, and a Windows installer candidate that keeps the legacy service
-registration until ChaptarrNG passes its health check. Its deferred-removal and
-rollback checks passed in the Windows Build. These changes are not in
-public `.977` and do not authorize a production cutover.
+registration until ChaptarrNG passes its health check. A previous exact-head
+Windows Build passed installer construction, source-change detection, service
+upgrade and rollback, cleanup, and selected-data-directory checks. In the latest
+Build, the Windows test step failed before installer checks; macOS remains in
+progress. These changes are not in public `.977` and do not authorize a production
+cutover.
 
 Release publication and the migration bridge remain frozen; readiness
 variables are unset, and BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
 remains open. The full path audit pins BookshelfNG source
 `2811718076d84777a1b1132e4e5d2abd21231229` to ChaptarrNG target
 `ac85470a2587c69aa44812ba360c36ac61fd8465`. It covers 732 post-fork commits,
-723 absent from pinned upstream history, and 1,119 changed paths; 81 paths have
-review mappings and 654 have feature dispositions. Another 465 remain
-undispositioned (141 unmapped, 324 requiring semantic review). This pass dispositioned the configured extra-file rename runtime path in addition to five media-import and replacement code/test paths, including format-safe upgrades and direct-import free-space checks; the latest exact-head Build is in progress after the KEPUB regression fix. The canonical ledger gives the current state breakdown.
+723 absent from pinned upstream history, and 1,119 changed paths; 83 paths have
+review mappings and 656 have feature dispositions. Another 463 remain
+undispositioned (139 unmapped, 324 requiring semantic review). This pass dispositioned the SeerrNG route-scoping middleware and context to ChaptarrNG replacements, alongside the extra-file rename and media-import/replacement paths. The route-scope fixture is covered by the passing Linux test step; the latest Windows test step failed before installer checks, and macOS remains in progress. The canonical ledger gives the current state breakdown.
 Representative operator data and real rollback, semantic feature parity,
 provider/SeerrNG workflows, representative media and recovery, installed
 update-channel handoff, and operator acceptance remain open. Keep BookshelfNG

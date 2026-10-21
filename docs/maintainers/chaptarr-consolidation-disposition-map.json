@@ -4278,6 +4278,19 @@
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Parser/Model/ParsedTrackInfo.cs to blob d9c05a6c2a3b486a840632d48492fd845293373e (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/NzbDrone.Core/Parser/Model/ParsedBookInfo.cs to blob 0d40e4231799a5f99c221e9bb4206b04751d75cf (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/NzbDrone.Core/Parser/Model/LocalBook.cs to blob fb9c5d546f18463332fda28b9057c3be04070bbc (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/NzbDrone.Core/Parser/Model/LocalEdition.cs to blob 7ea0b508aa885a7d4c2bd8b5c436da29ae6d048a (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/NzbDrone.Core/MediaFiles/TagExtraction/TagExtractionResult.cs to blob b674e640bf9165d1f565d5925f7f91926c527619 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/NzbDrone.Core/MediaFiles/TagExtraction/TagExtractionService.cs to blob ef36bff2b3ec404cd8909a65046193b4dce2730f (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/NzbDrone.Core/MediaFiles/MetadataTagService.cs to blob 65cb314ffd3b25459941f27a8773c53d00f71c51 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Core.Test/MediaFiles/MetadataTagServiceFixture.cs to blob 9539db51c6df480c31fc200acca9b58af88b921b (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Core.Test/MediaFiles/TagExtractionServiceFixture.cs to blob ec59f8ccab1b68fc1c42fe670c573108b543a821 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
+      "sourcePath": "src/NzbDrone.Host/SeerrIntegrationPathMiddleware.cs",
+      "disposition": "ported",
+      "feature": "SeerrNG Readarr facade path routing",
+      "targetPaths": [
+        "src/Chaptarr.Http/Middleware/ServarrMediaTypeScopeMiddleware.cs",
+        "src/NzbDrone.Host/Startup.cs",
+        "src/Chaptarr.Core.Test/Http/ServarrMediaTypeScopeMiddlewareFixture.cs"
+      ],
+      "reviewedBy": "Codex (2026-10-21)",
+      "rationale": "The source middleware rewrites /readarr/{gr|hc}/{ebook|audiobook}/api/v1 routes and attaches media context. ChaptarrNG replaces it with ServarrMediaTypeScopeMiddleware, which recognizes those same Goodreads and Hardcover facade paths, rewrites them to /api/v1, injects mediaType when absent, and stores the richer ReadarrFacadeContext. Startup registers the middleware before routing and authentication; its fixture covers both legacy route forms. This is a source-level path disposition, not live SeerrNG acceptance.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Host/SeerrIntegrationPathMiddleware.cs to blob 231d0c8984febf433b0cac3ae03627f4f324f509 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Http/Middleware/ServarrMediaTypeScopeMiddleware.cs to blob b8f883f740199c964b5d6b55d88f62fa0177bfa1 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/NzbDrone.Host/Startup.cs to blob f94a92087476599049ccf3e268129726d12922f0 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Core.Test/Http/ServarrMediaTypeScopeMiddlewareFixture.cs to blob ce430b43cd8cf54725bcdeb363adebd774ba94f0 (mode 100644)."
+    },
+    {
       "sourcePath": "src/NzbDrone.Mono/Readarr.Mono.csproj",
       "disposition": "ported",
       "feature": "Renamed Chaptarr project file: src/NzbDrone.Mono/Readarr.Mono.csproj",
@@ -4336,6 +4349,19 @@
       "reviewedBy": "Codex (2026-10-20)",
       "rationale": "The destination project file retains the source project configuration while pointing at the corresponding Chaptarr-named projects.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Readarr.Api.V1.csproj to blob 216518c64a53a4bebde778823106123fa6652ea2 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Api.V1/Chaptarr.Api.V1.csproj to blob 0955d68532458d94a5a885df83a6f844a14da206 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Http/SeerrIntegrationContext.cs",
+      "disposition": "ported",
+      "feature": "SeerrNG facade request context",
+      "targetPaths": [
+        "src/Chaptarr.Http/Middleware/ReadarrFacadeContext.cs",
+        "src/NzbDrone.Host/Startup.cs",
+        "src/Chaptarr.Core.Test/Http/ServarrMediaTypeScopeMiddlewareFixture.cs"
+      ],
+      "reviewedBy": "Codex (2026-10-21)",
+      "rationale": "The source context holds the media type attached by SeerrIntegrationPathMiddleware. ChaptarrNG replaces that single-purpose context key with ReadarrFacadeContext, which stores dialect, media type, and facade prefix and is consumed by API mappers and authentication. The route-scoping fixture verifies the context for Goodreads ebook and Hardcover audiobook paths. This is a source-level path disposition, not live SeerrNG acceptance.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Http/SeerrIntegrationContext.cs to blob bec5e19c7b332c08030405519040e8e52aa37fca (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Http/Middleware/ReadarrFacadeContext.cs to blob 4e8cd48db920f53a6def3d95a7fc51c9908a8544 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/NzbDrone.Host/Startup.cs to blob f94a92087476599049ccf3e268129726d12922f0 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Core.Test/Http/ServarrMediaTypeScopeMiddlewareFixture.cs to blob ce430b43cd8cf54725bcdeb363adebd774ba94f0 (mode 100644)."
     },
     {
       "sourcePath": "src/TagLibSharp/AUTHORS",

@@ -636,12 +636,28 @@
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Host/SecurityHeadersMiddleware.cs to blob 00e7d808cfabad49319e11120f19140ecf899eee (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs to blob 8da283c4cabc64a9504c24a657631cf25ff28cb9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
+      "sourcePath": "src/NzbDrone.Host/SeerrIntegrationPathMiddleware.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Http/Middleware/ServarrMediaTypeScopeMiddleware.cs",
+      "reviewedBy": "Codex (2026-10-21)",
+      "rationale": "The source middleware rewrites /readarr/{gr|hc}/{ebook|audiobook}/api/v1 routes and attaches media context. ChaptarrNG replaces it with ServarrMediaTypeScopeMiddleware, which recognizes those same Goodreads and Hardcover facade paths, rewrites them to /api/v1, injects mediaType when absent, and stores the richer ReadarrFacadeContext. Startup registers the middleware before routing and authentication; its fixture covers both legacy route forms. This is a source-level path disposition, not live SeerrNG acceptance.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Host/SeerrIntegrationPathMiddleware.cs to blob 231d0c8984febf433b0cac3ae03627f4f324f509 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Http/Middleware/ServarrMediaTypeScopeMiddleware.cs to blob b8f883f740199c964b5d6b55d88f62fa0177bfa1 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/NzbDrone.Host/Startup.cs to blob f94a92087476599049ccf3e268129726d12922f0 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Core.Test/Http/ServarrMediaTypeScopeMiddlewareFixture.cs to blob ce430b43cd8cf54725bcdeb363adebd774ba94f0 (mode 100644)."
+    },
+    {
       "sourcePath": "src/Readarr.Api.V1/Books/PagedBookResource.cs",
       "decision": "map",
       "targetPath": "src/Chaptarr.Api.V1/Books/PagedBookApiResource.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "ChaptarrNG exposes offset, page size, total count, and records through GET /api/v1/book/paged using PagedBookApiResource and BookController.GetBooksPaged. The restricted SeerrNG key permits this read route; integration and operator migration acceptance remain separate.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Books/PagedBookResource.cs to blob 4033b347ae232c63e01ee3b59c475c58c2a9f3db (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Api.V1/Books/PagedBookApiResource.cs to blob 13e5dd6aa33b8770094607da5df20f92a206a993 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Http/SeerrIntegrationContext.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Http/Middleware/ReadarrFacadeContext.cs",
+      "reviewedBy": "Codex (2026-10-21)",
+      "rationale": "The source context holds the media type attached by SeerrIntegrationPathMiddleware. ChaptarrNG replaces that single-purpose context key with ReadarrFacadeContext, which stores dialect, media type, and facade prefix and is consumed by API mappers and authentication. The route-scoping fixture verifies the context for Goodreads ebook and Hardcover audiobook paths. This is a source-level path disposition, not live SeerrNG acceptance.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Http/SeerrIntegrationContext.cs to blob bec5e19c7b332c08030405519040e8e52aa37fca (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Http/Middleware/ReadarrFacadeContext.cs to blob 4e8cd48db920f53a6def3d95a7fc51c9908a8544 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/NzbDrone.Host/Startup.cs to blob f94a92087476599049ccf3e268129726d12922f0 (mode 100644). ChaptarrNG target ac85470a2587c69aa44812ba360c36ac61fd8465 resolves src/Chaptarr.Core.Test/Http/ServarrMediaTypeScopeMiddlewareFixture.cs to blob ce430b43cd8cf54725bcdeb363adebd774ba94f0 (mode 100644)."
     },
     {
       "sourcePath": "src/TagLibSharp/PATCHES.md",
