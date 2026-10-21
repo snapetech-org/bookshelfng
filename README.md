@@ -703,6 +703,7 @@ you can also authenticate with package read access.
 ## Documentation
 
 - [Documentation index](docs/README.md)
+- [OpenID Connect sign-in: provider setup, callbacks, allow-lists, and recovery](docs/oidc-authentication.md) · [shared provider catalog](https://github.com/snapetech-org/seerrng/blob/main/docs/maintainers/oidc-provider-catalog.md)
 - [Fork feature inventory, upstream comparison, and compatibility boundaries](docs/capabilities-and-compatibility.md)
 - [Import matching and multiple formats](docs/import-matching-and-formats.md)
 - [Search, direct downloads, torrent adoption, and queue workflows](docs/search-and-downloads.md)

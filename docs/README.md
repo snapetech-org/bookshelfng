@@ -26,6 +26,12 @@ metadata provider configuration.
 | [Audiobook M4B merging](audiobook-m4b-merging.md) | Combining multi-track downloads into chaptered M4B files |
 | [BookLore integration](booklore-integration.md) | Uploading imported files to BookLore BookDrop |
 
+## Authentication and access
+
+| Guide | Covers |
+| --- | --- |
+| [OpenID Connect sign-in](oidc-authentication.md) | Provider registration, exact callback URLs, verified-email admission, local sessions, Apple setup, recovery, and troubleshooting. |
+
 ## Installation and release operations
 
 | Guide | Covers |
