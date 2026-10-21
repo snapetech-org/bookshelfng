@@ -2,17 +2,18 @@
 
 BookshelfNG `0.4.21.71` remains its final published release. ChaptarrNG
 `v0.9.977` remains the latest public release. Current ChaptarrNG code is at
-`cfaaa418199662fad7d209aa5f4e62bceb723148`. It includes row-format author editing, root-folder profile resets,
-stale-request protection and retry controls in book details, visible bulk
-monitoring errors with selection preserved for retry, duplicate-safe local
-book adds, manual edition preservation, and bare numeric Hardcover/Goodreads
-lookup. Exact-head Build
-[39517289908](https://github.com/snapetech-org/chaptarrng/actions/runs/39517289908) has passed the Ubuntu workflow regression suite
-and frontend type-check; platform, installer, and .NET tests are running.
-CodeQL, Security Analysis, Semgrep CE, Trivy, and NuGet submission passed.
-See the
-[maintainer readiness report](maintainers/chaptarr-consolidation.md) for the
-current status.
+`f30dcec8c882c0169a544eee337f1d628e76e5d4`. It includes row-format author editing,
+root-folder defaults and safe author-root backfill, stale-request protection
+and retry controls in book details, visible bulk-monitoring errors with
+selection preserved for retry, duplicate-safe local book adds, manual edition
+preservation, and bare numeric Hardcover/Goodreads lookup. Exact-head Build
+[39520269403](https://github.com/snapetech-org/chaptarrng/actions/runs/39520269403)
+passed Linux, Windows, and macOS build/test jobs, PostgreSQL migration smoke,
+and native-runner receipt reconciliation. Security Analysis, Semgrep CE,
+Trivy, and NuGet submission passed. No CodeQL run is attached to this source
+commit; the release-note contract was skipped on the main push. Local frontend
+tests pass 57/57; typecheck and translation-key checks pass. The release
+remains frozen; this source is not approved for production cutover.
 
 The current source includes staged migration and rollback, provider and backup
 compatibility, and a Windows installer candidate that keeps the legacy service
@@ -24,7 +25,7 @@ Release publication and the migration bridge remain frozen; readiness
 variables are unset, and BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
 remains open. The full path audit pins BookshelfNG source
 `2811718076d84777a1b1132e4e5d2abd21231229` to ChaptarrNG target
-`cfaaa418199662fad7d209aa5f4e62bceb723148`. It covers 732 post-fork commits,
+`fca915df6e79a79d3143e7a04f13e2a7b52d3bbc`. It covers 732 post-fork commits,
 723 absent from pinned upstream history, and 1,119 changed paths; 81 paths have
 review mappings and 603 have feature dispositions. Another 516 remain
 undispositioned. The canonical ledger gives the current state breakdown.
