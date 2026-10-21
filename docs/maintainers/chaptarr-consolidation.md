@@ -12,6 +12,9 @@ Release publication remains frozen; readiness variables are unset, issue [#144](
 
 ## Current audit inventory and regeneration — 2026-10-21
 
+This inventory and documentation refresh is maintainer-only. It changes no
+BookshelfNG runtime, package, or release content.
+
 The details below describe prior integration and migration-test snapshots. The latest PR #131 head and exact-head CI status are recorded in the current status section and hosted-checks row; earlier-head results are historical.
 
 At that checkpoint, the BookshelfNG source commit was `6e1a62e12` with an Editions and Narrations
