@@ -21,11 +21,11 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 81,
     "approvedRetirements": 172,
-    "reviewedDispositions": 646,
-    "undispositionedPaths": 473,
+    "reviewedDispositions": 648,
+    "undispositionedPaths": 471,
     "dispositionStates": {
       "retained": 177,
-      "ported": 165,
+      "ported": 167,
       "retired": 172,
       "equivalent": 132
     },
@@ -40,7 +40,7 @@
     },
     "undispositionedFileStates": {
       "no-mapped-target-file": 143,
-      "different-review-required": 330
+      "different-review-required": 328
     }
   },
   "commits": [
@@ -21768,6 +21768,16 @@
         "targetPath": "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs",
         "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
         "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs to blob 0cf6f600593943ef1d6f7bf57fad4ddc85ea012a (mode 100644). ChaptarrNG target a1146edd49b880e86b1c7d78a083e2db3a970d1d resolves src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs to blob de27b7b979855803c2e8dc2ec9fb34bfdf4b333b (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "qBittorrent API v2 authentication test coverage",
+        "reviewedBy": "Codex test review (2026-10-20)",
+        "targetPaths": [
+          "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs"
+        ],
+        "rationale": "The ChaptarrNG fixture replaces the older narrow proxy mock with request recording and covers API-key bearer auth, current and legacy login responses, authentication failures, reauthentication, and cookie caching.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs to blob 0cf6f600593943ef1d6f7bf57fad4ddc85ea012a. ChaptarrNG target a1146edd49b880e86b1c7d78a083e2db3a970d1d resolves src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs to blob de27b7b979855803c2e8dc2ec9fb34bfdf4b333b. The ChaptarrNG fixture includes should_send_bearer_authorization_header_when_api_key_is_set, should_accept_empty_login_response_from_qbittorrent_5_2, should_treat_unauthorized_login_as_authentication_failure, should_reauthenticate_on_unauthorized_api_response, and should_cache_auth_cookies_per_username. This supports the provider authentication test port; it does not establish live qBittorrent service acceptance."
       }
     },
     {
@@ -21835,6 +21845,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "d1a8f531b68f80038e1220c5a8983790b3b6105a"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Existing-download and pending-release decision tests",
+        "reviewedBy": "Codex test review (2026-10-20)",
+        "targetPaths": [
+          "src/Chaptarr.Core.Test/Download/ProcessDownloadDecisionsFixture.cs"
+        ],
+        "rationale": "The ChaptarrNG fixture retains the existing-torrent skip contract and adds explicit coverage that a central MAM slot race returns the release to the pending queue.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/ProcessDownloadDecisionsFixture.cs to blob 31b80a0e06143fbeb99befc8123113f56abe3977. ChaptarrNG target a1146edd49b880e86b1c7d78a083e2db3a970d1d resolves src/Chaptarr.Core.Test/Download/ProcessDownloadDecisionsFixture.cs to blob d1a8f531b68f80038e1220c5a8983790b3b6105a. The ChaptarrNG fixture includes existing_torrent_should_be_skipped_without_adding_it_to_pending and central_mam_slot_race_should_return_the_release_to_the_existing_pending_queue. It also verifies one grabbed release per book row across mixed-format decisions. This is unit-test coverage, not provider or operator acceptance."
       }
     },
     {

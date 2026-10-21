@@ -2912,6 +2912,17 @@
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentFixture.cs to blob c12c8fd538256ca17bdcf0a6ca7e020113a335d9 (mode 100644). ChaptarrNG target a1146edd49b880e86b1c7d78a083e2db3a970d1d resolves src/Chaptarr.Core.Test/Download/QBittorrentDuplicateHandlingFixture.cs to blob 4f5084b43955f9996077904ab83d35cb3a2f1b92 (mode 100644). ChaptarrNG target a1146edd49b880e86b1c7d78a083e2db3a970d1d resolves src/Chaptarr.Core.Test/Download/QBittorrentFileSnapshotFixture.cs to blob 2e71fee80f726596022e4db006848e7c0ce0ab0f (mode 100644). ChaptarrNG target a1146edd49b880e86b1c7d78a083e2db3a970d1d resolves src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs to blob de27b7b979855803c2e8dc2ec9fb34bfdf4b333b (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
+      "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs",
+      "disposition": "ported",
+      "feature": "qBittorrent API v2 authentication test coverage",
+      "targetPaths": [
+        "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs"
+      ],
+      "reviewedBy": "Codex test review (2026-10-20)",
+      "rationale": "The ChaptarrNG fixture replaces the older narrow proxy mock with request recording and covers API-key bearer auth, current and legacy login responses, authentication failures, reauthentication, and cookie caching.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs to blob 0cf6f600593943ef1d6f7bf57fad4ddc85ea012a. ChaptarrNG target a1146edd49b880e86b1c7d78a083e2db3a970d1d resolves src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs to blob de27b7b979855803c2e8dc2ec9fb34bfdf4b333b. The ChaptarrNG fixture includes should_send_bearer_authorization_header_when_api_key_is_set, should_accept_empty_login_response_from_qbittorrent_5_2, should_treat_unauthorized_login_as_authentication_failure, should_reauthenticate_on_unauthorized_api_response, and should_cache_auth_cookies_per_username. This supports the provider authentication test port; it does not establish live qBittorrent service acceptance."
+    },
+    {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/SabnzbdTests/SabnzbdFixture.cs",
       "disposition": "ported",
       "feature": "SABnzbd client state tests",
@@ -2933,6 +2944,17 @@
       "reviewedBy": "Codex (2026-10-20)",
       "rationale": "ChaptarrNG covers tracked downloads and strict completed-download validation in separate fixtures. This maps the broad test responsibility, not every old client-specific assertion.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/DownloadServiceFixture.cs to blob db2955dcf057a9379b82f8f0725da708027cba11 (mode 100644). ChaptarrNG target a1146edd49b880e86b1c7d78a083e2db3a970d1d resolves src/Chaptarr.Core.Test/Download/TrackedDownloadServiceFixture.cs to blob a6831f5f9beb55003bafc14b21bfa5e9237de46f (mode 100644). ChaptarrNG target a1146edd49b880e86b1c7d78a083e2db3a970d1d resolves src/Chaptarr.Core.Test/Download/CompletedDownloadServiceStrictVerificationFixture.cs to blob f6cdc940cf3050cbbafc48b63bf8de6d12ffac64 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core.Test/Download/ProcessDownloadDecisionsFixture.cs",
+      "disposition": "ported",
+      "feature": "Existing-download and pending-release decision tests",
+      "targetPaths": [
+        "src/Chaptarr.Core.Test/Download/ProcessDownloadDecisionsFixture.cs"
+      ],
+      "reviewedBy": "Codex test review (2026-10-20)",
+      "rationale": "The ChaptarrNG fixture retains the existing-torrent skip contract and adds explicit coverage that a central MAM slot race returns the release to the pending queue.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/ProcessDownloadDecisionsFixture.cs to blob 31b80a0e06143fbeb99befc8123113f56abe3977. ChaptarrNG target a1146edd49b880e86b1c7d78a083e2db3a970d1d resolves src/Chaptarr.Core.Test/Download/ProcessDownloadDecisionsFixture.cs to blob d1a8f531b68f80038e1220c5a8983790b3b6105a. The ChaptarrNG fixture includes existing_torrent_should_be_skipped_without_adding_it_to_pending and central_mam_slot_race_should_return_the_release_to_the_existing_pending_queue. It also verifies one grabbed release per book row across mixed-format decisions. This is unit-test coverage, not provider or operator acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Extras/Others/OtherExtraServiceFixture.cs",

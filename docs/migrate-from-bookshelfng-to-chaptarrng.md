@@ -20,8 +20,8 @@ remains open. The full path audit pins BookshelfNG source
 `2811718076d84777a1b1132e4e5d2abd21231229` to ChaptarrNG target
 `a1146edd49b880e86b1c7d78a083e2db3a970d1d`. It covers 732 post-fork commits,
 723 absent from pinned upstream history, and 1,119 changed paths; 81 paths have
-review mappings and 646 have feature dispositions. Another 473 remain
-undispositioned (143 unmapped, 330 requiring semantic review). This pass reviewed 28 additional download-client implementation paths; the latest exact-head Build is running after the KEPUB regression fix. The canonical ledger gives the current state breakdown.
+review mappings and 648 have feature dispositions. Another 471 remain
+undispositioned (143 unmapped, 328 requiring semantic review). This pass reviewed 28 download-client implementation paths and matched two related test fixtures to ChaptarrNG coverage; the latest exact-head Build is running after the KEPUB regression fix. The canonical ledger gives the current state breakdown.
 Representative operator data and real rollback, semantic feature parity,
 provider/SeerrNG workflows, representative media and recovery, installed
 update-channel handoff, and operator acceptance remain open. Keep BookshelfNG
