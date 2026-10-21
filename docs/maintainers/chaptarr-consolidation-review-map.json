@@ -280,7 +280,7 @@
       "decision": "map",
       "targetPath": "docs/SEERRNG_INTEGRATION.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
-      "rationale": "The target guide documents ChaptarrNG\u2019s Readarr-compatible SeerrNG contract, including the audiobook-scoped narrator routes and restricted-key limits. This maps integration documentation only, not end-to-end provider or client acceptance.",
+      "rationale": "The target guide documents ChaptarrNG’s Readarr-compatible SeerrNG contract, including the audiobook-scoped narrator routes and restricted-key limits. This maps integration documentation only, not end-to-end provider or client acceptance.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/seerrng-integration.md to blob 07c2bff9e2a31c61846c4b6de8e619e1d95cd1c5 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves docs/SEERRNG_INTEGRATION.md to blob 577300b152fe61faed03b15cece03af659603000 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -400,7 +400,7 @@
       "decision": "map",
       "targetPath": "packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1",
       "reviewedBy": "Codex distribution review (2026-10-21)",
-      "rationale": "The target removes the legacy service and application payload but preserves the BookshelfNG data directory and migration backup, matching the old package\u2019s data-retention behavior while protecting the rollback source.",
+      "rationale": "The target removes the legacy service and application payload but preserves the BookshelfNG data directory and migration backup, matching the old package’s data-retention behavior while protecting the rollback source.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/chocolatey/tools/chocolateyuninstall.ps1 to blob 8947e46c8f848ade46a0db068e7a1152494ff2e8 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -484,6 +484,14 @@
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/README.md to blob 0a6bd6ffa334c9806164a77cbe924184ae04621e (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/README.md to blob 8b11ba8d25ede44ae1e8a03825bd90488a915509 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
+      "sourcePath": "release-notes/changed-chocolatey-package-verification.md",
+      "decision": "map",
+      "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "This date-specific source release note records Chocolatey bridge verification and the frozen publisher state. The destination retirement guide carries the current candidate result and the package workflow performs the metadata, install, upgrade, and data-preservation smoke checks.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/changed-chocolatey-package-verification.md to blob 1d41db29657ef86bdcf85be064e1e15b50b242a9 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 660bc5b571c1101584f16c0fcea323aca87da530 (mode 100644); its Chocolatey row records the candidate result and frozen publisher state."
+    },
+    {
       "sourcePath": "scripts/bookshelf-bulk-move-media.sh",
       "decision": "map",
       "targetPath": "scripts/chaptarr-bulk-move-media.sh",
@@ -528,7 +536,7 @@
       "decision": "map",
       "targetPath": "src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj",
       "reviewedBy": "Codex implementation-and-fixture review (2026-10-21)",
-      "rationale": "The BookshelfNG diagnostics project is represented by ChaptarrNG\u2019s renamed diagnostics project, which references the Chaptarr Core project and builds the optional diagnostics assembly. Project-name and framework metadata are adapted to the destination repository.",
+      "rationale": "The BookshelfNG diagnostics project is represented by ChaptarrNG’s renamed diagnostics project, which references the Chaptarr Core project and builds the optional diagnostics assembly. Project-name and framework metadata are adapted to the destination repository.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj to blob a8942209813aa20508739d887e4cbe60eee10123 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj to blob 33a79b29c57dde82e4e6aa7357f0aff6bcaf3b37 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {

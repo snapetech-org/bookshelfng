@@ -19,27 +19,27 @@
     "commitsNotInUpstreamHistory": 810,
     "netChangedPaths": 1119,
     "uniqueBasenameCandidates": 0,
-    "reviewedMappings": 92,
+    "reviewedMappings": 93,
     "approvedRetirements": 203,
-    "reviewedDispositions": 805,
-    "undispositionedPaths": 314,
+    "reviewedDispositions": 825,
+    "undispositionedPaths": 294,
     "dispositionStates": {
       "retired": 203,
       "retained": 177,
-      "ported": 282,
+      "ported": 302,
       "equivalent": 143
     },
     "fileStates": {
       "approved-retirement": 203,
-      "different-review-required": 490,
+      "different-review-required": 491,
       "identical": 177,
-      "no-mapped-target-file": 127,
+      "no-mapped-target-file": 126,
       "code-equivalent-after-csharp-trivia-normalization": 118,
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "different-review-required": 237,
-      "no-mapped-target-file": 77
+      "different-review-required": 218,
+      "no-mapped-target-file": 76
     }
   },
   "commits": [
@@ -14712,6 +14712,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "817b4dcbaf00a7e614efa5e1b34f2ed668d54edd"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/1024.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/1024.png to blob 0dc9d1a766e35e91fcacd8fdec98b487d2170103 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/1024.png to blob 817b4dcbaf00a7e614efa5e1b34f2ed668d54edd (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14725,6 +14735,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "aa6a7e569abcb6ee3293012d8f85c1b4ebff64e4"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/128.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/128.png to blob ca126f822f9de2b9ed93a87fa7717bc7b6899211 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/128.png to blob aa6a7e569abcb6ee3293012d8f85c1b4ebff64e4 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14738,6 +14758,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "64ac0ab08d0bd3a4b2131de2b463d9213ca1b018"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/16.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/16.png to blob c90a045ddbae2b29872f78dde36a91a4c4b41b99 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/16.png to blob 64ac0ab08d0bd3a4b2131de2b463d9213ca1b018 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14751,6 +14781,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "eec89c2fde2d5af2ceedfd8c1150d2e8bc00b623"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/256.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/256.png to blob a0d49df232b6b5827be19e3bd2ecff736042c564 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/256.png to blob eec89c2fde2d5af2ceedfd8c1150d2e8bc00b623 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14764,6 +14804,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "28f7d61e816c38eccc05eeb68ac26180d455305c"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/32.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/32.png to blob af662ab5602449b3033eef5e43ab517eb10bdbdf (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/32.png to blob 28f7d61e816c38eccc05eeb68ac26180d455305c (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14777,6 +14827,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "a5f2cdf66c723f9a8b4cbe19d00f1aaaef18bc50"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/400.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/400.png to blob c714e8fa49ac6107b852d2a964b97bff0aca2ace (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/400.png to blob a5f2cdf66c723f9a8b4cbe19d00f1aaaef18bc50 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14790,6 +14850,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "21cf6122dbad1bfaa1d8fe7026d6db137682cb60"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/48.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/48.png to blob a933268acb57f19293a17c68199ceb5132c603d9 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/48.png to blob 21cf6122dbad1bfaa1d8fe7026d6db137682cb60 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14803,6 +14873,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "b71d9bcff2b89b1d75332c4ec8b4dbec7277a01b"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/512.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/512.png to blob 5577a7f5a8bc984abf8fda9df73187c11d5ec928 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/512.png to blob b71d9bcff2b89b1d75332c4ec8b4dbec7277a01b (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14816,6 +14896,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "90c501bd0aa2707d37b11b038260c57403d8d033"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/64.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/64.png to blob c217d5471c134a174ce5e3644584460647846a12 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/64.png to blob 90c501bd0aa2707d37b11b038260c57403d8d033 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14829,6 +14919,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "5953acd458090c6b40e97b10fe15b98a8be95b5c"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/800.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/800.png to blob 324327a6bcd10c573d42e1badb481c33e071040a (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/800.png to blob 5953acd458090c6b40e97b10fe15b98a8be95b5c (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14842,6 +14942,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "8ddf3c55accd93099dacc9df400c0daae153acff"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/96-Outline-White.png"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/96-Outline-White.png to blob 0ebf6a3c3371da6c2cdc9ac0d191708f9d8d6584 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/96-Outline-White.png to blob 8ddf3c55accd93099dacc9df400c0daae153acff (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -14855,6 +14965,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "7c3179cc4669cba995a74687cf9dc0f4ff05c914"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Application logo and icon branding",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "Logo/Chaptarr.svg"
+        ],
+        "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/Readarr.svg to blob 821f74d17574a6ae50441d6383c8aa29fc29f56a (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/Chaptarr.svg to blob 7c3179cc4669cba995a74687cf9dc0f4ff05c914 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
       }
     },
     {
@@ -19606,6 +19726,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "8eccc5a0f763977a36723681fc27dd3fae90666a"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Release-note record: 2026-10-17-unraid-main-image-channel.md",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "release-notes/2026-10-17-unraid-main-image-channel.md"
+        ],
+        "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/2026-10-17-unraid-main-image-channel.md to blob fdd0ed29cafc3634709da3a5a371d7cd41992aa1 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/2026-10-17-unraid-main-image-channel.md to blob 8eccc5a0f763977a36723681fc27dd3fae90666a (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
       }
     },
     {
@@ -19638,6 +19768,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "cc751bda5c0be6b995db263f3e7ab4d261042c80"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Release-note record: 2026-10-19-synced-stable-container-aliases.md",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "release-notes/2026-10-19-synced-stable-container-aliases.md"
+        ],
+        "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/2026-10-19-synced-stable-container-aliases.md to blob 577c52334066ac5de410487d7df0f262a3ce39a4 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/2026-10-19-synced-stable-container-aliases.md to blob cc751bda5c0be6b995db263f3e7ab4d261042c80 (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
       }
     },
     {
@@ -19670,6 +19810,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "0c9cd389e53c62b1f240a90f1ffd670fa6838169"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Release-note record: 20261011-validation-engine.md",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "release-notes/20261011-validation-engine.md"
+        ],
+        "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20261011-validation-engine.md to blob 351634b2d6e1fd298c624111cae1d5f3bc2ceb20 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/20261011-validation-engine.md to blob 0c9cd389e53c62b1f240a90f1ffd670fa6838169 (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
       }
     },
     {
@@ -19767,6 +19917,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "aef362025a956ce8ef271195bc6137fa30d7cfb7"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Release-note record: 20261013-bounded-validation-task-pool.md",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "release-notes/20261013-bounded-validation-task-pool.md"
+        ],
+        "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20261013-bounded-validation-task-pool.md to blob 7ef6e1dbdbe13a8c1a99cc7b4f381de55ceea940 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/20261013-bounded-validation-task-pool.md to blob aef362025a956ce8ef271195bc6137fa30d7cfb7 (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
       }
     },
     {
@@ -19818,6 +19978,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "3af588df862590ef048aa19481fc214d2b786a2e"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Release-note record: 20261013-pr-runner-isolation.md",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "release-notes/20261013-pr-runner-isolation.md"
+        ],
+        "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20261013-pr-runner-isolation.md to blob 059bc3a8ffab032fbeef229c3afacf0eb61780f4 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/20261013-pr-runner-isolation.md to blob 3af588df862590ef048aa19481fc214d2b786a2e (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
       }
     },
     {
@@ -19831,6 +20001,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "12742f94c5acae83ee3a157ec7a76d483abb6849"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Release-note record: 20261014-org-repository-links.md",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "release-notes/20261014-org-repository-links.md"
+        ],
+        "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20261014-org-repository-links.md to blob 1918567ea8bedd9d6d92e91d29b6fd5105813f00 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/20261014-org-repository-links.md to blob 12742f94c5acae83ee3a157ec7a76d483abb6849 (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
       }
     },
     {
@@ -20533,13 +20713,35 @@
     },
     {
       "sourcePath": "release-notes/changed-chocolatey-package-verification.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1d41db29657ef86bdcf85be064e1e15b50b242a9"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "660bc5b571c1101584f16c0fcea323aca87da530"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
+        "rationale": "This date-specific source release note records Chocolatey bridge verification and the frozen publisher state. The destination retirement guide carries the current candidate result and the package workflow performs the metadata, install, upgrade, and data-preservation smoke checks.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/changed-chocolatey-package-verification.md to blob 1d41db29657ef86bdcf85be064e1e15b50b242a9 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 660bc5b571c1101584f16c0fcea323aca87da530 (mode 100644); its Chocolatey row records the candidate result and frozen publisher state."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Release-note record: changed-chocolatey-package-verification.md",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "docs/BOOKSHELFNG_RETIREMENT.md",
+          "packaging/README.md",
+          ".github/workflows/release-distribution.yml"
+        ],
+        "rationale": "This dated source note is kept in BookshelfNG history. Its current Chocolatey transition facts are ported to the target package matrix and retirement guide, while the distribution workflow builds the package and runs metadata, installed upgrade, and persistent-data checks. This records documentation and migration-path coverage only; it does not approve package publication or channel acceptance.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/changed-chocolatey-package-verification.md to blob 1d41db29657ef86bdcf85be064e1e15b50b242a9 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 660bc5b571c1101584f16c0fcea323aca87da530 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves packaging/README.md to blob 0843328708cd849fb8e9a00a036add278d2e961e (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves .github/workflows/release-distribution.yml to blob 60cec89405cfc75b8344808988c48b1baecd628d (mode 100644). The pinned target documentation records Chocolatey build/transition status and the frozen publisher state; the workflow runs package metadata and installed upgrade/data-preservation checks. This does not establish live feed authorization or publication acceptance."
+      }
     },
     {
       "sourcePath": "release-notes/changed-complete-source-build-instructions.md",
@@ -22186,6 +22388,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "1ac70b1972ed1ae452a5e11926e32f3e9327c1d4"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Release-note record: seerrng-edition-catalog.md",
+        "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+        "targetPaths": [
+          "release-notes/seerrng-edition-catalog.md"
+        ],
+        "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/seerrng-edition-catalog.md to blob 5725d6578ed410fb4ce5fa615bcd813b78888058 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/seerrng-edition-catalog.md to blob 1ac70b1972ed1ae452a5e11926e32f3e9327c1d4 (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
       }
     },
     {

@@ -96,8 +96,8 @@
       "targetPaths": [],
       "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
       "approvalReference": "User instruction to retire BookshelfNG, merge relevant work to main, and discard work proven irrelevant.",
-      "rationale": "The pinned BookshelfNG source snapshot has no CONTRIBUTING.md file. Keep ChaptarrNG\u2019s own contributor guide; retiring this historical BookshelfNG-specific path change removes no runtime behavior or migration capability.",
-      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 has no CONTRIBUTING.md blob because BookshelfNG deleted the file. Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves CONTRIBUTING.md to blob d021deeaa3af11c40fdcd22ec37daad6e33a6d41 (mode 100644); this is ChaptarrNG\u2019s separate contributor guide. Retire only the absent BookshelfNG path delta; no runtime behavior or migration capability is claimed."
+      "rationale": "The pinned BookshelfNG source snapshot has no CONTRIBUTING.md file. Keep ChaptarrNG’s own contributor guide; retiring this historical BookshelfNG-specific path change removes no runtime behavior or migration capability.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 has no CONTRIBUTING.md blob because BookshelfNG deleted the file. Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves CONTRIBUTING.md to blob d021deeaa3af11c40fdcd22ec37daad6e33a6d41 (mode 100644); this is ChaptarrNG’s separate contributor guide. Retire only the absent BookshelfNG path delta; no runtime behavior or migration capability is claimed."
     },
     {
       "sourcePath": "LICENSE",
@@ -109,6 +109,138 @@
       "reviewedBy": "Codex (2026-10-20)",
       "rationale": "The file remains at the same relative path in ChaptarrNG with identical Git blob content at the pinned source and target snapshots.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves LICENSE to blob 9cecc1d4669ee8af2ca727a5d8cde10cd8b2d7cc (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves LICENSE to blob 9cecc1d4669ee8af2ca727a5d8cde10cd8b2d7cc (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "Logo/1024.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/1024.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/1024.png to blob 0dc9d1a766e35e91fcacd8fdec98b487d2170103 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/1024.png to blob 817b4dcbaf00a7e614efa5e1b34f2ed668d54edd (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/128.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/128.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/128.png to blob ca126f822f9de2b9ed93a87fa7717bc7b6899211 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/128.png to blob aa6a7e569abcb6ee3293012d8f85c1b4ebff64e4 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/16.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/16.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/16.png to blob c90a045ddbae2b29872f78dde36a91a4c4b41b99 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/16.png to blob 64ac0ab08d0bd3a4b2131de2b463d9213ca1b018 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/256.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/256.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/256.png to blob a0d49df232b6b5827be19e3bd2ecff736042c564 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/256.png to blob eec89c2fde2d5af2ceedfd8c1150d2e8bc00b623 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/32.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/32.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/32.png to blob af662ab5602449b3033eef5e43ab517eb10bdbdf (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/32.png to blob 28f7d61e816c38eccc05eeb68ac26180d455305c (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/400.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/400.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/400.png to blob c714e8fa49ac6107b852d2a964b97bff0aca2ace (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/400.png to blob a5f2cdf66c723f9a8b4cbe19d00f1aaaef18bc50 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/48.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/48.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/48.png to blob a933268acb57f19293a17c68199ceb5132c603d9 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/48.png to blob 21cf6122dbad1bfaa1d8fe7026d6db137682cb60 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/512.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/512.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/512.png to blob 5577a7f5a8bc984abf8fda9df73187c11d5ec928 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/512.png to blob b71d9bcff2b89b1d75332c4ec8b4dbec7277a01b (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/64.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/64.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/64.png to blob c217d5471c134a174ce5e3644584460647846a12 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/64.png to blob 90c501bd0aa2707d37b11b038260c57403d8d033 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/800.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/800.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/800.png to blob 324327a6bcd10c573d42e1badb481c33e071040a (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/800.png to blob 5953acd458090c6b40e97b10fe15b98a8be95b5c (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/96-Outline-White.png",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/96-Outline-White.png"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/96-Outline-White.png to blob 0ebf6a3c3371da6c2cdc9ac0d191708f9d8d6584 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/96-Outline-White.png to blob 8ddf3c55accd93099dacc9df400c0daae153acff (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
+    },
+    {
+      "sourcePath": "Logo/Readarr.svg",
+      "disposition": "ported",
+      "feature": "Application logo and icon branding",
+      "targetPaths": [
+        "Logo/Chaptarr.svg"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "BookshelfNG and inherited Readarr artwork is not used as ChaptarrNG product branding. The pinned destination already contains its own icon at the corresponding role and size. Port the branding role to the ChaptarrNG artwork; the visual difference is intentional and no runtime behavior or user data is affected.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves Logo/Readarr.svg to blob 821f74d17574a6ae50441d6383c8aa29fc29f56a (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves Logo/Chaptarr.svg to blob 7c3179cc4669cba995a74687cf9dc0f4ff05c914 (mode 100644). The pinned destination contains a ChaptarrNG brand asset for this size/role; visual review of the 512px and white-outline variants confirms the target replaces the BookshelfNG bookmark art with ChaptarrNG book-and-audio branding. This is an intentional brand port, not behavioral feature-equivalence evidence."
     },
     {
       "sourcePath": "azure-pipelines.yml",
@@ -849,7 +981,7 @@
         "docs/SEERRNG_INTEGRATION.md"
       ],
       "reviewedBy": "Codex (2026-10-20)",
-      "rationale": "The target guide documents ChaptarrNG\u2019s Readarr-compatible SeerrNG contract, including the audiobook-scoped narrator routes and restricted-key limits. This maps integration documentation only, not end-to-end provider or client acceptance.",
+      "rationale": "The target guide documents ChaptarrNG’s Readarr-compatible SeerrNG contract, including the audiobook-scoped narrator routes and restricted-key limits. This maps integration documentation only, not end-to-end provider or client acceptance.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/seerrng-integration.md to blob 07c2bff9e2a31c61846c4b6de8e619e1d95cd1c5 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves docs/SEERRNG_INTEGRATION.md to blob 577300b152fe61faed03b15cece03af659603000 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -970,7 +1102,7 @@
         "frontend/src/Author/Index/AuthorIndexFooter.css"
       ],
       "reviewedBy": "Codex path review (2026-10-21)",
-      "rationale": "The target retains the same color-impaired striped treatments and color operations, updating only from the legacy color-mod() syntax to the frontend pipeline\u2019s color() syntax. This records the style port, not pixel-level browser equivalence.",
+      "rationale": "The target retains the same color-impaired striped treatments and color operations, updating only from the legacy color-mod() syntax to the frontend pipeline’s color() syntax. This records the style port, not pixel-level browser equivalence.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves frontend/src/Author/Index/AuthorIndexFooter.css to blob 9f7383261ed39e5c84c6577d54788d4ad8333830 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves frontend/src/Author/Index/AuthorIndexFooter.css to blob c1c4b5a469d06e034a2303aeabd0b439ed1bc38b (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -1026,7 +1158,7 @@
         "frontend/src/Book/Index/Table/BookIndexRow.css"
       ],
       "reviewedBy": "Codex path review (2026-10-21)",
-      "rationale": "The target styles the format badge, narrator cell, release date, duration column, centered status and actions, and hides the narrator cell on narrow screens. These styles support the target row\u2019s format-aware columns.",
+      "rationale": "The target styles the format badge, narrator cell, release date, duration column, centered status and actions, and hides the narrator cell on narrow screens. These styles support the target row’s format-aware columns.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves frontend/src/Book/Index/Table/BookIndexRow.css to blob a25ca6990b75632a87eda557e14f13fda62c3156 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves frontend/src/Book/Index/Table/BookIndexRow.css to blob b4d6d83996d5fb1d04da2b90b1adadcfdb6dec06 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -1059,7 +1191,7 @@
         "frontend/src/Calendar/Events/CalendarEvent.css"
       ],
       "reviewedBy": "Codex path review (2026-10-21)",
-      "rationale": "The target retains the same calendar event colors and saturation adjustment, updating only from color-mod() to the frontend pipeline\u2019s color() syntax. This records the style port, not pixel-level browser equivalence.",
+      "rationale": "The target retains the same calendar event colors and saturation adjustment, updating only from color-mod() to the frontend pipeline’s color() syntax. This records the style port, not pixel-level browser equivalence.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves frontend/src/Calendar/Events/CalendarEvent.css to blob f62a0aa98d57485279b3a7c711dcb0f2524a899e (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves frontend/src/Calendar/Events/CalendarEvent.css to blob 8680bf35eab007893dbb376466373da563390e08 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -1094,7 +1226,7 @@
         "frontend/src/Components/Icon.css"
       ],
       "reviewedBy": "Codex path review (2026-10-21)",
-      "rationale": "The target keeps the same information and pink icon shade adjustments while using the frontend pipeline\u2019s color() syntax instead of color-mod().",
+      "rationale": "The target keeps the same information and pink icon shade adjustments while using the frontend pipeline’s color() syntax instead of color-mod().",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves frontend/src/Components/Icon.css to blob 97edd3ce4f4c870c88ecf24f258cd100dc4954ba (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves frontend/src/Components/Icon.css to blob 69ffc40f5fd5411f58fe2a1732b0f91ebe6e13b8 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -1116,7 +1248,7 @@
         "frontend/src/Components/ProgressBar.css"
       ],
       "reviewedBy": "Codex path review (2026-10-21)",
-      "rationale": "The target retains the same striped success/error progress indicators and color operations, updating only from color-mod() to the frontend pipeline\u2019s color() syntax. This records the style port, not pixel-level browser equivalence.",
+      "rationale": "The target retains the same striped success/error progress indicators and color operations, updating only from color-mod() to the frontend pipeline’s color() syntax. This records the style port, not pixel-level browser equivalence.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves frontend/src/Components/ProgressBar.css to blob d219911db26feb3dcc086f2797453a81f087ca29 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves frontend/src/Components/ProgressBar.css to blob b249ca7f5fcccb23e6e6a5f847dfc78c8e1c38b1 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -1717,6 +1849,17 @@
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/2026-10-13-bookshelf-chaptarr-transition-guidance.md to blob f3eebb775039637c009e4268e1ffb680e892ba9b (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e has no exact, brand-mapped, or basename candidate for this path. Prior approval from 3c6e036302f67c5bef87ae9543614549b44c2790 is carried forward because the source blob is unchanged and no target candidate exists; this does not retire runtime behavior or establish migration/channel acceptance."
     },
     {
+      "sourcePath": "release-notes/2026-10-17-unraid-main-image-channel.md",
+      "disposition": "ported",
+      "feature": "Release-note record: 2026-10-17-unraid-main-image-channel.md",
+      "targetPaths": [
+        "release-notes/2026-10-17-unraid-main-image-channel.md"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/2026-10-17-unraid-main-image-channel.md to blob fdd0ed29cafc3634709da3a5a371d7cd41992aa1 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/2026-10-17-unraid-main-image-channel.md to blob 8eccc5a0f763977a36723681fc27dd3fae90666a (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
+    },
+    {
       "sourcePath": "release-notes/2026-10-19-stable-container-aliases.md",
       "disposition": "retired",
       "feature": "BookshelfNG historical release-note fragment",
@@ -1727,6 +1870,17 @@
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/2026-10-19-stable-container-aliases.md to blob 70203164a43423b05a68265ec45c8dde73d0a875 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e has no exact, brand-mapped, or basename candidate for this path. Prior approval from 3c6e036302f67c5bef87ae9543614549b44c2790 is carried forward because the source blob is unchanged and no target candidate exists; this does not retire runtime behavior or establish migration/channel acceptance."
     },
     {
+      "sourcePath": "release-notes/2026-10-19-synced-stable-container-aliases.md",
+      "disposition": "ported",
+      "feature": "Release-note record: 2026-10-19-synced-stable-container-aliases.md",
+      "targetPaths": [
+        "release-notes/2026-10-19-synced-stable-container-aliases.md"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/2026-10-19-synced-stable-container-aliases.md to blob 577c52334066ac5de410487d7df0f262a3ce39a4 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/2026-10-19-synced-stable-container-aliases.md to blob cc751bda5c0be6b995db263f3e7ab4d261042c80 (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
+    },
+    {
       "sourcePath": "release-notes/20260925-catalog-packaging.md",
       "disposition": "retired",
       "feature": "BookshelfNG historical release-note fragment",
@@ -1735,6 +1889,17 @@
       "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
       "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20260925-catalog-packaging.md to blob 570ae3301b27d6db6c0b11e410b15f86089d8ad4 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e has no exact, brand-mapped, or basename candidate for this path. Prior approval from 3c6e036302f67c5bef87ae9543614549b44c2790 is carried forward because the source blob is unchanged and no target candidate exists; this does not retire runtime behavior or establish migration/channel acceptance."
+    },
+    {
+      "sourcePath": "release-notes/20261011-validation-engine.md",
+      "disposition": "ported",
+      "feature": "Release-note record: 20261011-validation-engine.md",
+      "targetPaths": [
+        "release-notes/20261011-validation-engine.md"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20261011-validation-engine.md to blob 351634b2d6e1fd298c624111cae1d5f3bc2ceb20 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/20261011-validation-engine.md to blob 0c9cd389e53c62b1f240a90f1ffd670fa6838169 (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
     },
     {
       "sourcePath": "release-notes/20261012-postcss-selector-parser-security.md",
@@ -1779,6 +1944,17 @@
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20261013-bookshelf-consolidation-status.md to blob 83ff5c59d01f955a2c6420c8d8a06a64d11e79ff (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e has no exact, brand-mapped, or basename candidate for this path. Prior approval from 3c6e036302f67c5bef87ae9543614549b44c2790 is carried forward because the source blob is unchanged and no target candidate exists; this does not retire runtime behavior or establish migration/channel acceptance."
     },
     {
+      "sourcePath": "release-notes/20261013-bounded-validation-task-pool.md",
+      "disposition": "ported",
+      "feature": "Release-note record: 20261013-bounded-validation-task-pool.md",
+      "targetPaths": [
+        "release-notes/20261013-bounded-validation-task-pool.md"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20261013-bounded-validation-task-pool.md to blob 7ef6e1dbdbe13a8c1a99cc7b4f381de55ceea940 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/20261013-bounded-validation-task-pool.md to blob aef362025a956ce8ef271195bc6137fa30d7cfb7 (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
+    },
+    {
       "sourcePath": "release-notes/20261013-chaptarr-transition-status.md",
       "disposition": "retired",
       "feature": "BookshelfNG historical release-note fragment",
@@ -1797,6 +1973,28 @@
       "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
       "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20261013-docker-context-credential-exclusion.md to blob 0651538d0f8ca6bf5da4d3187d7a8b9fca76d7a9 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e has no exact, brand-mapped, or basename candidate for this path. Prior approval from 3c6e036302f67c5bef87ae9543614549b44c2790 is carried forward because the source blob is unchanged and no target candidate exists; this does not retire runtime behavior or establish migration/channel acceptance."
+    },
+    {
+      "sourcePath": "release-notes/20261013-pr-runner-isolation.md",
+      "disposition": "ported",
+      "feature": "Release-note record: 20261013-pr-runner-isolation.md",
+      "targetPaths": [
+        "release-notes/20261013-pr-runner-isolation.md"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20261013-pr-runner-isolation.md to blob 059bc3a8ffab032fbeef229c3afacf0eb61780f4 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/20261013-pr-runner-isolation.md to blob 3af588df862590ef048aa19481fc214d2b786a2e (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
+    },
+    {
+      "sourcePath": "release-notes/20261014-org-repository-links.md",
+      "disposition": "ported",
+      "feature": "Release-note record: 20261014-org-repository-links.md",
+      "targetPaths": [
+        "release-notes/20261014-org-repository-links.md"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/20261014-org-repository-links.md to blob 1918567ea8bedd9d6d92e91d29b6fd5105813f00 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/20261014-org-repository-links.md to blob 12742f94c5acae83ee3a157ec7a76d483abb6849 (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
     },
     {
       "sourcePath": "release-notes/20261014-trusted-main-runner-pool.md",
@@ -2161,6 +2359,19 @@
       "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
       "rationale": "This path is a historical BookshelfNG release-note record. ChaptarrNG maintains an independent release history, so importing the old fragment would repeat past changes in the active release-note set. Retire the note artifact from ChaptarrNG; review the capability it describes separately in the feature-parity audit.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/changed-capabilities-and-compatibility-docs.md to blob dacf2b8541dd3248dd3bd4180543f97088b0ea48 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e has no exact, brand-mapped, or basename candidate for this path. Prior approval from 3c6e036302f67c5bef87ae9543614549b44c2790 is carried forward because the source blob is unchanged and no target candidate exists; this does not retire runtime behavior or establish migration/channel acceptance."
+    },
+    {
+      "sourcePath": "release-notes/changed-chocolatey-package-verification.md",
+      "disposition": "ported",
+      "feature": "Release-note record: changed-chocolatey-package-verification.md",
+      "targetPaths": [
+        "docs/BOOKSHELFNG_RETIREMENT.md",
+        "packaging/README.md",
+        ".github/workflows/release-distribution.yml"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "This dated source note is kept in BookshelfNG history. Its current Chocolatey transition facts are ported to the target package matrix and retirement guide, while the distribution workflow builds the package and runs metadata, installed upgrade, and persistent-data checks. This records documentation and migration-path coverage only; it does not approve package publication or channel acceptance.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/changed-chocolatey-package-verification.md to blob 1d41db29657ef86bdcf85be064e1e15b50b242a9 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 660bc5b571c1101584f16c0fcea323aca87da530 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves packaging/README.md to blob 0843328708cd849fb8e9a00a036add278d2e961e (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves .github/workflows/release-distribution.yml to blob 60cec89405cfc75b8344808988c48b1baecd628d (mode 100644). The pinned target documentation records Chocolatey build/transition status and the frozen publisher state; the workflow runs package metadata and installed upgrade/data-preservation checks. This does not establish live feed authorization or publication acceptance."
     },
     {
       "sourcePath": "release-notes/changed-complete-source-build-instructions.md",
@@ -3023,6 +3234,17 @@
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/security-prevent-forged-download-and-media-move-logs.md to blob 2ba54c4a958e80e1524e1f05e2522ecf3f86b0c5 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e has no exact, brand-mapped, or basename candidate for this path. Prior approval from 3c6e036302f67c5bef87ae9543614549b44c2790 is carried forward because the source blob is unchanged and no target candidate exists; this does not retire runtime behavior or establish migration/channel acceptance."
     },
     {
+      "sourcePath": "release-notes/seerrng-edition-catalog.md",
+      "disposition": "ported",
+      "feature": "Release-note record: seerrng-edition-catalog.md",
+      "targetPaths": [
+        "release-notes/seerrng-edition-catalog.md"
+      ],
+      "reviewedBy": "BookshelfNG retirement maintainer review (2026-10-21)",
+      "rationale": "The destination keeps a product-specific release-note record for this operator or maintainer change. ChaptarrNG branding and implementation details replace the BookshelfNG wording; this is a documentation port, not evidence of runtime equivalence or installed-channel acceptance.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves release-notes/seerrng-edition-catalog.md to blob 5725d6578ed410fb4ce5fa615bcd813b78888058 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves release-notes/seerrng-edition-catalog.md to blob 1ac70b1972ed1ae452a5e11926e32f3e9327c1d4 (mode 100644). The target release note records the corresponding ChaptarrNG change at its pinned release-note path; it is retained as a product-specific change record."
+    },
+    {
       "sourcePath": "release-notes/yunohost-package.md",
       "disposition": "retired",
       "feature": "BookshelfNG historical release-note fragment",
@@ -3098,7 +3320,7 @@
         "scripts/check-react-router-context.cjs"
       ],
       "reviewedBy": "Codex implementation review (2026-10-21)",
-      "rationale": "The BookshelfNG script detects when connected-react-router and react-router-dom resolve separate React Router copies. ChaptarrNG\u2019s CommonJS replacement checks that react-router-dom resolves the same installation and additionally server-renders a withRouter component inside Router, proving the context works. The destination check is a stronger functional port.",
+      "rationale": "The BookshelfNG script detects when connected-react-router and react-router-dom resolve separate React Router copies. ChaptarrNG’s CommonJS replacement checks that react-router-dom resolves the same installation and additionally server-renders a withRouter component inside Router, proving the context works. The destination check is a stronger functional port.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/check-react-router-context.js to blob 7c10f68e13e8c55288bb4d7d53a0f3d00a29aa6e (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves scripts/check-react-router-context.cjs to blob a15912f554c8675d4dc3e698e0615fddc789250e (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -3162,7 +3384,7 @@
         "scripts/security-scan-local.sh"
       ],
       "reviewedBy": "Codex implementation review (2026-10-21)",
-      "rationale": "The source and destination scripts use the same local Trivy scanner flow and fail/exit controls. ChaptarrNG\u2019s version now excludes fewer directories, so it scans more generated content than the source helper; the security scan remains available with stricter coverage. This is a port of repository security tooling, not a user runtime feature.",
+      "rationale": "The source and destination scripts use the same local Trivy scanner flow and fail/exit controls. ChaptarrNG’s version now excludes fewer directories, so it scans more generated content than the source helper; the security scan remains available with stricter coverage. This is a port of repository security tooling, not a user runtime feature.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/security-scan-local.sh to blob e6aa128d5d01eb36574fb39ec19f4913f98c5506 (mode 100755). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves scripts/security-scan-local.sh to blob a06bfeeea6c4c55494f9da69995b55e86c8db098 (mode 100755). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -3239,7 +3461,7 @@
         "src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj"
       ],
       "reviewedBy": "Codex implementation-and-fixture review (2026-10-21)",
-      "rationale": "The BookshelfNG diagnostics project is represented by ChaptarrNG\u2019s renamed diagnostics project, which references the Chaptarr Core project and builds the optional diagnostics assembly. Project-name and framework metadata are adapted to the destination repository.",
+      "rationale": "The BookshelfNG diagnostics project is represented by ChaptarrNG’s renamed diagnostics project, which references the Chaptarr Core project and builds the optional diagnostics assembly. Project-name and framework metadata are adapted to the destination repository.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj to blob a8942209813aa20508739d887e4cbe60eee10123 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj to blob 33a79b29c57dde82e4e6aa7357f0aff6bcaf3b37 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -3767,7 +3989,7 @@
         "src/Chaptarr.Core.Test/MediaFiles/ImportApprovedBooksAdditionalCopyFixture.cs"
       ],
       "reviewedBy": "Codex (2026-10-21)",
-      "rationale": "The target integration fixture drives a regular copy through ImportApprovedBooks with insufficient destination space and verifies it returns the existing \u201cNot enough free space\u201d rejection without moving or copying the file.",
+      "rationale": "The target integration fixture drives a regular copy through ImportApprovedBooks with insufficient destination space and verifies it returns the existing “Not enough free space” rejection without moving or copying the file.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core.Test/MediaFiles/TrackImport/Specifications/FreeSpaceSpecificationFixture.cs to blob dfd89918b68420c123a26521edebb3b0619075ed (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/MediaFiles/ImportApprovedBooksAdditionalCopyFixture.cs to blob eb80679510281764033f331fbd0b7faf03c93464 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -4045,7 +4267,7 @@
         "src/Chaptarr.Core.Test/Books/AuthorServiceMonitoredConsistencyFixture.cs"
       ],
       "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
-      "rationale": "ChaptarrNG retains author identity and core state while splitting quality, metadata-profile, root-folder, tag, and monitoring decisions by audiobook or ebook media type. The target tests cover default-root application, lookup hydration, and monitoring consistency. This ports the author model into ChaptarrNG\u2019s separate-format records; representative operator acceptance remains open.",
+      "rationale": "ChaptarrNG retains author identity and core state while splitting quality, metadata-profile, root-folder, tag, and monitoring decisions by audiobook or ebook media type. The target tests cover default-root application, lookup hydration, and monitoring consistency. This ports the author model into ChaptarrNG’s separate-format records; representative operator acceptance remains open.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/Books/Model/Author.cs to blob 065abddeab39132fdbdf89a615c676b0a5f28d5f (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Books/AuthorServiceDefaultRootFoldersFixture.cs to blob 9cb0de87e082c9c41c4c33cb4d2e131a2c66126b (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Books/AuthorServiceLookupHydrationFixture.cs to blob 20711b97ea78814f956f8f8e45c9ace75aa28fb1 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Books/AuthorServiceMonitoredConsistencyFixture.cs to blob ce1c63654a389662919da938cb5d9df22bed16ab (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -4061,7 +4283,7 @@
         "src/Chaptarr.Core.Test/Books/BookServiceGetBooksLoadsEditionsFixture.cs"
       ],
       "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
-      "rationale": "ChaptarrNG retains the source edition identity, metadata, monitoring, and manual-add fields while extending the model with format-specific identifiers, audiobook chapters, narrator credits, and safer provider-metadata convergence. The target fixtures cover metadata refresh convergence, manual edition pins, selector invariants, retained edition policy, and loading editions with books. The model now uses a direct BookFiles list and a LazyBook wrapper, so this is a port into ChaptarrNG\u2019s richer edition/catalog model rather than identical storage semantics; representative provider and database acceptance remains open.",
+      "rationale": "ChaptarrNG retains the source edition identity, metadata, monitoring, and manual-add fields while extending the model with format-specific identifiers, audiobook chapters, narrator credits, and safer provider-metadata convergence. The target fixtures cover metadata refresh convergence, manual edition pins, selector invariants, retained edition policy, and loading editions with books. The model now uses a direct BookFiles list and a LazyBook wrapper, so this is a port into ChaptarrNG’s richer edition/catalog model rather than identical storage semantics; representative provider and database acceptance remains open.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/Books/Model/Edition.cs to blob 87563a457f028b9e00d40792b82748115bfb2907 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Books/Model/Edition.cs to blob e930f5843d5dbec1b85c6484ca7b4d8c9e3d47e2 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Books/EditionUseMetadataFromConvergenceFixture.cs to blob f4b3210188b9b54ab84fd70f36d45ba43c72501c (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Books/EditionPinPolicyFixture.cs to blob cb5f35f966484bfe9970d437dfa998862103b3dd (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Books/EditionSelectorInvariantFixture.cs to blob 3e9c1ead2f914d20a669c493563af71c70531760 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Books/EditionRetentionSelectorFixture.cs to blob 2f73a9b9dfc753c831bbc862657188b68f724837 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Books/BookServiceGetBooksLoadsEditionsFixture.cs to blob 85b80c2a0ac058328bc63a7e00b7295a672b6566 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -4278,7 +4500,7 @@
         "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
       ],
       "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
-      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG’s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042–046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs to blob c6bf05691302d6d3fbd8047f2d0d15d0e2ccb507 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs to blob a615b4cc30927c3fa75580d3b6ab6b538415e964 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob dace96ebb3542dfda49ddd25eeb51e4e2e6e1437 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -4291,7 +4513,7 @@
         "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
       ],
       "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
-      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG’s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042–046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs to blob f171971c0a4190c3b79a007c2448bb2d01f25d02 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs to blob 834d91ad4a7d0c5a0905e7c55aac663a9b6a7674 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob dace96ebb3542dfda49ddd25eeb51e4e2e6e1437 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -4304,7 +4526,7 @@
         "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
       ],
       "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
-      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG’s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042–046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs to blob 5169a74f522134a8ce1d4b0a1a54bf9fbabd8589 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs to blob a82c2b2792f5048c57865df0689796092f26fe2e (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob dace96ebb3542dfda49ddd25eeb51e4e2e6e1437 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -4317,7 +4539,7 @@
         "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
       ],
       "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
-      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG’s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042–046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs to blob 83e2bf616c469a2e731ec1cb40dd1ea6a4a6d2ee (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs to blob 728282a200f863f8e1185397e57315cf317d0105 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob dace96ebb3542dfda49ddd25eeb51e4e2e6e1437 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -4330,7 +4552,7 @@
         "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
       ],
       "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
-      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG’s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042–046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs to blob 3d81aed6df3836af0acb64afbbdedf5402952a85 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs to blob 06e17dd5a0e651d969eccc59def8ced6638f19a9 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob dace96ebb3542dfda49ddd25eeb51e4e2e6e1437 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -4343,7 +4565,7 @@
         "src/NzbDrone.Core/Datastore/BookshelfMigration/README.md"
       ],
       "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
-      "rationale": "This BookshelfNG migration is copied into ChaptarrNG\u2019s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042\u2013046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
+      "rationale": "This BookshelfNG migration is copied into ChaptarrNG’s isolated BookshelfMigration namespace so it runs only on a disposable source-database copy. The older-schema fixture builds a BookshelfNG database through migration 22, then exercises upgrade to schema 158, preview immutability, and rollback. Migration 041 uses SQLite DATETIME affinity to match the released BookshelfNG SQLite schema; migrations 042–046 preserve their source DDL under the isolated namespace. This path disposition records implemented source migration coverage; representative operator-data acceptance remains open.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs to blob 5b050f9f00e6c4e62cec30b9e0f3e7946bd456fa (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs to blob e13adf658d0629b5b777d4b6732ef221ecb65ed4 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob dace96ebb3542dfda49ddd25eeb51e4e2e6e1437 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/README.md to blob c6bb2f015a2d94f3c0c264fea229ccf2827ce7af (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -4601,7 +4823,7 @@
         "src/NzbDrone.Core/Download/Clients/NzbVortex/NzbVortex.cs"
       ],
       "reviewedBy": "Codex behavior review (2026-10-20)",
-      "rationale": "Selects the release\u2019s audiobook or ebook group for submissions and gathers queue items from the configured format groups.",
+      "rationale": "Selects the release’s audiobook or ebook group for submissions and gathers queue items from the configured format groups.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/Download/Clients/NzbVortex/NzbVortex.cs to blob 65199b8b4008beb784a3f0cf2b4c421d3ebb71ab (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Download/Clients/NzbVortex/NzbVortex.cs to blob e3a5ca6b618b472c55984d6fe25e5ef1b4d876b4 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -4656,7 +4878,7 @@
         "src/NzbDrone.Core/Download/Clients/Pneumatic/Pneumatic.cs"
       ],
       "reviewedBy": "Codex behavior review (2026-10-20)",
-      "rationale": "Uses the indexer\u2019s authenticated/rate-limited download request when available and safe logging for download URLs, retaining the plain HTTP fallback.",
+      "rationale": "Uses the indexer’s authenticated/rate-limited download request when available and safe logging for download URLs, retaining the plain HTTP fallback.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/Download/Clients/Pneumatic/Pneumatic.cs to blob 981060080d22314e177e2c797a161c60690a1fc7 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/Download/Clients/Pneumatic/Pneumatic.cs to blob bc8e9954a9d5f5257874e9f5e11b10bdb61532fa (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -5372,7 +5594,7 @@
         "src/NzbDrone.Core/MetadataSource/ISearchForNewBook.cs"
       ],
       "reviewedBy": "Codex path review (2026-10-21)",
-      "rationale": "The source BookLookupController explicitly requested interactive search through the interface boolean. ChaptarrNG replaces that UI/context flag with an optional media type, forwards the requested audiobook or ebook scope into provider search, and filters the results to that format. Native Hardcover lookup retains interactive quota behavior, which the focused search fixture verifies. This preserves interactive lookup while extending it to the target\u2019s separate media catalogs.",
+      "rationale": "The source BookLookupController explicitly requested interactive search through the interface boolean. ChaptarrNG replaces that UI/context flag with an optional media type, forwards the requested audiobook or ebook scope into provider search, and filters the results to that format. Native Hardcover lookup retains interactive quota behavior, which the focused search fixture verifies. This preserves interactive lookup while extending it to the target’s separate media catalogs.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Core/MetadataSource/ISearchForNewBook.cs to blob 28670330a24f52038bc17536b026b1069d672eec (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Core/MetadataSource/ISearchForNewBook.cs to blob 5ee98f889bf7960154dbd609679607a0a84d5e4f (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
@@ -5580,7 +5802,7 @@
         "src/NzbDrone.Mono/Disk/DiskProvider.cs"
       ],
       "reviewedBy": "Codex path review (2026-10-21)",
-      "rationale": "The target preserves the source provider\u2019s mount lookup, available-space reporting, permissions, link and copy operations, and exact-read handling. It replaces newline-only cleanup in the two path log statements with the target DebugSafe sanitizer and adds Mono hardlink-count support through stat. The extra comment changes do not alter behavior. This records source behavior coverage with changed implementation; it does not claim runtime or migration acceptance.",
+      "rationale": "The target preserves the source provider’s mount lookup, available-space reporting, permissions, link and copy operations, and exact-read handling. It replaces newline-only cleanup in the two path log statements with the target DebugSafe sanitizer and adds Mono hardlink-count support through stat. The extra comment changes do not alter behavior. This records source behavior coverage with changed implementation; it does not claim runtime or migration acceptance.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves src/NzbDrone.Mono/Disk/DiskProvider.cs to blob 83e19a4755394a4af0e1bcb1209f8cb4289f056a (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e resolves src/NzbDrone.Mono/Disk/DiskProvider.cs to blob cd0564760c1b90f0908d3f1035d0ffd4e4f1adab (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
