@@ -21,11 +21,11 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 98,
     "approvedRetirements": 212,
-    "reviewedDispositions": 775,
-    "undispositionedPaths": 344,
+    "reviewedDispositions": 776,
+    "undispositionedPaths": 343,
     "dispositionStates": {
       "retained": 177,
-      "ported": 251,
+      "ported": 252,
       "retired": 212,
       "equivalent": 135
     },
@@ -40,7 +40,7 @@
     },
     "undispositionedFileStates": {
       "different-review-required": 258,
-      "no-mapped-target-file": 86
+      "no-mapped-target-file": 85
     }
   },
   "commits": [
@@ -27451,7 +27451,19 @@
         "mode": "100644",
         "oid": "8cffc5cd07e9cea1f7dfb36defb354604d30d610"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "First-run access recovery when authentication is configured without a user",
+        "reviewedBy": "Codex startup/authentication contract review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Host/FirstRunAuthenticationSetup.cs",
+          "src/NzbDrone.Host/Startup.cs",
+          "src/Chaptarr.Core.Test/Authentication/FirstRunAuthenticationSetupFixture.cs"
+        ],
+        "rationale": "The BookshelfNG integration fixture covered the no-user startup case and local UI access with authentication disabled. ChaptarrNG moves this into an explicit host startup service: Startup invokes FirstRunAuthenticationSetup, which disables configured authentication when no user exists. The target fixture covers no-user reset, preservation when a user exists, and no-op when authentication is already disabled. This is a port from an HTTP integration fixture to a host-service unit fixture; it does not claim equivalent live HTTP endpoint coverage or installed-channel acceptance.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Integration.Test/ApiTests/FirstRunAuthenticationFixture.cs to blob 8cffc5cd07e9cea1f7dfb36defb354604d30d610 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/NzbDrone.Host/FirstRunAuthenticationSetup.cs to blob c076d5754e3b07fb214ddeb36ae9a42241aab52d (mode 100644), src/NzbDrone.Host/Startup.cs to blob 57fe85941fbf7af598192acfe566d77572affea2 (mode 100644), and src/Chaptarr.Core.Test/Authentication/FirstRunAuthenticationSetupFixture.cs to blob fd4b5023e2ad4b86714ed9c4aa7ea4f2d8baf7b2 (mode 100644). Startup calls EnsureInitialAccountSetup; the fixture asserts authentication is disabled for an absent user and preserved for an existing user."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Integration.Test/ApiTests/RootFolderFixture.cs",
