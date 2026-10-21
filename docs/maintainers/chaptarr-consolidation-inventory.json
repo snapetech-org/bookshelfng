@@ -21,12 +21,12 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 102,
     "approvedRetirements": 239,
-    "reviewedDispositions": 854,
-    "undispositionedPaths": 265,
+    "reviewedDispositions": 856,
+    "undispositionedPaths": 263,
     "dispositionStates": {
       "retired": 239,
       "retained": 177,
-      "ported": 295,
+      "ported": 297,
       "equivalent": 143
     },
     "fileStates": {
@@ -40,7 +40,7 @@
     },
     "undispositionedFileStates": {
       "different-review-required": 197,
-      "no-mapped-target-file": 68
+      "no-mapped-target-file": 66
     }
   },
   "commits": [
@@ -17424,7 +17424,17 @@
         "mode": "100644",
         "oid": "51a4e05906896782019b07ee382921f188b7196f"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "AUR BookshelfNG package identity and ChaptarrNG handoff",
+        "reviewedBy": "Codex distribution path review (2026-10-21)",
+        "targetPaths": [
+          "packaging/legacy/aur/bookshelfng-bin/PKGBUILD.in"
+        ],
+        "rationale": "The source recipe creates the bookshelfng-bin package, BookshelfNG executable alias, service, and /etc/bookshelfng configuration. ChaptarrNG retains this package identity in its legacy AUR template while downloading the standard ChaptarrNG archive, providing the new package capability, keeping the old service/config paths, and pinning the archive checksum in the recipe builder. This is an AUR handoff implementation; the local upgrade/downgrade rehearsal used a synthetic migration database and does not establish real-data or published-feed acceptance.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/aur/PKGBUILD to blob 51a4e05906896782019b07ee382921f188b7196f (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves packaging/legacy/aur/bookshelfng-bin/PKGBUILD.in to blob 363cb58a0c6ac7af4f284ea567a1b836c046d7f6. Supporting target artifacts are pinned at: packaging/scripts/build-aur-recipes.sh (3530f715a32325459718bfbdccf5d7d170879d14); packaging/legacy/aur/bookshelfng-bin/bookshelfng.install (e98d99fbaaa71175485827a58734d736b2d7d737); docs/MIGRATE_FROM_BOOKSHELFNG.md (ac1509bc5071c8298cfc0df4857006829494709c); docs/BOOKSHELFNG_RETIREMENT.md (ef126e079394297d17b6fe7218a95e3f42b707c9). Pinned source/template review confirms the old package and service identity is kept while the standard ChaptarrNG archive and executable are installed. The documented local package rehearsal does not validate representative operator data, an enabled live COPR/AUR handoff, or publication; those remain separate acceptance gates."
+      }
     },
     {
       "sourcePath": "packaging/aur/bookshelfng.install",
@@ -17781,7 +17791,17 @@
         "mode": "100644",
         "oid": "4f168f27860b254963c26763dbc94175e655dcbb"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "RPM BookshelfNG package identity and ChaptarrNG handoff",
+        "reviewedBy": "Codex distribution path review (2026-10-21)",
+        "targetPaths": [
+          "packaging/legacy/rpm/bookshelfng.spec.in"
+        ],
+        "rationale": "The source spec installs the BookshelfNG package, executable alias, systemd unit, and /etc/bookshelfng configuration. ChaptarrNG retains the bookshelfng RPM identity in its legacy spec while installing the ChaptarrNG payload behind the old command, service, and data paths. Upgrade scriptlets stop an active service before file replacement and restart it after transaction completion. The local Fedora transaction rehearsal preserved configuration/data canaries, but mocked systemctl and bypassed dependencies mean live COPR/DNF and real-systemd acceptance remain open.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/rpm/bookshelfng.spec to blob 4f168f27860b254963c26763dbc94175e655dcbb (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves packaging/legacy/rpm/bookshelfng.spec.in to blob c822048742d4e798b36475e86c86e6f27040581a. Supporting target artifacts are pinned at: packaging/scripts/build-rpm-sources.sh (e0072f57bbbcc1a9510166d8eebc58641e73ebe8); packaging/legacy/rpm/copr-bookshelfng-source.sh (128472a8e20cda826896f4142c5862df3c68e4c3); docs/MIGRATE_FROM_BOOKSHELFNG.md (ac1509bc5071c8298cfc0df4857006829494709c); docs/BOOKSHELFNG_RETIREMENT.md (ef126e079394297d17b6fe7218a95e3f42b707c9). Pinned source/template review confirms the old package and service identity is kept while the standard ChaptarrNG archive and executable are installed. The documented local package rehearsal does not validate representative operator data, an enabled live COPR/AUR handoff, or publication; those remain separate acceptance gates."
+      }
     },
     {
       "sourcePath": "packaging/rpm/copr-source.sh",
