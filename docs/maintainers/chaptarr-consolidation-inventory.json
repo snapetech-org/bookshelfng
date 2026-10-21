@@ -20,26 +20,26 @@
     "netChangedPaths": 1119,
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 98,
-    "approvedRetirements": 195,
-    "reviewedDispositions": 754,
-    "undispositionedPaths": 365,
+    "approvedRetirements": 206,
+    "reviewedDispositions": 765,
+    "undispositionedPaths": 354,
     "dispositionStates": {
       "retained": 177,
       "ported": 249,
-      "retired": 195,
+      "retired": 206,
       "equivalent": 133
     },
     "fileStates": {
-      "no-mapped-target-file": 151,
+      "no-mapped-target-file": 140,
       "different-review-required": 473,
       "identical": 177,
       "deleted-in-bookshelf": 1,
-      "approved-retirement": 195,
+      "approved-retirement": 206,
       "code-equivalent-after-csharp-trivia-normalization": 118,
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "no-mapped-target-file": 104,
+      "no-mapped-target-file": 93,
       "different-review-required": 261
     }
   },
@@ -21511,12 +21511,21 @@
     {
       "sourcePath": "src/NzbDrone.Api.Test/Readarr.Api.Test.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0508a2ba66efd3bd030cd2cb63847dde8e68af7f"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Api.Test/Readarr.Api.Test.csproj to blob 0508a2ba66efd3bd030cd2cb63847dde8e68af7f (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Api.Test/System/SystemControllerFixture.cs",
@@ -21551,12 +21560,21 @@
     {
       "sourcePath": "src/NzbDrone.Automation.Test/Readarr.Automation.Test.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "04479c252d7296f42d9aeae56269b1dc1e31988b"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Automation.Test/Readarr.Automation.Test.csproj to blob 04479c252d7296f42d9aeae56269b1dc1e31988b (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Automation.Test/packages.lock.json",
@@ -21641,12 +21659,21 @@
     {
       "sourcePath": "src/NzbDrone.Common.Test/Readarr.Common.Test.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "118927bf321586f542c6d97a7978fe589e699ce1"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Common.Test/Readarr.Common.Test.csproj to blob 118927bf321586f542c6d97a7978fe589e699ce1 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Common.Test/packages.lock.json",
@@ -27119,12 +27146,21 @@
     {
       "sourcePath": "src/NzbDrone.Host.Test/Readarr.Host.Test.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "eee3a22f05c2687fc7d741c96f3dc7ff91ec30d2"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Host.Test/Readarr.Host.Test.csproj to blob eee3a22f05c2687fc7d741c96f3dc7ff91ec30d2 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Host.Test/packages.lock.json",
@@ -27373,12 +27409,21 @@
     {
       "sourcePath": "src/NzbDrone.Integration.Test/Readarr.Integration.Test.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "265c948dcbe21c1fbac961d41e68446edc813206"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Integration.Test/Readarr.Integration.Test.csproj to blob 265c948dcbe21c1fbac961d41e68446edc813206 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Integration.Test/packages.lock.json",
@@ -27403,12 +27448,21 @@
     {
       "sourcePath": "src/NzbDrone.Libraries.Test/Readarr.Libraries.Test.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "4a108cbba6cd1cd46b0b0e308dcb5c486ce2689f"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Libraries.Test/Readarr.Libraries.Test.csproj to blob 4a108cbba6cd1cd46b0b0e308dcb5c486ce2689f (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Libraries.Test/packages.lock.json",
@@ -27453,12 +27507,21 @@
     {
       "sourcePath": "src/NzbDrone.Mono.Test/Readarr.Mono.Test.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d6393f3f6c91bf9fc8f9076ec59b34430a9c0b8c"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Mono.Test/Readarr.Mono.Test.csproj to blob d6393f3f6c91bf9fc8f9076ec59b34430a9c0b8c (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Mono.Test/packages.lock.json",
@@ -27615,12 +27678,21 @@
     {
       "sourcePath": "src/NzbDrone.Test.Common/Readarr.Test.Common.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "fdf0816ca8ccb21546013224286b9b5f1063523c"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Test.Common/Readarr.Test.Common.csproj to blob fdf0816ca8ccb21546013224286b9b5f1063523c (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Test.Common/packages.lock.json",
@@ -27645,12 +27717,21 @@
     {
       "sourcePath": "src/NzbDrone.Test.Dummy/Readarr.Test.Dummy.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f73df4b60ae85dea9e325c75759d65d81b548fac"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Test.Dummy/Readarr.Test.Dummy.csproj to blob f73df4b60ae85dea9e325c75759d65d81b548fac (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Test.Dummy/packages.lock.json",
@@ -27675,12 +27756,21 @@
     {
       "sourcePath": "src/NzbDrone.Update.Test/Readarr.Update.Test.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b6a5d852a1d6844f0bcb1b7f99521c4af1c83bb4"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Update.Test/Readarr.Update.Test.csproj to blob b6a5d852a1d6844f0bcb1b7f99521c4af1c83bb4 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Update.Test/packages.lock.json",
@@ -27758,12 +27848,21 @@
     {
       "sourcePath": "src/NzbDrone.Windows.Test/Readarr.Windows.Test.csproj",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "05804d227baeef04157e9d6e01093eac4db015fa"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG per-component test project configuration",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-20)",
+        "approvalReference": "User's explicit instruction to retire BookshelfNG and make this the active goal.",
+        "targetPaths": [],
+        "rationale": "This file defines a separate legacy test-project boundary. ChaptarrNG consolidates test build configuration in one project, which CI explicitly restores and builds. Retire the obsolete project manifest only. Associated BookshelfNG test source files remain separately open for semantic review; this does not claim that their behavior or coverage is present.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Windows.Test/Readarr.Windows.Test.csproj to blob 05804d227baeef04157e9d6e01093eac4db015fa (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Core.Test/Chaptarr.Core.Test.csproj to blob 1bbead0ae57423080d9dcebf4ed3737aa680b987 and .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b; the workflow explicitly restores and builds the consolidated project. Retire the legacy project manifest only; this is not test-coverage or feature-parity evidence."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Windows.Test/packages.lock.json",
