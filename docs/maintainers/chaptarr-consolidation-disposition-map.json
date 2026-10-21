@@ -1200,6 +1200,17 @@
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Author/Editor/BulkAuthorMediaMoveModal.js to blob 7c4e1d7cf3fc19effadf7dd387932c605e9636dd (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Author/Editor/BulkAuthorMediaMoveModal.js to blob 6be3ff8d0d7e6f8b548a664aefa49d29c153cdad (mode 100644). Line-by-line comparison found only multiline JSX formatting and wrapping the visible arrow glyph in an expression."
     },
     {
+      "sourcePath": "frontend/src/Author/Index/AuthorIndexFooter.css",
+      "disposition": "ported",
+      "feature": "Color-impaired author-list footer styles",
+      "targetPaths": [
+        "frontend/src/Author/Index/AuthorIndexFooter.css"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target retains the same color-impaired striped treatments and color operations, updating only from the legacy color-mod() syntax to the frontend pipeline\u2019s color() syntax. This records the style port, not pixel-level browser equivalence.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Author/Index/AuthorIndexFooter.css to blob 9f7383261ed39e5c84c6577d54788d4ad8333830. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Author/Index/AuthorIndexFooter.css to blob c1c4b5a469d06e034a2303aeabd0b439ed1bc38b. Pinned diff review: both shade/tint patterns retain the same colors, stops, and angles; only the CSS color-function spelling changes. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
+    },
+    {
       "sourcePath": "frontend/src/Book/Details/Editions/BookEditionCatalog.css.d.ts",
       "disposition": "retained",
       "feature": "Retained shared file: frontend/src/Book/Details/Editions/BookEditionCatalog.css.d.ts",
@@ -1221,6 +1232,17 @@
       "reviewedBy": "Codex (2026-10-20)",
       "rationale": "ChaptarrNG retains the edition catalog view, adds audiobook duration and explicit not-applicable values, exposes retry on request failure, and associates results with the current book ID so a late response from the previous book cannot replace them. The focused request test covers stale-result rejection and recovery; catalog behavior on representative providers remains open for acceptance.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Book/Details/Editions/BookEditionCatalog.js to blob 699366e19bdf8f870a216afd91f7e86b6878c0d9 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Book/Details/Editions/BookEditionCatalog.js to blob 7b380811b41cef4f05cd1a5dc39e8d345a37403a (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Book/Details/BookDetailRequests.test.cjs to blob 24d63ad97916caf158c4953f6a87056e2a55c2bd (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Calendar/Events/CalendarEvent.css",
+      "disposition": "ported",
+      "feature": "Color-impaired calendar event styles",
+      "targetPaths": [
+        "frontend/src/Calendar/Events/CalendarEvent.css"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target retains the same calendar event colors and saturation adjustment, updating only from color-mod() to the frontend pipeline\u2019s color() syntax. This records the style port, not pixel-level browser equivalence.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Calendar/Events/CalendarEvent.css to blob f62a0aa98d57485279b3a7c711dcb0f2524a899e. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Calendar/Events/CalendarEvent.css to blob 8680bf35eab007893dbb376466373da563390e08. Pinned diff review: both event-state border colors preserve the same color and saturation values; only the CSS color-function spelling changes. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
     },
     {
       "sourcePath": "frontend/src/Components/Form/MetadataProfileSelectInputConnector.js",
@@ -1245,6 +1267,39 @@
       "reviewedBy": "Codex (2026-10-20)",
       "rationale": "The ChaptarrNG quality selector preserves the existing no-change and none sentinel behavior while allowing an author format override to clear to null and use the selected root folder's current default. Focused tests cover nullable API values and existing selector behavior; representative operator acceptance remains open.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Components/Form/QualityProfileSelectInputConnector.js to blob d9211cacf80a281ba920359745a5380e3487b1ab (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Components/Form/QualityProfileSelectInputConnector.js to blob 9a344c009bce54ad269e58122b0ed681d5c323e4 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Components/Form/ProfileSelectInputConnectors.test.cjs to blob 67676fbda2fd9e0b7c98144038e062ff59e0ed3f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Components/Icon.css",
+      "disposition": "ported",
+      "feature": "Icon state color styling",
+      "targetPaths": [
+        "frontend/src/Components/Icon.css"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target keeps the same information and pink icon shade adjustments while using the frontend pipeline\u2019s color() syntax instead of color-mod().",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Components/Icon.css to blob 97edd3ce4f4c870c88ecf24f258cd100dc4954ba. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Components/Icon.css to blob 69ffc40f5fd5411f58fe2a1732b0f91ebe6e13b8. Pinned diff review: both shade operations keep the same theme variables and 30% value; only the CSS color-function spelling changes. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
+    },
+    {
+      "sourcePath": "frontend/src/Components/ProgressBar.css",
+      "disposition": "ported",
+      "feature": "Color-impaired progress-bar styles",
+      "targetPaths": [
+        "frontend/src/Components/ProgressBar.css"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target retains the same striped success/error progress indicators and color operations, updating only from color-mod() to the frontend pipeline\u2019s color() syntax. This records the style port, not pixel-level browser equivalence.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Components/ProgressBar.css to blob d219911db26feb3dcc086f2797453a81f087ca29. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Components/ProgressBar.css to blob b249ca7f5fcccb23e6e6a5f847dfc78c8e1c38b1. Pinned diff review: both gradients preserve the same colors, stops, and angles; only the CSS color-function spelling changes. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
+    },
+    {
+      "sourcePath": "frontend/src/Components/Scroller/Scroller.css",
+      "disposition": "equivalent",
+      "feature": "Scroller overflow behavior",
+      "targetPaths": [
+        "frontend/src/Components/Scroller/Scroller.css"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The destination expands each overflow shorthand into the same explicit horizontal and vertical values, preserving the same clipping and scrolling behavior.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Components/Scroller/Scroller.css to blob 4eda824bb994cb6fd41a880593f9601367353edf. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Components/Scroller/Scroller.css to blob 4dbd395cdf0da594a8853d7a62033b0c8b716fbb. Pinned diff review: hidden maps to hidden/hidden, hidden scroll to hidden/scroll, and scroll hidden to scroll/hidden. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
     },
     {
       "sourcePath": "frontend/src/Content/Images/Icons/android-chrome-192x192.png",
@@ -1412,6 +1467,17 @@
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Search/Book/AddNewBookSearchResult.js to blob da84a26c49e42bb0e8bf94784e1d7455cb3430b9 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Search/Book/AddNewBookSearchResult.js to blob 35a28b3dfe2ada37dc0644e0597c5f0ea40a0678 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Search/Book/AddNewBookSearchResult.cjs to blob 367a4160c5546a0495b8873115c673a8a6d97db3 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Search/Book/AddNewBookSearchResult.css to blob 71dc8fda8b04892af89b60bec5e94cc810295920 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Search/Book/AddNewBookSearchResult.test.cjs to blob 15c87f15ba5a175ed228fba62a2aa43594a7984d (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/Localization/Core/en.json to blob 2d36fcce16b3b2b1d713d17a33e9c1debcb4844b (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
+      "sourcePath": "frontend/src/Settings/Indexers/Indexers/AddIndexerModalContentConnector.js",
+      "disposition": "equivalent",
+      "feature": "Indexer protocol filtering",
+      "targetPaths": [
+        "frontend/src/Settings/Indexers/Indexers/AddIndexerModalContentConnector.js"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The destination replaces a lodash namespace import and _.filter calls with the equivalent named filter import. It applies the same protocol predicates to the same schema array.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Settings/Indexers/Indexers/AddIndexerModalContentConnector.js to blob 60a249265494bf22bca0a76113f09d068f850369. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Settings/Indexers/Indexers/AddIndexerModalContentConnector.js to blob a9bd99d5780ecb416adb581ca7359560a3152fba. Pinned diff review: all three Usenet, Torrent, and Direct filters retain their original predicates and results; only the lodash import/call form changes. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
+    },
+    {
       "sourcePath": "frontend/src/Settings/MediaManagement/MediaManagement.js",
       "disposition": "ported",
       "feature": "New-author format-path settings control",
@@ -1422,6 +1488,17 @@
       "reviewedBy": "Codex (2026-10-21)",
       "rationale": "The destination exposes the disabled-by-default checkbox outside advanced settings and covers both its default and saved value in a frontend test.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Settings/MediaManagement/MediaManagement.js to blob 7596dc3612a4d5a0ffe9e5755fdaf4506a169bc9 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Settings/MediaManagement/MediaManagement.js to blob fc2312532b710fb9ab2e3636bacbf7e997d8aac4 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Settings/MediaManagement/MediaManagement.test.cjs to blob 84fc33a911e61cf4542db5146f7c8421da8d74bc (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Settings/Profiles/Profiles.js",
+      "disposition": "equivalent",
+      "feature": "Profile drag-and-drop setup",
+      "targetPaths": [
+        "frontend/src/Settings/Profiles/Profiles.js"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target only reorders the HTML5toTouch and React DnD imports. Runtime imports and component behavior are unchanged.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Settings/Profiles/Profiles.js to blob 829a2cb1a0984f7bb80276cb29ad2b96a581424e. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Settings/Profiles/Profiles.js to blob 4f12a33fc7656f8e672b7ab8696a2b81ffd58053. Pinned diff review: the file has one import-order hunk and no logic or JSX changes. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
     },
     {
       "sourcePath": "frontend/src/UnmappedFiles/UnmappedFilesTable.js",
