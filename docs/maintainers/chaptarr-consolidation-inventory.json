@@ -21,11 +21,11 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 85,
     "approvedRetirements": 171,
-    "reviewedDispositions": 709,
-    "undispositionedPaths": 410,
+    "reviewedDispositions": 710,
+    "undispositionedPaths": 409,
     "dispositionStates": {
       "retained": 177,
-      "ported": 228,
+      "ported": 229,
       "retired": 171,
       "equivalent": 133
     },
@@ -40,7 +40,7 @@
     },
     "undispositionedFileStates": {
       "no-mapped-target-file": 136,
-      "different-review-required": 274
+      "different-review-required": 273
     }
   },
   "commits": [
@@ -27885,6 +27885,17 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "227fda290d12b2051ee893bcc9f447a5c2ae142d"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Metadata-profile schema fields",
+        "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+        "targetPaths": [
+          "src/Chaptarr.Api.V1/Profiles/Metadata/MetadataProfileSchemaController.cs",
+          "src/Chaptarr.Core.Test/Profiles/Metadata/MetadataProfileControllerFixture.cs"
+        ],
+        "rationale": "ChaptarrNG preserves the metadata-profile schema endpoint and initializes its preferred edition and series fields for new profiles. The focused target fixture calls the schema route and exercises preferred-term serialization. Operator profile migration and live UI acceptance remain open.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Profiles/Metadata/MetadataProfileSchemaController.cs to blob 6e6055222c2d9533541d3a183cc6166b0185977f (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/Profiles/Metadata/MetadataProfileSchemaController.cs to blob 227fda290d12b2051ee893bcc9f447a5c2ae142d (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Profiles/Metadata/MetadataProfileControllerFixture.cs resolves to blob 1c5a99b8eaf8a6f6d5b8e404a400563dc9de1384 (mode 100644). This path disposition does not establish live provider or installed-client acceptance."
       }
     },
     {

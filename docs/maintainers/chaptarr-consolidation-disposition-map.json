@@ -7911,6 +7911,18 @@
       "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
       "rationale": "ChaptarrNG preserves host-configuration endpoints and validates proxy mode/type before saving or testing settings. The focused target controller fixture covers invalid values and legacy proxy-field compatibility. Installed upgrade and operator configuration acceptance remain open.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Config/HostConfigController.cs to blob 2a45bf34f850650bd825e84abc1eec7bf74cd47b (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/Config/HostConfigController.cs to blob 185ea3001a2432c1dc84a89ea564dd8e4d6efffb (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Configuration/HostConfigControllerFixture.cs resolves to blob 270b5c2e5c770ecde79c421176bacca47b29b0a9 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Api.V1/Profiles/Metadata/MetadataProfileSchemaController.cs",
+      "disposition": "ported",
+      "feature": "Metadata-profile schema fields",
+      "targetPaths": [
+        "src/Chaptarr.Api.V1/Profiles/Metadata/MetadataProfileSchemaController.cs",
+        "src/Chaptarr.Core.Test/Profiles/Metadata/MetadataProfileControllerFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG preserves the metadata-profile schema endpoint and initializes its preferred edition and series fields for new profiles. The focused target fixture calls the schema route and exercises preferred-term serialization. Operator profile migration and live UI acceptance remain open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Profiles/Metadata/MetadataProfileSchemaController.cs to blob 6e6055222c2d9533541d3a183cc6166b0185977f (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/Profiles/Metadata/MetadataProfileSchemaController.cs to blob 227fda290d12b2051ee893bcc9f447a5c2ae142d (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Profiles/Metadata/MetadataProfileControllerFixture.cs resolves to blob 1c5a99b8eaf8a6f6d5b8e404a400563dc9de1384 (mode 100644). This path disposition does not establish live provider or installed-client acceptance."
     }
   ]
 }

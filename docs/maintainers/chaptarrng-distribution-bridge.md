@@ -2,7 +2,7 @@
 
 ## Current status — 2026-10-21
 
-**Update (2026-10-21):** ChaptarrNG `main` and application code are at `bebc5e8a`. The source includes the BookshelfNG host migration helper, the disabled-by-default author-path setting with migration support, the format-specific metadata-profile refresh fix, and the corrected Calibre English language tag. Build [39539307423](https://github.com/snapetech-org/chaptarrng/actions/runs/39539307423) has passed Linux, Windows, and PostgreSQL; macOS is building its test assembly. Security analysis, Semgrep, Trivy, dependency submission, and CodeQL passed. The focused profile-refresh fixture passes 5/5 locally; earlier author/migration fixtures pass 11/11 and configuration persistence 1/1. No release or migration bridge has been published, and retirement gates remain open.
+**Update (2026-10-21):** ChaptarrNG `main` and application code are at `bebc5e8a`. The source includes the BookshelfNG host migration helper, the disabled-by-default author-path setting with migration support, the format-specific metadata-profile refresh fix, and the corrected Calibre English language tag. Build [39539307423](https://github.com/snapetech-org/chaptarrng/actions/runs/39539307423) has passed Linux, Windows, and PostgreSQL; macOS is running its test suite. Security analysis, Semgrep, Trivy, dependency submission, and CodeQL passed. The focused profile-refresh fixture passes 5/5 locally; earlier author/migration fixtures pass 11/11 and configuration persistence 1/1. No release or migration bridge has been published, and retirement gates remain open.
 
 BookshelfNG `0.4.21.71` remains the final published release; ChaptarrNG
 `v0.9.977` remains the latest public release. ChaptarrNG PR [#131](https://github.com/snapetech-org/chaptarrng/pull/131)
