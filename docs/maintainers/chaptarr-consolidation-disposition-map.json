@@ -9294,6 +9294,17 @@
       ],
       "rationale": "The ChaptarrNG shell regression covers a valid PPA key and API result, malformed PPA syntax, invalid key material, unavailable API response, and summary redaction. It ran successfully on 2026-10-21.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/validate-release-publisher-config.test.mjs to blob 2134711e4ab8eb86f1e1e2d477612d19e00db349 (mode 100644). Target a96411896655de8d727f5543a95f3544d8789b76 resolves packaging/scripts/test-release-publisher-config.sh to blob 57c2f5c2463d74d704eaf1ccd47e7c7e3c9c04f3 (mode 100755). The source and destination suites were reviewed for equivalent PPA cases. `bash packaging/scripts/test-release-publisher-config.sh` passed locally on 2026-10-21; the test uses a generated key and a mocked API endpoint. The disposition covers publisher configuration validation only; PPA publication and channel acceptance remain open."
+    },
+    {
+      "sourcePath": "scripts/require-bookshelfng-release-ready.sh",
+      "disposition": "ported",
+      "feature": "BookshelfNG release-readiness fail-closed guard",
+      "reviewedBy": "Codex release-readiness contract review (2026-10-21)",
+      "targetPaths": [
+        "packaging/scripts/require-release-readiness.sh"
+      ],
+      "rationale": "ChaptarrNG\u2019s target guard preserves the source BookshelfNG readiness requirement and adds the matching CHAPTARRNG_RELEASE_READY requirement. A release cannot proceed unless both variables are true, so the transition remains fail-closed.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/require-bookshelfng-release-ready.sh to blob 538d1abc50458e9116957c7325d5d56370a04034 (mode 100644). Target a96411896655de8d727f5543a95f3544d8789b76 resolves packaging/scripts/require-release-readiness.sh to blob 33c2cd951437f57117abe91bad17f25832cfa222 (mode 100755). The target guard rejects missing, false, and partial readiness values; `bash packaging/scripts/test-release-readiness-gate.sh` passed locally on 2026-10-21. This validates the publication guard, not external channel acceptance."
     }
   ]
 }

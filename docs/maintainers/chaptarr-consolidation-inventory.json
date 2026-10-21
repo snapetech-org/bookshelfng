@@ -19,27 +19,27 @@
     "commitsNotInUpstreamHistory": 810,
     "netChangedPaths": 1119,
     "uniqueBasenameCandidates": 0,
-    "reviewedMappings": 95,
+    "reviewedMappings": 97,
     "approvedRetirements": 206,
-    "reviewedDispositions": 830,
-    "undispositionedPaths": 289,
+    "reviewedDispositions": 831,
+    "undispositionedPaths": 288,
     "dispositionStates": {
       "retired": 206,
       "retained": 177,
-      "ported": 304,
+      "ported": 305,
       "equivalent": 143
     },
     "fileStates": {
       "approved-retirement": 206,
-      "different-review-required": 493,
+      "different-review-required": 495,
       "identical": 177,
-      "no-mapped-target-file": 121,
+      "no-mapped-target-file": 119,
       "code-equivalent-after-csharp-trivia-normalization": 118,
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "different-review-required": 218,
-      "no-mapped-target-file": 71
+      "different-review-required": 219,
+      "no-mapped-target-file": 69
     }
   },
   "commits": [
@@ -22824,13 +22824,33 @@
     },
     {
       "sourcePath": "scripts/require-bookshelfng-release-ready.sh",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "packaging/scripts/require-release-readiness.sh",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "538d1abc50458e9116957c7325d5d56370a04034"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100755",
+        "oid": "33c2cd951437f57117abe91bad17f25832cfa222"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex release-readiness review (2026-10-21)",
+        "targetPath": "packaging/scripts/require-release-readiness.sh",
+        "rationale": "Maps the legacy single-flag BookshelfNG publishing guard to ChaptarrNG\u2019s dual-readiness guard. The target also requires CHAPTARRNG_RELEASE_READY, keeping publication closed until both sides of retirement readiness are accepted.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/require-bookshelfng-release-ready.sh to blob 538d1abc50458e9116957c7325d5d56370a04034 (mode 100644). Target a96411896655de8d727f5543a95f3544d8789b76 resolves packaging/scripts/require-release-readiness.sh to blob 33c2cd951437f57117abe91bad17f25832cfa222 (mode 100755). The legacy fail-closed guard is superseded by the target guard, which also requires ChaptarrNG readiness. Target release-readiness regression passed locally on 2026-10-21."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "BookshelfNG release-readiness fail-closed guard",
+        "reviewedBy": "Codex release-readiness contract review (2026-10-21)",
+        "targetPaths": [
+          "packaging/scripts/require-release-readiness.sh"
+        ],
+        "rationale": "ChaptarrNG\u2019s target guard preserves the source BookshelfNG readiness requirement and adds the matching CHAPTARRNG_RELEASE_READY requirement. A release cannot proceed unless both variables are true, so the transition remains fail-closed.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/require-bookshelfng-release-ready.sh to blob 538d1abc50458e9116957c7325d5d56370a04034 (mode 100644). Target a96411896655de8d727f5543a95f3544d8789b76 resolves packaging/scripts/require-release-readiness.sh to blob 33c2cd951437f57117abe91bad17f25832cfa222 (mode 100755). The target guard rejects missing, false, and partial readiness values; `bash packaging/scripts/test-release-readiness-gate.sh` passed locally on 2026-10-21. This validates the publication guard, not external channel acceptance."
+      }
     },
     {
       "sourcePath": "scripts/security-scan-local.sh",
@@ -22889,13 +22909,23 @@
     },
     {
       "sourcePath": "scripts/test-bookshelfng-release-readiness-gate.sh",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "packaging/scripts/test-release-readiness-gate.sh",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c8895727cfa6a4a168c4b8eaf42256fef5b75eeb"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "85dec10892d21218deb305af92398f60f1e687f2"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex release-readiness review (2026-10-21)",
+        "targetPath": "packaging/scripts/test-release-readiness-gate.sh",
+        "rationale": "Maps the shared readiness-gate assertions to ChaptarrNG\u2019s target tests. The source additionally checks the BookshelfNG-owned bridge workflow; that sender-side contract remains a separate open channel gate.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/test-bookshelfng-release-readiness-gate.sh to blob c8895727cfa6a4a168c4b8eaf42256fef5b75eeb (mode 100644). Target a96411896655de8d727f5543a95f3544d8789b76 resolves packaging/scripts/test-release-readiness-gate.sh to blob 85dec10892d21218deb305af92398f60f1e687f2 (mode 100644). The ChaptarrNG test covers the dual gate and all target publishing workflows. It does not replace BookshelfNG\u2019s bridge-workflow checks. Target release-readiness regression passed locally on 2026-10-21."
+      }
     },
     {
       "sourcePath": "scripts/test-bookshelfng-to-chaptarrng.sh",

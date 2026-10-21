@@ -802,6 +802,22 @@
       "reviewedBy": "Codex source-to-target path review (2026-10-21)",
       "rationale": "Maps the source publisher-preflight regression suite to ChaptarrNG\u2019s shell suite. The destination covers valid key import, PPA syntax, API lookup success/failure, and secret-safe output.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/validate-release-publisher-config.test.mjs to blob 2134711e4ab8eb86f1e1e2d477612d19e00db349 (mode 100644). Target a96411896655de8d727f5543a95f3544d8789b76 resolves packaging/scripts/test-release-publisher-config.sh to blob 57c2f5c2463d74d704eaf1ccd47e7c7e3c9c04f3 (mode 100755). The destination regression passed locally on 2026-10-21 with a generated signing key and mocked Launchpad API."
+    },
+    {
+      "sourcePath": "scripts/require-bookshelfng-release-ready.sh",
+      "decision": "map",
+      "targetPath": "packaging/scripts/require-release-readiness.sh",
+      "reviewedBy": "Codex release-readiness review (2026-10-21)",
+      "rationale": "Maps the legacy single-flag BookshelfNG publishing guard to ChaptarrNG\u2019s dual-readiness guard. The target also requires CHAPTARRNG_RELEASE_READY, keeping publication closed until both sides of retirement readiness are accepted.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/require-bookshelfng-release-ready.sh to blob 538d1abc50458e9116957c7325d5d56370a04034 (mode 100644). Target a96411896655de8d727f5543a95f3544d8789b76 resolves packaging/scripts/require-release-readiness.sh to blob 33c2cd951437f57117abe91bad17f25832cfa222 (mode 100755). The legacy fail-closed guard is superseded by the target guard, which also requires ChaptarrNG readiness. Target release-readiness regression passed locally on 2026-10-21."
+    },
+    {
+      "sourcePath": "scripts/test-bookshelfng-release-readiness-gate.sh",
+      "decision": "map",
+      "targetPath": "packaging/scripts/test-release-readiness-gate.sh",
+      "reviewedBy": "Codex release-readiness review (2026-10-21)",
+      "rationale": "Maps the shared readiness-gate assertions to ChaptarrNG\u2019s target tests. The source additionally checks the BookshelfNG-owned bridge workflow; that sender-side contract remains a separate open channel gate.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/test-bookshelfng-release-readiness-gate.sh to blob c8895727cfa6a4a168c4b8eaf42256fef5b75eeb (mode 100644). Target a96411896655de8d727f5543a95f3544d8789b76 resolves packaging/scripts/test-release-readiness-gate.sh to blob 85dec10892d21218deb305af92398f60f1e687f2 (mode 100644). The ChaptarrNG test covers the dual gate and all target publishing workflows. It does not replace BookshelfNG\u2019s bridge-workflow checks. Target release-readiness regression passed locally on 2026-10-21."
     }
   ]
 }
