@@ -7544,6 +7544,113 @@
       "reviewedBy": "Codex source-and-fixture review (2026-10-21)",
       "rationale": "BookshelfNG corrected Calibre language tag `e` to map to English (`eng`); ChaptarrNG had retained an incorrect `eee` mapping. The target now matches the current BookshelfNG map, and the focused fixture asserts that `e` canonicalizes to `eng`.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Calibre/Languages/name_map.json to blob 88e64e8ab60afb0d6b83b0f94d070b8800e71f35 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Calibre/Languages/name_map.json to blob 9200a01d5e62b93a91d9e3fcc6b55b89f027ada9 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Core.Test/Books/RefreshBookServiceEditionLanguageFilterFixture.cs to blob cd64dc52d0e7a43d4b0f72c81a722e52ade6c08f (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Model/Edition.cs",
+      "disposition": "ported",
+      "feature": "Edition metadata and user-selected edition state",
+      "targetPaths": [
+        "src/NzbDrone.Core/Books/Model/Edition.cs",
+        "src/Chaptarr.Core.Test/Books/EditionUseMetadataFromConvergenceFixture.cs",
+        "src/Chaptarr.Core.Test/Books/EditionPinPolicyFixture.cs",
+        "src/Chaptarr.Core.Test/Books/EditionSelectorInvariantFixture.cs",
+        "src/Chaptarr.Core.Test/Books/EditionRetentionSelectorFixture.cs",
+        "src/Chaptarr.Core.Test/Books/BookServiceGetBooksLoadsEditionsFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG retains the source edition identity, metadata, monitoring, and manual-add fields while extending the model with format-specific identifiers, audiobook chapters, narrator credits, and safer provider-metadata convergence. The target fixtures cover metadata refresh convergence, manual edition pins, selector invariants, retained edition policy, and loading editions with books. The model now uses a direct BookFiles list and a LazyBook wrapper, so this is a port into ChaptarrNG\u2019s richer edition/catalog model rather than identical storage semantics; representative provider and database acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Model/Edition.cs to blob 87563a457f028b9e00d40792b82748115bfb2907 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Model/Edition.cs to blob e930f5843d5dbec1b85c6484ca7b4d8c9e3d47e2 (mode 100644); the pinned target fixtures resolve respectively to blobs f4b3210188b9b54ab84fd70f36d45ba43c72501c, cb5f35f966484bfe9970d437dfa998862103b3dd, 3e9c1ead2f914d20a669c493563af71c70531760, 2f73a9b9dfc753c831bbc862657188b68f724837, and 85b80c2a0ac058328bc63a7e00b7295a672b6566 (all mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Model/Author.cs",
+      "disposition": "ported",
+      "feature": "Author profiles, roots, and format-scoped monitoring",
+      "targetPaths": [
+        "src/Chaptarr.Core.Test/Books/AuthorServiceDefaultRootFoldersFixture.cs",
+        "src/Chaptarr.Core.Test/Books/AuthorServiceLookupHydrationFixture.cs",
+        "src/Chaptarr.Core.Test/Books/AuthorServiceMonitoredConsistencyFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG retains author identity and core state while splitting quality, metadata-profile, root-folder, tag, and monitoring decisions by audiobook or ebook media type. The target tests cover default-root application, lookup hydration, and monitoring consistency. This ports the author model into ChaptarrNG\u2019s separate-format records; representative operator acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Model/Author.cs to blob 065abddeab39132fdbdf89a615c676b0a5f28d5f (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Model/Author.cs to blob 639d1391338c631bdf89390326a91afdd9a6156d (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/AuthorServiceDefaultRootFoldersFixture.cs resolves to blob 9cb0de87e082c9c41c4c33cb4d2e131a2c66126b (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/AuthorServiceLookupHydrationFixture.cs resolves to blob 20711b97ea78814f956f8f8e45c9ace75aa28fb1 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/AuthorServiceMonitoredConsistencyFixture.cs resolves to blob ce1c63654a389662919da938cb5d9df22bed16ab (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Services/AddBookService.cs",
+      "disposition": "ported",
+      "feature": "Adding books and selecting editions",
+      "targetPaths": [
+        "src/Chaptarr.Core.Test/Books/AddBookServiceAutoEditionSelectionFixture.cs",
+        "src/Chaptarr.Core.Test/Books/BookServiceAddBookTriggersFormatSyncFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG retains the add-books workflow as an asynchronous service and layers automatic edition selection and format-specific monitoring synchronization into it. Target fixtures cover automatic edition selection and the format-sync side effect after add; representative provider and operator-data acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/AddBookService.cs to blob 794a5b4a4697044cb16f7614ccc5bc700e170dbc (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Services/AddBookService.cs to blob 15e76034b9845d8216083fbdd48a2612715ad486 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/AddBookServiceAutoEditionSelectionFixture.cs resolves to blob 8c1c9a1676fbccc9ae38ef8a9ca9ee044d42a100 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookServiceAddBookTriggersFormatSyncFixture.cs resolves to blob 022be30f71a2995eebc03d490587ad6d875cd1a5 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Services/AuthorService.cs",
+      "disposition": "ported",
+      "feature": "Author lifecycle and format-aware author operations",
+      "targetPaths": [
+        "src/Chaptarr.Core.Test/Books/AuthorServiceDefaultRootFoldersFixture.cs",
+        "src/Chaptarr.Core.Test/Books/AuthorServiceLookupHydrationFixture.cs",
+        "src/Chaptarr.Core.Test/Books/AuthorServiceMonitoredConsistencyFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG preserves the author add, delete, lookup, and update lifecycle while extending it for per-format roots, metadata profiles, monitoring, and cached book access. Target fixtures exercise root defaults, lookup hydration, and monitoring consistency; delete and real-library acceptance remain open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/AuthorService.cs to blob 9c70a91afd537164f9e0e4abac7994a1ea4f436b (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Services/AuthorService.cs to blob 95af04c835e28c3f15b1f2660308a587b1f1f248 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/AuthorServiceDefaultRootFoldersFixture.cs resolves to blob 9cb0de87e082c9c41c4c33cb4d2e131a2c66126b (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/AuthorServiceLookupHydrationFixture.cs resolves to blob 20711b97ea78814f956f8f8e45c9ace75aa28fb1 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/AuthorServiceMonitoredConsistencyFixture.cs resolves to blob ce1c63654a389662919da938cb5d9df22bed16ab (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Services/BookService.cs",
+      "disposition": "ported",
+      "feature": "Book lifecycle, lookup, and edition selection",
+      "targetPaths": [
+        "src/Chaptarr.Core.Test/Books/BookServiceGetBooksLoadsEditionsFixture.cs",
+        "src/Chaptarr.Core.Test/Books/BookServiceActiveEditionSelectionFixture.cs",
+        "src/Chaptarr.Core.Test/Books/BookServiceFormatMonitoringSyncFixture.cs",
+        "src/Chaptarr.Core.Test/Books/BookServiceUpdateBookRelinksPinnedEditionFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG preserves book creation and lifecycle operations while adding provider-ID lookups, format-scoped monitoring, edition loading, and pinned-edition relinking. Target fixtures cover loading editions with books, active edition selection, format monitoring synchronization, and pinned-edition relinking. Provider and representative-library acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/BookService.cs to blob 6aaaa55fcf4c4753d991d526c5251da0ef21963f (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Services/BookService.cs to blob 59d3c10f74fdc93382e013c43573cba9fb8f9ee7 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookServiceGetBooksLoadsEditionsFixture.cs resolves to blob 85b80c2a0ac058328bc63a7e00b7295a672b6566 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookServiceActiveEditionSelectionFixture.cs resolves to blob 7071babb51d484c766caf0239f85c6f0cb36353c (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookServiceFormatMonitoringSyncFixture.cs resolves to blob 46249d3e2741d5028e3153b770e9bee97d969dc1 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookServiceUpdateBookRelinksPinnedEditionFixture.cs resolves to blob c1442908a0c70ba2ff8bbc03daabc5bc79382811 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Services/RefreshAuthorService.cs",
+      "disposition": "ported",
+      "feature": "Author refresh and child-book reconciliation",
+      "targetPaths": [
+        "src/Chaptarr.Core.Test/Books/RefreshAuthorServiceActiveEditionSelectionFixture.cs",
+        "src/Chaptarr.Core.Test/Books/RefreshAuthorServiceMonitoringFixture.cs",
+        "src/Chaptarr.Core.Test/Books/RefreshAuthorServiceBulkDiffFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG continues the author refresh and child reconciliation workflow while handling format-specific monitoring, active editions, bulk diffs, and split or merged records. Target fixtures cover active-edition selection, monitoring, and bulk-diff behavior. Live provider and representative-library acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/RefreshAuthorService.cs to blob 17e7516741c0e27ddeeaea81d2bd1f6c523ea582 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Services/RefreshAuthorService.cs to blob 116c1006fef8bb4e96c3e6978324318dfccfad60 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/RefreshAuthorServiceActiveEditionSelectionFixture.cs resolves to blob 7e6916a35dcbb57863ef6bd787499f7046aa717b (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/RefreshAuthorServiceMonitoringFixture.cs resolves to blob 2b7bf7a11cb55a9269a6497e1dfbede09156ebdf (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/RefreshAuthorServiceBulkDiffFixture.cs resolves to blob ff0716405ade7644d5df00cc75cf522fefee9724 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Services/RefreshBookService.cs",
+      "disposition": "ported",
+      "feature": "Book and edition metadata refresh",
+      "targetPaths": [
+        "src/Chaptarr.Core.Test/Books/RefreshBookServiceMergeEditionSelectionFixture.cs",
+        "src/Chaptarr.Core.Test/Books/RefreshBookServiceIdempotentUpdateFixture.cs",
+        "src/Chaptarr.Core.Test/Books/RefreshBookServiceEditionLanguageFilterFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG retains the book and edition refresh flow while adding stable matching, selected-edition preservation, provider normalization, and language filtering. Target fixtures cover merge selection, idempotent updates, and edition-language filtering. Live provider and representative-data acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/RefreshBookService.cs to blob 1fa5ba5ec0dcf346850d2a69ec02e97610923a76 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Services/RefreshBookService.cs to blob 763b4e60f01ffbe5502b98c82cd18107c3567ea2 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/RefreshBookServiceMergeEditionSelectionFixture.cs resolves to blob fe8f551224e6c00b123c222c76178b320cf84475 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/RefreshBookServiceIdempotentUpdateFixture.cs resolves to blob 1acb4bd921d31d51180bb0fed4ed7772fb2a73de (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/RefreshBookServiceEditionLanguageFilterFixture.cs resolves to blob cd64dc52d0e7a43d4b0f72c81a722e52ade6c08f (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Services/SeriesService.cs",
+      "disposition": "ported",
+      "feature": "Series lookup and media-type scoping",
+      "targetPaths": [
+        "src/Chaptarr.Core.Test/Books/MultiCopySeriesServiceMediaTypeFixture.cs",
+        "src/Chaptarr.Core.Test/Books/SeriesImportProviderIdentityFixture.cs",
+        "src/Chaptarr.Core.Test/Books/RefreshSeriesServiceExistingSeriesFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG retains series lookup and persistence while adding media-type-scoped lookup for the separate audiobook and ebook catalogs. Target fixtures cover media-type-aware series copies, import-provider identity, and refresh of existing series. Provider and representative-library acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/SeriesService.cs to blob 35182a061683df25ebfc7762f7038196b378c1f9 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Services/SeriesService.cs to blob b3cbf55583ebf2c3deb0fb2e138b2b4486410d59 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/MultiCopySeriesServiceMediaTypeFixture.cs resolves to blob 282c9e72e93c41b65907c5c20c9149227c7dab7b (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/SeriesImportProviderIdentityFixture.cs resolves to blob b8a96832b9363e7070562d42fabc5c14a6b4cc7c (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/RefreshSeriesServiceExistingSeriesFixture.cs resolves to blob 395c34850dab0fba518c958b0cdb379829ef70c8 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
     }
   ]
 }
