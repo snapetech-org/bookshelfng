@@ -21,13 +21,13 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 98,
     "approvedRetirements": 206,
-    "reviewedDispositions": 765,
-    "undispositionedPaths": 354,
+    "reviewedDispositions": 768,
+    "undispositionedPaths": 351,
     "dispositionStates": {
       "retained": 177,
-      "ported": 249,
+      "ported": 250,
       "retired": 206,
-      "equivalent": 133
+      "equivalent": 135
     },
     "fileStates": {
       "no-mapped-target-file": 140,
@@ -40,7 +40,7 @@
     },
     "undispositionedFileStates": {
       "no-mapped-target-file": 93,
-      "different-review-required": 261
+      "different-review-required": 258
     }
   },
   "commits": [
@@ -15680,6 +15680,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "691bf44c21fd1eb019d783e661b148ff87182ee7"
+      },
+      "reviewedDisposition": {
+        "disposition": "equivalent",
+        "feature": "Format-aware single-author media-move preview and confirmation UI",
+        "reviewedBy": "Codex line-by-line frontend review (2026-10-21)",
+        "targetPaths": [
+          "frontend/src/Author/Edit/AuthorMediaMoveControl.js"
+        ],
+        "rationale": "The BookshelfNG and ChaptarrNG implementations are line-equivalent. Differences are JSX formatting and brace-wrapped glyphs only; state, requests, preview confirmation, conflicts, and status handling are unchanged. This disposition covers source behavior only; there is no dedicated browser fixture for these controls, and real-library UI acceptance remains open.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Author/Edit/AuthorMediaMoveControl.js to blob e8bb59c5e624b9c7f4a5ba731ca449feb0e65a6b (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves frontend/src/Author/Edit/AuthorMediaMoveControl.js to blob 691bf44c21fd1eb019d783e661b148ff87182ee7 (mode 100644). Line-by-line comparison found only multiline JSX formatting and wrapping the visible arrow glyph in an expression."
       }
     },
     {
@@ -15772,6 +15782,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "6be3ff8d0d7e6f8b548a664aefa49d29c153cdad"
+      },
+      "reviewedDisposition": {
+        "disposition": "equivalent",
+        "feature": "Format-aware bulk-author media-move preview and confirmation UI",
+        "reviewedBy": "Codex line-by-line frontend review (2026-10-21)",
+        "targetPaths": [
+          "frontend/src/Author/Editor/BulkAuthorMediaMoveModal.js"
+        ],
+        "rationale": "The BookshelfNG and ChaptarrNG implementations are line-equivalent. Differences are JSX formatting and brace-wrapped glyphs only; state, requests, preview confirmation, conflicts, and status handling are unchanged. This disposition covers source behavior only; there is no dedicated browser fixture for these controls, and real-library UI acceptance remains open.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Author/Editor/BulkAuthorMediaMoveModal.js to blob 7c4e1d7cf3fc19effadf7dd387932c605e9636dd (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves frontend/src/Author/Editor/BulkAuthorMediaMoveModal.js to blob 6be3ff8d0d7e6f8b548a664aefa49d29c153cdad (mode 100644). Line-by-line comparison found only multiline JSX formatting and wrapping the visible arrow glyph in an expression."
       }
     },
     {
@@ -28003,6 +28023,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "cdb81f1e30bc9d8034b58f3e817b8b5f27f34a7a"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Format-scoped preview-and-confirm author-media move API",
+        "reviewedBy": "Codex semantic-and-code review (2026-10-21)",
+        "targetPaths": [
+          "src/Chaptarr.Api.V1/Author/AuthorMediaMoveController.cs"
+        ],
+        "rationale": "The BookshelfNG controller routes single and batch preview/start operations, requires and revalidates preview tokens, rejects stale previews, preserves the requested media format, and builds the corresponding commands. The ChaptarrNG controller carries the same behavior; controller code is line-equivalent after mapping product namespaces and import ordering. Service behavior has focused target tests; browser, real-library, and installed-channel acceptance remain separate gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Author/AuthorMediaMoveController.cs to blob f133fb758817783fdf103eed99574523b42b012a (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Chaptarr.Api.V1/Author/AuthorMediaMoveController.cs to blob cdb81f1e30bc9d8034b58f3e817b8b5f27f34a7a (mode 100644). Replacing the source namespace roots Readarr.Api.V1 and Readarr.Http with Chaptarr.Api.V1 and Chaptarr.Http and disregarding using-directive order makes the implementations line-equivalent. This supports a code port, not browser, real-library, or installed-channel acceptance."
       }
     },
     {
