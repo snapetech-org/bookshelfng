@@ -7460,6 +7460,42 @@
       "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
       "rationale": "ChaptarrNG retains the native migration path and adds explicit BookshelfNG conversion, source-chain, preview, restore, SQLite, and candidate PostgreSQL routing. Focused converter/importer fixtures cover staging, source preservation, fail-closed behavior, and rollback. This source-level disposition does not establish populated operator-data, installed-channel, or production rollback acceptance.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob 9031640234280e168cf27096d5115ba6d6ae3fac (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob fdd2f8e403c1175c5f2f50fbcf75d9a661707790 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseConverterFixture.cs to blob cfb21c7651aac98aab52666aacaca4c48a8a06f3 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/BookshelfPostgresDatabaseConverterFixture.cs to blob 19337cce3ed9efa3acd666ef95e00cc087e422d9 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Datastore/MigrationLineageReconciliationFixture.cs to blob a48581d626e738a99ab77b02f5d52d7727132774 (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Handlers/BookAddedHandler.cs",
+      "disposition": "ported",
+      "feature": "Bookshelf book-added refresh and folder scan",
+      "targetPaths": [
+        "src/NzbDrone.Core/Books/Handlers/BookAddedHandler.cs",
+        "src/Chaptarr.Core.Test/Books/BookAddedHandlerFixture.cs"
+      ],
+      "reviewedBy": "Codex source-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG keeps the DoRefresh gate and author freshness check, tolerates a missing author relationship, separates metadata refresh from the folder rescan, and retains the scan when metadata is current. The focused fixture covers stale and recent authors, a missing relationship, and suppressed events.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Handlers/BookAddedHandler.cs to blob 3f0120d530883ed3604eee7d557329736d21dfa3 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Books/Handlers/BookAddedHandler.cs to blob 965016f75986f8dad7eaccaa90f1b65751130513 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Books/BookAddedHandlerFixture.cs to blob c2314b7cf5952145b2b2e5a209c02756f2d67402 (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Services/AuthorMediaMoveService.cs",
+      "disposition": "ported",
+      "feature": "Bookshelf format-scoped author media moves",
+      "targetPaths": [
+        "src/NzbDrone.Core/Books/Services/AuthorMediaMoveService.cs",
+        "src/Chaptarr.Core.Test/Books/AuthorMediaMoveServiceFixture.cs"
+      ],
+      "reviewedBy": "Codex source-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG extends this service to format-scoped ebook and audiobook moves, registered sidecars, path containment, previews, conflict detection, and catalog path updates. The focused fixture covers format selection, sidecars, bulk preview, conflicts, a sidecar escape attempt, and source changes after preview.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/AuthorMediaMoveService.cs to blob c62cdbe36ba0da1613212cd4f5b4c9e78c096582 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Books/Services/AuthorMediaMoveService.cs to blob 027bbd4ee1e183a7aedfd0b96348578e40443a32 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Books/AuthorMediaMoveServiceFixture.cs to blob ce0ee738f0c0b8840fc178665ea065a5577ad27c (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Utilities/ShouldRefreshAuthor.cs",
+      "disposition": "ported",
+      "feature": "Bookshelf author refresh eligibility",
+      "targetPaths": [
+        "src/NzbDrone.Core/Books/Utilities/ShouldRefreshAuthor.cs",
+        "src/Chaptarr.Core.Test/Books/ShouldRefreshNullLastInfoSyncFixture.cs"
+      ],
+      "reviewedBy": "Codex source-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG preserves the 30-day stale-author and 2-day continuing-author refresh thresholds while using the current Author.Status model and explicitly refreshing records with no LastInfoSync. The focused fixture covers the never-refreshed author case and the analogous book case.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Utilities/ShouldRefreshAuthor.cs to blob ae0066e172462d2fbe71729ebdd396b2e38a9cff (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Books/Utilities/ShouldRefreshAuthor.cs to blob bb261126f144810f765e6ed1f1c36d3aaf3398bd (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Books/ShouldRefreshNullLastInfoSyncFixture.cs to blob 02b7ed7f5df48d4503103417e9b295dd9231b438 (mode 100644). This source-level disposition does not establish representative-data or installed acceptance."
     }
   ]
 }
