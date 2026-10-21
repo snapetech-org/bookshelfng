@@ -8788,6 +8788,343 @@
       "reviewedBy": "Codex (2026-10-21)",
       "rationale": "The target preserves the source contracts for main-only push validation, hosted runners, and Linux browser dependencies, and expands them for the platform matrix, edited-PR note revalidation, PR-head fetch, retained pull refs, receipt ordering, and the frontend build boundary.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/test_workflow_runner_policy.py to blob 24ef6ce5e8e4df1cc5f19fe7a83fca9899a170cf (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 resolves scripts/test_workflow_runner_policy.py to blob 639482e75d1b80d6b769d239eb9ef59221d2b945 (mode 100644). The pinned source resolves this path to blob 24ef6ce5e8e4df1cc5f19fe7a83fca9899a170cf; ChaptarrNG target resolves the same path to blob 639482e75d1b80d6b769d239eb9ef59221d2b945. Its seven tests include direct counterparts for all three BookshelfNG checks plus additional ChaptarrNG workflow contracts. This path-level review is not operator-data or installed-channel acceptance."
+    },
+    {
+      "sourcePath": ".github/cliff.toml",
+      "disposition": "retired",
+      "feature": "BookshelfNG git-cliff release-note configuration",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This is repository-specific release-note presentation for BookshelfNG tags. ChaptarrNG maintains its own release-note generator and release configuration, so this Bookshelf-branded config has no user-facing runtime behavior and is not copied into the replacement. Preserve it in BookshelfNG history until the gated retirement; this retires only the old repository configuration.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .github/cliff.toml to blob 8a74996830f8b5fe8b913647d9957a518acf5f70 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records the approved non-runtime retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": ".github/dependabot.yml",
+      "disposition": "retired",
+      "feature": "BookshelfNG dependency-update configuration",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This config scopes dependency update automation to BookshelfNG manifests and packaging. ChaptarrNG has its own dependency-update configuration for its current project tree. The BookshelfNG file is repository maintenance automation, not runtime or migration behavior; retire this file from the future replacement while preserving the source history.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .github/dependabot.yml to blob a3b4974fc1aad6f4a8f58393bf167510b3d59c37 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records the approved non-runtime retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": ".github/workflows/build.yml",
+      "disposition": "retired",
+      "feature": "BookshelfNG continuous-integration workflow",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This workflow builds and validates the BookshelfNG source tree and release tags. ChaptarrNG has its own build workflow for the maintained destination tree; the BookshelfNG workflow is project-specific CI, not a user-facing capability or migration component. Retire the source workflow from the future replacement while preserving its history.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .github/workflows/build.yml to blob 5fc98c10732744bdf769c2b66efd094d97fcf9eb (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records the approved non-runtime retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": ".github/workflows/fork-safe-validation.yml",
+      "disposition": "retired",
+      "feature": "BookshelfNG fork-safe packaging validation workflow",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This workflow validates BookshelfNG-specific package and static-release inputs for fork pull requests. ChaptarrNG has its own fork-safe release-note validation and build gates for its project tree. This is repository-specific maintainer automation, not runtime or migration behavior; retire the BookshelfNG version while preserving its source history.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .github/workflows/fork-safe-validation.yml to blob dfde663c8ade6c4819a37d173be446b1c9cd80c3 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records the approved non-runtime retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": ".github/workflows/public-fork-pr.yml",
+      "disposition": "retired",
+      "feature": "BookshelfNG public-fork pull-request workflow",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This workflow dispatches BookshelfNG-specific validation for public fork pull requests. ChaptarrNG keeps its own public-fork workflow for the maintained destination repository. The BookshelfNG workflow is repository automation only and has no runtime or migration behavior; retire it from the future replacement while preserving its history.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .github/workflows/public-fork-pr.yml to blob 137c21cffa67c9d50f4acc6963cfb28b141e391e (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records the approved non-runtime retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": ".github/workflows/security.yml",
+      "disposition": "retired",
+      "feature": "BookshelfNG dependency-review workflow",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This workflow runs repository-specific dependency review for BookshelfNG pull requests. ChaptarrNG owns its current security and dependency-review workflows. No BookshelfNG runtime behavior or user data depends on this file; retire the old repository workflow from the future replacement while preserving its history.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .github/workflows/security.yml to blob e2abe7948d6a6783da34fd5cc5aca3470e53965a (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records the approved non-runtime retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/android-chrome-192x192.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/android-chrome-192x192.png to blob a0966b40bd97ea3ef36643560fe9d773f23bfd9c (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has destination-owned artwork at frontend/src/Content/Images/Icons/android-chrome-192x192.png (blob 96f2cf59fbf88f5768c680daeb3864108892f7da); the source branding is intentionally retired with no target mapping. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/android-chrome-512x512.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/android-chrome-512x512.png to blob a09143e27e8b8064588cb24c372003a91c6c73a6 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has destination-owned artwork at frontend/src/Content/Images/Icons/android-chrome-512x512.png (blob b71d9bcff2b89b1d75332c4ec8b4dbec7277a01b); the source branding is intentionally retired with no target mapping. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/apple-touch-icon.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/apple-touch-icon.png to blob 2c97c2cf25eec3945d8771ad0b228f59c2990e0f (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has destination-owned artwork at frontend/src/Content/Images/Icons/apple-touch-icon.png (blob 48eaa2d47c1cd5c1f12685a07aea39c3348a1326); the source branding is intentionally retired with no target mapping. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/favicon-16x16.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/favicon-16x16.png to blob 8bb2997cb4caf8303498f038fd61208a1a030396 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has destination-owned artwork at frontend/src/Content/Images/Icons/favicon-16x16.png (blob 64ac0ab08d0bd3a4b2131de2b463d9213ca1b018); the source branding is intentionally retired with no target mapping. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/favicon-32x32.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/favicon-32x32.png to blob db1f5dd73b52d9e8591e243ead3c592bcf3f0ec1 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has destination-owned artwork at frontend/src/Content/Images/Icons/favicon-32x32.png (blob 28f7d61e816c38eccc05eeb68ac26180d455305c); the source branding is intentionally retired with no target mapping. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/favicon-debug-16x16.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/favicon-debug-16x16.png to blob 9ff7c4d186b184a12c7c2dad5e1c0cf588b1fd98 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has no matching legacy brand asset; this non-runtime asset is retired with no target path. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/favicon-debug-32x32.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/favicon-debug-32x32.png to blob b47033905eff915ddf8b33be9a60995c0ad7a28c (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has no matching legacy brand asset; this non-runtime asset is retired with no target path. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/favicon-debug.ico",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/favicon-debug.ico to blob 25094faaf4315f253e10810947143ac56fef6316 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has no matching legacy brand asset; this non-runtime asset is retired with no target path. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/favicon.ico",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/favicon.ico to blob 797199b00cc264fc0d810ac1718cdc2c8100029c (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has destination-owned artwork at frontend/src/Content/Images/Icons/favicon.ico (blob 457062111b4d7ce51eabd4115ceacd58b958d487); the source branding is intentionally retired with no target mapping. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/mstile-144x144.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/mstile-144x144.png to blob a3bb8ec2049db808a8d65df27b30b2981e9c0a15 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has no matching legacy brand asset; this non-runtime asset is retired with no target path. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/mstile-150x150.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/mstile-150x150.png to blob 6d2fe537c10355fffee956e11419b534cb379bcd (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has destination-owned artwork at frontend/src/Content/Images/Icons/mstile-150x150.png (blob e1fc877d0a91f6d4a555c78e96bb23b28ac5ac73); the source branding is intentionally retired with no target mapping. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/mstile-310x150.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/mstile-310x150.png to blob c1a2a311c38d27c32a9940c78a4ba44f392b68f5 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has no matching legacy brand asset; this non-runtime asset is retired with no target path. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/mstile-310x310.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/mstile-310x310.png to blob d6d61f827cf8de1da1e9322b3e6412873cc37c09 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has no matching legacy brand asset; this non-runtime asset is retired with no target path. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/Icons/mstile-70x70.png",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/Icons/mstile-70x70.png to blob 5c830269bce948e2981529b82139bbec4cc88e68 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has no matching legacy brand asset; this non-runtime asset is retired with no target path. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Content/Images/logo.svg",
+      "disposition": "retired",
+      "feature": "BookshelfNG browser/PWA branding artwork",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/logo.svg to blob 821f74d17574a6ae50441d6383c8aa29fc29f56a (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 has destination-owned artwork at frontend/src/Content/Images/logo.svg (blob 7c3179cc4669cba995a74687cf9dc0f4ff05c914); the source branding is intentionally retired with no target mapping. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": ".dockerignore",
+      "disposition": "retired",
+      "feature": "BookshelfNG Docker build exclusions",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "These exclusions belong to the legacy BookshelfNG Docker build context. ChaptarrNG maintains its own container build and ignore rules; the Bookshelf-specific file is repository build configuration, not runtime or migration behavior. Retire this file from the replacement while preserving history.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .dockerignore to blob b0e2a5f9e65eebc27a5c23ec85760a3bea4a0cd6 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records this approved repository-tooling retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": ".gitignore",
+      "disposition": "retired",
+      "feature": "BookshelfNG repository ignore rules",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "Ignore patterns are tied to BookshelfNG output and tooling. ChaptarrNG owns its own ignore rules for the maintained tree. This file has no effect on installed behavior or migration and is not carried into the drop-in replacement.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .gitignore to blob 4dd2a2c35a9930f5268a4736fd9d35df4b517812 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records this approved repository-tooling retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "build.sh",
+      "disposition": "retired",
+      "feature": "BookshelfNG developer build wrapper",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This wrapper builds the legacy BookshelfNG source tree and toolchain. ChaptarrNG uses its own .NET 10 build workflow and project layout; no user-facing behavior depends on this source-only helper. Retire the Bookshelf wrapper while preserving its history.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves build.sh to blob 4ea78fadf7ff57c34f0dab94e27bc3ee7ecf575c (mode 100755). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records this approved repository-tooling retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "mise.toml",
+      "disposition": "retired",
+      "feature": "BookshelfNG developer tool-version manifest",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file pins the developer toolchain for the BookshelfNG repository. ChaptarrNG maintains its own toolchain and build matrix. The manifest does not ship with the application or participate in migration, so it is retired from the replacement.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves mise.toml to blob 3fc6d50220902b345a64d219a3e0abde023f99aa (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records this approved repository-tooling retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "test.sh",
+      "disposition": "retired",
+      "feature": "BookshelfNG developer test wrapper",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This script runs tests for the legacy BookshelfNG solution layout. ChaptarrNG validates its own solution and test projects through its maintained CI workflow. Retire the old test wrapper from the replacement; keep its source history.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves test.sh to blob d77b144dea994a99219e759b5a111d2a27fffe66 (mode 100755). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records this approved repository-tooling retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/build/webpack.config.js",
+      "disposition": "retired",
+      "feature": "BookshelfNG frontend build configuration",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file configures the legacy BookshelfNG frontend build. ChaptarrNG has a destination-owned frontend build configuration at the same path. The source config is build tooling rather than user-facing behavior and must not replace the maintained destination config.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/build/webpack.config.js to blob 22aa6c8e4f32dfd1ba9e20364575075d5605f6ff (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records this approved repository-tooling retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/postcss.config.js",
+      "disposition": "retired",
+      "feature": "BookshelfNG PostCSS build configuration",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
+      "rationale": "This file configures PostCSS for the legacy BookshelfNG frontend tree. ChaptarrNG keeps its own frontend configuration. The source configuration is repository build tooling, not runtime or migration behavior, and is retired from the replacement.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/postcss.config.js to blob 95bfd9222f713cea12fe65b7345463ad7c13d42c (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 records this approved repository-tooling retirement with no target path; this does not imply migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "docs.sh",
+      "disposition": "ported",
+      "feature": "OpenAPI schema generation helper",
+      "targetPaths": [
+        "scripts/docs.sh"
+      ],
+      "reviewedBy": "Codex path and implementation review (2026-10-21)",
+      "rationale": "The BookshelfNG helper builds the solution and exports the v1 OpenAPI schema. ChaptarrNG scripts/docs.sh preserves that workflow for the Chaptarr solution, supports x64 and arm64 runtime IDs, waits for the Swagger process, and cleans only its task-local Swagger tool directory instead of deleting repository build outputs. The destination is a direct functional port with safer output handling.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs.sh to blob 87460b5999c2f39df180d64d02f5378e41cb75f5 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 resolves scripts/docs.sh to blob 911dc8c7a5dd775295fc0f8973b8640eee192fe9 (mode 100755); the output is the generated v1 OpenAPI document. This code review does not establish hosted-build or migration acceptance."
+    },
+    {
+      "sourcePath": "scripts/check-stable-container-aliases.py",
+      "disposition": "ported",
+      "feature": "Stable container alias policy validation",
+      "targetPaths": [
+        "packaging/scripts/test-publish-image-aliases.sh",
+        ".github/workflows/docker-publish.yml"
+      ],
+      "reviewedBy": "Codex workflow and shell implementation review (2026-10-21)",
+      "rationale": "The BookshelfNG script enforces that stable aliases are attached to the same approved multi-architecture release and remain behind the retirement readiness gate. ChaptarrNG validates the destination-owned image identity, release gate, legacy bridge opt-in, alias grouping, and digest-checking workflow in its test-publish-image-aliases contract. The tag identities are destination-specific, so this records the validation behavior port rather than claiming identical registry names.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/check-stable-container-aliases.py to blob f0dca23892f19660127fbc683cd4d897f34350a4 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 resolves packaging/scripts/test-publish-image-aliases.sh to blob 55937ac2240c6e6bc7475b3b20556890f216e35e (mode 100755). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). This supports the ported release-validation behavior; no package, image, alias, or release is published by this audit."
+    },
+    {
+      "sourcePath": "scripts/verify-stable-container-aliases.sh",
+      "disposition": "ported",
+      "feature": "Stable image alias digest verification",
+      "targetPaths": [
+        "packaging/scripts/publish-image-aliases.sh",
+        ".github/workflows/docker-publish.yml"
+      ],
+      "reviewedBy": "Codex workflow and shell implementation review (2026-10-21)",
+      "rationale": "The BookshelfNG helper verifies that published stable aliases resolve to the approved multi-architecture Hardcover digest in GHCR and Docker Hub. ChaptarrNG owns the alias publisher and tests the generated aliases against one source digest; its legacy BookshelfNG publication path is opt-in and fail-closed behind both readiness gates. Registry identities and alias sets are destination-specific; digest integrity and gated publication behavior are ported.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/verify-stable-container-aliases.sh to blob 68a584542162961e4d8b9cbe5a9617fbece50a37 (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 resolves packaging/scripts/publish-image-aliases.sh to blob 4476c550bc280753ad73d57ae85cf02d558885bd (mode 100755). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). This supports the ported release-validation behavior; no package, image, alias, or release is published by this audit."
+    },
+    {
+      "sourcePath": "scripts/check-react-router-context.js",
+      "disposition": "ported",
+      "feature": "React Router context installation check",
+      "targetPaths": [
+        "scripts/check-react-router-context.cjs"
+      ],
+      "reviewedBy": "Codex implementation review (2026-10-21)",
+      "rationale": "The BookshelfNG script detects when connected-react-router and react-router-dom resolve separate React Router copies. ChaptarrNG\u2019s CommonJS replacement checks that react-router-dom resolves the same installation and additionally server-renders a withRouter component inside Router, proving the context works. The destination check is a stronger functional port.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/check-react-router-context.js to blob 7c10f68e13e8c55288bb4d7d53a0f3d00a29aa6e (mode 100644). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 resolves scripts/check-react-router-context.cjs to blob a15912f554c8675d4dc3e698e0615fddc789250e (mode 100644). Static implementation review supports the port; this does not establish installed-channel acceptance."
+    },
+    {
+      "sourcePath": "scripts/security-scan-local.sh",
+      "disposition": "ported",
+      "feature": "Local Trivy security scan helper",
+      "targetPaths": [
+        "scripts/security-scan-local.sh"
+      ],
+      "reviewedBy": "Codex implementation review (2026-10-21)",
+      "rationale": "The source and destination scripts use the same local Trivy scanner flow and fail/exit controls. ChaptarrNG\u2019s version now excludes fewer directories, so it scans more generated content than the source helper; the security scan remains available with stricter coverage. This is a port of repository security tooling, not a user runtime feature.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/security-scan-local.sh to blob e6aa128d5d01eb36574fb39ec19f4913f98c5506 (mode 100755). ChaptarrNG target 9da8a4f27dc5c3a11d41d19b09933f70e4929612 resolves scripts/security-scan-local.sh to blob a06bfeeea6c4c55494f9da69995b55e86c8db098 (mode 100755). Static implementation review supports the port; this does not establish installed-channel acceptance."
     }
   ]
 }
