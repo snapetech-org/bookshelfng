@@ -19,28 +19,28 @@
     "commitsNotInUpstreamHistory": 810,
     "netChangedPaths": 1119,
     "uniqueBasenameCandidates": 0,
-    "reviewedMappings": 76,
+    "reviewedMappings": 80,
     "approvedRetirements": 196,
-    "reviewedDispositions": 774,
-    "undispositionedPaths": 345,
+    "reviewedDispositions": 779,
+    "undispositionedPaths": 340,
     "dispositionStates": {
       "retired": 196,
       "retained": 177,
-      "ported": 258,
+      "ported": 263,
       "equivalent": 143
     },
     "fileStates": {
       "approved-retirement": 196,
-      "different-review-required": 476,
+      "different-review-required": 479,
       "identical": 177,
-      "no-mapped-target-file": 146,
+      "no-mapped-target-file": 143,
       "deleted-in-bookshelf": 2,
       "code-equivalent-after-csharp-trivia-normalization": 118,
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "different-review-required": 249,
-      "no-mapped-target-file": 94,
+      "different-review-required": 247,
+      "no-mapped-target-file": 91,
       "deleted-in-bookshelf": 2
     }
   },
@@ -15739,6 +15739,23 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "0e090969edae8d2fb98a21681d406770ea9f43f9"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex documentation review (2026-10-21)",
+        "targetPath": "docs/README.md",
+        "rationale": "The ChaptarrNG documentation index groups current migration, feature, integration, and operational guides in the same role as the BookshelfNG index. Links and document names are updated for the destination; this is an index port, not behavior evidence.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/README.md to blob 586056fc93dfd8daa59e2725b54d5e37abf28920 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/README.md to blob 0e090969edae8d2fb98a21681d406770ea9f43f9 (mode 100644). Reviewed as documentation coverage only; no runtime, feature-equivalence, or migration-acceptance claim is made."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Product documentation index",
+        "reviewedBy": "Codex documentation review (2026-10-21)",
+        "targetPaths": [
+          "docs/README.md"
+        ],
+        "rationale": "The ChaptarrNG documentation index groups current migration, feature, integration, and operational guides in the same role as the BookshelfNG index. Links and document names are updated for the destination; this is an index port, not behavior evidence.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/README.md to blob 586056fc93dfd8daa59e2725b54d5e37abf28920 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/README.md to blob 0e090969edae8d2fb98a21681d406770ea9f43f9 (mode 100644). Reviewed as documentation coverage only; runtime parity and acceptance are separate gates."
       }
     },
     {
@@ -15789,6 +15806,18 @@
         "targetPath": "docs/EXTERNAL_LIBRARY_INTEGRATIONS.md",
         "rationale": "The target external-integration guide covers AudioBookShelf sidecars and synchronization; the feature guide records narrator and metadata-profile behavior.",
         "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/audiobookshelf-metadata.md to blob e3d335c59646112b9e2bba552d35a306602e90b3 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/EXTERNAL_LIBRARY_INTEGRATIONS.md to blob c53e57f32220e34b939c6628aee0f8e2d32e1514 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "AudioBookShelf metadata and narrator documentation",
+        "reviewedBy": "Codex documentation review (2026-10-21)",
+        "targetPaths": [
+          "docs/EXTERNAL_LIBRARY_INTEGRATIONS.md",
+          "docs/FORK_FEATURES.md",
+          "docs/MIGRATE_FROM_BOOKSHELFNG.md"
+        ],
+        "rationale": "The target integration guide covers AudioBookShelf connections and sidecar output; FORK_FEATURES and the migration guide document narrator metadata, the legacy OPF provider, and provider-ID handoff. This is documentation coverage only; provider and media acceptance remain open.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/audiobookshelf-metadata.md to blob e3d335c59646112b9e2bba552d35a306602e90b3 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/EXTERNAL_LIBRARY_INTEGRATIONS.md to blob c53e57f32220e34b939c6628aee0f8e2d32e1514 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/FORK_FEATURES.md to blob 621f8ace683c8f837aeec3a785ae6f7956cc5a42 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 7972191d63c5b1b0c82e4dac8a1d77c7996a6ca8 (mode 100644). Reviewed as documentation coverage only; runtime parity and acceptance are separate gates."
       }
     },
     {
@@ -15853,23 +15882,72 @@
     },
     {
       "sourcePath": "docs/capabilities-and-compatibility.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "docs/FORK_FEATURES.md",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "0df5e7b1f882521cf1ffe8b2b109d36d1e4ced4a"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "621f8ace683c8f837aeec3a785ae6f7956cc5a42"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex documentation review (2026-10-21)",
+        "targetPath": "docs/FORK_FEATURES.md",
+        "rationale": "The broad compatibility guide has been split across the target feature guide, workflow parity and retirement status matrices, the migration runbook, and dedicated metadata and media guides. These documents describe current differences and open acceptance; they do not assert complete parity.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/capabilities-and-compatibility.md to blob 0df5e7b1f882521cf1ffe8b2b109d36d1e4ced4a (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/FORK_FEATURES.md to blob 621f8ace683c8f837aeec3a785ae6f7956cc5a42 (mode 100644). Reviewed as documentation coverage only; no runtime, feature-equivalence, or migration-acceptance claim is made."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Capabilities and compatibility guide",
+        "reviewedBy": "Codex documentation review (2026-10-21)",
+        "targetPaths": [
+          "docs/FORK_FEATURES.md",
+          "docs/BOOKSHELFNG_WORKFLOW_PARITY.md",
+          "docs/BOOKSHELFNG_RETIREMENT.md",
+          "docs/MIGRATE_FROM_BOOKSHELFNG.md",
+          "docs/AUDIOBOOK_M4B_MERGING.md",
+          "docs/AUTHOR_METADATA_REFRESH.md",
+          "docs/MEDIA_MOVES.md",
+          "docs/SUPPLEMENTAL_METADATA.md",
+          "docs/UNMAPPED_FILES.md"
+        ],
+        "rationale": "The broad compatibility guide has been split across the target feature guide, workflow parity and retirement status matrices, the migration runbook, and dedicated metadata and media guides. These documents describe current differences and open acceptance; they do not assert complete parity.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/capabilities-and-compatibility.md to blob 0df5e7b1f882521cf1ffe8b2b109d36d1e4ced4a (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/FORK_FEATURES.md to blob 621f8ace683c8f837aeec3a785ae6f7956cc5a42 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/BOOKSHELFNG_WORKFLOW_PARITY.md to blob 54c92c602fa62525cc906c87539c3b1d4aea8913 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 558068b81d2f5440cbdb19efe101ed32c4da425d (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 7972191d63c5b1b0c82e4dac8a1d77c7996a6ca8 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/AUDIOBOOK_M4B_MERGING.md to blob 22509bf4fbca6df6abbdf37a42a4e5c8b023f5e4 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/AUTHOR_METADATA_REFRESH.md to blob 7899dc10ce52b8fcd2b4761da258c1595d4304f3 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/MEDIA_MOVES.md to blob 93bb93ff06ba2d5c40e4a50c2d11235417785126 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/SUPPLEMENTAL_METADATA.md to blob 38a594d3f845dbbe3205162f009b081225686ce2 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). Reviewed as documentation coverage only; runtime parity and acceptance are separate gates."
+      }
     },
     {
       "sourcePath": "docs/catalog-metadata-and-unmapped-files.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "docs/SUPPLEMENTAL_METADATA.md",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "5c4192481ac1f071372408b4c59bc164fc0d9e86"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "38a594d3f845dbbe3205162f009b081225686ce2"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex documentation review (2026-10-21)",
+        "targetPath": "docs/SUPPLEMENTAL_METADATA.md",
+        "rationale": "The source guide covers supplemental catalog fields and retrying unmapped files. ChaptarrNG separates these into SUPPLEMENTAL_METADATA and UNMAPPED_FILES, including provider identity and safe retry behavior.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/catalog-metadata-and-unmapped-files.md to blob 5c4192481ac1f071372408b4c59bc164fc0d9e86 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/SUPPLEMENTAL_METADATA.md to blob 38a594d3f845dbbe3205162f009b081225686ce2 (mode 100644). Reviewed as documentation coverage only; no runtime, feature-equivalence, or migration-acceptance claim is made."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Catalog metadata and unmapped-file recovery guide",
+        "reviewedBy": "Codex documentation review (2026-10-21)",
+        "targetPaths": [
+          "docs/SUPPLEMENTAL_METADATA.md",
+          "docs/UNMAPPED_FILES.md"
+        ],
+        "rationale": "The source guide covers supplemental catalog fields and retrying unmapped files. ChaptarrNG separates these into SUPPLEMENTAL_METADATA and UNMAPPED_FILES, including provider identity and safe retry behavior.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/catalog-metadata-and-unmapped-files.md to blob 5c4192481ac1f071372408b4c59bc164fc0d9e86 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/SUPPLEMENTAL_METADATA.md to blob 38a594d3f845dbbe3205162f009b081225686ce2 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). Reviewed as documentation coverage only; runtime parity and acceptance are separate gates."
+      }
     },
     {
       "sourcePath": "docs/development/validation-engine.md",
@@ -16250,13 +16328,36 @@
     },
     {
       "sourcePath": "docs/migrate-from-bookshelfng-to-chaptarrng.md",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "docs/MIGRATE_FROM_BOOKSHELFNG.md",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f02c928b42c7165893fa84edd40f49b8f7fbc14c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "7972191d63c5b1b0c82e4dac8a1d77c7996a6ca8"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex documentation review (2026-10-21)",
+        "targetPath": "docs/MIGRATE_FROM_BOOKSHELFNG.md",
+        "rationale": "The target migration runbook covers the operator path, with encrypted-backup, PostgreSQL, and retirement guides holding format-specific support limits and acceptance evidence. Its live acceptance gates stay explicit; documentation does not authorize conversion.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/migrate-from-bookshelfng-to-chaptarrng.md to blob f02c928b42c7165893fa84edd40f49b8f7fbc14c (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 7972191d63c5b1b0c82e4dac8a1d77c7996a6ca8 (mode 100644). Reviewed as documentation coverage only; no runtime, feature-equivalence, or migration-acceptance claim is made."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "BookshelfNG installation migration and rollback guide",
+        "reviewedBy": "Codex documentation review (2026-10-21)",
+        "targetPaths": [
+          "docs/MIGRATE_FROM_BOOKSHELFNG.md",
+          "docs/BOOKSHELFNG_ENCRYPTED_BACKUPS.md",
+          "docs/BOOKSHELFNG_POSTGRESQL_MIGRATION.md",
+          "docs/BOOKSHELFNG_RETIREMENT.md"
+        ],
+        "rationale": "The target migration runbook covers the operator path, with encrypted-backup, PostgreSQL, and retirement guides holding format-specific support limits and acceptance evidence. Its live acceptance gates stay explicit; documentation does not authorize conversion.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves docs/migrate-from-bookshelfng-to-chaptarrng.md to blob f02c928b42c7165893fa84edd40f49b8f7fbc14c (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 7972191d63c5b1b0c82e4dac8a1d77c7996a6ca8 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/BOOKSHELFNG_ENCRYPTED_BACKUPS.md to blob 52b1f74537e236a84eb39e014b76f8364263ba62 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/BOOKSHELFNG_POSTGRESQL_MIGRATION.md to blob b288d214685b73b5cc2cfed4ae8e908fdfc0dedb (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 558068b81d2f5440cbdb19efe101ed32c4da425d (mode 100644). Reviewed as documentation coverage only; runtime parity and acceptance are separate gates."
+      }
     },
     {
       "sourcePath": "docs/reporting-issues.md",
