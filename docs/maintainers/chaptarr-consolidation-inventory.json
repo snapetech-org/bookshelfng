@@ -21,11 +21,11 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 85,
     "approvedRetirements": 171,
-    "reviewedDispositions": 689,
-    "undispositionedPaths": 430,
+    "reviewedDispositions": 692,
+    "undispositionedPaths": 427,
     "dispositionStates": {
       "retained": 177,
-      "ported": 208,
+      "ported": 211,
       "retired": 171,
       "equivalent": 133
     },
@@ -40,7 +40,7 @@
     },
     "undispositionedFileStates": {
       "no-mapped-target-file": 136,
-      "different-review-required": 294
+      "different-review-required": 291
     }
   },
   "commits": [
@@ -23050,6 +23050,18 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "a679114c345f83256e748458b5524e59260aeec9"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Author persistence and format-scoped lookup",
+        "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+        "targetPaths": [
+          "src/Chaptarr.Core.Test/Books/AuthorServiceDefaultRootFoldersFixture.cs",
+          "src/Chaptarr.Core.Test/Books/AuthorServiceLookupHydrationFixture.cs",
+          "src/Chaptarr.Core.Test/Books/AuthorServiceMonitoredConsistencyFixture.cs"
+        ],
+        "rationale": "ChaptarrNG preserves author persistence and lookup while scoping root folders, profile defaults, and monitoring across audiobook and ebook records. Target service fixtures exercise root defaults, lookup hydration, and monitoring consistency. Repository behavior remains subject to populated-data acceptance.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Repositories/AuthorRepository.cs to blob ecbaf8225970661d6a55aeaa7fe2fab5f616b42a (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Repositories/AuthorRepository.cs to blob a679114c345f83256e748458b5524e59260aeec9 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/AuthorServiceDefaultRootFoldersFixture.cs resolves to blob 9cb0de87e082c9c41c4c33cb4d2e131a2c66126b (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/AuthorServiceLookupHydrationFixture.cs resolves to blob 20711b97ea78814f956f8f8e45c9ace75aa28fb1 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/AuthorServiceMonitoredConsistencyFixture.cs resolves to blob ce1c63654a389662919da938cb5d9df22bed16ab (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
       }
     },
     {
@@ -23063,6 +23075,20 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "d4edab17a02db80c52ecc5c98bde88165cc0e778"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Book catalog queries and format-scoped search targets",
+        "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+        "targetPaths": [
+          "src/Chaptarr.Core.Test/Books/BookRepositoryIndexFilterFixture.cs",
+          "src/Chaptarr.Core.Test/Books/BookListQueriesFixture.cs",
+          "src/Chaptarr.Core.Test/Books/BookRepositoryGetBooksForRefreshAuthorScopeFixture.cs",
+          "src/Chaptarr.Core.Test/Books/BookRepositoryGetBooksForRefreshSqliteChunkingFixture.cs",
+          "src/Chaptarr.Core.Test/Books/BookRepositoryNextPreviousFixture.cs"
+        ],
+        "rationale": "ChaptarrNG retains book persistence and paging while adding separate-format list and search-target semantics. Target fixtures cover missing and cutoff-unmet search targets, author scoping, SQLite query chunking, monitored-edition list behavior, and next/previous book selection. Production-sized database acceptance remains open.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Repositories/BookRepository.cs to blob 54c67340f1c0102de7ce13e174cfc904bca79676 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Repositories/BookRepository.cs to blob d4edab17a02db80c52ecc5c98bde88165cc0e778 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookRepositoryIndexFilterFixture.cs resolves to blob 3a936af628fdfa68f2f1073a09c8805158615f49 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookListQueriesFixture.cs resolves to blob 005f99eaca9ef47d7e0f7742fe4f1a380c6c81f5 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookRepositoryGetBooksForRefreshAuthorScopeFixture.cs resolves to blob 043763dcebf0162db357ee9a2cd69e770dcbc4d9 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookRepositoryGetBooksForRefreshSqliteChunkingFixture.cs resolves to blob 36621ba9221262558bd95a6dce476fdd11e7934f (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookRepositoryNextPreviousFixture.cs resolves to blob 1373c7e7acc04ff2cefda9bc3d97ff08e457ad08 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
       }
     },
     {
@@ -23196,6 +23222,18 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "6d86ccb4a9a2af38aef2d99d162dfa17651f53d6"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Quality cutoff calculation and unmet-search behavior",
+        "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+        "targetPaths": [
+          "src/Chaptarr.Core.Test/Books/BookRepositoryIndexFilterFixture.cs",
+          "src/Chaptarr.Core.Test/Api/Wanted/WantedMonitoringFilterFixture.cs",
+          "src/Chaptarr.Core.Test/IndexerSearch/BookSearchServiceFixture.cs"
+        ],
+        "rationale": "ChaptarrNG calculates cutoff qualities using its profile types and delegates unmet-book queries to the format-aware repository. The target repository fixture exercises cutoff and monitoring semantics for search targets, and wanted-filter fixtures verify media-type scoping. The implementation is refactored around ChaptarrNG profiles; operator profile conversion and real-library acceptance remain open.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/BookCutoffService.cs to blob 932fce4f9b1fbf56084b4014387db4652cf1462b (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/NzbDrone.Core/Books/Services/BookCutoffService.cs to blob 6d86ccb4a9a2af38aef2d99d162dfa17651f53d6 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Books/BookRepositoryIndexFilterFixture.cs resolves to blob 3a936af628fdfa68f2f1073a09c8805158615f49 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Api/Wanted/WantedMonitoringFilterFixture.cs resolves to blob 13b7d0326f36eed46a64b17e57fa18f026c24be4 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/IndexerSearch/BookSearchServiceFixture.cs resolves to blob cd81979cd70a200f4cda2fb37650a4cef3afe950 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
       }
     },
     {
