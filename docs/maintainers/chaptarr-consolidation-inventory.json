@@ -19,13 +19,13 @@
     "commitsNotInUpstreamHistory": 723,
     "netChangedPaths": 1119,
     "uniqueBasenameCandidates": 0,
-    "reviewedMappings": 89,
+    "reviewedMappings": 90,
     "approvedRetirements": 171,
-    "reviewedDispositions": 721,
-    "undispositionedPaths": 398,
+    "reviewedDispositions": 722,
+    "undispositionedPaths": 397,
     "dispositionStates": {
       "retained": 177,
-      "ported": 240,
+      "ported": 241,
       "retired": 171,
       "equivalent": 133
     },
@@ -40,7 +40,7 @@
     },
     "undispositionedFileStates": {
       "no-mapped-target-file": 132,
-      "different-review-required": 266
+      "different-review-required": 265
     }
   },
   "commits": [
@@ -26240,7 +26240,7 @@
     },
     {
       "sourcePath": "src/NzbDrone.Core/MediaFiles/FilterFilesType.cs",
-      "targetPath": "src/NzbDrone.Core/MediaFiles/FilterFilesType.cs",
+      "targetPath": "src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs",
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
@@ -26248,7 +26248,29 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "76342b47f8ce50c703a17272cc5d6394a5224ca5"
+        "oid": "3bae6510c7d18a91f7bc30420fab2dc589c16083"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex feature review (2026-10-21)",
+        "targetPath": "src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs",
+        "rationale": "BookshelfNG used FilterFilesType.Unmapped to re-scan existing unmapped paths while skipping unchanged mapped files. ChaptarrNG replaces that internal scan-filter value with an explicit UnmappedFilesSelection on RetryUnmappedMatch, including all/selected and media-type scopes. Its handler works from stored unmapped records, checks source freshness, retries matching and catalog suggestions, and applies matches; the command controller validates the selection.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MediaFiles/FilterFilesType.cs to blob 0b32c4caace4313f53213f639034eb2b75dd9def (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves src/NzbDrone.Core/MediaFiles/Commands/RescanFoldersCommand.cs to blob 2c0532d1a739424d13743fafc211b65b34bf1ac1 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs to blob 3bae6510c7d18a91f7bc30420fab2dc589c16083 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves src/Chaptarr.Api.V1/Commands/CommandController.cs to blob db691987812959eb7b30c07e9de998296a38f600 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves src/Chaptarr.Core.Test/MediaFiles/RetryUnmappedMatchCommandHandlerFixture.cs to blob 531861af3271e3c90cb29080c2f4c32f644b9809 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves scripts/chaptarr-retry-unmapped.sh to blob 9b5f8db7155a36fc6d384d28b248e515b5fb8c25 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). The pinned ChaptarrNG retry fixture covers all-scope matching and selected-file behavior. This is the functional port of the removed enum value, not a claim that the implementations are line-equivalent. Exact-head hosted Build 39546916729 is in progress; populated-library and installed-channel acceptance remain open."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Format-scoped retry of unmapped library files",
+        "reviewedBy": "Codex feature review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Core/MediaFiles/Commands/RescanFoldersCommand.cs",
+          "src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs",
+          "src/Chaptarr.Api.V1/Commands/CommandController.cs",
+          "src/Chaptarr.Core.Test/MediaFiles/RetryUnmappedMatchCommandHandlerFixture.cs",
+          "scripts/chaptarr-retry-unmapped.sh",
+          "docs/UNMAPPED_FILES.md"
+        ],
+        "rationale": "BookshelfNG used FilterFilesType.Unmapped to re-scan existing unmapped paths while skipping unchanged mapped files. ChaptarrNG replaces that internal scan-filter value with an explicit UnmappedFilesSelection on RetryUnmappedMatch, including all/selected and media-type scopes. Its handler works from stored unmapped records, checks source freshness, retries matching and catalog suggestions, and applies matches; the command controller validates the selection.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MediaFiles/FilterFilesType.cs to blob 0b32c4caace4313f53213f639034eb2b75dd9def (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves src/NzbDrone.Core/MediaFiles/Commands/RescanFoldersCommand.cs to blob 2c0532d1a739424d13743fafc211b65b34bf1ac1 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs to blob 3bae6510c7d18a91f7bc30420fab2dc589c16083 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves src/Chaptarr.Api.V1/Commands/CommandController.cs to blob db691987812959eb7b30c07e9de998296a38f600 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves src/Chaptarr.Core.Test/MediaFiles/RetryUnmappedMatchCommandHandlerFixture.cs to blob 531861af3271e3c90cb29080c2f4c32f644b9809 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves scripts/chaptarr-retry-unmapped.sh to blob 9b5f8db7155a36fc6d384d28b248e515b5fb8c25 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). The pinned ChaptarrNG retry fixture covers all-scope matching and selected-file behavior. This is the functional port of the removed enum value, not a claim that the implementations are line-equivalent. Exact-head hosted Build 39546916729 is in progress; populated-library and installed-channel acceptance remain open."
       }
     },
     {
