@@ -1,1 +1,1 @@
-FROM docker.io/snapetech/bookshelfng:hardcover-v0.4.21.68
+FROM docker.io/snapetech/bookshelfng:hardcover-v0.4.21.71
