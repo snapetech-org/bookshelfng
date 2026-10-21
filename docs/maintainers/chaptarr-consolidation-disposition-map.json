@@ -7935,6 +7935,20 @@
       "reviewedBy": "Codex code and test review (2026-10-21)",
       "rationale": "The port preserves BookshelfNG whole-author move behavior: after a successful folder move, format roots equal to or nested under the moved folder follow the destination, while roots in separate libraries remain unchanged. On an I/O failure, the primary path reverts and format roots remain at their source paths.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/MoveAuthorService.cs to blob a65592b42850b2fcd5913afb77aa7da1ed3d549d (mode 100644); the legacy service updates ebook and audiobook paths nested under the moved folder and reverts the primary path on I/O failure. ChaptarrNG target 6fc744ef3db7aba815e7669f3794260c236a5a2a resolves src/NzbDrone.Core/Books/Services/MoveAuthorService.cs to blob 19c0ac7e0871ade564ae1d49417e3ae425f5267d (mode 100644) and src/Chaptarr.Core.Test/Books/MoveAuthorServiceFixture.cs to blob b0ea5cd79eae1740cf9260b4e884e969f5cbac74 (mode 100644). MoveAuthorServiceFixture covers nested and exact-root path rewrites, preservation of roots outside the moved folder, and rollback; the focused test run passed 3/3 with .NET SDK 10.0.402. This supports the per-path port disposition; it does not by itself establish migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Calibre/CalibreProxy.cs",
+      "disposition": "ported",
+      "feature": "Calibre catalogue synchronization and metadata updates",
+      "targetPaths": [
+        "src/NzbDrone.Core/Books/Calibre/CalibreProxy.cs",
+        "src/NzbDrone.Core/Books/Calibre/CalibreSeriesSelector.cs",
+        "src/Chaptarr.Core.Test/Books/CalibreProxySetFieldsInputsFixture.cs",
+        "src/Chaptarr.Core.Test/Books/CalibreSeriesSelectorFixture.cs"
+      ],
+      "reviewedBy": "Codex code and test review (2026-10-21)",
+      "rationale": "The ChaptarrNG proxy retains the legacy add/convert, delete, format-removal, field-update, path-tracking, metadata-embedding, book-read, and library-enumeration operations. The code comparison found no BookshelfNG operation removed; ChaptarrNG adds path lookup and selected-field update operations and applies its media-scoped series selection and list-valued language contract. Focused fixtures cover tag/rating construction and series selection. Live Calibre server behavior remains a separate acceptance gate.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Calibre/CalibreProxy.cs to blob 54128bcb2e8f5ee8bb34e7ad9286eab4eb459bbd (mode 100644). ChaptarrNG target 6fc744ef3db7aba815e7669f3794260c236a5a2a resolves src/NzbDrone.Core/Books/Calibre/CalibreProxy.cs -> 7c2ecc2cf40c783477e46c570dbc09d9c7b78065 (mode 100644); src/NzbDrone.Core/Books/Calibre/CalibreSeriesSelector.cs -> fdb30d0317d97dcf1cc1ff70be7b3d51c8795913 (mode 100644); src/Chaptarr.Core.Test/Books/CalibreProxySetFieldsInputsFixture.cs -> 2c279bbe78921881ea26906c0a94713172b47535 (mode 100644); src/Chaptarr.Core.Test/Books/CalibreSeriesSelectorFixture.cs -> 7c7206827b3a36f4b50b68032e7fb9b519e679e3 (mode 100644). Source review compared the legacy proxy operations with their target implementations; ChaptarrNG preserves them and adds lookup/selective-update paths. CalibreProxySetFieldsInputsFixture and CalibreSeriesSelectorFixture passed 6/6 focused tests with .NET SDK 10.0.402. This supports the per-path port disposition but does not establish live Calibre authentication, server-version compatibility, or migration acceptance."
     }
   ]
 }
