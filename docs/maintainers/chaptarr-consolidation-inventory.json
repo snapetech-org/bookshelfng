@@ -21,12 +21,12 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 102,
     "approvedRetirements": 239,
-    "reviewedDispositions": 821,
-    "undispositionedPaths": 298,
+    "reviewedDispositions": 822,
+    "undispositionedPaths": 297,
     "dispositionStates": {
       "retired": 239,
       "retained": 177,
-      "ported": 270,
+      "ported": 271,
       "equivalent": 135
     },
     "fileStates": {
@@ -39,7 +39,7 @@
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "different-review-required": 230,
+      "different-review-required": 229,
       "no-mapped-target-file": 68
     }
   },
@@ -28071,6 +28071,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "cd0564760c1b90f0908d3f1035d0ffd4e4f1adab"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Mono filesystem provider and path diagnostics",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Mono/Disk/DiskProvider.cs"
+        ],
+        "rationale": "The target preserves the source provider\u2019s mount lookup, available-space reporting, permissions, link and copy operations, and exact-read handling. It replaces newline-only cleanup in the two path log statements with the target DebugSafe sanitizer and adds Mono hardlink-count support through stat. The extra comment changes do not alter behavior. This records source behavior coverage with changed implementation; it does not claim runtime or migration acceptance.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Mono/Disk/DiskProvider.cs to blob 83e19a4755394a4af0e1bcb1209f8cb4289f056a. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Mono/Disk/DiskProvider.cs to blob cd0564760c1b90f0908d3f1035d0ffd4e4f1adab. The pinned diff was reviewed line by line; this supports the path disposition but does not establish runtime behavior or installed-channel acceptance."
       }
     },
     {

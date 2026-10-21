@@ -5789,6 +5789,17 @@
       "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144."
     },
     {
+      "sourcePath": "src/NzbDrone.Mono/Disk/DiskProvider.cs",
+      "disposition": "ported",
+      "feature": "Mono filesystem provider and path diagnostics",
+      "targetPaths": [
+        "src/NzbDrone.Mono/Disk/DiskProvider.cs"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target preserves the source provider\u2019s mount lookup, available-space reporting, permissions, link and copy operations, and exact-read handling. It replaces newline-only cleanup in the two path log statements with the target DebugSafe sanitizer and adds Mono hardlink-count support through stat. The extra comment changes do not alter behavior. This records source behavior coverage with changed implementation; it does not claim runtime or migration acceptance.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Mono/Disk/DiskProvider.cs to blob 83e19a4755394a4af0e1bcb1209f8cb4289f056a. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Mono/Disk/DiskProvider.cs to blob cd0564760c1b90f0908d3f1035d0ffd4e4f1adab. The pinned diff was reviewed line by line; this supports the path disposition but does not establish runtime behavior or installed-channel acceptance."
+    },
+    {
       "sourcePath": "src/NzbDrone.Mono/Readarr.Mono.csproj",
       "disposition": "ported",
       "feature": "Renamed Chaptarr project file: src/NzbDrone.Mono/Readarr.Mono.csproj",
