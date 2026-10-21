@@ -2,7 +2,7 @@
 
 ## Current status — 2026-10-20
 
-**Update (2026-10-21):** ChaptarrNG `main` is now `e3759f7a` and includes a [host-side BookshelfNG migration helper](https://github.com/snapetech-org/chaptarrng/blob/e3759f7a78d5ba35db73a7735dd79bbf84c12939/scripts/bookshelfng-to-chaptarrng.sh). Build [39533338459](https://github.com/snapetech-org/chaptarrng/actions/runs/39533338459) is running. The preceding Build [39530803846](https://github.com/snapetech-org/chaptarrng/actions/runs/39530803846) passed Linux, macOS, and PostgreSQL but failed a Windows path-normalization test fixture; the fixture was corrected and passes locally (8/8). No release or bridge has been published, and all retirement gates remain open.
+**Update (2026-10-21):** ChaptarrNG `main` is now [`83f66c36`](https://github.com/snapetech-org/chaptarrng/commit/83f66c36b4de225b63c5be833516ac571459a144). It includes the host-side BookshelfNG migration helper and the disabled-by-default author-path setting with migration support. Build [39535222684](https://github.com/snapetech-org/chaptarrng/actions/runs/39535222684) is in progress; exact-head dependency submission, Semgrep, security analysis, and Trivy passed. The focused backend and migration fixtures pass 11/11. No release or migration bridge has been published, and retirement gates remain open.
 
 BookshelfNG `0.4.21.71` remains the final published release; ChaptarrNG
 `v0.9.977` remains the latest public release. ChaptarrNG PR [#131](https://github.com/snapetech-org/chaptarrng/pull/131)
