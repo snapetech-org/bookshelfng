@@ -20,26 +20,26 @@
     "netChangedPaths": 1119,
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 93,
-    "approvedRetirements": 203,
-    "reviewedDispositions": 825,
-    "undispositionedPaths": 294,
+    "approvedRetirements": 206,
+    "reviewedDispositions": 828,
+    "undispositionedPaths": 291,
     "dispositionStates": {
-      "retired": 203,
+      "retired": 206,
       "retained": 177,
       "ported": 302,
       "equivalent": 143
     },
     "fileStates": {
-      "approved-retirement": 203,
+      "approved-retirement": 206,
       "different-review-required": 491,
       "identical": 177,
-      "no-mapped-target-file": 126,
+      "no-mapped-target-file": 123,
       "code-equivalent-after-csharp-trivia-normalization": 118,
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
       "different-review-required": 218,
-      "no-mapped-target-file": 76
+      "no-mapped-target-file": 73
     }
   },
   "commits": [
@@ -15735,12 +15735,21 @@
     {
       "sourcePath": "distribution/windows/setup/output/.gitignore",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "d6b7ef32c8478a48c3994dcadc86837f4371184d"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Legacy Windows setup output ignore rule",
+        "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant.",
+        "targetPaths": [],
+        "rationale": "This is a BookshelfNG-only maintainer or generated-output artifact, not application behavior, user data, migration logic, or an installer/update-channel transition. The audit tooling and its records remain in BookshelfNG source history while the retirement review is completed; there is no reason to carry this source-specific maintenance file into the ChaptarrNG product repository. No runtime feature is retired.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves distribution/windows/setup/output/.gitignore to blob d6b7ef32c8478a48c3994dcadc86837f4371184d (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e has no exact, brand-mapped, or basename candidate. The disposition applies only to the replacement scope; the BookshelfNG file remains in source history and no runtime behavior is removed."
+      }
     },
     {
       "sourcePath": "distribution/windows/setup/readarr.iss",
@@ -22445,12 +22454,21 @@
     {
       "sourcePath": "scripts/audit-chaptarr-consolidation.py",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "23556f15e94f7ac83c4ac2e5368051a52c2b1bc2"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG retirement audit generator",
+        "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant.",
+        "targetPaths": [],
+        "rationale": "This is a BookshelfNG-only maintainer or generated-output artifact, not application behavior, user data, migration logic, or an installer/update-channel transition. The audit tooling and its records remain in BookshelfNG source history while the retirement review is completed; there is no reason to carry this source-specific maintenance file into the ChaptarrNG product repository. No runtime feature is retired.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/audit-chaptarr-consolidation.py to blob 23556f15e94f7ac83c4ac2e5368051a52c2b1bc2 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e has no exact, brand-mapped, or basename candidate. The disposition applies only to the replacement scope; the BookshelfNG file remains in source history and no runtime behavior is removed."
+      }
     },
     {
       "sourcePath": "scripts/bookshelf-bulk-move-media.sh",
@@ -22853,12 +22871,21 @@
     {
       "sourcePath": "scripts/test-audit-chaptarr-consolidation.py",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2e70782f1b031c2a5367cedc5a9ac4d6f7fd5209"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG retirement audit test suite",
+        "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant.",
+        "targetPaths": [],
+        "rationale": "This is a BookshelfNG-only maintainer or generated-output artifact, not application behavior, user data, migration logic, or an installer/update-channel transition. The audit tooling and its records remain in BookshelfNG source history while the retirement review is completed; there is no reason to carry this source-specific maintenance file into the ChaptarrNG product repository. No runtime feature is retired.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves scripts/test-audit-chaptarr-consolidation.py to blob 2e70782f1b031c2a5367cedc5a9ac4d6f7fd5209 (mode 100644). Target 5ad800fe905589a194523ae7ebd2a50da44b5e1e has no exact, brand-mapped, or basename candidate. The disposition applies only to the replacement scope; the BookshelfNG file remains in source history and no runtime behavior is removed."
+      }
     },
     {
       "sourcePath": "scripts/test-bookshelfng-release-readiness-gate.sh",
