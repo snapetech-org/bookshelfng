@@ -21,12 +21,12 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 102,
     "approvedRetirements": 239,
-    "reviewedDispositions": 843,
-    "undispositionedPaths": 276,
+    "reviewedDispositions": 847,
+    "undispositionedPaths": 272,
     "dispositionStates": {
       "retired": 239,
       "retained": 177,
-      "ported": 284,
+      "ported": 288,
       "equivalent": 143
     },
     "fileStates": {
@@ -39,7 +39,7 @@
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "different-review-required": 208,
+      "different-review-required": 204,
       "no-mapped-target-file": 68
     }
   },
@@ -15653,6 +15653,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "d091b740d79487b0398d91390d44b1b1fd8810f3"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Queue download protocol labels",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "frontend/src/Activity/Queue/ProtocolLabel.css"
+        ],
+        "rationale": "The destination preserves the Torrent and Usenet styles, uses the Chaptarr theme variable for Direct, and adds a default label style for protocols without a dedicated class. ProtocolLabel selects that fallback when no matching style exists.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Activity/Queue/ProtocolLabel.css to blob e3c3db45a9a6755264bd276ecfd80ece134f142a. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Activity/Queue/ProtocolLabel.css to blob d091b740d79487b0398d91390d44b1b1fd8810f3. Pinned diff review: the direct label changes to the active theme variable and the default label composes the shared Label style; the target component uses styles[protocol] || styles.defaultProtocol. This supports the path disposition but does not establish installed-channel acceptance or visual/browser equivalence."
       }
     },
     {
@@ -15951,6 +15961,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "052f94e1514bc101d4f9f91f3dc163fac935d14c"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Edition catalog status and duration presentation",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "frontend/src/Book/Details/Editions/BookEditionCatalog.css"
+        ],
+        "rationale": "The destination preserves the edition catalog layout and adds a flex status message for empty/error states with retry controls; durations use a compact monospace style. This changes presentation while keeping catalog information available.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Book/Details/Editions/BookEditionCatalog.css to blob 53cc8947bf67e71a51b80041cb096b971138e231. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Book/Details/Editions/BookEditionCatalog.css to blob 052f94e1514bc101d4f9f91f3dc163fac935d14c. Pinned diff review: the container, help, title, narrator, production, abridgement, language, publisher, and status styles remain; changes add message alignment and format duration text. This supports the path disposition but does not establish installed-channel acceptance or visual/browser equivalence."
       }
     },
     {
@@ -16018,6 +16038,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "4c908a5c55c536b87099ae9cc42242d06a20eb25"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Book index sticky statistics footer",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "frontend/src/Book/Index/BookIndexFooter.css"
+        ],
+        "rationale": "The target keeps the book-index statistics footer and adds fixed, responsive styling when the component enters its sticky state. The component continues to report library totals while scrolling.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Book/Index/BookIndexFooter.css to blob 9f7383261ed39e5c84c6577d54788d4ad8333830. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Book/Index/BookIndexFooter.css to blob 4c908a5c55c536b87099ae9cc42242d06a20eb25. Pinned diff review: the target adds sticky positioning, responsive offsets, and surface/border styling; BookIndexFooter applies the class when isSticky is true. This supports the path disposition but does not establish installed-channel acceptance or visual/browser equivalence."
       }
     },
     {
@@ -16070,6 +16100,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "be5abfbe7ed394173e336754c679d55805298778"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Format-aware interactive book search modal",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "frontend/src/Book/Search/BookInteractiveSearchModal.js"
+        ],
+        "rationale": "The destination preserves the interactive search modal and forwards the selected media type to its content so the search continues in the chosen audiobook or ebook format. This carries the existing search workflow into the combined-format UI.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Book/Search/BookInteractiveSearchModal.js to blob d37b33514417e82885e9d29396c7eacda3081e1f. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Book/Search/BookInteractiveSearchModal.js to blob be5abfbe7ed394173e336754c679d55805298778. Pinned diff review: the only changes add selectedMediaType to the wrapper props, pass it to BookInteractiveSearchModalContent, and declare its type. This supports the path disposition but does not establish installed-channel acceptance or visual/browser equivalence."
       }
     },
     {
