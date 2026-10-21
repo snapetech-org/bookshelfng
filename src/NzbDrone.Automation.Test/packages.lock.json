@@ -51,9 +51,9 @@
       },
       "Selenium.WebDriver.ChromeDriver": {
         "type": "Direct",
-        "requested": "[155.0.8059.7900, )",
-        "resolved": "155.0.8059.7900",
-        "contentHash": "Habo1pujPhm2Dqf7xXsxib9lQHWdS55LlG2a52KtAEV9a5QgsahEtUo1YPUCPq2pMmZzakDQzfVtTVqT/Z8bRw=="
+        "requested": "[156.0.8078.4700, )",
+        "resolved": "156.0.8078.4700",
+        "contentHash": "bS2xoQqkLxFZrqNO0EDzTsOOmbghsUgptkWLwCte6Eo0EQ+UI50L45bxU04RrY9vgfr7DxuFnDO2TsZE43iGPQ=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
