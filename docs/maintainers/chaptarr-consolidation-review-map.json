@@ -666,6 +666,14 @@
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "Both files record local TagLib patch maintenance. Map for direct review only; the existing equivalent disposition carries the separate content review.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/TagLibSharp/PATCHES.md to blob b6406bfbf4d55af9feb3e46bdba122d991a91e7f (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/TagLibSharp/PATCHES.md to blob 2846170980e58b2a1e6f87342878b7c9563c288b (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj",
+      "reviewedBy": "Codex implementation-and-fixture review (2026-10-21)",
+      "rationale": "The BookshelfNG diagnostics project is represented by ChaptarrNG\u2019s renamed diagnostics project, which references the Chaptarr Core project and builds the optional diagnostics assembly. Project-name and framework metadata are adapted to the destination repository.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj to blob a8942209813aa20508739d887e4cbe60eee10123 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj to blob 33a79b29c57dde82e4e6aa7357f0aff6bcaf3b37 (mode 100644). This path mapping does not establish installed-channel or operator acceptance."
     }
   ]
 }

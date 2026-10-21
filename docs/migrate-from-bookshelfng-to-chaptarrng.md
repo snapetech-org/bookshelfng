@@ -12,7 +12,7 @@ fixture issue; the corrected fixture passes locally (8/8). Exact-head Build
 is now running the platform builds and installer checks. These changes
 are not in public `.977` and do not authorize a production cutover.
 
-The schema-v4 audit pins BookshelfNG source `2811718076d84777a1b1132e4e5d2abd21231229` to ChaptarrNG target `10c0c7070716e11f7247daebc62319582f5ca476`. It covers 732 post-fork commits (723 absent from pinned upstream history) and 1,119 changed paths: 83 reviewed mappings and 664 reviewed dispositions (177 retained, 132 equivalent, 184 ported, and 171 non-runtime retirements). Another 455 paths remain open (137 without mapped targets and 318 requiring semantic review). The latest pass dispositioned the BookshelfNG backup/restore source path using implementation and synthetic-fixture evidence. Path-level coverage is not feature-parity proof, and no runtime retirement is approved.
+The schema-v4 audit pins BookshelfNG source `2811718076d84777a1b1132e4e5d2abd21231229` to ChaptarrNG target `10c0c7070716e11f7247daebc62319582f5ca476`. It covers 732 post-fork commits (723 absent from pinned upstream history) and 1,119 changed paths: 84 reviewed mappings and 667 reviewed dispositions (177 retained, 132 equivalent, 187 ported, and 171 non-runtime retirements). Another 452 paths remain open (136 without mapped targets and 316 requiring semantic review). The latest pass covered backup/restore compatibility and optional diagnostics using implementation and synthetic-fixture evidence. Path-level coverage is not feature-parity proof, and no runtime retirement is approved.
 
 **Migration decision: keep BookshelfNG in service; do not start a conversion.**
 The published BookshelfNG `.71` source and ChaptarrNG `.977` converter support

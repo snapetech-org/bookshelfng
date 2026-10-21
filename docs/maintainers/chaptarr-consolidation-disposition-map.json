@@ -7331,6 +7331,42 @@
       "reviewedBy": "Codex code-and-fixture review (2026-10-21)",
       "rationale": "ChaptarrNG accepts legacy BookshelfNG ZIP and raw SQLite backups, validates database candidates before staging restore, retains its encrypted full-backup flow, and supports the BKSENC01 encrypted backup format. The evidence is source and synthetic-fixture coverage only; real installed backup transfer, restore, and rollback remain open.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Backup/BackupService.cs to blob 08b37907fee10e217457e4080dcd011ce06686c7 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Backup/BackupService.cs to blob ae0f4f09f751e8e8c794b749f31155850b277949 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Api.V1/System/Backup/BackupController.cs to blob f92359b1633b83505f9d0449c3eab062c049cd3b (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Core/Backup/BookshelfEncryptedBackupService.cs to blob acd68dcc5923e0bcb5b95bf52f67249ac8169277 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Backup/BackupServiceRestoreValidationFixture.cs to blob 14d3ceadfb6dc40eed8692a33e22f628d9b74ac9 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Backup/BookshelfBackupControllerFixture.cs to blob 51775ae0876abb9c0f0b1b6ba8ba8a897b5a32b1 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Backup/BookshelfEncryptedBackupServiceFixture.cs to blob 097ee70d10f1332ac17e68ec8ea5b6e346ac4292 (mode 100644). Focused implementation evidence covers legacy BookshelfNG ZIP and raw SQLite restore staging after validation, existing ChaptarrNG encrypted full-backup uploads, BKSENC01 encryption/decryption compatibility, and synthetic v158 SQLite fixtures. This path disposition does not establish operator-data transfer, installed restore, or rollback acceptance."
+    },
+    {
+      "sourcePath": "src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj",
+      "disposition": "ported",
+      "feature": "Optional diagnostics project packaging",
+      "targetPaths": [
+        "src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj"
+      ],
+      "reviewedBy": "Codex implementation-and-fixture review (2026-10-21)",
+      "rationale": "The BookshelfNG diagnostics project is represented by ChaptarrNG\u2019s renamed diagnostics project, which references the Chaptarr Core project and builds the optional diagnostics assembly. Project-name and framework metadata are adapted to the destination repository.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj to blob a8942209813aa20508739d887e4cbe60eee10123 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj to blob 33a79b29c57dde82e4e6aa7357f0aff6bcaf3b37 (mode 100644). This source-level disposition does not establish installed-channel or operator acceptance."
+    },
+    {
+      "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs",
+      "disposition": "ported",
+      "feature": "Optional diagnostics lifecycle event reporting",
+      "targetPaths": [
+        "src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs"
+      ],
+      "reviewedBy": "Codex implementation-and-fixture review (2026-10-21)",
+      "rationale": "Both handlers record application start, book grabs/imports, download failures, and stop/flush on shutdown through the diagnostics reporter interface. ChaptarrNG preserves this event lifecycle in the renamed module.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs to blob fc0dca284e776666a78b08b2c43cc726fb5a2b92 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs to blob 6f811aca3d651db095fac8b706cd0015df120854 (mode 100644). This source-level disposition does not establish installed-channel or operator acceptance."
+    },
+    {
+      "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsReporter.cs",
+      "disposition": "ported",
+      "feature": "Optional diagnostics telemetry and legacy configuration compatibility",
+      "targetPaths": [
+        "src/Chaptarr.Diagnostics/DiagnosticsReporter.cs",
+        "src/Chaptarr.Core.Test/Diagnostics/DiagnosticsReporterFixture.cs",
+        "src/NzbDrone.Host/DiagnosticsPluginPathResolver.cs",
+        "src/Chaptarr.Core.Test/Diagnostics/DiagnosticsPluginPathResolverFixture.cs"
+      ],
+      "reviewedBy": "Codex implementation-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG preserves the optional HTTPS OTLP diagnostics reporter and legacy Bookshelf environment aliases, while adding an explicit default-off enable gate and an allowlist for four aggregate event names. Focused reporter and plugin-path fixtures cover configuration validation, event restrictions, default-off behavior, and marker-gated legacy module discovery; existing installs still require operator acceptance of the opt-in setting.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/DiagnosticsReporter.cs to blob c93e85d5a2aed7c22a582ba5bcaa8a4ed1862d08 (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Diagnostics/DiagnosticsReporter.cs to blob f98d8380bee5b31da339e8f746ee33a50a3c35cf (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Diagnostics/DiagnosticsReporterFixture.cs to blob 5c134b766e1cb889b0bc8b0041cb3b314b06a17c (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/NzbDrone.Host/DiagnosticsPluginPathResolver.cs to blob 604f5d89043d52a798584afa268fe4fbfc9ae48e (mode 100644). ChaptarrNG target 10c0c7070716e11f7247daebc62319582f5ca476 resolves src/Chaptarr.Core.Test/Diagnostics/DiagnosticsPluginPathResolverFixture.cs to blob 2056ddc2a923c6143a342a723f5618e6adc6f9fa (mode 100644). This source-level disposition does not establish installed-channel or operator acceptance."
     }
   ]
 }
