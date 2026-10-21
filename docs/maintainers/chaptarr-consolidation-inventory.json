@@ -19,19 +19,19 @@
     "commitsNotInUpstreamHistory": 723,
     "netChangedPaths": 1119,
     "uniqueBasenameCandidates": 0,
-    "reviewedMappings": 92,
+    "reviewedMappings": 95,
     "approvedRetirements": 171,
-    "reviewedDispositions": 724,
-    "undispositionedPaths": 395,
+    "reviewedDispositions": 727,
+    "undispositionedPaths": 392,
     "dispositionStates": {
       "retained": 177,
-      "ported": 243,
+      "ported": 246,
       "retired": 171,
       "equivalent": 133
     },
     "fileStates": {
-      "no-mapped-target-file": 179,
-      "different-review-required": 469,
+      "no-mapped-target-file": 177,
+      "different-review-required": 471,
       "identical": 177,
       "deleted-in-bookshelf": 1,
       "approved-retirement": 171,
@@ -39,8 +39,8 @@
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "no-mapped-target-file": 132,
-      "different-review-required": 263
+      "no-mapped-target-file": 130,
+      "different-review-required": 262
     }
   },
   "commits": [
@@ -17057,27 +17057,73 @@
     },
     {
       "sourcePath": "packaging/chocolatey/bookshelfng.nuspec",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "packaging/legacy/chocolatey/bookshelfng.nuspec.in",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3945668fca97c69aaea5e8277472b5851459625c"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "509cb3504b23216a4658e75ea14cf467fa9654ec"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex distribution review (2026-10-21)",
+        "targetPath": "packaging/legacy/chocolatey/bookshelfng.nuspec.in",
+        "rationale": "The target preserves the existing bookshelfng package ID and NSSM dependency, and identifies the package as a migration update to standard ChaptarrNG. The template is rendered with the verified release version and archive checksum.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/bookshelfng.nuspec to blob 3945668fca97c69aaea5e8277472b5851459625c (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 86dc48576b265fed60c3c5671444ebd5e8db528b (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "BookshelfNG Chocolatey package identity and migration bridge metadata",
+        "reviewedBy": "Codex distribution review (2026-10-21)",
+        "targetPaths": [
+          "packaging/legacy/chocolatey/bookshelfng.nuspec.in",
+          ".github/workflows/release-distribution.yml",
+          "packaging/scripts/test-chocolatey-publish-gate.ps1",
+          "docs/MIGRATE_FROM_BOOKSHELFNG.md"
+        ],
+        "rationale": "The target preserves the existing bookshelfng package ID and NSSM dependency, and identifies the package as a migration update to standard ChaptarrNG. The template is rendered with the verified release version and archive checksum.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/bookshelfng.nuspec to blob 3945668fca97c69aaea5e8277472b5851459625c (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 86dc48576b265fed60c3c5671444ebd5e8db528b (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
+      }
     },
     {
       "sourcePath": "packaging/chocolatey/tools/chocolateyinstall.ps1",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "b1ae1030e2fad74f74afeb64b7063388ba9d9858"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "2018d91912e457075b0ae46a4257731e4bfbba82"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex distribution review (2026-10-21)",
+        "targetPath": "packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in",
+        "rationale": "The target keeps the BookshelfNG service and ProgramData data location while staging a checksum-verified ChaptarrNG archive. It switches the service only after the staged payload is valid, starts the existing service, and rolls back app files, service settings, and newly converted database state if startup fails.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/tools/chocolateyinstall.ps1 to blob b1ae1030e2fad74f74afeb64b7063388ba9d9858 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 86dc48576b265fed60c3c5671444ebd5e8db528b (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "BookshelfNG Chocolatey service upgrade and rollback",
+        "reviewedBy": "Codex distribution review (2026-10-21)",
+        "targetPaths": [
+          "packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in",
+          ".github/workflows/release-distribution.yml",
+          "packaging/scripts/test-chocolatey-publish-gate.ps1",
+          "docs/MIGRATE_FROM_BOOKSHELFNG.md"
+        ],
+        "rationale": "The target keeps the BookshelfNG service and ProgramData data location while staging a checksum-verified ChaptarrNG archive. It switches the service only after the staged payload is valid, starts the existing service, and rolls back app files, service settings, and newly converted database state if startup fails.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/tools/chocolateyinstall.ps1 to blob b1ae1030e2fad74f74afeb64b7063388ba9d9858 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 86dc48576b265fed60c3c5671444ebd5e8db528b (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
+      }
     },
     {
       "sourcePath": "packaging/chocolatey/tools/chocolateyuninstall.ps1",
-      "targetPath": "packaging/chocolatey/tools/chocolateyuninstall.ps1",
+      "targetPath": "packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1",
       "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
@@ -17085,7 +17131,27 @@
       },
       "targetBlob": {
         "mode": "100644",
-        "oid": "76f837982e7c59d68e9ef97e7be0ea0a792709b0"
+        "oid": "718ea4ae562d6797eb175c707f5a8eb769f10c74"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex distribution review (2026-10-21)",
+        "targetPath": "packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1",
+        "rationale": "The target removes the legacy service and application payload but preserves the BookshelfNG data directory and migration backup, matching the old package\u2019s data-retention behavior while protecting the rollback source.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/tools/chocolateyuninstall.ps1 to blob 8947e46c8f848ade46a0db068e7a1152494ff2e8 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 86dc48576b265fed60c3c5671444ebd5e8db528b (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "BookshelfNG Chocolatey uninstall with retained migration data",
+        "reviewedBy": "Codex distribution review (2026-10-21)",
+        "targetPaths": [
+          "packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1",
+          ".github/workflows/release-distribution.yml",
+          "packaging/scripts/test-chocolatey-publish-gate.ps1",
+          "docs/MIGRATE_FROM_BOOKSHELFNG.md"
+        ],
+        "rationale": "The target removes the legacy service and application payload but preserves the BookshelfNG data directory and migration backup, matching the old package\u2019s data-retention behavior while protecting the rollback source.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/tools/chocolateyuninstall.ps1 to blob 8947e46c8f848ade46a0db068e7a1152494ff2e8 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 86dc48576b265fed60c3c5671444ebd5e8db528b (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
       }
     },
     {
