@@ -90,6 +90,16 @@
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves .vscode/launch.json to blob 761f9f3b77d870a01cb96c84fe56bededd171291 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d has no exact, brand-mapped, or basename candidate for this path. Prior approval from 3c6e036302f67c5bef87ae9543614549b44c2790 is carried forward because the source blob is unchanged and no target candidate exists; this does not retire runtime behavior or establish migration/channel acceptance."
     },
     {
+      "sourcePath": "CONTRIBUTING.md",
+      "disposition": "retired",
+      "feature": "BookshelfNG-specific contributor-guide deletion",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG, merge relevant work to main, and discard work proven irrelevant.",
+      "rationale": "The pinned BookshelfNG source snapshot has no CONTRIBUTING.md file. Keep ChaptarrNG\u2019s own contributor guide; retiring this historical BookshelfNG-specific path change removes no runtime behavior or migration capability.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 has no CONTRIBUTING.md blob because BookshelfNG deleted the file. Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves CONTRIBUTING.md to blob d021deeaa3af11c40fdcd22ec37daad6e33a6d41 (mode 100644); this is ChaptarrNG\u2019s separate contributor guide. Retire only the absent BookshelfNG path delta; no runtime behavior or migration capability is claimed."
+    },
+    {
       "sourcePath": "LICENSE",
       "disposition": "retained",
       "feature": "Retained shared file: LICENSE",
@@ -99,6 +109,16 @@
       "reviewedBy": "Codex (2026-10-20)",
       "rationale": "The file remains at the same relative path in ChaptarrNG with identical Git blob content at the pinned source and target snapshots.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves LICENSE to blob 9cecc1d4669ee8af2ca727a5d8cde10cd8b2d7cc (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves LICENSE to blob 9cecc1d4669ee8af2ca727a5d8cde10cd8b2d7cc (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "azure-pipelines.yml",
+      "disposition": "retired",
+      "feature": "Obsolete Azure Pipelines definition",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG, merge relevant work to main, and discard work proven irrelevant.",
+      "rationale": "BookshelfNG deleted this Azure Pipelines file and retains GitHub Actions workflows. The replacement has no Azure pipeline file, and its CI remains in GitHub Actions; retire this repository-only historical definition.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 has no azure-pipelines.yml blob because BookshelfNG deleted the file. Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d has no azure-pipelines.yml candidate and retains .github/workflows/build.yml at blob b11998da442a728aa1511d2538aa3050a9c2b3ea (mode 100644). User-approved repository-only retirement; no application behavior is claimed."
     },
     {
       "sourcePath": "build.sh",

@@ -20,28 +20,26 @@
     "netChangedPaths": 1119,
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 80,
-    "approvedRetirements": 196,
-    "reviewedDispositions": 779,
-    "undispositionedPaths": 340,
+    "approvedRetirements": 198,
+    "reviewedDispositions": 781,
+    "undispositionedPaths": 338,
     "dispositionStates": {
-      "retired": 196,
+      "retired": 198,
       "retained": 177,
       "ported": 263,
       "equivalent": 143
     },
     "fileStates": {
-      "approved-retirement": 196,
+      "approved-retirement": 198,
       "different-review-required": 479,
       "identical": 177,
       "no-mapped-target-file": 143,
-      "deleted-in-bookshelf": 2,
       "code-equivalent-after-csharp-trivia-normalization": 118,
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
       "different-review-required": 247,
-      "no-mapped-target-file": 91,
-      "deleted-in-bookshelf": 2
+      "no-mapped-target-file": 91
     }
   },
   "commits": [
@@ -14666,12 +14664,18 @@
     },
     {
       "sourcePath": "CONTRIBUTING.md",
-      "targetPath": "CONTRIBUTING.md",
-      "state": "deleted-in-bookshelf",
+      "targetPath": null,
+      "state": "approved-retirement",
       "sourceBlob": null,
-      "targetBlob": {
-        "mode": "100644",
-        "oid": "d021deeaa3af11c40fdcd22ec37daad6e33a6d41"
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "BookshelfNG-specific contributor-guide deletion",
+        "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG, merge relevant work to main, and discard work proven irrelevant.",
+        "targetPaths": [],
+        "rationale": "The pinned BookshelfNG source snapshot has no CONTRIBUTING.md file. Keep ChaptarrNG\u2019s own contributor guide; retiring this historical BookshelfNG-specific path change removes no runtime behavior or migration capability.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 has no CONTRIBUTING.md blob because BookshelfNG deleted the file. Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves CONTRIBUTING.md to blob d021deeaa3af11c40fdcd22ec37daad6e33a6d41 (mode 100644); this is ChaptarrNG\u2019s separate contributor guide. Retire only the absent BookshelfNG path delta; no runtime behavior or migration capability is claimed."
       }
     },
     {
@@ -14882,9 +14886,18 @@
     {
       "sourcePath": "azure-pipelines.yml",
       "targetPath": null,
-      "state": "deleted-in-bookshelf",
+      "state": "approved-retirement",
       "sourceBlob": null,
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Obsolete Azure Pipelines definition",
+        "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG, merge relevant work to main, and discard work proven irrelevant.",
+        "targetPaths": [],
+        "rationale": "BookshelfNG deleted this Azure Pipelines file and retains GitHub Actions workflows. The replacement has no Azure pipeline file, and its CI remains in GitHub Actions; retire this repository-only historical definition.",
+        "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 has no azure-pipelines.yml blob because BookshelfNG deleted the file. Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d has no azure-pipelines.yml candidate and retains .github/workflows/build.yml at blob b11998da442a728aa1511d2538aa3050a9c2b3ea (mode 100644). User-approved repository-only retirement; no application behavior is claimed."
+      }
     },
     {
       "sourcePath": "build.sh",
