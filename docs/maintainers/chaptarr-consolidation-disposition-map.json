@@ -7824,6 +7824,93 @@
       "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
       "rationale": "ChaptarrNG retains backup API operations and adds validated BookshelfNG restore inputs alongside native backups. The target fixture covers Bookshelf backup controller requests and restore handling; transfer from an installed legacy service and operational rollback remain open.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/System/Backup/BackupController.cs to blob b62f12d393db2eb63f48f932593f1fef7a5521de (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/System/Backup/BackupController.cs to blob f92359b1633b83505f9d0449c3eab062c049cd3b (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Backup/BookshelfBackupControllerFixture.cs resolves to blob 51775ae0876abb9c0f0b1b6ba8ba8a897b5a32b1 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Api.V1/Books/BookControllerWithSignalR.cs",
+      "disposition": "ported",
+      "feature": "Book edit notifications and collection updates",
+      "targetPaths": [
+        "src/Chaptarr.Api.V1/Books/BookControllerWithSignalR.cs",
+        "src/Chaptarr.Core.Test/Api/BookControllerBookEditBroadcastFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG preserves immediate book-row updates while batching edit bursts into one collection sync. The target controller fixture covers both notification paths. Live clients and multi-format library acceptance remain open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Books/BookControllerWithSignalR.cs to blob 0a011d4319153139a3bac399c9086da94136025c (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/Books/BookControllerWithSignalR.cs to blob bf7489e6790d76fa386b823022e0354a24932bef (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Api/BookControllerBookEditBroadcastFixture.cs resolves to blob 8d962b998e4232e33ed0232b3dfef3b35ae9e44a (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Api.V1/Books/BookStatisticsResource.cs",
+      "disposition": "ported",
+      "feature": "Book completion statistics for multi-file audiobooks",
+      "targetPaths": [
+        "src/Chaptarr.Api.V1/Books/BookStatisticsResource.cs",
+        "src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG reports the completion ratio for multi-file audiobooks and zero progress for a missing book. The focused target resource fixture covers both edge cases. Representative library acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Books/BookStatisticsResource.cs to blob 5ef53c77d3213327700163d67cede0fb6461eb8d (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/Books/BookStatisticsResource.cs to blob c83879ea4f73c57ef5cd576faba487be868020cd (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs resolves to blob 3c7662cf5df858806b89fb5534886afa2f5675c5 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Api.V1/Profiles/Metadata/MetadataProfileResource.cs",
+      "disposition": "ported",
+      "feature": "Metadata profile resource and media-type filtering",
+      "targetPaths": [
+        "src/Chaptarr.Api.V1/Profiles/Metadata/MetadataProfileResource.cs",
+        "src/Chaptarr.Core.Test/Profiles/Metadata/MetadataProfileControllerFixture.cs",
+        "src/Chaptarr.Core.Test/Profiles/Metadata/MetadataProfileServiceMediaTypeFilteringFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG exposes metadata profiles with media-type-aware behavior in its profile controller and service. Target fixtures cover profile resource updates and filtering by audiobook versus ebook. Provider/profile acceptance on migrated operator data remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Profiles/Metadata/MetadataProfileResource.cs to blob 8b46fa14fa4bb08f0cf10a036b5c904d29733335 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/Profiles/Metadata/MetadataProfileResource.cs to blob d72f376d99ea1cebbb4d19d130b68d828a0962af (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Profiles/Metadata/MetadataProfileControllerFixture.cs resolves to blob 1c5a99b8eaf8a6f6d5b8e404a400563dc9de1384 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Profiles/Metadata/MetadataProfileServiceMediaTypeFilteringFixture.cs resolves to blob adf58e7f027389164c69fb73bddd2573ed06df59 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Api.V1/Indexers/ReleaseController.cs",
+      "disposition": "ported",
+      "feature": "Interactive release filtering and download rejection responses",
+      "targetPaths": [
+        "src/Chaptarr.Api.V1/Indexers/ReleaseController.cs",
+        "src/Chaptarr.Core.Test/Indexers/ReleaseControllerInteractiveFilterFixture.cs",
+        "src/Chaptarr.Core.Test/Indexers/ReleaseControllerDownloadRejectionFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG retains interactive release search and download response behavior with format-aware profile filtering. Target controller fixtures cover visible profile rejections, hidden pack rejections, and precise download-client conflicts. Acceptance with installed indexers and clients remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Indexers/ReleaseController.cs to blob 98cec82e288628813004b29eedd43ad13d807f73 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/Indexers/ReleaseController.cs to blob c149f2bb3ad960a7f7f974b80be34558f2b5fcdf (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Indexers/ReleaseControllerInteractiveFilterFixture.cs resolves to blob cf6e05d3f7296c97a3f208fb4af79bb51534f69e (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Indexers/ReleaseControllerDownloadRejectionFixture.cs resolves to blob 3f2bed4f0c3a2900b42096c0cf92779965443a56 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Api.V1/Indexers/ReleaseResource.cs",
+      "disposition": "ported",
+      "feature": "Release resource format and metadata mapping",
+      "targetPaths": [
+        "src/Chaptarr.Api.V1/Indexers/ReleaseResource.cs",
+        "src/Chaptarr.Core.Test/Indexers/ReleaseResourceDirectFormatFixture.cs",
+        "src/Chaptarr.Core.Test/Indexers/ReleaseResourceMapperFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG serializes release format, resolved author/book IDs, and matched-title information for interactive results. Target fixtures cover direct-format classification and release resource mapping. Real indexer/client behavior remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Indexers/ReleaseResource.cs to blob 6e92c1dbd0d42b2af603849ad467b7dda30d2064 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/Indexers/ReleaseResource.cs to blob 0ac945894dd28262b7d127d7f7e05f00b48101ae (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Indexers/ReleaseResourceDirectFormatFixture.cs resolves to blob 8a45358ef7f689b076583bf76919154828a9ddab (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Indexers/ReleaseResourceMapperFixture.cs resolves to blob 8c67f8954019e2d7b0da9c094a721667b66a309b (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Api.V1/Commands/CommandController.cs",
+      "disposition": "ported",
+      "feature": "Command routes and guarded media-move execution",
+      "targetPaths": [
+        "src/Chaptarr.Api.V1/Commands/CommandController.cs",
+        "src/Chaptarr.Core.Test/Commands/CommandControllerFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG preserves command API behavior while validating format parameters and requiring author media moves to use the preview-validated route. The target fixture covers media-type validation and blocks bypassing the preview workflow. Installed-client acceptance remains open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Commands/CommandController.cs to blob 68285945db70064ea89864d8e8cf4a76b57bcd37 (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/Commands/CommandController.cs to blob db691987812959eb7b30c07e9de998296a38f600 (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Commands/CommandControllerFixture.cs resolves to blob 18187f2a363a9f1bbccee209601c15f812ae3e70 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Api.V1/Config/HostConfigController.cs",
+      "disposition": "ported",
+      "feature": "Host configuration proxy validation",
+      "targetPaths": [
+        "src/Chaptarr.Api.V1/Config/HostConfigController.cs",
+        "src/Chaptarr.Core.Test/Configuration/HostConfigControllerFixture.cs"
+      ],
+      "reviewedBy": "Codex semantic-and-fixture review (2026-10-21)",
+      "rationale": "ChaptarrNG preserves host-configuration endpoints and validates proxy mode/type before saving or testing settings. The focused target controller fixture covers invalid values and legacy proxy-field compatibility. Installed upgrade and operator configuration acceptance remain open.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Config/HostConfigController.cs to blob 2a45bf34f850650bd825e84abc1eec7bf74cd47b (mode 100644). ChaptarrNG target bebc5e8a923d7ebc4af7cc86b0bbec5e93f51859 resolves src/Chaptarr.Api.V1/Config/HostConfigController.cs to blob 185ea3001a2432c1dc84a89ea564dd8e4d6efffb (mode 100644). Pinned target fixture src/Chaptarr.Core.Test/Configuration/HostConfigControllerFixture.cs resolves to blob 270b5c2e5c770ecde79c421176bacca47b29b0a9 (mode 100644). This source-path disposition does not establish representative-data or installed acceptance."
     }
   ]
 }
