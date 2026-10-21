@@ -30,6 +30,15 @@ test('a standalone release-note marker remains supported', () => {
   assert.equal(hasExplicitNoReleaseNote('release-note: none'), true);
 });
 
+test('a bracketed release-note marker in a commit subject is explicit', () => {
+  assert.equal(
+    hasExplicitNoReleaseNote(
+      'docs: refresh retirement audit [release-note: none]'
+    ),
+    true
+  );
+});
+
 test('release-note markers inside HTML comments are ignored', () => {
   assert.equal(hasExplicitNoReleaseNote('<!-- release-note: none -->'), false);
 });

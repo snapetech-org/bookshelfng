@@ -288,10 +288,14 @@ export function hasExplicitNoReleaseNote(body) {
     /^[\t ]*-[\t ]*\[[\t ]\][^\n]*$/gimu,
     ''
   );
+  const subject = bodyWithoutUncheckedOptions.split(/\r?\n/u, 1)[0] ?? '';
 
   return (
     /^[\t ]*`?release-note[\t ]*:[\t ]*none`?[\t ]*$/imu.test(
       bodyWithoutUncheckedOptions
+    ) ||
+    /\[[\t ]*release-note[\t ]*:[\t ]*none[\t ]*\][\t ]*$/iu.test(
+      subject
     ) ||
     /^[\t ]*-[\t ]*\[x\][^\n]*(?:internal-only|no user-facing release note)[^\n]*$/gimu.test(
       bodyWithoutUncheckedOptions
