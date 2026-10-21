@@ -20,26 +20,26 @@
     "netChangedPaths": 1119,
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 98,
-    "approvedRetirements": 171,
-    "reviewedDispositions": 730,
-    "undispositionedPaths": 389,
+    "approvedRetirements": 195,
+    "reviewedDispositions": 754,
+    "undispositionedPaths": 365,
     "dispositionStates": {
       "retained": 177,
       "ported": 249,
-      "retired": 171,
+      "retired": 195,
       "equivalent": 133
     },
     "fileStates": {
-      "no-mapped-target-file": 175,
+      "no-mapped-target-file": 151,
       "different-review-required": 473,
       "identical": 177,
       "deleted-in-bookshelf": 1,
-      "approved-retirement": 171,
+      "approved-retirement": 195,
       "code-equivalent-after-csharp-trivia-normalization": 118,
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "no-mapped-target-file": 128,
+      "no-mapped-target-file": 104,
       "different-review-required": 261
     }
   },
@@ -21531,12 +21531,22 @@
     {
       "sourcePath": "src/NzbDrone.Api.Test/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "014fc5a367a3d1f0106fbc55d20d220209012e8a"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Api.Test/packages.lock.json to blob 014fc5a367a3d1f0106fbc55d20d220209012e8a (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Automation.Test/Readarr.Automation.Test.csproj",
@@ -21551,12 +21561,22 @@
     {
       "sourcePath": "src/NzbDrone.Automation.Test/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "f63371b48625767a4b6b943eece6e8f310b58fdf"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Automation.Test/packages.lock.json to blob f63371b48625767a4b6b943eece6e8f310b58fdf (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Common.Test/ConfigFileProviderTest.cs",
@@ -21631,12 +21651,22 @@
     {
       "sourcePath": "src/NzbDrone.Common.Test/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "272376d14216866daf026d7e81936d89e02d4c4c"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Common.Test/packages.lock.json to blob 272376d14216866daf026d7e81936d89e02d4c4c (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Common/Composition/AssemblyLoader.cs",
@@ -21797,12 +21827,22 @@
     {
       "sourcePath": "src/NzbDrone.Common/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "2659c20ccc56061182d16d5fb5c691ccb5256265"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Common/packages.lock.json to blob 2659c20ccc56061182d16d5fb5c691ccb5256265 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Console/Readarr.Console.csproj",
@@ -21820,12 +21860,22 @@
     {
       "sourcePath": "src/NzbDrone.Console/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "ab8b754f4e0558485c76117729b63c1c6ae37348"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Console/packages.lock.json to blob ab8b754f4e0558485c76117729b63c1c6ae37348 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/AuthorStatsTests/AuthorStatisticsFixture.cs",
@@ -22846,12 +22896,22 @@
     {
       "sourcePath": "src/NzbDrone.Core.Test/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "afb0aa1f45e32d66a3a3b6ad63f8ce3a7e4754f5"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/packages.lock.json to blob afb0aa1f45e32d66a3a3b6ad63f8ce3a7e4754f5 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Core/AuthorStats/AuthorStatisticsRepository.cs",
@@ -27039,12 +27099,22 @@
     {
       "sourcePath": "src/NzbDrone.Core/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "aa369f7b538f32952b1e946346fdf76f5e46d90d"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/packages.lock.json to blob aa369f7b538f32952b1e946346fdf76f5e46d90d (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Host.Test/Readarr.Host.Test.csproj",
@@ -27059,12 +27129,22 @@
     {
       "sourcePath": "src/NzbDrone.Host.Test/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "17681b289be78f2255da1cf90c2d39a599dd7b7a"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Host.Test/packages.lock.json to blob 17681b289be78f2255da1cf90c2d39a599dd7b7a (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Host/AppLifetime.cs",
@@ -27173,12 +27253,22 @@
     {
       "sourcePath": "src/NzbDrone.Host/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "22bf7cc25ec9ab247bf0db2a7afce51dd3e9925d"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Host/packages.lock.json to blob 22bf7cc25ec9ab247bf0db2a7afce51dd3e9925d (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Integration.Test/ApiTests/ApiKeyAuthenticationFixture.cs",
@@ -27293,12 +27383,22 @@
     {
       "sourcePath": "src/NzbDrone.Integration.Test/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "1bd9a1571eb60be73bf589aa86cf92da2345ec54"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Integration.Test/packages.lock.json to blob 1bd9a1571eb60be73bf589aa86cf92da2345ec54 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Libraries.Test/Readarr.Libraries.Test.csproj",
@@ -27313,12 +27413,22 @@
     {
       "sourcePath": "src/NzbDrone.Libraries.Test/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "cee8265b09d33678b0589e7790a90e00a30b355e"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Libraries.Test/packages.lock.json to blob cee8265b09d33678b0589e7790a90e00a30b355e (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Mono.Test/DiskProviderTests/DiskProviderFixture.cs",
@@ -27353,12 +27463,22 @@
     {
       "sourcePath": "src/NzbDrone.Mono.Test/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "83683d25477682656cbd465461e18872f61be4bb"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Mono.Test/packages.lock.json to blob 83683d25477682656cbd465461e18872f61be4bb (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Mono/Disk/DiskProvider.cs",
@@ -27412,12 +27532,22 @@
     {
       "sourcePath": "src/NzbDrone.Mono/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "4fbcc8e0b265f3fb0a4e3c2c283cfd20863855aa"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Mono/packages.lock.json to blob 4fbcc8e0b265f3fb0a4e3c2c283cfd20863855aa (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.SignalR/Readarr.SignalR.csproj",
@@ -27435,12 +27565,22 @@
     {
       "sourcePath": "src/NzbDrone.SignalR/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "dca824ba2707517c7f792bda9f26ed1ae3be96ae"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.SignalR/packages.lock.json to blob dca824ba2707517c7f792bda9f26ed1ae3be96ae (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Test.Common/ExceptionVerification.cs",
@@ -27485,12 +27625,22 @@
     {
       "sourcePath": "src/NzbDrone.Test.Common/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c62e44fecde4aa6af394c1c6548a9971068378db"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Test.Common/packages.lock.json to blob c62e44fecde4aa6af394c1c6548a9971068378db (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Test.Dummy/Readarr.Test.Dummy.csproj",
@@ -27505,12 +27655,22 @@
     {
       "sourcePath": "src/NzbDrone.Test.Dummy/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3e979e6f982fe0752e4be4925187d59b4a5f000e"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Test.Dummy/packages.lock.json to blob 3e979e6f982fe0752e4be4925187d59b4a5f000e (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Update.Test/Readarr.Update.Test.csproj",
@@ -27525,12 +27685,22 @@
     {
       "sourcePath": "src/NzbDrone.Update.Test/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "810115dd714fd6f7e1e0f98e3fecda019b97fddf"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Update.Test/packages.lock.json to blob 810115dd714fd6f7e1e0f98e3fecda019b97fddf (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Update/Readarr.Update.csproj",
@@ -27558,12 +27728,22 @@
     {
       "sourcePath": "src/NzbDrone.Update/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "a1040f4fefb5ec8223dc03d07eee52761813e769"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Update/packages.lock.json to blob a1040f4fefb5ec8223dc03d07eee52761813e769 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Windows.Test/EnvironmentInfo/DotNetPlatformInfoFixture.cs",
@@ -27588,12 +27768,22 @@
     {
       "sourcePath": "src/NzbDrone.Windows.Test/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "45560a20fe97924ee93297022cde531e945f3886"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Windows.Test/packages.lock.json to blob 45560a20fe97924ee93297022cde531e945f3886 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone.Windows/Disk/DiskProvider.cs",
@@ -27634,12 +27824,22 @@
     {
       "sourcePath": "src/NzbDrone.Windows/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "53a3f384cd3b0ecd3f6ce179e8c5a83531bba4f7"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Windows/packages.lock.json to blob 53a3f384cd3b0ecd3f6ce179e8c5a83531bba4f7 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/NzbDrone/Readarr.csproj",
@@ -28329,12 +28529,22 @@
     {
       "sourcePath": "src/Readarr.Api.V1/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3cfb39242ef29583ab6c512ab55704dd714d6bef"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/packages.lock.json to blob 3cfb39242ef29583ab6c512ab55704dd714d6bef (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/Readarr.Http/Authentication/ApiKeyAuthenticationHandler.cs",
@@ -28560,12 +28770,22 @@
     {
       "sourcePath": "src/Readarr.Http/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "145eb2be97d4fc214ee75c4bf527717f3f957057"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Http/packages.lock.json to blob 145eb2be97d4fc214ee75c4bf527717f3f957057 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/ServiceHelpers/ServiceInstall/ServiceInstall.csproj",
@@ -28583,12 +28803,22 @@
     {
       "sourcePath": "src/ServiceHelpers/ServiceInstall/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3e979e6f982fe0752e4be4925187d59b4a5f000e"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/ServiceHelpers/ServiceInstall/packages.lock.json to blob 3e979e6f982fe0752e4be4925187d59b4a5f000e (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/ServiceHelpers/ServiceUninstall/ServiceUninstall.csproj",
@@ -28606,12 +28836,22 @@
     {
       "sourcePath": "src/ServiceHelpers/ServiceUninstall/packages.lock.json",
       "targetPath": null,
-      "state": "no-mapped-target-file",
+      "state": "approved-retirement",
       "sourceBlob": {
         "mode": "100644",
         "oid": "3e979e6f982fe0752e4be4925187d59b4a5f000e"
       },
-      "targetBlob": null
+      "targetBlob": null,
+      "reviewedDisposition": {
+        "disposition": "retired",
+        "feature": "Per-project NuGet package-lock snapshot",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+        "approvalReference": "User instruction to retire BookshelfNG and migrate users, tracked by https://github.com/snapetech-org/bookshelfng/issues/144.",
+        "targetPaths": [],
+        "rationale": "This per-project packages.lock.json is build-time dependency snapshot metadata, not runtime behavior. The target does not carry per-project lockfiles and configures active dependency resolution through central package management; source and target direct package versions differ. Retire this legacy lockfile snapshot only. Dependency compatibility and runtime behavior remain separate acceptance gates.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/ServiceHelpers/ServiceUninstall/packages.lock.json to blob 3e979e6f982fe0752e4be4925187d59b4a5f000e (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves src/Directory.Build.props to blob 5ffbb80e757af565d175f48d604f156d29a60a1d (mode 100644) and src/Directory.Packages.props to blob 606c11911ada6ed88ab25db6ea537a43447a6ec7 (mode 100644); the target configures ManagePackageVersionsCentrally and does not commit per-project lockfiles. Direct package versions differ. This supports retirement of the lockfile snapshot only, not dependency-graph equivalence, runtime parity, or installed-channel acceptance."
+      }
     },
     {
       "sourcePath": "src/TagLibSharp/AUTHORS",
