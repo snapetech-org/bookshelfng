@@ -8151,6 +8151,33 @@
       "reviewedBy": "Codex distribution review (2026-10-21)",
       "rationale": "The target removes the legacy service and application payload but preserves the BookshelfNG data directory and migration backup, matching the old package\u2019s data-retention behavior while protecting the rollback source.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/tools/chocolateyuninstall.ps1 to blob 8947e46c8f848ade46a0db068e7a1152494ff2e8 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 86dc48576b265fed60c3c5671444ebd5e8db528b (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
+    },
+    {
+      "sourcePath": "scripts/require-bookshelfng-release-ready.sh",
+      "disposition": "ported",
+      "feature": "Fail-closed retirement release-readiness guard",
+      "targetPaths": [
+        "packaging/scripts/require-release-readiness.sh"
+      ],
+      "reviewedBy": "Codex release-gate review (2026-10-21)",
+      "rationale": "ChaptarrNG preserves the fail-closed release-readiness behavior with a namespaced variable and a guard wired to release, distribution, and image publishers; the BookshelfNG bridge stays independently gated. This port preserves the publication freeze and is not evidence that readiness has been granted.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/require-bookshelfng-release-ready.sh to blob 538d1abc50458e9116957c7325d5d56370a04034 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/require-release-readiness.sh to blob 926f7006b583e5c6410809da6cf69c6fe9e468c9 (mode 100755). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release.yml to blob 6c7a117e71e35b188dee5038bcee99a2ef40eb3b (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). The guard defaults to false and only accepts literal true; local checks passed with the variable unset, false, and true. No readiness variable was enabled."
+    },
+    {
+      "sourcePath": "scripts/test-bookshelfng-release-readiness-gate.sh",
+      "disposition": "ported",
+      "feature": "Release-readiness regression tests and publisher wiring validation",
+      "targetPaths": [
+        "packaging/scripts/test-release-readiness-gate.sh",
+        "packaging/scripts/test-publish-image-aliases.sh",
+        ".github/workflows/build.yml",
+        ".github/workflows/release.yml",
+        ".github/workflows/release-distribution.yml",
+        ".github/workflows/docker-publish.yml"
+      ],
+      "reviewedBy": "Codex release-gate review (2026-10-21)",
+      "rationale": "ChaptarrNG checks unset and false readiness rejection, literal-true acceptance, release/distribution/Docker workflow wiring, image-alias controls, and the separate legacy-bridge flag. The build workflow runs the release-readiness regression test. These tests verify closed publication gates; they do not authorize a release or channel handoff.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/test-bookshelfng-release-readiness-gate.sh to blob c8895727cfa6a4a168c4b8eaf42256fef5b75eeb (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-release-readiness-gate.sh to blob d4a83a69f6b5c6fe4c232ba24bffd746e5385028 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-publish-image-aliases.sh to blob 55937ac2240c6e6bc7475b3b20556890f216e35e (mode 100755). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release.yml to blob 6c7a117e71e35b188dee5038bcee99a2ef40eb3b (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). Both ChaptarrNG release-readiness and image-alias tests passed locally; the release-readiness test confirms publication routes fail closed."
     }
   ]
 }

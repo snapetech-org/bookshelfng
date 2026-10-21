@@ -19,19 +19,19 @@
     "commitsNotInUpstreamHistory": 723,
     "netChangedPaths": 1119,
     "uniqueBasenameCandidates": 0,
-    "reviewedMappings": 95,
+    "reviewedMappings": 97,
     "approvedRetirements": 171,
-    "reviewedDispositions": 727,
-    "undispositionedPaths": 392,
+    "reviewedDispositions": 729,
+    "undispositionedPaths": 390,
     "dispositionStates": {
       "retained": 177,
-      "ported": 246,
+      "ported": 248,
       "retired": 171,
       "equivalent": 133
     },
     "fileStates": {
-      "no-mapped-target-file": 177,
-      "different-review-required": 471,
+      "no-mapped-target-file": 175,
+      "different-review-required": 473,
       "identical": 177,
       "deleted-in-bookshelf": 1,
       "approved-retirement": 171,
@@ -39,7 +39,7 @@
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "no-mapped-target-file": 130,
+      "no-mapped-target-file": 128,
       "different-review-required": 262
     }
   },
@@ -20998,13 +20998,33 @@
     },
     {
       "sourcePath": "scripts/require-bookshelfng-release-ready.sh",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "packaging/scripts/require-release-readiness.sh",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "538d1abc50458e9116957c7325d5d56370a04034"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100755",
+        "oid": "926f7006b583e5c6410809da6cf69c6fe9e468c9"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex release-gate review (2026-10-21)",
+        "targetPath": "packaging/scripts/require-release-readiness.sh",
+        "rationale": "ChaptarrNG carries forward the fail-closed retirement-readiness guard with its own namespaced environment variable and target-specific messaging. It is wired across release, distribution, and image publication routes while the legacy bridge remains separately gated; this code port preserves the publication freeze and does not assert that retirement is ready.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/require-bookshelfng-release-ready.sh to blob 538d1abc50458e9116957c7325d5d56370a04034 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/require-release-readiness.sh to blob 926f7006b583e5c6410809da6cf69c6fe9e468c9 (mode 100755). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release.yml to blob 6c7a117e71e35b188dee5038bcee99a2ef40eb3b (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). The ChaptarrNG release-readiness test passed with its readiness variable unset and false, and accepted only literal true. No readiness variable was enabled."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Fail-closed retirement release-readiness guard",
+        "reviewedBy": "Codex release-gate review (2026-10-21)",
+        "targetPaths": [
+          "packaging/scripts/require-release-readiness.sh"
+        ],
+        "rationale": "ChaptarrNG preserves the fail-closed release-readiness behavior with a namespaced variable and a guard wired to release, distribution, and image publishers; the BookshelfNG bridge stays independently gated. This port preserves the publication freeze and is not evidence that readiness has been granted.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/require-bookshelfng-release-ready.sh to blob 538d1abc50458e9116957c7325d5d56370a04034 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/require-release-readiness.sh to blob 926f7006b583e5c6410809da6cf69c6fe9e468c9 (mode 100755). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release.yml to blob 6c7a117e71e35b188dee5038bcee99a2ef40eb3b (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). The guard defaults to false and only accepts literal true; local checks passed with the variable unset, false, and true. No readiness variable was enabled."
+      }
     },
     {
       "sourcePath": "scripts/security-scan-local.sh",
@@ -21044,13 +21064,38 @@
     },
     {
       "sourcePath": "scripts/test-bookshelfng-release-readiness-gate.sh",
-      "targetPath": null,
-      "state": "no-mapped-target-file",
+      "targetPath": "packaging/scripts/test-release-readiness-gate.sh",
+      "state": "different-review-required",
       "sourceBlob": {
         "mode": "100644",
         "oid": "c8895727cfa6a4a168c4b8eaf42256fef5b75eeb"
       },
-      "targetBlob": null
+      "targetBlob": {
+        "mode": "100644",
+        "oid": "d4a83a69f6b5c6fe4c232ba24bffd746e5385028"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex release-gate review (2026-10-21)",
+        "targetPath": "packaging/scripts/test-release-readiness-gate.sh",
+        "rationale": "The target tests reject unset and false readiness, accept literal true, and verify that release, distribution, and Docker publishers depend on the gate. A companion image-alias test checks alias publication and the separate migration-bridge control. This maps validation coverage only; it does not indicate that a release or bridge is authorized.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/test-bookshelfng-release-readiness-gate.sh to blob c8895727cfa6a4a168c4b8eaf42256fef5b75eeb (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-release-readiness-gate.sh to blob d4a83a69f6b5c6fe4c232ba24bffd746e5385028 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-publish-image-aliases.sh to blob 55937ac2240c6e6bc7475b3b20556890f216e35e (mode 100755). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release.yml to blob 6c7a117e71e35b188dee5038bcee99a2ef40eb3b (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). Local ChaptarrNG readiness-gate and image-alias checks passed; the build workflow runs the readiness-gate test."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Release-readiness regression tests and publisher wiring validation",
+        "reviewedBy": "Codex release-gate review (2026-10-21)",
+        "targetPaths": [
+          "packaging/scripts/test-release-readiness-gate.sh",
+          "packaging/scripts/test-publish-image-aliases.sh",
+          ".github/workflows/build.yml",
+          ".github/workflows/release.yml",
+          ".github/workflows/release-distribution.yml",
+          ".github/workflows/docker-publish.yml"
+        ],
+        "rationale": "ChaptarrNG checks unset and false readiness rejection, literal-true acceptance, release/distribution/Docker workflow wiring, image-alias controls, and the separate legacy-bridge flag. The build workflow runs the release-readiness regression test. These tests verify closed publication gates; they do not authorize a release or channel handoff.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/test-bookshelfng-release-readiness-gate.sh to blob c8895727cfa6a4a168c4b8eaf42256fef5b75eeb (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-release-readiness-gate.sh to blob d4a83a69f6b5c6fe4c232ba24bffd746e5385028 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves packaging/scripts/test-publish-image-aliases.sh to blob 55937ac2240c6e6bc7475b3b20556890f216e35e (mode 100755). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release.yml to blob 6c7a117e71e35b188dee5038bcee99a2ef40eb3b (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 031b118e9d1ba5e2731f86afbce33bb4bc5dc0aa resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). Both ChaptarrNG release-readiness and image-alias tests passed locally; the release-readiness test confirms publication routes fail closed."
+      }
     },
     {
       "sourcePath": "scripts/test-bookshelfng-to-chaptarrng.sh",
