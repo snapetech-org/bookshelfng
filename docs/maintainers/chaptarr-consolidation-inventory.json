@@ -21,12 +21,12 @@
     "uniqueBasenameCandidates": 0,
     "reviewedMappings": 102,
     "approvedRetirements": 239,
-    "reviewedDispositions": 827,
-    "undispositionedPaths": 292,
+    "reviewedDispositions": 831,
+    "undispositionedPaths": 288,
     "dispositionStates": {
       "retired": 239,
       "retained": 177,
-      "ported": 273,
+      "ported": 277,
       "equivalent": 138
     },
     "fileStates": {
@@ -39,7 +39,7 @@
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "different-review-required": 224,
+      "different-review-required": 220,
       "no-mapped-target-file": 68
     }
   },
@@ -22312,6 +22312,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "210e35e962cddb106cb218e59e27ee243a28e799"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "HTTP request content and diagnostics model",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Common/Http/HttpRequest.cs"
+        ],
+        "rationale": "The destination retains the request properties and SetContent behavior. It adds request cancellation support used by ManagedHttpDispatcher and implements a useful formatted ToString overload. The BookshelfNG override recursively calls itself, so that implementation cannot successfully provide a formatted request string.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Common/Http/HttpRequest.cs to blob baef3802ec8310c607c36d9b94a328f2b99317e4. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Common/Http/HttpRequest.cs to blob 210e35e962cddb106cb218e59e27ee243a28e799. Pinned diff review: the only source-level additions are CancellationToken and a call to ToString(includeMethod: true, includeSummary: true); existing request fields and content methods remain. The target dispatcher links this token with its timeout token. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -24624,6 +24634,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "1a3d6086462f97182cec90257f2930f94a941475"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Rejecting blocklisted releases",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Core/DecisionEngine/Specifications/BlocklistSpecification.cs"
+        ],
+        "rationale": "The blocklist lookup and release rejection are unchanged. ChaptarrNG changes only the diagnostic call from newline-stripped Debug to sanitized TraceSafe logging.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/DecisionEngine/Specifications/BlocklistSpecification.cs to blob 8e6349a365d9e5a6bdc749a37330fc3493415104. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/DecisionEngine/Specifications/BlocklistSpecification.cs to blob 1a3d6086462f97182cec90257f2930f94a941475. Pinned diff review: the same Blocklisted predicate returns the same Decision.Reject; only the log level and safe formatting call change. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -26039,6 +26059,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "779900503a85e920ff6ff2014569ec9073c9f6dd"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Hardcover import identifier preservation",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportParser.cs"
+        ],
+        "rationale": "The target keeps Hardcover identifiers in provider-neutral ID fields using the explicit hc: namespace, rather than placing native Hardcover IDs in Goodreads-specific properties. It also treats blank IDs as absent and avoids double-prefixing. HardcoverImportFixture verifies the hc:42 and hc:7 identities.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportParser.cs to blob baa8864f16b2018681bae0fcc27222629de8908c. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportParser.cs to blob 779900503a85e920ff6ff2014569ec9073c9f6dd. Pinned diff review: source Goodreads-only ID assignments are replaced with AuthorProviderId and BookProviderId values normalized through PrefixHardcoverId. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {
@@ -27213,6 +27243,16 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "3b080d74a6a4abdefe2eb9ef0be117b608de5ea8"
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "Book metadata narrator preservation",
+        "reviewedBy": "Codex path review (2026-10-21)",
+        "targetPaths": [
+          "src/NzbDrone.Core/MetadataSource/BookInfo/BookInfoResource/BookResource.cs"
+        ],
+        "rationale": "The destination replaces a single narrator string with a narrator-name list. Its edition mapper keeps the first name in the existing singular Narrator field and stores the full list, preserving the old single-narrator behavior while supporting multiple narrators.",
+        "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MetadataSource/BookInfo/BookInfoResource/BookResource.cs to blob 364e24e213ea5de87f0b6aa7401329da6cb9e739. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/MetadataSource/BookInfo/BookInfoResource/BookResource.cs to blob 3b080d74a6a4abdefe2eb9ef0be117b608de5ea8. Pinned diff review: all other metadata properties are unchanged; Narrator becomes an initialized NarratorNames list. BookInfoProxy.MapEdition maps the first list item to Narrator and the complete list to NarratorNames. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
       }
     },
     {

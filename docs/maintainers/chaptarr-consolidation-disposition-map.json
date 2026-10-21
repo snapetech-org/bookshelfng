@@ -3662,6 +3662,17 @@
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Common/Disk/IDiskProvider.cs to blob d7e7205dfc017b1ec5a5afb659614bbf71b83589. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Common/Disk/IDiskProvider.cs to blob 9150ed7e22cd93ff01cb6b267a39e1e98416ea8b. Pinned diff review: the only changes add the FileExistsCanonical and GetFileLinkCount declarations. All existing source declarations retain their signatures and ordering. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
     },
     {
+      "sourcePath": "src/NzbDrone.Common/Http/HttpRequest.cs",
+      "disposition": "ported",
+      "feature": "HTTP request content and diagnostics model",
+      "targetPaths": [
+        "src/NzbDrone.Common/Http/HttpRequest.cs"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The destination retains the request properties and SetContent behavior. It adds request cancellation support used by ManagedHttpDispatcher and implements a useful formatted ToString overload. The BookshelfNG override recursively calls itself, so that implementation cannot successfully provide a formatted request string.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Common/Http/HttpRequest.cs to blob baef3802ec8310c607c36d9b94a328f2b99317e4. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Common/Http/HttpRequest.cs to blob 210e35e962cddb106cb218e59e27ee243a28e799. Pinned diff review: the only source-level additions are CancellationToken and a call to ToString(includeMethod: true, includeSummary: true); existing request fields and content methods remain. The target dispatcher links this token with its timeout token. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
+    },
+    {
       "sourcePath": "src/NzbDrone.Common/packages.lock.json",
       "disposition": "retired",
       "feature": "Per-project NuGet package-lock snapshot",
@@ -4666,6 +4677,17 @@
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob 9031640234280e168cf27096d5115ba6d6ae3fac (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob fdd2f8e403c1175c5f2f50fbcf75d9a661707790 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob dace96ebb3542dfda49ddd25eeb51e4e2e6e1437 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseConverterFixture.cs to blob cfb21c7651aac98aab52666aacaca4c48a8a06f3 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/Chaptarr.Core.Test/Datastore/BookshelfPostgresDatabaseConverterFixture.cs to blob 19337cce3ed9efa3acd666ef95e00cc087e422d9 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/Chaptarr.Core.Test/Datastore/MigrationLineageReconciliationFixture.cs to blob a48581d626e738a99ab77b02f5d52d7727132774 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
+      "sourcePath": "src/NzbDrone.Core/DecisionEngine/Specifications/BlocklistSpecification.cs",
+      "disposition": "ported",
+      "feature": "Rejecting blocklisted releases",
+      "targetPaths": [
+        "src/NzbDrone.Core/DecisionEngine/Specifications/BlocklistSpecification.cs"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The blocklist lookup and release rejection are unchanged. ChaptarrNG changes only the diagnostic call from newline-stripped Debug to sanitized TraceSafe logging.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/DecisionEngine/Specifications/BlocklistSpecification.cs to blob 8e6349a365d9e5a6bdc749a37330fc3493415104. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/DecisionEngine/Specifications/BlocklistSpecification.cs to blob 1a3d6086462f97182cec90257f2930f94a941475. Pinned diff review: the same Blocklisted predicate returns the same Decision.Reject; only the log level and safe formatting call change. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
+    },
+    {
       "sourcePath": "src/NzbDrone.Core/Download/Clients/BookDownloadCategorySettings.cs",
       "disposition": "ported",
       "feature": "Format-specific download-client categories",
@@ -5175,6 +5197,17 @@
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImport.cs to blob f2276e83d687779852f7b94baaa8d9317d498dc6 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImport.cs to blob f2276e83d687779852f7b94baaa8d9317d498dc6 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
+      "sourcePath": "src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportParser.cs",
+      "disposition": "ported",
+      "feature": "Hardcover import identifier preservation",
+      "targetPaths": [
+        "src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportParser.cs"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target keeps Hardcover identifiers in provider-neutral ID fields using the explicit hc: namespace, rather than placing native Hardcover IDs in Goodreads-specific properties. It also treats blank IDs as absent and avoids double-prefixing. HardcoverImportFixture verifies the hc:42 and hc:7 identities.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportParser.cs to blob baa8864f16b2018681bae0fcc27222629de8908c. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportParser.cs to blob 779900503a85e920ff6ff2014569ec9073c9f6dd. Pinned diff review: source Goodreads-only ID assignments are replaced with AuthorProviderId and BookProviderId values normalized through PrefixHardcoverId. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
+    },
+    {
       "sourcePath": "src/NzbDrone.Core/ImportLists/Hardcover/HardcoverImportRequestGenerator.cs",
       "disposition": "ported",
       "feature": "Hardcover import-list HTTP requests",
@@ -5599,6 +5632,17 @@
       "reviewedBy": "Codex (2026-10-21)",
       "rationale": "UpgradeMediaFileService filters replacement candidates by the ported compatibility rule before quality checks and deletion. The regression fixture verifies an audiobook import preserves an attached EPUB; the existing quality guard remains limited to files that can actually be replaced.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MediaFiles/UpgradeMediaFileService.cs to blob b24ddff7615596ea0887983e7c780b53f71d6159 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/MediaFiles/UpgradeMediaFileService.cs to blob e1994650b6e5a93655d130e6fcdd867ccb2d3d67 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/MediaFiles/MediaFileExtensions.cs to blob 2b6c8e7db2eef6f470a8b61ec6ed6b84e0c72cc5 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/Chaptarr.Core.Test/MediaFiles/UpgradeMediaFileServiceFixture.cs to blob 4e6b696ff641c17dbe38ef0b407cb59018aad89c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/MetadataSource/BookInfo/BookInfoResource/BookResource.cs",
+      "disposition": "ported",
+      "feature": "Book metadata narrator preservation",
+      "targetPaths": [
+        "src/NzbDrone.Core/MetadataSource/BookInfo/BookInfoResource/BookResource.cs"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The destination replaces a single narrator string with a narrator-name list. Its edition mapper keeps the first name in the existing singular Narrator field and stores the full list, preserving the old single-narrator behavior while supporting multiple narrators.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MetadataSource/BookInfo/BookInfoResource/BookResource.cs to blob 364e24e213ea5de87f0b6aa7401329da6cb9e739. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves src/NzbDrone.Core/MetadataSource/BookInfo/BookInfoResource/BookResource.cs to blob 3b080d74a6a4abdefe2eb9ef0be117b608de5ea8. Pinned diff review: all other metadata properties are unchanged; Narrator becomes an initialized NarratorNames list. BookInfoProxy.MapEdition maps the first list item to Narrator and the complete list to NarratorNames. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
     },
     {
       "sourcePath": "src/NzbDrone.Core/MetadataSource/Goodreads/GoodreadsProxy.cs",
