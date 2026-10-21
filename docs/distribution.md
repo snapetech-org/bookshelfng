@@ -19,11 +19,12 @@ BookshelfNG appdata. Normal ChaptarrNG startup converts supported source data
 automatically, and the public `.977` converter is not approved for cutover.
 
 ChaptarrNG main now has a candidate Debian bridge builder for the existing
-`bookshelfng` package name, service, environment file, and data directory. It
-was built locally from the published `.977` archive, but no apt/dpkg upgrade,
-downgrade, live systemd handoff, PPA publication, or representative-data
-rollback has passed. The bridge is not published; this does not change the
-release freeze or approve a migration.
+`bookshelfng` package name, service, environment file, and data directory. An
+isolated dpkg upgrade/downgrade round-trip passed with the public `.71` package
+and candidate `.977` package, preserving a modified config and data canary.
+Dependency checks and systemd were mocked; live service/database handoff, PPA
+publication, and representative-data rollback remain open. The bridge is not
+published; this does not change the release freeze or approve a migration.
 
 BookshelfNG `0.4.21.71` is the published final source release. Its
 source-side helper takes a full appdata archive, then invokes the standard
