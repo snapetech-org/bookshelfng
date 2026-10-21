@@ -1,5 +1,8 @@
-# Keep stable container aliases in sync
-
-BookshelfNG stable releases now publish the same Hardcover image to `:main`
-and `:latest` in GHCR and Docker Hub. Main-branch builds use development tags,
-so they cannot move either stable alias. The Unraid template follows `:latest`.
+---
+category: changed
+audience: users, operators
+area: containers
+action: none
+breaking: false
+---
+Stable BookshelfNG releases now publish the same Hardcover image as `:main` and `:latest` on GHCR and Docker Hub, while main builds use development tags. The Unraid template follows `:latest`.
