@@ -8600,6 +8600,66 @@
       "reviewedBy": "Codex line-by-line frontend review (2026-10-21)",
       "rationale": "The BookshelfNG and ChaptarrNG implementations are line-equivalent. Differences are JSX formatting and brace-wrapped glyphs only; state, requests, preview confirmation, conflicts, and status handling are unchanged. This disposition covers source behavior only; there is no dedicated browser fixture for these controls, and real-library UI acceptance remains open.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Author/Editor/BulkAuthorMediaMoveModal.js to blob 7c4e1d7cf3fc19effadf7dd387932c605e9636dd (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 resolves frontend/src/Author/Editor/BulkAuthorMediaMoveModal.js to blob 6be3ff8d0d7e6f8b548a664aefa49d29c153cdad (mode 100644). Line-by-line comparison found only multiline JSX formatting and wrapping the visible arrow glyph in an expression."
+    },
+    {
+      "sourcePath": ".devcontainer/devcontainer.json",
+      "disposition": "retired",
+      "feature": "BookshelfNG development container configuration",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant.",
+      "rationale": "This file configures a contributor-only development container, pins the older .NET 6 template, forwards the BookshelfNG development port, and installs editor tooling. It is not shipped or used by the BookshelfNG runtime or any migration/channel handoff. ChaptarrNG uses the .NET 10 toolchain and has no corresponding development-container configuration in the pinned tree. Retire this development convenience from the replacement; no runtime capability or equivalence is claimed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .devcontainer/devcontainer.json to blob ed0f73d95e83ace4434d828423e61351cf34508e (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 has no .devcontainer counterpart. The file is contributor setup only; no runtime feature is retired."
+    },
+    {
+      "sourcePath": ".vscode/launch.json",
+      "disposition": "retired",
+      "feature": "BookshelfNG VS Code launch configuration",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant.",
+      "rationale": "This editor-only launch profile names the old Readarr app and has no counterpart in the pinned ChaptarrNG tree. It is not part of the runtime, migration, installer, or supported update channels. Retire this developer convenience while preserving BookshelfNG source history; no user-facing behavior or test coverage is being declared equivalent.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .vscode/launch.json to blob 761f9f3b77d870a01cb96c84fe56bededd171291 (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 has no .vscode counterpart. This file contains editor launch metadata only."
+    },
+    {
+      "sourcePath": "scripts/audit-chaptarr-consolidation.py",
+      "disposition": "retired",
+      "feature": "BookshelfNG retirement source-audit tooling",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant.",
+      "rationale": "The Python auditor inventories BookshelfNG lineage and pinned source paths; it is maintainer tooling for this retirement audit, not a ChaptarrNG runtime or installer component. Keep it in the BookshelfNG repository while the audit and acceptance gates remain open. It does not need to ship with the ChaptarrNG application, and this disposition does not claim audit completeness.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/audit-chaptarr-consolidation.py to blob 686f232f3491f974960af1d9d7284f3ced7a1afc (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 has no product-tree counterpart. These are maintainer audit/validation artifacts, not application features; preserve them in the BookshelfNG source repository while acceptance work is in progress."
+    },
+    {
+      "sourcePath": "scripts/create-consolidation-fixture.py",
+      "disposition": "retired",
+      "feature": "Synthetic BookshelfNG release-fixture generator",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant.",
+      "rationale": "This script launches a released BookshelfNG binary with throwaway configuration and deterministic synthetic records to make a test fixture. It is retirement validation tooling kept in the BookshelfNG repository, not part of the ChaptarrNG product or customer data. The fixture is explicitly not production data and does not prove conversion correctness.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/create-consolidation-fixture.py to blob b15bf2982a89dae667fdaf50e5cd22e43f20045a (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 has no product-tree counterpart. These are maintainer audit/validation artifacts, not application features; preserve them in the BookshelfNG source repository while acceptance work is in progress."
+    },
+    {
+      "sourcePath": "scripts/probe-lineage-guard.py",
+      "disposition": "retired",
+      "feature": "BookshelfNG migration lineage validation helper",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant.",
+      "rationale": "This helper verifies a ChaptarrNG candidate rejects a BookshelfNG release database unchanged. It remains useful in the BookshelfNG retirement acceptance workflow, but is not shipped runtime, migration, installer, or channel behavior. Keep it in the source repository for acceptance evidence; no target application path or migration guarantee is claimed.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/probe-lineage-guard.py to blob e5e995257269cd53d5d3e8c4a52c51ba29b3939f (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 has no product-tree counterpart. These are maintainer audit/validation artifacts, not application features; preserve them in the BookshelfNG source repository while acceptance work is in progress."
+    },
+    {
+      "sourcePath": "scripts/test-audit-chaptarr-consolidation.py",
+      "disposition": "retired",
+      "feature": "BookshelfNG retirement audit-tool tests",
+      "targetPaths": [],
+      "approvedBy": "User (explicit BookshelfNG retirement and irrelevant-work disposition, 2026-10-21)",
+      "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant.",
+      "rationale": "These tests exercise the BookshelfNG-only source-path auditor and its exact-revision disposition rules. They remain with the auditor in the BookshelfNG maintainer repository and do not provide ChaptarrNG runtime test coverage. Retire them from the ChaptarrNG product tree only; preserve them in BookshelfNG while the retirement audit is active.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/test-audit-chaptarr-consolidation.py to blob 917581699f3d3049a9050b0441b7827587b07eff (mode 100644). ChaptarrNG target 3b2081f60da737538dce168024b7c78bbf92ad09 has no product-tree counterpart. These are maintainer audit/validation artifacts, not application features; preserve them in the BookshelfNG source repository while acceptance work is in progress."
     }
   ]
 }
