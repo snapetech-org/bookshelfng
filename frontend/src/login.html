@@ -267,7 +267,7 @@
               </div>
               <button type="submit" class="button">Login</button>
 
-              <div id="login-failed" class="login-failed hidden">
+              <div id="login-failed" class="login-failed hidden" role="alert" aria-live="assertive">
                 Incorrect Username or Password
               </div>
             </form>
@@ -317,7 +317,7 @@
           var providers = {
             google: ["Google", "google", "https://developers.google.com/identity/openid-connect/openid-connect"],
             "microsoft-entra": ["Microsoft Entra ID", "microsoft", "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"],
-            okta: ["Okta", "okta", "https://developer.okta.com/docs/guides/implement-grant-type/-/main/"],
+            okta: ["Okta", "okta", "https://developer.okta.com/docs/guides/implement-grant-type/authcodepkce/main/"],
             auth0: ["Auth0", "auth0", "https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow"],
             keycloak: ["Keycloak", "keycloak", "https://www.keycloak.org/docs/latest/server_admin/"],
             authentik: ["authentik", "authentik", "https://docs.goauthentik.io/add-secure-apps/providers/oauth2/create-oauth2-provider/"],
@@ -325,9 +325,9 @@
             "amazon-cognito": ["Amazon Cognito", "amazon-cognito", "https://docs.aws.amazon.com/cognito/latest/developerguide/federation-endpoints.html"],
             "apple-sign-in": ["Apple", "apple", "https://developer.apple.com/documentation/signinwithapple/configuring-your-environment-for-sign-in-with-apple"],
             gitlab: ["GitLab", "gitlab", "https://docs.gitlab.com/integration/openid_connect_provider/"],
-            "fusionauth": ["FusionAuth", "fusionauth", "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/"]
-            "onelogin": ["OneLogin", "onelogin", "https://developers.onelogin.com/docs/openid-connect/connect-to-onelogin/"]
-            "pingone": ["PingOne", "pingone", "https://docs.pingidentity.com/pingone/applications/p1_edit_application_oidc.html"]
+            "fusionauth": ["FusionAuth", "fusionauth", "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/"],
+            "onelogin": ["OneLogin", "onelogin", "https://developers.onelogin.com/docs/openid-connect/connect-to-onelogin/"],
+            "pingone": ["PingOne", "pingone", "https://docs.pingidentity.com/pingone/applications/p1_edit_application_oidc.html"],
             "jumpcloud": ["JumpCloud", "jumpcloud", "https://jumpcloud.com/support/sso-with-oidc"]
           };
           var providerId = String(status.provider || "").trim().toLowerCase();
@@ -335,6 +335,8 @@
           document.getElementById("oidc-login-label").textContent = "Continue with " + presentation[0];
           document.getElementById("oidc-login-icon").setAttribute("href", "/Content/Images/oidc-provider-icons.svg#oidc-" + presentation[1]);
           oidcProviderHelp.href = presentation[2];
+          oidcProviderHelp.textContent = "Setup guide for " + presentation[0] + " ↗";
+          oidcProviderHelp.setAttribute("aria-label", presentation[0] + " identity provider setup guide (opens in a new tab)");
           oidcProviderHelp.classList.remove("hidden");
           var params = new URLSearchParams(window.location.search);
           var returnUrl = params.get("returnUrl");
