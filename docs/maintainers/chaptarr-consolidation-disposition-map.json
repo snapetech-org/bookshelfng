@@ -1267,6 +1267,28 @@
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Book/Index/BookIndexFooter.css to blob 9f7383261ed39e5c84c6577d54788d4ad8333830. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Book/Index/BookIndexFooter.css to blob 4c908a5c55c536b87099ae9cc42242d06a20eb25. Pinned diff review: the target adds sticky positioning, responsive offsets, and surface/border styling; BookIndexFooter applies the class when isSticky is true. This supports the path disposition but does not establish installed-channel acceptance or visual/browser equivalence."
     },
     {
+      "sourcePath": "frontend/src/Book/Index/Table/BookIndexRow.css",
+      "disposition": "ported",
+      "feature": "Book index row layout",
+      "targetPaths": [
+        "frontend/src/Book/Index/Table/BookIndexRow.css"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target styles the format badge, narrator cell, release date, duration column, centered status and actions, and hides the narrator cell on narrow screens. These styles support the target row\u2019s format-aware columns.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Book/Index/Table/BookIndexRow.css to blob a25ca6990b75632a87eda557e14f13fda62c3156 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Book/Index/Table/BookIndexRow.css to blob b4d6d83996d5fb1d04da2b90b1adadcfdb6dec06 (mode 100644). Pinned diff review: the target adds badge and duration layout, bounds and centers narrator content, adjusts status and action alignment, and hides narrator content below 768px. This supports the row presentation disposition; browser-level layout validation remains separate. This path review does not establish migration safety, full feature parity, or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Book/Index/Table/BookIndexRow.js",
+      "disposition": "ported",
+      "feature": "Book index row for format-aware libraries",
+      "targetPaths": [
+        "frontend/src/Book/Index/Table/BookIndexRow.js"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target row preserves the book, author, status, refresh, search, and edit actions while selecting audiobook or ebook monitoring from the row media type. It adds a format badge in both-format views, narrator selection and narrator lists, duration display, pinned-edition metadata, and local-book identity. The source status cell only rendered monitored state and ignored the row status prop; the target keeps that behavior and adds an explicit grabbed indicator.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Book/Index/Table/BookIndexRow.js to blob 72f7dad81f8c2293e1455108f56d0cab29502f06 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Book/Index/Table/BookIndexRow.js to blob 397406195529d11ca0f1f9f314289c644f4a3027 (mode 100644). Pinned diff review: the target reads separate audiobookMonitored and ebookMonitored fields, resolves the effective row media type, and passes its matching monitoring flag plus grabbed state to BookStatusCell. It renders the target media badge, NarratorCell, and format-gated duration, while preserving the source row actions. The target BookStatusCell maps grabbed to the downloading icon. This supports the path disposition only; UI behavior with representative libraries remains a separate acceptance gate. This path review does not establish migration safety, full feature parity, or installed-channel acceptance."
+    },
+    {
       "sourcePath": "frontend/src/Book/Search/BookInteractiveSearchModal.js",
       "disposition": "ported",
       "feature": "Format-aware interactive book search modal",
@@ -1322,6 +1344,17 @@
       "reviewedBy": "Codex path review (2026-10-21)",
       "rationale": "The target keeps the same information and pink icon shade adjustments while using the frontend pipeline\u2019s color() syntax instead of color-mod().",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Components/Icon.css to blob 97edd3ce4f4c870c88ecf24f258cd100dc4954ba. ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Components/Icon.css to blob 69ffc40f5fd5411f58fe2a1732b0f91ebe6e13b8. Pinned diff review: both shade operations keep the same theme variables and 30% value; only the CSS color-function spelling changes. This supports the path disposition but does not establish installed-channel acceptance or broader migration readiness."
+    },
+    {
+      "sourcePath": "frontend/src/Components/Page/PageJumpBar.css",
+      "disposition": "ported",
+      "feature": "Library page jump navigation",
+      "targetPaths": [
+        "frontend/src/Components/Page/PageJumpBar.css"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "Both versions provide the page jump bar layout. The target keeps the control available at narrow widths with a 24px basis; the source hides it below the small breakpoint. This is a deliberate responsive behavior change that preserves the navigation capability on mobile.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Components/Page/PageJumpBar.css to blob f0f5062cb65a947fa82298a9195e7f6d0f18b803 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Components/Page/PageJumpBar.css to blob 8c702e1ef1e9b92c56fb5ae3ddb2eb0801fc3219 (mode 100644). Pinned diff review: the target expands alignment into explicit align-content and justify-content rules and changes the narrow-screen rule from display:none to a 24px flex basis. This supports preservation of page-jump navigation, while exact visual behavior is not claimed. This path review does not establish migration safety, full feature parity, or installed-channel acceptance."
     },
     {
       "sourcePath": "frontend/src/Components/ProgressBar.css",
@@ -1494,6 +1527,28 @@
       "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
       "rationale": "This file is part of the BookshelfNG browser/PWA branding set. ChaptarrNG retains its own brand artwork at the matching path when applicable; old BookshelfNG icons should not be presented as ChaptarrNG identity. Debug-only and legacy Microsoft tile variants have no replacement requirement. Preserve the original assets in BookshelfNG history and retire branding only; no media, migration, or runtime capability is being removed.",
       "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Content/Images/logo.svg to blob 821f74d17574a6ae50441d6383c8aa29fc29f56a (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 has destination-owned artwork at frontend/src/Content/Images/logo.svg (blob 7c3179cc4669cba995a74687cf9dc0f4ff05c914); the source branding is intentionally retired with no target mapping. This does not imply feature-parity or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Search/AddNewItem.css",
+      "disposition": "ported",
+      "feature": "Provider-aware add and search layout",
+      "targetPaths": [
+        "frontend/src/Search/AddNewItem.css"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target styles the provider selector, filter buttons, clear control, and responsive search layout used by the expanded search workflow. It keeps the search controls usable at narrow widths by wrapping the provider selector below the search input.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Search/AddNewItem.css to blob cbc100a301043204ce977cd7549029c7efeb6da2 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Search/AddNewItem.css to blob e139431b3080d432b42e508f4bc9ce09fe49ea4f (mode 100644). Pinned diff review: the target adds provider-selector and filter styles, makes the search input shrink safely, and wraps the search controls at the small breakpoint. This supports the target search presentation; browser-level visual validation remains separate. This path review does not establish migration safety, full feature parity, or installed-channel acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Search/AddNewItem.js",
+      "disposition": "ported",
+      "feature": "Provider-aware add and search workflow",
+      "targetPaths": [
+        "frontend/src/Search/AddNewItem.js"
+      ],
+      "reviewedBy": "Codex path review (2026-10-21)",
+      "rationale": "The target keeps the add/search workflow and search-as-you-type preference while migrating the old bookshelfng browser-storage key to the chaptarrng key when no new value exists. It adds provider selection, supplemental metadata providers gated by configuration, author/book/series filters, series results, provider-aware hints, explicit submit and retry behavior, and a Goodreads fallback when Hardcover is unavailable.",
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Search/AddNewItem.js to blob 55eb0b44b28aca8603acc91507efed5033e93479 (mode 100644). ChaptarrNG target 4d9c4b2db0f438f05d81fb109aa6c32924ec5e85 resolves frontend/src/Search/AddNewItem.js to blob 08df64770305a5cbd5535749efda2c49822392e8 (mode 100644). Pinned diff review: the target retains local search preference and clear/search flows, reads the legacy bookshelfng.addNewItem.searchAsYouType value as a one-time fallback, and submits provider identity to the search connector. Provider choices, filters, errors, and series results are wired to target props/components. This supports the search-page disposition; provider availability and live search acceptance remain separate. This path review does not establish migration safety, full feature parity, or installed-channel acceptance."
     },
     {
       "sourcePath": "frontend/src/Search/Book/AddNewBookSearchResult.js",
