@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceCommit": "2811718076d84777a1b1132e4e5d2abd21231229",
-  "targetCommit": "45475aeb7413b5ac1be46899f4c2a6dd50e2e37e",
+  "targetCommit": "c47cf8cb78fcffde3f5114242b86125ef735ab16",
   "decisions": [
     {
       "sourcePath": ".github/PULL_REQUEST_TEMPLATE.md",
@@ -9,7 +9,7 @@
       "targetPath": "CONTRIBUTING.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG contributor guide carries current contribution and release-note process guidance; mapping this template to that guide does not claim identical process details.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .github/PULL_REQUEST_TEMPLATE.md to blob 12469975a516c16bc6ec893339d8bde1c5d7fe5a (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves CONTRIBUTING.md to blob d021deeaa3af11c40fdcd22ec37daad6e33a6d41 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves .github/PULL_REQUEST_TEMPLATE.md to blob 12469975a516c16bc6ec893339d8bde1c5d7fe5a (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves CONTRIBUTING.md to blob d021deeaa3af11c40fdcd22ec37daad6e33a6d41 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "README.md",
@@ -17,7 +17,7 @@
       "targetPath": "README.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target README provides the current ChaptarrNG product overview, migration status, source-only feature notes, safety warning, and links to detailed migration documentation. This is documentation coverage only, not feature-equivalence evidence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves README.md to blob de4f696e8cab31b33167387de4a5991057f26a3b (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves README.md to blob df3c4bfca5ac616227fd3be9e642faedf1b8541a (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves README.md to blob de4f696e8cab31b33167387de4a5991057f26a3b (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves README.md to blob df3c4bfca5ac616227fd3be9e642faedf1b8541a (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "SECURITY.md",
@@ -25,7 +25,7 @@
       "targetPath": "SECURITY.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "Both pages provide repository security reporting and support guidance. ChaptarrNG maintains its own policy and current migration status, so this is a documentation map only.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves SECURITY.md to blob 4a6b46ce38131af5bfa16ab22b2aec6e80d62457 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves SECURITY.md to blob 691563f002af89514dfb57a5d50f652a04c9b0e3 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves SECURITY.md to blob 4a6b46ce38131af5bfa16ab22b2aec6e80d62457 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves SECURITY.md to blob 691563f002af89514dfb57a5d50f652a04c9b0e3 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "charts/bookshelfng/README.md",
@@ -33,7 +33,7 @@
       "targetPath": "charts/bookshelfng/README.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The same-path chart README describes the destination chart, but its values and update behavior differ. Map for human review only; no Helm handoff is accepted.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves charts/bookshelfng/README.md to blob 23be810fd3b34e919976ee3cbd4264c3428e5ee4 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves charts/bookshelfng/README.md to blob 4b37cc48e58f168d469c459a2fc1c67cbe9404bd (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves charts/bookshelfng/README.md to blob 23be810fd3b34e919976ee3cbd4264c3428e5ee4 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves charts/bookshelfng/README.md to blob 4b37cc48e58f168d469c459a2fc1c67cbe9404bd (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "charts/bookshelfng/templates/NOTES.txt",
@@ -41,7 +41,7 @@
       "targetPath": "charts/bookshelfng/templates/NOTES.txt",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The same-path chart notes describe the destination chart. Their presence does not validate an upgrade or rollback between chart identities.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves charts/bookshelfng/templates/NOTES.txt to blob 2a1388eebde34120ea90db1f2aaf19c73b94abb1 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves charts/bookshelfng/templates/NOTES.txt to blob 25af2c52c2a78e7ca8ce8ece1acefd071b041b30 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves charts/bookshelfng/templates/NOTES.txt to blob 2a1388eebde34120ea90db1f2aaf19c73b94abb1 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves charts/bookshelfng/templates/NOTES.txt to blob 25af2c52c2a78e7ca8ce8ece1acefd071b041b30 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "distribution/windows/installer-net/README.md",
@@ -49,7 +49,7 @@
       "targetPath": "distribution/windows/installer-net/README.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "Both pages describe Windows installer workflows, but the BookshelfNG migration installer and ChaptarrNG installer contracts differ. Map for documentation review only.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves distribution/windows/installer-net/README.md to blob 233ddbae3553a4226e546007b711b11730a8a098 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves distribution/windows/installer-net/README.md to blob ca7cf13d329eb479b85ded31e51cb4bed7ae7825 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves distribution/windows/installer-net/README.md to blob 233ddbae3553a4226e546007b711b11730a8a098 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves distribution/windows/installer-net/README.md to blob ca7cf13d329eb479b85ded31e51cb4bed7ae7825 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "distribution/windows/installer-net/Readarr.Installer.csproj",
@@ -57,7 +57,7 @@
       "targetPath": "distribution/windows/installer-net/ChaptarrNG.Installer.csproj",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The installer project identity and assembly were renamed to ChaptarrNG while retaining the migration-only Windows installer role.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves distribution/windows/installer-net/Readarr.Installer.csproj to blob 77940fb100b7c2ecfa9f3a2c7d6a05c332cbfcc5 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves distribution/windows/installer-net/ChaptarrNG.Installer.csproj to blob 7686f38d1703df9e0fde3e29d9a38c4a8ddb5459 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves distribution/windows/installer-net/Readarr.Installer.csproj to blob 77940fb100b7c2ecfa9f3a2c7d6a05c332cbfcc5 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves distribution/windows/installer-net/ChaptarrNG.Installer.csproj to blob 7686f38d1703df9e0fde3e29d9a38c4a8ddb5459 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "distribution/windows/setup/Rollback-To-Pre-Upgrade.bat",
@@ -65,7 +65,7 @@
       "targetPath": "distribution/windows/installer-net/MainWindow.xaml.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The legacy batch entry point maps to the ChaptarrNG installer Restore BookshelfNG action and explicit restore mode. The ChaptarrNG UI delegates to its migration-specific rollback pipeline; this mapping does not claim line-for-line equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves distribution/windows/setup/Rollback-To-Pre-Upgrade.bat to blob fd454769fd0222eff7a6593859acd616284a2f7f (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves distribution/windows/installer-net/MainWindow.xaml.cs to blob 02960572247f801cd81fbae04d754b979b6276aa (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves distribution/windows/setup/Rollback-To-Pre-Upgrade.bat to blob fd454769fd0222eff7a6593859acd616284a2f7f (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves distribution/windows/installer-net/MainWindow.xaml.cs to blob 02960572247f801cd81fbae04d754b979b6276aa (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "distribution/windows/setup/upgrade-helpers/do-backup.ps1",
@@ -73,7 +73,7 @@
       "targetPath": "distribution/windows/installer-net/Pipeline/BackupService.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The legacy pre-upgrade backup script maps to the ChaptarrNG backup service. The implementation changed from API-first backup with rotation to a retained, integrity-checked migration copy; the mapping is for feature review, not exact behavior equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves distribution/windows/setup/upgrade-helpers/do-backup.ps1 to blob 91b0c84c58b77213f0d6988bb3b0a3dac1bd34ca (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves distribution/windows/installer-net/Pipeline/BackupService.cs to blob c192f67c47b07bb7431bed7c830080c1a8c07b7a (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves distribution/windows/setup/upgrade-helpers/do-backup.ps1 to blob 91b0c84c58b77213f0d6988bb3b0a3dac1bd34ca (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves distribution/windows/installer-net/Pipeline/BackupService.cs to blob c192f67c47b07bb7431bed7c830080c1a8c07b7a (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "distribution/windows/setup/upgrade-helpers/rollback.ps1",
@@ -81,7 +81,7 @@
       "targetPath": "distribution/windows/installer-net/upgrade-helpers/rollback.ps1",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both scripts implement Windows rollback handling and should be compared directly; their backup contracts and service flows differ, so the mapping does not assert functional equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves distribution/windows/setup/upgrade-helpers/rollback.ps1 to blob c34954cc139aeae1399e138c3046889decdfa73b (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves distribution/windows/installer-net/upgrade-helpers/rollback.ps1 to blob aadd519f9c1e2459a1699a0308ea970da74c36c2 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves distribution/windows/setup/upgrade-helpers/rollback.ps1 to blob c34954cc139aeae1399e138c3046889decdfa73b (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves distribution/windows/installer-net/upgrade-helpers/rollback.ps1 to blob aadd519f9c1e2459a1699a0308ea970da74c36c2 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs.sh",
@@ -89,7 +89,7 @@
       "targetPath": "scripts/docs.sh",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs.sh to blob 87460b5999c2f39df180d64d02f5378e41cb75f5 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves scripts/docs.sh to blob 911dc8c7a5dd775295fc0f8973b8640eee192fe9 (mode 100755). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs.sh to blob 87460b5999c2f39df180d64d02f5378e41cb75f5 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves scripts/docs.sh to blob 911dc8c7a5dd775295fc0f8973b8640eee192fe9 (mode 100755). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/README.md",
@@ -97,7 +97,7 @@
       "targetPath": "docs/README.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The ChaptarrNG docs index organizes the current migration, feature, integration, operations, and development guides; its root README provides the project overview and quick start.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/README.md to blob b4d745ba77c30d10c95f9195fcc1e5705dfb1c74 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/README.md to blob cb1f80ff38abe0e226582da063a10d1d504d1c73 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/README.md to blob b4d745ba77c30d10c95f9195fcc1e5705dfb1c74 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/README.md to blob cb1f80ff38abe0e226582da063a10d1d504d1c73 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/audiobook-m4b-merging.md",
@@ -105,7 +105,7 @@
       "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target retirement guide records the opt-in BookshelfNG M4B environment settings and source-only state; the fork feature guide describes current merge behavior and fallback.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/audiobook-m4b-merging.md to blob fdb99716624c229a422b5b7e67ae7674e6c1c027 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/audiobook-m4b-merging.md to blob fdb99716624c229a422b5b7e67ae7674e6c1c027 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/audiobookshelf-metadata.md",
@@ -113,7 +113,7 @@
       "targetPath": "docs/EXTERNAL_LIBRARY_INTEGRATIONS.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target external-integration guide covers AudioBookShelf sidecars and synchronization; the feature guide records narrator and metadata-profile behavior.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/audiobookshelf-metadata.md to blob e3d335c59646112b9e2bba552d35a306602e90b3 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/EXTERNAL_LIBRARY_INTEGRATIONS.md to blob c53e57f32220e34b939c6628aee0f8e2d32e1514 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/audiobookshelf-metadata.md to blob e3d335c59646112b9e2bba552d35a306602e90b3 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/EXTERNAL_LIBRARY_INTEGRATIONS.md to blob c53e57f32220e34b939c6628aee0f8e2d32e1514 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/author-metadata-refresh.md",
@@ -121,7 +121,7 @@
       "targetPath": "docs/AUTHOR_METADATA_REFRESH.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG author guide documents its own freshness and rescan policy alongside the BookshelfNG behavior; this map does not assert identical provider behavior.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/author-metadata-refresh.md to blob 0d58559e9351a0778726dfec72772eb0ed300ab1 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/AUTHOR_METADATA_REFRESH.md to blob 50a2997349b8c62de74df01adbf47dfea5b1e37a (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/author-metadata-refresh.md to blob 0d58559e9351a0778726dfec72772eb0ed300ab1 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/AUTHOR_METADATA_REFRESH.md to blob 50a2997349b8c62de74df01adbf47dfea5b1e37a (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/booklore-integration.md",
@@ -129,7 +129,7 @@
       "targetPath": "docs/BOOKLORE_INTEGRATION.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target guide covers BookLore BookDrop setup, canonical URLs, upload behavior, and the migration rule that saved BookLore settings are not silently reassigned to BookOrbit.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/booklore-integration.md to blob 3cc7b122eba21f480bae342a0e8ceb3f1865e172 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/BOOKLORE_INTEGRATION.md to blob e992967fa0fdb3fa455661e8dbe84d94b08fd3de (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/booklore-integration.md to blob 3cc7b122eba21f480bae342a0e8ceb3f1865e172 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/BOOKLORE_INTEGRATION.md to blob e992967fa0fdb3fa455661e8dbe84d94b08fd3de (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/capabilities-and-compatibility.md",
@@ -137,7 +137,7 @@
       "targetPath": "docs/FORK_FEATURES.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target guide consolidates the current format feature matrix, compatibility notes, migration state, and retirement restrictions. This is documentation coverage only, not feature-equivalence evidence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/capabilities-and-compatibility.md to blob 0df5e7b1f882521cf1ffe8b2b109d36d1e4ced4a (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/FORK_FEATURES.md to blob 6bdd481e4dca8baeb7df0ef36926229961dc053c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/capabilities-and-compatibility.md to blob 0df5e7b1f882521cf1ffe8b2b109d36d1e4ced4a (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/FORK_FEATURES.md to blob 6bdd481e4dca8baeb7df0ef36926229961dc053c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/catalog-metadata-and-unmapped-files.md",
@@ -145,7 +145,7 @@
       "targetPath": "docs/MIGRATE_FROM_BOOKSHELFNG.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target guides cover supplemental catalogs and field preferences, unmapped-file recovery, and the identity and ambiguity rules used by the candidate.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/catalog-metadata-and-unmapped-files.md to blob 5c4192481ac1f071372408b4c59bc164fc0d9e86 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/catalog-metadata-and-unmapped-files.md to blob 5c4192481ac1f071372408b4c59bc164fc0d9e86 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/development/validation-engine.md",
@@ -153,7 +153,7 @@
       "targetPath": "docs/development/validation-engine.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The same-path ChaptarrNG guide documents the current local and hosted validation engine, task progress, runner routing, and receipt contract.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/development/validation-engine.md to blob d5e6e85115da1930860df40aa263a2445e29480c (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/development/validation-engine.md to blob c8e661d8fb21a501d6ca8e33aa4d1f6fff13376f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/development/validation-engine.md to blob d5e6e85115da1930860df40aa263a2445e29480c (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/development/validation-engine.md to blob c8e661d8fb21a501d6ca8e33aa4d1f6fff13376f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/distribution.md",
@@ -161,7 +161,7 @@
       "targetPath": "packaging/README.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The ChaptarrNG package overview and retirement guide document maintained destinations, publication boundaries, and the legacy-channel acceptance state.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/distribution.md to blob 3763a7393d3ae5530ddafa5b737153f305901cc5 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/README.md to blob cc02c23a172afb3b4666cb4d737477d325463ccb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/distribution.md to blob 3763a7393d3ae5530ddafa5b737153f305901cc5 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/README.md to blob cc02c23a172afb3b4666cb4d737477d325463ccb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/encrypted-backups.md",
@@ -169,7 +169,7 @@
       "targetPath": "docs/BOOKSHELFNG_ENCRYPTED_BACKUPS.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The BookshelfNG guide documents its portable encrypted archive format and API; the ChaptarrNG guide documents that compatibility contract alongside ChaptarrNG backup behavior.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/encrypted-backups.md to blob c7a42badf7f3b6acf727a0e8622aed6e0579583c (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/BOOKSHELFNG_ENCRYPTED_BACKUPS.md to blob 52b1f74537e236a84eb39e014b76f8364263ba62 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/encrypted-backups.md to blob c7a42badf7f3b6acf727a0e8622aed6e0579583c (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/BOOKSHELFNG_ENCRYPTED_BACKUPS.md to blob 52b1f74537e236a84eb39e014b76f8364263ba62 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/import-matching-and-formats.md",
@@ -177,7 +177,7 @@
       "targetPath": "docs/FORK_FEATURES.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target feature guide covers format-scoped imports, matching, edition preferences, and metadata profiles; the supplemental metadata guide documents provider selection.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/import-matching-and-formats.md to blob 7ea0aa8a77c2fba0eb168766ee0d1218af600722 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/FORK_FEATURES.md to blob 6bdd481e4dca8baeb7df0ef36926229961dc053c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/import-matching-and-formats.md to blob 7ea0aa8a77c2fba0eb168766ee0d1218af600722 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/FORK_FEATURES.md to blob 6bdd481e4dca8baeb7df0ef36926229961dc053c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/integrations/snapetech-mcp.md",
@@ -185,7 +185,7 @@
       "targetPath": "docs/integrations/snapetech-mcp.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The same-path ChaptarrNG guide documents the MCP tools, API access, and credential and data boundaries.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/integrations/snapetech-mcp.md to blob 2c046e022cff24caa754a604935c8cef92a4b5e9 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/integrations/snapetech-mcp.md to blob 6b96cdf9b43657bd9f392ab24f7be39104e1ef65 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/integrations/snapetech-mcp.md to blob 2c046e022cff24caa754a604935c8cef92a4b5e9 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/integrations/snapetech-mcp.md to blob 6b96cdf9b43657bd9f392ab24f7be39104e1ef65 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/maintainers/bookshelfng-parity-roadmap.md",
@@ -193,7 +193,7 @@
       "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target retirement guide carries current migration gates and the feature guide carries the cumulative capability matrix.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/bookshelfng-parity-roadmap.md to blob 536400ac50202ec1be6512a3dd81e4bbffb28572 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/bookshelfng-parity-roadmap.md to blob 536400ac50202ec1be6512a3dd81e4bbffb28572 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/maintainers/chaptarr-consolidation-disposition-map.json",
@@ -201,7 +201,7 @@
       "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG retirement status page links to this canonical BookshelfNG audit artifact rather than duplicating its revision-pinned ledger. Mapping is a cross-reference only, not audit or feature-parity evidence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/chaptarr-consolidation-disposition-map.json to blob 4755c651d5d91257d2ffd4afafe1ee2d3990677b (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/chaptarr-consolidation-disposition-map.json to blob 4755c651d5d91257d2ffd4afafe1ee2d3990677b (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/maintainers/chaptarr-consolidation-inventory.json",
@@ -209,7 +209,7 @@
       "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG retirement status page links to this canonical BookshelfNG audit artifact rather than duplicating its revision-pinned ledger. Mapping is a cross-reference only, not audit or feature-parity evidence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/chaptarr-consolidation-inventory.json to blob 14c3688d88223e0ad0179bf77da28e2e9ea16e60 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/chaptarr-consolidation-inventory.json to blob 14c3688d88223e0ad0179bf77da28e2e9ea16e60 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/maintainers/chaptarr-consolidation-review-map.json",
@@ -217,7 +217,7 @@
       "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG retirement status page links to this canonical BookshelfNG audit artifact rather than duplicating its revision-pinned ledger. Mapping is a cross-reference only, not audit or feature-parity evidence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/chaptarr-consolidation-review-map.json to blob ebda8cb142e4bd982d5f5281b60ebea6b6446fa7 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/chaptarr-consolidation-review-map.json to blob ebda8cb142e4bd982d5f5281b60ebea6b6446fa7 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/maintainers/chaptarr-consolidation.md",
@@ -225,7 +225,7 @@
       "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG page summarizes the destination handoff and links back to this canonical BookshelfNG report; it does not replace the audit ledger.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/chaptarr-consolidation.md to blob 6c25d6c7a347802bf04f8d4d469199140a3c1414 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/chaptarr-consolidation.md to blob 6c25d6c7a347802bf04f8d4d469199140a3c1414 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/maintainers/chaptarrng-distribution-bridge.md",
@@ -233,7 +233,7 @@
       "targetPath": "docs/BOOKSHELFNG_RETIREMENT.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target retirement and migration guides record the current channel handoff status, release gates, per-channel limitations, and operator migration restrictions.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/chaptarrng-distribution-bridge.md to blob baa6319be98d91fc7be8b7a816a1acf3c1f1d5c5 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/chaptarrng-distribution-bridge.md to blob baa6319be98d91fc7be8b7a816a1acf3c1f1d5c5 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/BOOKSHELFNG_RETIREMENT.md to blob 36f85fe96875713790fc440128e8b8f410452f2f (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/maintainers/dependency-security.md",
@@ -241,7 +241,7 @@
       "targetPath": "docs/dependency-security.md",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/dependency-security.md to blob 62effd1150f6d59460612e4f526e2545e7fd205d (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/dependency-security.md to blob 3776cae4db398a6507c0752a5ae4a8ec560fa044 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/dependency-security.md to blob 62effd1150f6d59460612e4f526e2545e7fd205d (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/dependency-security.md to blob 3776cae4db398a6507c0752a5ae4a8ec560fa044 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/maintainers/setup-experience-contract.md",
@@ -249,7 +249,7 @@
       "targetPath": "docs/development/setup-experience-contract.md",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/setup-experience-contract.md to blob 279d71870c2d73eb8c1fa13d38f9620907fb1f7b (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/development/setup-experience-contract.md to blob 4adc422e288dc1fb5e02be9de0f07d83c63cf3f3 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/maintainers/setup-experience-contract.md to blob 279d71870c2d73eb8c1fa13d38f9620907fb1f7b (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/development/setup-experience-contract.md to blob 4adc422e288dc1fb5e02be9de0f07d83c63cf3f3 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/media-storage.md",
@@ -257,7 +257,7 @@
       "targetPath": "docs/FORK_FEATURES.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target feature guide describes format-aware media moves and file safety; the migration guide covers preserved roots, review, rollback, and update-channel limits.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/media-storage.md to blob eaa088c7888a40d0ac4847f85e28c80dfbff131d (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/FORK_FEATURES.md to blob 6bdd481e4dca8baeb7df0ef36926229961dc053c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/media-storage.md to blob eaa088c7888a40d0ac4847f85e28c80dfbff131d (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/FORK_FEATURES.md to blob 6bdd481e4dca8baeb7df0ef36926229961dc053c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/migrate-from-bookshelfng-to-chaptarrng.md",
@@ -265,7 +265,7 @@
       "targetPath": "docs/MIGRATE_FROM_BOOKSHELFNG.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target guide documents supported source schemas, provider identity hazards, backup, preview/apply separation, rollback limits, and current acceptance gates. This is operator-documentation coverage only, not migration acceptance.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/migrate-from-bookshelfng-to-chaptarrng.md to blob 5c7f860e3e63360e1ea2ca3eb678aad35aedc09e (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/migrate-from-bookshelfng-to-chaptarrng.md to blob 5c7f860e3e63360e1ea2ca3eb678aad35aedc09e (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/reporting-issues.md",
@@ -273,7 +273,7 @@
       "targetPath": "docs/REPORTING_ISSUES.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The ChaptarrNG guide adapts the request-correlation, log-location, environment-detail, SeerrNG, and migration-reporting guidance and adds ChaptarrNG-specific names and privacy advice.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/reporting-issues.md to blob 7c83501bf8577905f4970987a3e5c1f7c3ab68f5 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/REPORTING_ISSUES.md to blob 67c8ac9af81df405febcfd9fd9bf97c901be1754 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/reporting-issues.md to blob 7c83501bf8577905f4970987a3e5c1f7c3ab68f5 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/REPORTING_ISSUES.md to blob 67c8ac9af81df405febcfd9fd9bf97c901be1754 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/search-and-downloads.md",
@@ -281,7 +281,7 @@
       "targetPath": "docs/FORK_FEATURES.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target feature guide documents direct ebook downloads, interactive search, torrent adoption, and queue workflows; the root README supplies current Direct Download setup.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/search-and-downloads.md to blob b6ceb0936e3bad7726fde3fd431e6ddf7222a976 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/FORK_FEATURES.md to blob 6bdd481e4dca8baeb7df0ef36926229961dc053c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/search-and-downloads.md to blob b6ceb0936e3bad7726fde3fd431e6ddf7222a976 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/FORK_FEATURES.md to blob 6bdd481e4dca8baeb7df0ef36926229961dc053c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/seerrng-integration.md",
@@ -289,7 +289,7 @@
       "targetPath": "docs/SEERRNG_INTEGRATION.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target guide documents ChaptarrNG\u2019s Readarr-compatible SeerrNG contract, including the audiobook-scoped narrator routes and restricted-key limits. This maps integration documentation only, not end-to-end provider or client acceptance.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/seerrng-integration.md to blob 07c2bff9e2a31c61846c4b6de8e619e1d95cd1c5 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/SEERRNG_INTEGRATION.md to blob 577300b152fe61faed03b15cece03af659603000 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/seerrng-integration.md to blob 07c2bff9e2a31c61846c4b6de8e619e1d95cd1c5 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/SEERRNG_INTEGRATION.md to blob 577300b152fe61faed03b15cece03af659603000 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/series-pack-search.md",
@@ -297,7 +297,7 @@
       "targetPath": "docs/BOOKSHELFNG_WORKFLOW_PARITY.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target workflow map records series-pack search and Manual Import review; the feature guide tracks the current capability and its acceptance checks.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/series-pack-search.md to blob 4c7629579b9024ecd99281a460a3f2743f33c278 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/BOOKSHELFNG_WORKFLOW_PARITY.md to blob 3358dc20cc13547b0cf0e6e8ead932d2e519c8a4 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/series-pack-search.md to blob 4c7629579b9024ecd99281a460a3f2743f33c278 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/BOOKSHELFNG_WORKFLOW_PARITY.md to blob 6c9227e0031394d04364e1a54e55afeb7e07c04e (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "docs/standalone-install.md",
@@ -305,7 +305,7 @@
       "targetPath": "packaging/README.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The ChaptarrNG root README and package overview document maintained installation choices; the retirement guide records which legacy identities remain unpublished.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/standalone-install.md to blob 0ddbb9261c58425c51d7d9b0fc08f1dc854f7000 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/README.md to blob cc02c23a172afb3b4666cb4d737477d325463ccb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves docs/standalone-install.md to blob 0ddbb9261c58425c51d7d9b0fc08f1dc854f7000 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/README.md to blob cc02c23a172afb3b4666cb4d737477d325463ccb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "frontend/src/Author/Edit/EditAuthorModalContent.js",
@@ -313,7 +313,7 @@
       "targetPath": "frontend/src/Author/Edit/EditAuthorModalContent.js",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "ChaptarrNG's author editor exposes a selected-format record and can reset its format profile overrides to the current defaults from the selected root folder. The row-to-editor regression checks the editor's requested media type for overview, poster, and table views; selector and service tests check nullable reset and current-root default application while preserving the other format. BookshelfNG stores both formats on one author, so this ports the user outcome through ChaptarrNG's separate-format model; representative operator acceptance remains open.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Author/Edit/EditAuthorModalContent.js to blob ae5fded71e08dc36b9c1709f580f61b47e5c0da5 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/Author/Edit/EditAuthorModalContent.js to blob 1e230cf75a758cf8b02d5a260209226ac61fbbfa (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Author/Edit/EditAuthorModalContent.js to blob ae5fded71e08dc36b9c1709f580f61b47e5c0da5 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/Author/Edit/EditAuthorModalContent.js to blob 1e230cf75a758cf8b02d5a260209226ac61fbbfa (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "frontend/src/Author/Edit/EditAuthorModalContentConnector.js",
@@ -321,7 +321,7 @@
       "targetPath": "frontend/src/Author/Edit/EditAuthorModalContentConnector.js",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG editor connector loads the selected format's root folders and profiles, and the editor receives the book row's media type. Regression coverage verifies the row-to-editor handoff plus current-root profile reset and service application. This is a port into separate ChaptarrNG format records, not an identical combined-author data model; real-library and browser acceptance remain open.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Author/Edit/EditAuthorModalContentConnector.js to blob d11d0149078334c80cdebc8a38495213087268b8 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/Author/Edit/EditAuthorModalContentConnector.js to blob 63a7d34a0add425725f7871fe689a7cb6a3aca4d (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Author/Edit/EditAuthorModalContentConnector.js to blob d11d0149078334c80cdebc8a38495213087268b8 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/Author/Edit/EditAuthorModalContentConnector.js to blob 63a7d34a0add425725f7871fe689a7cb6a3aca4d (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "frontend/src/Book/Details/Editions/BookEditionCatalog.js",
@@ -329,7 +329,7 @@
       "targetPath": "frontend/src/Book/Details/Editions/BookEditionCatalog.js",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "ChaptarrNG retains the edition catalog view, adds audiobook duration and explicit not-applicable values, exposes retry on request failure, and associates results with the current book ID so a late response from the previous book cannot replace them. The focused request test covers stale-result rejection and recovery; catalog behavior on representative providers remains open for acceptance.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Book/Details/Editions/BookEditionCatalog.js to blob 699366e19bdf8f870a216afd91f7e86b6878c0d9 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/Book/Details/Editions/BookEditionCatalog.js to blob 7b380811b41cef4f05cd1a5dc39e8d345a37403a (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Book/Details/Editions/BookEditionCatalog.js to blob 699366e19bdf8f870a216afd91f7e86b6878c0d9 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/Book/Details/Editions/BookEditionCatalog.js to blob 7b380811b41cef4f05cd1a5dc39e8d345a37403a (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "frontend/src/Components/Form/MetadataProfileSelectInputConnector.js",
@@ -337,7 +337,7 @@
       "targetPath": "frontend/src/Components/Form/MetadataProfileSelectInputConnector.js",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG metadata selector retains profile and inheritance choices and adds an explicit selected-root-default option that saves as a nullable API value. Its focused regression covers the root-default value and ordinary profile selection. The control supports the migrated per-format editing outcome; provider/profile acceptance on operator data remains open.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Components/Form/MetadataProfileSelectInputConnector.js to blob 8a42221a8e58921046aa75bf2af3f94775e6dcb7 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/Components/Form/MetadataProfileSelectInputConnector.js to blob 910e271e4cb7ddc7ee054a3caab74114bf1c90f6 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Components/Form/MetadataProfileSelectInputConnector.js to blob 8a42221a8e58921046aa75bf2af3f94775e6dcb7 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/Components/Form/MetadataProfileSelectInputConnector.js to blob 910e271e4cb7ddc7ee054a3caab74114bf1c90f6 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "frontend/src/Components/Form/QualityProfileSelectInputConnector.js",
@@ -345,7 +345,7 @@
       "targetPath": "frontend/src/Components/Form/QualityProfileSelectInputConnector.js",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG quality selector preserves the existing no-change and none sentinel behavior while allowing an author format override to clear to null and use the selected root folder's current default. Focused tests cover nullable API values and existing selector behavior; representative operator acceptance remains open.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Components/Form/QualityProfileSelectInputConnector.js to blob d9211cacf80a281ba920359745a5380e3487b1ab (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/Components/Form/QualityProfileSelectInputConnector.js to blob 9a344c009bce54ad269e58122b0ed681d5c323e4 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Components/Form/QualityProfileSelectInputConnector.js to blob d9211cacf80a281ba920359745a5380e3487b1ab (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/Components/Form/QualityProfileSelectInputConnector.js to blob 9a344c009bce54ad269e58122b0ed681d5c323e4 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "packaging/aur/bookshelfng.install",
@@ -353,7 +353,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.install",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/aur/bookshelfng.install to blob 5a4464691a3013c78b610b279443310a6b2afe4c (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.install to blob e98d99fbaaa71175485827a58734d736b2d7d737 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/aur/bookshelfng.install to blob 5a4464691a3013c78b610b279443310a6b2afe4c (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.install to blob e98d99fbaaa71175485827a58734d736b2d7d737 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "packaging/catalogs/README.md",
@@ -361,7 +361,7 @@
       "targetPath": "packaging/README.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG package overview records legacy catalog status and current handoff limits; this map does not accept any catalog transition.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/catalogs/README.md to blob cc18be041bf403882d1ed096f34dc92a1df55277 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/README.md to blob cc02c23a172afb3b4666cb4d737477d325463ccb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/catalogs/README.md to blob cc18be041bf403882d1ed096f34dc92a1df55277 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/README.md to blob cc02c23a172afb3b4666cb4d737477d325463ccb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "packaging/cloudron/README.md",
@@ -369,7 +369,7 @@
       "targetPath": "packaging/README.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG package overview records that Cloudron handoff is untested; this map does not accept package identity, update, or rollback behavior.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/cloudron/README.md to blob 9834e20e52419484b9dba2b55008ec17b62b140a (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/README.md to blob cc02c23a172afb3b4666cb4d737477d325463ccb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/cloudron/README.md to blob 9834e20e52419484b9dba2b55008ec17b62b140a (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/README.md to blob cc02c23a172afb3b4666cb4d737477d325463ccb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "packaging/startos/README.md",
@@ -377,7 +377,7 @@
       "targetPath": "packaging/README.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG package overview records that StartOS handoff is untested; this map does not accept package identity, update, or rollback behavior.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/startos/README.md to blob 35a8ecce1626e6e20933bbeda54ea722a16f9b60 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/README.md to blob cc02c23a172afb3b4666cb4d737477d325463ccb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/startos/README.md to blob 35a8ecce1626e6e20933bbeda54ea722a16f9b60 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/README.md to blob cc02c23a172afb3b4666cb4d737477d325463ccb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.env",
@@ -385,7 +385,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.env",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files describe the environment file used by the BookshelfNG package identity; link them for direct comparison without claiming the variables are equivalent.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/systemd/bookshelfng.env to blob 78cff13a4f75b09751a7ab50776606bcfce7c0d7 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.env to blob ae125a6a64870d2a33fae87b16236d82a6d95f7b (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/systemd/bookshelfng.env to blob 78cff13a4f75b09751a7ab50776606bcfce7c0d7 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.env to blob ae125a6a64870d2a33fae87b16236d82a6d95f7b (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.service",
@@ -393,7 +393,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.service",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files define the systemd service for the BookshelfNG package identity; link them for direct comparison without claiming behavioral equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/systemd/bookshelfng.service to blob 4ddc23acb22a872bb6f84e43b4b3ecea30703a56 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.service to blob e61d64cd79a764ed29ce8b2d4a43a431a5966b09 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/systemd/bookshelfng.service to blob 4ddc23acb22a872bb6f84e43b4b3ecea30703a56 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.service to blob e61d64cd79a764ed29ce8b2d4a43a431a5966b09 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.sysusers",
@@ -401,7 +401,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.sysusers",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files define the system user for the BookshelfNG package identity; link them for direct comparison without claiming account behavior is equivalent.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/systemd/bookshelfng.sysusers to blob af14a749df38a42a59fad4853b470a6a704c4d2f (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.sysusers to blob c2bac860d78fe05d07a6d7181276cc0bdb0efdae (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/systemd/bookshelfng.sysusers to blob af14a749df38a42a59fad4853b470a6a704c4d2f (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.sysusers to blob c2bac860d78fe05d07a6d7181276cc0bdb0efdae (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.tmpfiles",
@@ -409,7 +409,7 @@
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.tmpfiles",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "Both files define the appdata directory for the BookshelfNG package identity; link them for direct comparison without claiming the setup is equivalent.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/systemd/bookshelfng.tmpfiles to blob 4b71e32f31b4230eb4d3f94b3936e4083d4ac2bc (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.tmpfiles to blob e0d0e6a62dee56ae170946294f429fdee99b0ddd (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/systemd/bookshelfng.tmpfiles to blob 4b71e32f31b4230eb4d3f94b3936e4083d4ac2bc (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.tmpfiles to blob e0d0e6a62dee56ae170946294f429fdee99b0ddd (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "packaging/unraid/README.md",
@@ -417,7 +417,7 @@
       "targetPath": "packaging/unraid/README.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The target package guide states the ChaptarrNG Unraid configuration, current release freeze, appdata restrictions, candidate status, and open Community Applications acceptance. This is operator-documentation coverage only; it does not establish update or rollback acceptance.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/unraid/README.md to blob b4f3779ffb498579e21658ffef233731b5c9704b (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/unraid/README.md to blob 56cf8001b86d3acca4651751dce27de37c8fde33 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/unraid/README.md to blob b4f3779ffb498579e21658ffef233731b5c9704b (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/unraid/README.md to blob 56cf8001b86d3acca4651751dce27de37c8fde33 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "packaging/unraid/docs/installation.md",
@@ -425,7 +425,7 @@
       "targetPath": "docs/MIGRATE_FROM_BOOKSHELFNG.md",
       "reviewedBy": "Codex documentation review (2026-10-20)",
       "rationale": "The ChaptarrNG migration guide contains the existing-installation Unraid handoff, including backup, appdata, provider-mode, health-check, rollback, and current acceptance restrictions. This is documentation coverage only, not installed-channel acceptance.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/unraid/docs/installation.md to blob 1e454414560314aae0960109c8c2f21f96e33e3c (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/unraid/docs/installation.md to blob 1e454414560314aae0960109c8c2f21f96e33e3c (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "patches/braces/PATCH.md",
@@ -433,7 +433,7 @@
       "targetPath": "patches/braces/PATCH.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "Both files describe the maintained braces security patch. They differ in repository context, so the mapping is for direct source review and does not assert runtime equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves patches/braces/PATCH.md to blob 096b5cd550d0424c4fc83e578b23ca8ecab4691f (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves patches/braces/PATCH.md to blob fb119fff0fb93c0eb0c2ebec3f4a0e3e1d92bba1 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves patches/braces/PATCH.md to blob 096b5cd550d0424c4fc83e578b23ca8ecab4691f (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves patches/braces/PATCH.md to blob fb119fff0fb93c0eb0c2ebec3f4a0e3e1d92bba1 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "release-notes/README.md",
@@ -441,7 +441,7 @@
       "targetPath": "release-notes/README.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "Both pages describe append-only release-note fragments and their validation. Map for process coverage only.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves release-notes/README.md to blob 0a6bd6ffa334c9806164a77cbe924184ae04621e (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves release-notes/README.md to blob 8b11ba8d25ede44ae1e8a03825bd90488a915509 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves release-notes/README.md to blob 0a6bd6ffa334c9806164a77cbe924184ae04621e (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves release-notes/README.md to blob 8b11ba8d25ede44ae1e8a03825bd90488a915509 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "scripts/bookshelf-bulk-move-media.sh",
@@ -449,7 +449,7 @@
       "targetPath": "scripts/chaptarr-bulk-move-media.sh",
       "reviewedBy": "Codex feature review (2026-10-21)",
       "rationale": "The bulk helper is ported to ChaptarrNG with its product name and key-variable updated. It calls the existing guarded bulk preview/start endpoints; the new media-move guide documents its use.",
-      "evidence": "BookshelfNG source 2030d39aa909c6c3c1a5117a248957b3bd6ff455 resolves scripts/bookshelf-bulk-move-media.sh to blob 61f8aa666943aa2fc7853c81458972b8e0fbdcc3 (mode 100755). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves scripts/chaptarr-bulk-move-media.sh to blob 6fce0b7ab9d122a6122ef68db8f20c0e4717cd82 (mode 100755) and docs/MEDIA_MOVES.md to blob 79fe1e9a59bba12a5e38d2a26a59ba5005ddfeff (mode 100644). Both scripts use the bulk preview/start routes and include the returned preview token; ChaptarrNG recalculates batch previews and validates the token before queueing. The destination script passed bash -n, --help, and ShellCheck locally, and AuthorMediaMoveServiceFixture covers batch preview/token behavior. This does not establish representative-library or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2030d39aa909c6c3c1a5117a248957b3bd6ff455 resolves scripts/bookshelf-bulk-move-media.sh to blob 61f8aa666943aa2fc7853c81458972b8e0fbdcc3 (mode 100755). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves scripts/chaptarr-bulk-move-media.sh to blob 6fce0b7ab9d122a6122ef68db8f20c0e4717cd82 (mode 100755) and docs/MEDIA_MOVES.md to blob 79fe1e9a59bba12a5e38d2a26a59ba5005ddfeff (mode 100644). Both scripts use the bulk preview/start routes and include the returned preview token; ChaptarrNG recalculates batch previews and validates the token before queueing. The destination script passed bash -n, --help, and ShellCheck locally, and AuthorMediaMoveServiceFixture covers batch preview/token behavior. This does not establish representative-library or installed-channel acceptance."
     },
     {
       "sourcePath": "scripts/bookshelf-move-media.sh",
@@ -457,7 +457,7 @@
       "targetPath": "scripts/chaptarr-move-media.sh",
       "reviewedBy": "Codex feature review (2026-10-21)",
       "rationale": "The single-author helper is ported to ChaptarrNG with its product name and key-variable updated. It calls the existing guarded preview/start endpoints; the new media-move guide documents its use.",
-      "evidence": "BookshelfNG source 2030d39aa909c6c3c1a5117a248957b3bd6ff455 resolves scripts/bookshelf-move-media.sh to blob 2d26b62d2ba3bb11037338dad70af63ee0341af2 (mode 100755). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves scripts/chaptarr-move-media.sh to blob c73568696f8ac80082e2c6c41665a2d35c9ff176 (mode 100755) and docs/MEDIA_MOVES.md to blob 79fe1e9a59bba12a5e38d2a26a59ba5005ddfeff (mode 100644). The source and target single-author endpoints both preview, then start with a preview token; ChaptarrNG recalculates and validates the token before queueing. The destination script passed bash -n, --help, and ShellCheck locally. This does not establish representative-library or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2030d39aa909c6c3c1a5117a248957b3bd6ff455 resolves scripts/bookshelf-move-media.sh to blob 2d26b62d2ba3bb11037338dad70af63ee0341af2 (mode 100755). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves scripts/chaptarr-move-media.sh to blob c73568696f8ac80082e2c6c41665a2d35c9ff176 (mode 100755) and docs/MEDIA_MOVES.md to blob 79fe1e9a59bba12a5e38d2a26a59ba5005ddfeff (mode 100644). The source and target single-author endpoints both preview, then start with a preview token; ChaptarrNG recalculates and validates the token before queueing. The destination script passed bash -n, --help, and ShellCheck locally. This does not establish representative-library or installed-channel acceptance."
     },
     {
       "sourcePath": "scripts/bookshelf-retry-unmapped.sh",
@@ -465,7 +465,7 @@
       "targetPath": "scripts/chaptarr-retry-unmapped.sh",
       "reviewedBy": "Codex feature review (2026-10-21)",
       "rationale": "The single-author style command helper is ported to ChaptarrNG using its current RetryUnmappedMatch command and explicit all-format unmapped-file selection. It retains optional wait and JSON output.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/bookshelf-retry-unmapped.sh to blob f549bb7bd147e4f562496975c512edc2e925cca5 (mode 100755). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves scripts/chaptarr-retry-unmapped.sh to blob 9b5f8db7155a36fc6d384d28b248e515b5fb8c25 (mode 100755) and docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). The BookshelfNG helper posts RetryUnmappedFiles. The ChaptarrNG helper posts RetryUnmappedMatch with mediaType=all and unmappedFiles.scope=all, which the target CommandController validates and the command handler supports. The target handler fixture covers all-scope retry behavior. The CLI script passed bash -n, --help, and ShellCheck locally; exact-head CI is pending. This does not establish representative-library or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/bookshelf-retry-unmapped.sh to blob f549bb7bd147e4f562496975c512edc2e925cca5 (mode 100755). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves scripts/chaptarr-retry-unmapped.sh to blob 9b5f8db7155a36fc6d384d28b248e515b5fb8c25 (mode 100755) and docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). The BookshelfNG helper posts RetryUnmappedFiles. The ChaptarrNG helper posts RetryUnmappedMatch with mediaType=all and unmappedFiles.scope=all, which the target CommandController validates and the command handler supports. The target handler fixture covers all-scope retry behavior. The CLI script passed bash -n, --help, and ShellCheck locally; exact-head CI is pending. This does not establish representative-library or installed-channel acceptance."
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj",
@@ -473,7 +473,7 @@
       "targetPath": "src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj",
       "reviewedBy": "Codex implementation-and-fixture review (2026-10-21)",
       "rationale": "The BookshelfNG diagnostics project is represented by ChaptarrNG\u2019s renamed diagnostics project, which references the Chaptarr Core project and builds the optional diagnostics assembly. Project-name and framework metadata are adapted to the destination repository.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj to blob a8942209813aa20508739d887e4cbe60eee10123 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj to blob 33a79b29c57dde82e4e6aa7357f0aff6bcaf3b37 (mode 100644). This path mapping does not establish installed-channel or operator acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj to blob a8942209813aa20508739d887e4cbe60eee10123 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj to blob 33a79b29c57dde82e4e6aa7357f0aff6bcaf3b37 (mode 100644). This path mapping does not establish installed-channel or operator acceptance."
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs",
@@ -481,7 +481,7 @@
       "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs to blob fc0dca284e776666a78b08b2c43cc726fb5a2b92 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs to blob 6f811aca3d651db095fac8b706cd0015df120854 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs to blob fc0dca284e776666a78b08b2c43cc726fb5a2b92 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs to blob 6f811aca3d651db095fac8b706cd0015df120854 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsReporter.cs",
@@ -489,7 +489,7 @@
       "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsReporter.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/DiagnosticsReporter.cs to blob c93e85d5a2aed7c22a582ba5bcaa8a4ed1862d08 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Diagnostics/DiagnosticsReporter.cs to blob f98d8380bee5b31da339e8f746ee33a50a3c35cf (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/DiagnosticsReporter.cs to blob c93e85d5a2aed7c22a582ba5bcaa8a4ed1862d08 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Diagnostics/DiagnosticsReporter.cs to blob f98d8380bee5b31da339e8f746ee33a50a3c35cf (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/Bookshelf.Diagnostics/README.md",
@@ -497,7 +497,7 @@
       "targetPath": "docs/OPTIONAL_DIAGNOSTICS.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG page documents its optional diagnostics module and privacy boundaries; this maps operator guidance and does not establish event parity.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/README.md to blob cd58ed2a9dfb9209a81d0b30096dda1ceb9ec7d4 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/OPTIONAL_DIAGNOSTICS.md to blob 81a9bf497f5ba3b74f737c65cf4abe94ccd33783 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Bookshelf.Diagnostics/README.md to blob cd58ed2a9dfb9209a81d0b30096dda1ceb9ec7d4 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/OPTIONAL_DIAGNOSTICS.md to blob 81a9bf497f5ba3b74f737c65cf4abe94ccd33783 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Api.Test/Books/BookStatisticsResourceFixture.cs",
@@ -505,7 +505,7 @@
       "targetPath": "src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Api.Test/Books/BookStatisticsResourceFixture.cs to blob ce67c8404975cd727d6bd96fa5683dd82e6d2f9a (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs to blob 3c7662cf5df858806b89fb5534886afa2f5675c5 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Api.Test/Books/BookStatisticsResourceFixture.cs to blob ce67c8404975cd727d6bd96fa5683dd82e6d2f9a (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/ApiV1/BookStatisticsResourceFixture.cs to blob 3c7662cf5df858806b89fb5534886afa2f5675c5 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Common.Test/DiskTests/DiskTransferServiceFixture.cs",
@@ -513,7 +513,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Common.Test/DiskTests/DiskTransferServiceFixture.cs to blob 8015ff93cbe400f6620a964e3a9f08b98c6c6402 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs to blob ea9b0cf4b7a4cc39e0d030a24d79e81a0727d644 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Common.Test/DiskTests/DiskTransferServiceFixture.cs to blob 8015ff93cbe400f6620a964e3a9f08b98c6c6402 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs to blob ea9b0cf4b7a4cc39e0d030a24d79e81a0727d644 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/Direct/DirectDownloadPlaywrightBrowserFixture.cs",
@@ -521,7 +521,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/DownloadClientTests/Direct/DirectDownloadPlaywrightBrowserFixture.cs to blob ba861bb27821ec98bfcf50249507870fd8397b1f (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs to blob ece4f87621c5011a11cae4a73425ce790b8058bd (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/DownloadClientTests/Direct/DirectDownloadPlaywrightBrowserFixture.cs to blob ba861bb27821ec98bfcf50249507870fd8397b1f (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs to blob ece4f87621c5011a11cae4a73425ce790b8058bd (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs",
@@ -529,7 +529,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs to blob 0cf6f600593943ef1d6f7bf57fad4ddc85ea012a (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs to blob de27b7b979855803c2e8dc2ec9fb34bfdf4b333b (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs to blob 0cf6f600593943ef1d6f7bf57fad4ddc85ea012a (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs to blob de27b7b979855803c2e8dc2ec9fb34bfdf4b333b (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/Indexers/DirectDownload/DirectDownloadSettingsFixture.cs",
@@ -537,7 +537,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Indexers/DirectDownloadSettingsFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Indexers/DirectDownload/DirectDownloadSettingsFixture.cs to blob 2da6c8ec231f1e4c44212602dd489f605bc3d67b (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Indexers/DirectDownloadSettingsFixture.cs to blob 00cca0ca25e4b95b06e33083ad4150b3880019cb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/Indexers/DirectDownload/DirectDownloadSettingsFixture.cs to blob 2da6c8ec231f1e4c44212602dd489f605bc3d67b (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Indexers/DirectDownloadSettingsFixture.cs to blob 00cca0ca25e4b95b06e33083ad4150b3880019cb (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/MetadataSource/Hardcover/HardcoverMetadataProxyFixture.cs",
@@ -545,7 +545,7 @@
       "targetPath": "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
       "reviewedBy": "Codex path mapping review (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/MetadataSource/Hardcover/HardcoverMetadataProxyFixture.cs to blob da74827257f34249a6794392f38ad83541eed4d8 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs to blob 44a641b87995e00a865d28ba6547496acbc29743 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/MetadataSource/Hardcover/HardcoverMetadataProxyFixture.cs to blob da74827257f34249a6794392f38ad83541eed4d8 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs to blob 44a641b87995e00a865d28ba6547496acbc29743 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core.Test/NotificationTests/BookLore/BookLoreProxyFixture.cs",
@@ -553,7 +553,7 @@
       "targetPath": "src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/NotificationTests/BookLore/BookLoreProxyFixture.cs to blob 8be864c5003d13b1bbd1e035b97f69a1a5dec1a1 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs to blob 156abd6e060bd7cf2aeb90d78aa92eb9f0c1dd03 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core.Test/NotificationTests/BookLore/BookLoreProxyFixture.cs to blob 8be864c5003d13b1bbd1e035b97f69a1a5dec1a1 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs to blob 156abd6e060bd7cf2aeb90d78aa92eb9f0c1dd03 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Backup/EncryptedBackupService.cs",
@@ -561,7 +561,7 @@
       "targetPath": "src/NzbDrone.Core/Backup/BookshelfEncryptedBackupService.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "ChaptarrNG implements the BKSENC01 passphrase envelope in BookshelfEncryptedBackupService and routes encrypted restore through BackupController. The source backup fixture and ChaptarrNG compatibility fixture validate the legacy format; this is a path-level port record, while live representative restore acceptance remains separate.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Backup/EncryptedBackupService.cs to blob 1237a124a6833682421ca6bc0a3bb5047519e1cf (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Backup/BookshelfEncryptedBackupService.cs to blob acd68dcc5923e0bcb5b95bf52f67249ac8169277 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Backup/EncryptedBackupService.cs to blob 1237a124a6833682421ca6bc0a3bb5047519e1cf (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Backup/BookshelfEncryptedBackupService.cs to blob acd68dcc5923e0bcb5b95bf52f67249ac8169277 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Books/Model/SeriesBookLinkExtensions.cs",
@@ -569,7 +569,7 @@
       "targetPath": "src/NzbDrone.Core/Books/BookSeriesLabel.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "BookSeriesLabel.SelectDisplayLink applies preferred-series terms and primary-link preference, then stable position and title tie-breakers; it replaces the source helper role and additionally keeps a displayed title and position on one authoritative link. Focused tests cover preference and deterministic selection.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Model/SeriesBookLinkExtensions.cs to blob 92f42af69cd5f188fae57a97794a0e5ccb1d3d4a (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Books/BookSeriesLabel.cs to blob 88d4cc21c1ec35c324b563307be96145c39fb90c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Model/SeriesBookLinkExtensions.cs to blob 92f42af69cd5f188fae57a97794a0e5ccb1d3d4a (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Books/BookSeriesLabel.cs to blob 88d4cc21c1ec35c324b563307be96145c39fb90c (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Books/Services/AddAuthorService.cs",
@@ -577,7 +577,7 @@
       "targetPath": "src/NzbDrone.Core/Books/Services/AuthorLibraryService.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The ChaptarrNG author-add workflow is owned by IAuthorLibraryService/AuthorService and invokes AuthorPathBuilder before saving. The format-root inheritance and ensure-path fixtures cover the replacement workflow; this disposition records the architectural port and does not waive operator-data acceptance.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/AddAuthorService.cs to blob 7814aead62b8f7ab6446ce6955da5a88770ceb9e (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Books/Services/AuthorLibraryService.cs to blob 1b9f34ccb0731009dcc2a92e6538c8413cc47601 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Services/AddAuthorService.cs to blob 7814aead62b8f7ab6446ce6955da5a88770ceb9e (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Books/Services/AuthorLibraryService.cs to blob 1b9f34ccb0731009dcc2a92e6538c8413cc47601 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Books/Utilities/AuthorLocationResolver.cs",
@@ -585,7 +585,7 @@
       "targetPath": "src/NzbDrone.Core/Books/Utilities/AuthorPathBuilder.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "AuthorPathBuilder now creates and repairs ebook and audiobook paths under their configured roots, including shared-root handling and preservation of existing relative folders. Focused path-builder tests cover the target path policy.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Utilities/AuthorLocationResolver.cs to blob 7f83499e1c193084fa7e7f1599aa3d796e7d38a5 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Books/Utilities/AuthorPathBuilder.cs to blob 61c7c8c977dfc2e6ebf839a5025f807b07afb7a6 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Books/Utilities/AuthorLocationResolver.cs to blob 7f83499e1c193084fa7e7f1599aa3d796e7d38a5 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Books/Utilities/AuthorPathBuilder.cs to blob 61c7c8c977dfc2e6ebf839a5025f807b07afb7a6 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs",
@@ -593,7 +593,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs to blob c6bf05691302d6d3fbd8047f2d0d15d0e2ccb507 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs to blob a615b4cc30927c3fa75580d3b6ab6b538415e964 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs to blob c6bf05691302d6d3fbd8047f2d0d15d0e2ccb507 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs to blob a615b4cc30927c3fa75580d3b6ab6b538415e964 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs",
@@ -601,7 +601,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs to blob f171971c0a4190c3b79a007c2448bb2d01f25d02 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs to blob 834d91ad4a7d0c5a0905e7c55aac663a9b6a7674 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs to blob f171971c0a4190c3b79a007c2448bb2d01f25d02 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs to blob 834d91ad4a7d0c5a0905e7c55aac663a9b6a7674 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs",
@@ -609,7 +609,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs to blob 5169a74f522134a8ce1d4b0a1a54bf9fbabd8589 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs to blob a82c2b2792f5048c57865df0689796092f26fe2e (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs to blob 5169a74f522134a8ce1d4b0a1a54bf9fbabd8589 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs to blob a82c2b2792f5048c57865df0689796092f26fe2e (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs",
@@ -617,7 +617,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs to blob 83e2bf616c469a2e731ec1cb40dd1ea6a4a6d2ee (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs to blob 728282a200f863f8e1185397e57315cf317d0105 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs to blob 83e2bf616c469a2e731ec1cb40dd1ea6a4a6d2ee (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs to blob 728282a200f863f8e1185397e57315cf317d0105 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs",
@@ -625,7 +625,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs to blob 3d81aed6df3836af0acb64afbbdedf5402952a85 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs to blob 06e17dd5a0e651d969eccc59def8ced6638f19a9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs to blob 3d81aed6df3836af0acb64afbbdedf5402952a85 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs to blob 06e17dd5a0e651d969eccc59def8ced6638f19a9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs",
@@ -633,7 +633,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs to blob 5b050f9f00e6c4e62cec30b9e0f3e7946bd456fa (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs to blob e13adf658d0629b5b777d4b6732ef221ecb65ed4 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs to blob 5b050f9f00e6c4e62cec30b9e0f3e7946bd456fa (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs to blob e13adf658d0629b5b777d4b6732ef221ecb65ed4 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs",
@@ -641,7 +641,7 @@
       "targetPath": "src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs",
       "reviewedBy": "Codex migration source-and-fixture review (2026-10-21)",
       "rationale": "ChaptarrNG retains the native migration path and adds explicit BookshelfNG conversion, source-chain, preview, restore, SQLite, and candidate PostgreSQL routing. Focused converter/importer fixtures cover staging, source preservation, fail-closed behavior, and rollback. This source-level disposition does not establish populated operator-data, installed-channel, or production rollback acceptance.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob 9031640234280e168cf27096d5115ba6d6ae3fac (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob fdd2f8e403c1175c5f2f50fbcf75d9a661707790 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseConverterFixture.cs to blob cfb21c7651aac98aab52666aacaca4c48a8a06f3 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Datastore/BookshelfPostgresDatabaseConverterFixture.cs to blob 19337cce3ed9efa3acd666ef95e00cc087e422d9 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Datastore/MigrationLineageReconciliationFixture.cs to blob a48581d626e738a99ab77b02f5d52d7727132774 (mode 100644). This path map does not establish representative-data or installed acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob 9031640234280e168cf27096d5115ba6d6ae3fac (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Datastore/Migration/Framework/MigrationController.cs to blob fdd2f8e403c1175c5f2f50fbcf75d9a661707790 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs to blob a37af0d4dc155fe328c30c3ab3bb019419ffd11a (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseConverterFixture.cs to blob cfb21c7651aac98aab52666aacaca4c48a8a06f3 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Datastore/BookshelfPostgresDatabaseConverterFixture.cs to blob 19337cce3ed9efa3acd666ef95e00cc087e422d9 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Datastore/MigrationLineageReconciliationFixture.cs to blob a48581d626e738a99ab77b02f5d52d7727132774 (mode 100644). This path map does not establish representative-data or installed acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Download/Clients/BookDownloadCategorySettings.cs",
@@ -649,7 +649,7 @@
       "targetPath": "src/NzbDrone.Core/Download/Clients/Deluge/DelugeSettings.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "The single source helper is replaced by per-client ebook and audiobook category fields and media-aware category handling in ChaptarrNG download clients. Target tests exercise those per-format settings and category transitions. Provider-specific converted settings and live client behavior remain acceptance gates.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Download/Clients/BookDownloadCategorySettings.cs to blob 707d1c503ba80fba2ee0c800dcf070437bbf313f (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Download/Clients/Deluge/DelugeSettings.cs to blob d80697ce4706da623071fc77d1f401a1f46e7216 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Download/Clients/BookDownloadCategorySettings.cs to blob 707d1c503ba80fba2ee0c800dcf070437bbf313f (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Download/Clients/Deluge/DelugeSettings.cs to blob d80697ce4706da623071fc77d1f401a1f46e7216 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/Extras/Metadata/Consumers/AudiobookshelfMetadata.cs",
@@ -657,7 +657,7 @@
       "targetPath": "src/NzbDrone.Core/Extras/Metadata/Consumers/LegacyAudiobookshelfMetadata.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "ChaptarrNG carries the legacy Audiobookshelf OPF metadata behavior in LegacyAudiobookshelfMetadata and exercises it with the legacy OPF fixture. The distinct class name preserves an explicit legacy boundary.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Extras/Metadata/Consumers/AudiobookshelfMetadata.cs to blob 5afa240bd12656b7e43b5f6c65b9c766b6ec1f3b (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Extras/Metadata/Consumers/LegacyAudiobookshelfMetadata.cs to blob 582ee6208fea7bab444e9168f2e2573c4069f88e (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/Extras/Metadata/Consumers/AudiobookshelfMetadata.cs to blob 5afa240bd12656b7e43b5f6c65b9c766b6ec1f3b (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Extras/Metadata/Consumers/LegacyAudiobookshelfMetadata.cs to blob 582ee6208fea7bab444e9168f2e2573c4069f88e (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedFilesCommand.cs",
@@ -665,7 +665,7 @@
       "targetPath": "src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "ChaptarrNG retries matching through RetryUnmappedMatchCommand and its handler, which reruns matching and import for eligible unmapped files and exposes focused regression coverage. This records the command responsibility at the target path; broader matching and converted-data acceptance remain separate.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedFilesCommand.cs to blob c05158d3153493330157672c359f8e3887f5d02c (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs to blob 3bae6510c7d18a91f7bc30420fab2dc589c16083 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedFilesCommand.cs to blob c05158d3153493330157672c359f8e3887f5d02c (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs to blob 3bae6510c7d18a91f7bc30420fab2dc589c16083 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Host/SecurityHeadersMiddleware.cs",
@@ -673,7 +673,7 @@
       "targetPath": "src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs",
       "reviewedBy": "Codex path recheck (2026-10-20)",
       "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Host/SecurityHeadersMiddleware.cs to blob 00e7d808cfabad49319e11120f19140ecf899eee (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs to blob 8da283c4cabc64a9504c24a657631cf25ff28cb9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Host/SecurityHeadersMiddleware.cs to blob 00e7d808cfabad49319e11120f19140ecf899eee (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs to blob 8da283c4cabc64a9504c24a657631cf25ff28cb9 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Host/SeerrIntegrationPathMiddleware.cs",
@@ -681,7 +681,7 @@
       "targetPath": "src/Chaptarr.Http/Middleware/ServarrMediaTypeScopeMiddleware.cs",
       "reviewedBy": "Codex (2026-10-21)",
       "rationale": "The source middleware rewrites /readarr/{gr|hc}/{ebook|audiobook}/api/v1 routes and attaches media context. ChaptarrNG replaces it with ServarrMediaTypeScopeMiddleware, which recognizes those same Goodreads and Hardcover facade paths, rewrites them to /api/v1, injects mediaType when absent, and stores the richer ReadarrFacadeContext. Startup registers the middleware before routing and authentication; its fixture covers both legacy route forms. This is a source-level path disposition, not live SeerrNG acceptance.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Host/SeerrIntegrationPathMiddleware.cs to blob 231d0c8984febf433b0cac3ae03627f4f324f509 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Http/Middleware/ServarrMediaTypeScopeMiddleware.cs to blob b8f883f740199c964b5d6b55d88f62fa0177bfa1 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Host/Startup.cs to blob 57fe85941fbf7af598192acfe566d77572affea2 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Http/ServarrMediaTypeScopeMiddlewareFixture.cs to blob ce430b43cd8cf54725bcdeb363adebd774ba94f0 (mode 100644)."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Host/SeerrIntegrationPathMiddleware.cs to blob 231d0c8984febf433b0cac3ae03627f4f324f509 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Http/Middleware/ServarrMediaTypeScopeMiddleware.cs to blob b8f883f740199c964b5d6b55d88f62fa0177bfa1 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Host/Startup.cs to blob 57fe85941fbf7af598192acfe566d77572affea2 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Http/ServarrMediaTypeScopeMiddlewareFixture.cs to blob ce430b43cd8cf54725bcdeb363adebd774ba94f0 (mode 100644)."
     },
     {
       "sourcePath": "src/Readarr.Api.V1/Books/PagedBookResource.cs",
@@ -689,7 +689,7 @@
       "targetPath": "src/Chaptarr.Api.V1/Books/PagedBookApiResource.cs",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "ChaptarrNG exposes offset, page size, total count, and records through GET /api/v1/book/paged using PagedBookApiResource and BookController.GetBooksPaged. The restricted SeerrNG key permits this read route; integration and operator migration acceptance remain separate.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Books/PagedBookResource.cs to blob 4033b347ae232c63e01ee3b59c475c58c2a9f3db (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Api.V1/Books/PagedBookApiResource.cs to blob 13e5dd6aa33b8770094607da5df20f92a206a993 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Api.V1/Books/PagedBookResource.cs to blob 4033b347ae232c63e01ee3b59c475c58c2a9f3db (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Api.V1/Books/PagedBookApiResource.cs to blob 13e5dd6aa33b8770094607da5df20f92a206a993 (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/Readarr.Http/SeerrIntegrationContext.cs",
@@ -697,7 +697,7 @@
       "targetPath": "src/Chaptarr.Http/Middleware/ReadarrFacadeContext.cs",
       "reviewedBy": "Codex (2026-10-21)",
       "rationale": "The source context holds the media type attached by SeerrIntegrationPathMiddleware. ChaptarrNG replaces that single-purpose context key with ReadarrFacadeContext, which stores dialect, media type, and facade prefix and is consumed by API mappers and authentication. The route-scoping fixture verifies the context for Goodreads ebook and Hardcover audiobook paths. This is a source-level path disposition, not live SeerrNG acceptance.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Http/SeerrIntegrationContext.cs to blob bec5e19c7b332c08030405519040e8e52aa37fca (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Http/Middleware/ReadarrFacadeContext.cs to blob 4e8cd48db920f53a6def3d95a7fc51c9908a8544 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Host/Startup.cs to blob 57fe85941fbf7af598192acfe566d77572affea2 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Http/ServarrMediaTypeScopeMiddlewareFixture.cs to blob ce430b43cd8cf54725bcdeb363adebd774ba94f0 (mode 100644)."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Http/SeerrIntegrationContext.cs to blob bec5e19c7b332c08030405519040e8e52aa37fca (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Http/Middleware/ReadarrFacadeContext.cs to blob 4e8cd48db920f53a6def3d95a7fc51c9908a8544 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Host/Startup.cs to blob 57fe85941fbf7af598192acfe566d77572affea2 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Http/ServarrMediaTypeScopeMiddlewareFixture.cs to blob ce430b43cd8cf54725bcdeb363adebd774ba94f0 (mode 100644)."
     },
     {
       "sourcePath": "src/TagLibSharp/PATCHES.md",
@@ -705,7 +705,7 @@
       "targetPath": "src/TagLibSharp/PATCHES.md",
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "Both files record local TagLib patch maintenance. Map for direct review only; the existing equivalent disposition carries the separate content review.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/TagLibSharp/PATCHES.md to blob b6406bfbf4d55af9feb3e46bdba122d991a91e7f (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/TagLibSharp/PATCHES.md to blob 2846170980e58b2a1e6f87342878b7c9563c288b (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/TagLibSharp/PATCHES.md to blob b6406bfbf4d55af9feb3e46bdba122d991a91e7f (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/TagLibSharp/PATCHES.md to blob 2846170980e58b2a1e6f87342878b7c9563c288b (mode 100644). This supports the recorded per-path disposition; it does not by itself establish migration safety or installed-channel acceptance."
     },
     {
       "sourcePath": "src/Readarr.Http/Authentication/FirstRunAuthenticationSetup.cs",
@@ -713,7 +713,7 @@
       "targetPath": "src/NzbDrone.Host/FirstRunAuthenticationSetup.cs",
       "reviewedBy": "Codex feature review (2026-10-21)",
       "rationale": "ChaptarrNG now preserves BookshelfNG's first-run account recovery behavior: when authentication is configured but no local account exists, startup disables authentication so the existing first-run account setup can proceed. Existing users keep their configured mode, and a non-loopback listener gets a security warning.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Http/Authentication/FirstRunAuthenticationSetup.cs to blob e48358c33f8cbae598173db3a97321c92f2a87c3 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Host/FirstRunAuthenticationSetup.cs to blob c076d5754e3b07fb214ddeb36ae9a42241aab52d (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Host/Startup.cs to blob 57fe85941fbf7af598192acfe566d77572affea2 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/Authentication/FirstRunAuthenticationSetupFixture.cs to blob fd4b5023e2ad4b86714ed9c4aa7ea4f2d8baf7b2 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves release-notes/fixed-bookshelfng-first-run-auth-setup.md to blob a7ec7ceb55f032cbbfaa8d999f0fd389ce603c81 (mode 100644). Source review confirms the legacy helper resets configured authentication to None only when no local user exists; the ChaptarrNG helper runs after schema initialization, preserves authentication when a user exists, and lets the existing first-run UI create the account. Startup warns when authentication remains disabled on a non-loopback listener. The new focused fixture covers no-user fallback, existing-user preservation, and the already-disabled no-op. Exact-head hosted Build 39546916729 is pending; this does not establish populated operator-data or installed-channel acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/Readarr.Http/Authentication/FirstRunAuthenticationSetup.cs to blob e48358c33f8cbae598173db3a97321c92f2a87c3 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Host/FirstRunAuthenticationSetup.cs to blob c076d5754e3b07fb214ddeb36ae9a42241aab52d (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Host/Startup.cs to blob 57fe85941fbf7af598192acfe566d77572affea2 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/Authentication/FirstRunAuthenticationSetupFixture.cs to blob fd4b5023e2ad4b86714ed9c4aa7ea4f2d8baf7b2 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves release-notes/fixed-bookshelfng-first-run-auth-setup.md to blob a7ec7ceb55f032cbbfaa8d999f0fd389ce603c81 (mode 100644). Source review confirms the legacy helper resets configured authentication to None only when no local user exists; the ChaptarrNG helper runs after schema initialization, preserves authentication when a user exists, and lets the existing first-run UI create the account. Startup warns when authentication remains disabled on a non-loopback listener. The new focused fixture covers no-user fallback, existing-user preservation, and the already-disabled no-op. Exact-head hosted Build 39546916729 is pending; this does not establish populated operator-data or installed-channel acceptance."
     },
     {
       "sourcePath": "src/NzbDrone.Core/MediaFiles/FilterFilesType.cs",
@@ -721,7 +721,7 @@
       "targetPath": "src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs",
       "reviewedBy": "Codex feature review (2026-10-21)",
       "rationale": "BookshelfNG used FilterFilesType.Unmapped to re-scan existing unmapped paths while skipping unchanged mapped files. ChaptarrNG replaces that internal scan-filter value with an explicit UnmappedFilesSelection on RetryUnmappedMatch, including all/selected and media-type scopes. Its handler works from stored unmapped records, checks source freshness, retries matching and catalog suggestions, and applies matches; the command controller validates the selection.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MediaFiles/FilterFilesType.cs to blob 0b32c4caace4313f53213f639034eb2b75dd9def (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/MediaFiles/Commands/RescanFoldersCommand.cs to blob 2c0532d1a739424d13743fafc211b65b34bf1ac1 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs to blob 3bae6510c7d18a91f7bc30420fab2dc589c16083 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Api.V1/Commands/CommandController.cs to blob db691987812959eb7b30c07e9de998296a38f600 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/MediaFiles/RetryUnmappedMatchCommandHandlerFixture.cs to blob 531861af3271e3c90cb29080c2f4c32f644b9809 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves scripts/chaptarr-retry-unmapped.sh to blob 9b5f8db7155a36fc6d384d28b248e515b5fb8c25 (mode 100755). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). The pinned ChaptarrNG retry fixture covers all-scope matching and selected-file behavior. This is the functional port of the removed enum value, not a claim that the implementations are line-equivalent. Exact-head hosted Build 39546916729 is in progress; populated-library and installed-channel acceptance remain open."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves src/NzbDrone.Core/MediaFiles/FilterFilesType.cs to blob 0b32c4caace4313f53213f639034eb2b75dd9def (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/MediaFiles/Commands/RescanFoldersCommand.cs to blob 2c0532d1a739424d13743fafc211b65b34bf1ac1 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs to blob 3bae6510c7d18a91f7bc30420fab2dc589c16083 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Api.V1/Commands/CommandController.cs to blob db691987812959eb7b30c07e9de998296a38f600 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/MediaFiles/RetryUnmappedMatchCommandHandlerFixture.cs to blob 531861af3271e3c90cb29080c2f4c32f644b9809 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves scripts/chaptarr-retry-unmapped.sh to blob 9b5f8db7155a36fc6d384d28b248e515b5fb8c25 (mode 100755). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). The pinned ChaptarrNG retry fixture covers all-scope matching and selected-file behavior. This is the functional port of the removed enum value, not a claim that the implementations are line-equivalent. Exact-head hosted Build 39546916729 is in progress; populated-library and installed-channel acceptance remain open."
     },
     {
       "sourcePath": "frontend/src/UnmappedFiles/UnmappedFilesTable.js",
@@ -729,7 +729,7 @@
       "targetPath": "frontend/src/UnmappedFiles/UnmappedFilesTable.js",
       "reviewedBy": "Codex feature review (2026-10-21)",
       "rationale": "The table retains BookshelfNG's unmapped-file list and selection actions while using ChaptarrNG's explicit all/selected selection model, separate audiobook/ebook filtering, range selection, refresh and retry actions, and review-log preview. It now reports initial-load failures with in-place retry, keeps file actions disabled until a successful nonempty load, and gives row controls accessible names.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/UnmappedFiles/UnmappedFilesTable.js to blob cf4eac2593d3a7b3822dfb7e6b47069db6abce4d (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/UnmappedFiles/UnmappedFilesTable.js to blob fb4def5075b51d521058b6403632c9457fbc8983 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/UnmappedFiles/UnmappedFilesTableConnector.js to blob 0d35cfd6977483a55cb0f4a3f83fe3645c0b84f3 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/UnmappedFiles/UnmappedFilesMediaTypeToggle.js to blob 31ae7101c245eed3ba4866030215521ea435532c (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/MediaFiles/Commands/RescanFoldersCommand.cs to blob 2c0532d1a739424d13743fafc211b65b34bf1ac1 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs to blob 3bae6510c7d18a91f7bc30420fab2dc589c16083 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Api.V1/Commands/CommandController.cs to blob db691987812959eb7b30c07e9de998296a38f600 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/MediaFiles/RetryUnmappedMatchCommandHandlerFixture.cs to blob 531861af3271e3c90cb29080c2f4c32f644b9809 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). The target command controller validates media type and all/selected file scope, and the retry-handler fixture covers all-scope matching. Source review confirms the list, selection, refresh, and retry behaviors are represented in the target workflow. No focused frontend interaction test is present for this table; the exact-head hosted Build 39546916729 is running its frontend checks. This path disposition is not UI or operator acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/UnmappedFiles/UnmappedFilesTable.js to blob cf4eac2593d3a7b3822dfb7e6b47069db6abce4d (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/UnmappedFiles/UnmappedFilesTable.js to blob fb4def5075b51d521058b6403632c9457fbc8983 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/UnmappedFiles/UnmappedFilesTableConnector.js to blob 0d35cfd6977483a55cb0f4a3f83fe3645c0b84f3 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/UnmappedFiles/UnmappedFilesMediaTypeToggle.js to blob 31ae7101c245eed3ba4866030215521ea435532c (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/MediaFiles/Commands/RescanFoldersCommand.cs to blob 2c0532d1a739424d13743fafc211b65b34bf1ac1 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs to blob 3bae6510c7d18a91f7bc30420fab2dc589c16083 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Api.V1/Commands/CommandController.cs to blob db691987812959eb7b30c07e9de998296a38f600 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/MediaFiles/RetryUnmappedMatchCommandHandlerFixture.cs to blob 531861af3271e3c90cb29080c2f4c32f644b9809 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). The target command controller validates media type and all/selected file scope, and the retry-handler fixture covers all-scope matching. Source review confirms the list, selection, refresh, and retry behaviors are represented in the target workflow. No focused frontend interaction test is present for this table; the exact-head hosted Build 39546916729 is running its frontend checks. This path disposition is not UI or operator acceptance."
     },
     {
       "sourcePath": "frontend/src/UnmappedFiles/UnmappedFilesTableConnector.js",
@@ -737,7 +737,7 @@
       "targetPath": "frontend/src/UnmappedFiles/UnmappedFilesTable.js",
       "reviewedBy": "Codex feature review (2026-10-21)",
       "rationale": "The table retains BookshelfNG's unmapped-file list and selection actions while using ChaptarrNG's explicit all/selected selection model, separate audiobook/ebook filtering, range selection, refresh and retry actions, and review-log preview. It now reports initial-load failures with in-place retry, keeps file actions disabled until a successful nonempty load, and gives row controls accessible names.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/UnmappedFiles/UnmappedFilesTableConnector.js to blob cb93ff7417b14d7ac35156d5521c25a1f25db65a (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/UnmappedFiles/UnmappedFilesTable.js to blob fb4def5075b51d521058b6403632c9457fbc8983 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/UnmappedFiles/UnmappedFilesTableConnector.js to blob 0d35cfd6977483a55cb0f4a3f83fe3645c0b84f3 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/UnmappedFiles/UnmappedFilesMediaTypeToggle.js to blob 31ae7101c245eed3ba4866030215521ea435532c (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/MediaFiles/Commands/RescanFoldersCommand.cs to blob 2c0532d1a739424d13743fafc211b65b34bf1ac1 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs to blob 3bae6510c7d18a91f7bc30420fab2dc589c16083 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Api.V1/Commands/CommandController.cs to blob db691987812959eb7b30c07e9de998296a38f600 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/Chaptarr.Core.Test/MediaFiles/RetryUnmappedMatchCommandHandlerFixture.cs to blob 531861af3271e3c90cb29080c2f4c32f644b9809 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). The target command controller validates media type and all/selected file scope, and the retry-handler fixture covers all-scope matching. Source review confirms the list, selection, refresh, and retry behaviors are represented in the target workflow. No focused frontend interaction test is present for this table; the exact-head hosted Build 39546916729 is running its frontend checks. This path disposition is not UI or operator acceptance."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/UnmappedFiles/UnmappedFilesTableConnector.js to blob cb93ff7417b14d7ac35156d5521c25a1f25db65a (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/UnmappedFiles/UnmappedFilesTable.js to blob fb4def5075b51d521058b6403632c9457fbc8983 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/UnmappedFiles/UnmappedFilesTableConnector.js to blob 0d35cfd6977483a55cb0f4a3f83fe3645c0b84f3 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/UnmappedFiles/UnmappedFilesMediaTypeToggle.js to blob 31ae7101c245eed3ba4866030215521ea435532c (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/MediaFiles/Commands/RescanFoldersCommand.cs to blob 2c0532d1a739424d13743fafc211b65b34bf1ac1 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/MediaFiles/Commands/RetryUnmappedMatchCommandHandler.cs to blob 3bae6510c7d18a91f7bc30420fab2dc589c16083 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Api.V1/Commands/CommandController.cs to blob db691987812959eb7b30c07e9de998296a38f600 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/Chaptarr.Core.Test/MediaFiles/RetryUnmappedMatchCommandHandlerFixture.cs to blob 531861af3271e3c90cb29080c2f4c32f644b9809 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/UNMAPPED_FILES.md to blob 9aeb370ab1507d9caa8d4945a5a5af447058d69b (mode 100644). The target command controller validates media type and all/selected file scope, and the retry-handler fixture covers all-scope matching. Source review confirms the list, selection, refresh, and retry behaviors are represented in the target workflow. No focused frontend interaction test is present for this table; the exact-head hosted Build 39546916729 is running its frontend checks. This path disposition is not UI or operator acceptance."
     },
     {
       "sourcePath": "packaging/chocolatey/bookshelfng.nuspec",
@@ -745,7 +745,7 @@
       "targetPath": "packaging/legacy/chocolatey/bookshelfng.nuspec.in",
       "reviewedBy": "Codex distribution review (2026-10-21)",
       "rationale": "The target preserves the existing bookshelfng package ID and NSSM dependency, and identifies the package as a migration update to standard ChaptarrNG. The template is rendered with the verified release version and archive checksum.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/bookshelfng.nuspec to blob 3945668fca97c69aaea5e8277472b5851459625c (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/bookshelfng.nuspec to blob 3945668fca97c69aaea5e8277472b5851459625c (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
     },
     {
       "sourcePath": "packaging/chocolatey/tools/chocolateyinstall.ps1",
@@ -753,7 +753,7 @@
       "targetPath": "packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in",
       "reviewedBy": "Codex distribution review (2026-10-21)",
       "rationale": "The target keeps the BookshelfNG service and ProgramData data location while staging a checksum-verified ChaptarrNG archive. It switches the service only after the staged payload is valid, starts the existing service, and rolls back app files, service settings, and newly converted database state if startup fails.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/tools/chocolateyinstall.ps1 to blob b1ae1030e2fad74f74afeb64b7063388ba9d9858 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/tools/chocolateyinstall.ps1 to blob b1ae1030e2fad74f74afeb64b7063388ba9d9858 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
     },
     {
       "sourcePath": "packaging/chocolatey/tools/chocolateyuninstall.ps1",
@@ -761,7 +761,7 @@
       "targetPath": "packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1",
       "reviewedBy": "Codex distribution review (2026-10-21)",
       "rationale": "The target removes the legacy service and application payload but preserves the BookshelfNG data directory and migration backup, matching the old package\u2019s data-retention behavior while protecting the rollback source.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/tools/chocolateyuninstall.ps1 to blob 8947e46c8f848ade46a0db068e7a1152494ff2e8 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves packaging/chocolatey/tools/chocolateyuninstall.ps1 to blob 8947e46c8f848ade46a0db068e7a1152494ff2e8 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/scripts/test-chocolatey-publish-gate.ps1 to blob f054dae0e60bbae79288e5aec3f7414966d618b2 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves docs/MIGRATE_FROM_BOOKSHELFNG.md to blob 21372cff913ddcd6a61fe305b09fb87bcb2c3ab9 (mode 100644). The legacy bridge preserves package ID bookshelfng, NSSM service name BookshelfNG, and ProgramData\\BookshelfNG\\data. The distribution workflow contains a hosted upgrade, migration, rollback, and uninstall smoke, and the separate publish gate keeps legacy package publication disabled unless CHAPTARRNG_MIGRATION_BRIDGE_ENABLED is true. A prior package smoke is recorded as package-level evidence only; the bridge is not currently published, and live operator-data, rollback, update-channel, and Chocolatey feed acceptance remain open."
     },
     {
       "sourcePath": "scripts/require-bookshelfng-release-ready.sh",
@@ -769,7 +769,7 @@
       "targetPath": "packaging/scripts/require-release-readiness.sh",
       "reviewedBy": "Codex release-gate review (2026-10-21)",
       "rationale": "ChaptarrNG carries forward the fail-closed retirement-readiness guard with its own namespaced environment variable and target-specific messaging. It is wired across release, distribution, and image publication routes while the legacy bridge remains separately gated; this code port preserves the publication freeze and does not assert that retirement is ready.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/require-bookshelfng-release-ready.sh to blob 538d1abc50458e9116957c7325d5d56370a04034 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/scripts/require-release-readiness.sh to blob 926f7006b583e5c6410809da6cf69c6fe9e468c9 (mode 100755). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves .github/workflows/release.yml to blob 6c7a117e71e35b188dee5038bcee99a2ef40eb3b (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). The ChaptarrNG release-readiness test passed with its readiness variable unset and false, and accepted only literal true. No readiness variable was enabled."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/require-bookshelfng-release-ready.sh to blob 538d1abc50458e9116957c7325d5d56370a04034 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/scripts/require-release-readiness.sh to blob 926f7006b583e5c6410809da6cf69c6fe9e468c9 (mode 100755). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves .github/workflows/release.yml to blob 6c7a117e71e35b188dee5038bcee99a2ef40eb3b (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). The ChaptarrNG release-readiness test passed with its readiness variable unset and false, and accepted only literal true. No readiness variable was enabled."
     },
     {
       "sourcePath": "scripts/test-bookshelfng-release-readiness-gate.sh",
@@ -777,7 +777,7 @@
       "targetPath": "packaging/scripts/test-release-readiness-gate.sh",
       "reviewedBy": "Codex release-gate review (2026-10-21)",
       "rationale": "The target tests reject unset and false readiness, accept literal true, and verify that release, distribution, and Docker publishers depend on the gate. A companion image-alias test checks alias publication and the separate migration-bridge control. This maps validation coverage only; it does not indicate that a release or bridge is authorized.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/test-bookshelfng-release-readiness-gate.sh to blob c8895727cfa6a4a168c4b8eaf42256fef5b75eeb (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/scripts/test-release-readiness-gate.sh to blob d4a83a69f6b5c6fe4c232ba24bffd746e5385028 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves packaging/scripts/test-publish-image-aliases.sh to blob 55937ac2240c6e6bc7475b3b20556890f216e35e (mode 100755). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves .github/workflows/release.yml to blob 6c7a117e71e35b188dee5038bcee99a2ef40eb3b (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). Local ChaptarrNG readiness-gate and image-alias checks passed; the build workflow runs the readiness-gate test."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves scripts/test-bookshelfng-release-readiness-gate.sh to blob c8895727cfa6a4a168c4b8eaf42256fef5b75eeb (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/scripts/test-release-readiness-gate.sh to blob d4a83a69f6b5c6fe4c232ba24bffd746e5385028 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves packaging/scripts/test-publish-image-aliases.sh to blob 55937ac2240c6e6bc7475b3b20556890f216e35e (mode 100755). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves .github/workflows/build.yml to blob 683c66f48cc1a1927e8b9295859d3f60364c890b (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves .github/workflows/release.yml to blob 6c7a117e71e35b188dee5038bcee99a2ef40eb3b (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves .github/workflows/release-distribution.yml to blob 9f9bc512cb648ed4f762837ba0f70be5b29a1380 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves .github/workflows/docker-publish.yml to blob 45411f211a037040149ba2b97766f5de88ba5968 (mode 100644). Local ChaptarrNG readiness-gate and image-alias checks passed; the build workflow runs the readiness-gate test."
     },
     {
       "sourcePath": "frontend/src/Search/Book/AddNewBookSearchResult.js",
@@ -785,7 +785,7 @@
       "targetPath": "frontend/src/Search/Book/AddNewBookSearchResult.js",
       "reviewedBy": "Codex feature review (2026-10-21)",
       "rationale": "ChaptarrNG retains the BookshelfNG search-result card and add-modal flow, makes add eligibility explicit when provider book and author IDs are available, and explains when a missing format cannot be added because an identity is unavailable. The focused helper tests cover missing IDs, existing formats, and the eligible case.",
-      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Search/Book/AddNewBookSearchResult.js to blob da84a26c49e42bb0e8bf94784e1d7455cb3430b9 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/Search/Book/AddNewBookSearchResult.js to blob 35a28b3dfe2ada37dc0644e0597c5f0ea40a0678 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/Search/Book/AddNewBookSearchResult.cjs to blob 367a4160c5546a0495b8873115c673a8a6d97db3 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/Search/Book/AddNewBookSearchResult.css to blob 71dc8fda8b04892af89b60bec5e94cc810295920 (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves frontend/src/Search/Book/AddNewBookSearchResult.test.cjs to blob 15c87f15ba5a175ed228fba62a2aa43594a7984d (mode 100644). ChaptarrNG target 45475aeb7413b5ac1be46899f4c2a6dd50e2e37e resolves src/NzbDrone.Core/Localization/Core/en.json to blob 8b55779486da7077d5746826ca4db23c73573f7c (mode 100644). The focused Add New identity-feedback tests passed as part of the 17-test frontend validation run."
+      "evidence": "BookshelfNG source 2811718076d84777a1b1132e4e5d2abd21231229 resolves frontend/src/Search/Book/AddNewBookSearchResult.js to blob da84a26c49e42bb0e8bf94784e1d7455cb3430b9 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/Search/Book/AddNewBookSearchResult.js to blob 35a28b3dfe2ada37dc0644e0597c5f0ea40a0678 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/Search/Book/AddNewBookSearchResult.cjs to blob 367a4160c5546a0495b8873115c673a8a6d97db3 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/Search/Book/AddNewBookSearchResult.css to blob 71dc8fda8b04892af89b60bec5e94cc810295920 (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves frontend/src/Search/Book/AddNewBookSearchResult.test.cjs to blob 15c87f15ba5a175ed228fba62a2aa43594a7984d (mode 100644). ChaptarrNG target c47cf8cb78fcffde3f5114242b86125ef735ab16 resolves src/NzbDrone.Core/Localization/Core/en.json to blob 8b55779486da7077d5746826ca4db23c73573f7c (mode 100644). The focused Add New identity-feedback tests passed as part of the 17-test frontend validation run."
     }
   ]
 }
