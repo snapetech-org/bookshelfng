@@ -268,6 +268,14 @@
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves frontend/src/UnmappedFiles/UnmappedFilesTableConnector.js to blob cb93ff7417b14d7ac35156d5521c25a1f25db65a (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves frontend/src/UnmappedFiles/UnmappedFilesTable.js to blob fb4def5075b51d521058b6403632c9457fbc8983 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
+      "sourcePath": "packaging/aur/PKGBUILD",
+      "decision": "map",
+      "targetPath": "packaging/legacy/aur/bookshelfng-bin/PKGBUILD.in",
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The legacy AUR recipe now installs the ChaptarrNG payload under the existing bookshelfng-bin identity, service, and data directory. It is an unpublished bridge candidate; package and representative-data acceptance remain open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/aur/PKGBUILD to blob 51a4e05906896782019b07ee382921f188b7196f (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/aur/bookshelfng-bin/PKGBUILD.in to blob 363cb58a0c6ac7af4f284ea567a1b836c046d7f6 (mode 100644). This maps the package implementation path only; publication and installed acceptance remain separate."
+    },
+    {
       "sourcePath": "packaging/aur/bookshelfng.install",
       "decision": "map",
       "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.install",
@@ -298,6 +306,38 @@
       "reviewedBy": "Codex distribution review (2026-10-21)",
       "rationale": "The target removes the legacy service and application payload but preserves the BookshelfNG data directory and migration backup, matching the old package\u2019s data-retention behavior while protecting the rollback source.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/chocolatey/tools/chocolateyuninstall.ps1 to blob 8947e46c8f848ade46a0db068e7a1152494ff2e8 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "packaging/debian/bookshelfng.postinst",
+      "decision": "map",
+      "targetPath": "packaging/legacy/debian/postinst",
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The Debian post-install hook retains the BookshelfNG service identity and data path, with guarded active-service restart handling in the bridge candidate.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/debian/bookshelfng.postinst to blob cc463a353117ee6d751dacb7b6d3eb55b0ba3fbd (mode 100755). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/debian/postinst to blob ef141c2b23e4869b6ae5f01eecd692bc1ceb1be0 (mode 100644). This maps the package implementation path only; publication and installed acceptance remain separate."
+    },
+    {
+      "sourcePath": "packaging/debian/control",
+      "decision": "map",
+      "targetPath": "packaging/legacy/debian/control.in",
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The Debian bridge uses a versioned control template for the old package identity while installing the standard ChaptarrNG payload. The package has not been published and still requires operator-data and update-channel acceptance.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/debian/control to blob 8f1df654d6d54094e853d697a5dd22fbb55a20a1 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/debian/control.in to blob 9a225fd2cd524c6a3e177a9fc55d732d37be1c9a (mode 100644). This maps the package implementation path only; publication and installed acceptance remain separate."
+    },
+    {
+      "sourcePath": "packaging/rpm/bookshelfng.spec",
+      "decision": "map",
+      "targetPath": "packaging/legacy/rpm/bookshelfng.spec.in",
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The legacy RPM recipe installs the ChaptarrNG payload under the BookshelfNG package and service identity while preserving the data path. It remains a candidate pending channel and representative-data acceptance.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/rpm/bookshelfng.spec to blob 4f168f27860b254963c26763dbc94175e655dcbb (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/rpm/bookshelfng.spec.in to blob c822048742d4e798b36475e86c86e6f27040581a (mode 100644). This maps the package implementation path only; publication and installed acceptance remain separate."
+    },
+    {
+      "sourcePath": "packaging/rpm/copr-source.sh",
+      "decision": "map",
+      "targetPath": "packaging/legacy/rpm/copr-bookshelfng-source.sh",
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The BookshelfNG COPR source fetcher is replaced by a candidate that verifies the ChaptarrNG release tag and source RPM checksum while keeping the legacy package identity. COPR publication and rollback acceptance remain open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/rpm/copr-source.sh to blob 9b7ca44d8c224f2c565e2ea807dbdca2bf74bf2d (mode 100755). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/rpm/copr-bookshelfng-source.sh to blob 128472a8e20cda826896f4142c5862df3c68e4c3 (mode 100755). This maps the package implementation path only; publication and installed acceptance remain separate."
     },
     {
       "sourcePath": "packaging/systemd/bookshelfng.env",

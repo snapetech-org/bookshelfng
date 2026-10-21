@@ -1172,6 +1172,53 @@
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/aur/PKGBUILD to blob 51a4e05906896782019b07ee382921f188b7196f (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/aur/bookshelfng-bin/PKGBUILD.in to blob 363cb58a0c6ac7af4f284ea567a1b836c046d7f6 (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
+      "sourcePath": "packaging/aur/bookshelfng.install",
+      "disposition": "ported",
+      "feature": "AUR BookshelfNG identity install hooks",
+      "targetPaths": [
+        "packaging/legacy/aur/bookshelfng-bin/bookshelfng.install",
+        "packaging/scripts/build-aur-recipes.sh"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The AUR install hooks and recipe builder retain the existing package identity while installing the ChaptarrNG application. A local pacman upgrade/downgrade rehearsal is recorded; publication and representative-data/host acceptance remain open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/aur/bookshelfng.install to blob 5a4464691a3013c78b610b279443310a6b2afe4c (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.install to blob e98d99fbaaa71175485827a58734d736b2d7d737 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/scripts/build-aur-recipes.sh to blob 3530f715a32325459718bfbdccf5d7d170879d14 (mode 100755). These rows describe candidate package implementation only; they do not authorize publication or cutover."
+    },
+    {
+      "sourcePath": "packaging/chocolatey/bookshelfng.nuspec",
+      "disposition": "ported",
+      "feature": "Chocolatey BookshelfNG package metadata",
+      "targetPaths": [
+        "packaging/legacy/chocolatey/bookshelfng.nuspec.in",
+        "packaging/scripts/publish-chocolatey-packages.ps1"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The legacy nuspec is templated for a ChaptarrNG payload under the BookshelfNG Chocolatey identity. The package candidate passed a hosted transition smoke, but publication was rejected and live-feed acceptance remains open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/chocolatey/bookshelfng.nuspec to blob 3945668fca97c69aaea5e8277472b5851459625c (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/scripts/publish-chocolatey-packages.ps1 to blob c93ff425dabfc627aa2dd8967d7d7a63b773a101 (mode 100644). These rows describe candidate package implementation only; they do not authorize publication or cutover."
+    },
+    {
+      "sourcePath": "packaging/chocolatey/tools/chocolateyinstall.ps1",
+      "disposition": "ported",
+      "feature": "Chocolatey BookshelfNG install transition",
+      "targetPaths": [
+        "packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in",
+        "packaging/scripts/publish-chocolatey-packages.ps1"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The install script is templated for the ChaptarrNG payload while preserving the old Chocolatey identity and selected data directory. Hosted candidate smoke passed; the feed has not accepted publication.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/chocolatey/tools/chocolateyinstall.ps1 to blob b1ae1030e2fad74f74afeb64b7063388ba9d9858 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/chocolatey/tools/chocolateyinstall.ps1.in to blob 2018d91912e457075b0ae46a4257731e4bfbba82 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/scripts/publish-chocolatey-packages.ps1 to blob c93ff425dabfc627aa2dd8967d7d7a63b773a101 (mode 100644). These rows describe candidate package implementation only; they do not authorize publication or cutover."
+    },
+    {
+      "sourcePath": "packaging/chocolatey/tools/chocolateyuninstall.ps1",
+      "disposition": "ported",
+      "feature": "Chocolatey BookshelfNG uninstall behavior",
+      "targetPaths": [
+        "packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The bridge keeps uninstall separate from deleting the BookshelfNG data directory. Candidate package transition checks exist; real installed rollback and live-feed acceptance remain open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/chocolatey/tools/chocolateyuninstall.ps1 to blob 8947e46c8f848ade46a0db068e7a1152494ff2e8 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). These rows describe candidate package implementation only; they do not authorize publication or cutover."
+    },
+    {
       "sourcePath": "packaging/coop-cloud/bookshelfng/WISHLIST_ISSUE.md",
       "disposition": "retired",
       "feature": "Unsubmitted Co-op Cloud wishlist text",
@@ -1180,6 +1227,30 @@
       "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
       "rationale": "This is draft text for an external wishlist request that was not sent. Retire the unused draft only; do not create or close an external issue.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/coop-cloud/bookshelfng/WISHLIST_ISSUE.md to blob d0100ec326785fa0ddbf6c61b1f74ade27bcdf73 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d has no exact, brand-mapped, or basename candidate for this path. Prior approval from 3c6e036302f67c5bef87ae9543614549b44c2790 is carried forward because the source blob is unchanged and no target candidate exists; this does not retire runtime behavior or establish migration/channel acceptance."
+    },
+    {
+      "sourcePath": "packaging/debian/bookshelfng.postinst",
+      "disposition": "ported",
+      "feature": "Debian BookshelfNG package handoff",
+      "targetPaths": [
+        "packaging/legacy/debian/postinst",
+        "packaging/scripts/build-bookshelfng-deb-bridge.sh"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The candidate binary .deb retains the package identity and service while the post-install hook safely handles active-service restart state. Trixie package and systemd-container rehearsals passed with empty data and canaries; representative operator-data rollback and publication remain open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/debian/bookshelfng.postinst to blob cc463a353117ee6d751dacb7b6d3eb55b0ba3fbd (mode 100755). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/debian/postinst to blob ef141c2b23e4869b6ae5f01eecd692bc1ceb1be0 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/scripts/build-bookshelfng-deb-bridge.sh to blob 22a2a0036bdf7cd151a818cf19a4b7c8ab7bc714 (mode 100755). These rows describe candidate package implementation only; they do not authorize publication or cutover."
+    },
+    {
+      "sourcePath": "packaging/debian/control",
+      "disposition": "ported",
+      "feature": "Debian BookshelfNG package identity and dependencies",
+      "targetPaths": [
+        "packaging/legacy/debian/control.in",
+        "packaging/scripts/build-bookshelfng-deb-bridge.sh"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The builder generates a versioned Debian package under the old package name and installs the ChaptarrNG payload. Isolated dpkg/apt candidate upgrade and downgrade checks passed; no repository or release asset is published, and operator-data acceptance remains open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/debian/control to blob 8f1df654d6d54094e853d697a5dd22fbb55a20a1 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/debian/control.in to blob 9a225fd2cd524c6a3e177a9fc55d732d37be1c9a (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/scripts/build-bookshelfng-deb-bridge.sh to blob 22a2a0036bdf7cd151a818cf19a4b7c8ab7bc714 (mode 100755). These rows describe candidate package implementation only; they do not authorize publication or cutover."
     },
     {
       "sourcePath": "packaging/rpm/bookshelfng.spec",
@@ -1193,6 +1264,19 @@
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/rpm/bookshelfng.spec to blob 4f168f27860b254963c26763dbc94175e655dcbb (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/rpm/bookshelfng.spec.in to blob c822048742d4e798b36475e86c86e6f27040581a (mode 100644). Prior review from 3c6e036302f67c5bef87ae9543614549b44c2790 carried forward only because the source and every cited target blob are unchanged; path review does not establish runtime or migration acceptance."
     },
     {
+      "sourcePath": "packaging/rpm/copr-source.sh",
+      "disposition": "ported",
+      "feature": "BookshelfNG COPR source handoff",
+      "targetPaths": [
+        "packaging/legacy/rpm/copr-bookshelfng-source.sh",
+        "packaging/legacy/rpm/bookshelfng.spec.in",
+        "packaging/scripts/build-rpm-sources.sh"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The legacy source fetcher now verifies a versioned ChaptarrNG release and checksum, then supplies the BookshelfNG-named source RPM payload. COPR built ChaptarrNG packages, but the legacy trigger/publication and installed rollback remain unaccepted.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/rpm/copr-source.sh to blob 9b7ca44d8c224f2c565e2ea807dbdca2bf74bf2d (mode 100755). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/rpm/copr-bookshelfng-source.sh to blob 128472a8e20cda826896f4142c5862df3c68e4c3 (mode 100755). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/rpm/bookshelfng.spec.in to blob c822048742d4e798b36475e86c86e6f27040581a (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/scripts/build-rpm-sources.sh to blob e0072f57bbbcc1a9510166d8eebc58641e73ebe8 (mode 100755). These rows describe candidate package implementation only; they do not authorize publication or cutover."
+    },
+    {
       "sourcePath": "packaging/startos/SUBMISSION_EMAIL.md",
       "disposition": "retired",
       "feature": "Unsubmitted StartOS submission email draft",
@@ -1201,6 +1285,58 @@
       "approvalReference": "User instruction to complete the BookshelfNG retirement and migration, tracked at https://github.com/snapetech-org/bookshelfng/issues/144.",
       "rationale": "This email draft was never submitted. The live StartOS package remains legacy and unsupported for ChaptarrNG handoff; retire the unused draft only.",
       "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/startos/SUBMISSION_EMAIL.md to blob 3daf04d8431a3aace0d574f61cc3c6f9192e040f (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d has no exact, brand-mapped, or basename candidate for this path. Prior approval from 3c6e036302f67c5bef87ae9543614549b44c2790 is carried forward because the source blob is unchanged and no target candidate exists; this does not retire runtime behavior or establish migration/channel acceptance."
+    },
+    {
+      "sourcePath": "packaging/systemd/bookshelfng.env",
+      "disposition": "ported",
+      "feature": "BookshelfNG service environment file",
+      "targetPaths": [
+        "packaging/legacy/aur/bookshelfng-bin/bookshelfng.env",
+        "packaging/legacy/debian/bookshelfng.env",
+        "packaging/legacy/rpm/bookshelfng.env"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The legacy bridge keeps the existing BookshelfNG environment-file path across AUR, Debian, and RPM candidates. The Debian candidate preserves the final public conffile bytes; package publication and representative-host acceptance remain open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/systemd/bookshelfng.env to blob 78cff13a4f75b09751a7ab50776606bcfce7c0d7 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.env to blob ae125a6a64870d2a33fae87b16236d82a6d95f7b (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/debian/bookshelfng.env to blob 78cff13a4f75b09751a7ab50776606bcfce7c0d7 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/rpm/bookshelfng.env to blob ae125a6a64870d2a33fae87b16236d82a6d95f7b (mode 100644). These rows describe candidate package implementation only; they do not authorize publication or cutover."
+    },
+    {
+      "sourcePath": "packaging/systemd/bookshelfng.service",
+      "disposition": "ported",
+      "feature": "BookshelfNG systemd service handoff",
+      "targetPaths": [
+        "packaging/legacy/aur/bookshelfng-bin/bookshelfng.service",
+        "packaging/legacy/debian/bookshelfng.service",
+        "packaging/legacy/rpm/bookshelfng.service"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The candidate unit keeps the BookshelfNG service name and data directory, starts ChaptarrNG from its new payload path, and adds bounded stop/restart and filesystem protections. Isolated service handoff checks passed; real operator-data rollback remains open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/systemd/bookshelfng.service to blob 4ddc23acb22a872bb6f84e43b4b3ecea30703a56 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.service to blob e61d64cd79a764ed29ce8b2d4a43a431a5966b09 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/debian/bookshelfng.service to blob ff3cb5a04f40005c7c6ebc8a58653cda4efaa9ad (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/rpm/bookshelfng.service to blob e61d64cd79a764ed29ce8b2d4a43a431a5966b09 (mode 100644). These rows describe candidate package implementation only; they do not authorize publication or cutover."
+    },
+    {
+      "sourcePath": "packaging/systemd/bookshelfng.sysusers",
+      "disposition": "ported",
+      "feature": "BookshelfNG service account identity",
+      "targetPaths": [
+        "packaging/legacy/aur/bookshelfng-bin/bookshelfng.sysusers",
+        "packaging/legacy/debian/bookshelfng.sysusers",
+        "packaging/legacy/rpm/bookshelfng.sysusers"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The package candidates retain the bookshelfng service account and /var/lib/bookshelfng ownership for the ChaptarrNG payload. This is package-path parity only; installed-host acceptance remains open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/systemd/bookshelfng.sysusers to blob af14a749df38a42a59fad4853b470a6a704c4d2f (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.sysusers to blob c2bac860d78fe05d07a6d7181276cc0bdb0efdae (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/debian/bookshelfng.sysusers to blob cb06558bfc5910634c134cd1ebd80ae42785e084 (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/rpm/bookshelfng.sysusers to blob c2bac860d78fe05d07a6d7181276cc0bdb0efdae (mode 100644). These rows describe candidate package implementation only; they do not authorize publication or cutover."
+    },
+    {
+      "sourcePath": "packaging/systemd/bookshelfng.tmpfiles",
+      "disposition": "ported",
+      "feature": "BookshelfNG service data-directory setup",
+      "targetPaths": [
+        "packaging/legacy/aur/bookshelfng-bin/bookshelfng.tmpfiles",
+        "packaging/legacy/debian/bookshelfng.tmpfiles",
+        "packaging/legacy/rpm/bookshelfng.tmpfiles"
+      ],
+      "reviewedBy": "Codex packaging review (2026-10-21)",
+      "rationale": "The package candidates continue to create /var/lib/bookshelfng with the same owner and restrictive mode. This is package-path parity only; installed-host acceptance remains open.",
+      "evidence": "Source adea130aeea2b6ea29c28a6ea8bf4706169d15e4 resolves packaging/systemd/bookshelfng.tmpfiles to blob 4b71e32f31b4230eb4d3f94b3936e4083d4ac2bc (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.tmpfiles to blob e0d0e6a62dee56ae170946294f429fdee99b0ddd (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/debian/bookshelfng.tmpfiles to blob e0d0e6a62dee56ae170946294f429fdee99b0ddd (mode 100644). Target c95d5e1aeb1de05441deb6888ad2a4630a3af73d resolves packaging/legacy/rpm/bookshelfng.tmpfiles to blob e0d0e6a62dee56ae170946294f429fdee99b0ddd (mode 100644). These rows describe candidate package implementation only; they do not authorize publication or cutover."
     },
     {
       "sourcePath": "patches/braces/LICENSE",
