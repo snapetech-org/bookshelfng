@@ -79,7 +79,8 @@ export function globRegex(pattern) {
     } else if (char === '*') result += '[^/]*';
     else result += char.replace(/[|\\{}()[\]^$+?.]/g, '\\$&');
   }
-  return new RegExp(`${result}$`); // nosemgrep: javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp -- glob parsing escapes regex metacharacters and expands only bounded glob wildcards from the repository-owned plan.
+  // nosemgrep: javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp -- This expression is generated only from repository-owned glob rules; all regex metacharacters are escaped and only bounded glob wildcards are expanded.
+  return new RegExp(`${result}$`);
 }
 
 export function discoverInventory(files = allRepositoryFiles(), rules = validation.inventory) {

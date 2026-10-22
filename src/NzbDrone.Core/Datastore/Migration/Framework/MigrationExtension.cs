@@ -21,7 +21,7 @@ namespace NzbDrone.Core.Datastore.Migration.Framework
         {
             var command = conn.CreateCommand();
             command.Transaction = tran;
-            command.CommandText = query; // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- Migration callers pass developer-authored SQL constants; data values use IDbCommand parameters.
+            command.CommandText = query;
 
             return command;
         }

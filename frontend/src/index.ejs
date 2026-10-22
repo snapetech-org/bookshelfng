@@ -58,7 +58,7 @@
       };
     </script>
 
-    <% for (key in htmlWebpackPlugin.files.js) { %><script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[key] %>" data-no-hash></script><% } %><!-- nosemgrep: javascript.express.security.audit.xss.ejs.var-in-script-src.var-in-script-src -- Webpack emits these URLs from the repository's build-time asset manifest, not request data. -->
+    <% for (key in htmlWebpackPlugin.files.js) { %><script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[key] %>" data-no-hash></script><% } %>
     <% for (key in htmlWebpackPlugin.files.css) { %><link href="<%= htmlWebpackPlugin.files.css[key] %>" rel="stylesheet"></link><% } %>
 
     <title>Readarr</title>
