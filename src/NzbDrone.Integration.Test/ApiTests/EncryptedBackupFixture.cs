@@ -18,7 +18,7 @@ namespace NzbDrone.Integration.Test.ApiTests
         [Test]
         public void should_export_and_restore_an_encrypted_backup()
         {
-            var exportRequest = new RestRequest("system/backup/encrypted", Method.POST);
+            var exportRequest = new RestRequest("system/backup/encrypted", Method.Post);
             exportRequest.AddHeader(EncryptedBackupService.PassphraseHeader, Passphrase);
 
             var exportResponse = RestClient.Execute(exportRequest);
@@ -38,14 +38,14 @@ namespace NzbDrone.Integration.Test.ApiTests
                 archive.GetEntry("INFO").Should().NotBeNull();
             }
 
-            var invalidRestoreRequest = new RestRequest("system/backup/restore/upload", Method.POST);
+            var invalidRestoreRequest = new RestRequest("system/backup/restore/upload", Method.Post);
             invalidRestoreRequest.AddHeader(EncryptedBackupService.PassphraseHeader, "incorrect-backup-passphrase");
             invalidRestoreRequest.AddFile("restore", encryptedPath, "application/octet-stream");
 
             var invalidRestoreResponse = RestClient.Execute(invalidRestoreRequest);
             invalidRestoreResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest, invalidRestoreResponse.Content);
 
-            var restoreRequest = new RestRequest("system/backup/restore/upload", Method.POST);
+            var restoreRequest = new RestRequest("system/backup/restore/upload", Method.Post);
             restoreRequest.AddHeader(EncryptedBackupService.PassphraseHeader, Passphrase);
             restoreRequest.AddFile("restore", encryptedPath, "application/octet-stream");
 

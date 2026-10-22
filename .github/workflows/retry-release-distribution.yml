@@ -57,4 +57,10 @@ jobs:
       channels: ${{ inputs.channels }}
       chocolatey_use_main_packaging: ${{ inputs.chocolatey_use_main_packaging }}
       skip_announcement: ${{ inputs.skip_announcement }}
-    secrets: inherit
+    secrets:
+      AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
+      COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
+      CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+      DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
