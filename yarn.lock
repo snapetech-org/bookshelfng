@@ -1378,10 +1378,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/merge-streams/-/merge-streams-2.3.0.tgz#719df7fb41766bc143369eaa0dd56d8dc87c9958"
   integrity sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==
 
-"@types/archiver@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@types/archiver/-/archiver-7.0.0.tgz#475d5aa4076ffc05f2c78dc7540b0ea4ab8c7d7a"
-  integrity sha512-/3vwGwx9n+mCQdYZ2IKGGHEFL30I96UgBlk8EtRDDFQ9uxM1l4O5Ci6r00EMAkiDaTqD9DQ6nVrWRICnBPtzzg==
+"@types/archiver@^6.0.3":
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/@types/archiver/-/archiver-6.0.4.tgz#c2497d7f009b97fdd9eed6fd1a15bc82abd9dc13"
+  integrity sha512-ULdQpARQ3sz9WH4nb98mJDYA0ft2A8C4f4fovvUcFwINa1cgGjY36JCAYuP5YypRq4mco1lJp1/7jEMS2oR0Hg==
   dependencies:
     "@types/readdir-glob" "*"
 
@@ -2765,7 +2765,7 @@ define-properties@^1.1.3, define-properties@^1.2.0, define-properties@^1.2.1:
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
 
-del@^8.0.1:
+del@^8.0.0:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/del/-/del-8.0.1.tgz#86772fe3a8c9f91bad0d7c6f79e04c6f310e50ac"
   integrity sha512-gPqh0mKTPvaUZGAuHbrBUYKZWBNAeHG7TU3QH5EhVwPMyKvmfJaNXhcD2jTcXsJRRcffuho4vaYweu80dRrMGA==
@@ -3556,22 +3556,22 @@ file-loader@6.2.0:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-filemanager-webpack-plugin@10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/filemanager-webpack-plugin/-/filemanager-webpack-plugin-10.0.1.tgz#c2635c47fd503fe273c4f018bf39ec0ffb9fef08"
-  integrity sha512-bUgOJvvccx4Grinxg6Jn66ewYNuuKy2QTDcCuA2Qx4QA3UjkpTnUxQ3FsBGZ7DGoDcliE3g5s5oUodHeYoJ7uQ==
+filemanager-webpack-plugin@9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/filemanager-webpack-plugin/-/filemanager-webpack-plugin-9.0.1.tgz#40e909af3bde3c5018698efdc73f2b31a71fc9a4"
+  integrity sha512-eNvWK6GrC9roBc1LkB/SzixXCApxs0fbKEo99BDrZmLfC9LCWxzg8B4dzoYKLdXvi19Fc6aWOApnBa8DfZIxVQ==
   dependencies:
-    "@types/archiver" "^7.0.0"
+    "@types/archiver" "^6.0.3"
     "@types/fs-extra" "^11.0.4"
     "@types/is-glob" "^4.0.4"
     "@types/normalize-path" "^3.0.2"
     archiver "^7.0.1"
-    del "^8.0.1"
+    del "^8.0.0"
     fast-glob "^3.3.3"
-    fs-extra "^11.3.4"
+    fs-extra "^11.3.0"
     is-glob "^4.0.3"
     normalize-path "^3.0.0"
-    schema-utils "^4.3.3"
+    schema-utils "^4.3.2"
 
 filesize@10.1.6:
   version "10.1.6"
@@ -3690,7 +3690,7 @@ fs-extra@^10.0.0:
     jsonfile "^6.0.1"
     universalify "^2.0.0"
 
-fs-extra@^11.3.4:
+fs-extra@^11.3.0:
   version "11.4.1"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.4.1.tgz#6a01ca80008eacf3ca1ffde5ef79088f68203a5a"
   integrity sha512-KYAb4c9BJQI6QqGKthV68OHe0badztdXJWKo0WtBA9IuCFPTKvE5ZdUBglP833aMjhaSPNO4A5j/EkzZtGlKjA==
@@ -6422,6 +6422,16 @@ schema-utils@^3.0.0, schema-utils@^3.1.1:
     "@types/json-schema" "^7.0.8"
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
+
+schema-utils@^4.3.2:
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-4.8.1.tgz#d005632a0ca18522d903d82e1dcccbddcd57e7bb"
+  integrity sha512-x39pYlJPyH7Uge5QO64B9XGP9zLDc9WNmiQZc+CE3IzZPvMu3lHOuAMGpYNoPixEL7MSWlGhYTg5UlLSL8G6iw==
+  dependencies:
+    "@types/json-schema" "^7.0.15"
+    ajv "^8.20.0"
+    ajv-formats "^3.0.1"
+    ajv-keywords "^5.1.0"
 
 seamless-immutable@^7.1.3:
   version "7.1.4"
