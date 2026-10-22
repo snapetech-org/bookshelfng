@@ -198,26 +198,12 @@ jobs:
         run: bash scripts/test-sync-unraid-package.sh
 
       - name: Test
-        id: validation
         shell: bash
         env:
+          TEST_DIR: ./_tests/net10.0/linux-x64
           DIRECT_DOWNLOAD_REQUIRE_PLAYWRIGHT: "true"
           PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
-          VALIDATION_NODE_ID: bookshelf-linux-x64-unit
-          VALIDATION_RECEIPT_EXPORT: ${{ runner.temp }}/bookshelf-validation/receipt.json
-          VALIDATION_NUNIT_EXPORT: ${{ runner.temp }}/bookshelf-validation/TestResult.xml
-        run: |
-          set -euo pipefail
-          mkdir -p "${{ runner.temp }}/bookshelf-validation"
-          echo "started=true" >> "$GITHUB_OUTPUT"
-          set +e
-          node scripts/validation-engine/engine.mjs --tests-only
-          status=$?
-          set -e
-          if [[ -s "$VALIDATION_NUNIT_EXPORT" ]]; then
-            cp "$VALIDATION_NUNIT_EXPORT" ./TestResult.xml
-          fi
-          exit "$status"
+        run: bash ./test.sh Linux Unit Test
 
       - name: Report test results
         uses: dorny/test-reporter@d1b5dff021aa968b288b02285a8bf47471c5928a # v3
@@ -228,15 +214,6 @@ jobs:
           list-tests: "failed"
           reporter: dotnet-nunit
           fail-on-error: true
-
-      - name: Upload validation receipt
-        if: always() && steps.validation.outputs.started == 'true'
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: bookshelf-validation-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/bookshelf-validation/receipt.json
-          retention-days: 7
-          if-no-files-found: error
 
       - name: Upload container build output
         if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-'))
