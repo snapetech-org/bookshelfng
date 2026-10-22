@@ -79,6 +79,7 @@ export function globRegex(pattern) {
     } else if (char === '*') result += '[^/]*';
     else result += char.replace(/[|\\{}()[\]^$+?.]/g, '\\$&');
   }
+  // nosemgrep: javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp -- This expression is generated only from repository-owned glob rules; all regex metacharacters are escaped and only bounded glob wildcards are expanded.
   return new RegExp(`${result}$`);
 }
 
@@ -143,11 +144,11 @@ function inspectRuntime(runtime) {
   const text = `${result.stdout ?? ''}${result.stderr ?? ''}`.trim();
   const version = text.split(/\r?\n/, 1)[0] ?? '';
   const available = !result.error && result.status === 0;
-  const expected = process.env.GITHUB_ACTIONS === 'true'
-    ? (runtime.githubVersionPattern ?? runtime.versionPattern)
-    : runtime.versionPattern;
-  const compatible = available && new RegExp(expected).test(version);
-  return { command: runtime.command, expected, available, compatible, version, exitCode: result.status };
+  const allowedVersions = process.env.GITHUB_ACTIONS === 'true'
+    ? (runtime.githubAllowedVersions ?? runtime.allowedVersions)
+    : runtime.allowedVersions;
+  const compatible = available && Array.isArray(allowedVersions) && allowedVersions.includes(version);
+  return { command: runtime.command, allowedVersions, available, compatible, version, exitCode: result.status };
 }
 
 function inheritedToolchainEnvironment(inherited = process.env) {

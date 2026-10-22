@@ -26,8 +26,8 @@ export const validation = {
     {
       command: process.execPath,
       args: ['--version'],
-      versionPattern: '^v20\\.(?:11\\.1|19\\.4)$',
-      githubVersionPattern: '^v20\\.19\\.4$',
+      allowedVersions: ['v20.11.1', 'v20.19.4'],
+      githubAllowedVersions: ['v20.19.4'],
     },
   ],
   inventory: [
@@ -84,7 +84,7 @@ export const validation = {
       },
       passEnv: ['PLAYWRIGHT_BROWSERS_PATH'],
       inventory: ['csharp-unit-test-sources'],
-      runtimes: [{ command: 'dotnet', args: ['--version'], versionPattern: '^10\\.0\\.401$' }],
+      runtimes: [{ command: 'dotnet', args: ['--version'], allowedVersions: ['10.0.401'] }],
       timeoutSeconds: 5400,
     },
   ],

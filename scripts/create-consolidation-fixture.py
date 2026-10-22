@@ -12,6 +12,7 @@ import hashlib
 import json
 import os
 import pathlib
+import re
 import secrets
 import socket
 import sqlite3
@@ -24,13 +25,23 @@ import xml.etree.ElementTree as ET
 
 FIXTURE_ID = 9001
 FIXTURE_DATE = '2026-10-12 12:00:00Z'
+FIXTURE_TABLES = frozenset({
+    'Tags', 'Config', 'RootFolders', 'AuthorMetadata', 'Authors', 'Books',
+    'Editions', 'BookFiles', 'ExtraFiles', 'MetadataFiles', 'Series',
+    'SeriesBookLink', 'Users', 'Notifications', 'History', 'DownloadHistory',
+    'Blocklist',
+})
+SQL_IDENTIFIER = re.compile(r'^[A-Za-z_][A-Za-z0-9_]*$')
 
 
 def api_json(port, key, route):
+    if not isinstance(route, str) or not route.startswith('/') or route.startswith('//') or '\\' in route:
+        raise ValueError('Fixture API route must remain on the loopback server')
     request = urllib.request.Request(
         f'http://127.0.0.1:{port}{route}',
         headers={'X-Api-Key': key},
     )
+    # nosemgrep: python.lang.security.audit.dynamic-urllib-use-detected.dynamic-urllib-use-detected -- Destination is the local fixture process on 127.0.0.1 and routes are constrained above.
     with urllib.request.urlopen(request, timeout=8) as response:
         return json.load(response)
 
@@ -87,10 +98,18 @@ def run_release(binary, data, output, env, port, key, routes=()):
 
 
 def insert_row(connection, table, row):
-    columns = ', '.join('"' + name + '"' for name in row)
+    if table not in FIXTURE_TABLES:
+        raise ValueError(f'Unsupported fixture table: {table}')
+    if any(not SQL_IDENTIFIER.fullmatch(name) for name in row):
+        raise ValueError('Fixture columns must be static SQLite identifiers')
+
+    quoted_table = '"' + table.replace('"', '""') + '"'
+    columns = ', '.join('"' + name.replace('"', '""') + '"' for name in row)
     values = ', '.join('?' for _ in row)
+    # Identifiers are allowlisted/validated above; all row values are bound parameters.
+    # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query -- Table/column identifiers are allowlisted and quoted; every value is a bound parameter.
     connection.execute(
-        f'INSERT INTO "{table}" ({columns}) VALUES ({values})',
+        f'INSERT INTO {quoted_table} ({columns}) VALUES ({values})',
         tuple(row.values()),
     )
 
@@ -417,6 +436,7 @@ def populate_bookshelf_fixture(database, output):
             'ExtraFiles', 'MetadataFiles', 'Series', 'SeriesBookLink', 'Users',
             'Notifications', 'History', 'DownloadHistory', 'Blocklist', 'RootFolders', 'Tags', 'Config',
         ):
+            # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query -- `table` is selected from the fixed report schema tuple above.
             counts[table] = connection.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0]
         integrity = connection.execute('PRAGMA integrity_check').fetchall()
         if integrity != [('ok',)]:

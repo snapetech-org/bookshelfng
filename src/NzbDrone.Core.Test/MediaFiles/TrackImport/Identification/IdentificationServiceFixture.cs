@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -154,7 +155,17 @@ namespace NzbDrone.Core.Test.MediaFiles.BookImport.Identification
         [TestCaseSource(typeof(IdTestCaseFactory), "TestCases")]
         public void should_match_tracks(string file)
         {
-            var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "Files", "Identification", file);
+            var fixtureRoot = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "Files", "Identification"));
+            var fileName = Path.GetFileName(file);
+            if (string.IsNullOrEmpty(fileName) || fileName is "." or ".." ||
+                Path.IsPathRooted(file) ||
+                !string.Equals(fileName, file, StringComparison.Ordinal))
+            {
+                throw new InvalidDataException("Identification test fixtures must be file names inside the fixture directory.");
+            }
+
+            // Only a filename is joined to the trusted fixture root.
+            var path = Path.Combine(fixtureRoot, Path.GetFileName(file));
             var testcase = JsonConvert.DeserializeObject<IdTestCase>(File.ReadAllText(path));
 
             var authors = GivenAuthors(testcase.LibraryAuthors);
