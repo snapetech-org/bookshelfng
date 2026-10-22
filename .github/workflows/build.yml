@@ -42,8 +42,9 @@ jobs:
         run: ./scripts/test-chocolatey-package-verifier.ps1
 
   build:
-    # All builds use GitHub-hosted runners.
-    runs-on: ubuntu-latest
+    # Pull requests and release-only jobs stay hosted; trusted main validation
+    # uses the isolated shared runner pool.
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && fromJSON('{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main"]}') || 'ubuntu-latest' }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
@@ -179,7 +180,7 @@ jobs:
         env:
           READARRVERSION: ${{ steps.variables.outputs.build_version }}
 
-      - name: Install Chromium and system dependencies on GitHub-hosted Linux
+      - name: Install Chromium and system dependencies on Linux
         if: runner.os == 'Linux'
         env:
           PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
@@ -250,7 +251,7 @@ jobs:
     name: Publish container images
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON('{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main"]}') || 'ubuntu-latest' }}
     permissions:
       contents: read
       packages: write
@@ -375,7 +376,7 @@ jobs:
     name: Scan published container images
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
     needs: publish-images
-    runs-on: ubuntu-latest
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON('{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main"]}') || 'ubuntu-latest' }}
     permissions:
       contents: read
       packages: read
@@ -423,7 +424,7 @@ jobs:
     name: Prepare release notes and draft
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
     needs: [build, publish-images]
-    runs-on: ubuntu-latest
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON('{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main"]}') || 'ubuntu-latest' }}
     permissions:
       actions: read
       contents: write
