@@ -147,6 +147,11 @@
         text-decoration: none;
       }
 
+      a.button {
+        display: block;
+        text-decoration: none;
+      }
+
       .copy {
         margin-top: 15px;
         text-align: center;
@@ -262,10 +267,15 @@
               </div>
               <button type="submit" class="button">Login</button>
 
-              <div id="login-failed" class="login-failed hidden">
+              <div id="login-failed" class="login-failed hidden" role="alert" aria-live="assertive">
                 Incorrect Username or Password
               </div>
             </form>
+            <a id="oidc-login" class="button hidden" href="auth/oidc">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><use id="oidc-login-icon" href="/Content/Images/oidc-provider-icons.svg#oidc-generic"></use></svg>
+              <span id="oidc-login-label">Continue with identity provider</span>
+            </a>
+            <a id="oidc-provider-help" class="hidden" target="_blank" rel="noopener noreferrer" style="display:block;text-align:center;margin-top:8px;font-size:12px;">Provider setup guide</a>
           </div>
         </div>
 
@@ -291,5 +301,49 @@
 
       loginFailedDiv.classList.remove("hidden");
     }
+
+    if (window.location.search.indexOf("oidcFailed=true") > -1) {
+      var oidcFailedDiv = document.getElementById("login-failed");
+      oidcFailedDiv.textContent = "Single sign-on failed. Check the identity provider and allowed-account settings.";
+      oidcFailedDiv.classList.remove("hidden");
+    }
+
+    fetch("auth/oidc/enabled", { credentials: "same-origin" })
+      .then(function (response) { return response.ok ? response.json() : false; })
+      .then(function (status) {
+        if (status && status.enabled === true) {
+          var oidcLogin = document.getElementById("oidc-login");
+          var oidcProviderHelp = document.getElementById("oidc-provider-help");
+          var providers = {
+            google: ["Google", "google", "https://developers.google.com/identity/openid-connect/openid-connect"],
+            "microsoft-entra": ["Microsoft Entra ID", "microsoft", "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"],
+            okta: ["Okta", "okta", "https://developer.okta.com/docs/guides/implement-grant-type/authcodepkce/main/"],
+            auth0: ["Auth0", "auth0", "https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow"],
+            keycloak: ["Keycloak", "keycloak", "https://www.keycloak.org/docs/latest/server_admin/"],
+            authentik: ["authentik", "authentik", "https://docs.goauthentik.io/add-secure-apps/providers/oauth2/create-oauth2-provider/"],
+            zitadel: ["ZITADEL", "zitadel", "https://zitadel.com/docs/guides/integrate/login/oidc/oauth-recommended-flows"],
+            "amazon-cognito": ["Amazon Cognito", "amazon-cognito", "https://docs.aws.amazon.com/cognito/latest/developerguide/federation-endpoints.html"],
+            "apple-sign-in": ["Apple", "apple", "https://developer.apple.com/documentation/signinwithapple/configuring-your-environment-for-sign-in-with-apple"],
+            gitlab: ["GitLab", "gitlab", "https://docs.gitlab.com/integration/openid_connect_provider/"],
+            "fusionauth": ["FusionAuth", "fusionauth", "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/"],
+            "onelogin": ["OneLogin", "onelogin", "https://developers.onelogin.com/docs/openid-connect/connect-to-onelogin/"],
+            "pingone": ["PingOne", "pingone", "https://docs.pingidentity.com/pingone/applications/p1_edit_application_oidc.html"],
+            "jumpcloud": ["JumpCloud", "jumpcloud", "https://jumpcloud.com/support/sso-with-oidc"]
+          };
+          var providerId = String(status.provider || "").trim().toLowerCase();
+          var presentation = Object.prototype.hasOwnProperty.call(providers, providerId) ? providers[providerId] : ["identity provider", "generic", "https://openid.net/developers/how-connect-works/"];
+          document.getElementById("oidc-login-label").textContent = "Continue with " + presentation[0];
+          document.getElementById("oidc-login-icon").setAttribute("href", "/Content/Images/oidc-provider-icons.svg#oidc-" + presentation[1]);
+          oidcProviderHelp.href = presentation[2];
+          oidcProviderHelp.textContent = "Setup guide for " + presentation[0] + " ↗";
+          oidcProviderHelp.setAttribute("aria-label", presentation[0] + " identity provider setup guide (opens in a new tab)");
+          oidcProviderHelp.classList.remove("hidden");
+          var params = new URLSearchParams(window.location.search);
+          var returnUrl = params.get("returnUrl");
+          oidcLogin.href = "auth/oidc" + (returnUrl ? "?returnUrl=" + encodeURIComponent(returnUrl) : "");
+          oidcLogin.classList.remove("hidden");
+        }
+      })
+      .catch(function () {});
   </script>
 </html>
