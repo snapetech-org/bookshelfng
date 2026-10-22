@@ -47,6 +47,9 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         source = WORKFLOW.read_text(encoding="utf-8")
         build = source.split("  build:\n", 1)[1].split("\n  publish-images:", 1)[0]
         self.assertIn('"group":"ng-shared-main-jit"', build)
+        self.assertIn('"ng-shared-main-bookshelfng"', build)
+        self.assertIn('"ng-main-run-{0}"', build)
+        self.assertIn("github.run_id", build)
         self.assertIn("github.event_name == 'push'", build)
         self.assertIn("github.event_name == 'workflow_dispatch'", build)
         self.assertIn("github.ref == 'refs/heads/main'", build)
@@ -71,6 +74,8 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             runner = re.search(r"(?m)^    runs-on: (?P<runner>[^\n]+)$", job)
             self.assertIsNotNone(runner, workflow_name)
             self.assertIn('"group":"ng-shared-main-jit"', runner.group("runner"))
+            self.assertIn('"ng-shared-main-bookshelfng"', runner.group("runner"))
+            self.assertIn('"ng-main-run-{0}"', runner.group("runner"))
             self.assertIn("github.event_name == 'push'", runner.group("runner"))
             self.assertIn("github.event_name == 'workflow_dispatch'", runner.group("runner"))
             self.assertIn("github.event_name == 'schedule'", runner.group("runner"))

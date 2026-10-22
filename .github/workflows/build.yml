@@ -44,7 +44,7 @@ jobs:
   build:
     # Pull requests and release-only jobs stay hosted; trusted main validation
     # uses the isolated shared runner pool.
-    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && fromJSON('{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main"]}') || 'ubuntu-latest' }}
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
@@ -251,7 +251,7 @@ jobs:
     name: Publish container images
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
     needs: build
-    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON('{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main"]}') || 'ubuntu-latest' }}
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
       packages: write
@@ -376,7 +376,7 @@ jobs:
     name: Scan published container images
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
     needs: publish-images
-    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON('{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main"]}') || 'ubuntu-latest' }}
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
       packages: read
@@ -424,7 +424,7 @@ jobs:
     name: Prepare release notes and draft
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
     needs: [build, publish-images]
-    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON('{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main"]}') || 'ubuntu-latest' }}
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       actions: read
       contents: write
