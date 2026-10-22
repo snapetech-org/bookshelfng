@@ -33,7 +33,10 @@ namespace NzbDrone.Test.Common
         public NzbDroneRunner(Logger logger, PostgresOptions postgresOptions, int port = 8787)
         {
             _processProvider = new ProcessProvider(logger);
-            _restClient = new RestClient($"http://localhost:{port}/api/v1");
+            _restClient = new RestClient(new RestClientOptions($"http://localhost:{port}/api/v1")
+            {
+                SetErrorExceptionOnUnsuccessfulStatusCode = false,
+            });
 
             PostgresOptions = postgresOptions;
             Port = port;
@@ -82,9 +85,9 @@ namespace NzbDrone.Test.Common
                 request.AddHeader("Authorization", ApiKey);
                 request.AddHeader("X-Api-Key", ApiKey);
 
-                var statusCall = _restClient.Get(request);
+                var statusCall = _restClient.Execute(request);
 
-                if (statusCall.ResponseStatus == ResponseStatus.Completed)
+                if (statusCall.IsSuccessful)
                 {
                     _startupLog = null;
                     TestContext.Progress.WriteLine($"Readarr {Port} is started. Running Tests");

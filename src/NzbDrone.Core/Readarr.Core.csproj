@@ -24,7 +24,6 @@
     <PackageReference Include="NLog" />
     <PackageReference Include="NLog.Targets.Syslog" />
     <PackageReference Include="Npgsql" />
-    <PackageReference Include="RestSharp" />
     <PackageReference Include="System.IO.Abstractions" />
     <PackageReference Include="SkiaSharp" />
     <PackageReference Include="Equ" />
