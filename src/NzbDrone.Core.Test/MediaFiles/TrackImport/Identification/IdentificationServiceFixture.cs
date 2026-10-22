@@ -154,8 +154,18 @@ namespace NzbDrone.Core.Test.MediaFiles.BookImport.Identification
         [TestCaseSource(typeof(IdTestCaseFactory), "TestCases")]
         public void should_match_tracks(string file)
         {
-            var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "Files", "Identification", file);
-            var testcase = JsonConvert.DeserializeObject<IdTestCase>(File.ReadAllText(path));
+            var fixtureRoot = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "Files", "Identification"));
+            var path = Path.GetFullPath(Path.Combine(fixtureRoot, file));
+            var relativePath = Path.GetRelativePath(fixtureRoot, path);
+            if (Path.IsPathRooted(relativePath) || relativePath == ".." ||
+                relativePath.StartsWith(".." + Path.DirectorySeparatorChar, StringComparison.Ordinal) ||
+                relativePath.StartsWith(".." + Path.AltDirectorySeparatorChar, StringComparison.Ordinal))
+            {
+                throw new InvalidDataException("Identification test fixture must stay inside the fixture directory.");
+            }
+
+            // The full path is checked against fixtureRoot above before it is read.
+            var testcase = JsonConvert.DeserializeObject<IdTestCase>(File.ReadAllText(path)); // nosemgrep: csharp.lang.security.filesystem.unsafe-path-combine.unsafe-path-combine -- Canonical containment check rejects absolute paths and traversal outside the test fixture directory.
 
             var authors = GivenAuthors(testcase.LibraryAuthors);
             var specifiedAuthor = authors.SingleOrDefault(x => x.Metadata.Value.ForeignAuthorId == testcase.Author);

@@ -65,7 +65,12 @@ namespace Readarr.Http.Frontend.Mappers
                 return $"{match.Groups["attribute"].Value}=\"{UrlBase}{url}\"";
             });
 
-            text = text.Replace("__URL_BASE__", UrlBase);
+            // Serialize the configured path as a JavaScript string so quotes and
+            // script-closing characters cannot escape this inline script block.
+            text = text.Replace(
+                "__URL_BASE_JSON__",
+                System.Text.Json.JsonSerializer.Serialize(UrlBase ?? string.Empty),
+                StringComparison.Ordinal);
 
             _generatedContent = text;
 

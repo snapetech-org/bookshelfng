@@ -35,7 +35,7 @@ namespace NzbDrone.Core.Test.Download.DownloadClientTests.SabnzbdTests
             {
                 Host = "127.0.0.1",
                 Port = 2222,
-                ApiKey = "5c770e3197e4fe763423ee7c392c25d1",
+                ApiKey = "test-api-key-placeholder",
                 Username = "admin",
                 Password = "pass",
                 MusicCategory = "tv",
