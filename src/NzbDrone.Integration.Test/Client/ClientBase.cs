@@ -34,7 +34,6 @@ namespace NzbDrone.Integration.Test.Client
             };
 
             request.AddHeader("Authorization", _apiKey);
-            request.AddHeader("X-Api-Key", _apiKey);
 
             return request;
         }
@@ -51,11 +50,10 @@ namespace NzbDrone.Integration.Test.Client
                 throw response.ErrorException;
             }
 
-            AssertDisableCache(response);
-
             response.ErrorMessage.Should().BeNullOrWhiteSpace();
-
             response.StatusCode.Should().Be(statusCode, response.Content ?? string.Empty);
+
+            AssertDisableCache(response);
 
             return response.Content;
         }
@@ -71,7 +69,7 @@ namespace NzbDrone.Integration.Test.Client
         private static void AssertDisableCache(RestResponse response)
         {
             // cache control header gets reordered on net core
-            var headers = response.Headers;
+            var headers = response.Headers.Concat(response.ContentHeaders);
             ((string)headers.SingleOrDefault(c => c.Name == "Cache-Control")?.Value ?? string.Empty).Split(',').Select(x => x.Trim())
                 .Should().BeEquivalentTo("no-store, no-cache".Split(',').Select(x => x.Trim()));
             headers.Single(c => c.Name == "Pragma").Value.Should().Be("no-cache");
