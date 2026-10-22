@@ -18,5 +18,6 @@ jobs:
       github.event.pull_request.base.ref == 'main'
     permissions:
       contents: read
-    uses: snapetech-org/bookshelfng/.github/workflows/fork-safe-validation.yml@4e55838f1bb563ff3fff63b3d9d8d2265af3c83f
+    # Keep this immutable reference aligned with the org's public-fork-jit allowlist.
+    uses: snapetech-org/bookshelfng/.github/workflows/fork-safe-validation.yml@b76db437bbceb6618e63f8029ae89c70437b01c4
 

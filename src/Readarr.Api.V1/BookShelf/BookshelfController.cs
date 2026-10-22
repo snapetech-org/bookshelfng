@@ -18,6 +18,7 @@ namespace Readarr.Api.V1.Bookshelf
         }
 
         [HttpPost]
+        [Consumes("application/json")]
         public IActionResult UpdateAll([FromBody] BookshelfResource request)
         {
             //Read from request
