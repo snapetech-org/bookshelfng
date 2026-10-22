@@ -609,4 +609,10 @@ jobs:
       softcover_digest: ${{ needs.publish-images.outputs.softcover_digest }}
       hardcover_digest: ${{ needs.publish-images.outputs.hardcover_digest }}
       runtime_pack_run_id: ${{ needs.release.outputs.runtime_pack_run_id }}
-    secrets: inherit
+    secrets:
+      AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
+      COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
+      CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+      DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
