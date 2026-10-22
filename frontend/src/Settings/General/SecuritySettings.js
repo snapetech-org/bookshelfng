@@ -37,6 +37,12 @@ export const authenticationMethodOptions = [
     get value() {
       return translate('AuthForm');
     }
+  },
+  {
+    key: 'oidc',
+    get value() {
+      return 'OpenID Connect';
+    }
   }
 ];
 
