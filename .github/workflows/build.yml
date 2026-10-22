@@ -123,6 +123,10 @@ jobs:
         run: bash scripts/validate-release-publisher-config.sh discord
 
       - uses: jdx/mise-action@9b200bcecbfd6303e69a4a261b2e09e3757440a7 # v5.2.0
+        with:
+          # Keep setup verifiable without a runtime Sigstore TUF refresh.
+          version: '2026.10.17'
+          sha256: fe6dd17e68e09682b31d2e7bb7bb755d22636ac1af5d94621e300f2ca9e9fe8a
 
       - name: Setup Environment Variables
         id: variables
@@ -198,6 +202,7 @@ jobs:
         run: bash scripts/test-sync-unraid-package.sh
 
       - name: Test
+        id: unit_tests
         shell: bash
         env:
           TEST_DIR: ./_tests/net10.0/linux-x64
@@ -207,13 +212,14 @@ jobs:
 
       - name: Report test results
         uses: dorny/test-reporter@d1b5dff021aa968b288b02285a8bf47471c5928a # v3
-        if: always()
+        if: always() && steps.unit_tests.outcome != 'skipped'
         with:
           name: Unit Test Results
           path: "**/TestResult.xml"
           list-tests: "failed"
           reporter: dotnet-nunit
           fail-on-error: true
+          fail-on-empty: ${{ steps.unit_tests.outcome == 'success' }}
 
       - name: Upload container build output
         if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-'))
