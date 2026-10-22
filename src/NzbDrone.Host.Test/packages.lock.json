@@ -556,16 +556,33 @@
       },
       "TestableIO.System.IO.Abstractions": {
         "type": "Transitive",
-        "resolved": "17.2.26",
-        "contentHash": "BO+O9ed2RQC9A+mdclTfvVHXtqGFZ3C72brUtDfbjrhU0RVf6nxpTbvd6wc03B5nGau2aTfUEKLH3PWp8O25Ag=="
+        "resolved": "22.3.0",
+        "contentHash": "2dqQ5AEE61NkQ/0F31mhOXYhgzZOtC+RUuJajwYa7gPgZBqJVe9Mc/hnqXEbBSDOxGZ7hYsmULjzK3yqewB3FA==",
+        "dependencies": {
+          "Testably.Abstractions.FileSystem.Interface": "10.4.0"
+        }
+      },
+      "TestableIO.System.IO.Abstractions.TestingHelpers": {
+        "type": "Transitive",
+        "resolved": "22.3.0",
+        "contentHash": "kJsKJjXcjSvh0H89afGlsngJHj8n7f1q7juNiLUCbtJr+m208TG6z2RfjCVlGosfgaHBnNhgs0zFy2Z0V1XnZA==",
+        "dependencies": {
+          "TestableIO.System.IO.Abstractions.Wrappers": "22.3.0",
+          "Testably.Abstractions.FileSystem.Interface": "10.4.0"
+        }
       },
       "TestableIO.System.IO.Abstractions.Wrappers": {
         "type": "Transitive",
-        "resolved": "17.2.26",
-        "contentHash": "xCSeI+J+6Naa1UG6OcZ233TKkIz14OFuQ99765OlTyQSz7U9ozN4rjUemZsRTikIgd1YBvsyH0gYt1/bNyNsUw==",
+        "resolved": "22.3.0",
+        "contentHash": "9TsOEcwIGJXHjkZ/lIpg6KnoRjxpZZ/LpMvNddcXEvmcxWKZdbhSy2UWMpy3oN8klbQ3dcpxbp9AddQk0zE+Kg==",
         "dependencies": {
-          "TestableIO.System.IO.Abstractions": "17.2.26"
+          "Testably.Abstractions.FileSystem.Interface": "10.4.0"
         }
+      },
+      "Testably.Abstractions.FileSystem.Interface": {
+        "type": "Transitive",
+        "resolved": "10.4.0",
+        "contentHash": "7G5NzIjs7544Dit0uuvYOOAzD8E4alQS2ENPGT3HV1Ks/1r55O7X4d9g6L273n70IDkgqNdBCmrkWxJLn0xCZA=="
       },
       "readarr.api.v1": {
         "type": "Project",
@@ -578,7 +595,7 @@
           "Readarr.Http": "[1.0.0, )",
           "Readarr.SignalR": "[1.0.0, )",
           "Swashbuckle.AspNetCore.Annotations": "[10.3.0, )",
-          "System.IO.Abstractions": "[17.2.26, )",
+          "System.IO.Abstractions": "[22.3.0, )",
           "System.Reflection.TypeExtensions": "[4.7.0, )"
         }
       },
@@ -595,7 +612,7 @@
           "SharpZipLib": "[1.4.2, )",
           "System.Configuration.ConfigurationManager": "[10.0.13, )",
           "System.Data.SQLite.Core.Servarr": "[1.0.115.5-18, )",
-          "System.IO.Abstractions": "[17.2.26, )",
+          "System.IO.Abstractions": "[22.3.0, )",
           "System.ServiceProcess.ServiceController": "[10.0.13, )",
           "System.ValueTuple": "[4.6.2, )"
         }
@@ -629,7 +646,7 @@
           "Servarr.FluentMigrator.Runner.Postgres": "[5.2.0.10, )",
           "Servarr.FluentMigrator.Runner.SQLite": "[5.2.0.10, )",
           "SkiaSharp": "[4.153.1, )",
-          "System.IO.Abstractions": "[17.2.26, )",
+          "System.IO.Abstractions": "[22.3.0, )",
           "System.IdentityModel.Tokens.Jwt": "[8.23.0, )",
           "TagLibSharp-Lidarr": "[2.4.0, )"
         }
@@ -678,8 +695,8 @@
           "Readarr.Core": "[1.0.0, )",
           "RestSharp": "[106.15.0, )",
           "RestSharp.Serializers.SystemTextJson": "[106.15.0, )",
-          "System.IO.Abstractions": "[17.2.26, )",
-          "System.IO.Abstractions.TestingHelpers": "[17.2.26, )"
+          "System.IO.Abstractions": "[22.3.0, )",
+          "System.IO.Abstractions.TestingHelpers": "[22.3.0, )"
         }
       },
       "TagLibSharp-Lidarr": {
@@ -1066,21 +1083,21 @@
       },
       "System.IO.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[17.2.26, )",
-        "resolved": "17.2.26",
-        "contentHash": "6hhbvnD2IkWUjto4IIN0pZhZP7G4EBmFxx380CvGJO/1yI+GLmVq/rvl3gbDtR1UJBeGXosEopK0O4rO47p4ag==",
+        "requested": "[22.3.0, )",
+        "resolved": "22.3.0",
+        "contentHash": "dHMHwd6rl1CFJvdD9jnahy3ZjU67huvUCNhitH+7mzg8ZfLocc5ZQyKmUQMUJiQdElARWJBw0XQQzP6BCKsglA==",
         "dependencies": {
-          "TestableIO.System.IO.Abstractions": "17.2.26",
-          "TestableIO.System.IO.Abstractions.Wrappers": "17.2.26"
+          "TestableIO.System.IO.Abstractions": "22.3.0",
+          "TestableIO.System.IO.Abstractions.Wrappers": "22.3.0"
         }
       },
       "System.IO.Abstractions.TestingHelpers": {
         "type": "CentralTransitive",
-        "requested": "[17.2.26, )",
-        "resolved": "17.2.26",
-        "contentHash": "idInRmbmAlVpWrSvEWJLOAo4HZUYQeKCNHTih3f0PXkeGvuZ/kDxMciHvQ8kzgaWVZ68dBz6V1O/gCBV2NOHdQ==",
+        "requested": "[22.3.0, )",
+        "resolved": "22.3.0",
+        "contentHash": "18NddvxRHmpwirzjhMOZ2u0oCdlxUvNQV2hQXPIygEnbAoo0sYOzWY4Jf5WQs/QSOIOBYSFpvq3A003d7HFmTQ==",
         "dependencies": {
-          "System.IO.Abstractions": "17.2.26"
+          "TestableIO.System.IO.Abstractions.TestingHelpers": "22.3.0"
         }
       },
       "System.Reflection.TypeExtensions": {
