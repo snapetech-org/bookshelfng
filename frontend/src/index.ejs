@@ -58,8 +58,20 @@
       };
     </script>
 
-    <% for (key in htmlWebpackPlugin.files.js) { %><script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[key] %>" data-no-hash></script><% } %>
-    <% for (key in htmlWebpackPlugin.files.css) { %><link href="<%= htmlWebpackPlugin.files.css[key] %>" rel="stylesheet"></link><% } %>
+    <%
+      const safeAssetSource = (asset) => {
+        if (typeof asset !== 'string' || asset.length > 2048) {
+          throw new Error('Invalid bundled asset URL');
+        }
+        const parsed = new URL(asset, 'https://readarr.invalid/');
+        if (parsed.origin !== 'https://readarr.invalid') {
+          throw new Error('Bundled assets must use a same-origin URL');
+        }
+        return `${parsed.pathname}${parsed.search}${parsed.hash}`;
+      };
+    %>
+    <% for (const scriptSource of htmlWebpackPlugin.files.js) { %><script type="text/javascript" src="<%= safeAssetSource(scriptSource) %>" data-no-hash></script><% } %>
+    <% for (const stylesheetSource of htmlWebpackPlugin.files.css) { %><link href="<%= safeAssetSource(stylesheetSource) %>" rel="stylesheet"></link><% } %>
 
     <title>Readarr</title>
 
