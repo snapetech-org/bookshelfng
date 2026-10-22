@@ -22,6 +22,7 @@ namespace Readarr.Api.V1.Author
         }
 
         [HttpPut]
+        [Consumes("application/json")]
         public IActionResult SaveAll([FromBody] AuthorEditorResource resource)
         {
             var authorsToUpdate = _authorService.GetAuthors(resource.AuthorIds);
@@ -92,6 +93,7 @@ namespace Readarr.Api.V1.Author
         }
 
         [HttpDelete]
+        [Consumes("application/json")]
         public object DeleteAuthor([FromBody] AuthorEditorResource resource)
         {
             foreach (var authorId in resource.AuthorIds)

@@ -18,6 +18,7 @@ namespace Readarr.Api.V1.Books
         }
 
         [HttpPut]
+        [Consumes("application/json")]
         public IActionResult SaveAll([FromBody] BookEditorResource resource)
         {
             var booksToUpdate = _bookService.GetBooks(resource.BookIds);
@@ -35,6 +36,7 @@ namespace Readarr.Api.V1.Books
         }
 
         [HttpDelete]
+        [Consumes("application/json")]
         public void DeleteBook([FromBody] BookEditorResource resource)
         {
             foreach (var bookId in resource.BookIds)
