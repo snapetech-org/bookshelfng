@@ -5,6 +5,7 @@ namespace NzbDrone.Core.Authentication
         None = 0,
         Basic = 1,
         Forms = 2,
-        External = 3
+        External = 3,
+        Oidc = 4
     }
 }
