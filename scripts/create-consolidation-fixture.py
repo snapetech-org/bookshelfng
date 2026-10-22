@@ -41,8 +41,7 @@ def api_json(port, key, route):
         f'http://127.0.0.1:{port}{route}',
         headers={'X-Api-Key': key},
     )
-    # nosemgrep: python.lang.security.audit.dynamic-urllib-use-detected.dynamic-urllib-use-detected -- Destination is the local fixture process on 127.0.0.1 and routes are constrained above.
-    with urllib.request.urlopen(request, timeout=8) as response:
+    with urllib.request.urlopen(request, timeout=8) as response:  # nosemgrep: python.lang.security.audit.dynamic-urllib-use-detected.dynamic-urllib-use-detected -- Fixed loopback host and validated route keep this local to the fixture process.
         return json.load(response)
 
 
@@ -106,10 +105,8 @@ def insert_row(connection, table, row):
     quoted_table = '"' + table.replace('"', '""') + '"'
     columns = ', '.join('"' + name.replace('"', '""') + '"' for name in row)
     values = ', '.join('?' for _ in row)
-    # Identifiers are allowlisted/validated above; all row values are bound parameters.
-    # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query -- Table/column identifiers are allowlisted and quoted; every value is a bound parameter.
     connection.execute(
-        f'INSERT INTO {quoted_table} ({columns}) VALUES ({values})',
+        f'INSERT INTO {quoted_table} ({columns}) VALUES ({values})',  # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query -- Table/column identifiers are allowlisted and quoted; every data value is bound below.
         tuple(row.values()),
     )
 
@@ -436,8 +433,7 @@ def populate_bookshelf_fixture(database, output):
             'ExtraFiles', 'MetadataFiles', 'Series', 'SeriesBookLink', 'Users',
             'Notifications', 'History', 'DownloadHistory', 'Blocklist', 'RootFolders', 'Tags', 'Config',
         ):
-            # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query -- `table` is selected from the fixed report schema tuple above.
-            counts[table] = connection.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0]
+            counts[table] = connection.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0]  # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query -- table comes from the fixed report schema tuple above.
         integrity = connection.execute('PRAGMA integrity_check').fetchall()
         if integrity != [('ok',)]:
             raise RuntimeError('Populated fixture failed SQLite integrity_check')
