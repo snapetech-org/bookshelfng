@@ -105,7 +105,7 @@ def insert_row(connection, table, row):
     quoted_table = '"' + table.replace('"', '""') + '"'
     columns = ', '.join('"' + name.replace('"', '""') + '"' for name in row)
     values = ', '.join('?' for _ in row)
-    connection.execute(
+    connection.execute(  # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query -- This sqlite3-only fixture uses allowlisted, quoted identifiers and bound parameters for every data value.
         f'INSERT INTO {quoted_table} ({columns}) VALUES ({values})',  # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query -- Table/column identifiers are allowlisted and quoted; every data value is bound below.
         tuple(row.values()),
     )
