@@ -90,7 +90,40 @@ namespace Readarr.Http.Authentication
         {
             _authService.Logout(HttpContext);
             await HttpContext.SignOutAsync(AuthenticationType.Forms.ToString());
+            await HttpContext.SignOutAsync(AuthenticationType.Oidc.ToString());
             return Redirect(_configFileProvider.UrlBase + "/");
+        }
+
+        [HttpGet("auth/oidc")]
+        public IActionResult OidcLogin([FromQuery] string returnUrl = null)
+        {
+            if (_configFileProvider.AuthenticationMethod != AuthenticationType.Oidc ||
+                !AuthenticationBuilderExtensions.IsOidcConfigured())
+            {
+                return NotFound();
+            }
+
+            var urlBase = (_configFileProvider.UrlBase ?? string.Empty).TrimEnd('/');
+            var finalReturnUrl = string.IsNullOrWhiteSpace(returnUrl) || !Url.IsLocalUrl(returnUrl)
+                ? urlBase + "/"
+                : string.IsNullOrWhiteSpace(urlBase) ||
+                  returnUrl.Equals(urlBase, System.StringComparison.Ordinal) ||
+                  returnUrl.StartsWith(urlBase + "/", System.StringComparison.Ordinal)
+                    ? returnUrl
+                    : urlBase + returnUrl;
+            return Challenge(new AuthenticationProperties { RedirectUri = finalReturnUrl }, "OidcOpenIdConnect");
+        }
+
+        [HttpGet("auth/oidc/enabled")]
+        public IActionResult OidcEnabled()
+        {
+            var enabled = _configFileProvider.AuthenticationMethod == AuthenticationType.Oidc &&
+                AuthenticationBuilderExtensions.IsOidcConfigured();
+            return Ok(new
+            {
+                enabled,
+                provider = enabled ? AuthenticationBuilderExtensions.GetOidcProviderHint() : "generic"
+            });
         }
     }
 }
