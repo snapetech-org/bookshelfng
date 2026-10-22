@@ -30,6 +30,17 @@ def named_step(source: str, name: str) -> str:
     return "\n".join(body)
 
 
+def job_block(source: str, name: str) -> str:
+    lines = source.splitlines()
+    start = lines.index(f"  {name}:")
+    body = []
+    for line in lines[start + 1 :]:
+        if line.strip() and len(line) - len(line.lstrip()) <= 2:
+            break
+        body.append(line)
+    return "\n".join(body)
+
+
 class WorkflowRunnerPolicyTests(unittest.TestCase):
     def test_push_trigger_is_main_only(self) -> None:
         push = event_block(WORKFLOW.read_text(encoding="utf-8"), "push")
@@ -56,6 +67,15 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn("|| 'ubuntu-latest'", build)
         self.assertIn("  pull_request:", source)
         self.assertNotIn("TRUSTED_MAIN_RUNNERS_ENABLED", source)
+
+    def test_release_only_jobs_stay_on_hosted_runners(self) -> None:
+        source = WORKFLOW.read_text(encoding="utf-8")
+        for job_name in ("publish-images", "container-scan", "release"):
+            with self.subTest(job=job_name):
+                self.assertRegex(
+                    job_block(source, job_name),
+                    r"(?m)^    runs-on: ubuntu-latest$",
+                )
 
     def test_playwright_installer_uses_hosted_linux_dependencies(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
