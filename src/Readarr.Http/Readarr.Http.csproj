@@ -5,6 +5,7 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" />
     <PackageReference Include="ImpromptuInterface" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" />
     <PackageReference Include="NLog" />
   </ItemGroup>
   <ItemGroup>

@@ -330,6 +330,31 @@ namespace NzbDrone.Host
             app.UseRouting();
             app.UseRateLimiter();
             app.UseCors();
+
+            // Apple's OIDC form_post callback is cross-site; cap that request
+            // independently of unrelated API and media upload limits.
+            app.Use(async (context, next) =>
+            {
+                if (HttpMethods.IsPost(context.Request.Method) &&
+                    (context.Request.Path.Value ?? string.Empty).EndsWith("/signin-oidc", StringComparison.OrdinalIgnoreCase))
+                {
+                    const long maxCallbackBytes = 16 * 1024;
+                    var bodyLimit = context.Features.Get<Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>();
+                    if (bodyLimit != null && !bodyLimit.IsReadOnly)
+                    {
+                        bodyLimit.MaxRequestBodySize = maxCallbackBytes;
+                    }
+
+                    if (context.Request.ContentLength > maxCallbackBytes ||
+                        (context.Request.ContentLength == null && (bodyLimit == null || bodyLimit.IsReadOnly)))
+                    {
+                        context.Response.StatusCode = StatusCodes.Status413PayloadTooLarge;
+                        return;
+                    }
+                }
+
+                await next();
+            });
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseResponseCompression();
