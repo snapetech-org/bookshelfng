@@ -107,7 +107,7 @@ def insert_row(connection, table, row):
     columns = ', '.join('"' + name.replace('"', '""') + '"' for name in row)
     values = ', '.join('?' for _ in row)
     # Identifiers are allowlisted/validated above; all row values are bound parameters.
-    connection.execute(  # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query -- Schema identifiers only; every inserted value uses a bound parameter.
+    connection.execute(  # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query
         f'INSERT INTO {quoted_table} ({columns}) VALUES ({values})',
         tuple(row.values()),
     )
@@ -436,7 +436,7 @@ def populate_bookshelf_fixture(database, output):
             'Notifications', 'History', 'DownloadHistory', 'Blocklist', 'RootFolders', 'Tags', 'Config',
         ):
             # The table names are from the fixed report schema tuple above.
-            counts[table] = connection.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0]  # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query -- The identifier is a fixed report schema entry, never input.
+            counts[table] = connection.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0]  # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query, python.lang.security.audit.formatted-sql-query.formatted-sql-query
         integrity = connection.execute('PRAGMA integrity_check').fetchall()
         if integrity != [('ok',)]:
             raise RuntimeError('Populated fixture failed SQLite integrity_check')

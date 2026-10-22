@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -155,17 +156,17 @@ namespace NzbDrone.Core.Test.MediaFiles.BookImport.Identification
         public void should_match_tracks(string file)
         {
             var fixtureRoot = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "Files", "Identification"));
-            var path = Path.GetFullPath(Path.Combine(fixtureRoot, file));
-            var relativePath = Path.GetRelativePath(fixtureRoot, path);
-            if (Path.IsPathRooted(relativePath) || relativePath == ".." ||
-                relativePath.StartsWith(".." + Path.DirectorySeparatorChar, StringComparison.Ordinal) ||
-                relativePath.StartsWith(".." + Path.AltDirectorySeparatorChar, StringComparison.Ordinal))
+            var fileName = Path.GetFileName(file);
+            if (string.IsNullOrEmpty(fileName) || fileName is "." or ".." ||
+                Path.IsPathRooted(file) ||
+                !string.Equals(fileName, file, StringComparison.Ordinal))
             {
-                throw new InvalidDataException("Identification test fixture must stay inside the fixture directory.");
+                throw new InvalidDataException("Identification test fixtures must be file names inside the fixture directory.");
             }
 
-            // The full path is checked against fixtureRoot above before it is read.
-            var testcase = JsonConvert.DeserializeObject<IdTestCase>(File.ReadAllText(path)); // nosemgrep: csharp.lang.security.filesystem.unsafe-path-combine.unsafe-path-combine -- Canonical containment check rejects absolute paths and traversal outside the test fixture directory.
+            // Only a filename is joined to the trusted fixture root.
+            var path = Path.Combine(fixtureRoot, Path.GetFileName(file));
+            var testcase = JsonConvert.DeserializeObject<IdTestCase>(File.ReadAllText(path));
 
             var authors = GivenAuthors(testcase.LibraryAuthors);
             var specifiedAuthor = authors.SingleOrDefault(x => x.Metadata.Value.ForeignAuthorId == testcase.Author);
