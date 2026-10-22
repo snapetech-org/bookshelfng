@@ -26,7 +26,6 @@ using Readarr.Api.V1.RootFolders;
 using Readarr.Api.V1.System.Tasks;
 using Readarr.Api.V1.Tags;
 using RestSharp;
-using RestSharp.Serializers.SystemTextJson;
 
 namespace NzbDrone.Integration.Test
 {
@@ -98,7 +97,6 @@ namespace NzbDrone.Integration.Test
             RestClient = new RestClient(RootUrl + "api/v1/");
             RestClient.AddDefaultHeader("Authentication", ApiKey);
             RestClient.AddDefaultHeader("X-Api-Key", ApiKey);
-            RestClient.UseSystemTextJson();
 
             Blocklist = new ClientBase<BlocklistResource>(RestClient, ApiKey);
             Commands = new CommandClient(RestClient, ApiKey);

@@ -50,15 +50,6 @@
         "resolved": "114.1.0",
         "contentHash": "QXpO6o0lKmbzBPhLZ1nBiZj9Vdb/3qRTyo0s0Vllm9HRLzpD2X+I9tkhGE4WWno6WyUkRsVP1jnyvDyQ5SakGg=="
       },
-      "RestSharp.Serializers.SystemTextJson": {
-        "type": "Direct",
-        "requested": "[106.15.0, )",
-        "resolved": "106.15.0",
-        "contentHash": "EX4tp4YZ4WoNoYmTXIzVnYkGBWk0E5eicJhc1cUQ7SUyFUQbBWs9mQ86/WNPZiC6xlKQni5MXs9ecJ5/ySiORA==",
-        "dependencies": {
-          "RestSharp": "106.15.0"
-        }
-      },
       "StyleCop.Analyzers": {
         "type": "Direct",
         "requested": "[1.1.118, )",
@@ -575,7 +566,6 @@
           "PDFsharp": "[6.5.0, )",
           "Polly": "[8.8.0, )",
           "Readarr.Common": "[1.0.0, )",
-          "RestSharp": "[114.1.0, )",
           "Servarr.FluentMigrator.Runner.Postgres": "[5.2.0.10, )",
           "Servarr.FluentMigrator.Runner.SQLite": "[5.2.0.10, )",
           "SkiaSharp": "[4.153.1, )",

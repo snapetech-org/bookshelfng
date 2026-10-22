@@ -15,18 +15,18 @@ namespace NzbDrone.Integration.Test.Client
         public PagingResource<BookResource> GetPagedIncludeAuthor(int pageNumber, int pageSize, string sortKey, string sortDir, string filterKey = null, string filterValue = null, bool includeAuthor = true)
         {
             var request = BuildRequest();
-            request.AddParameter("page", pageNumber);
-            request.AddParameter("pageSize", pageSize);
-            request.AddParameter("sortKey", sortKey);
-            request.AddParameter("sortDir", sortDir);
+            request.AddQueryParameter("page", pageNumber);
+            request.AddQueryParameter("pageSize", pageSize);
+            request.AddQueryParameter("sortKey", sortKey);
+            request.AddQueryParameter("sortDir", sortDir);
 
             if (filterKey != null && filterValue != null)
             {
-                request.AddParameter("filterKey", filterKey);
-                request.AddParameter("filterValue", filterValue);
+                request.AddQueryParameter("filterKey", filterKey);
+                request.AddQueryParameter("filterValue", filterValue);
             }
 
-            request.AddParameter("includeAuthor", includeAuthor);
+            request.AddQueryParameter("includeAuthor", includeAuthor);
 
             return Get<PagingResource<BookResource>>(request);
         }
