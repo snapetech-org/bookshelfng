@@ -1,3 +1,4 @@
+# ng-runner-policy: hosted-first-v1
 name: CI
 
 permissions:
@@ -29,6 +30,10 @@ env:
   TESTS_FOLDER: ./_tests
   BUILD_SOURCEBRANCHNAME: ${{ github.head_ref || github.ref_name }}
 
+concurrency:
+  group: ng-build-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}-${{ github.event.action == 'edited' && 'metadata' || 'code' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
+
 jobs:
   test-chocolatey-package-verifier:
     runs-on: windows-latest
@@ -44,7 +49,7 @@ jobs:
   build:
     # Pull requests and release-only jobs stay hosted; trusted main validation
     # uses the isolated shared runner pool.
-    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
@@ -601,3 +606,4 @@ jobs:
       LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
       CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
       DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+

@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ng-scan-security-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   dependency-review:
     name: Dependency review
@@ -18,3 +22,4 @@ jobs:
         with:
           fail-on-severity: high
           comment-summary-in-pr: never
+

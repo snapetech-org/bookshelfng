@@ -10,6 +10,7 @@ permissions:
 
 concurrency:
   group: bookshelfng-chaptarrng-release-bridge
+  queue: max
   cancel-in-progress: false
 
 jobs:
@@ -547,3 +548,4 @@ jobs:
           echo "- Existing BookshelfNG Helm OCI identity: ${HELM:-skipped}."
           echo 'The bridge only moves mutable aliases and new chart/package versions. Existing version tags, digests, and offline or already-downloaded assets do not move.'
         } >> "$GITHUB_STEP_SUMMARY"
+
