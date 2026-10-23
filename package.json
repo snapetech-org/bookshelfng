@@ -123,7 +123,7 @@
     "postcss": "8.5.30",
     "postcss-color-mod-function": "4.1.1",
     "postcss-loader": "8.2.1",
-    "postcss-mixins": "9.0.4",
+    "postcss-mixins": "12.1.2",
     "postcss-nested": "7.0.2",
     "postcss-simple-vars": "7.0.1",
     "postcss-url": "10.1.4",
