@@ -70,6 +70,7 @@
         return `${parsed.pathname}${parsed.search}${parsed.hash}`;
       };
     %>
+    <!-- nosemgrep: javascript.express.security.audit.xss.ejs.var-in-script-src.var-in-script-src -- safeAssetSource enforces a same-origin URL and emits only its path, query, and fragment. -->
     <% for (const scriptSource of htmlWebpackPlugin.files.js) { %><script type="text/javascript" src="<%= safeAssetSource(scriptSource) %>" data-no-hash></script><% } %>
     <% for (const stylesheetSource of htmlWebpackPlugin.files.css) { %><link href="<%= safeAssetSource(stylesheetSource) %>" rel="stylesheet"></link><% } %>
 

@@ -21,6 +21,8 @@ namespace NzbDrone.Core.Datastore.Migration.Framework
         {
             var command = conn.CreateCommand();
             command.Transaction = tran;
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- this helper is only called by repository-authored migrations; user values are bound through AddParameter.
             command.CommandText = query;
 
             return command;

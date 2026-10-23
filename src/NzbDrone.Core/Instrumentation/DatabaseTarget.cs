@@ -128,6 +128,7 @@ namespace NzbDrone.Core.Instrumentation
                 connection.Open();
                 using (var sqlCommand = connection.CreateCommand())
                 {
+                    // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- INSERT_COMMAND is a fixed constant and every log value is passed through a typed parameter.
                     sqlCommand.CommandText = INSERT_COMMAND;
                     sqlCommand.Parameters.Add(new NpgsqlParameter("Message", DbType.String) { Value = log.Message });
                     sqlCommand.Parameters.Add(new NpgsqlParameter("Time", DbType.DateTime) { Value = log.Time.ToUniversalTime() });
@@ -150,6 +151,7 @@ namespace NzbDrone.Core.Instrumentation
                 connection.Open();
                 using (var sqlCommand = connection.CreateCommand())
                 {
+                    // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- INSERT_COMMAND is a fixed constant and every log value is passed through a typed parameter.
                     sqlCommand.CommandText = INSERT_COMMAND;
                     sqlCommand.Parameters.Add(new SQLiteParameter("Message", DbType.String) { Value = log.Message });
                     sqlCommand.Parameters.Add(new SQLiteParameter("Time", DbType.DateTime) { Value = log.Time.ToUniversalTime() });
