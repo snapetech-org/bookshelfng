@@ -1,6 +1,6 @@
 # BookshelfNG retirement and ChaptarrNG consolidation
 
-## Current status — 2026-10-22
+## Current status — 2026-10-23
 
 BookshelfNG 0.4.21.71 and ChaptarrNG v0.9.977 remain the latest public app releases. The owner authorized one final BookshelfNG security-maintenance release, 0.4.21.72; its tag and publication remain pending exact-head CI. ChaptarrNG [main](https://github.com/snapetech-org/chaptarrng/tree/main) is the migration target, and the release freeze resumes after that one-time update.
 
@@ -156,8 +156,10 @@ counts or a risk ranking.
 
 The detailed investigation below records historical candidate revisions and
 their test evidence. Its pinned source counts and older release/channel rows
-are snapshots, not current publication status. BookshelfNG issue #144 remains
-open; full feature and channel acceptance is not complete.
+are snapshots, not current publication status. BookshelfNG issue #144 was closed by
+the maintainer on 2026-10-22; its final body still keeps BookshelfNG in service
+and withholds release and channel authorization until the acceptance gates
+close. Closing the issue did not close those gates.
 
 At the GitHub security audit for this work, neither repository had open
 CodeQL or Dependabot alerts. Secret scanning is disabled on both repositories,

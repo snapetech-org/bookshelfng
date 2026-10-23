@@ -1,6 +1,6 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
-**Current status (2026-10-22)**
+**Current status (2026-10-23)**
 
 BookshelfNG `0.4.21.71` and ChaptarrNG `v0.9.977` remain the latest public app releases; the owner authorized one final BookshelfNG `.72` security update, pending exact-head CI and publication. The current schema-v4 path audit compares BookshelfNG source `7ee2917974cf2d66b3c6daa3cf5827873689ee3b` with ChaptarrNG target `0be2fe09fc8301db8a064ded4f36c5b961e06b37`: 1,151 paths, 89 reviewed mappings, 753 dispositions, and 398 open paths (265 semantic review, 130 unmapped, two source-deleted paths, and one identical path). Four controller paths record the port of BookshelfNG's six JSON-only API guards, and the bundled-asset URL guard is now dispositioned as ported. Sixteen documentation ports, twelve ChaptarrNG logo ports, and eight source-only maintainer artifacts are dispositioned; no runtime feature retirement is approved. The shared-root path fix and earlier Core-suite result (4,648 passed, 0 failed, 25 skipped) are recorded in target evidence. ChaptarrNG main also includes the same-origin bundled asset URL guard (commit `9ce5cdee`); its two focused tests and the seven release-note tests pass locally. Exact-head Build [39893089683](https://github.com/snapetech-org/chaptarrng/actions/runs/39893089683) and security runs for `0be2fe09` were queued when this status was refreshed. The AppImage and Flatpak rehearsals remain synthetic. A populated SQLite migration and database rollback rehearsal on a disposable snapshot is recorded separately; live media/provider behavior, production rollback, and installed-channel acceptance remain open. See the [canonical audit](chaptarr-consolidation.md) and its generated inventory and disposition maps.
 
@@ -28,8 +28,10 @@ Semgrep, and Trivy checks. It remains draft pending representative-data
 migration/rollback and the real Community Applications update flow; publication
 jobs were skipped.
 
-Publishing remains frozen, issue #144 remains open, and BookshelfNG must stay in
-service until the remaining acceptance gates close.
+Publishing remains frozen. BookshelfNG issue #144 was closed by the maintainer
+on 2026-10-22, but its final body still requires BookshelfNG to stay in service
+until the remaining acceptance gates close. Closing the issue did not authorize
+release, bridge publication, or cutover.
 
 Prior PR #131 validation (2026-10-19): application-code snapshot `0612cb4c90b75818e5349eb868cc0638825de02a` passed exact-head Build [39239940373](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940373): Linux, macOS, and Windows tests, PostgreSQL migration smoke, native-runner receipt reconciliation, and release-note contract passed. CodeQL [39239934583](https://github.com/snapetech-org/chaptarrng/actions/runs/39239934583), security [39239940344](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940344), NuGet submission [39239932165](https://github.com/snapetech-org/chaptarrng/actions/runs/39239932165), and dependency review [39239940313](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940313) passed. Disposable-fork validation [39239940512](https://github.com/snapetech-org/chaptarrng/actions/runs/39239940512) was skipped by its external-fork gate. SeerrNG's adapter and request-route suite at source commit `b810153c` passed 4 files / 283 tests. The Linux artifact also passed the earlier empty-library API and authorization smoke. A populated source-build smoke for later code is recorded below.
 
