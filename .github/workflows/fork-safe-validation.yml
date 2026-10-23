@@ -12,7 +12,7 @@ jobs:
       github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name &&
       github.event.pull_request.base.repo.full_name == 'snapetech-org/bookshelfng' &&
       github.event.pull_request.base.ref == 'main'
-    runs-on: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true && github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name && github.event.pull_request.base.repo.full_name == 'snapetech-org/bookshelfng' && github.event.pull_request.base.ref == 'main' && fromJSON('{"group":"public-fork-jit","labels":["self-hosted","linux","x64","public-pr-bookshelfng"]}') || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
       contents: read
