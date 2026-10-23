@@ -1,3 +1,4 @@
+# ng-runner-policy: hosted-first-v1
 name: Release Distributions
 
 on:
@@ -97,7 +98,7 @@ concurrency:
 jobs:
   validate:
     name: Validate release tag
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     outputs:
       tag: ${{ steps.version.outputs.tag }}
       version: ${{ steps.version.outputs.version }}
@@ -563,7 +564,7 @@ jobs:
   build-helm:
     name: Package Helm chart
     needs: [validate]
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -609,7 +610,7 @@ jobs:
       needs.build-linux-packages.result == 'success' &&
       needs.build-helm.result == 'success'
     needs: [validate, publisher-credentials, build-release-assets, build-linux-packages, build-helm]
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       actions: read
       contents: write
@@ -679,7 +680,7 @@ jobs:
   publisher-credentials:
     name: Validate optional publisher configuration
     needs: [validate]
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     outputs:
       aur: ${{ steps.check.outputs.aur }}
       copr: ${{ steps.check.outputs.copr }}
@@ -1030,7 +1031,7 @@ jobs:
       needs.build-helm.result == 'success' &&
       needs.publish-github-release.result == 'success' &&
       (inputs.channels == 'all' || contains(inputs.channels, 'helm'))
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
       packages: write
@@ -1084,7 +1085,7 @@ jobs:
         needs.publish-github-release.result == 'success' &&
         inputs.skip_announcement != true
       }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     steps:

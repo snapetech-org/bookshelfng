@@ -1,3 +1,4 @@
+# ng-runner-policy: hosted-first-v1
 name: ChaptarrNG legacy distribution bridge
 
 on:
@@ -17,7 +18,7 @@ jobs:
   discover-release:
     name: Check for a bridgeable ChaptarrNG release
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     outputs:
@@ -116,7 +117,7 @@ jobs:
   publisher-credentials:
     name: Check legacy publisher credentials
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     outputs:
@@ -140,7 +141,7 @@ jobs:
     name: Report disabled bridge state
     needs: [discover-release, publisher-credentials]
     if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled != 'true'
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     steps:
@@ -159,7 +160,7 @@ jobs:
     name: Redirect Docker Hub mutable tags
     needs: [discover-release, publisher-credentials]
     if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.dockerhub == 'true' && needs.publisher-credentials.outputs.dockerhub == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: write
       packages: read
@@ -409,7 +410,7 @@ jobs:
     name: Publish the legacy Helm chart identity using the standard image
     needs: [discover-release]
     if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.helm == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: write
       packages: write
@@ -522,7 +523,7 @@ jobs:
       - publish-chocolatey-new-install
       - publish-chocolatey-legacy-upgrade
       - publish-helm-bridge
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     steps:
@@ -548,4 +549,3 @@ jobs:
           echo "- Existing BookshelfNG Helm OCI identity: ${HELM:-skipped}."
           echo 'The bridge only moves mutable aliases and new chart/package versions. Existing version tags, digests, and offline or already-downloaded assets do not move.'
         } >> "$GITHUB_STEP_SUMMARY"
-
