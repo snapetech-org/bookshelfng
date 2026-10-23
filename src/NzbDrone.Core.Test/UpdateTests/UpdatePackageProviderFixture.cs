@@ -1,9 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
+using NzbDrone.Common.Cloud;
 using NzbDrone.Common.EnvironmentInfo;
 using NzbDrone.Common.Extensions;
+using NzbDrone.Common.Http;
+using NzbDrone.Common.Serializer;
 using NzbDrone.Core.Test.Framework;
 using NzbDrone.Core.Update;
 
@@ -15,20 +20,40 @@ namespace NzbDrone.Core.Test.UpdateTests
         public void Setup()
         {
             Mocker.GetMock<IPlatformInfo>().SetupGet(c => c.Version).Returns(new Version("9.9.9"));
+            Mocker.SetConstant<IReadarrCloudRequestBuilder>(new ReadarrCloudRequestBuilder());
+        }
+
+        private void GivenResponse<T>(T response)
+            where T : new()
+        {
+            var json = response.ToJson();
+
+            Mocker.GetMock<IHttpClient>()
+                .Setup(c => c.Get<T>(It.IsAny<HttpRequest>()))
+                .Returns<HttpRequest>(request => new HttpResponse<T>(new HttpResponse(request, new HttpHeader(), json)));
         }
 
         [Test]
         public void no_update_when_version_higher()
         {
-            UseRealHttp();
+            GivenResponse(new UpdatePackageAvailable { Available = false });
+
             Subject.GetLatestUpdate("develop", new Version(10, 0)).Should().BeNull();
         }
 
         [Test]
         public void finds_update_when_version_lower()
         {
-            UseRealHttp();
-            Subject.GetLatestUpdate("develop", new Version(0, 1)).Should().NotBeNull();
+            GivenResponse(new UpdatePackageAvailable
+            {
+                Available = true,
+                UpdatePackage = new UpdatePackage { Version = new Version(1, 0) }
+            });
+
+            var update = Subject.GetLatestUpdate("develop", new Version(0, 1));
+
+            update.Should().NotBeNull();
+            update.Version.Should().Be(new Version(1, 0));
         }
 
         [Test]
@@ -43,7 +68,24 @@ namespace NzbDrone.Core.Test.UpdateTests
         public void should_get_recent_updates()
         {
             const string branch = "develop";
-            UseRealHttp();
+
+            GivenResponse(new List<UpdatePackage>
+            {
+                new UpdatePackage
+                {
+                    Version = new Version(1, 0),
+                    ReleaseDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc),
+                    FileName = "Readarr.develop.0.1.0.1234.linux-core-x64.tar.gz",
+                    Hash = "test-hash",
+                    Branch = branch,
+                    Changes = new UpdateChanges
+                    {
+                        New = new List<string> { "New feature" },
+                        Fixed = new List<string> { "Bug fix" }
+                    }
+                }
+            });
+
             var recent = Subject.GetRecentUpdates(branch, new Version(0, 1), null);
 
             recent.Should().NotBeEmpty();
