@@ -461,7 +461,7 @@ pass.
 ## Release and deployment workflow
 
 The repository publishes `softcover` and `hardcover` container images, with
-rolling and versioned tags. Tagged `main-v*` builds publish curated GitHub
+rolling and versioned tags. New tagged `v*` builds publish curated GitHub
 Release notes and announce the successful image build to Discord. User-facing
 changes require a release-note fragment; internal-only changes use the
 documented opt-out. See the [release-note format](../release-notes/README.md)

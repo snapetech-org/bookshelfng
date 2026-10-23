@@ -9,8 +9,8 @@ if [[ -z "$tag" && -r hook_payload ]]; then
   tag="$(tr -d '\r\n' < hook_payload)"
 fi
 
-if [[ "$tag" =~ ^main-v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
-  version="${BASH_REMATCH[1]}"
+if [[ "$tag" =~ ^(main-)?v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+  version="${BASH_REMATCH[2]}"
   release_base="https://github.com/${bookshelf_repo}/releases/download"
   source_rpm="bookshelfng-${version}-1.src.rpm"
   expected_payload="bookshelfng-${version}.tar.gz"
@@ -22,7 +22,7 @@ elif [[ "$tag" =~ ^v([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
   expected_payload="ChaptarrNG-${version}-linux-x64.tar.gz"
   package_info="chaptarrng.package_info"
 else
-  echo 'COPR webhook payload must be a BookshelfNG main-vMAJOR.MINOR.PATCH.BUILD tag or a ChaptarrNG vMAJOR.MINOR.PATCH tag.' >&2
+  echo 'COPR webhook payload must be a BookshelfNG vMAJOR.MINOR.PATCH.BUILD tag (legacy main-v tags remain supported) or a ChaptarrNG vMAJOR.MINOR.PATCH tag.' >&2
   exit 2
 fi
 

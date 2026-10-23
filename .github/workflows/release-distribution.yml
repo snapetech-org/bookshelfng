@@ -5,7 +5,7 @@ on:
   workflow_call:
     inputs:
       tag:
-        description: Verified BookshelfNG main release tag
+        description: Verified BookshelfNG release tag (new releases use v<version>)
         required: true
         type: string
       softcover_digest:
@@ -52,7 +52,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Verified BookshelfNG main release tag
+        description: Verified BookshelfNG release tag (new releases use v<version>)
         required: true
         type: string
       softcover_digest:
@@ -122,11 +122,14 @@ jobs:
             exit 2
           fi
           tag="$RELEASE_TAG"
-          [[ "$tag" =~ ^main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+          if [[ "$tag" =~ ^v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+            version="${BASH_REMATCH[1]}"
+          elif [[ "$tag" =~ ^main-v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+            version="${BASH_REMATCH[1]}"
+          else
             echo "Invalid BookshelfNG stable tag: $tag" >&2
             exit 2
-          }
-          version="${tag#main-v}"
+          fi
           chart_version="$(awk -F. '{ printf "%s.%s.%s-%s", $1, $2, $3, $4 }' <<< "$version")"
           {
             echo "tag=$tag"

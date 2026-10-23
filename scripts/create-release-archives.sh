@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-tag="${1:?Usage: create-release-archives.sh <main-v...> [output-dir]}"
+tag="${1:?Usage: create-release-archives.sh <v...> [output-dir]}"
 output_dir="${2:-dist-release}"
 runner_temp="${RUNNER_TEMP:-${TMPDIR:-/tmp}}"
 
-[[ "$tag" =~ ^main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+[[ "$tag" =~ ^(v|main-v)[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
   echo "Invalid BookshelfNG release tag: $tag" >&2
   exit 2
 }

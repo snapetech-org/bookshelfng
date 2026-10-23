@@ -36,7 +36,7 @@ if (!base || !head || !bodyFile) {
 
 const entries = changedReleaseNoteFiles(base, head);
 const modified = entries.filter((entry) => entry.status !== 'A');
-const tagNames = execFileSync('git', ['tag', '--list', 'main-v*'], {
+const tagNames = execFileSync('git', ['tag', '--list', 'main-v*', '--list', 'v*'], {
   encoding: 'utf8',
 })
   .split('\n')

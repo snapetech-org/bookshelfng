@@ -116,7 +116,7 @@ BookshelfNG `main` branch:
 
 ```bash
 tag="$(tr -d '\r\n' < hook_payload)"
-[[ "$tag" =~ ^(main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+|v[0-9]+\.[0-9]+\.[0-9]+)$ ]]
+[[ "$tag" =~ ^(v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+|main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+|v[0-9]+\.[0-9]+\.[0-9]+)$ ]]
 curl --fail --location --silent --show-error \
   "https://raw.githubusercontent.com/snapetech-org/bookshelfng/main/packaging/rpm/copr-source.sh" \
   | bash -s -- "$tag"
@@ -132,9 +132,9 @@ chaptarrng 0.9.977-1 package built successfully for those targets. The legacy
 BookshelfNG trigger was skipped while the bridge is disabled, so its
 old-identity package upgrade remains untested.
 
-The checked-in BookshelfNG script at packaging/rpm/copr-source.sh accepts both
-the old main-vMAJOR.MINOR.PATCH.BUILD tags and ChaptarrNG vMAJOR.MINOR.PATCH
-tags, then verifies the source RPM checksum and expected payload. The external
+The checked-in BookshelfNG script at packaging/rpm/copr-source.sh accepts new
+BookshelfNG vMAJOR.MINOR.PATCH.BUILD tags, historical main-v tags, and
+ChaptarrNG vMAJOR.MINOR.PATCH tags, then verifies the source RPM checksum and expected payload. The external
 slskdn/bookshelfng custom-source bootstrap still needs a confirmed update and
 a successful legacy-identity build; a checked-in script does not prove that
 the external COPR configuration uses it. The new ChaptarrNG COPR webhook and

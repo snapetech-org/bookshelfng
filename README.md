@@ -685,7 +685,7 @@ GitHub Actions publishes these rolling and versioned container tags:
 - `hardcover`, `latest`, and `hardcover-v<release-version>` for native
   Hardcover mode
 
-Tagged `main-v*` builds also publish a GitHub Release with curated release
+Tagged `v*` builds also publish a GitHub Release with curated release
 notes, platform archives, the Windows x64 setup installer, checksums, and native
 Linux packages, then announce the release to Discord. The AUR, COPR, PPA,
 Chocolatey, and Helm channels use the same verified tag flow. External

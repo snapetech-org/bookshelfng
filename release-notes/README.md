@@ -2,7 +2,7 @@
 
 For any user-facing change, add one structured fragment under `release-notes/` describing it. A
 single fragment may cover related user-facing changes in the same pull request. Keep shipped fragments unchanged. Tagged
-`main-v*` image builds validate the fragments and include them in the GitHub
+`v*` image builds validate the fragments and include them in the GitHub
 Release and Discord announcement.
 
 Use a short, user-facing description rather than an implementation detail:
