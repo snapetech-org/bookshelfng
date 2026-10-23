@@ -730,6 +730,14 @@
       "reviewedBy": "Codex path review (2026-10-20)",
       "rationale": "Both files record local TagLib patch maintenance. Map for direct review only; the existing equivalent disposition carries the separate content review.",
       "evidence": "Source 685b31c93d7146258c02446b01cb34c6f5d962b5 resolves src/TagLibSharp/PATCHES.md to blob b6406bfbf4d55af9feb3e46bdba122d991a91e7f (mode 100644). ChaptarrNG target 4b57b479d73c844db19278233e25efe94509e99b resolves src/TagLibSharp/PATCHES.md to blob 2846170980e58b2a1e6f87342878b7c9563c288b (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs",
+      "reviewedBy": "Codex focused behavior review (2026-10-23)",
+      "rationale": "This mapping is reviewed narrowly for the BookshelfNG RSS fuzzy-title parsing fallback. The rest of the source path remains subject to separate semantic review.",
+      "evidence": "Source 685b31c93d7146258c02446b01cb34c6f5d962b5 resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 5b65f962b98aef14a76344f1ee7455a177f95eca. ChaptarrNG target 4b57b479d73c844db19278233e25efe94509e99b resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 78eb94965d0bffe5a3d8941c6c527cb0ed92c633; its focused regression fixture src/Chaptarr.Core.Test/DecisionEngine/DownloadDecisionMakerParsingFallbackFixture.cs is blob 123120540ea7deac43e1fe5d02be75d31df60eb4. The evidence supports this fallback behavior only, not whole-file parity."
     }
   ]
 }

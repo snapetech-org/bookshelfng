@@ -8401,6 +8401,18 @@
       "approvalReference": "User instruction to retire BookshelfNG and discard work proven irrelevant; https://github.com/snapetech-org/bookshelfng/issues/144.",
       "rationale": "This script runs tests for the legacy BookshelfNG solution layout. ChaptarrNG validates its own solution and test projects through its maintained CI workflow. Retire the old test wrapper from the replacement; keep its source history.",
       "evidence": "Source 685b31c93d7146258c02446b01cb34c6f5d962b5 resolves test.sh to blob d77b144dea994a99219e759b5a111d2a27fffe66 (mode 100755). ChaptarrNG target 4b57b479d73c844db19278233e25efe94509e99b has no target path claimed for this source-only disposition. Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs",
+      "disposition": "ported",
+      "feature": "BookshelfNG RSS fuzzy-title parsing fallback",
+      "targetPaths": [
+        "src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs",
+        "src/Chaptarr.Core.Test/DecisionEngine/DownloadDecisionMakerParsingFallbackFixture.cs"
+      ],
+      "reviewedBy": "Codex focused behavior review (2026-10-23)",
+      "rationale": "BookshelfNG invokes ParseBookTitleFuzzy when strict RSS title parsing fails. ChaptarrNG retains that RSS fallback and a focused regression fixture verifies the fuzzy parser is called. Search-criteria parsing and other decision-maker behavior are outside this disposition.",
+      "evidence": "Source 685b31c93d7146258c02446b01cb34c6f5d962b5 resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 5b65f962b98aef14a76344f1ee7455a177f95eca. ChaptarrNG target 4b57b479d73c844db19278233e25efe94509e99b resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 78eb94965d0bffe5a3d8941c6c527cb0ed92c633 and src/Chaptarr.Core.Test/DecisionEngine/DownloadDecisionMakerParsingFallbackFixture.cs to blob 123120540ea7deac43e1fe5d02be75d31df60eb4; the focused test should_use_bookshelf_fuzzy_parser_when_rss_title_does_not_parse exercises the fallback."
     }
   ]
 }

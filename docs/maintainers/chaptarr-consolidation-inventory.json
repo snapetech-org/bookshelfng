@@ -19,14 +19,14 @@
     "commitsNotInUpstreamHistory": 866,
     "netChangedPaths": 1151,
     "uniqueBasenameCandidates": 13,
-    "reviewedMappings": 89,
+    "reviewedMappings": 90,
     "approvedRetirements": 176,
-    "reviewedDispositions": 756,
-    "undispositionedPaths": 395,
+    "reviewedDispositions": 757,
+    "undispositionedPaths": 394,
     "dispositionStates": {
       "retired": 176,
       "retained": 175,
-      "ported": 262,
+      "ported": 263,
       "equivalent": 143
     },
     "fileStates": {
@@ -39,7 +39,7 @@
       "text-equivalent-after-brand-and-newline-normalization": 4
     },
     "undispositionedFileStates": {
-      "different-review-required": 262,
+      "different-review-required": 261,
       "no-mapped-target-file": 129,
       "deleted-in-bookshelf": 2,
       "identical": 2
@@ -26346,6 +26346,24 @@
       "targetBlob": {
         "mode": "100644",
         "oid": "78eb94965d0bffe5a3d8941c6c527cb0ed92c633"
+      },
+      "reviewedDecision": {
+        "decision": "map",
+        "reviewedBy": "Codex focused behavior review (2026-10-23)",
+        "targetPath": "src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs",
+        "rationale": "This mapping is reviewed narrowly for the BookshelfNG RSS fuzzy-title parsing fallback. The rest of the source path remains subject to separate semantic review.",
+        "evidence": "Source 685b31c93d7146258c02446b01cb34c6f5d962b5 resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 5b65f962b98aef14a76344f1ee7455a177f95eca. ChaptarrNG target 4b57b479d73c844db19278233e25efe94509e99b resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 78eb94965d0bffe5a3d8941c6c527cb0ed92c633; its focused regression fixture src/Chaptarr.Core.Test/DecisionEngine/DownloadDecisionMakerParsingFallbackFixture.cs is blob 123120540ea7deac43e1fe5d02be75d31df60eb4. The evidence supports this fallback behavior only, not whole-file parity."
+      },
+      "reviewedDisposition": {
+        "disposition": "ported",
+        "feature": "BookshelfNG RSS fuzzy-title parsing fallback",
+        "reviewedBy": "Codex focused behavior review (2026-10-23)",
+        "targetPaths": [
+          "src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs",
+          "src/Chaptarr.Core.Test/DecisionEngine/DownloadDecisionMakerParsingFallbackFixture.cs"
+        ],
+        "rationale": "BookshelfNG invokes ParseBookTitleFuzzy when strict RSS title parsing fails. ChaptarrNG retains that RSS fallback and a focused regression fixture verifies the fuzzy parser is called. Search-criteria parsing and other decision-maker behavior are outside this disposition.",
+        "evidence": "Source 685b31c93d7146258c02446b01cb34c6f5d962b5 resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 5b65f962b98aef14a76344f1ee7455a177f95eca. ChaptarrNG target 4b57b479d73c844db19278233e25efe94509e99b resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 78eb94965d0bffe5a3d8941c6c527cb0ed92c633 and src/Chaptarr.Core.Test/DecisionEngine/DownloadDecisionMakerParsingFallbackFixture.cs to blob 123120540ea7deac43e1fe5d02be75d31df60eb4; the focused test should_use_bookshelf_fuzzy_parser_when_rss_title_does_not_parse exercises the fallback."
       }
     },
     {
