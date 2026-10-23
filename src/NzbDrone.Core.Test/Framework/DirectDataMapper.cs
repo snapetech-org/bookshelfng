@@ -30,6 +30,8 @@ namespace NzbDrone.Core.Test.Framework
                 using (var cmd = connection.CreateCommand())
                 {
                     var dataTable = new DataTable();
+
+                    // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- this helper lives in the test assembly and executes test-authored SQL only.
                     cmd.CommandText = sql;
                     dataTable.Load(cmd.ExecuteReader());
                     return dataTable;
