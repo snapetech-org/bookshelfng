@@ -17,7 +17,7 @@ The old `azure-pipelines.yml` release pipeline was removed from `main` in
 The release workflows were also narrowed to the maintained `main` line:
 development image triggers and `-develop` tags were removed, the standalone
 manual image publisher was retired, and release-tag validation no longer falls
-back to `master`. The `main-*` tag workflow is the sole stable image publisher;
+back to `master`. The `v*` tag workflow is the sole stable image publisher;
 it checks tags against `origin/main` and assembles the release before
 distribution.
 

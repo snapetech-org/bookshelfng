@@ -1,6 +1,7 @@
 # Distribution channels
 
-Stable releases are tagged `main-vMAJOR.MINOR.PATCH.BUILD`. The release
+New stable releases use `vMAJOR.MINOR.PATCH.BUILD` tags. Existing
+`main-v*` releases remain available under their original tags. The release
 workflow runs only after the tag is verified as reachable from `main` and the
 normal BookshelfNG build succeeds. It prepares the GitHub Release as a draft,
 builds platform archives and packages, attaches checksums, then publishes the
@@ -168,7 +169,7 @@ to bootstrap the script from the release tag:
 #!/usr/bin/env bash
 set -euo pipefail
 tag="$(tr -d '\r\n' < hook_payload)"
-[[ "$tag" =~ ^(main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+|v[0-9]+\.[0-9]+\.[0-9]+)$ ]]
+[[ "$tag" =~ ^(v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+|main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+|v[0-9]+\.[0-9]+\.[0-9]+)$ ]]
 curl --fail --location --silent --show-error \
   "https://raw.githubusercontent.com/snapetech-org/bookshelfng/main/packaging/rpm/copr-source.sh" \
   | bash -s -- "$tag"

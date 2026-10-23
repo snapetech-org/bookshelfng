@@ -4,22 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Verified BookshelfNG main release tag
+        description: Previously published BookshelfNG release tag to retry
         required: true
         type: string
-      softcover_digest:
-        description: Published Softcover container digest
-        required: true
-        type: string
-      hardcover_digest:
-        description: Published Hardcover container digest
-        required: true
-        type: string
-      runtime_pack_run_id:
-        description: Optional successful runtime-pack artifact run for a retry
-        required: false
-        type: string
-        default: ""
       channels:
         description: Package publishers to run (all, or a comma-separated subset of aur,copr,ppa,chocolatey,helm)
         required: false
@@ -51,9 +38,9 @@ jobs:
     uses: ./.github/workflows/release-distribution.yml
     with:
       tag: ${{ inputs.tag }}
-      softcover_digest: ${{ inputs.softcover_digest }}
-      hardcover_digest: ${{ inputs.hardcover_digest }}
-      runtime_pack_run_id: ${{ inputs.runtime_pack_run_id }}
+      softcover_digest: ""
+      hardcover_digest: ""
+      recovery_only: true
       channels: ${{ inputs.channels }}
       chocolatey_use_main_packaging: ${{ inputs.chocolatey_use_main_packaging }}
       skip_announcement: ${{ inputs.skip_announcement }}

@@ -10,7 +10,7 @@ on:
     branches:
       - main
     tags:
-      - "main-*"
+      - "v*"
     paths-ignore:
       - "README.md"
       - "docs/**"
@@ -49,7 +49,7 @@ jobs:
   build:
     # Pull requests and release-only jobs stay hosted; trusted main validation
     # uses the isolated shared runner pool.
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
@@ -66,7 +66,7 @@ jobs:
         run: python3 scripts/check-stable-container-aliases.py
 
       - name: Require retirement acceptance before tagged publication
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
         env:
           BOOKSHELFNG_RELEASE_READY: ${{ vars.BOOKSHELFNG_RELEASE_READY || 'false' }}
         run: bash scripts/require-bookshelfng-release-ready.sh
@@ -101,12 +101,12 @@ jobs:
             "$RUNNER_TEMP" "$RUNNER_TEMP" "$RUNNER_TEMP" >> "$GITHUB_ENV"
 
       - name: Require main release tag
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
         shell: bash
         run: |
           set -euo pipefail
-          if [[ "${GITHUB_REF_NAME}" != main-* ]]; then
-            echo "Image publishing requires a main-* tag, got ${GITHUB_REF_NAME}" >&2
+          if [[ "${GITHUB_REF_NAME}" != v* ]]; then
+            echo "Image publishing requires a v<version> tag, got ${GITHUB_REF_NAME}" >&2
             exit 1
           fi
           git fetch --force origin main --tags
@@ -117,11 +117,11 @@ jobs:
           fi
 
       - name: Verify Unraid package is synced
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
         run: bash scripts/verify-package-sync.sh
 
       - name: Validate Discord webhook before publishing images
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-')
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
         shell: bash
         env:
           DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
@@ -139,8 +139,8 @@ jobs:
         run: |
           echo "SDK_PATH=${{ env.DOTNET_ROOT }}/sdk/${DOTNET_VERSION}" >> "$GITHUB_ENV"
           echo "DATE=$(date --rfc-3339=date)" >> "$GITHUB_ENV"
-          if [[ "${GITHUB_REF_TYPE:-}" == "tag" && "$GITHUB_REF_NAME" == main-v* ]]; then
-            build_version="${GITHUB_REF_NAME#main-v}"
+          if [[ "${GITHUB_REF_TYPE:-}" == "tag" && "$GITHUB_REF_NAME" == v* ]]; then
+            build_version="${GITHUB_REF_NAME#v}"
           else
             build_version="${READARR_VERSION}.${GITHUB_RUN_NUMBER}"
           fi
@@ -227,7 +227,7 @@ jobs:
           fail-on-empty: ${{ steps.unit_tests.outcome == 'success' }}
 
       - name: Upload container build output
-        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-'))
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: bookshelfng-publish-output
@@ -237,9 +237,9 @@ jobs:
 
   publish-images:
     name: Publish container images
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
       packages: write
@@ -362,11 +362,11 @@ jobs:
 
   container-scan:
     name: Scan published container images
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
     needs: publish-images
     env:
       TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
       packages: read
@@ -412,9 +412,9 @@ jobs:
 
   release:
     name: Prepare release notes and draft
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
     needs: [build, publish-images]
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       actions: read
       contents: write
@@ -437,7 +437,7 @@ jobs:
           DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
         run: |
           set -euo pipefail
-          [[ "$RELEASE_TAG" =~ ^main-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
             echo "Invalid BookshelfNG release tag: $RELEASE_TAG" >&2
             exit 2
           }
@@ -542,7 +542,7 @@ jobs:
           }
           previous_tag="$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 \
             --json isDraft,isPrerelease,publishedAt,tagName \
-            --jq '[.[] | select(.isDraft == false and .isPrerelease == false and (.tagName | startswith("main-v")))] | max_by(.publishedAt) | .tagName // empty')"
+            --jq '[.[] | select(.isDraft == false and .isPrerelease == false and ((.tagName | startswith("v")) or (.tagName | startswith("main-v"))))] | max_by(.publishedAt) | .tagName // empty')"
           test -n "$previous_tag" || {
             echo 'No previously published BookshelfNG release tag was found.' >&2
             exit 1
@@ -566,7 +566,8 @@ jobs:
             exit 1
           fi
           echo "RELEASE_NOTES_FILE=$notes_file" >> "$GITHUB_ENV"
-          echo "RELEASE_VERSION=${RELEASE_TAG#main-v}" >> "$GITHUB_ENV"
+          release_version="${RELEASE_TAG#main-v}"
+          echo "RELEASE_VERSION=${release_version#v}" >> "$GITHUB_ENV"
 
       - name: Publish GitHub Release
         env:
@@ -586,7 +587,7 @@ jobs:
 
   distribution:
     name: Build and publish standalone release channels
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true'
     needs: [publish-images, release]
     permissions:
       actions: read
@@ -606,4 +607,3 @@ jobs:
       LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
       CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
       DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
-

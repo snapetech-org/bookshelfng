@@ -28,7 +28,7 @@ for Docker and Kubernetes deployments.
 
 ## Release assets
 
-Each stable `main-v*` release publishes checksummed, self-contained archives for
+Each stable `v*` release publishes checksummed, self-contained archives for
 Windows x64 and x86, macOS x64 and ARM64, Linux x64, x86 and ARM, Linux ARM64,
 glibc and musl Linux variants, and FreeBSD x64. The platform pack workflow
 builds the Linux x86 and FreeBSD .NET 10 runtimes from the pinned sources
@@ -121,7 +121,7 @@ already present. Grant access only to the directories that contain your book
 and download libraries; for example:
 
 ```sh
-flatpak install --user ./BookshelfNG-main-v*.flatpak
+flatpak install --user ./BookshelfNG-v*.flatpak
 flatpak run com.snapetech.BookshelfNG
 flatpak override --user --filesystem=/path/to/books:rw com.snapetech.BookshelfNG
 ```

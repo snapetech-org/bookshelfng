@@ -28,7 +28,13 @@ BOOKSHELFNG_RELEASE_READY=TRUE bash "$guard"
 grep -Fq 'bash scripts/test-bookshelfng-release-readiness-gate.sh' "$build_workflow"
 grep -Fq 'bash scripts/require-bookshelfng-release-ready.sh' "$build_workflow"
 grep -Fq 'vars.BOOKSHELFNG_RELEASE_READY == '\''true'\''' "$build_workflow"
-tag_publish_condition="if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') && vars.BOOKSHELFNG_RELEASE_READY == 'true'"
+grep -Fq 'releases/download/v${pkgver}/BookshelfNG-v${pkgver}-linux-x64.tar.gz' "$repo_root/packaging/aur/PKGBUILD"
+grep -Fq 'BookshelfNG-v${pkgver}-linux-x64' "$repo_root/packaging/aur/PKGBUILD"
+if grep -Fq 'releases/download/main-v${pkgver}' "$repo_root/packaging/aur/PKGBUILD"; then
+  echo 'The future AUR recipe must resolve the new v<version> release tag.' >&2
+  exit 1
+fi
+tag_publish_condition="if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true'"
 if [[ "$(grep -Fc "$tag_publish_condition" "$build_workflow")" -ne 4 ]]; then
   echo 'Every BookshelfNG tag publication job must check the release readiness gate.' >&2
   exit 1

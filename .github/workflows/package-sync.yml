@@ -10,7 +10,7 @@ on:
     branches:
       - main
     tags:
-      - "main-*"
+      - "v*"
 
 permissions:
   contents: read

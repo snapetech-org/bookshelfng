@@ -13,7 +13,7 @@ WORKFLOW = ROOT / ".github/workflows/build.yml"
 ALIASES = ("hardcover", "main", "master", "latest", "stable")
 STABLE_CONDITION = "${{ github.ref_type == 'tag' }}"
 RELEASE_GATE = (
-    "github.event_name == 'push' && startsWith(github.ref, 'refs/tags/main-') "
+    "github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') "
     "&& vars.BOOKSHELFNG_RELEASE_READY == 'true'"
 )
 

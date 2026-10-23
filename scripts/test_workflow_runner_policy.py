@@ -4,6 +4,18 @@ from pathlib import Path
 
 
 WORKFLOW = Path(__file__).resolve().parents[1] / ".github" / "workflows" / "build.yml"
+RELEASE_DISTRIBUTION = (
+    Path(__file__).resolve().parents[1]
+    / ".github"
+    / "workflows"
+    / "release-distribution.yml"
+)
+RETRY_RELEASE_DISTRIBUTION = (
+    Path(__file__).resolve().parents[1]
+    / ".github"
+    / "workflows"
+    / "retry-release-distribution.yml"
+)
 
 
 def event_block(source: str, event: str) -> str:
@@ -42,6 +54,17 @@ def job_block(source: str, name: str) -> str:
 
 
 class WorkflowRunnerPolicyTests(unittest.TestCase):
+    def test_manual_distribution_reuses_only_published_release_outputs(self) -> None:
+        distribution = RELEASE_DISTRIBUTION.read_text(encoding="utf-8")
+        retry = RETRY_RELEASE_DISTRIBUTION.read_text(encoding="utf-8")
+        self.assertRegex(distribution, r"(?m)^  workflow_call:$")
+        self.assertNotRegex(distribution, r"(?m)^  workflow_dispatch:")
+        self.assertIn("inputs.recovery_only != true", distribution)
+        self.assertIn("Require an already-published release for publisher recovery", distribution)
+        self.assertIn("gh release download \"$TAG\"", distribution)
+        self.assertIn("recovery_only: true", retry)
+        self.assertIn("Previously published BookshelfNG release tag to retry", retry)
+
     def test_push_trigger_is_main_only(self) -> None:
         push = event_block(WORKFLOW.read_text(encoding="utf-8"), "push")
         match = re.search(
@@ -61,21 +84,36 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn('"ng-shared-main-bookshelfng"', build)
         self.assertIn('"ng-main-run-{0}"', build)
         self.assertIn("github.run_id", build)
-        self.assertIn("github.event_name == 'push'", build)
-        self.assertIn("github.event_name == 'workflow_dispatch'", build)
-        self.assertIn("github.ref == 'refs/heads/main'", build)
+        self.assertIn(
+            "contains(fromJSON('[\"push\",\"workflow_dispatch\",\"schedule\",\"release\",\"repository_dispatch\"]'), github.event_name)",
+            build,
+        )
+        self.assertIn(
+            "github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v'))",
+            build,
+        )
+        self.assertIn("vars.NG_HOSTED_FIRST", build)
+        self.assertIn("vars.NG_FORCE_JIT", build)
+        self.assertIn("github.run_attempt > 1", build)
         self.assertIn("|| 'ubuntu-latest'", build)
         self.assertIn("  pull_request:", source)
         self.assertNotIn("TRUSTED_MAIN_RUNNERS_ENABLED", source)
 
-    def test_release_only_jobs_stay_on_hosted_runners(self) -> None:
+    def test_release_jobs_route_trusted_tags_with_hosted_fallback(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
         for job_name in ("publish-images", "container-scan", "release"):
             with self.subTest(job=job_name):
-                self.assertRegex(
-                    job_block(source, job_name),
-                    r"(?m)^    runs-on: ubuntu-latest$",
+                job = job_block(source, job_name)
+                runner = re.search(r"(?m)^    runs-on: (?P<runner>[^\n]+)$", job)
+                self.assertIsNotNone(runner)
+                self.assertIn('"group":"ng-shared-main-jit"', runner.group("runner"))
+                self.assertIn('"ng-shared-main-bookshelfng"', runner.group("runner"))
+                self.assertIn('"ng-main-run-{0}"', runner.group("runner"))
+                self.assertIn(
+                    "github.ref_type == 'tag' && startsWith(github.ref_name, 'v')",
+                    runner.group("runner"),
                 )
+                self.assertIn("|| 'ubuntu-latest'", runner.group("runner"))
 
     def test_playwright_installer_uses_hosted_linux_dependencies(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")

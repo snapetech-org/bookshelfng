@@ -52,8 +52,8 @@ cat > "$work/bin/cpio" <<'SH'
 set -euo pipefail
 cat >/dev/null
 tag="${COPR_FIXTURE_TAG:-}"
-if [[ "$tag" =~ ^main-v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
-  version="${BASH_REMATCH[1]}"
+if [[ "$tag" =~ ^(main-)?v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+  version="${BASH_REMATCH[2]}"
   files=(bookshelfng.spec "bookshelfng-${version}.tar.gz" bookshelfng.service bookshelfng.env bookshelfng.sysusers bookshelfng.tmpfiles)
 elif [[ "$tag" =~ ^v([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
   version="${BASH_REMATCH[1]}"
@@ -72,7 +72,7 @@ chmod +x "$work/bin/curl" "$work/bin/rpm2cpio" "$work/bin/cpio"
 
 release_base_for_tag() {
   case "$1" in
-    main-v*) printf '%s\n' 'https://github.com/snapetech-org/bookshelfng/releases/download' ;;
+    main-v*|v*.*.*.*) printf '%s\n' 'https://github.com/snapetech-org/bookshelfng/releases/download' ;;
     v*) printf '%s\n' 'https://github.com/snapetech-org/chaptarrng/releases/download' ;;
     *) echo "Unsupported fixture tag: $1" >&2; return 2 ;;
   esac
@@ -91,6 +91,8 @@ run_valid_case() {
 
 run_valid_case main-v1.2.3.4 "$work/legacy"
 test -s "$work/legacy/bookshelfng-1.2.3.4.tar.gz"
+run_valid_case v1.2.3.4 "$work/current"
+test -s "$work/current/bookshelfng-1.2.3.4.tar.gz"
 run_valid_case v1.2.3 "$work/chaptarr"
 test -s "$work/chaptarr/ChaptarrNG-1.2.3-linux-x64.tar.gz"
 test -s "$work/chaptarr/chaptarrng.package_info"
