@@ -1,8 +1,8 @@
 # BookshelfNG to ChaptarrNG distribution bridge
 
-## Current status — 2026-10-21
+## Current status — 2026-10-23
 
-**Update (2026-10-22):** BookshelfNG `0.4.21.71` and ChaptarrNG `v0.9.977` remain the latest public releases; the owner authorized one final BookshelfNG `.72` security update pending exact-head CI, with the release freeze resuming after publication. No compatibility package, image bridge, or migration release has been published. ChaptarrNG `main` is pinned at [`7cf7a000`](https://github.com/snapetech-org/chaptarrng/commit/7cf7a00019e5623645e4f9e5517c6b9510b0b415), with the shared-root author-path fix and a locally passing Core suite (4,607 passed, 0 failed, 19 skipped). Rebuilt local `.978` AppImage and Flatpak candidates passed same-identity update, synthetic migration, path-preservation, restore, and public `.71` rollback-start rehearsals; representative operator data and published-channel acceptance remain open. The current path ledger records 280 open paths; see the [consolidation report](chaptarr-consolidation.md). Maintainer/operator sign-off is recorded. Technical release, provider, real-channel, and representative-data gates remain open.
+**Update (2026-10-23):** BookshelfNG `0.4.21.71` and ChaptarrNG `v0.9.977` remain the latest public releases; the owner authorized one final BookshelfNG `.72` security update, which is still unpublished. No compatibility package, image bridge, or migration release has been published. ChaptarrNG `main` is pinned at [`0be2fe09`](https://github.com/snapetech-org/chaptarrng/commit/0be2fe09fc8301db8a064ded4f36c5b961e06b37); its Build, CodeQL, Semgrep, Trivy, and dependency-submission workflows are queued. The current path ledger records 398 open paths (265 semantic reviews, 130 unmapped, two source-deleted, and one identical); see the [consolidation report](chaptarr-consolidation.md). BookshelfNG issue #144 was closed by the maintainer on 2026-10-22, but its final body still requires BookshelfNG to remain in service and does not authorize publication or cutover. The populated SQLite rehearsal and local desktop/package candidates remain bounded evidence; representative feature, provider, rollback, and channel acceptance gates remain open. Maintainer/operator sign-off is recorded; technical acceptance remains incomplete.
 
 BookshelfNG `0.4.21.71` remains the final published release; ChaptarrNG
 `v0.9.977` remains the latest public release. ChaptarrNG PR [#131](https://github.com/snapetech-org/chaptarrng/pull/131)
@@ -17,8 +17,10 @@ remains failed with reviewed SQL-format and fixed-test-path findings; see PR
 
 The source merge does not redirect or publish any BookshelfNG identity. Keep
 both publication gates closed, keep the migration bridge disabled, and keep
-BookshelfNG in service until issue #144's representative-data, rollback,
-feature-parity, provider, and update-channel acceptance gates close. Unraid
+BookshelfNG in service until the representative-data, rollback, feature-parity,
+provider, and update-channel acceptance gates listed in issue #144 close. The
+issue was closed by the maintainer on 2026-10-22; that did not close its gates
+or authorize a transition. Unraid
 transition PR #5 remains draft until real-data rollback and Community
 Applications UI acceptance.
 
