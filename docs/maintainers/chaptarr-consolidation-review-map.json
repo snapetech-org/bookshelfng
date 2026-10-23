@@ -738,6 +738,14 @@
       "reviewedBy": "Codex focused behavior review (2026-10-23)",
       "rationale": "This mapping is reviewed narrowly for the BookshelfNG RSS fuzzy-title parsing fallback. The rest of the source path remains subject to separate semantic review.",
       "evidence": "Source 685b31c93d7146258c02446b01cb34c6f5d962b5 resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 5b65f962b98aef14a76344f1ee7455a177f95eca. ChaptarrNG target 4b57b479d73c844db19278233e25efe94509e99b resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 78eb94965d0bffe5a3d8941c6c527cb0ed92c633; its focused regression fixture src/Chaptarr.Core.Test/DecisionEngine/DownloadDecisionMakerParsingFallbackFixture.cs is blob 123120540ea7deac43e1fe5d02be75d31df60eb4. The evidence supports this fallback behavior only, not whole-file parity."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/MediaFiles/BookImport/Specifications/CloseAlbumMatchSpecification.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/MediaFiles/BookImport/FileMatchingService.cs",
+      "reviewedBy": "Codex focused behavior review (2026-10-23)",
+      "rationale": "This mapping is limited to the migrated BookshelfNG numeric match threshold. ChaptarrNG applies the preserved threshold through its migration-gated weighted compatibility score; the rest of the source decision specification is not claimed equivalent by this mapping.",
+      "evidence": "BookshelfNG source 685b31c93d7146258c02446b01cb34c6f5d962b5 resolves this path to blob d3aaeda9f4db1ff8ed09b019c20adfb45f788272. ChaptarrNG target 4b57b479d73c844db19278233e25efe94509e99b resolves FileMatchingService.cs to blob 9b94ab9ad87e4e34a5b7fed062ce25abb2a5ebea and BookshelfMatchCompatibilityScorer.cs to blob 3b69581b02ec65b2107be73f5bf33083f22c4568. The scorer fixture checks legacy weighted scores and that weak author/title evidence falls below 70; the importer fixture verifies converted thresholds and the BookshelfMatchCompatibility marker are retained."
     }
   ]
 }

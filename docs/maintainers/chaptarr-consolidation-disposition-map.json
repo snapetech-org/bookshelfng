@@ -8413,6 +8413,20 @@
       "reviewedBy": "Codex focused behavior review (2026-10-23)",
       "rationale": "BookshelfNG invokes ParseBookTitleFuzzy when strict RSS title parsing fails. ChaptarrNG retains that RSS fallback and a focused regression fixture verifies the fuzzy parser is called. Search-criteria parsing and other decision-maker behavior are outside this disposition.",
       "evidence": "Source 685b31c93d7146258c02446b01cb34c6f5d962b5 resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 5b65f962b98aef14a76344f1ee7455a177f95eca. ChaptarrNG target 4b57b479d73c844db19278233e25efe94509e99b resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 78eb94965d0bffe5a3d8941c6c527cb0ed92c633 and src/Chaptarr.Core.Test/DecisionEngine/DownloadDecisionMakerParsingFallbackFixture.cs to blob 123120540ea7deac43e1fe5d02be75d31df60eb4; the focused test should_use_bookshelf_fuzzy_parser_when_rss_title_does_not_parse exercises the fallback."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/MediaFiles/BookImport/Specifications/CloseAlbumMatchSpecification.cs",
+      "disposition": "ported",
+      "feature": "BookshelfNG weighted minimum match threshold for migrated media imports",
+      "targetPaths": [
+        "src/NzbDrone.Core/MediaFiles/BookImport/FileMatchingService.cs",
+        "src/NzbDrone.Core/MediaFiles/BookImport/BookshelfMatchCompatibilityScorer.cs",
+        "src/Chaptarr.Core.Test/MediaFiles/BookImport/BookshelfMatchCompatibilityScorerFixture.cs",
+        "src/Chaptarr.Core.Test/Datastore/BookshelfDatabaseImporterFixture.cs"
+      ],
+      "reviewedBy": "Codex focused behavior review (2026-10-23)",
+      "rationale": "For converted installations, FileMatchingService applies the retained BookImportMinimumMatchPercent to BookshelfMatchCompatibilityScorer and fails closed when the migrated threshold or edition metadata is invalid or unavailable. The scorer fixture covers legacy weighting and a weak match below the default 70 threshold; the importer fixture verifies threshold-band migration and preserves the compatibility marker. This disposition covers the minimum-score policy only, not whole-file or whole-algorithm equivalence.",
+      "evidence": "BookshelfNG source 685b31c93d7146258c02446b01cb34c6f5d962b5 resolves the source path to blob d3aaeda9f4db1ff8ed09b019c20adfb45f788272. ChaptarrNG target 4b57b479d73c844db19278233e25efe94509e99b resolves FileMatchingService.cs to blob 9b94ab9ad87e4e34a5b7fed062ce25abb2a5ebea; BookshelfMatchCompatibilityScorer.cs to blob 3b69581b02ec65b2107be73f5bf33083f22c4568; BookshelfMatchCompatibilityScorerFixture.cs to blob fe1b0951343daa6defe812bf9d5f382f3bddb9b6, whose should_score_weak_author_and_title_evidence_below_the_default_threshold test asserts a score below 70; and BookshelfDatabaseImporterFixture.cs to blob b71a0dfbb7f051cffb3146caedc7f7ed1370b527, whose should_translate_legacy_match_threshold_boundaries_and_retain_the_original_value test verifies imported threshold and marker retention."
     }
   ]
 }
