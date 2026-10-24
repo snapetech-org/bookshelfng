@@ -713,7 +713,7 @@ jobs:
       needs.publisher-credentials.result == 'success' &&
       needs.publisher-credentials.outputs.aur == 'true' &&
       (inputs.channels == 'all' || contains(inputs.channels, 'aur'))
-    runs-on: ubuntu-latest
+    runs-on: ${{ contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v'))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     steps:
@@ -805,6 +805,7 @@ jobs:
             IdentityFile ~/.ssh/aur
             IdentitiesOnly yes
             StrictHostKeyChecking yes
+            ProxyCommand nc -X connect -x 10.0.2.100:3128 %h %p
             UserKnownHostsFile ~/.ssh/known_hosts
             GlobalKnownHostsFile /dev/null
             BatchMode yes
@@ -841,7 +842,7 @@ jobs:
       needs.publisher-credentials.result == 'success' &&
       needs.publisher-credentials.outputs.copr == 'true' &&
       (inputs.channels == 'all' || contains(inputs.channels, 'copr'))
-    runs-on: ubuntu-latest
+    runs-on: ${{ contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v'))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     steps:

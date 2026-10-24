@@ -237,7 +237,7 @@ jobs:
     name: Trigger the existing BookshelfNG COPR package bridge
     needs: [discover-release, publisher-credentials]
     if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.copr == 'true' && needs.publisher-credentials.outputs.copr == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ${{ contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v'))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: write
     steps:
