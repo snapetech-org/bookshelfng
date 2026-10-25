@@ -60,6 +60,11 @@ permissions:
   actions: read
   contents: read
 
+# Release artifact workflows do not need cache access. Keep this cap at the
+# reusable-workflow boundary so every caller, including manual recovery, is
+# prevented from writing executable artifact contents into shared caches.
+cache-mode: none
+
 env:
   BOOKSHELF_RUNTIME_IDENTIFIERS: linux-x64;linux-x86;linux-arm64;linux-musl-x64;linux-musl-arm64;freebsd-x64;osx-x64;osx-arm64;win-x64;win-x86
 

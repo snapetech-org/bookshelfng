@@ -27,6 +27,9 @@ permissions:
   actions: read
   contents: read
 
+# Publisher recovery consumes previously built release assets and needs no cache.
+cache-mode: none
+
 jobs:
   distribute:
     name: Build and publish standalone release channels
