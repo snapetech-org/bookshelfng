@@ -10,8 +10,8 @@ dotnet list src/Readarr.sln package --vulnerable --include-transitive
 
 The final source branch resolves zero Yarn advisories and zero vulnerable
 .NET package rows. The frontend resolutions in `package.json` address the
-reported `ajv`, `colord`, `cross-spawn`, and `yaml` advisories. The project
-keeps the exact resolved versions in `yarn.lock`.
+reported `ajv`, `colord`, `cross-spawn`, `yaml`, and `zod` advisories. The
+project keeps the exact resolved versions in `yarn.lock`.
 
 ## `braces` parser depth limit
 

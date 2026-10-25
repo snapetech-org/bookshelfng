@@ -24,8 +24,9 @@ Usage: scripts/security-scan-local.sh [--staged] [--semgrep-only|--trivy-only] [
 Semgrep uses the local Community Edition engine with p/default and metrics off.
 Trivy selects secret, dependency, and IaC scanners from files in this repository.
 Findings are report-only by default. Set SEMGREP_FAIL_ON_FINDINGS=1 or
-TRIVY_EXIT_CODE=1 to make findings fail the command. --ci disables repository-
-controlled Trivy config and ignore files. --staged scans only staged Semgrep files.
+TRIVY_EXIT_CODE=1 to make findings fail the command. --ci disables repository
+Trivy config and custom secret rules, applies the reviewed exception file,
+and fails when no scan targets are detected. --staged scans only staged Semgrep files.
 HELP
       exit 0 ;;
     *) echo "Unknown option: $1" >&2; exit 2 ;;
@@ -96,13 +97,37 @@ semgrep_run() {
 }
 
 has_dependency_files() {
-  rg --files --hidden -g 'package.json' -g 'package-lock.json' -g 'pnpm-lock.yaml' -g 'yarn.lock' -g 'bun.lock*' -g 'Cargo.toml' -g 'Cargo.lock' -g 'go.mod' -g 'go.sum' -g 'pyproject.toml' -g 'requirements*.txt' -g 'uv.lock' -g 'poetry.lock' -g 'Pipfile*' -g '*.csproj' -g '*.sln' -g 'pom.xml' -g 'build.gradle' -g 'build.gradle.kts' -g 'gradle.lockfile' -g 'Gemfile*' -g 'composer.json' -g 'composer.lock' -g 'mix.lock' -g 'pubspec.yaml' >/dev/null 2>&1
+  local file
+  while IFS= read -r -d '' file; do
+    case "$file" in
+      package.json|*/package.json|package-lock.json|*/package-lock.json|pnpm-lock.yaml|*/pnpm-lock.yaml|yarn.lock|*/yarn.lock|bun.lock*|*/bun.lock*|Cargo.toml|*/Cargo.toml|Cargo.lock|*/Cargo.lock|go.mod|*/go.mod|go.sum|*/go.sum|pyproject.toml|*/pyproject.toml|requirements*.txt|*/requirements*.txt|uv.lock|*/uv.lock|poetry.lock|*/poetry.lock|Pipfile*|*/Pipfile*|*.csproj|*.sln|pom.xml|*/pom.xml|build.gradle|*/build.gradle|build.gradle.kts|*/build.gradle.kts|gradle.lockfile|*/gradle.lockfile|Gemfile*|*/Gemfile*|composer.json|*/composer.json|composer.lock|*/composer.lock|mix.lock|*/mix.lock|pubspec.yaml|*/pubspec.yaml)
+        return 0 ;;
+    esac
+  done < <(git ls-files --cached --others --exclude-standard -z)
+  return 1
 }
 has_iac_files() {
-  rg --files --hidden -g 'Dockerfile' -g 'Dockerfile.*' -g 'docker-compose*.yml' -g 'docker-compose*.yaml' -g 'compose*.yml' -g 'compose*.yaml' -g '*.tf' -g '*.tfvars' -g 'Chart.yaml' -g 'kustomization.yaml' -g '.github/workflows/*.yml' -g '.github/workflows/*.yaml' -g 'k8s/**/*.yml' -g 'k8s/**/*.yaml' -g 'helm/**/*.yml' -g 'helm/**/*.yaml' -g 'charts/**/*.yml' -g 'charts/**/*.yaml' -g 'deploy/**/*.yml' -g 'deploy/**/*.yaml' -g 'infra/**/*.yml' -g 'infra/**/*.yaml' >/dev/null 2>&1
+  local file
+  while IFS= read -r -d '' file; do
+    case "$file" in
+      Dockerfile|*/Dockerfile|Dockerfile.*|*/Dockerfile.*|docker-compose*.yml|*/docker-compose*.yml|docker-compose*.yaml|*/docker-compose*.yaml|compose*.yml|*/compose*.yml|compose*.yaml|*/compose*.yaml|*.tf|*.tfvars|Chart.yaml|*/Chart.yaml|kustomization.yaml|*/kustomization.yaml|.github/workflows/*.yml|.github/workflows/*.yaml|k8s/*.yml|k8s/*.yaml|k8s/**/*.yml|k8s/**/*.yaml|helm/*.yml|helm/*.yaml|helm/**/*.yml|helm/**/*.yaml|charts/*.yml|charts/*.yaml|charts/**/*.yml|charts/**/*.yaml|deploy/*.yml|deploy/*.yaml|deploy/**/*.yml|deploy/**/*.yaml|infra/*.yml|infra/*.yaml|infra/**/*.yml|infra/**/*.yaml)
+        return 0 ;;
+    esac
+  done < <(git ls-files --cached --others --exclude-standard -z)
+  return 1
 }
 has_code_files() {
-  rg --files --hidden "${semgrep_patterns[@]}" -g '!**/security-scan-local.sh' -g '!**/update-security-tools.sh' -g '!**/install-security-hooks.sh' -g '!**/.githooks/**' -g '!**/.husky/**' -g '!**/docs/**' >/dev/null 2>&1
+  local file
+  while IFS= read -r -d '' file; do
+    case "$file" in
+      *.py|*.js|*.jsx|*.ts|*.tsx|*.mjs|*.cjs|*.go|*.rs|*.java|*.kt|*.kts|*.cs|*.c|*.h|*.cc|*.cpp|*.hpp|*.php|*.rb|*.swift|*.sh|*.bash|*.zsh|*.ps1|*.sql|*.scala|*.ex|*.exs|*.tf|Dockerfile|Dockerfile.*|docker-compose*.yml|docker-compose*.yaml|compose*.yml|compose*.yaml|.github/workflows/*.yml|.github/workflows/*.yaml|k8s/*.yml|k8s/*.yaml|k8s/**/*.yml|k8s/**/*.yaml|helm/*.yml|helm/*.yaml|helm/**/*.yml|helm/**/*.yaml|charts/*.yml|charts/*.yaml|charts/**/*.yml|charts/**/*.yaml|deploy/*.yml|deploy/*.yaml|deploy/**/*.yml|deploy/**/*.yaml|infra/*.yml|infra/*.yaml|infra/**/*.yml|infra/**/*.yaml)
+        case "$file" in
+          scripts/security-scan-local.sh|scripts/update-security-tools.sh|scripts/install-security-hooks.sh|*/.githooks/*|*/.husky/*|docs/*|*/docs/*) continue ;;
+        esac
+        return 0 ;;
+    esac
+  done < <(git ls-files --cached --others --exclude-standard -z)
+  return 1
 }
 
 trivy_run() {
@@ -112,6 +137,10 @@ trivy_run() {
   if has_iac_files; then scanners+=(misconfig); fi
   if has_code_files || ((${#scanners[@]} > 0)); then scanners+=(secret); fi
   if ((${#scanners[@]} == 0)); then
+    if (( ci_mode )); then
+      echo "Trivy CI scan found no supported source, dependency, or deployment files; refusing a false-green skip." >&2
+      return 1
+    fi
     echo "Trivy: no source, dependency, or deployment files; skipped."
     return 0
   fi
@@ -119,8 +148,10 @@ trivy_run() {
   printf -v scanner_list '%s,' "${scanners[@]}"
   scanner_list="${scanner_list%,}"
   args+=(fs --scanners "$scanner_list" --timeout "${TRIVY_TIMEOUT:-20m}" --severity HIGH,CRITICAL --ignore-unfixed --exit-code "${TRIVY_EXIT_CODE:-0}")
-  for dir in .git node_modules vendor target dist build coverage .venv _output _tests .next .nuxt .turbo .cache; do args+=(--skip-dirs "$dir"); done
-  if (( ci_mode )); then args+=(--config= --ignorefile= --secret-config=); fi
+  for dir in .git node_modules vendor target dist build bin obj coverage .venv _output _artifacts _temp _tests .next .nuxt .turbo .cache '**/bin' '**/obj'; do args+=(--skip-dirs "$dir"); done
+  if (( ci_mode )); then
+    args+=(--config= --ignorefile=security/trivy-exceptions.yaml --secret-config=)
+  fi
   if [[ "${TRIVY_OFFLINE:-0}" == 1 ]]; then args+=(--skip-db-update --skip-java-db-update --skip-check-update); fi
 
   echo "Trivy filesystem scan: scanners=$scanner_list"
