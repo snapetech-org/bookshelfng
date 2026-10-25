@@ -7,12 +7,14 @@ normal BookshelfNG build succeeds. It prepares the GitHub Release as a draft,
 builds platform archives and packages, attaches checksums, then publishes the
 release and sends the existing Discord announcement.
 
-Publication is frozen while BookshelfNG retirement acceptance remains open.
-Tagged image and release jobs, manual package-distribution retries, and the
-ChaptarrNG legacy bridge fail closed unless the BookshelfNG repository variable
-`BOOKSHELFNG_RELEASE_READY` is exactly `true`. It is unset. PR #148 merged the BookshelfNG fail-closed gate to `main` as `c6b4642`, and the merge run skipped its publisher jobs. Set it only after
-migration, feature parity, rollback, and every supported channel pass
-acceptance; a normal CI or manual build does not enable publishing.
+Publication remains frozen while BookshelfNG retirement acceptance is open.
+The owner authorized one final security-maintenance release, `0.4.21.72`, as a
+one-time exception. The `BOOKSHELFNG_RELEASE_READY` variable is enabled only
+for that tag's publication and is unset again when its publisher jobs finish.
+This exception does not close migration, feature-parity, rollback, or channel
+acceptance, and does not enable the ChaptarrNG legacy bridge. Tagged releases,
+manual package retries, and the bridge otherwise fail closed unless the
+variable is exactly `true`.
 
 **Migration decision: keep BookshelfNG in service; preview only.** Do not
 apply the converter, install a bridge package, or start ChaptarrNG against
@@ -27,7 +29,8 @@ Dependency checks and systemd were mocked; live service/database handoff, PPA
 publication, and representative-data rollback remain open. The bridge is not
 published; this does not change the release freeze or approve a migration.
 
-BookshelfNG `0.4.21.71` is the published final source release. Its
+BookshelfNG `0.4.21.71` was the previous published source release; `0.4.21.72`
+is the one-time final security-maintenance release. Its
 source-side helper takes a full appdata archive, then invokes the standard
 ChaptarrNG preview, apply, and rollback commands. ChaptarrNG `v0.9.977` remains
 the latest published release; it supports the exact BookshelfNG migration-158
@@ -95,7 +98,7 @@ for channel requirements and open acceptance gates.
 | --- | --- | --- |
 | GitHub Releases | Self-contained Windows, macOS, Linux, and FreeBSD archives; Windows x64 setup installer | Every asset has a SHA-256 file. Linux x86 and FreeBSD use the pinned .NET 10 runtime pack process. |
 | Debian / Ubuntu | `.deb` package | Installs a systemd service and `/var/lib/bookshelfng` data directory. |
-| Fedora / RPM | `.rpm` asset in the GitHub release; COPR repository `slskdn/bookshelfng` | The final `.71` release includes a service RPM. Current COPR metadata has no package entries for Fedora 43, 44, 45, or Rawhide x86_64; the old-identity bridge has not been published. |
+| Fedora / RPM | `.rpm` asset in the GitHub release; COPR repository `slskdn/bookshelfng` | The previous `.71` release includes a service RPM. Current COPR metadata has no package entries for Fedora 43, 44, 45, or Rawhide x86_64; the old-identity bridge has not been published. |
 | Arch Linux | `bookshelfng-bin` on AUR | Binary package with systemd service files. |
 | Ubuntu PPA | Signed source package | Requires the Launchpad PPA and signing key configured in repository Actions secrets. |
 | Flatpak | `.flatpak` bundle on GitHub Releases | Uses Freedesktop Platform 26.08. This bundle is not a Flathub publication. |
@@ -114,7 +117,7 @@ before expecting an external package store to receive a release.
 
 | Secret or variable | Used by |
 | --- | --- |
-| `BOOKSHELFNG_RELEASE_READY` | Required as exactly `true` by tag publication, manual distribution retries, and the migration bridge; keep unset or `false` until all retirement acceptance gates close. |
+| `BOOKSHELFNG_RELEASE_READY` | Required as exactly `true` by tag publication, manual distribution retries, and the migration bridge. The owner authorized one temporary enablement for `.72`; keep it unset or `false` afterward until all retirement acceptance gates close. |
 | `AUR_SSH_KEY` | Pushes the `bookshelfng-bin` package to AUR. Add the matching public key to the AUR account. |
 | `COPR_WEBHOOK_URL` | Package-scoped COPR custom webhook URL for the `bookshelfng` package. |
 | `GPG_PRIVATE_KEY` | Signs source packages before upload to Launchpad. |

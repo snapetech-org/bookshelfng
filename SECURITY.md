@@ -1,10 +1,11 @@
 # Security policy
 
-BookshelfNG `0.4.21.71` is the final public release. New BookshelfNG releases
-are frozen while the migration and retirement gates in
-[issue #144](https://github.com/snapetech-org/bookshelfng/issues/144) remain
-open, so this version is not receiving routine security updates. Keep the
-existing service running until the migration path is accepted; do not point
+BookshelfNG `0.4.21.71` was the previous public release. The owner authorized
+one final security-maintenance release, `0.4.21.72`; after its publication,
+further stable releases remain frozen until migration and retirement
+acceptance is complete. Issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144)
+is closed, but its acceptance gates remain open. Keep the existing service
+running until the migration path is accepted; do not point
 ChaptarrNG at its appdata or switch an installation based on an unpublished
 candidate. See the current
 [retirement status](docs/maintainers/chaptarr-consolidation.md) before any

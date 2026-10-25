@@ -1,6 +1,6 @@
 # BookshelfNG
 
-> **Status checked: 2026-10-23.** BookshelfNG 0.4.21.71 and ChaptarrNG v0.9.977 remain the latest public app releases. The checksum-verified public .71 Debian package upgraded to the local .977 candidate and downgraded back in Debian Trixie; a systemd-running Trixie container also restarted the service on upgrade and rollback and passed /ping. The edited environment file and data canary survived. This used an empty database, not operator data. No newer package or release has been published. BookshelfNG issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) was closed by the maintainer on 2026-10-22, but its final body still requires BookshelfNG to remain in service; closure did not authorize release or cutover.
+> **Status checked: 2026-10-25.** BookshelfNG `0.4.21.71` was the previous public release. The owner authorized one final security-maintenance release, `0.4.21.72`; this does not approve migration or cutover. Issue [#144](https://github.com/snapetech-org/bookshelfng/issues/144) is closed, while the migration and channel-acceptance gates remain open. Keep BookshelfNG in service until those gates close.
 >
 > The current schema-v4 audit compares BookshelfNG source 7ee2917974cf2d66b3c6daa3cf5827873689ee3b with ChaptarrNG target 0be2fe09fc8301db8a064ded4f36c5b961e06b37: 1,151 paths, 89 reviewed mappings, 753 dispositions (175 retained, 143 equivalent, 259 ported, 176 repository-only retirements), and 398 open paths (265 semantic review, 130 unmapped, two source-deleted, one identical). ChaptarrNG's Build, CodeQL, Semgrep, Trivy, and dependency-submission runs for 0be2fe09 are queued; the security analysis passed. The asset URL guard is mapped and dispositioned. Path decisions remain separate from behavior, migration, and operator acceptance.
 >
@@ -90,7 +90,8 @@ Support BookshelfNG on [Ko-fi](https://ko-fi.com/snapetech).
 Published containers and native release
 archives include the required runtime; source builds require the .NET 10 SDK.
 
-BookshelfNG `0.4.21.71` is the final source release. Existing Unraid
+BookshelfNG `0.4.21.71` was the previous source release; `0.4.21.72` is the
+one-time final security-maintenance release. Existing Unraid
 installations should follow the
 [BookshelfNG-to-ChaptarrNG migration guide](docs/migrate-from-bookshelfng-to-chaptarrng.md)
 and keep an independent appdata backup. The BookshelfNG Community Apps template
