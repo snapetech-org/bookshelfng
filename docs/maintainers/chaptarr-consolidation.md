@@ -1,5 +1,17 @@
 # BookshelfNG retirement and ChaptarrNG consolidation
 
+## Execution reassessment — 2026-10-24
+
+The [replacement reassessment and completion order](https://github.com/snapetech-org/chaptarrng/blob/main/docs/maintainers/BOOKSHELFNG_REPLACEMENT_REASSESSMENT_2026-10-24.md)
+is the current implementation sequence for the 100% drop-in goal: preserve
+unchanged-client contracts at the existing API address, complete recoverable
+automatic installation handoff, close the bounded semantic-review queue, then
+run comprehensive tests, refine/fix, and qualify each installed channel.
+It distinguishes confirmed code gaps from existing implementations awaiting
+validation. Its source pins and reproducible ledger overlay supersede using
+the historical path counts below as a current missing-feature estimate.
+It does not alter the underlying disposition ledger or authorize publication.
+
 ## Current status — 2026-10-23
 
 BookshelfNG 0.4.21.71 and ChaptarrNG v0.9.977 remain the latest public app releases. The owner authorized one final BookshelfNG security-maintenance release, 0.4.21.72; its tag and publication remain pending exact-head CI. ChaptarrNG [main](https://github.com/snapetech-org/chaptarrng/tree/main) is the migration target, and the release freeze resumes after that one-time update.

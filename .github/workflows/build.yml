@@ -229,6 +229,12 @@ jobs:
             webpack-${{ runner.os }}-${{ hashFiles('frontend/src/**/*', 'yarn.lock') }}
             webpack-${{ runner.os }}-
 
+      - name: Provide the pinned Yarn release
+        shell: bash
+        run: |
+          # Hosted images ship Yarn; the isolated runner only gets Node from mise.
+          command -v yarn >/dev/null || npm install --global yarn@1.22.19
+
       - name: Build
         shell: bash
         run: ./build.sh --backend --frontend
