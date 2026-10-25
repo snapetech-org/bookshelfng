@@ -46,6 +46,12 @@ grep -Fq "startsWith(github.event.workflow_run.head_branch, 'v')" "$publication_
 grep -Fq "github.event.workflow_run.head_repository.full_name == github.repository" "$publication_workflow"
 grep -Fq "vars.BOOKSHELFNG_RELEASE_READY == 'true'" "$publication_workflow"
 grep -Fq '.path == ".github/workflows/build.yml"' "$publication_workflow"
+grep -Fq 'gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"' "$publication_workflow"
+grep -Fq '.tagName == $tag and .isDraft == true and .isPrerelease == false' "$publication_workflow"
+if grep -Fq 'releases/tags/$RELEASE_TAG' "$publication_workflow"; then
+  echo 'The release publisher must resolve draft releases through the authenticated GitHub CLI.' >&2
+  exit 1
+fi
 grep -Fq 'needs: [prepare]' "$publication_workflow"
 grep -Fq 'needs: [prepare, build]' "$publication_workflow"
 grep -Fq 'needs: [prepare, publish-assets]' "$publication_workflow"

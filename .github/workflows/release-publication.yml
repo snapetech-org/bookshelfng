@@ -69,9 +69,10 @@ jobs:
             echo "The completed workflow SHA does not match $RELEASE_TAG." >&2
             exit 1
           }
-          release="$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG")"
+          release="$(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+            --json tagName,isDraft,isPrerelease)"
           jq -e --arg tag "$RELEASE_TAG" \
-            '.tag_name == $tag and .draft == true and .prerelease == false' \
+            '.tagName == $tag and .isDraft == true and .isPrerelease == false' \
             <<<"$release" >/dev/null || {
               echo "Expected the completed build to have created a draft release for $RELEASE_TAG." >&2
               exit 1
