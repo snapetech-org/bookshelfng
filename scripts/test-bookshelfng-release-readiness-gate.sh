@@ -5,6 +5,7 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 guard="$repo_root/scripts/require-bookshelfng-release-ready.sh"
 build_workflow="$repo_root/.github/workflows/build.yml"
 distribution_workflow="$repo_root/.github/workflows/release-distribution.yml"
+publication_workflow="$repo_root/.github/workflows/release-publication.yml"
 bridge_workflow="$repo_root/.github/workflows/chaptarrng-release-bridge.yml"
 
 if env -u BOOKSHELFNG_RELEASE_READY bash "$guard" >/dev/null 2>&1; then
@@ -35,10 +36,19 @@ if grep -Fq 'releases/download/main-v${pkgver}' "$repo_root/packaging/aur/PKGBUI
   exit 1
 fi
 tag_publish_condition="github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true'"
-if [[ "$(grep -Fc "$tag_publish_condition" "$build_workflow")" -ne 4 ]]; then
-  echo 'Every BookshelfNG tag publication job must check the release readiness gate.' >&2
+if [[ "$(grep -Fc "$tag_publish_condition" "$build_workflow")" -ne 3 ]]; then
+  echo 'Every BookshelfNG tag build and image publication job must check the release readiness gate.' >&2
   exit 1
 fi
+grep -Fq "github.event.workflow_run.conclusion == 'success'" "$publication_workflow"
+grep -Fq "github.event.workflow_run.event == 'push'" "$publication_workflow"
+grep -Fq "startsWith(github.event.workflow_run.head_branch, 'v')" "$publication_workflow"
+grep -Fq "github.event.workflow_run.head_repository.full_name == github.repository" "$publication_workflow"
+grep -Fq "vars.BOOKSHELFNG_RELEASE_READY == 'true'" "$publication_workflow"
+grep -Fq '.path == ".github/workflows/build.yml"' "$publication_workflow"
+grep -Fq 'needs: [prepare]' "$publication_workflow"
+grep -Fq 'needs: [prepare, build]' "$publication_workflow"
+grep -Fq 'needs: [prepare, publish-assets]' "$publication_workflow"
 grep -Fq 'vars.BOOKSHELFNG_RELEASE_READY || '\''false'\''' "$distribution_workflow"
 grep -Fq 'if [[ "${BOOKSHELFNG_RELEASE_READY,,}" != true ]]; then' "$distribution_workflow"
 grep -Fq 'BookshelfNG release distribution is frozen until retirement acceptance is complete.' "$distribution_workflow"
