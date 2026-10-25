@@ -1,4 +1,4 @@
-# git-cliff configuration for BookshelfNG's main-v* build tags.
+# git-cliff configuration for BookshelfNG's legacy main-v* and current v* tags.
 
 [changelog]
 header = "# BookshelfNG release notes\n\n"
@@ -24,20 +24,29 @@ conventional_commits = true
 filter_unconventional = false
 split_commits = false
 filter_commits = true
+# Skip merge commits, group known legacy subjects, and retain every other change.
 commit_parsers = [
+  { message = '^Merge|^merge', skip = true },
   { message = '^chore\(release\):', skip = true },
   { message = '^chore\(deps.*\)', skip = true },
+  { message = '^fix\(security\)', group = "Security" },
+  { message = '^security', group = "Security" },
   { body = ".*security", group = "Security" },
+  { message = '^build\(deps', group = "Dependencies" },
+  { message = '^Bump', group = "Dependencies" },
   { message = "^feat", group = "Features" },
+  { message = '^Add', group = "Features" },
   { message = "^fix", group = "Bug Fixes" },
   { message = "^doc", group = "Documentation" },
+  { message = '^Clarify', group = "Documentation" },
   { message = "^perf", group = "Performance" },
   { message = "^refactor", group = "Refactor" },
   { message = "^test", group = "Testing" },
   { message = "^chore|^ci", group = "Maintenance" },
   { message = "^revert", group = "Reverts" },
+  { message = ".*", group = "Other" },
 ]
-tag_pattern = "main-v[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+"
+tag_pattern = "(?:main-)?v[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+"
 skip_tags = "beta|alpha|rc"
 topo_order = false
 sort_commits = "newest"
