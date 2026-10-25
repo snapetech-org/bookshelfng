@@ -249,6 +249,9 @@ jobs:
   build-release-assets:
     name: Build self-contained platform archives
     if: >-
+      github.event_name == 'push' &&
+      github.ref_type == 'tag' &&
+      startsWith(github.ref_name, 'v') &&
       always() &&
       needs.validate.result == 'success' &&
       inputs.recovery_only != true &&
