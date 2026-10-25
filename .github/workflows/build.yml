@@ -245,41 +245,25 @@ jobs:
         if: runner.os == 'Linux'
         shell: bash
         run: |
+          set -euo pipefail
           if command -v pwsh >/dev/null 2>&1; then
             exit 0
           fi
 
-          source /etc/os-release
-          case "$ID" in
-            debian|ubuntu) ;;
-            *)
-              echo "PowerShell is missing and automatic installation is supported only on Debian or Ubuntu (found: $ID)." >&2
-              exit 1
-              ;;
-          esac
-
-          if [[ -z "${VERSION_ID:-}" ]]; then
-            echo "Could not determine the Linux distribution version." >&2
-            exit 1
-          fi
-
-          package_file="$(mktemp "$RUNNER_TEMP/packages-microsoft-prod.XXXXXX.deb")"
-          trap 'rm -f "$package_file"' EXIT
+          pwsh_version=7.6.7
+          pwsh_sha256=6896F9E3A6B0A354BF470835A96DA76D2F801CD50DCF047AD7C4563BF93BF431
+          archive="powershell-${pwsh_version}-linux-x64.tar.gz"
+          archive_path="$RUNNER_TEMP/$archive"
+          install_dir="$RUNNER_TEMP/pwsh"
           curl --fail --silent --show-error --location \
-            "https://packages.microsoft.com/config/${ID}/${VERSION_ID}/packages-microsoft-prod.deb" \
-            --output "$package_file"
-
-          if [[ "$EUID" -eq 0 ]]; then
-            dpkg -i "$package_file"
-            apt-get update
-            apt-get install -y powershell
-          else
-            sudo -n dpkg -i "$package_file"
-            sudo -n apt-get update
-            sudo -n apt-get install -y powershell
-          fi
-
-          command -v pwsh
+            "https://github.com/PowerShell/PowerShell/releases/download/v${pwsh_version}/${archive}" \
+            --output "$archive_path"
+          printf '%s  %s\n' "$pwsh_sha256" "$archive_path" | sha256sum --check --status
+          mkdir -p "$install_dir"
+          tar -xzf "$archive_path" -C "$install_dir"
+          chmod +x "$install_dir/pwsh"
+          "$install_dir/pwsh" -NoLogo -NoProfile -Command '$PSVersionTable.PSVersion.ToString()'
+          printf '%s\n' "$install_dir" >> "$GITHUB_PATH"
 
       - name: Install Chromium and system dependencies on Linux
         if: runner.os == 'Linux'
