@@ -241,6 +241,46 @@ jobs:
         env:
           READARRVERSION: ${{ steps.variables.outputs.build_version }}
 
+      - name: Install PowerShell on Linux when needed
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          if command -v pwsh >/dev/null 2>&1; then
+            exit 0
+          fi
+
+          source /etc/os-release
+          case "$ID" in
+            debian|ubuntu) ;;
+            *)
+              echo "PowerShell is missing and automatic installation is supported only on Debian or Ubuntu (found: $ID)." >&2
+              exit 1
+              ;;
+          esac
+
+          if [[ -z "${VERSION_ID:-}" ]]; then
+            echo "Could not determine the Linux distribution version." >&2
+            exit 1
+          fi
+
+          package_file="$(mktemp "$RUNNER_TEMP/packages-microsoft-prod.XXXXXX.deb")"
+          trap 'rm -f "$package_file"' EXIT
+          curl --fail --silent --show-error --location \
+            "https://packages.microsoft.com/config/${ID}/${VERSION_ID}/packages-microsoft-prod.deb" \
+            --output "$package_file"
+
+          if [[ "$EUID" -eq 0 ]]; then
+            dpkg -i "$package_file"
+            apt-get update
+            apt-get install -y powershell
+          else
+            sudo -n dpkg -i "$package_file"
+            sudo -n apt-get update
+            sudo -n apt-get install -y powershell
+          fi
+
+          command -v pwsh
+
       - name: Install Chromium and system dependencies on Linux
         if: runner.os == 'Linux'
         env:
