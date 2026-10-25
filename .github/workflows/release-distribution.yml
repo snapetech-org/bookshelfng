@@ -258,6 +258,10 @@ jobs:
       (needs.build-platform-runtime-packs.result == 'success' || inputs.runtime_pack_run_id != '')
     needs: [validate, build-platform-runtime-packs]
     runs-on: ubuntu-22.04
+    # The downloaded artifact is executed by the build steps below. Release
+    # builds do not need cache access, so prevent artifact content from
+    # poisoning the shared Actions cache.
+    cache-mode: none
     timeout-minutes: 180
     permissions:
       actions: read
