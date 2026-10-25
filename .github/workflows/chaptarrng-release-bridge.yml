@@ -32,12 +32,6 @@ jobs:
       chocolatey_legacy: ${{ steps.resolve.outputs.chocolatey_legacy }}
       helm: ${{ steps.resolve.outputs.helm }}
     steps:
-    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      with:
-        ref: main
-        fetch-depth: 0
-        persist-credentials: false
-
     - id: resolve
       name: Validate release assets and bridge state
       env:
@@ -92,8 +86,9 @@ jobs:
           fi
         done
 
+        marker_refs="$(gh api "repos/${GITHUB_REPOSITORY}/git/matching-refs/tags/bookshelfng-bridge-${tag}-" --jq '.[].ref')"
         marker() {
-          git show-ref --verify --quiet "refs/tags/bookshelfng-bridge-${tag}-$1"
+          grep -Fqx "refs/tags/bookshelfng-bridge-${tag}-$1" <<< "$marker_refs"
         }
         {
           for channel in dockerhub copr chocolatey-new chocolatey-legacy helm; do
@@ -116,7 +111,8 @@ jobs:
 
   publisher-credentials:
     name: Check legacy publisher credentials
-    if: github.ref == 'refs/heads/main'
+    needs: discover-release
+    if: github.ref == 'refs/heads/main' && needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true'
     runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
@@ -139,7 +135,7 @@ jobs:
 
   disabled-preview:
     name: Report disabled bridge state
-    needs: [discover-release, publisher-credentials]
+    needs: [discover-release]
     if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled != 'true'
     runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
@@ -168,7 +164,7 @@ jobs:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       with:
         ref: main
-        fetch-depth: 0
+        fetch-depth: 1
 
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       with:
@@ -244,7 +240,7 @@ jobs:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       with:
         ref: main
-        fetch-depth: 0
+        fetch-depth: 1
 
     - name: Submit the ChaptarrNG release tag to the existing package webhook
       env:
@@ -349,7 +345,7 @@ jobs:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       with:
         ref: main
-        fetch-depth: 0
+        fetch-depth: 1
     - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
       with:
         name: chaptarrng-chocolatey-bridge-${{ needs.discover-release.outputs.version }}
@@ -383,7 +379,7 @@ jobs:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       with:
         ref: main
-        fetch-depth: 0
+        fetch-depth: 1
     - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
       with:
         name: chaptarrng-chocolatey-bridge-${{ needs.discover-release.outputs.version }}
@@ -418,7 +414,7 @@ jobs:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       with:
         ref: main
-        fetch-depth: 0
+        fetch-depth: 1
 
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       with:

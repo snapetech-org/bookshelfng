@@ -18,6 +18,8 @@ required_lines=(
   'image="ghcr.io/snapetech/chaptarrng:${VERSION}"'
   'repository: ghcr.io/snapetech/chaptarrng'
   'grep -Fq "image: \"ghcr.io/snapetech/chaptarrng@${digest}\""'
+  'matching-refs/tags/bookshelfng-bridge-${tag}-'
+  'grep -Fqx "refs/tags/bookshelfng-bridge-${tag}-$1" <<< "$marker_refs"'
 )
 
 for expected in "${required_lines[@]}"; do
@@ -26,6 +28,20 @@ for expected in "${required_lines[@]}"; do
     exit 1
   fi
 done
+
+if grep -Fq 'fetch-depth: 0' "$workflow"; then
+  echo 'The bridge must not fetch full Git history for release markers or publisher tags.' >&2
+  exit 1
+fi
+
+discover_job="$(sed -n '/^  discover-release:/,/^  publisher-credentials:/p' "$workflow")"
+if grep -Fq 'actions/checkout' <<< "$discover_job"; then
+  echo 'Release discovery must use the read-only GitHub API instead of cloning the repository.' >&2
+  exit 1
+fi
+
+grep -Fq "if: github.ref == 'refs/heads/main' && needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true'" "$workflow"
+grep -Fq 'needs: [discover-release]' "$workflow"
 
 [[ "$(grep -Fc "PUBLISH_LEGACY_ALIASES: 'true'" "$workflow")" -eq 1 ]]
 grep -Fq 'delegated to the separately scoped personal-account bridge' "$workflow"
