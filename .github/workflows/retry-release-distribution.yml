@@ -35,6 +35,7 @@ jobs:
       contents: write
       packages: write
       id-token: write
+    cache-mode: none
     uses: ./.github/workflows/release-distribution.yml
     with:
       tag: ${{ inputs.tag }}
