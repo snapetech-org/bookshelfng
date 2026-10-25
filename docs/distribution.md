@@ -120,7 +120,7 @@ before expecting an external package store to receive a release.
 | `GPG_PRIVATE_KEY` | Signs source packages before upload to Launchpad. |
 | `LAUNCHPAD_PPA` | Existing PPA target (`ppa:<owner>/<archive>`), set as an Actions secret or repository variable. |
 | `CHOCOLATEY_API_KEY` | Pushes `bookshelfng` packages to Chocolatey Community Repository. |
-| `DISCORD_RELEASE_WEBHOOK` | Required. Sends the curated release notes and image digests to the BookshelfNG release channel. |
+| `DISCORD_RELEASE_WEBHOOK` | Required. Sends the complete release changelog in sequential Discord messages, with image digests and channel status. |
 
 Before making a GitHub Release public, the workflow validates configured
 optional publishers. It skips malformed AUR, COPR, Launchpad, or Chocolatey
