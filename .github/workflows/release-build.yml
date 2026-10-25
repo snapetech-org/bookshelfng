@@ -1,0 +1,426 @@
+# ng-runner-policy: hosted-first-v1
+name: Build BookshelfNG Release Assets
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        description: Verified BookshelfNG release tag
+        required: true
+        type: string
+      hardcover_digest:
+        description: Published Hardcover container digest
+        required: true
+        type: string
+      reuse_runtime_packs:
+        description: Use a validated runtime-pack artifact staged in this workflow run
+        required: false
+        type: boolean
+        default: false
+permissions:
+  actions: read
+  contents: read
+
+# Release artifact workflows do not need cache access.
+cache-mode: none
+
+env:
+  BOOKSHELF_RUNTIME_IDENTIFIERS: linux-x64;linux-x86;linux-arm64;linux-musl-x64;linux-musl-arm64;freebsd-x64;osx-x64;osx-arm64;win-x64;win-x86
+
+concurrency:
+  group: bookshelfng-release-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate release tag
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      version: ${{ steps.version.outputs.version }}
+      chart_version: ${{ steps.version.outputs.chart_version }}
+    steps:
+      - name: Resolve version
+        id: version
+        env:
+          BOOKSHELFNG_RELEASE_READY: ${{ vars.BOOKSHELFNG_RELEASE_READY || 'false' }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          if [[ "${BOOKSHELFNG_RELEASE_READY,,}" != true ]]; then
+            echo "BookshelfNG release distribution is frozen until retirement acceptance is complete." >&2
+            exit 1
+          fi
+          [[ "$RELEASE_TAG" =~ ^v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]] || {
+            echo "Invalid BookshelfNG stable tag: $RELEASE_TAG" >&2
+            exit 2
+          }
+          version="${BASH_REMATCH[1]}"
+          chart_version="$(awk -F. '{ printf "%s.%s.%s-%s", $1, $2, $3, $4 }' <<< "$version")"
+          {
+            echo "tag=$RELEASE_TAG"
+            echo "version=$version"
+            echo "chart_version=$chart_version"
+          } >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify Unraid package is synced
+        run: bash scripts/verify-package-sync.sh
+
+      - name: Verify release tag is reachable from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin '+refs/heads/main:refs/remotes/origin/main'
+          tag_sha="$(gh api "repos/$GITHUB_REPOSITORY/commits/$TAG" --jq .sha)"
+          [[ "$tag_sha" == "$GITHUB_SHA" ]] || {
+            echo "Release tag $TAG does not match the trusted workflow head." >&2
+            exit 1
+          }
+          git merge-base --is-ancestor "$TAG^{commit}" refs/remotes/origin/main || {
+            echo "Release tag $TAG is not reachable from main." >&2
+            exit 1
+          }
+
+  build-platform-runtime-packs:
+    name: Build Linux x86 and FreeBSD .NET 10 runtime packs
+    if: inputs.reuse_runtime_packs != true
+    needs: validate
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: |
+            10.0.110
+            10.0.111
+            10.0.401
+          dotnet-quality: ga
+
+      - name: Build and verify platform packs
+        env:
+          DOTNETVERSION: 10.0.401
+          PLATFORM_RUNTIME_PACKS_OUTPUT: ${{ github.workspace }}/_temp/platform-runtime-packs
+        run: ./scripts/build-dotnet10-platform-runtime-packs.sh
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: bookshelfng-platform-runtime-packs
+          path: _temp/platform-runtime-packs/
+          if-no-files-found: error
+          retention-days: 1
+
+  build-release-assets:
+    name: Build self-contained platform archives
+    if: >-
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.event == 'push' &&
+      always() &&
+      needs.validate.result == 'success' &&
+      (needs.build-platform-runtime-packs.result == 'success' || inputs.reuse_runtime_packs == true)
+    needs: [validate, build-platform-runtime-packs]
+    runs-on: ubuntu-22.04
+    # This workflow is called only after a successful tag build completes.
+    # Release builds do not need cache access.
+    cache-mode: none
+    timeout-minutes: 180
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 10.0.401
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22.23.4
+          package-manager-cache: false
+
+      - name: Enable pinned Yarn
+        run: |
+          corepack enable
+          corepack prepare yarn@1.22.19 --activate
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: bookshelfng-platform-runtime-packs
+          path: _temp/platform-runtime-packs
+
+      - name: Build all supported .NET 10 runtimes
+        env:
+          BUILD_SOURCEBRANCHNAME: main
+          CUSTOM_RUNTIME_PACKS_DIR: ${{ github.workspace }}/_temp/platform-runtime-packs/packages
+          DOTNETVERSION: 10.0.401
+          READARRVERSION: ${{ needs.validate.outputs.version }}
+        run: |
+          set -euo pipefail
+          ./build.sh --backend --frontend --enable-extra-platforms \
+            --msbuild-arg=-p:SelfContained=true
+
+      - name: Package all supported runtime identifiers
+        env:
+          BUILD_SOURCEBRANCHNAME: main
+          READARRVERSION: ${{ needs.validate.outputs.version }}
+        run: |
+          set -euo pipefail
+          IFS=';' read -r -a runtime_identifiers <<< "$BOOKSHELF_RUNTIME_IDENTIFIERS"
+          for rid in "${runtime_identifiers[@]}"; do
+            ./build.sh --packages --framework net10.0 --runtime "$rid"
+          done
+
+      - name: Create versioned archives and checksums
+        env:
+          TAG: ${{ needs.validate.outputs.tag }}
+        run: bash scripts/create-release-archives.sh "$TAG" dist-release
+
+      - name: Build Windows x64 setup installer
+        env:
+          BUILD_SOURCEBRANCHNAME: main
+          READARRVERSION: ${{ needs.validate.outputs.version }}
+          TAG: ${{ needs.validate.outputs.tag }}
+        run: |
+          set -euo pipefail
+          ./build.sh --installer
+          source="distribution/windows/setup/output/BookshelfNG.Installer.${READARRVERSION}.win-x64.exe"
+          target="dist-release/BookshelfNG-${TAG}-windows-x64-setup.exe"
+          test -s "$source"
+          cp "$source" "$target"
+          (cd dist-release && sha256sum "$(basename "$target")" > "$(basename "$target").sha256")
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: bookshelfng-release-assets
+          path: dist-release/
+          if-no-files-found: error
+          retention-days: 1
+
+  # Reusing a runtime-pack artifact intentionally skips that build job. Keep
+  # downstream release jobs eligible with explicit checks for their real inputs.
+  build-linux-packages:
+    name: Build Debian, RPM, AppImage, and Flatpak packages
+    if: >-
+      always() &&
+      needs.validate.result == 'success' &&
+      needs.build-release-assets.result == 'success'
+    needs: [validate, build-release-assets]
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: bookshelfng-release-assets
+          path: dist-release
+
+      - name: Prepare Linux x64 archive
+        env:
+          TAG: ${{ needs.validate.outputs.tag }}
+        run: |
+          set -euo pipefail
+          archive="BookshelfNG-${TAG}-linux-x64.tar.gz"
+          mkdir -p dist
+          tar -xzf "dist-release/$archive" --strip-components=1 -C dist
+          test -x dist/Readarr
+
+      - name: Build Debian package
+        env:
+          VERSION: ${{ needs.validate.outputs.version }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential debhelper devscripts dpkg-dev
+          package_root="$RUNNER_TEMP/bookshelfng-deb"
+          mkdir -p "$package_root/debian" "$package_root/packaging"
+          cp -a packaging/debian/. "$package_root/debian/"
+          # The .NET LTTng provider is optional and links to an ABI unavailable on this target.
+          # Exclude it from Debian dependency generation for older release tags.
+          if ! grep -q '^override_dh_shlibdeps:' "$package_root/debian/rules"; then
+            printf '\noverride_dh_shlibdeps:\n\tdh_shlibdeps -Xlibcoreclrtraceptprovider.so\n' \
+              >> "$package_root/debian/rules"
+          fi
+          cp -a packaging/systemd "$package_root/packaging/"
+          cp -a dist "$package_root/dist"
+          cp LICENSE.md "$package_root/"
+          cat > "$package_root/debian/changelog" <<EOF
+          bookshelfng (${VERSION}-1) stable; urgency=medium
+
+            * BookshelfNG ${VERSION} release.
+
+           -- BookshelfNG maintainers <noreply@github.com>  $(date -R)
+          EOF
+          chmod 0755 "$package_root/debian/rules"
+          cd "$package_root"
+          dpkg-buildpackage -us -uc -b
+          mkdir -p "$GITHUB_WORKSPACE/dist-added"
+          cp ../bookshelfng_*.deb "$GITHUB_WORKSPACE/dist-added/"
+
+      - name: Build RPM package and COPR source package
+        env:
+          VERSION: ${{ needs.validate.outputs.version }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y rpm
+          rpm_top="$RUNNER_TEMP/rpmbuild"
+          mkdir -p "$rpm_top"/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+          cp "dist-release/BookshelfNG-${{ needs.validate.outputs.tag }}-linux-x64.tar.gz" "$rpm_top/SOURCES/bookshelfng-${VERSION}.tar.gz"
+          cp packaging/systemd/bookshelfng.{service,env,sysusers,tmpfiles} "$rpm_top/SOURCES/"
+          cp packaging/rpm/bookshelfng.spec "$rpm_top/SPECS/"
+          # Older release tags may predate the durable exclusion in the RPM spec.
+          spec_path="$rpm_top/SPECS/bookshelfng.spec"
+          if ! grep -Fqx '%global __requires_exclude ^liblttng-ust[.]so[.]0' "$spec_path"; then
+            sed -i '/^%global _libdir /a %global __requires_exclude ^liblttng-ust[.]so[.]0' "$spec_path"
+          fi
+          grep -Fqx '%global __requires_exclude ^liblttng-ust[.]so[.]0' "$spec_path"
+          sed -i "s/^Version:.*$/Version:        ${VERSION}/; s/^Release:.*$/Release:        1%{?dist}/" "$rpm_top/SPECS/bookshelfng.spec"
+          # Ubuntu's rpm package does not define systemd macros used by the RPM spec.
+          rpmbuild -ba \
+            --define "_topdir $rpm_top" \
+            --define "_unitdir /usr/lib/systemd/system" \
+            "$rpm_top/SPECS/bookshelfng.spec"
+          cp "$rpm_top/RPMS/x86_64"/*.rpm dist-release/
+          cp "$rpm_top/SRPMS"/*.src.rpm dist-release/
+
+      - name: Build AppImage
+        env:
+          TAG: ${{ needs.validate.outputs.tag }}
+        run: |
+          set -euo pipefail
+          appdir="$RUNNER_TEMP/BookshelfNG.AppDir"
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libicu70 libssl3 libsqlite3-0
+          mkdir -p "$appdir/usr/lib/bookshelfng" "$appdir/usr/bin" \
+            "$appdir/usr/lib" \
+            "$appdir/usr/share/applications" "$appdir/usr/share/icons/hicolor/scalable/apps"
+          cp -a dist/. "$appdir/usr/lib/bookshelfng/"
+          # The optional .NET trace provider requires the unavailable LTTng ABI 0.
+          find "$appdir/usr/lib/bookshelfng" -name libcoreclrtraceptprovider.so -delete
+          cp -a /usr/lib/x86_64-linux-gnu/libicu*.so* "$appdir/usr/lib/"
+          cp -a /usr/lib/x86_64-linux-gnu/libssl.so.3 /usr/lib/x86_64-linux-gnu/libcrypto.so.3 \
+            /usr/lib/x86_64-linux-gnu/libsqlite3.so.0 "$appdir/usr/lib/"
+          ln -s ../lib/bookshelfng/Readarr "$appdir/usr/bin/Readarr"
+          ln -s Readarr "$appdir/usr/bin/BookshelfNG"
+          cp packaging/appimage/AppRun "$appdir/AppRun"
+          chmod 0755 "$appdir/AppRun"
+          cp packaging/appimage/com.snapetech.bookshelfng.desktop "$appdir/BookshelfNG.desktop"
+          cp frontend/src/Content/Images/logo.svg "$appdir/usr/share/icons/hicolor/scalable/apps/bookshelfng.svg"
+          linuxdeploy_url='https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage'
+          curl --fail --location --retry 3 --silent --show-error "$linuxdeploy_url" -o "$RUNNER_TEMP/linuxdeploy"
+          chmod 0755 "$RUNNER_TEMP/linuxdeploy"
+          APPIMAGE_EXTRACT_AND_RUN=1 "$RUNNER_TEMP/linuxdeploy" --appdir "$appdir" \
+            --executable "$appdir/usr/lib/bookshelfng/Readarr" \
+            --desktop-file "$appdir/BookshelfNG.desktop" \
+            --icon-file "$appdir/usr/share/icons/hicolor/scalable/apps/bookshelfng.svg"
+          appimagetool_url='https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage'
+          curl --fail --location --retry 3 --silent --show-error "$appimagetool_url" -o "$RUNNER_TEMP/appimagetool"
+          chmod 0755 "$RUNNER_TEMP/appimagetool"
+          APPIMAGE_EXTRACT_AND_RUN=1 ARCH=x86_64 "$RUNNER_TEMP/appimagetool" "$appdir" \
+            "dist-release/BookshelfNG-${TAG}-x86_64.AppImage"
+
+      - name: Build Flatpak bundle
+        env:
+          TAG: ${{ needs.validate.outputs.tag }}
+          VERSION: ${{ needs.validate.outputs.version }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y flatpak flatpak-builder
+          sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+          sudo flatpak install -y flathub \
+            org.freedesktop.Platform//26.08 \
+            org.freedesktop.Sdk//26.08
+          mkdir -p packaging/flatpak/src
+          cp -a dist/. packaging/flatpak/src/
+          flatpak-builder --force-clean \
+            --default-branch=stable \
+            --repo="$RUNNER_TEMP/bookshelfng-flatpak-repo" \
+            "$RUNNER_TEMP/bookshelfng-flatpak-build" packaging/flatpak/com.snapetech.BookshelfNG.yml
+          flatpak build-bundle "$RUNNER_TEMP/bookshelfng-flatpak-repo" \
+            "dist-release/BookshelfNG-${TAG}.flatpak" com.snapetech.BookshelfNG stable \
+            --runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo
+
+      - name: Add checksums
+        run: |
+          set -euo pipefail
+          for asset in dist-release/*.deb dist-release/*.rpm dist-release/*.src.rpm dist-release/*.AppImage dist-release/*.flatpak; do
+            [[ -f "$asset" ]] || continue
+            cp "$asset" dist-added/
+          done
+          (
+            cd dist-added
+            for asset in *; do
+              [[ -f "$asset" ]] || continue
+              sha256sum "$asset" > "$asset.sha256"
+            done
+          )
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: bookshelfng-linux-packages
+          path: dist-added/
+          if-no-files-found: error
+          retention-days: 1
+
+  build-helm:
+    name: Package Helm chart
+    if: needs.validate.result == 'success'
+    needs: [validate]
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build-helm"]}}', github.run_id)) || 'ubuntu-latest' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - uses: azure/setup-helm@9bc31f4ebc9c6b171d7bfbaa5d006ae7abdb4310 # v5.0.1
+
+      - name: Render release-versioned chart
+        env:
+          VERSION: ${{ needs.validate.outputs.version }}
+          CHART_VERSION: ${{ needs.validate.outputs.chart_version }}
+          HARDCOVER_DIGEST: ${{ inputs.hardcover_digest }}
+        run: |
+          set -euo pipefail
+          sed -i "s/^version:.*/version: ${CHART_VERSION}/; s/^appVersion:.*/appVersion: \"${VERSION}\"/" charts/bookshelfng/Chart.yaml
+          [[ "$HARDCOVER_DIGEST" =~ ^sha256:[0-9a-f]{64}$ ]] || {
+            echo 'The release Hardcover image digest is invalid.' >&2
+            exit 1
+          }
+          sed -i "s#^  digest:.*#  digest: \"${HARDCOVER_DIGEST}\"#" charts/bookshelfng/values.yaml
+          helm lint charts/bookshelfng
+          helm package charts/bookshelfng --destination dist-release
+          for chart in dist-release/*.tgz; do
+            chart_name="$(basename "$chart")"
+            (cd dist-release && sha256sum "$chart_name" > "$chart_name.sha256")
+          done
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: bookshelfng-helm
+          path: dist-release/*
+          if-no-files-found: error
+          retention-days: 1

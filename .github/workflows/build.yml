@@ -519,8 +519,6 @@ jobs:
     permissions:
       actions: read
       contents: write
-    outputs:
-      runtime_pack_run_id: ${{ steps.runtime-packs.outputs.run_id }}
     env:
       RELEASE_TAG: ${{ github.ref_name }}
       SOFTCOVER_DIGEST: ${{ needs.publish-images.outputs.softcover_digest }}
@@ -545,78 +543,6 @@ jobs:
           bash scripts/validate-release-publisher-config.sh discord
           test -n "$SOFTCOVER_DIGEST"
           test -n "$HARDCOVER_DIGEST"
-
-      - name: Find reusable runtime-pack artifact
-        id: runtime-packs
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          release_sha="$(git rev-parse "${RELEASE_TAG}^{commit}")"
-          artifacts_json="$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?per_page=100")"
-          runtime_pack_run_id=""
-
-          while IFS=$'\t' read -r created_at run_id artifact_sha; do
-            [[ -n "$run_id" && -n "$artifact_sha" ]] || continue
-            run_json="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id")"
-            runtime_pack_sha="$(jq -r '.head_sha' <<<"$run_json")"
-            runtime_pack_workflow="$(jq -r '.path' <<<"$run_json")"
-            [[ "$runtime_pack_sha" == "$artifact_sha" ]] || continue
-            case "$runtime_pack_workflow" in
-              .github/workflows/build.yml|.github/workflows/release-distribution.yml) ;;
-              *) continue ;;
-            esac
-            git merge-base --is-ancestor "$runtime_pack_sha" "$release_sha" || continue
-            git diff --quiet "$runtime_pack_sha" "$release_sha" -- \
-              scripts/build-dotnet10-platform-runtime-packs.sh \
-              src/Directory.Build.props src/NuGet.config || continue
-
-            git show "$runtime_pack_sha:.github/workflows/release-distribution.yml" \
-              | sed -n '/^  build-platform-runtime-packs:/,/^  build-release-assets:/p' \
-              | sed '$d' \
-              | sed "/^    if: inputs.runtime_pack_run_id == ''$/d" \
-              > "$RUNNER_TEMP/runtime-pack-source-job.yml"
-            git show "$release_sha:.github/workflows/release-distribution.yml" \
-              | sed -n '/^  build-platform-runtime-packs:/,/^  build-release-assets:/p' \
-              | sed '$d' \
-              | sed "/^    if: inputs.runtime_pack_run_id == ''$/d" \
-              > "$RUNNER_TEMP/runtime-pack-release-job.yml"
-            cmp -s "$RUNNER_TEMP/runtime-pack-source-job.yml" "$RUNNER_TEMP/runtime-pack-release-job.yml" || continue
-
-            jobs_json="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=100")"
-            if jq -e '
-              any(.jobs[];
-                (.name | endswith("Build Linux x86 and FreeBSD .NET 10 runtime packs")) and
-                (
-                  .conclusion == "success" or
-                  (
-                    .conclusion == "cancelled" and
-                    any(.steps[]; .name == "Build and verify platform packs" and .conclusion == "success") and
-                    any(.steps[]; (.name | startswith("Run actions/upload-artifact@")) and .conclusion == "success")
-                  )
-                )
-              )
-            ' <<<"$jobs_json" >/dev/null; then
-              runtime_pack_run_id="$run_id"
-              echo "Selected compatible runtime-pack artifact from run $run_id (created $created_at)."
-              break
-            fi
-          done < <(
-            jq -r '
-              [.artifacts[]
-                | select(.name == "bookshelfng-platform-runtime-packs" and .expired == false)
-                | select(.workflow_run.id != null and .workflow_run.head_sha != null)
-                | [.created_at, (.workflow_run.id | tostring), .workflow_run.head_sha]]
-              | sort_by(.[0])
-              | reverse[]
-              | @tsv
-            ' <<<"$artifacts_json"
-          )
-
-          echo "run_id=$runtime_pack_run_id" >> "$GITHUB_OUTPUT"
-          if [[ -z "$runtime_pack_run_id" ]]; then
-            echo 'No compatible runtime-pack artifact found; the release workflow will build packs.'
-          fi
 
       - name: Set up Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -686,37 +612,27 @@ jobs:
               --notes-file "$RELEASE_NOTES_FILE"
           fi
 
-  distribution:
-    name: Build and publish standalone release channels
-    if: >-
-      (github.event_name != 'pull_request_target' &&
-      (github.event_name != 'pull_request' || github.actor != 'snapetech' ||
-       github.event.pull_request.user.login != 'snapetech' ||
-       github.event.pull_request.head.repo.full_name != github.repository ||
-       github.event.pull_request.head.repo.id != github.repository_id ||
-       github.event.pull_request.base.ref != 'main') &&
-      (github.event_name != 'workflow_dispatch' ||
-       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == ''))) && (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true')
-    needs: [publish-images, release]
-    permissions:
-      actions: read
-      contents: write
-      packages: write
-      id-token: write
-    cache-mode: none
-    uses: ./.github/workflows/release-distribution.yml
-    with:
-      tag: ${{ github.ref_name }}
-      softcover_digest: ${{ needs.publish-images.outputs.softcover_digest }}
-      hardcover_digest: ${{ needs.publish-images.outputs.hardcover_digest }}
-      runtime_pack_run_id: ${{ needs.release.outputs.runtime_pack_run_id }}
-    secrets:
-      AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
-      COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
-      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-      LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
-      CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
-      DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+      - name: Stage published image digests for release publication
+        env:
+          SOFTCOVER_DIGEST: ${{ needs.publish-images.outputs.softcover_digest }}
+          HARDCOVER_DIGEST: ${{ needs.publish-images.outputs.hardcover_digest }}
+        run: |
+          set -euo pipefail
+          [[ "$SOFTCOVER_DIGEST" =~ ^sha256:[0-9a-f]{64}$ ]]
+          [[ "$HARDCOVER_DIGEST" =~ ^sha256:[0-9a-f]{64}$ ]]
+          mkdir -p "$RUNNER_TEMP/bookshelfng-release-input"
+          jq -n \
+            --arg softcover "$SOFTCOVER_DIGEST" \
+            --arg hardcover "$HARDCOVER_DIGEST" \
+            '{softcover_digest: $softcover, hardcover_digest: $hardcover}' \
+            > "$RUNNER_TEMP/bookshelfng-release-input/image-digests.json"
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: bookshelfng-release-image-digests
+          path: ${{ runner.temp }}/bookshelfng-release-input/image-digests.json
+          if-no-files-found: error
+          retention-days: 1
 
   dispatch-owner-pr:
     name: Dispatch trusted owner PR validation
