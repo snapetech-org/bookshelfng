@@ -1,0 +1,321 @@
+# ng-runner-policy: hosted-first-v1
+name: Publish BookshelfNG Release
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: read
+
+cache-mode: none
+
+env:
+  BOOKSHELF_RUNTIME_IDENTIFIERS: linux-x64;linux-x86;linux-arm64;linux-musl-x64;linux-musl-arm64;freebsd-x64;osx-x64;osx-arm64;win-x64;win-x86
+
+jobs:
+  prepare:
+    name: Validate completed tag build and stage release inputs
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      startsWith(github.event.workflow_run.head_branch, 'v') &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      vars.BOOKSHELFNG_RELEASE_READY == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      tag: ${{ steps.validate.outputs.tag }}
+      softcover_digest: ${{ steps.digests.outputs.softcover_digest }}
+      hardcover_digest: ${{ steps.digests.outputs.hardcover_digest }}
+      runtime_pack_run_id: ${{ steps.runtime-packs.outputs.run_id }}
+    env:
+      RELEASE_TAG: ${{ github.event.workflow_run.head_branch }}
+      SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
+      SOURCE_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+    steps:
+      - name: Validate source tag workflow run
+        id: validate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BOOKSHELFNG_RELEASE_READY: ${{ vars.BOOKSHELFNG_RELEASE_READY || 'false' }}
+        run: |
+          set -euo pipefail
+          [[ "${BOOKSHELFNG_RELEASE_READY,,}" == true ]]
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+            echo "Unexpected BookshelfNG release tag: $RELEASE_TAG" >&2
+            exit 2
+          }
+          run_json="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID")"
+          jq -e --arg tag "$RELEASE_TAG" --arg sha "$SOURCE_HEAD_SHA" --arg repo "$GITHUB_REPOSITORY" '
+            .path == ".github/workflows/build.yml" and
+            .event == "push" and
+            .conclusion == "success" and
+            .head_branch == $tag and
+            .head_sha == $sha and
+            .head_repository.full_name == $repo and
+            .repository.full_name == $repo
+          ' <<<"$run_json" >/dev/null
+          [[ "$SOURCE_HEAD_SHA" == "$GITHUB_SHA" ]] || {
+            echo 'The tag build is not for the current default-branch head.' >&2
+            exit 1
+          }
+          tag_sha="$(gh api "repos/$GITHUB_REPOSITORY/commits/$RELEASE_TAG" --jq .sha)"
+          [[ "$tag_sha" == "$SOURCE_HEAD_SHA" ]] || {
+            echo "The completed workflow SHA does not match $RELEASE_TAG." >&2
+            exit 1
+          }
+          release="$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG")"
+          jq -e --arg tag "$RELEASE_TAG" \
+            '.tag_name == $tag and .draft == true and .prerelease == false' \
+            <<<"$release" >/dev/null || {
+              echo "Expected the completed build to have created a draft release for $RELEASE_TAG." >&2
+              exit 1
+          }
+          echo "tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        name: Download image digests from completed tag build
+        with:
+          name: bookshelfng-release-image-digests
+          path: ${{ runner.temp }}/release-input
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Validate image digest inputs
+        id: digests
+        run: |
+          set -euo pipefail
+          digest_file="$RUNNER_TEMP/release-input/image-digests.json"
+          test -s "$digest_file"
+          softcover_digest="$(jq -er '.softcover_digest' "$digest_file")"
+          hardcover_digest="$(jq -er '.hardcover_digest' "$digest_file")"
+          [[ "$softcover_digest" =~ ^sha256:[0-9a-f]{64}$ ]]
+          [[ "$hardcover_digest" =~ ^sha256:[0-9a-f]{64}$ ]]
+          {
+            echo "softcover_digest=$softcover_digest"
+            echo "hardcover_digest=$hardcover_digest"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Find reusable runtime-pack artifact
+        id: runtime-packs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          release_sha="$(git rev-parse "${RELEASE_TAG}^{commit}")"
+          artifacts_json="$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?per_page=100")"
+          runtime_pack_run_id=""
+
+          while IFS=$'\t' read -r created_at run_id artifact_sha; do
+            [[ -n "$run_id" && -n "$artifact_sha" ]] || continue
+            run_json="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id")"
+            runtime_pack_sha="$(jq -r '.head_sha' <<<"$run_json")"
+            runtime_pack_workflow="$(jq -r '.path' <<<"$run_json")"
+            [[ "$runtime_pack_sha" == "$artifact_sha" ]] || continue
+            case "$runtime_pack_workflow" in
+              .github/workflows/release-publication.yml|.github/workflows/release-build.yml) ;;
+              *) continue ;;
+            esac
+            git merge-base --is-ancestor "$runtime_pack_sha" "$release_sha" || continue
+            git diff --quiet "$runtime_pack_sha" "$release_sha" -- \
+              scripts/build-dotnet10-platform-runtime-packs.sh \
+              src/Directory.Build.props src/NuGet.config || continue
+
+            git show "$runtime_pack_sha:.github/workflows/release-build.yml" \
+              | sed -n '/^  build-platform-runtime-packs:/,/^  build-release-assets:/p' \
+              | sed '$d' \
+              | sed "/^    if: inputs.reuse_runtime_packs != true$/d" \
+              > "$RUNNER_TEMP/runtime-pack-source-job.yml"
+            git show "$release_sha:.github/workflows/release-build.yml" \
+              | sed -n '/^  build-platform-runtime-packs:/,/^  build-release-assets:/p' \
+              | sed '$d' \
+              | sed "/^    if: inputs.reuse_runtime_packs != true$/d" \
+              > "$RUNNER_TEMP/runtime-pack-release-job.yml"
+            cmp -s "$RUNNER_TEMP/runtime-pack-source-job.yml" "$RUNNER_TEMP/runtime-pack-release-job.yml" || continue
+
+            jobs_json="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=100")"
+            if jq -e '
+              any(.jobs[];
+                (.name | endswith("Build Linux x86 and FreeBSD .NET 10 runtime packs")) and
+                (
+                  .conclusion == "success" or
+                  (
+                    .conclusion == "cancelled" and
+                    any(.steps[]; .name == "Build and verify platform packs" and .conclusion == "success") and
+                    any(.steps[]; (.name | startswith("Run actions/upload-artifact@")) and .conclusion == "success")
+                  )
+                )
+              )
+            ' <<<"$jobs_json" >/dev/null; then
+              runtime_pack_run_id="$run_id"
+              echo "Selected compatible runtime-pack artifact from run $run_id (created $created_at)."
+              break
+            fi
+          done < <(
+            jq -r '
+              [.artifacts[]
+                | select(.name == "bookshelfng-platform-runtime-packs" and .expired == false)
+                | select(.workflow_run.id != null and .workflow_run.head_sha != null)
+                | [.created_at, (.workflow_run.id | tostring), .workflow_run.head_sha]]
+              | sort_by(.[0])
+              | reverse[]
+              | @tsv
+            ' <<<"$artifacts_json"
+          )
+
+          echo "run_id=$runtime_pack_run_id" >> "$GITHUB_OUTPUT"
+          if [[ -z "$runtime_pack_run_id" ]]; then
+            echo 'No compatible runtime-pack artifact found; the release workflow will build packs.'
+          fi
+
+
+      - name: Stage validated runtime-pack artifact in this run
+        if: steps.runtime-packs.outputs.run_id != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUNTIME_PACK_RUN_ID: ${{ steps.runtime-packs.outputs.run_id }}
+        run: |
+          set -euo pipefail
+          artifact_dir="$RUNNER_TEMP/platform-runtime-packs"
+          mkdir -p "$artifact_dir"
+          gh run download "$RUNTIME_PACK_RUN_ID" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name bookshelfng-platform-runtime-packs \
+            --dir "$artifact_dir"
+          for package in \
+            Microsoft.NETCore.App.Host.linux-x86.10.0.12.nupkg \
+            Microsoft.NETCore.App.Runtime.linux-x86.10.0.12.nupkg \
+            Microsoft.AspNetCore.App.Runtime.linux-x86.10.0.12.nupkg \
+            Microsoft.NETCore.App.Host.freebsd-x64.10.0.12.nupkg \
+            Microsoft.NETCore.App.Runtime.freebsd-x64.10.0.12.nupkg \
+            Microsoft.AspNetCore.App.Runtime.freebsd-x64.10.0.12.nupkg; do
+            test -s "$artifact_dir/packages/$package" || {
+              echo "Validated runtime-pack artifact is missing $package." >&2
+              exit 1
+            }
+          done
+          test -s "$artifact_dir/BUILD-INFO.txt"
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: steps.runtime-packs.outputs.run_id != ''
+        with:
+          name: bookshelfng-platform-runtime-packs
+          path: ${{ runner.temp }}/platform-runtime-packs/
+          if-no-files-found: error
+          retention-days: 1
+
+  build:
+    name: Build release assets and package artifacts
+    needs: [prepare]
+    permissions:
+      actions: read
+      contents: read
+    uses: ./.github/workflows/release-build.yml
+    with:
+      tag: ${{ needs.prepare.outputs.tag }}
+      hardcover_digest: ${{ needs.prepare.outputs.hardcover_digest }}
+      reuse_runtime_packs: ${{ needs.prepare.outputs.runtime_pack_run_id != '' }}
+
+  publish-assets:
+    name: Verify and publish GitHub release assets
+    needs: [prepare, build]
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: bookshelfng-release-assets
+          path: release-assets
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: bookshelfng-linux-packages
+          path: release-assets
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: bookshelfng-helm
+          path: release-assets
+
+      - name: Verify checksums and release inventory
+        env:
+          TAG: ${{ needs.prepare.outputs.tag }}
+        run: |
+          set -euo pipefail
+          IFS=';' read -r -a runtime_identifiers <<< "$BOOKSHELF_RUNTIME_IDENTIFIERS"
+          for rid in "${runtime_identifiers[@]}"; do
+            if [[ "$rid" == win-* ]]; then
+              asset="BookshelfNG-${TAG}-${rid}.zip"
+            else
+              asset="BookshelfNG-${TAG}-${rid}.tar.gz"
+            fi
+            test -f "release-assets/$asset"
+            test -f "release-assets/$asset.sha256"
+            (cd release-assets && sha256sum -c "$asset.sha256")
+          done
+          for rid in x64 arm64; do
+            asset="BookshelfNG-${TAG}-macos-${rid}.app.zip"
+            test -f "release-assets/$asset"
+            test -f "release-assets/$asset.sha256"
+            (cd release-assets && sha256sum -c "$asset.sha256")
+          done
+          installer="BookshelfNG-${TAG}-windows-x64-setup.exe"
+          test -f "release-assets/$installer"
+          test -f "release-assets/$installer.sha256"
+          (cd release-assets && sha256sum -c "$installer.sha256")
+          for pattern in '*.deb' '*.rpm' '*.AppImage' '*.flatpak' '*.tgz'; do
+            compgen -G "release-assets/$pattern" >/dev/null || {
+              echo "Missing required release asset matching $pattern" >&2
+              exit 1
+            }
+          done
+          for asset in release-assets/*.deb release-assets/*.rpm release-assets/*.src.rpm \
+            release-assets/*.AppImage release-assets/*.flatpak release-assets/*.tgz; do
+            [[ -f "$asset" ]] || continue
+            checksum="$asset.sha256"
+            test -f "$checksum"
+            (cd release-assets && sha256sum -c "$(basename "$checksum")")
+          done
+
+      - name: Upload assets and publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.prepare.outputs.tag }}
+        run: |
+          set -euo pipefail
+          mapfile -d '' release_files < <(find release-assets -mindepth 1 -maxdepth 1 -type f -print0)
+          ((${#release_files[@]} > 0))
+          gh release upload "$TAG" "${release_files[@]}" --clobber
+          gh release edit "$TAG" --draft=false
+
+  distribution:
+    name: Publish package channels and announce release
+    needs: [prepare, publish-assets]
+    permissions:
+      actions: read
+      contents: write
+      packages: write
+      id-token: write
+    cache-mode: none
+    uses: ./.github/workflows/release-distribution.yml
+    with:
+      tag: ${{ needs.prepare.outputs.tag }}
+      softcover_digest: ${{ needs.prepare.outputs.softcover_digest }}
+      hardcover_digest: ${{ needs.prepare.outputs.hardcover_digest }}
+      channels: all
+      recovery_only: false
+      skip_announcement: false
+    secrets:
+      AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
+      COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
+      CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+      DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}

@@ -71,13 +71,22 @@ assembly performed by the pack builder together.
 
 ## GitHub Actions release builds
 
-The [`Release Distributions`](../.github/workflows/release-distribution.yml)
-workflow builds these packs from the verified release tag and uploads the
-`bookshelfng-platform-runtime-packs` artifact. A retry may reuse an artifact
-from a successful compatible runtime-pack job; the workflow checks its source
-commit and build inputs before accepting it. The release-assets job adds the
-Linux x86 and FreeBSD packages as a local NuGet source before publishing the
-platform archives.
+The [`Release Build`](../.github/workflows/release-build.yml) reusable workflow
+builds these packs from the verified release tag and uploads the
+`bookshelfng-platform-runtime-packs` artifact. The
+[`Release Publication`](../.github/workflows/release-publication.yml)
+orchestrator runs only after a successful tag CI run. It may reuse an artifact
+from a compatible trusted runtime-pack job after checking the source commit,
+build inputs, workflow definition, job result, and required package files; it
+stages an accepted artifact in the current run before the release build uses
+it. The release-assets job adds the Linux x86 and FreeBSD packages as a local
+NuGet source before publishing the platform archives.
+
+[`Release Distributions`](../.github/workflows/release-distribution.yml) is
+publisher-only. Manual recovery reads already-published release assets, so a
+publisher retry does not download or execute build artifacts. The publication
+workflow uploads only the platform archives, Linux packages, and Helm chart;
+the runtime-pack artifact stays an internal build input.
 
 The same artifact carries the architecture-independent .NET 10.0.401 SDK files
 used by `dotnet test`; the target platform's runtime host, Core runtime, and
