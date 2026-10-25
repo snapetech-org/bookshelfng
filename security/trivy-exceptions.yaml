@@ -1,0 +1,20 @@
+misconfigurations:
+  - id: AVD-DS-0002
+    paths:
+      - docker/Dockerfile
+      - packaging/cloudron/Dockerfile
+    expired_at: 2027-04-25
+    statement: >-
+      These LinuxServer images require the root-owned s6 supervisor to start
+      before it drops BookshelfNG to the configured service account. Adding a
+      USER instruction breaks PUID/PGID and service startup compatibility.
+      Reassess when the image startup model is replaced.
+  - id: KSV-0014
+    paths:
+      - charts/bookshelfng/templates/statefulset.yaml
+    expired_at: 2027-04-25
+    statement: >-
+      The chart runs the LinuxServer s6 supervisor as root before the service
+      account transition. A read-only root filesystem needs a replacement
+      startup model and explicit writable runtime mounts; the chart README
+      records this constraint. Reassess with the image startup model.

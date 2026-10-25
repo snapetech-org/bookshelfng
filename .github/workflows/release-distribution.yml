@@ -70,7 +70,7 @@ concurrency:
 jobs:
   validate:
     name: Validate release tag
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-validate"]}}', github.run_id)) || 'ubuntu-latest' }}
     outputs:
       tag: ${{ steps.version.outputs.tag }}
       version: ${{ steps.version.outputs.version }}
@@ -562,7 +562,7 @@ jobs:
     name: Package Helm chart
     if: inputs.recovery_only != true
     needs: [validate]
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build-helm"]}}', github.run_id)) || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -609,7 +609,7 @@ jobs:
       needs.build-linux-packages.result == 'success' &&
       needs.build-helm.result == 'success'
     needs: [validate, publisher-credentials, build-release-assets, build-linux-packages, build-helm]
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-github-release"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       actions: read
       contents: write
@@ -679,7 +679,7 @@ jobs:
   publisher-credentials:
     name: Validate optional publisher configuration
     needs: [validate]
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publisher-credentials"]}}', github.run_id)) || 'ubuntu-latest' }}
     outputs:
       aur: ${{ steps.check.outputs.aur }}
       copr: ${{ steps.check.outputs.copr }}
@@ -713,7 +713,7 @@ jobs:
       needs.publisher-credentials.result == 'success' &&
       needs.publisher-credentials.outputs.aur == 'true' &&
       (inputs.channels == 'all' || contains(inputs.channels, 'aur'))
-    runs-on: ubuntu-latest
+    runs-on: ${{ contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v'))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-aur"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     steps:
@@ -805,6 +805,7 @@ jobs:
             IdentityFile ~/.ssh/aur
             IdentitiesOnly yes
             StrictHostKeyChecking yes
+            ProxyCommand nc -X connect -x 10.0.2.100:3128 %h %p
             UserKnownHostsFile ~/.ssh/known_hosts
             GlobalKnownHostsFile /dev/null
             BatchMode yes
@@ -841,7 +842,7 @@ jobs:
       needs.publisher-credentials.result == 'success' &&
       needs.publisher-credentials.outputs.copr == 'true' &&
       (inputs.channels == 'all' || contains(inputs.channels, 'copr'))
-    runs-on: ubuntu-latest
+    runs-on: ${{ contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v'))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-copr"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     steps:
@@ -1030,7 +1031,7 @@ jobs:
       (needs.build-helm.result == 'success' || inputs.recovery_only == true) &&
       (needs.publish-github-release.result == 'success' || inputs.recovery_only == true) &&
       (inputs.channels == 'all' || contains(inputs.channels, 'helm'))
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-helm"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
       packages: write
@@ -1102,7 +1103,7 @@ jobs:
         needs.publish-github-release.result == 'success' &&
         inputs.skip_announcement != true
       }}
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-announce"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     steps:
@@ -1134,12 +1135,6 @@ jobs:
           if [[ -z "$release_body" ]]; then
             release_body='Standalone BookshelfNG builds and packages are available. See the release for platform downloads and checksums.'
           fi
-          if [[ "$release_body" == *$'\n### Bug Fixes'* ]]; then
-            release_body="${release_body%%$'\n### Bug Fixes'*}"
-          fi
-          if (( ${#release_body} > 4000 )); then
-            release_body="${release_body:0:3997}…"
-          fi
           failed_publishers=()
           for channel in AUR COPR PPA CHOCOLATEY HELM; do
             result_var="${channel}_RESULT"
@@ -1155,36 +1150,95 @@ jobs:
           fi
           release_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/tag/${TAG}"
           workflow_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          jq -n \
-            --arg title "BookshelfNG ${VERSION} is available" \
-            --arg url "$release_url" \
-            --arg description "$release_body" \
-            --arg softcover "ghcr.io/${GITHUB_REPOSITORY}:softcover" \
-            --arg softcover_digest "$SOFTCOVER_DIGEST" \
-            --arg hardcover "ghcr.io/${GITHUB_REPOSITORY}:hardcover" \
-            --arg hardcover_digest "$HARDCOVER_DIGEST" \
-            --arg channel_status "$channel_status" \
-            --arg workflow "$workflow_url" \
-            '{
-              username: "BookshelfNG Releases",
-              embeds: [{
-                title: $title,
-                url: $url,
-                description: $description,
-                color: 5814783,
-                fields: [
-                  { name: "Softcover image", value: ("`" + $softcover + "`"), inline: false },
-                  { name: "Softcover digest", value: ("`" + $softcover_digest + "`"), inline: false },
-                  { name: "Hardcover image", value: ("`" + $hardcover + "`"), inline: false },
-                  { name: "Hardcover digest", value: ("`" + $hardcover_digest + "`"), inline: false },
-                  { name: "Downloads", value: $url, inline: false },
-                  { name: "Package channel status", value: $channel_status, inline: false },
-                  { name: "Build", value: $workflow, inline: false }
-                ]
-              }]
-            }' > "$RUNNER_TEMP/discord-release.json"
-          curl --fail --silent --show-error \
-            -H 'Content-Type: application/json' \
-            -X POST \
-            --data "@$RUNNER_TEMP/discord-release.json" \
-            "$DISCORD_WEBHOOK"
+          release_body_file="$RUNNER_TEMP/bookshelfng-discord-release-body.md"
+          chunks_file="$RUNNER_TEMP/bookshelfng-discord-release-chunks.json"
+          printf '%s' "$release_body" > "$release_body_file"
+          python3 - "$release_body_file" "$chunks_file" <<'PY'
+          import json
+          import pathlib
+          import sys
+
+          text = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+          limit = 3500
+          chunks = []
+          current = ""
+          for line in text.splitlines(keepends=True):
+              while len(line) > limit:
+                  if current:
+                      chunks.append(current)
+                      current = ""
+                  chunks.append(line[:limit])
+                  line = line[limit:]
+              if len(current) + len(line) > limit:
+                  chunks.append(current)
+                  current = ""
+              current += line
+          if current or not chunks:
+              chunks.append(current)
+          pathlib.Path(sys.argv[2]).write_text(
+              json.dumps(chunks, ensure_ascii=False), encoding="utf-8"
+          )
+          PY
+          chunk_count="$(jq 'length' "$chunks_file")"
+          for ((index = 0; index < chunk_count; index += 1)); do
+            if (( index == 0 )); then
+              jq -n \
+                --slurpfile chunks "$chunks_file" \
+                --argjson index "$index" \
+                --arg title "BookshelfNG ${VERSION} is available" \
+                --arg url "$release_url" \
+                --arg softcover "ghcr.io/${GITHUB_REPOSITORY}:softcover" \
+                --arg softcover_digest "$SOFTCOVER_DIGEST" \
+                --arg hardcover "ghcr.io/${GITHUB_REPOSITORY}:hardcover" \
+                --arg hardcover_digest "$HARDCOVER_DIGEST" \
+                --arg channel_status "$channel_status" \
+                --arg workflow "$workflow_url" \
+                '{
+                  username: "BookshelfNG Releases",
+                  allowed_mentions: {parse: []},
+                  embeds: [{
+                    title: $title,
+                    url: $url,
+                    description: $chunks[0][$index],
+                    color: 5814783,
+                    fields: [
+                      { name: "Softcover image", value: ("`" + $softcover + "`"), inline: false },
+                      { name: "Softcover digest", value: ("`" + $softcover_digest + "`"), inline: false },
+                      { name: "Hardcover image", value: ("`" + $hardcover + "`"), inline: false },
+                      { name: "Hardcover digest", value: ("`" + $hardcover_digest + "`"), inline: false },
+                      { name: "Downloads", value: $url, inline: false },
+                      { name: "Package channel status", value: $channel_status, inline: false },
+                      { name: "Build", value: $workflow, inline: false }
+                    ]
+                  }]
+                }' > "$RUNNER_TEMP/discord-release-$index.json"
+            else
+              part_number="$((index + 1))"
+              jq -n \
+                --slurpfile chunks "$chunks_file" \
+                --argjson index "$index" \
+                --arg title "BookshelfNG ${VERSION} changelog (${part_number}/${chunk_count})" \
+                --arg url "$release_url" \
+                --arg part "${part_number} of ${chunk_count}" \
+                '{
+                  username: "BookshelfNG Releases",
+                  allowed_mentions: {parse: []},
+                  embeds: [{
+                    title: $title,
+                    url: $url,
+                    description: $chunks[0][$index],
+                    color: 5814783,
+                    fields: [
+                      { name: "Full release notes", value: $url, inline: false },
+                      { name: "Changelog message", value: $part, inline: false }
+                    ]
+                  }]
+                }' > "$RUNNER_TEMP/discord-release-$index.json"
+            fi
+            if (( index > 0 )); then sleep 1; fi
+            curl --fail --silent --show-error \
+              -H 'Content-Type: application/json' \
+              -X POST \
+              --data "@$RUNNER_TEMP/discord-release-$index.json" \
+              "$DISCORD_WEBHOOK"
+          done

@@ -10,7 +10,7 @@ Local scans use Semgrep Community Edition and do not require a Semgrep SaaS acco
 
 Public Semgrep and Trivy workflows scan on pushes, pull requests, and weekly schedules. They use current scanner releases; any existing CodeQL workflow remains enabled.
 
-Scans report findings without failing by default so existing findings can be triaged. Set `SEMGREP_FAIL_ON_FINDINGS=1` or `TRIVY_EXIT_CODE=1` to make a local scan fail on findings. Trivy downloads its vulnerability and check databases automatically; use `TRIVY_OFFLINE=1` only after those databases are cached. The default timeout is 20 minutes for slow first downloads; set `TRIVY_TIMEOUT` to change it.
+Local scans report findings without failing by default. Set `SEMGREP_FAIL_ON_FINDINGS=1` or `TRIVY_EXIT_CODE=1` to make a local scan fail on findings. The required Trivy workflow sets `TRIVY_EXIT_CODE=1`, requires Trivy to be installed, and fails closed if no supported files are detected. It excludes generated `bin`, `obj`, `_output`, `_artifacts`, and `_temp` directories. Its `security/trivy-exceptions.yaml` allowlist is limited to the legacy LinuxServer startup paths, has an expiration date, and records the reason. Trivy downloads its vulnerability and check databases automatically; use `TRIVY_OFFLINE=1` only after those databases are cached. The default timeout is 20 minutes for slow first downloads; set `TRIVY_TIMEOUT` to change it.
 
 Run `./scripts/update-security-tools.sh` to refresh the local Semgrep package cache, pull the current Semgrep fallback image, and refresh Trivy's database.
 
