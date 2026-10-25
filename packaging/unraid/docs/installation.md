@@ -12,7 +12,8 @@ management and acquisition. It works independently; SeerrNG integration is optio
 
 Keep the current BookshelfNG image. The cutover is frozen: read-only preview is
 allowed, but do not apply migration or switch an existing appdata directory to
-ChaptarrNG while BookshelfNG issue #144 remains open. The legacy Community Apps
+ChaptarrNG. BookshelfNG issue #144 is closed, but migration acceptance remains
+open. The legacy Community Apps
 template on `main` still points to BookshelfNG. A transition
 candidate preserves its appdata path, port, media/download mappings, user IDs,
 timezone, and Hardcover settings while switching to the standard ChaptarrNG

@@ -34,7 +34,7 @@ if grep -Fq 'releases/download/main-v${pkgver}' "$repo_root/packaging/aur/PKGBUI
   echo 'The future AUR recipe must resolve the new v<version> release tag.' >&2
   exit 1
 fi
-tag_publish_condition="if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true'"
+tag_publish_condition="github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true'"
 if [[ "$(grep -Fc "$tag_publish_condition" "$build_workflow")" -ne 4 ]]; then
   echo 'Every BookshelfNG tag publication job must check the release readiness gate.' >&2
   exit 1
