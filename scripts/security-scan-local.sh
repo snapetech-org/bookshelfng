@@ -134,10 +134,11 @@ has_code_files() {
 trivy_run() {
   local scanners=()
   local args=()
+  local config_data=0
   if has_dependency_files; then scanners+=(vuln); fi
   if has_iac_files; then
     scanners+=(misconfig)
-    args+=(--config-data security/trivy-misconfig-data.yaml)
+    config_data=1
   fi
   if has_code_files || ((${#scanners[@]} > 0)); then scanners+=(secret); fi
   if ((${#scanners[@]} == 0)); then
@@ -152,6 +153,7 @@ trivy_run() {
   printf -v scanner_list '%s,' "${scanners[@]}"
   scanner_list="${scanner_list%,}"
   args+=(fs --scanners "$scanner_list" --timeout "${TRIVY_TIMEOUT:-20m}" --severity "${TRIVY_SEVERITY:-HIGH,CRITICAL}" --exit-code "${TRIVY_EXIT_CODE:-0}")
+  if (( config_data )); then args+=(--config-data security/trivy-misconfig-data.yaml); fi
   case "${TRIVY_IGNORE_UNFIXED:-true}" in
     1|true|TRUE|yes|YES) args+=(--ignore-unfixed) ;;
     0|false|FALSE|no|NO) ;;
