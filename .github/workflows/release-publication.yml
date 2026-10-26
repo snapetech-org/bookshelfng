@@ -1,4 +1,4 @@
-# ng-runner-policy: hosted-first-v1
+# ng-runner-policy: private-jit-only-v1
 name: Publish BookshelfNG Release
 
 on:
@@ -48,12 +48,12 @@ jobs:
     if: >-
       vars.BOOKSHELFNG_RELEASE_READY == 'true' &&
       ((inputs.tag != '' && github.actor == 'snapetech' && github.ref == 'refs/heads/main') ||
-       (github.event_name == 'workflow_run' && vars.NG_HOSTED_FIRST == 'true' &&
+       (github.event_name == 'workflow_run' &&
         github.event.workflow_run.conclusion == 'success' &&
         github.event.workflow_run.event == 'push' &&
         startsWith(github.event.workflow_run.head_branch, 'v') &&
         github.event.workflow_run.head_repository.full_name == github.repository))
-    runs-on: ${{ (inputs.tag != '' && github.actor == 'snapetech' && github.ref == 'refs/heads/main') && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-prepare"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-prepare"]}}', github.run_id)) }}
     permissions:
       actions: read
       contents: write
@@ -274,7 +274,7 @@ jobs:
   publish-assets:
     name: Verify and publish GitHub release assets
     needs: [prepare, build]
-    runs-on: ${{ (inputs.tag != '' && github.actor == 'snapetech' && github.ref == 'refs/heads/main') && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-release-assets"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-release-assets"]}}', github.run_id)) }}
     permissions:
       actions: read
       contents: write

@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: BookshelfNG fork-safe static validation
 on:
   workflow_call:
@@ -12,6 +13,7 @@ jobs:
       github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name &&
       github.event.pull_request.base.repo.full_name == 'snapetech-org/bookshelfng' &&
       github.event.pull_request.base.ref == 'main'
+    # This group must only be served by a disposable VM with no secrets and restricted egress.
     runs-on:
       group: public-fork-jit
       labels:

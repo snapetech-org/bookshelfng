@@ -1,4 +1,4 @@
-# ng-runner-policy: hosted-first-v1
+# ng-runner-policy: private-jit-only-v1
 name: CI
 run-name: >-
   ${{ github.event_name == 'workflow_dispatch' && inputs.release_build_tag != '' &&
@@ -94,7 +94,8 @@ concurrency:
 jobs:
   test-chocolatey-package-verifier:
     if: >-
-      vars.NG_HOSTED_FIRST == 'true' &&
+      (github.event_name != 'pull_request' ||
+       github.event.pull_request.head.repo.full_name == github.repository) &&
       (github.event_name != 'pull_request_target' &&
       (github.event_name != 'pull_request' || github.actor != 'snapetech' ||
        github.event.pull_request.user.login != 'snapetech' ||
@@ -104,7 +105,15 @@ jobs:
       (github.event_name != 'workflow_dispatch' ||
        (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' &&
         inputs.release_tag == '')))
-    runs-on: windows-latest
+    runs-on:
+      group: packer-windows
+      labels:
+        - self-hosted
+        - Windows
+        - X64
+        - on-demand
+        - packer-windows
+        - bookshelfng
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -125,8 +134,7 @@ jobs:
       inputs.release_tag != '' &&
       inputs.pr_number == '' &&
       inputs.pr_sha == '' &&
-      inputs.target_run_id == '' &&
-      (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1)
+      inputs.target_run_id == ''
     name: Retry published release distribution
     permissions:
       contents: read
@@ -202,7 +210,7 @@ jobs:
               case "$channel" in
                 aur|copr|helm) ;;
                 ppa|chocolatey)
-                  echo "$channel is not available on the private Linux recovery route; use the existing successful publication or retry it when hosted publishing is available." >&2
+              echo "$channel is not available on the private Linux recovery route; use the existing successful publication or retry it after that channel's private JIT route is restored." >&2
                   exit 2
                   ;;
                 *)
@@ -575,40 +583,6 @@ jobs:
               "$DISCORD_WEBHOOK"
           done
 
-  retry-release-distribution-hosted:
-    if: >-
-      github.event_name == 'workflow_dispatch' &&
-      github.actor == 'snapetech' &&
-      github.ref == 'refs/heads/main' &&
-      inputs.release_tag != '' &&
-      inputs.pr_number == '' &&
-      inputs.pr_sha == '' &&
-      inputs.target_run_id == '' &&
-      vars.NG_HOSTED_FIRST == 'true' &&
-      vars.NG_FORCE_JIT != 'true' &&
-      github.run_attempt == 1
-    name: Retry release distribution on hosted publishing mode
-    permissions:
-      actions: read
-      contents: write
-      packages: write
-      id-token: write
-    uses: ./.github/workflows/retry-release-distribution.yml
-    with:
-      tag: ${{ inputs.release_tag }}
-      softcover_digest: ${{ inputs.release_softcover_digest }}
-      hardcover_digest: ${{ inputs.release_hardcover_digest }}
-      channels: ${{ inputs.release_channels }}
-      chocolatey_use_main_packaging: ${{ inputs.release_chocolatey_use_main_packaging }}
-      skip_announcement: ${{ inputs.release_skip_announcement }}
-    secrets:
-      AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
-      COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
-      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-      LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
-      CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
-      DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
-
   build:
     if: >-
       ((github.event_name == 'workflow_dispatch' &&
@@ -625,10 +599,12 @@ jobs:
         inputs.release_tag == '' &&
         (inputs.release_build_tag == '' ||
          (github.actor == 'snapetech' && github.ref == 'refs/heads/main' &&
-          vars.BOOKSHELFNG_RELEASE_READY == 'true'))))))
+          vars.BOOKSHELFNG_RELEASE_READY == 'true')))))) &&
+      (github.event_name != 'pull_request' ||
+       github.event.pull_request.head.repo.full_name == github.repository)
     # Trusted main validation, private release builds, and the owner-only Linux
     # release retry use the isolated shared runner pool.
-    runs-on: ${{ (github.event_name == 'workflow_dispatch' && (github.actor == 'snapetech' || github.actor == 'github-actions[bot]') && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && github.ref == 'refs/heads/main') && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) || (!(github.event_name == 'workflow_dispatch' && (github.actor == 'snapetech' || github.actor == 'github-actions[bot]') && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && github.ref == 'refs/heads/main') && ((vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) || 'ubuntu-latest')) }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
@@ -660,7 +636,7 @@ jobs:
           BOOKSHELFNG_RELEASE_READY: ${{ vars.BOOKSHELFNG_RELEASE_READY || 'false' }}
         run: bash scripts/require-bookshelfng-release-ready.sh
 
-      - name: Test hosted runner policy
+      - name: Test private JIT runner policy
         run: python3 scripts/test_workflow_runner_policy.py
 
       - name: Test consolidation inventory path hints
@@ -894,7 +870,7 @@ jobs:
          github.ref == 'refs/heads/main' && inputs.release_build_tag != '')) &&
        vars.BOOKSHELFNG_RELEASE_READY == 'true')
     needs: build
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-images"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-images"]}}', github.run_id)) }}
     permissions:
       contents: read
       packages: write
@@ -1092,7 +1068,7 @@ jobs:
     needs: publish-images
     env:
       TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-container-scan"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-container-scan"]}}', github.run_id)) }}
     permissions:
       contents: read
       packages: read
@@ -1152,7 +1128,7 @@ jobs:
          github.ref == 'refs/heads/main' && inputs.release_build_tag != '')) &&
        vars.BOOKSHELFNG_RELEASE_READY == 'true')
     needs: [build, publish-images, container-scan]
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release"]}}', github.run_id)) }}
     permissions:
       actions: read
       contents: write

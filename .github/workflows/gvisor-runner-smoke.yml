@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: gVisor runner smoke
 
 on:

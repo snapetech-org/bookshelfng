@@ -1,4 +1,4 @@
-# ng-runner-policy: hosted-first-v1
+# ng-runner-policy: private-jit-only-v1
 name: Build BookshelfNG Release Assets
 
 on:
@@ -34,7 +34,7 @@ concurrency:
 jobs:
   validate:
     name: Validate release tag
-    runs-on: ${{ (inputs.tag != '' && github.actor == 'snapetech' && github.ref == 'refs/heads/main') && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-build-validate"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-build-validate"]}}', github.run_id)) }}
     outputs:
       tag: ${{ steps.version.outputs.tag }}
       version: ${{ steps.version.outputs.version }}
@@ -95,7 +95,7 @@ jobs:
     name: Build Linux x86 and FreeBSD .NET 10 runtime packs
     if: inputs.reuse_runtime_packs != true
     needs: validate
-    runs-on: ${{ (inputs.tag != '' && github.actor == 'snapetech' && github.ref == 'refs/heads/main') && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-build-runtime-packs"]}}', github.run_id)) || 'ubuntu-22.04' }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-build-runtime-packs"]}}', github.run_id)) }}
     timeout-minutes: 360
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -132,7 +132,7 @@ jobs:
       needs.validate.result == 'success' &&
       (needs.build-platform-runtime-packs.result == 'success' || inputs.reuse_runtime_packs == true)
     needs: [validate, build-platform-runtime-packs]
-    runs-on: ${{ (inputs.tag != '' && github.actor == 'snapetech' && github.ref == 'refs/heads/main') && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-build-assets"]}}', github.run_id)) || 'ubuntu-22.04' }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-build-assets"]}}', github.run_id)) }}
     # This workflow is called only after a successful tag build completes.
     # Release builds do not need cache access.
     cache-mode: none
@@ -223,7 +223,7 @@ jobs:
       needs.validate.result == 'success' &&
       needs.build-release-assets.result == 'success'
     needs: [validate, build-release-assets]
-    runs-on: ${{ (inputs.tag != '' && github.actor == 'snapetech' && github.ref == 'refs/heads/main') && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-build-linux-packages"]}}', github.run_id)) || 'ubuntu-22.04' }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-build-linux-packages"]}}', github.run_id)) }}
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -389,7 +389,7 @@ jobs:
     name: Package Helm chart
     if: needs.validate.result == 'success'
     needs: [validate]
-    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build-helm"]}}', github.run_id)) || 'ubuntu-latest' }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build-helm"]}}', github.run_id)) }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

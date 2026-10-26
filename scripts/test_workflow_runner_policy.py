@@ -66,6 +66,7 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         job = job_block(source, "validate")
 
         self.assertIn("group: public-fork-jit", job)
+        self.assertIn("disposable VM", job)
         self.assertIn("public-pr-bookshelfng", job)
         self.assertIn("github.event.pull_request.head.repo.fork == true", job)
         self.assertIn("permissions:", job)
@@ -149,18 +150,9 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
                 self.assertIn(required, retry_job)
         self.assertNotIn("uses: ./.github/workflows/retry-release-distribution.yml", retry_job)
         self.assertNotIn("|| 'ubuntu-latest'", retry_job)
-
-        hosted_retry = job_block(source, "retry-release-distribution-hosted")
-        self.assertIn("vars.NG_HOSTED_FIRST == 'true'", hosted_retry)
-        self.assertIn("vars.NG_FORCE_JIT != 'true'", hosted_retry)
-        self.assertIn("github.run_attempt == 1", hosted_retry)
-        self.assertIn(
-            "uses: ./.github/workflows/retry-release-distribution.yml", hosted_retry
-        )
-        self.assertIn(
-            "skip_announcement: ${{ inputs.release_skip_announcement }}", hosted_retry
-        )
-        self.assertNotIn("secrets: inherit", hosted_retry)
+        self.assertNotIn("retry-release-distribution-hosted", source)
+        self.assertNotIn("NG_HOSTED_FIRST", source)
+        self.assertNotIn("NG_FORCE_JIT", source)
 
         release_retry = RETRY_RELEASE_DISTRIBUTION.read_text(encoding="utf-8")
         call = event_block(release_retry, "workflow_call")
@@ -181,11 +173,13 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             with self.subTest(reusable_workflow_input=name):
                 self.assertIn(f"      {name}:", call)
 
-    def test_chocolatey_verifier_needs_hosted_runner_mode(self) -> None:
+    def test_chocolatey_verifier_uses_the_private_windows_jit_group(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
         job = job_block(source, "test-chocolatey-package-verifier")
-        self.assertIn("vars.NG_HOSTED_FIRST == 'true'", job)
-        self.assertIn("runs-on: windows-latest", job)
+        self.assertIn("group: packer-windows", job)
+        self.assertIn("- on-demand", job)
+        self.assertIn("- bookshelfng", job)
+        self.assertNotIn("windows-latest", job)
         self.assertIn("inputs.release_tag == ''", job)
 
     def test_new_release_build_and_publish_path_stays_on_private_jit(self) -> None:
@@ -248,29 +242,21 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         ]
         self.assertEqual(branches, ["main"])
 
-    def test_build_uses_the_shared_pool_only_for_trusted_main(self) -> None:
+    def test_build_uses_private_jit_and_excludes_public_fork_code(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
         build = source.split("  build:\n", 1)[1].split("\n  publish-images:", 1)[0]
         self.assertIn('"group":"ng-shared-main-jit"', build)
         self.assertIn('"ng-shared-main-bookshelfng"', build)
         self.assertIn('"ng-main-run-{0}"', build)
         self.assertIn("github.run_id", build)
-        self.assertIn(
-            "contains(fromJSON('[\"push\",\"workflow_dispatch\",\"schedule\",\"release\",\"repository_dispatch\"]'), github.event_name)",
-            build,
-        )
-        self.assertIn(
-            "github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v'))",
-            build,
-        )
-        self.assertIn("vars.NG_HOSTED_FIRST", build)
-        self.assertIn("vars.NG_FORCE_JIT", build)
-        self.assertIn("github.run_attempt > 1", build)
-        self.assertIn("|| 'ubuntu-latest'", build)
+        self.assertIn("github.event.pull_request.head.repo.full_name == github.repository", build)
+        self.assertNotIn("NG_HOSTED_FIRST", source)
+        self.assertNotIn("NG_FORCE_JIT", source)
+        self.assertNotIn("ubuntu-latest", source)
         self.assertIn("  pull_request:", source)
         self.assertNotIn("TRUSTED_MAIN_RUNNERS_ENABLED", source)
 
-    def test_release_jobs_route_trusted_tags_with_hosted_fallback(self) -> None:
+    def test_release_jobs_route_to_private_jit_without_hosted_fallback(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
         for job_name in ("publish-images", "container-scan", "release"):
             with self.subTest(job=job_name):
@@ -280,23 +266,20 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
                 self.assertIn('"group":"ng-shared-main-jit"', runner.group("runner"))
                 self.assertIn('"ng-shared-main-bookshelfng"', runner.group("runner"))
                 self.assertIn('"ng-main-run-{0}"', runner.group("runner"))
-                self.assertIn(
-                    "github.ref_type == 'tag' && startsWith(github.ref_name, 'v')",
-                    runner.group("runner"),
-                )
-                self.assertIn("|| 'ubuntu-latest'", runner.group("runner"))
+                self.assertNotIn("ubuntu-latest", runner.group("runner"))
 
-    def test_playwright_installer_uses_hosted_linux_dependencies(self) -> None:
+    def test_playwright_installer_uses_linux_dependencies(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("Install Chromium and system dependencies on Linux", source)
         self.assertIn("install --with-deps chromium", source)
         self.assertNotIn("runner.environment", source)
 
-    def test_security_scans_use_the_shared_pool_only_on_trusted_main_runs(self) -> None:
+    def test_security_scans_use_private_jit_and_skip_public_fork_code(self) -> None:
         workflow_dir = WORKFLOW.parent
         for workflow_name, job_name in (
             ("codeql.yml", "analyze"),
             ("semgrep-community.yml", "semgrep"),
+            ("trivy-filesystem.yml", "trivy"),
         ):
             source = (workflow_dir / workflow_name).read_text(encoding="utf-8")
             job = source.split(f"  {job_name}:\n", 1)[1]
@@ -305,11 +288,8 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             self.assertIn('"group":"ng-shared-main-jit"', runner.group("runner"))
             self.assertIn('"ng-shared-main-bookshelfng"', runner.group("runner"))
             self.assertIn('"ng-main-run-{0}"', runner.group("runner"))
-            self.assertIn("github.event_name == 'push'", runner.group("runner"))
-            self.assertIn("github.event_name == 'workflow_dispatch'", runner.group("runner"))
-            self.assertIn("github.event_name == 'schedule'", runner.group("runner"))
-            self.assertIn("github.ref == 'refs/heads/main'", runner.group("runner"))
-            self.assertIn("|| 'ubuntu-latest'", runner.group("runner"))
+            self.assertIn("github.event.pull_request.head.repo.full_name == github.repository", job)
+            self.assertNotIn("ubuntu-latest", runner.group("runner"))
         semgrep = (workflow_dir / "semgrep-community.yml").read_text(encoding="utf-8")
         self.assertIn("docker info", semgrep)
         self.assertIn("docker run", semgrep)
@@ -325,9 +305,8 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         )
 
         self.assertIn("full_vulnerability_audit:", filesystem)
-        self.assertIn(
-            "inputs.full_vulnerability_audit == true && fromJSON(format(", filesystem
-        )
+        self.assertIn('"group":"ng-shared-main-jit"', filesystem)
+        self.assertIn("github.event.pull_request.head.repo.full_name == github.repository", filesystem)
         self.assertIn('TRIVY_IGNORE_UNFIXED: ${{', filesystem)
         self.assertIn("TRIVY_SEVERITY:-HIGH,CRITICAL", scanner)
         self.assertIn("TRIVY_IGNORE_UNFIXED:-true", scanner)
@@ -336,7 +315,6 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertNotIn("ubuntu-latest", published_images)
         self.assertIn("UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL", published_images)
         self.assertIn("ignore-unfixed: false", published_images)
-
 
 if __name__ == "__main__":
     unittest.main()
