@@ -154,9 +154,9 @@ trivy_run() {
   scanner_list="${scanner_list%,}"
   args+=(fs --scanners "$scanner_list" --timeout "${TRIVY_TIMEOUT:-20m}" --severity "${TRIVY_SEVERITY:-HIGH,CRITICAL}" --exit-code "${TRIVY_EXIT_CODE:-0}")
   if (( config_data )); then
-    local config_data_path="$repo_root/security/trivy-misconfig-data.yaml"
-    [[ -f "$config_data_path" ]] || {
-      echo "Trivy misconfiguration data file is missing: $config_data_path" >&2
+    local config_data_path="$repo_root/security/trivy-misconfig-data"
+    [[ -d "$config_data_path" && -f "$config_data_path/ksv0125.yaml" ]] || {
+      echo "Trivy misconfiguration data directory or KSV-0125 data file is missing: $config_data_path" >&2
       return 1
     }
     args+=(--config-data "$config_data_path")
