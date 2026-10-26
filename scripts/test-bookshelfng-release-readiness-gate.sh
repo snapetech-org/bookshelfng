@@ -62,7 +62,7 @@ if ! grep -Fq "github.event_name == 'push' && startsWith(github.ref, 'refs/tags/
   exit 1
 fi
 
-setup_github_cli_action='snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231'
+setup_github_cli_action='snapetech-org/bookshelfng/.github/actions/setup-github-cli@8d2aef3cec245a9814eea4654244184f92f7c18e'
 assert_job_sets_up_github_cli() {
   local workflow_file="$1"
   local job_name="$2"
@@ -90,7 +90,7 @@ for job_name in prepare publish-assets; do
 done
 assert_job_sets_up_github_cli "$repo_root/.github/workflows/release-build.yml" validate
 assert_job_sets_up_github_cli "$bridge_workflow" discover-release
-grep -Fq '6084d5d7bd8e288441e0e94fc6275570895da18e6751f70f057485dc2d1a811b' \
+grep -Fq '62ccf747115ddc61237efffdde66a3c8f70ba249433dc64f70801089b59c59c8' \
   "$repo_root/.github/actions/setup-github-cli/action.yml"
 
 grep -Fq "github.event.workflow_run.conclusion == 'success'" "$publication_workflow"
