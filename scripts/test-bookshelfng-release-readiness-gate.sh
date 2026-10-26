@@ -47,6 +47,14 @@ grep -Fq "github.event.workflow_run.head_repository.full_name == github.reposito
 grep -Fq "vars.BOOKSHELFNG_RELEASE_READY == 'true'" "$publication_workflow"
 grep -Fq '.path == ".github/workflows/build.yml"' "$publication_workflow"
 grep -Fq 'gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"' "$publication_workflow"
+checkout_line="$(grep -nF 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' "$publication_workflow" | head -n 1 | cut -d: -f1)"
+runtime_pack_line="$(grep -nF '      - name: Find reusable runtime-pack artifact' "$publication_workflow" | cut -d: -f1)"
+if [[ -z "$checkout_line" || -z "$runtime_pack_line" || "$checkout_line" -ge "$runtime_pack_line" ]]; then
+  echo 'The release preflight must check out the validated tag before inspecting reusable runtime-pack artifacts.' >&2
+  exit 1
+fi
+grep -Fq '          ref: ${{ steps.validate.outputs.tag }}' "$publication_workflow"
+grep -Fq '          fetch-depth: 0' "$publication_workflow"
 prepare_contents_permission="$(awk '/^  prepare:$/ { in_prepare = 1 } /^  build:$/ { in_prepare = 0 } in_prepare && /^      contents:/ { print $2 }' "$publication_workflow")"
 if [[ "$prepare_contents_permission" != write ]]; then
   echo 'The release preflight needs write access to list draft releases.' >&2
