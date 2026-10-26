@@ -15,13 +15,7 @@ jobs:
       github.event.pull_request.base.ref == 'main'
     # This group must only be served by a disposable VM with no secrets and restricted egress.
     runs-on:
-      group: public-fork-jit
-      labels:
-        - self-hosted
-        - linux
-        - x64
-        - public-pr-bookshelfng
-    timeout-minutes: 15
+      ${{ fromJSON('{"group":"public-fork-jit","labels":["self-hosted","linux","x64","public-pr-bookshelfng"]}') }}timeout-minutes: 15
     permissions:
       contents: read
     steps:
