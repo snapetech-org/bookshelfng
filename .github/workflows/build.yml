@@ -43,7 +43,7 @@ on:
         type: string
         default: ""
       release_channels:
-        description: Package publishers to run (all, or a comma-separated subset of aur,copr,ppa,chocolatey,helm)
+        description: Package publishers to run (all or a subset of aur,copr,ppa,chocolatey,helm; the private Linux retry handles aur,copr,helm)
         required: false
         type: string
         default: all
@@ -108,6 +108,9 @@ jobs:
         shell: pwsh
         run: ./scripts/test-chocolatey-package-verifier.ps1
 
+  # Keep the no-hosted recovery route as a direct job in this trusted workflow.
+  # The JIT broker source-verifies the caller workflow; reusable publisher jobs
+  # do not expose their runner labels through that caller job.
   retry-release-distribution:
     if: >-
       github.event_name == 'workflow_dispatch' &&
@@ -116,8 +119,467 @@ jobs:
       inputs.release_tag != '' &&
       inputs.pr_number == '' &&
       inputs.pr_sha == '' &&
-      inputs.target_run_id == ''
+      inputs.target_run_id == '' &&
+      (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1)
     name: Retry published release distribution
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-retry-release-distribution"]}}', github.run_id)) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Validate published release and requested JIT channels
+        id: preflight
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BOOKSHELFNG_RELEASE_READY: ${{ vars.BOOKSHELFNG_RELEASE_READY || 'false' }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          RELEASE_CHANNELS: ${{ inputs.release_channels }}
+          CHOCOLATEY_USE_MAIN_PACKAGING: ${{ inputs.release_chocolatey_use_main_packaging }}
+        run: |
+          set -euo pipefail
+          if [[ "${BOOKSHELFNG_RELEASE_READY,,}" != true ]]; then
+            echo 'BookshelfNG release distribution is frozen until retirement acceptance is complete.' >&2
+            exit 1
+          fi
+          if [[ "$CHOCOLATEY_USE_MAIN_PACKAGING" == true ]]; then
+            echo 'The private Linux recovery route does not publish Chocolatey packages.' >&2
+            exit 2
+          fi
+          if [[ ! "$RELEASE_TAG" =~ ^v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+            echo "Invalid BookshelfNG stable tag: $RELEASE_TAG" >&2
+            exit 2
+          fi
+          version="${BASH_REMATCH[1]}"
+          chart_version="$(awk -F. '{ printf "%s.%s.%s-%s", $1, $2, $3, $4 }' <<< "$version")"
+          git fetch --no-tags origin '+refs/heads/main:refs/remotes/origin/main'
+          git fetch --no-tags origin "+refs/tags/${RELEASE_TAG}:refs/tags/${RELEASE_TAG}"
+          git merge-base --is-ancestor "${RELEASE_TAG}^{commit}" refs/remotes/origin/main || {
+            echo "Release tag $RELEASE_TAG is not reachable from main." >&2
+            exit 1
+          }
+          release="$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG")"
+          jq -e --arg tag "$RELEASE_TAG" \
+            '.tag_name == $tag and .draft == false and .prerelease == false' \
+            <<<"$release" >/dev/null || {
+              echo "Publisher recovery requires an already-published stable release for $RELEASE_TAG." >&2
+              exit 1
+            }
+
+          channels="$(printf '%s' "${RELEASE_CHANNELS:-all}" | tr -d '[:space:]')"
+          aur=false
+          copr=false
+          helm=false
+          if [[ "$channels" == all ]]; then
+            aur=true
+            copr=true
+            helm=true
+          else
+            seen=','
+            IFS=, read -r -a selected <<< "$channels"
+            ((${#selected[@]} > 0)) || {
+              echo 'Select at least one private Linux publisher: aur,copr,helm.' >&2
+              exit 2
+            }
+            for channel in "${selected[@]}"; do
+              [[ -n "$channel" ]] || {
+                echo 'The publisher list contains an empty channel.' >&2
+                exit 2
+              }
+              case "$channel" in
+                aur|copr|helm) ;;
+                ppa|chocolatey)
+                  echo "$channel is not available on the private Linux recovery route; use the existing successful publication or retry it when hosted publishing is available." >&2
+                  exit 2
+                  ;;
+                *)
+                  echo "Unsupported private Linux publisher: $channel" >&2
+                  exit 2
+                  ;;
+              esac
+              [[ "$seen" != *",$channel,"* ]] || {
+                echo "The publisher list repeats channel $channel." >&2
+                exit 2
+              }
+              seen+="$channel,"
+              case "$channel" in
+                aur) aur=true ;;
+                copr) copr=true ;;
+                helm) helm=true ;;
+              esac
+            done
+          fi
+          {
+            echo "tag=$RELEASE_TAG"
+            echo "version=$version"
+            echo "chart_version=$chart_version"
+            echo "aur=$aur"
+            echo "copr=$copr"
+            echo "helm=$helm"
+          } >> "$GITHUB_OUTPUT"
+          {
+            echo 'This JIT recovery route publishes AUR, COPR, and Helm on a private Linux runner. PPA and Chocolatey are not retried here.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify Unraid package is synced
+        run: bash scripts/verify-package-sync.sh
+
+      - name: Validate Discord destination
+        if: inputs.release_skip_announcement != true
+        env:
+          DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+        run: bash scripts/validate-release-publisher-config.sh discord
+
+      - name: Validate configured publisher credentials
+        id: publisher-settings
+        env:
+          AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
+          COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+        run: bash scripts/validate-release-publisher-config.sh publishers
+
+      - name: Require credentials for selected channels
+        env:
+          CHANNEL_AUR: ${{ steps.preflight.outputs.aur }}
+          CHANNEL_COPR: ${{ steps.preflight.outputs.copr }}
+          CONFIGURED_AUR: ${{ steps.publisher-settings.outputs.aur }}
+          CONFIGURED_COPR: ${{ steps.publisher-settings.outputs.copr }}
+        run: |
+          set -euo pipefail
+          if [[ "$CHANNEL_AUR" == true && "$CONFIGURED_AUR" != true ]]; then
+            echo 'AUR was selected but its SSH signing key is unavailable or invalid.' >&2
+            exit 1
+          fi
+          if [[ "$CHANNEL_COPR" == true && "$CONFIGURED_COPR" != true ]]; then
+            echo 'COPR was selected but its package-scoped webhook is unavailable or invalid.' >&2
+            exit 1
+          fi
+
+      - name: Prepare Docker and SSH proxy tools for AUR
+        if: steps.preflight.outputs.aur == 'true'
+        run: |
+          set -euo pipefail
+          packages=()
+          command -v docker >/dev/null 2>&1 || packages+=(docker.io)
+          command -v nc >/dev/null 2>&1 || packages+=(netcat-openbsd)
+          if ((${#packages[@]} > 0)); then
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends "${packages[@]}"
+          fi
+          sudo systemctl enable --now docker
+          sudo docker info >/dev/null
+
+      - name: Publish AUR package
+        id: publish-aur
+        if: steps.preflight.outputs.aur == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.preflight.outputs.tag }}
+          VERSION: ${{ steps.preflight.outputs.version }}
+          AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern "BookshelfNG-${TAG}-linux-x64.tar.gz" --dir "$RUNNER_TEMP"
+          archive="$RUNNER_TEMP/BookshelfNG-${TAG}-linux-x64.tar.gz"
+          archive_sha="$(sha256sum "$archive" | awk '{print $1}')"
+          work="$RUNNER_TEMP/aur-package"
+          mkdir -p "$work"
+          git show "$TAG:packaging/aur/PKGBUILD" > "$work/PKGBUILD"
+          git show "$TAG:packaging/aur/bookshelfng.install" > "$work/bookshelfng.install"
+          for file in service env sysusers tmpfiles; do
+            git show "$TAG:packaging/systemd/bookshelfng.$file" > "$work/bookshelfng.$file"
+          done
+          sed -i "s/^pkgver=.*/pkgver=${VERSION}/" "$work/PKGBUILD"
+          service_sha="$(sha256sum "$work/bookshelfng.service" | awk '{print $1}')"
+          env_sha="$(sha256sum "$work/bookshelfng.env" | awk '{print $1}')"
+          sysusers_sha="$(sha256sum "$work/bookshelfng.sysusers" | awk '{print $1}')"
+          tmpfiles_sha="$(sha256sum "$work/bookshelfng.tmpfiles" | awk '{print $1}')"
+          python3 - "$work/PKGBUILD" "$archive_sha" "$service_sha" "$env_sha" "$sysusers_sha" "$tmpfiles_sha" <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+
+          path = Path(sys.argv[1])
+          checksums = sys.argv[2:]
+          replacement = "sha256sums=(" + " ".join(f"'{value}'" for value in checksums) + ")"
+          updated, count = re.subn(r"^sha256sums=.*$", replacement, path.read_text(), count=1, flags=re.MULTILINE)
+          if count != 1:
+              raise SystemExit("PKGBUILD must contain exactly one sha256sums array")
+          path.write_text(updated)
+          PY
+          bash packaging/scripts/validate-aur-pkgbuild-hashes.sh "$work/PKGBUILD"
+          chmod 0755 "$work"
+          chmod -R a+rX "$work"
+          sudo docker run --rm --user 65534:65534 --volume "$work:/pkg:ro" \
+            --workdir /tmp --env HOME=/tmp archlinux:base-devel \
+            bash -euc 'mkdir -p /tmp/aur-package && cp -R /pkg/. /tmp/aur-package/ && cd /tmp/aur-package && makepkg --printsrcinfo' \
+            > "$work/.SRCINFO"
+          grep -Fqx 'pkgbase = bookshelfng-bin' "$work/.SRCINFO"
+          awk -v expected="$VERSION" '$1 == "pkgver" && $2 == "=" && $3 == expected { found = 1 } END { exit !found }' "$work/.SRCINFO"
+          key="$RUNNER_TEMP/aur-key"
+          printf '%s\n' "$AUR_SSH_KEY" > "$key"
+          chmod 0600 "$key"
+          install -d -m 0700 "$HOME/.ssh"
+          install -m 0600 "$key" "$HOME/.ssh/aur"
+          cat > "$HOME/.ssh/known_hosts" <<'EOF'
+          aur.archlinux.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEuBKrPzbawxA/k2g6NcyV5jmqwJ2s+zpgZGZ7tpLIcN
+          EOF
+          expected_fingerprint='SHA256:RFzBCUItH9LZS0cKB5UE6ceAYhBD5C8GeOBip8Z11+4'
+          actual_fingerprint="$(ssh-keygen -lf "$HOME/.ssh/known_hosts" -E sha256 | awk '{print $2}')"
+          [[ "$actual_fingerprint" == "$expected_fingerprint" ]] || {
+            echo 'Pinned AUR SSH host key fingerprint mismatch.' >&2
+            exit 1
+          }
+          cat > "$HOME/.ssh/config" <<'EOF'
+          Host aur.archlinux.org
+            User aur
+            IdentityFile ~/.ssh/aur
+            IdentitiesOnly yes
+            StrictHostKeyChecking yes
+            ProxyCommand nc -X connect -x 10.0.2.100:3128 %h %p
+            UserKnownHostsFile ~/.ssh/known_hosts
+            GlobalKnownHostsFile /dev/null
+            BatchMode yes
+          EOF
+          chmod 0600 "$HOME/.ssh/config" "$HOME/.ssh/known_hosts"
+          git clone 'https://aur.archlinux.org/bookshelfng-bin.git' "$work/repo" || \
+            git -c init.defaultBranch=master clone 'ssh://aur@aur.archlinux.org/bookshelfng-bin.git' "$work/repo"
+          cd "$work/repo"
+          git remote set-url --push origin ssh://aur@aur.archlinux.org/bookshelfng-bin.git
+          cp "$work/PKGBUILD" PKGBUILD
+          cp "$work/.SRCINFO" .SRCINFO
+          cp "$work/bookshelfng.install" .
+          cp "$work"/bookshelfng.{service,env,sysusers,tmpfiles} .
+          git config user.name 'BookshelfNG Release Automation'
+          git config user.email 'noreply@github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Update to ${VERSION}"
+            git push origin HEAD:master
+          else
+            echo "AUR already contains BookshelfNG ${VERSION}."
+          fi
+
+      - name: Remove AUR SSH credentials
+        if: always() && steps.preflight.outputs.aur == 'true'
+        run: rm -f -- "$RUNNER_TEMP/aur-key" "$HOME/.ssh/aur" "$HOME/.ssh/config" "$HOME/.ssh/known_hosts"
+
+      - name: Trigger COPR build
+        id: publish-copr
+        if: steps.preflight.outputs.copr == 'true'
+        env:
+          COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+          TAG: ${{ steps.preflight.outputs.tag }}
+        run: |
+          set -euo pipefail
+          copr_url="${COPR_WEBHOOK_URL#"${COPR_WEBHOOK_URL%%[![:space:]]*}"}"
+          copr_url="${copr_url%"${copr_url##*[![:space:]]}"}"
+          if [[ "$copr_url" != https://* || "$copr_url" =~ [[:space:]] ]]; then
+            echo 'COPR_WEBHOOK_URL must be a whitespace-free HTTPS URL.' >&2
+            exit 1
+          fi
+          copr_authority="${copr_url#https://}"
+          copr_authority="${copr_authority%%[/?#]*}"
+          [[ -n "$copr_authority" ]] || {
+            echo 'COPR_WEBHOOK_URL must include a host.' >&2
+            exit 1
+          }
+          response="$(curl --fail-with-body --silent --show-error --max-time 60 \
+            --header 'Content-Type: text/plain' --data-binary "$TAG" "$copr_url")"
+          echo "COPR accepted the build trigger for ${TAG}. The custom source downloads and verifies the release SRPM."
+          if [[ -n "$response" ]]; then
+            echo 'COPR webhook returned a response; see the job log if COPR reports an error.'
+          fi
+
+      - name: Set up Helm
+        if: steps.preflight.outputs.helm == 'true'
+        uses: azure/setup-helm@9bc31f4ebc9c6b171d7bfbaa5d006ae7abdb4310 # v5.0.1
+
+      - name: Set up cosign
+        if: steps.preflight.outputs.helm == 'true'
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+
+      - name: Publish signed Helm OCI chart
+        id: publish-helm
+        if: steps.preflight.outputs.helm == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_ACTOR: ${{ github.actor }}
+          TAG: ${{ steps.preflight.outputs.tag }}
+          CHART_VERSION: ${{ steps.preflight.outputs.chart_version }}
+          COSIGN_YES: 'true'
+        run: |
+          set -euo pipefail
+          mkdir -p dist-release
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern "bookshelfng-${CHART_VERSION}.tgz" \
+            --pattern "bookshelfng-${CHART_VERSION}.tgz.sha256" \
+            --dir dist-release
+          (cd dist-release && sha256sum -c "bookshelfng-${CHART_VERSION}.tgz.sha256")
+          echo "$GH_TOKEN" | helm registry login ghcr.io --username "$GH_ACTOR" --password-stdin
+          echo "$GH_TOKEN" | docker login ghcr.io --username "$GH_ACTOR" --password-stdin
+          chart="dist-release/bookshelfng-${CHART_VERSION}.tgz"
+          test -f "$chart"
+          push_output="$RUNNER_TEMP/helm-push.txt"
+          helm push "$chart" "oci://ghcr.io/${GITHUB_REPOSITORY}" | tee "$push_output"
+          digest="$(awk '$1 == "Digest:" {print $2}' "$push_output")"
+          [[ "$digest" =~ ^sha256:[0-9a-f]{64}$ ]] || {
+            echo 'Helm did not return a valid OCI digest.' >&2
+            exit 1
+          }
+          cosign sign "ghcr.io/${GITHUB_REPOSITORY}/bookshelfng@${digest}"
+
+      - name: Send complete release announcement
+        if: always() && inputs.release_skip_announcement != true && steps.preflight.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+          TAG: ${{ steps.preflight.outputs.tag }}
+          VERSION: ${{ steps.preflight.outputs.version }}
+          SOFTCOVER_DIGEST: ${{ inputs.release_softcover_digest }}
+          HARDCOVER_DIGEST: ${{ inputs.release_hardcover_digest }}
+          AUR_RESULT: ${{ steps.publish-aur.outcome }}
+          COPR_RESULT: ${{ steps.publish-copr.outcome }}
+          PPA_RESULT: skipped
+          CHOCOLATEY_RESULT: skipped
+          HELM_RESULT: ${{ steps.publish-helm.outcome }}
+        run: |
+          set -euo pipefail
+          test -n "$DISCORD_WEBHOOK" || {
+            echo 'DISCORD_RELEASE_WEBHOOK is required to complete a release announcement.' >&2
+            exit 1
+          }
+          release_body="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json body --jq .body)"
+          if [[ -z "$release_body" ]]; then
+            echo "Release $TAG has no changelog body; refusing to send an incomplete announcement." >&2
+            exit 1
+          fi
+          failed_publishers=()
+          for channel in AUR COPR PPA CHOCOLATEY HELM; do
+            result_var="${channel}_RESULT"
+            result="${!result_var}"
+            if [[ "$result" == failure ]]; then
+              failed_publishers+=("$channel")
+            fi
+          done
+          if (( ${#failed_publishers[@]} > 0 )); then
+            channel_status="Some package uploads failed (${failed_publishers[*]}). See this workflow for details."
+          else
+            channel_status='Selected private Linux publisher steps succeeded or were skipped; PPA and Chocolatey were not included in this retry.'
+          fi
+          release_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/tag/${TAG}"
+          workflow_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          release_body_file="$RUNNER_TEMP/bookshelfng-discord-release-body.md"
+          chunks_file="$RUNNER_TEMP/bookshelfng-discord-release-chunks.json"
+          printf '%s' "$release_body" > "$release_body_file"
+          python3 - "$release_body_file" "$chunks_file" <<'PY'
+          import json
+          import pathlib
+          import sys
+
+          text = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+          limit = 3500
+          chunks = []
+          current = ""
+          for line in text.splitlines(keepends=True):
+              while len(line) > limit:
+                  if current:
+                      chunks.append(current)
+                      current = ""
+                  chunks.append(line[:limit])
+                  line = line[limit:]
+              if len(current) + len(line) > limit:
+                  chunks.append(current)
+                  current = ""
+              current += line
+          if current or not chunks:
+              chunks.append(current)
+          pathlib.Path(sys.argv[2]).write_text(
+              json.dumps(chunks, ensure_ascii=False), encoding="utf-8"
+          )
+          PY
+          chunk_count="$(jq 'length' "$chunks_file")"
+          for ((index = 0; index < chunk_count; index += 1)); do
+            if (( index == 0 )); then
+              jq -n \
+                --slurpfile chunks "$chunks_file" \
+                --argjson index "$index" \
+                --arg title "BookshelfNG ${VERSION} is available" \
+                --arg url "$release_url" \
+                --arg softcover "ghcr.io/${GITHUB_REPOSITORY}:softcover" \
+                --arg softcover_digest "$SOFTCOVER_DIGEST" \
+                --arg hardcover "ghcr.io/${GITHUB_REPOSITORY}:hardcover" \
+                --arg hardcover_digest "$HARDCOVER_DIGEST" \
+                --arg channel_status "$channel_status" \
+                --arg workflow "$workflow_url" \
+                '{
+                  username: "BookshelfNG Releases",
+                  allowed_mentions: {parse: []},
+                  embeds: [{
+                    title: $title,
+                    url: $url,
+                    description: $chunks[0][$index],
+                    color: 5814783,
+                    fields: [
+                      { name: "Softcover image", value: ("`" + $softcover + "`"), inline: false },
+                      { name: "Softcover digest", value: ("`" + $softcover_digest + "`"), inline: false },
+                      { name: "Hardcover image", value: ("`" + $hardcover + "`"), inline: false },
+                      { name: "Hardcover digest", value: ("`" + $hardcover_digest + "`"), inline: false },
+                      { name: "Downloads", value: $url, inline: false },
+                      { name: "Package channel status", value: $channel_status, inline: false },
+                      { name: "Build", value: $workflow, inline: false }
+                    ]
+                  }]
+                }' > "$RUNNER_TEMP/discord-release-$index.json"
+            else
+              part_number="$((index + 1))"
+              jq -n \
+                --slurpfile chunks "$chunks_file" \
+                --argjson index "$index" \
+                --arg title "BookshelfNG ${VERSION} changelog (${part_number}/${chunk_count})" \
+                --arg url "$release_url" \
+                --arg part "${part_number} of ${chunk_count}" \
+                '{
+                  username: "BookshelfNG Releases",
+                  allowed_mentions: {parse: []},
+                  embeds: [{
+                    title: $title,
+                    url: $url,
+                    description: $chunks[0][$index],
+                    color: 5814783,
+                    fields: [
+                      { name: "Full release notes", value: $url, inline: false },
+                      { name: "Changelog message", value: $part, inline: false }
+                    ]
+                  }]
+                }' > "$RUNNER_TEMP/discord-release-$index.json"
+            fi
+            if (( index > 0 )); then sleep 1; fi
+            curl --fail --silent --show-error \
+              -H 'Content-Type: application/json' \
+              -X POST \
+              --data "@$RUNNER_TEMP/discord-release-$index.json" \
+              "$DISCORD_WEBHOOK"
+          done
+
+  retry-release-distribution-hosted:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.actor == 'snapetech' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.release_tag != '' &&
+      inputs.pr_number == '' &&
+      inputs.pr_sha == '' &&
+      inputs.target_run_id == '' &&
+      vars.NG_HOSTED_FIRST == 'true' &&
+      vars.NG_FORCE_JIT != 'true' &&
+      github.run_attempt == 1
+    name: Retry release distribution on hosted publishing mode
     permissions:
       actions: read
       contents: write
@@ -153,8 +615,8 @@ jobs:
       (github.event_name != 'workflow_dispatch' ||
        (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' &&
         inputs.release_tag == ''))))
-    # Trusted main validation uses the isolated shared runner pool; the
-    # separate owner-only release retry job delegates its publisher jobs there.
+    # Trusted main validation and the owner-only Linux release retry use the
+    # isolated shared runner pool.
     runs-on: ${{ (github.event_name == 'workflow_dispatch' && (github.actor == 'snapetech' || github.actor == 'github-actions[bot]') && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && github.ref == 'refs/heads/main') && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) || (!(github.event_name == 'workflow_dispatch' && (github.actor == 'snapetech' || github.actor == 'github-actions[bot]') && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && github.ref == 'refs/heads/main') && ((vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) || 'ubuntu-latest')) }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}

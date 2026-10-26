@@ -93,17 +93,37 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             "github.ref == 'refs/heads/main'",
             "inputs.release_tag != ''",
             "inputs.pr_number == ''",
-            "uses: ./.github/workflows/retry-release-distribution.yml",
+            "runs-on: ${{ fromJSON(format('",
+            '"gha-{0}-retry-release-distribution"',
             "permissions:",
-            "contents: write",
+            "contents: read",
             "packages: write",
             "id-token: write",
-            "skip_announcement: ${{ inputs.release_skip_announcement }}",
-            "DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}",
+            "Validate published release and requested JIT channels",
+            "Validate Discord destination",
+            "Publish AUR package",
+            "Trigger COPR build",
+            "Publish signed Helm OCI chart",
+            "Send complete release announcement",
+            "DISCORD_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}",
+            "inputs.release_skip_announcement != true",
         ):
             with self.subTest(required=required):
                 self.assertIn(required, retry_job)
-        self.assertNotIn("secrets: inherit", retry_job)
+        self.assertNotIn("uses: ./.github/workflows/retry-release-distribution.yml", retry_job)
+        self.assertNotIn("|| 'ubuntu-latest'", retry_job)
+
+        hosted_retry = job_block(source, "retry-release-distribution-hosted")
+        self.assertIn("vars.NG_HOSTED_FIRST == 'true'", hosted_retry)
+        self.assertIn("vars.NG_FORCE_JIT != 'true'", hosted_retry)
+        self.assertIn("github.run_attempt == 1", hosted_retry)
+        self.assertIn(
+            "uses: ./.github/workflows/retry-release-distribution.yml", hosted_retry
+        )
+        self.assertIn(
+            "skip_announcement: ${{ inputs.release_skip_announcement }}", hosted_retry
+        )
+        self.assertNotIn("secrets: inherit", hosted_retry)
 
         release_retry = RETRY_RELEASE_DISTRIBUTION.read_text(encoding="utf-8")
         call = event_block(release_retry, "workflow_call")
