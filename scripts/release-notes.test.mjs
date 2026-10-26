@@ -51,3 +51,14 @@ test('PR release-note validation uses the synthetic merge commit base', () => {
   );
   assert.match(releaseNoteWorkflow, /--base "\$validation_base_sha"/u);
 });
+
+test('push release-note validation includes the head commit message with associated PR metadata', () => {
+  assert.match(
+    releaseNoteWorkflow,
+    /printf '%s' "\$HEAD_COMMIT_MESSAGE" > "\$body_file"/u
+  );
+  assert.match(
+    releaseNoteWorkflow,
+    /printf '\\n\\n%s' "\$HEAD_COMMIT_MESSAGE" >> "\$body_file"/u
+  );
+});

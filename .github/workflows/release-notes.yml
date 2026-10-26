@@ -81,6 +81,11 @@ jobs:
             ' "$api_response" "$body_file"
             if [[ ! -s "$body_file" ]]; then
               printf '%s' "$HEAD_COMMIT_MESSAGE" > "$body_file"
+            elif [[ -n "$HEAD_COMMIT_MESSAGE" ]]; then
+              # Associated PR metadata may not carry the explicit marker on
+              # a direct push or fast-forward. Preserve both sources so the
+              # commit-level opt-out remains part of push validation.
+              printf '\n\n%s' "$HEAD_COMMIT_MESSAGE" >> "$body_file"
             fi
           else
             printf '%s' "$PR_BODY" > "$body_file"
