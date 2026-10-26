@@ -32,6 +32,50 @@ on:
         required: false
         type: boolean
         default: true
+  workflow_call:
+    inputs:
+      tag:
+        description: Previously published BookshelfNG release tag to retry
+        required: true
+        type: string
+      softcover_digest:
+        description: Verified Softcover image digest to include in an optional announcement
+        required: false
+        type: string
+        default: ""
+      hardcover_digest:
+        description: Verified Hardcover image digest to include in an optional announcement
+        required: false
+        type: string
+        default: ""
+      channels:
+        description: Package publishers to run (all, or a comma-separated subset of aur,copr,ppa,chocolatey,helm)
+        required: false
+        type: string
+        default: all
+      chocolatey_use_main_packaging:
+        description: Use main's Chocolatey package scripts while resubmitting a pending version
+        required: false
+        type: boolean
+        default: false
+      skip_announcement:
+        description: Prevent a duplicate Discord announcement
+        required: false
+        type: boolean
+        default: true
+    secrets:
+      AUR_SSH_KEY:
+        required: false
+      COPR_WEBHOOK_URL:
+        required: false
+      GPG_PRIVATE_KEY:
+        required: false
+      LAUNCHPAD_PPA:
+        required: false
+      CHOCOLATEY_API_KEY:
+        required: false
+      DISCORD_RELEASE_WEBHOOK:
+        required: false
 
 permissions:
   actions: read
