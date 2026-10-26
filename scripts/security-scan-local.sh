@@ -153,7 +153,14 @@ trivy_run() {
   printf -v scanner_list '%s,' "${scanners[@]}"
   scanner_list="${scanner_list%,}"
   args+=(fs --scanners "$scanner_list" --timeout "${TRIVY_TIMEOUT:-20m}" --severity "${TRIVY_SEVERITY:-HIGH,CRITICAL}" --exit-code "${TRIVY_EXIT_CODE:-0}")
-  if (( config_data )); then args+=(--config-data security/trivy-misconfig-data.yaml); fi
+  if (( config_data )); then
+    local config_data_path="$repo_root/security/trivy-misconfig-data.yaml"
+    [[ -f "$config_data_path" ]] || {
+      echo "Trivy misconfiguration data file is missing: $config_data_path" >&2
+      return 1
+    }
+    args+=(--config-data "$config_data_path")
+  fi
   case "${TRIVY_IGNORE_UNFIXED:-true}" in
     1|true|TRUE|yes|YES) args+=(--ignore-unfixed) ;;
     0|false|FALSE|no|NO) ;;
