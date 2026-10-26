@@ -47,6 +47,8 @@ grep -Fq "github.event.workflow_run.head_repository.full_name == github.reposito
 grep -Fq "vars.BOOKSHELFNG_RELEASE_READY == 'true'" "$publication_workflow"
 grep -Fq '.path == ".github/workflows/build.yml"' "$publication_workflow"
 grep -Fq 'gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"' "$publication_workflow"
+grep -Fq 'gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" --clobber "${release_files[@]}"' "$publication_workflow"
+grep -Fq 'gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=false' "$publication_workflow"
 checkout_line="$(grep -nF 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' "$publication_workflow" | head -n 1 | cut -d: -f1)"
 runtime_pack_line="$(grep -nF '      - name: Find reusable runtime-pack artifact' "$publication_workflow" | cut -d: -f1)"
 if [[ -z "$checkout_line" || -z "$runtime_pack_line" || "$checkout_line" -ge "$runtime_pack_line" ]]; then
