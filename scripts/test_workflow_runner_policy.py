@@ -61,6 +61,18 @@ def job_block(source: str, name: str) -> str:
 
 
 class WorkflowRunnerPolicyTests(unittest.TestCase):
+    def test_public_fork_static_validation_uses_the_secretless_jit_group(self) -> None:
+        source = (WORKFLOW.parent / "fork-safe-validation.yml").read_text(encoding="utf-8")
+        job = job_block(source, "validate")
+
+        self.assertIn("group: public-fork-jit", job)
+        self.assertIn("public-pr-bookshelfng", job)
+        self.assertIn("github.event.pull_request.head.repo.fork == true", job)
+        self.assertIn("permissions:", job)
+        self.assertIn("contents: read", job)
+        self.assertNotIn("ubuntu-latest", job)
+        self.assertNotIn("secrets:", job)
+
     def test_github_cli_setup_uses_a_pinned_github_release_asset(self) -> None:
         action = SETUP_GITHUB_CLI.read_text(encoding="utf-8")
         self.assertIn("version=2.103.2", action)
