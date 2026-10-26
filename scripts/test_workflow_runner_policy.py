@@ -66,6 +66,13 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         job = job_block(source, "validate")
 
         self.assertIn("group: public-fork-jit", job)
+        self.assertIn(
+            "    runs-on:\n"
+            "      group: public-fork-jit\n"
+            "      labels: [self-hosted, linux, x64, public-pr-bookshelfng]\n"
+            "    timeout-minutes: 15",
+            job,
+        )
         self.assertIn("disposable VM", job)
         self.assertIn("public-pr-bookshelfng", job)
         self.assertIn("github.event.pull_request.head.repo.fork == true", job)
@@ -73,6 +80,13 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn("contents: read", job)
         self.assertNotIn("ubuntu-latest", job)
         self.assertNotIn("secrets:", job)
+
+        caller = (WORKFLOW.parent / "public-fork-pr.yml").read_text(encoding="utf-8")
+        self.assertIn(
+            "uses: snapetech-org/bookshelfng/.github/workflows/fork-safe-validation.yml@"
+            "29f5615cda5cf017f13f884e94f31deb32476579",
+            caller,
+        )
 
     def test_github_cli_setup_uses_a_pinned_github_release_asset(self) -> None:
         action = SETUP_GITHUB_CLI.read_text(encoding="utf-8")
