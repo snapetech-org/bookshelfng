@@ -1,5 +1,5 @@
 name: Set up GitHub CLI
-description: Install GitHub CLI from its signed official Debian/Ubuntu repository when missing.
+description: Install a checksum-pinned GitHub CLI release without adding a package repository.
 runs:
   using: composite
   steps:
@@ -12,38 +12,35 @@ runs:
           exit 0
         fi
 
-        if [[ "${RUNNER_OS:-Linux}" != Linux ]]; then
-          echo 'GitHub CLI is missing on a non-Linux runner.' >&2
+        if [[ "${RUNNER_OS:-Linux}" != Linux || "$(uname -m)" != x86_64 ]]; then
+          echo 'GitHub CLI setup requires a Linux x64 runner.' >&2
           exit 1
         fi
         command -v curl >/dev/null 2>&1
-        command -v dpkg >/dev/null 2>&1
         command -v sha256sum >/dev/null 2>&1
+        command -v tar >/dev/null 2>&1
 
-        run_as_root() {
-          if [[ "$(id -u)" == 0 ]]; then
-            "$@"
-          else
-            sudo "$@"
-          fi
-        }
+        version=2.103.2
+        archive_name="gh_${version}_linux_amd64.tar.gz"
+        archive_url="https://github.com/cli/cli/releases/download/v${version}/${archive_name}"
+        archive_sha256=62ccf747115ddc61237efffdde66a3c8f70ba249433dc64f70801089b59c59c8
+        temporary_directory="$(mktemp -d "${RUNNER_TEMP%/}/github-cli.XXXXXX")"
+        install_directory="${RUNNER_TEMP%/}/gh-cli-${version}"
+        trap 'rm -rf -- "$temporary_directory"' EXIT
 
-        keyring="$RUNNER_TEMP/githubcli-archive-keyring.gpg"
-        source_file="$RUNNER_TEMP/github-cli.list"
-        trap 'rm -f -- "$keyring" "$source_file"' EXIT
-        curl --fail --silent --show-error --location \
-          https://cli.github.com/packages/githubcli-archive-keyring.gpg \
-          --output "$keyring"
+        curl --fail --silent --show-error --location --retry 3 \
+          "$archive_url" --output "$temporary_directory/$archive_name"
         printf '%s  %s\n' \
-          6084d5d7bd8e288441e0e94fc6275570895da18e6751f70f057485dc2d1a811b \
-          "$keyring" | sha256sum --check --status
+          "$archive_sha256" "$temporary_directory/$archive_name" \
+          | sha256sum --check --status
 
-        run_as_root install -m 0755 -d /etc/apt/keyrings
-        run_as_root install -m 0644 "$keyring" /etc/apt/keyrings/githubcli-archive-keyring.gpg
-        architecture="$(dpkg --print-architecture)"
-        printf 'deb [arch=%s signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main\n' \
-          "$architecture" > "$source_file"
-        run_as_root install -m 0644 "$source_file" /etc/apt/sources.list.d/github-cli.list
-        run_as_root apt-get update
-        run_as_root apt-get install --yes gh
+        mkdir -p "$install_directory"
+        tar --extract --gzip \
+          --file="$temporary_directory/$archive_name" \
+          --directory="$install_directory" \
+          --strip-components=1 \
+          "gh_${version}_linux_amd64/bin/gh"
+        chmod 0755 "$install_directory/bin/gh"
+        printf '%s\n' "$install_directory/bin" >> "$GITHUB_PATH"
+        export PATH="$install_directory/bin:$PATH"
         gh --version

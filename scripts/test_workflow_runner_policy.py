@@ -16,6 +16,13 @@ RETRY_RELEASE_DISTRIBUTION = (
     / "workflows"
     / "retry-release-distribution.yml"
 )
+SETUP_GITHUB_CLI = (
+    Path(__file__).resolve().parents[1]
+    / ".github"
+    / "actions"
+    / "setup-github-cli"
+    / "action.yml"
+)
 
 
 def event_block(source: str, event: str) -> str:
@@ -54,6 +61,24 @@ def job_block(source: str, name: str) -> str:
 
 
 class WorkflowRunnerPolicyTests(unittest.TestCase):
+    def test_github_cli_setup_uses_a_pinned_github_release_asset(self) -> None:
+        action = SETUP_GITHUB_CLI.read_text(encoding="utf-8")
+        self.assertIn("version=2.103.2", action)
+        self.assertIn(
+            "https://github.com/cli/cli/releases/download/v${version}/${archive_name}",
+            action,
+        )
+        self.assertIn(
+            "62ccf747115ddc61237efffdde66a3c8f70ba249433dc64f70801089b59c59c8",
+            action,
+        )
+        self.assertIn("sha256sum --check --status", action)
+        self.assertIn("tar --extract --gzip", action)
+        self.assertIn('>> "$GITHUB_PATH"', action)
+        self.assertIn("gh --version", action)
+        self.assertNotIn("cli.github.com", action)
+        self.assertNotIn("apt-get", action)
+
     def test_manual_distribution_reuses_published_outputs_and_allows_explicit_announcement(
         self,
     ) -> None:
