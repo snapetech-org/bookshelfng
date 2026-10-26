@@ -61,6 +61,38 @@ if ! grep -Fq "github.event_name == 'push' && startsWith(github.ref, 'refs/tags/
   echo 'Tagged and manually dispatched release builds must run the release readiness gate.' >&2
   exit 1
 fi
+
+setup_github_cli_action='snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231'
+assert_job_sets_up_github_cli() {
+  local workflow_file="$1"
+  local job_name="$2"
+  local job_block
+
+  job_block="$(awk -v job_name="$job_name" '
+    $0 == "  " job_name ":" { in_job = 1; print; next }
+    in_job && /^  [[:alnum:]_-]+:$/ { exit }
+    in_job { print }
+  ' "$workflow_file")"
+  if [[ -z "$job_block" ]] || ! grep -Fq "$setup_github_cli_action" <<< "$job_block"; then
+    echo "The ${workflow_file} ${job_name} job must install GitHub CLI before using it." >&2
+    exit 1
+  fi
+}
+
+for job_name in retry-release-distribution build release; do
+  assert_job_sets_up_github_cli "$build_workflow" "$job_name"
+done
+for job_name in validate publish-aur publish-ppa publish-chocolatey publish-helm announce; do
+  assert_job_sets_up_github_cli "$distribution_workflow" "$job_name"
+done
+for job_name in prepare publish-assets; do
+  assert_job_sets_up_github_cli "$publication_workflow" "$job_name"
+done
+assert_job_sets_up_github_cli "$repo_root/.github/workflows/release-build.yml" validate
+assert_job_sets_up_github_cli "$bridge_workflow" discover-release
+grep -Fq '6084d5d7bd8e288441e0e94fc6275570895da18e6751f70f057485dc2d1a811b' \
+  "$repo_root/.github/actions/setup-github-cli/action.yml"
+
 grep -Fq "github.event.workflow_run.conclusion == 'success'" "$publication_workflow"
 grep -Fq "github.event.workflow_run.event == 'push'" "$publication_workflow"
 grep -Fq "startsWith(github.event.workflow_run.head_branch, 'v')" "$publication_workflow"

@@ -67,6 +67,8 @@ jobs:
       SOURCE_RUN_ID: ${{ github.event.workflow_run.id || '' }}
       SOURCE_HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
     steps:
+      - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231
+
       - name: Validate source tag workflow run
         id: validate
         env:
@@ -277,6 +279,8 @@ jobs:
       actions: read
       contents: write
     steps:
+      - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231
+
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: bookshelfng-release-assets

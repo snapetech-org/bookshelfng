@@ -118,6 +118,8 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231
+
       - name: Verify Unraid package is synced
         run: bash scripts/verify-package-sync.sh
 
@@ -193,6 +195,8 @@ jobs:
         with:
           ref: ${{ needs.validate.outputs.tag }}
           persist-credentials: false
+
+      - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231
 
       - name: Download Linux x64 archive and calculate source checksums
         env:
@@ -368,6 +372,8 @@ jobs:
           ref: ${{ needs.validate.outputs.tag }}
           persist-credentials: false
 
+      - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231
+
       - name: Download release archive and prepare signed package
         id: prepare
         env:
@@ -451,6 +457,8 @@ jobs:
           ref: ${{ inputs.chocolatey_use_main_packaging && 'main' || needs.validate.outputs.tag }}
           persist-credentials: false
 
+      - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231
+
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: 10.0.401
@@ -530,6 +538,8 @@ jobs:
       packages: write
       id-token: write
     steps:
+      - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231
+
       - name: Download and verify the published Helm chart
         env:
           GH_TOKEN: ${{ github.token }}
@@ -593,6 +603,8 @@ jobs:
         with:
           ref: ${{ needs.validate.outputs.tag }}
           persist-credentials: false
+
+      - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231
 
       - name: Send release announcement
         env:
