@@ -1,0 +1,49 @@
+name: Set up GitHub CLI
+description: Install GitHub CLI from its signed official Debian/Ubuntu repository when missing.
+runs:
+  using: composite
+  steps:
+    - name: Ensure GitHub CLI is installed
+      shell: bash
+      run: |
+        set -euo pipefail
+        if command -v gh >/dev/null 2>&1; then
+          gh --version
+          exit 0
+        fi
+
+        if [[ "${RUNNER_OS:-Linux}" != Linux ]]; then
+          echo 'GitHub CLI is missing on a non-Linux runner.' >&2
+          exit 1
+        fi
+        command -v curl >/dev/null 2>&1
+        command -v dpkg >/dev/null 2>&1
+        command -v sha256sum >/dev/null 2>&1
+
+        run_as_root() {
+          if [[ "$(id -u)" == 0 ]]; then
+            "$@"
+          else
+            sudo "$@"
+          fi
+        }
+
+        keyring="$RUNNER_TEMP/githubcli-archive-keyring.gpg"
+        source_file="$RUNNER_TEMP/github-cli.list"
+        trap 'rm -f -- "$keyring" "$source_file"' EXIT
+        curl --fail --silent --show-error --location \
+          https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+          --output "$keyring"
+        printf '%s  %s\n' \
+          6084d5d7bd8e288441e0e94fc6275570895da18e6751f70f057485dc2d1a811b \
+          "$keyring" | sha256sum --check --status
+
+        run_as_root install -m 0755 -d /etc/apt/keyrings
+        run_as_root install -m 0644 "$keyring" /etc/apt/keyrings/githubcli-archive-keyring.gpg
+        architecture="$(dpkg --print-architecture)"
+        printf 'deb [arch=%s signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main\n' \
+          "$architecture" > "$source_file"
+        run_as_root install -m 0644 "$source_file" /etc/apt/sources.list.d/github-cli.list
+        run_as_root apt-get update
+        run_as_root apt-get install --yes gh
+        gh --version
