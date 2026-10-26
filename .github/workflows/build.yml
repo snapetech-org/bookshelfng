@@ -602,8 +602,8 @@ jobs:
         run: |
           set -euo pipefail
           title="BookshelfNG ${RELEASE_VERSION}"
-          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
-            gh release edit "$RELEASE_TAG" --title "$title" --notes-file "$RELEASE_NOTES_FILE"
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --title "$title" --notes-file "$RELEASE_NOTES_FILE"
           else
             gh release create "$RELEASE_TAG" \
               --verify-tag \

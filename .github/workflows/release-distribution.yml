@@ -200,7 +200,7 @@ jobs:
           TAG: ${{ needs.validate.outputs.tag }}
         run: |
           set -euo pipefail
-          gh release download "$TAG" --pattern "BookshelfNG-${TAG}-linux-x64.tar.gz" --dir "$RUNNER_TEMP"
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "BookshelfNG-${TAG}-linux-x64.tar.gz" --dir "$RUNNER_TEMP"
           archive="$RUNNER_TEMP/BookshelfNG-${TAG}-linux-x64.tar.gz"
           checksum="$(sha256sum "$archive" | awk '{print $1}')"
           echo "ARCHIVE_SHA256=$checksum" >> "$GITHUB_ENV"
@@ -379,7 +379,7 @@ jobs:
           set -euo pipefail
           sudo apt-get update
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential debhelper devscripts dpkg-dev gnupg dput
-          gh release download "$TAG" --pattern "BookshelfNG-${TAG}-linux-x64.tar.gz" --dir "$RUNNER_TEMP"
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "BookshelfNG-${TAG}-linux-x64.tar.gz" --dir "$RUNNER_TEMP"
           package_root="$RUNNER_TEMP/bookshelfng-${VERSION}"
           mkdir -p "$package_root/debian" "$package_root/packaging" "$package_root/dist"
           cp -a packaging/debian/. "$package_root/debian/"
@@ -456,7 +456,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ needs.validate.outputs.tag }}
         shell: pwsh
-        run: gh release download $env:TAG --pattern "BookshelfNG-$env:TAG-win-x64.zip"
+        run: gh release download $env:TAG --repo $env:GITHUB_REPOSITORY --pattern "BookshelfNG-$env:TAG-win-x64.zip"
 
       - name: Prepare and push Chocolatey package
         env:
@@ -512,7 +512,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p dist-release
-          gh release download "$TAG" \
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" \
             --pattern "bookshelfng-${CHART_VERSION}.tgz" \
             --pattern "bookshelfng-${CHART_VERSION}.tgz.sha256" \
             --dir dist-release
@@ -588,7 +588,7 @@ jobs:
             echo 'DISCORD_RELEASE_WEBHOOK is required to complete a release announcement.' >&2
             exit 1
           }
-          release_body="$(gh release view "$TAG" --json body --jq .body)"
+          release_body="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json body --jq .body)"
           if [[ -z "$release_body" ]]; then
             release_body='Standalone BookshelfNG builds and packages are available. See the release for platform downloads and checksums.'
           fi

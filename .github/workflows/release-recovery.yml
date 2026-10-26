@@ -16,6 +16,21 @@ on:
         description: Verified Hardcover image digest for this release
         required: true
         type: string
+      channels:
+        description: Package channels to run (all, or a comma-separated subset)
+        required: false
+        default: all
+        type: string
+      recovery_only:
+        description: Retry channels for an already-published release without announcing again
+        required: false
+        default: false
+        type: boolean
+      skip_announcement:
+        description: Skip the Discord announcement
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   actions: read
@@ -35,9 +50,9 @@ jobs:
       tag: ${{ inputs.tag }}
       softcover_digest: ${{ inputs.softcover_digest }}
       hardcover_digest: ${{ inputs.hardcover_digest }}
-      channels: all
-      recovery_only: false
-      skip_announcement: false
+      channels: ${{ inputs.channels }}
+      recovery_only: ${{ inputs.recovery_only }}
+      skip_announcement: ${{ inputs.skip_announcement }}
     secrets:
       AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
       COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
