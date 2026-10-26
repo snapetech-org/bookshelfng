@@ -229,6 +229,29 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn("docker info", semgrep)
         self.assertIn("docker run", semgrep)
 
+    def test_full_severity_trivy_audits_use_private_runners_and_include_unfixed_cves(self) -> None:
+        workflow_dir = WORKFLOW.parent
+        filesystem = (workflow_dir / "trivy-filesystem.yml").read_text(encoding="utf-8")
+        published_images = (
+            workflow_dir / "trivy-published-image-audit.yml"
+        ).read_text(encoding="utf-8")
+        scanner = (WORKFLOW.parents[2] / "scripts" / "security-scan-local.sh").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("full_vulnerability_audit:", filesystem)
+        self.assertIn(
+            "inputs.full_vulnerability_audit == true && fromJSON(format(", filesystem
+        )
+        self.assertIn('TRIVY_IGNORE_UNFIXED: ${{', filesystem)
+        self.assertIn("TRIVY_SEVERITY:-HIGH,CRITICAL", scanner)
+        self.assertIn("TRIVY_IGNORE_UNFIXED:-true", scanner)
+        self.assertIn("Full-severity published image audit", published_images)
+        self.assertIn('gha-{0}-trivy-image-audit', published_images)
+        self.assertNotIn("ubuntu-latest", published_images)
+        self.assertIn("UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL", published_images)
+        self.assertIn("ignore-unfixed: false", published_images)
+
 
 if __name__ == "__main__":
     unittest.main()

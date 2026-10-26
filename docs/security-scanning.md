@@ -12,6 +12,8 @@ Public Semgrep and Trivy workflows scan on pushes, pull requests, and weekly sch
 
 Local scans report findings without failing by default. Set `SEMGREP_FAIL_ON_FINDINGS=1` or `TRIVY_EXIT_CODE=1` to make a local scan fail on findings. The required Trivy workflow sets `TRIVY_EXIT_CODE=1`, requires Trivy to be installed, and fails closed if no supported files are detected. It excludes generated `bin`, `obj`, `_output`, `_artifacts`, and `_temp` directories. Its `security/trivy-exceptions.yaml` allowlist is limited to the legacy LinuxServer startup paths, has an expiration date, and records the reason. Trivy downloads its vulnerability and check databases automatically; use `TRIVY_OFFLINE=1` only after those databases are cached. The default timeout is 20 minutes for slow first downloads; set `TRIVY_TIMEOUT` to change it.
 
+The routine Trivy gate reports fixable `HIGH` and `CRITICAL` results. To audit every severity and include CVEs without an available fix, manually dispatch **Trivy filesystem scan** on `main` with `full_vulnerability_audit` enabled. The workflow uses the same isolated private runner and reviewed exception list, and it fails on any reported finding. Use **Full-severity published image audit** with the release tag and immutable GHCR digests to scan the published Softcover and Hardcover images at every severity, including unfixed CVEs.
+
 Run `./scripts/update-security-tools.sh` to refresh the local Semgrep package cache, pull the current Semgrep fallback image, and refresh Trivy's database.
 
 Semgrep uses the POSIX I/O backend by default for compatibility with restricted Linux runners. Set `SEMGREP_EIO_BACKEND` only if your runner needs a different backend.

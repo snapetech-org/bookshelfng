@@ -24,7 +24,8 @@ Usage: scripts/security-scan-local.sh [--staged] [--semgrep-only|--trivy-only] [
 Semgrep uses the local Community Edition engine with p/default and metrics off.
 Trivy selects secret, dependency, and IaC scanners from files in this repository.
 Findings are report-only by default. Set SEMGREP_FAIL_ON_FINDINGS=1 or
-TRIVY_EXIT_CODE=1 to make findings fail the command. --ci disables repository
+TRIVY_EXIT_CODE=1 to make findings fail the command. TRIVY_SEVERITY defaults to
+HIGH,CRITICAL and TRIVY_IGNORE_UNFIXED defaults to true. --ci disables repository
 Trivy config and custom secret rules, applies the reviewed exception file,
 and fails when no scan targets are detected. --staged scans only staged Semgrep files.
 HELP
@@ -147,7 +148,12 @@ trivy_run() {
   local scanner_list
   printf -v scanner_list '%s,' "${scanners[@]}"
   scanner_list="${scanner_list%,}"
-  args+=(fs --scanners "$scanner_list" --timeout "${TRIVY_TIMEOUT:-20m}" --severity HIGH,CRITICAL --ignore-unfixed --exit-code "${TRIVY_EXIT_CODE:-0}")
+  args+=(fs --scanners "$scanner_list" --timeout "${TRIVY_TIMEOUT:-20m}" --severity "${TRIVY_SEVERITY:-HIGH,CRITICAL}" --exit-code "${TRIVY_EXIT_CODE:-0}")
+  case "${TRIVY_IGNORE_UNFIXED:-true}" in
+    1|true|TRUE|yes|YES) args+=(--ignore-unfixed) ;;
+    0|false|FALSE|no|NO) ;;
+    *) echo "TRIVY_IGNORE_UNFIXED must be true or false." >&2; return 2 ;;
+  esac
   for dir in .git node_modules vendor target dist build bin obj coverage .venv _output _artifacts _temp _tests .next .nuxt .turbo .cache '**/bin' '**/obj'; do args+=(--skip-dirs "$dir"); done
   if (( ci_mode )); then
     args+=(--config= --ignorefile=security/trivy-exceptions.yaml --secret-config=)
