@@ -54,16 +54,29 @@ def job_block(source: str, name: str) -> str:
 
 
 class WorkflowRunnerPolicyTests(unittest.TestCase):
-    def test_manual_distribution_reuses_only_published_release_outputs(self) -> None:
+    def test_manual_distribution_reuses_published_outputs_and_allows_explicit_announcement(
+        self,
+    ) -> None:
         distribution = RELEASE_DISTRIBUTION.read_text(encoding="utf-8")
         retry = RETRY_RELEASE_DISTRIBUTION.read_text(encoding="utf-8")
         self.assertRegex(distribution, r"(?m)^  workflow_call:$")
         self.assertNotRegex(distribution, r"(?m)^  workflow_dispatch:")
-        self.assertIn("inputs.recovery_only != true", distribution)
+        self.assertIn("inputs.skip_announcement != true", distribution)
+        self.assertNotIn("inputs.recovery_only != true", distribution)
         self.assertIn("Require an already-published release for publisher recovery", distribution)
         self.assertIn("gh release download \"$TAG\"", distribution)
         self.assertIn("recovery_only: true", retry)
+        self.assertIn("skip_announcement: ${{ inputs.skip_announcement }}", retry)
+        self.assertIn("true by default for retries", retry)
+        self.assertIn("softcover_digest: ${{ inputs.softcover_digest }}", retry)
+        self.assertIn("hardcover_digest: ${{ inputs.hardcover_digest }}", retry)
         self.assertIn("Previously published BookshelfNG release tag to retry", retry)
+
+    def test_chocolatey_verifier_needs_hosted_runner_mode(self) -> None:
+        source = WORKFLOW.read_text(encoding="utf-8")
+        job = job_block(source, "test-chocolatey-package-verifier")
+        self.assertIn("vars.NG_HOSTED_FIRST == 'true'", job)
+        self.assertIn("runs-on: windows-latest", job)
 
     def test_push_trigger_is_main_only(self) -> None:
         push = event_block(WORKFLOW.read_text(encoding="utf-8"), "push")
