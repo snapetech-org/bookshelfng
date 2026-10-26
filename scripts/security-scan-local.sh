@@ -135,7 +135,10 @@ trivy_run() {
   local scanners=()
   local args=()
   if has_dependency_files; then scanners+=(vuln); fi
-  if has_iac_files; then scanners+=(misconfig); fi
+  if has_iac_files; then
+    scanners+=(misconfig)
+    args+=(--config-data security/trivy-misconfig-data.yaml)
+  fi
   if has_code_files || ((${#scanners[@]} > 0)); then scanners+=(secret); fi
   if ((${#scanners[@]} == 0)); then
     if (( ci_mode )); then

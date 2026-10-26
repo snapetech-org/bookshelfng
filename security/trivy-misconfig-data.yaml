@@ -1,0 +1,4 @@
+# KSV-0125 trusts the organization's published container registry only.
+ksv0125:
+  trusted_registries:
+    - ghcr.io

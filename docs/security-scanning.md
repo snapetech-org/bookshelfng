@@ -14,6 +14,8 @@ Local scans report findings without failing by default. Set `SEMGREP_FAIL_ON_FIN
 
 The routine Trivy gate reports fixable `HIGH` and `CRITICAL` results. To audit every severity and include CVEs without an available fix, manually dispatch **Trivy filesystem scan** on `main` with `full_vulnerability_audit` enabled. The workflow uses the same isolated private runner and reviewed exception list, and it fails on any reported finding. Use **Full-severity published image audit** with the release tag and immutable GHCR digests to scan the published Softcover and Hardcover images at every severity, including unfixed CVEs.
 
+Kubernetes image trust is explicit: the Helm chart defaults to the organization-owned `ghcr.io/snapetech-org/bookshelfng` image, and `security/trivy-misconfig-data.yaml` trusts only `ghcr.io` for Trivy's KSV-0125 registry check.
+
 Run `./scripts/update-security-tools.sh` to refresh the local Semgrep package cache, pull the current Semgrep fallback image, and refresh Trivy's database.
 
 Semgrep uses the POSIX I/O backend by default for compatibility with restricted Linux runners. Set `SEMGREP_EIO_BACKEND` only if your runner needs a different backend.

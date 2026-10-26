@@ -16,7 +16,8 @@ and [channel status](https://github.com/snapetech-org/bookshelfng/blob/main/docs
 This chart runs BookshelfNG as one StatefulSet replica and persists `/config`
 with a PVC. BookshelfNG's SQLite database must not be shared by multiple active
 replicas. Each released chart is pinned to the Hardcover container digest
-produced in the same release, keeping the chart and app version aligned.
+produced in the same release, keeping the chart and app version aligned. The
+default image repository is the organization-owned GHCR package.
 
 Install a specific release from GHCR:
 

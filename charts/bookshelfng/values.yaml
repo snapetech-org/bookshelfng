@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/snapetech/bookshelfng
+  repository: ghcr.io/snapetech-org/bookshelfng
   tag: hardcover
   digest: ""
   pullPolicy: IfNotPresent
