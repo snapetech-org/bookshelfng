@@ -32,7 +32,7 @@ jobs:
       chocolatey_legacy: ${{ steps.resolve.outputs.chocolatey_legacy }}
       helm: ${{ steps.resolve.outputs.helm }}
     steps:
-    - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231
+    - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@8d2aef3cec245a9814eea4654244184f92f7c18e
     - id: resolve
       name: Validate release assets and bridge state
       env:

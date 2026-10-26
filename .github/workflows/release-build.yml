@@ -69,7 +69,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@482d6d8be9b5ad1fd697d9c91e1200ebd1c21231
+      - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@8d2aef3cec245a9814eea4654244184f92f7c18e
 
       - name: Verify Unraid package is synced
         run: bash scripts/verify-package-sync.sh
