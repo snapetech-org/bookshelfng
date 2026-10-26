@@ -1,0 +1,47 @@
+# ng-runner-policy: hosted-first-v1
+name: Recover BookshelfNG Release Distribution
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Published BookshelfNG release tag to distribute
+        required: true
+        type: string
+      softcover_digest:
+        description: Verified Softcover image digest for this release
+        required: true
+        type: string
+      hardcover_digest:
+        description: Verified Hardcover image digest for this release
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  distribute:
+    name: Publish all package channels and announce
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      actions: read
+      contents: write
+      packages: write
+      id-token: write
+    uses: ./.github/workflows/release-distribution.yml
+    with:
+      tag: ${{ inputs.tag }}
+      softcover_digest: ${{ inputs.softcover_digest }}
+      hardcover_digest: ${{ inputs.hardcover_digest }}
+      channels: all
+      recovery_only: false
+      skip_announcement: false
+    secrets:
+      AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
+      COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
+      CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+      DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}

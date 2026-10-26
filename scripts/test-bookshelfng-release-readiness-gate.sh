@@ -7,6 +7,7 @@ build_workflow="$repo_root/.github/workflows/build.yml"
 distribution_workflow="$repo_root/.github/workflows/release-distribution.yml"
 publication_workflow="$repo_root/.github/workflows/release-publication.yml"
 bridge_workflow="$repo_root/.github/workflows/chaptarrng-release-bridge.yml"
+recovery_workflow="$repo_root/.github/workflows/release-recovery.yml"
 
 if env -u BOOKSHELFNG_RELEASE_READY bash "$guard" >/dev/null 2>&1; then
   echo 'The BookshelfNG release gate must reject an unset readiness variable.' >&2
@@ -73,6 +74,12 @@ grep -Fq 'needs: [prepare, publish-assets]' "$publication_workflow"
 grep -Fq 'vars.BOOKSHELFNG_RELEASE_READY || '\''false'\''' "$distribution_workflow"
 grep -Fq 'if [[ "${BOOKSHELFNG_RELEASE_READY,,}" != true ]]; then' "$distribution_workflow"
 grep -Fq 'BookshelfNG release distribution is frozen until retirement acceptance is complete.' "$distribution_workflow"
+grep -Fq 'if: github.ref == '\''refs/heads/main'\''' "$recovery_workflow"
+grep -Fq 'uses: ./.github/workflows/release-distribution.yml' "$recovery_workflow"
+grep -Fq '      channels: all' "$recovery_workflow"
+grep -Fq '      recovery_only: false' "$recovery_workflow"
+grep -Fq '      skip_announcement: false' "$recovery_workflow"
+grep -Fq 'DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}' "$recovery_workflow"
 grep -Fq 'vars.BOOKSHELFNG_RELEASE_READY || '\''false'\''' "$bridge_workflow"
 grep -Fq '"${BRIDGE_ENABLED,,}" == true && "${RELEASE_READY,,}" == true' "$bridge_workflow"
 
