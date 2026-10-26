@@ -294,7 +294,7 @@ export function hasExplicitNoReleaseNote(body) {
     /^[\t ]*`?release-note[\t ]*:[\t ]*none`?[\t ]*$/imu.test(
       bodyWithoutUncheckedOptions
     ) ||
-    /\[[\t ]*release-note[\t ]*:[\t ]*none[\t ]*\][\t ]*$/iu.test(
+    /(?:^|\s)\[[\t ]*release-note[\t ]*:[\t ]*none[\t ]*\](?=$|\s)/iu.test(
       subject
     ) ||
     /^[\t ]*-[\t ]*\[x\][^\n]*(?:internal-only|no user-facing release note)[^\n]*$/gimu.test(
