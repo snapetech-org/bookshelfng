@@ -33,11 +33,17 @@ Reference Kubernetes Secrets through `extraEnv[].valueFrom` for credentials; do
 not put provider tokens in Helm values committed to source.
 
 The chart disables automatic ServiceAccount token mounting, uses the
-RuntimeDefault seccomp profile, and disables container privilege escalation.
-The image still starts its LinuxServer service supervisor as root before
-dropping the BookshelfNG process to its service account; do not set
-`runAsNonRoot` or `readOnlyRootFilesystem` without replacing that startup path
-and providing writable runtime mounts. Use Kubernetes Secret references for
-the optional `BOOKSHELF_SEERRNG_API_KEY` integration credential.
+RuntimeDefault seccomp profile, drops all Linux capabilities, and runs the
+LinuxServer supervisor and BookshelfNG as UID/GID `10001`. It enables the
+image's `LSIO_NON_ROOT_USER` startup path and mounts a writable `emptyDir` at
+`/run`. The chart sets `fsGroup: 10001` so the `/config` PVC is group-writable;
+the storage driver must support Kubernetes `fsGroup` ownership. For an
+existing PVC or custom volume, confirm the mounted files are writable by GID
+`10001` before upgrading. `PUID` and `PGID` do not apply to this Kubernetes
+configuration. The default resource request is 100m CPU and 512Mi memory, with
+limits of 2 CPU and 4Gi memory; override `resources` for your workload.
+
+Use Kubernetes Secret references for the optional
+`BOOKSHELF_SEERRNG_API_KEY` integration credential.
 
 See the [full installation guide](https://github.com/snapetech-org/bookshelfng/blob/main/docs/standalone-install.md).

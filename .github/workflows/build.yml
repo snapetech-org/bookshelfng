@@ -1,10 +1,12 @@
 # ng-runner-policy: hosted-first-v1
 name: CI
 run-name: >-
-  ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag != '' &&
+  ${{ github.event_name == 'workflow_dispatch' && inputs.release_build_tag != '' &&
+      format('release-build:{0}', inputs.release_build_tag) ||
+      github.event_name == 'workflow_dispatch' && inputs.release_tag != '' &&
       format('release-retry:{0}', inputs.release_tag) ||
-      (github.event_name == 'workflow_dispatch' && inputs.pr_number != '' &&
-      format('owner-pr:{0}:{1}:{2}', inputs.pr_number, inputs.pr_sha, inputs.target_run_id)) ||
+      github.event_name == 'workflow_dispatch' && inputs.pr_number != '' &&
+      format('owner-pr:{0}:{1}:{2}', inputs.pr_number, inputs.pr_sha, inputs.target_run_id) ||
       github.workflow }}
 
 permissions:
@@ -30,6 +32,10 @@ on:
         type: string
       release_tag:
         description: Previously published BookshelfNG release tag to retry through the trusted JIT route
+        required: false
+        type: string
+      release_build_tag:
+        description: New release tag to build from this trusted main commit using private JIT runners
         required: false
         type: string
       release_softcover_digest:
@@ -79,7 +85,7 @@ env:
   OUTPUT_FOLDER: ./_output
   ARTIFACTS_FOLDER: ./_artifacts
   TESTS_FOLDER: ./_tests
-  BUILD_SOURCEBRANCHNAME: ${{ github.head_ref || github.ref_name }}
+  BUILD_SOURCEBRANCHNAME: ${{ github.head_ref || inputs.release_build_tag || github.ref_name }}
 
 concurrency:
   group: ng-build-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}-${{ github.event.action == 'edited' && 'metadata' || 'code' }}
@@ -614,9 +620,12 @@ jobs:
        github.event.pull_request.base.ref != 'main') &&
       (github.event_name != 'workflow_dispatch' ||
        (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' &&
-        inputs.release_tag == ''))))
-    # Trusted main validation and the owner-only Linux release retry use the
-    # isolated shared runner pool.
+        inputs.release_tag == '' &&
+        (inputs.release_build_tag == '' ||
+         (github.actor == 'snapetech' && github.ref == 'refs/heads/main' &&
+          vars.BOOKSHELFNG_RELEASE_READY == 'true'))))))
+    # Trusted main validation, private release builds, and the owner-only Linux
+    # release retry use the isolated shared runner pool.
     runs-on: ${{ (github.event_name == 'workflow_dispatch' && (github.actor == 'snapetech' || github.actor == 'github-actions[bot]') && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && github.ref == 'refs/heads/main') && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) || (!(github.event_name == 'workflow_dispatch' && (github.actor == 'snapetech' || github.actor == 'github-actions[bot]') && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && github.ref == 'refs/heads/main') && ((vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) || 'ubuntu-latest')) }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
@@ -636,7 +645,9 @@ jobs:
         run: python3 scripts/check-stable-container-aliases.py
 
       - name: Require retirement acceptance before tagged publication
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+        if: >-
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
+          (github.event_name == 'workflow_dispatch' && inputs.release_build_tag != '')
         env:
           BOOKSHELFNG_RELEASE_READY: ${{ vars.BOOKSHELFNG_RELEASE_READY || 'false' }}
         run: bash scripts/require-bookshelfng-release-ready.sh
@@ -671,27 +682,42 @@ jobs:
             "$RUNNER_TEMP" "$RUNNER_TEMP" "$RUNNER_TEMP" >> "$GITHUB_ENV"
 
       - name: Require main release tag
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+        if: >-
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
+          (github.event_name == 'workflow_dispatch' && inputs.release_build_tag != '')
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_build_tag || github.ref_name }}
         run: |
           set -euo pipefail
-          if [[ "${GITHUB_REF_NAME}" != v* ]]; then
-            echo "Image publishing requires a v<version> tag, got ${GITHUB_REF_NAME}" >&2
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Image publishing requires a v<version> tag, got $RELEASE_TAG" >&2
             exit 1
           fi
           git fetch --force origin main --tags
           main_ref=origin/main
           if ! git merge-base --is-ancestor "$GITHUB_SHA" "$main_ref"; then
-            echo "Tag ${GITHUB_REF_NAME} must point at a commit on ${main_ref}." >&2
+            echo "Release $RELEASE_TAG must point at a commit on ${main_ref}." >&2
             exit 1
+          fi
+          if existing_sha="$(gh api "repos/$GITHUB_REPOSITORY/commits/$RELEASE_TAG" --jq .sha 2>/dev/null)"; then
+            [[ "$existing_sha" == "$GITHUB_SHA" ]] || {
+              echo "Release tag $RELEASE_TAG already points at another commit." >&2
+              exit 1
+            }
           fi
 
       - name: Verify Unraid package is synced
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+        if: >-
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
+          (github.event_name == 'workflow_dispatch' && inputs.release_build_tag != '')
         run: bash scripts/verify-package-sync.sh
 
       - name: Validate Discord webhook before publishing images
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+        if: >-
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
+          (github.event_name == 'workflow_dispatch' && inputs.release_build_tag != '')
         shell: bash
         env:
           DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
@@ -706,10 +732,14 @@ jobs:
       - name: Setup Environment Variables
         id: variables
         shell: bash
+        env:
+          RELEASE_BUILD_TAG: ${{ inputs.release_build_tag }}
         run: |
           echo "SDK_PATH=${{ env.DOTNET_ROOT }}/sdk/${DOTNET_VERSION}" >> "$GITHUB_ENV"
           echo "DATE=$(date --rfc-3339=date)" >> "$GITHUB_ENV"
-          if [[ "${GITHUB_REF_TYPE:-}" == "tag" && "$GITHUB_REF_NAME" == v* ]]; then
+          if [[ -n "$RELEASE_BUILD_TAG" ]]; then
+            build_version="${RELEASE_BUILD_TAG#v}"
+          elif [[ "${GITHUB_REF_TYPE:-}" == "tag" && "$GITHUB_REF_NAME" == v* ]]; then
             build_version="${GITHUB_REF_NAME#v}"
           else
             build_version="${READARR_VERSION}.${GITHUB_RUN_NUMBER}"
@@ -850,7 +880,11 @@ jobs:
        github.event.pull_request.head.repo.id != github.repository_id ||
        github.event.pull_request.base.ref != 'main') &&
       (github.event_name != 'workflow_dispatch' ||
-       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == ''))) && (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true')
+       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == ''))) &&
+      (((github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
+        (github.event_name == 'workflow_dispatch' && github.actor == 'snapetech' &&
+         github.ref == 'refs/heads/main' && inputs.release_build_tag != '')) &&
+       vars.BOOKSHELFNG_RELEASE_READY == 'true')
     needs: build
     runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-images"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
@@ -883,9 +917,9 @@ jobs:
             ghcr.io/${{ github.repository }}
             docker.io/snapetech/bookshelfng
           tags: |
-            type=raw,value=softcover,enable=${{ github.ref_type == 'tag' }}
-            type=raw,value=softcover-dev,enable=${{ github.ref_type != 'tag' }}
-            type=raw,value=softcover-v${{ needs.build.outputs.build_version }},enable=${{ github.ref_type == 'tag' }}
+            type=raw,value=softcover,enable=${{ github.ref_type == 'tag' || inputs.release_build_tag != '' }}
+            type=raw,value=softcover-dev,enable=${{ github.ref_type != 'tag' && inputs.release_build_tag == '' }}
+            type=raw,value=softcover-v${{ needs.build.outputs.build_version }},enable=${{ github.ref_type == 'tag' || inputs.release_build_tag != '' }}
             type=sha,suffix=-softcover
 
       - uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6
@@ -895,13 +929,13 @@ jobs:
             ghcr.io/${{ github.repository }}
             docker.io/snapetech/bookshelfng
           tags: |
-            type=raw,value=hardcover,enable=${{ github.ref_type == 'tag' }}
-            type=raw,value=main,enable=${{ github.ref_type == 'tag' }}
-            type=raw,value=master,enable=${{ github.ref_type == 'tag' }}
-            type=raw,value=latest,enable=${{ github.ref_type == 'tag' }}
-            type=raw,value=stable,enable=${{ github.ref_type == 'tag' }}
-            type=raw,value=hardcover-dev,enable=${{ github.ref_type != 'tag' }}
-            type=raw,value=hardcover-v${{ needs.build.outputs.build_version }},enable=${{ github.ref_type == 'tag' }}
+            type=raw,value=hardcover,enable=${{ github.ref_type == 'tag' || inputs.release_build_tag != '' }}
+            type=raw,value=main,enable=${{ github.ref_type == 'tag' || inputs.release_build_tag != '' }}
+            type=raw,value=master,enable=${{ github.ref_type == 'tag' || inputs.release_build_tag != '' }}
+            type=raw,value=latest,enable=${{ github.ref_type == 'tag' || inputs.release_build_tag != '' }}
+            type=raw,value=stable,enable=${{ github.ref_type == 'tag' || inputs.release_build_tag != '' }}
+            type=raw,value=hardcover-dev,enable=${{ github.ref_type != 'tag' && inputs.release_build_tag == '' }}
+            type=raw,value=hardcover-v${{ needs.build.outputs.build_version }},enable=${{ github.ref_type == 'tag' || inputs.release_build_tag != '' }}
             type=sha,suffix=-hardcover
 
       - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4
@@ -983,7 +1017,11 @@ jobs:
        github.event.pull_request.head.repo.id != github.repository_id ||
        github.event.pull_request.base.ref != 'main') &&
       (github.event_name != 'workflow_dispatch' ||
-       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == ''))) && (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true')
+       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == ''))) &&
+      (((github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
+        (github.event_name == 'workflow_dispatch' && github.actor == 'snapetech' &&
+         github.ref == 'refs/heads/main' && inputs.release_build_tag != '')) &&
+       vars.BOOKSHELFNG_RELEASE_READY == 'true')
     needs: publish-images
     env:
       TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
@@ -1041,14 +1079,18 @@ jobs:
        github.event.pull_request.head.repo.id != github.repository_id ||
        github.event.pull_request.base.ref != 'main') &&
       (github.event_name != 'workflow_dispatch' ||
-       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == ''))) && (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true')
+       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == ''))) &&
+      (((github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
+        (github.event_name == 'workflow_dispatch' && github.actor == 'snapetech' &&
+         github.ref == 'refs/heads/main' && inputs.release_build_tag != '')) &&
+       vars.BOOKSHELFNG_RELEASE_READY == 'true')
     needs: [build, publish-images, container-scan]
     runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       actions: read
       contents: write
     env:
-      RELEASE_TAG: ${{ github.ref_name }}
+      RELEASE_TAG: ${{ inputs.release_build_tag || github.ref_name }}
       SOFTCOVER_DIGEST: ${{ needs.publish-images.outputs.softcover_digest }}
       HARDCOVER_DIGEST: ${{ needs.publish-images.outputs.hardcover_digest }}
     steps:
@@ -1061,6 +1103,7 @@ jobs:
       - name: Validate release tag and Discord configuration
         shell: bash
         env:
+          GH_TOKEN: ${{ github.token }}
           DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
         run: |
           set -euo pipefail
@@ -1071,6 +1114,23 @@ jobs:
           bash scripts/validate-release-publisher-config.sh discord
           test -n "$SOFTCOVER_DIGEST"
           test -n "$HARDCOVER_DIGEST"
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+          if existing_sha="$(gh api "repos/$GITHUB_REPOSITORY/commits/$RELEASE_TAG" --jq .sha 2>/dev/null)"; then
+            [[ "$existing_sha" == "$GITHUB_SHA" ]] || {
+              echo "Release tag $RELEASE_TAG already points at another commit." >&2
+              exit 1
+            }
+          else
+            gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
+              -f "ref=refs/tags/$RELEASE_TAG" \
+              -f "sha=$GITHUB_SHA" >/dev/null
+          fi
+          if git rev-parse -q --verify "refs/tags/$RELEASE_TAG" >/dev/null; then
+            [[ "$(git rev-parse "$RELEASE_TAG^{commit}")" == "$GITHUB_SHA" ]]
+          else
+            git tag "$RELEASE_TAG" "$GITHUB_SHA"
+          fi
 
       - name: Set up Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -1161,6 +1221,33 @@ jobs:
           path: ${{ runner.temp }}/bookshelfng-release-input/image-digests.json
           if-no-files-found: error
           retention-days: 1
+
+  publish-private-release:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.actor == 'snapetech' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.release_build_tag != '' &&
+      vars.BOOKSHELFNG_RELEASE_READY == 'true'
+    name: Build release assets and publish all channels on private JIT
+    needs: [release, publish-images]
+    permissions:
+      actions: read
+      contents: write
+      packages: write
+      id-token: write
+    uses: ./.github/workflows/release-publication.yml
+    with:
+      tag: ${{ inputs.release_build_tag }}
+      softcover_digest: ${{ needs.publish-images.outputs.softcover_digest }}
+      hardcover_digest: ${{ needs.publish-images.outputs.hardcover_digest }}
+    secrets:
+      AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
+      COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
+      CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+      DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
 
   dispatch-owner-pr:
     name: Dispatch trusted owner PR validation

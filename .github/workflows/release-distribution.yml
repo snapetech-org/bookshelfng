@@ -359,7 +359,7 @@ jobs:
       needs.publisher-credentials.result == 'success' &&
       needs.publisher-credentials.outputs.ppa == 'true' &&
       (inputs.channels == 'all' || contains(inputs.channels, 'ppa'))
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-ppa"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     steps:
@@ -444,31 +444,53 @@ jobs:
       needs.publisher-credentials.result == 'success' &&
       needs.publisher-credentials.outputs.chocolatey == 'true' &&
       (inputs.channels == 'all' || contains(inputs.channels, 'chocolatey'))
-    runs-on: windows-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-chocolatey"]}}', github.run_id)) || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ inputs.chocolatey_use_main_packaging && 'main' || needs.validate.outputs.tag }}
           persist-credentials: false
 
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 10.0.401
+
+      - name: Install PowerShell on Linux when needed
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v pwsh >/dev/null 2>&1 && exit 0
+          pwsh_version=7.6.7
+          pwsh_sha256=6896F9E3A6B0A354BF470835A96DA76D2F801CD50DCF047AD7C4563BF93BF431
+          archive="powershell-${pwsh_version}-linux-x64.tar.gz"
+          archive_path="$RUNNER_TEMP/$archive"
+          install_dir="$RUNNER_TEMP/pwsh"
+          curl --fail --silent --show-error --location \
+            "https://github.com/PowerShell/PowerShell/releases/download/v${pwsh_version}/${archive}" \
+            --output "$archive_path"
+          printf '%s  %s\n' "$pwsh_sha256" "$archive_path" | sha256sum --check --status
+          mkdir -p "$install_dir"
+          tar -xzf "$archive_path" -C "$install_dir"
+          chmod +x "$install_dir/pwsh"
+          "$install_dir/pwsh" -NoLogo -NoProfile -Command '$PSVersionTable.PSVersion.ToString()'
+          printf '%s\n' "$install_dir" >> "$GITHUB_PATH"
+
       - name: Download Windows x64 archive
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ needs.validate.outputs.tag }}
-        shell: pwsh
-        run: gh release download $env:TAG --repo $env:GITHUB_REPOSITORY --pattern "BookshelfNG-$env:TAG-win-x64.zip"
+        run: gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "BookshelfNG-$TAG-win-x64.zip" --dir "$RUNNER_TEMP"
 
-      - name: Prepare and push Chocolatey package
+      - name: Prepare and validate Chocolatey package
         env:
           TAG: ${{ needs.validate.outputs.tag }}
           VERSION: ${{ needs.validate.outputs.version }}
-          CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
-          GH_TOKEN: ${{ github.token }}
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
           $archive = "BookshelfNG-$env:TAG-win-x64.zip"
-          $checksum = (Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant()
+          $archivePath = Join-Path $env:RUNNER_TEMP $archive
+          $checksum = (Get-FileHash $archivePath -Algorithm SHA256).Hash.ToLowerInvariant()
           $packageDir = Join-Path $env:RUNNER_TEMP 'bookshelfng-choco'
           New-Item -ItemType Directory -Force -Path (Join-Path $packageDir 'tools') | Out-Null
           Copy-Item packaging/chocolatey/bookshelfng.nuspec $packageDir
@@ -483,13 +505,17 @@ jobs:
           $script = $script.Replace('__RELEASE_TAG__', $env:TAG).Replace('__ARCHIVE_ROOT__', $archiveRoot).Replace('__ARCHIVE__', $archive).Replace('__SHA256__', $checksum)
           if ($script -match '__[A-Z0-9_]+__') { throw 'The Chocolatey install script still has an unresolved release placeholder.' }
           [System.IO.File]::WriteAllText($installScript, $script, $utf8NoBom)
-          choco pack $nuspec --outputdirectory $packageDir
-          if ($LASTEXITCODE -ne 0) { throw 'Chocolatey could not pack the BookshelfNG package.' }
+          dotnet pack $nuspec --output $packageDir "-p:NuspecBasePath=$packageDir"
+          if ($LASTEXITCODE -ne 0) { throw 'NuGet could not pack the BookshelfNG Chocolatey package.' }
           $package = Get-Item -LiteralPath (Join-Path $packageDir "bookshelfng.$env:VERSION.nupkg") -ErrorAction SilentlyContinue
           if (-not $package) { throw 'Chocolatey package was not built.' }
           & ./scripts/verify-chocolatey-package.ps1 -PackagePath $package.FullName -PackageId bookshelfng -Version $env:VERSION -RequireBookshelfNGServiceUpgrade
-          choco push $package.FullName --source https://push.chocolatey.org/ --api-key $env:CHOCOLATEY_API_KEY
-          if ($LASTEXITCODE -ne 0) { throw 'Chocolatey rejected the BookshelfNG package upload.' }
+
+      - name: Push Chocolatey package
+        env:
+          VERSION: ${{ needs.validate.outputs.version }}
+          CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+        run: dotnet nuget push "$RUNNER_TEMP/bookshelfng-choco/bookshelfng.$VERSION.nupkg" --source https://push.chocolatey.org/ --api-key "$CHOCOLATEY_API_KEY" --timeout 900
 
   publish-helm:
     name: Publish signed Helm OCI chart

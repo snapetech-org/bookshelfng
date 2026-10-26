@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/snapetech/bookshelfng
+  repository: docker.io/snapetech/bookshelfng
   tag: hardcover
   digest: ""
   pullPolicy: IfNotPresent
@@ -18,10 +18,21 @@ serviceAccount:
 podAnnotations: {}
 podLabels: {}
 podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+  fsGroupChangePolicy: OnRootMismatch
   seccompProfile:
     type: RuntimeDefault
 containerSecurityContext:
   allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  capabilities:
+    drop:
+      - ALL
 
 service:
   type: ClusterIP
@@ -48,7 +59,13 @@ persistence:
   size: 10Gi
   annotations: {}
 
-resources: {}
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    cpu: "2"
+    memory: 4Gi
 nodeSelector: {}
 tolerations: []
 affinity: {}

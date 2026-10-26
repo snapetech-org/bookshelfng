@@ -151,6 +151,54 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn("runs-on: windows-latest", job)
         self.assertIn("inputs.release_tag == ''", job)
 
+    def test_new_release_build_and_publish_path_stays_on_private_jit(self) -> None:
+        source = WORKFLOW.read_text(encoding="utf-8")
+        dispatch = event_block(source, "workflow_dispatch")
+        self.assertIn("      release_build_tag:", dispatch)
+
+        for job_name in ("build", "publish-images", "container-scan", "release"):
+            job = job_block(source, job_name)
+            with self.subTest(job=job_name):
+                self.assertIn("inputs.release_build_tag", job)
+                self.assertIn('"group":"ng-shared-main-jit"', job)
+                self.assertIn('"ng-main-run-{0}"', job)
+
+        publisher = job_block(source, "publish-private-release")
+        self.assertIn("github.ref == 'refs/heads/main'", publisher)
+        self.assertIn("vars.BOOKSHELFNG_RELEASE_READY == 'true'", publisher)
+        self.assertIn("uses: ./.github/workflows/release-publication.yml", publisher)
+        self.assertIn("softcover_digest: ${{ needs.publish-images.outputs.softcover_digest }}", publisher)
+        self.assertIn("hardcover_digest: ${{ needs.publish-images.outputs.hardcover_digest }}", publisher)
+
+        release_build = (WORKFLOW.parent / "release-build.yml").read_text(encoding="utf-8")
+        for job_name, role in (
+            ("validate", "release-build-validate"),
+            ("build-platform-runtime-packs", "release-build-runtime-packs"),
+            ("build-release-assets", "release-build-assets"),
+            ("build-linux-packages", "release-build-linux-packages"),
+        ):
+            job = job_block(release_build, job_name)
+            with self.subTest(release_job=job_name):
+                self.assertIn("inputs.tag != ''", job)
+                self.assertIn(f'"gha-{{0}}-{role}"', job)
+                self.assertNotIn(f"runs-on: ubuntu-22.04\n", job)
+
+        publication = (WORKFLOW.parent / "release-publication.yml").read_text(encoding="utf-8")
+        self.assertIn("  workflow_call:", publication)
+        self.assertIn("inputs.tag != ''", job_block(publication, "prepare"))
+        self.assertIn('"gha-{0}-release-prepare"', job_block(publication, "prepare"))
+        self.assertIn('"gha-{0}-publish-release-assets"', job_block(publication, "publish-assets"))
+
+        distribution = (WORKFLOW.parent / "release-distribution.yml").read_text(encoding="utf-8")
+        for job_name, role in (("publish-ppa", "publish-ppa"), ("publish-chocolatey", "publish-chocolatey")):
+            job = job_block(distribution, job_name)
+            with self.subTest(publisher=job_name):
+                self.assertIn(f'"gha-{{0}}-{role}"', job)
+                self.assertNotIn("runs-on: windows-latest", job)
+        chocolatey = job_block(distribution, "publish-chocolatey")
+        self.assertIn("dotnet pack", chocolatey)
+        self.assertIn("dotnet nuget push", chocolatey)
+
     def test_push_trigger_is_main_only(self) -> None:
         push = event_block(WORKFLOW.read_text(encoding="utf-8"), "push")
         match = re.search(
