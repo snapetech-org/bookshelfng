@@ -11,11 +11,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github/workflows/build.yml"
 ALIASES = ("hardcover", "main", "master", "latest", "stable")
-STABLE_CONDITION = "${{ github.ref_type == 'tag' }}"
-RELEASE_GATE = (
-    "github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') "
-    "&& vars.BOOKSHELFNG_RELEASE_READY == 'true'"
+STABLE_CONDITION = "${{ github.ref_type == 'tag' || inputs.release_build_tag != '' }}"
+TAG_RELEASE_GATE = re.compile(
+    r"github\.event_name == 'push'\s*&&\s*startsWith\(github\.ref, 'refs/tags/v'\)"
 )
+MANUAL_RELEASE_GATE = re.compile(
+    r"github\.event_name == 'workflow_dispatch'\s*&&\s*"
+    r"github\.actor == 'snapetech'\s*&&\s*"
+    r"github\.ref == 'refs/heads/main'\s*&&\s*"
+    r"inputs\.release_build_tag != ''"
+)
+READY_GATE = "vars.BOOKSHELFNG_RELEASE_READY == 'true'"
 
 
 class ConfigurationError(RuntimeError):
@@ -88,8 +94,10 @@ def main() -> int:
         "Stable aliases must refer to the Hardcover image flavor.",
     )
     require(
-        RELEASE_GATE in publish_job,
-        "Stable image publication must stay limited to approved main release tags.",
+        TAG_RELEASE_GATE.search(publish_job) is not None
+        and MANUAL_RELEASE_GATE.search(publish_job) is not None
+        and READY_GATE in publish_job,
+        "Stable image publication must stay limited to approved main release tags or owner-only private releases.",
     )
     require(
         "bash scripts/verify-stable-container-aliases.sh" in publish_job,
