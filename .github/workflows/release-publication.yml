@@ -128,6 +128,9 @@ jobs:
 
       - name: Validate image digest inputs
         id: digests
+        env:
+          SOFTCOVER_DIGEST_INPUT: ${{ inputs.softcover_digest }}
+          HARDCOVER_DIGEST_INPUT: ${{ inputs.hardcover_digest }}
         run: |
           set -euo pipefail
           if [[ "$GITHUB_EVENT_NAME" == workflow_run ]]; then
@@ -136,8 +139,8 @@ jobs:
             softcover_digest="$(jq -er '.softcover_digest' "$digest_file")"
             hardcover_digest="$(jq -er '.hardcover_digest' "$digest_file")"
           else
-            softcover_digest='${{ inputs.softcover_digest }}'
-            hardcover_digest='${{ inputs.hardcover_digest }}'
+            softcover_digest="$SOFTCOVER_DIGEST_INPUT"
+            hardcover_digest="$HARDCOVER_DIGEST_INPUT"
           fi
           [[ "$softcover_digest" =~ ^sha256:[0-9a-f]{64}$ ]]
           [[ "$hardcover_digest" =~ ^sha256:[0-9a-f]{64}$ ]]
