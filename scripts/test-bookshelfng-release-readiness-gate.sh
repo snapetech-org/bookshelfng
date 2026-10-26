@@ -36,9 +36,29 @@ if grep -Fq 'releases/download/main-v${pkgver}' "$repo_root/packaging/aur/PKGBUI
   echo 'The future AUR recipe must resolve the new v<version> release tag.' >&2
   exit 1
 fi
-tag_publish_condition="github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && vars.BOOKSHELFNG_RELEASE_READY == 'true'"
-if [[ "$(grep -Fc "$tag_publish_condition" "$build_workflow")" -ne 3 ]]; then
-  echo 'Every BookshelfNG tag build and image publication job must check the release readiness gate.' >&2
+assert_job_checks_release_readiness() {
+  local job_name="$1"
+  local job_block
+
+  job_block="$(awk -v job_name="$job_name" '
+    $0 == "  " job_name ":" { in_job = 1; print; next }
+    in_job && /^  [[:alnum:]_-]+:$/ { exit }
+    in_job { print }
+  ' "$build_workflow")"
+  if [[ -z "$job_block" ]] || ! grep -Fq "vars.BOOKSHELFNG_RELEASE_READY == 'true'" <<< "$job_block"; then
+    echo "The BookshelfNG $job_name job must check the release readiness gate." >&2
+    exit 1
+  fi
+}
+
+for job_name in build publish-images container-scan release publish-private-release; do
+  assert_job_checks_release_readiness "$job_name"
+done
+
+tagged_release_guard="$(sed -n '/- name: Require retirement acceptance before tagged publication/,/- name: Test hosted runner policy/p' "$build_workflow")"
+if ! grep -Fq "github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')" <<< "$tagged_release_guard" ||
+   ! grep -Fq "github.event_name == 'workflow_dispatch' && inputs.release_build_tag != ''" <<< "$tagged_release_guard"; then
+  echo 'Tagged and manually dispatched release builds must run the release readiness gate.' >&2
   exit 1
 fi
 grep -Fq "github.event.workflow_run.conclusion == 'success'" "$publication_workflow"
@@ -52,7 +72,8 @@ grep -Fq 'gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" --clobber "${rele
 grep -Fq 'gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=false' "$publication_workflow"
 grep -Fq 'gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "BookshelfNG-${TAG}-linux-x64.tar.gz" --dir "$RUNNER_TEMP"' "$distribution_workflow"
 grep -Fq 'gh release download "$TAG" --repo "$GITHUB_REPOSITORY" \' "$distribution_workflow"
-grep -Fq 'gh release download $env:TAG --repo $env:GITHUB_REPOSITORY --pattern "BookshelfNG-$env:TAG-win-x64.zip"' "$distribution_workflow"
+grep -Fq 'run: gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "BookshelfNG-$TAG-win-x64.zip" --dir "$RUNNER_TEMP"' "$distribution_workflow"
+grep -Fq '        shell: pwsh' "$distribution_workflow"
 grep -Fq 'gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json body --jq .body' "$distribution_workflow"
 checkout_line="$(grep -nF 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' "$publication_workflow" | head -n 1 | cut -d: -f1)"
 runtime_pack_line="$(grep -nF '      - name: Find reusable runtime-pack artifact' "$publication_workflow" | cut -d: -f1)"
