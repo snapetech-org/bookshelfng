@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: read
-      contents: read
+      contents: write
     outputs:
       tag: ${{ steps.validate.outputs.tag }}
       softcover_digest: ${{ steps.digests.outputs.softcover_digest }}

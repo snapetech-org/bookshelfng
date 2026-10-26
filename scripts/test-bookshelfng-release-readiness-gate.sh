@@ -47,6 +47,11 @@ grep -Fq "github.event.workflow_run.head_repository.full_name == github.reposito
 grep -Fq "vars.BOOKSHELFNG_RELEASE_READY == 'true'" "$publication_workflow"
 grep -Fq '.path == ".github/workflows/build.yml"' "$publication_workflow"
 grep -Fq 'gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"' "$publication_workflow"
+prepare_contents_permission="$(awk '/^  prepare:$/ { in_prepare = 1 } /^  build:$/ { in_prepare = 0 } in_prepare && /^      contents:/ { print $2 }' "$publication_workflow")"
+if [[ "$prepare_contents_permission" != write ]]; then
+  echo 'The release preflight needs write access to list draft releases.' >&2
+  exit 1
+fi
 grep -Fq '.tagName == $tag and .isDraft == true and .isPrerelease == false' "$publication_workflow"
 if grep -Fq 'releases/tags/$RELEASE_TAG' "$publication_workflow"; then
   echo 'The release publisher must resolve draft releases through the authenticated GitHub CLI.' >&2
