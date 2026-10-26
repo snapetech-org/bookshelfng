@@ -34,6 +34,7 @@ concurrency:
 jobs:
   validate:
     name: Validate release tag
+    if: inputs.tag != ''
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-build-validate"]}}', github.run_id)) }}
     outputs:
       tag: ${{ steps.version.outputs.tag }}
@@ -93,7 +94,7 @@ jobs:
 
   build-platform-runtime-packs:
     name: Build Linux x86 and FreeBSD .NET 10 runtime packs
-    if: inputs.reuse_runtime_packs != true
+    if: inputs.tag != '' && inputs.reuse_runtime_packs != true
     needs: validate
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release-build-runtime-packs"]}}', github.run_id)) }}
     timeout-minutes: 360
@@ -128,6 +129,7 @@ jobs:
   build-release-assets:
     name: Build self-contained platform archives
     if: >-
+      inputs.tag != '' &&
       always() &&
       needs.validate.result == 'success' &&
       (needs.build-platform-runtime-packs.result == 'success' || inputs.reuse_runtime_packs == true)
@@ -219,6 +221,7 @@ jobs:
   build-linux-packages:
     name: Build Debian, RPM, AppImage, and Flatpak packages
     if: >-
+      inputs.tag != '' &&
       always() &&
       needs.validate.result == 'success' &&
       needs.build-release-assets.result == 'success'
