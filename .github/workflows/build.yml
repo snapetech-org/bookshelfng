@@ -1098,16 +1098,16 @@ jobs:
       packages: read
       security-events: write
     steps:
-      - name: Scan Softcover image
+      - name: "Full severity scan: Softcover image"
         id: softcover_scan
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           image-ref: ghcr.io/${{ github.repository }}@${{ needs.publish-images.outputs.softcover_digest }}
           format: sarif
           output: trivy-softcover.sarif
-          severity: HIGH,CRITICAL
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
           vuln-type: os,library
-          ignore-unfixed: true
+          ignore-unfixed: false
           exit-code: "1"
 
       - name: Upload Softcover findings
@@ -1117,16 +1117,16 @@ jobs:
           sarif_file: trivy-softcover.sarif
           category: trivy-softcover
 
-      - name: Scan Hardcover image
+      - name: "Full severity scan: Hardcover image"
         id: hardcover_scan
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           image-ref: ghcr.io/${{ github.repository }}@${{ needs.publish-images.outputs.hardcover_digest }}
           format: sarif
           output: trivy-hardcover.sarif
-          severity: HIGH,CRITICAL
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
           vuln-type: os,library
-          ignore-unfixed: true
+          ignore-unfixed: false
           exit-code: "1"
 
       - name: Upload Hardcover findings
