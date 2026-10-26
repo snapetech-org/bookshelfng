@@ -25,6 +25,7 @@ for (let index = 2; index < process.argv.length; index += 1) {
 const base = args.get('--base');
 const head = args.get('--head');
 const bodyFile = args.get('--pr-body');
+const commitMessage = args.get('--commit-message') ?? '';
 const summaryFile = args.get('--summary-file');
 
 if (!base || !head || !bodyFile) {
@@ -63,7 +64,8 @@ const { notes, errors } = readReleaseNotes(
   entries.filter((entry) => entry.status === 'A')
 );
 const body = fs.readFileSync(bodyFile, 'utf8');
-const explicitNoReleaseNote = hasExplicitNoReleaseNote(body);
+const explicitNoReleaseNote =
+  hasExplicitNoReleaseNote(body) || hasExplicitNoReleaseNote(commitMessage);
 const issues = [...errors];
 
 for (const entry of untaggedModifications) {

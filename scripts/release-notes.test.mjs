@@ -37,6 +37,12 @@ test('a bracketed release-note marker in a commit subject is explicit', () => {
     ),
     true
   );
+  assert.equal(
+    hasExplicitNoReleaseNote(
+      '[release-note: none] Pin workflows to the checksum verified CLI action'
+    ),
+    true
+  );
 });
 
 test('release-note markers inside HTML comments are ignored', () => {
@@ -52,13 +58,21 @@ test('PR release-note validation uses the synthetic merge commit base', () => {
   assert.match(releaseNoteWorkflow, /--base "\$validation_base_sha"/u);
 });
 
-test('push release-note validation includes the head commit message with associated PR metadata', () => {
+test('push release-note validation passes the commit message as a separate contract input', () => {
   assert.match(
     releaseNoteWorkflow,
     /printf '%s' "\$HEAD_COMMIT_MESSAGE" > "\$body_file"/u
   );
   assert.match(
     releaseNoteWorkflow,
-    /printf '\\n\\n%s' "\$HEAD_COMMIT_MESSAGE" >> "\$body_file"/u
+    /--commit-message "\$release_note_commit_message"/u
+  );
+  assert.match(
+    releaseNoteWorkflow,
+    /release_note_commit_message="\$HEAD_COMMIT_MESSAGE"/u
+  );
+  assert.match(
+    releaseNoteWorkflow,
+    /release_note_commit_message=''/u
   );
 });
