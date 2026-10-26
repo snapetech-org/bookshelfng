@@ -210,9 +210,21 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         ):
             job = job_block(release_build, job_name)
             with self.subTest(release_job=job_name):
-                self.assertIn("inputs.tag != ''", job)
                 self.assertIn(f'"gha-{{0}}-{role}"', job)
                 self.assertNotIn(f"runs-on: ubuntu-22.04\n", job)
+                if job_name == "validate":
+                    self.assertIn("RELEASE_TAG: ${{ inputs.tag }}", job)
+                    self.assertIn("BOOKSHELFNG_RELEASE_READY", job)
+                    self.assertIn(
+                        r'[[ "$RELEASE_TAG" =~ ^v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]',
+                        job,
+                    )
+                    self.assertIn("git merge-base --is-ancestor", job)
+                    self.assertIn('[[ "$tag_sha" == "$GITHUB_SHA" ]]', job)
+                elif job_name == "build-platform-runtime-packs":
+                    self.assertIn("needs: validate", job)
+                else:
+                    self.assertIn("needs.validate.result == 'success'", job)
 
         publication = (WORKFLOW.parent / "release-publication.yml").read_text(encoding="utf-8")
         self.assertIn("  workflow_call:", publication)
