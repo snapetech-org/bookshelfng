@@ -1,8 +1,11 @@
 # ng-runner-policy: hosted-first-v1
 name: CI
 run-name: >-
-  ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number != '' &&
-      format('owner-pr:{0}:{1}:{2}', inputs.pr_number, inputs.pr_sha, inputs.target_run_id) || github.workflow }}
+  ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag != '' &&
+      format('release-retry:{0}', inputs.release_tag) ||
+      (github.event_name == 'workflow_dispatch' && inputs.pr_number != '' &&
+      format('owner-pr:{0}:{1}:{2}', inputs.pr_number, inputs.pr_sha, inputs.target_run_id)) ||
+      github.workflow }}
 
 permissions:
   contents: read
@@ -25,6 +28,35 @@ on:
         description: Successful metadata-only pull_request_target run ID
         required: false
         type: string
+      release_tag:
+        description: Previously published BookshelfNG release tag to retry through the trusted JIT route
+        required: false
+        type: string
+      release_softcover_digest:
+        description: Verified Softcover image digest to include in an optional announcement
+        required: false
+        type: string
+        default: ""
+      release_hardcover_digest:
+        description: Verified Hardcover image digest to include in an optional announcement
+        required: false
+        type: string
+        default: ""
+      release_channels:
+        description: Package publishers to run (all, or a comma-separated subset of aur,copr,ppa,chocolatey,helm)
+        required: false
+        type: string
+        default: all
+      release_chocolatey_use_main_packaging:
+        description: Use main's Chocolatey package scripts while resubmitting a pending version
+        required: false
+        type: boolean
+        default: false
+      release_skip_announcement:
+        description: Prevent a duplicate Discord announcement
+        required: false
+        type: boolean
+        default: true
   push:
     branches:
       - main
@@ -64,7 +96,8 @@ jobs:
        github.event.pull_request.head.repo.id != github.repository_id ||
        github.event.pull_request.base.ref != 'main') &&
       (github.event_name != 'workflow_dispatch' ||
-       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '')))
+       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' &&
+        inputs.release_tag == '')))
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -74,6 +107,37 @@ jobs:
       - name: Test Chocolatey package verifier
         shell: pwsh
         run: ./scripts/test-chocolatey-package-verifier.ps1
+
+  retry-release-distribution:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.actor == 'snapetech' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.release_tag != '' &&
+      inputs.pr_number == '' &&
+      inputs.pr_sha == '' &&
+      inputs.target_run_id == ''
+    name: Retry published release distribution
+    permissions:
+      actions: read
+      contents: write
+      packages: write
+      id-token: write
+    uses: ./.github/workflows/retry-release-distribution.yml
+    with:
+      tag: ${{ inputs.release_tag }}
+      softcover_digest: ${{ inputs.release_softcover_digest }}
+      hardcover_digest: ${{ inputs.release_hardcover_digest }}
+      channels: ${{ inputs.release_channels }}
+      chocolatey_use_main_packaging: ${{ inputs.release_chocolatey_use_main_packaging }}
+      skip_announcement: ${{ inputs.release_skip_announcement }}
+    secrets:
+      AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
+      COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
+      CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+      DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
 
   build:
     if: >-
@@ -87,9 +151,10 @@ jobs:
        github.event.pull_request.head.repo.id != github.repository_id ||
        github.event.pull_request.base.ref != 'main') &&
       (github.event_name != 'workflow_dispatch' ||
-       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == ''))))
-    # Pull requests and release-only jobs stay hosted; trusted main validation
-    # uses the isolated shared runner pool.
+       (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' &&
+        inputs.release_tag == ''))))
+    # Trusted main validation uses the isolated shared runner pool; the
+    # separate owner-only release retry job delegates its publisher jobs there.
     runs-on: ${{ (github.event_name == 'workflow_dispatch' && (github.actor == 'snapetech' || github.actor == 'github-actions[bot]') && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && github.ref == 'refs/heads/main') && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) || (!(github.event_name == 'workflow_dispatch' && (github.actor == 'snapetech' || github.actor == 'github-actions[bot]') && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && github.ref == 'refs/heads/main') && ((vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) || 'ubuntu-latest')) }}
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
