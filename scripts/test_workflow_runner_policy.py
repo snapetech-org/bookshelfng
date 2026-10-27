@@ -69,7 +69,7 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn(
             "    runs-on:\n"
             "      group: public-fork-jit\n"
-            "      labels: [self-hosted, linux, x64, public-pr-bookshelfng]\n"
+            "      labels: [self-hosted, linux, x64, public-pr-bookshelfng, ng-public-run-${{ github.run_id }}]\n"
             "    timeout-minutes: 15",
             job,
         )
