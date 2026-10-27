@@ -84,7 +84,7 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         caller = (WORKFLOW.parent / "public-fork-pr.yml").read_text(encoding="utf-8")
         self.assertIn(
             "uses: snapetech-org/bookshelfng/.github/workflows/fork-safe-validation.yml@"
-            "29f5615cda5cf017f13f884e94f31deb32476579",
+            "9d91dbb25b7cd4356cdf2007a8a13f84d0acec16",
             caller,
         )
 
