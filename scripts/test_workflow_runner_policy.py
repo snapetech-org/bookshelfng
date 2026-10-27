@@ -66,6 +66,13 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         job = job_block(source, "validate")
 
         self.assertIn("group: public-fork-jit", job)
+        self.assertIn(
+            "    runs-on:\n"
+            "      group: public-fork-jit\n"
+            "      labels: [self-hosted, linux, x64, public-pr-bookshelfng, ng-public-run-${{ github.run_id }}]\n"
+            "    timeout-minutes: 15",
+            job,
+        )
         self.assertIn("disposable VM", job)
         self.assertIn("public-pr-bookshelfng", job)
         self.assertIn("github.event.pull_request.head.repo.fork == true", job)
@@ -73,6 +80,13 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn("contents: read", job)
         self.assertNotIn("ubuntu-latest", job)
         self.assertNotIn("secrets:", job)
+
+        caller = (WORKFLOW.parent / "public-fork-pr.yml").read_text(encoding="utf-8")
+        self.assertIn(
+            "uses: snapetech-org/bookshelfng/.github/workflows/fork-safe-validation.yml@"
+            "9d91dbb25b7cd4356cdf2007a8a13f84d0acec16",
+            caller,
+        )
 
     def test_github_cli_setup_uses_a_pinned_github_release_asset(self) -> None:
         action = SETUP_GITHUB_CLI.read_text(encoding="utf-8")
@@ -210,9 +224,21 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         ):
             job = job_block(release_build, job_name)
             with self.subTest(release_job=job_name):
-                self.assertIn("inputs.tag != ''", job)
                 self.assertIn(f'"gha-{{0}}-{role}"', job)
                 self.assertNotIn(f"runs-on: ubuntu-22.04\n", job)
+                if job_name == "validate":
+                    self.assertIn("RELEASE_TAG: ${{ inputs.tag }}", job)
+                    self.assertIn("BOOKSHELFNG_RELEASE_READY", job)
+                    self.assertIn(
+                        r'[[ "$RELEASE_TAG" =~ ^v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]',
+                        job,
+                    )
+                    self.assertIn("git merge-base --is-ancestor", job)
+                    self.assertIn('[[ "$tag_sha" == "$GITHUB_SHA" ]]', job)
+                elif job_name == "build-platform-runtime-packs":
+                    self.assertIn("needs: validate", job)
+                else:
+                    self.assertIn("needs.validate.result == 'success'", job)
 
         publication = (WORKFLOW.parent / "release-publication.yml").read_text(encoding="utf-8")
         self.assertIn("  workflow_call:", publication)
