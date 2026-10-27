@@ -13,9 +13,6 @@ permissions:
   contents: read
 
 on:
-  pull_request_target:
-    branches: [main]
-    types: [opened, reopened, synchronize, ready_for_review, edited]
   workflow_dispatch:
     inputs:
       pr_number:
@@ -64,20 +61,8 @@ on:
         type: boolean
         default: true
   push:
-    branches:
-      - main
     tags:
       - "v*"
-    paths-ignore:
-      - "README.md"
-      - "docs/**"
-      - "src/Readarr.Api.*/openapi.json"
-  pull_request:
-    paths-ignore:
-      - "README.md"
-      - "docs/**"
-      - "src/NzbDrone.Core/Localization/Core"
-      - "src/Readarr.Api.*/openapi.json"
 
 env:
   DOTNET_VERSION: "10.0.401"
