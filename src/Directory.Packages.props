@@ -57,7 +57,7 @@
     <PackageVersion Include="SkiaSharp" Version="4.153.1" />
     <PackageVersion Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="4.153.1" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.1.118" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.3.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.3.1" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.3.1" />
     <PackageVersion Include="System.Configuration.ConfigurationManager" Version="10.0.13" />
     <PackageVersion Include="System.Data.SQLite.Core.Servarr" Version="1.0.115.5-18" />
