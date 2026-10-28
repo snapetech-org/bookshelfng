@@ -692,7 +692,7 @@ jobs:
           DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
         run: bash scripts/validate-release-publisher-config.sh discord
 
-      - uses: jdx/mise-action@9b200bcecbfd6303e69a4a261b2e09e3757440a7 # v5.2.0
+      - uses: jdx/mise-action@8418fedb1110381a0d3ba51a7a415d7c1b884550 # v5.2.2
         with:
           # Keep setup verifiable without a runtime Sigstore TUF refresh.
           version: '2026.10.17'
@@ -1073,7 +1073,7 @@ jobs:
 
       - name: Upload Softcover findings
         if: always() && hashFiles('trivy-softcover.sarif') != ''
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
+        uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
         with:
           sarif_file: trivy-softcover.sarif
           category: trivy-softcover
@@ -1092,7 +1092,7 @@ jobs:
 
       - name: Upload Hardcover findings
         if: always() && hashFiles('trivy-hardcover.sarif') != ''
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
+        uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
         with:
           sarif_file: trivy-hardcover.sarif
           category: trivy-hardcover
@@ -1169,7 +1169,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install git-cliff
-        uses: taiki-e/install-action@8cca0918f8471c33515202b73f56ab27f2bed283 # v2.87.29
+        uses: taiki-e/install-action@a4d3f3f761dcd95cce1b72cb61cb6d1963438177 # v2.87.30
         with:
           tool: git-cliff
 
