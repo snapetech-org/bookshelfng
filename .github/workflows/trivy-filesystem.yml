@@ -1,12 +1,9 @@
 # ng-runner-policy: private-jit-only-v1
 name: Trivy filesystem scan
 
+run-name: ${{ format('action:{0}:pool:{1}', inputs.action, inputs.runner_pool) }}
+
 on:
-  push:
-    branches: [main]
-  pull_request:
-  schedule:
-    - cron: "13 9 * * 1"
   workflow_dispatch:
     inputs:
       full_vulnerability_audit:
@@ -15,6 +12,17 @@ on:
         required: false
         default: false
 
+      action:
+        description: Run the private security scan
+        required: true
+        type: choice
+        options:
+          - scan
+      runner_pool:
+        description: Select the private ephemeral runner pool
+        required: true
+        type: choice
+        options: [private]
 permissions:
   contents: read
 
@@ -26,8 +34,7 @@ jobs:
   trivy:
     name: Trivy source, dependency, and configuration scan
     if: >-
-      github.event_name != 'pull_request' ||
-      github.event.pull_request.head.repo.full_name == github.repository
+      github.event_name == 'workflow_dispatch' && inputs.action == 'scan' && inputs.runner_pool == 'private' && github.ref == 'refs/heads/main'
     env:
       TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
       TRIVY_EXIT_CODE: "1"

@@ -3,11 +3,7 @@ name: Release-note contract
 
 on:
   pull_request:
-    types: [opened, edited, reopened, synchronize]
-  push:
-    branches:
-      - main
-
+    types: [labeled]
 permissions:
   contents: read
   pull-requests: read
@@ -20,10 +16,19 @@ jobs:
   validate:
     name: Validate release notes
     if: >-
-      (github.event_name != 'pull_request' ||
-       github.event.pull_request.head.repo.full_name == github.repository) &&
-      (github.event_name == 'push' ||
-       (github.event_name == 'pull_request' && github.event.pull_request.user.type != 'Bot'))
+      (
+        (
+        github.event_name == 'pull_request' &&
+        github.event.action == 'labeled' &&
+        (github.event.label.name == 'action:ci' || github.event.label.name == 'pool:private') &&
+        contains(github.event.pull_request.labels.*.name, 'action:ci') &&
+        contains(github.event.pull_request.labels.*.name, 'pool:private') &&
+        github.event.pull_request.head.repo.full_name == github.repository
+        )
+      ) &&
+      (
+        (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && (github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.user.type != 'Bot'))
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-validate"]}}', github.run_id)) }}
     steps:
       - name: Checkout

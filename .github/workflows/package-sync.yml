@@ -3,13 +3,21 @@ name: Package sync
 
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: Required workflow action
+        type: choice
+        options: [ci]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
   pull_request:
+    types: [labeled]
     branches:
       - main
-  push:
-    branches:
-      - main
-
 permissions:
   contents: read
 
@@ -17,9 +25,25 @@ jobs:
   verify:
     name: Check package repository sync
     if: >-
-      (github.event_name != 'pull_request' ||
-       github.event.pull_request.head.repo.full_name == github.repository) &&
-      (github.event_name == 'pull_request' || github.ref == 'refs/heads/main')
+      (
+        (
+        github.event_name == 'pull_request' &&
+        github.event.action == 'labeled' &&
+        (github.event.label.name == 'action:ci' || github.event.label.name == 'pool:private') &&
+        contains(github.event.pull_request.labels.*.name, 'action:ci') &&
+        contains(github.event.pull_request.labels.*.name, 'pool:private') &&
+        github.event.pull_request.head.repo.full_name == github.repository
+        ) ||
+        (
+        github.event_name == 'workflow_dispatch' &&
+        github.ref == 'refs/heads/main' &&
+        inputs.action == 'ci' &&
+        inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && (github.event_name == 'pull_request' || github.ref == 'refs/heads/main')
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-verify"]}}', github.run_id)) }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

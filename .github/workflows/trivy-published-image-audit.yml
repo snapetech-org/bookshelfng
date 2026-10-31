@@ -1,6 +1,8 @@
 # ng-runner-policy: private-jit-only-v1
 name: Full-severity published image audit
 
+run-name: ${{ format('action:{0}:pool:{1}', inputs.action, inputs.runner_pool) }}
+
 on:
   workflow_dispatch:
     inputs:
@@ -17,6 +19,17 @@ on:
         required: true
         type: string
 
+      action:
+        description: Run the private security scan
+        required: true
+        type: choice
+        options:
+          - scan
+      runner_pool:
+        description: Select the private ephemeral runner pool
+        required: true
+        type: choice
+        options: [private]
 permissions:
   contents: read
   packages: read
@@ -29,7 +42,8 @@ concurrency:
 jobs:
   scan:
     name: Scan published release images at every severity
-    if: github.ref == 'refs/heads/main'
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.action == 'scan' && inputs.runner_pool == 'private' && github.ref == 'refs/heads/main'
     env:
       TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
       RELEASE_TAG: ${{ inputs.release_tag }}

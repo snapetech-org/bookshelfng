@@ -5,6 +5,17 @@ on:
   schedule:
     - cron: '17,47 * * * *'
   workflow_dispatch:
+    inputs:
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [publish]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
 
 permissions:
   contents: read
@@ -17,7 +28,18 @@ concurrency:
 jobs:
   discover-release:
     name: Check for a bridgeable ChaptarrNG release
-    if: github.ref == 'refs/heads/main'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        github.ref == 'refs/heads/main'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-discover-release"]}}', github.run_id)) }}
     permissions:
       contents: read
@@ -113,7 +135,18 @@ jobs:
   publisher-credentials:
     name: Check legacy publisher credentials
     needs: discover-release
-    if: github.ref == 'refs/heads/main' && needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        github.ref == 'refs/heads/main' && needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publisher-credentials"]}}', github.run_id)) }}
     permissions:
       contents: read
@@ -137,7 +170,18 @@ jobs:
   disabled-preview:
     name: Report disabled bridge state
     needs: [discover-release]
-    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled != 'true'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled != 'true'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-disabled-preview"]}}', github.run_id)) }}
     permissions:
       contents: read
@@ -156,7 +200,18 @@ jobs:
   publish-dockerhub-aliases:
     name: Redirect Docker Hub mutable tags
     needs: [discover-release, publisher-credentials]
-    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.dockerhub == 'true' && needs.publisher-credentials.outputs.dockerhub == 'true'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.dockerhub == 'true' && needs.publisher-credentials.outputs.dockerhub == 'true'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-dockerhub-aliases"]}}', github.run_id)) }}
     permissions:
       contents: write
@@ -233,7 +288,18 @@ jobs:
   publish-bookshelf-copr:
     name: Trigger the existing BookshelfNG COPR package bridge
     needs: [discover-release, publisher-credentials]
-    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.copr == 'true' && needs.publisher-credentials.outputs.copr == 'true'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.copr == 'true' && needs.publisher-credentials.outputs.copr == 'true'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-bookshelf-copr"]}}', github.run_id)) }}
     permissions:
       contents: write
@@ -287,7 +353,18 @@ jobs:
   build-chocolatey-bridge:
     name: Build ChaptarrNG and legacy Chocolatey packages
     needs: [discover-release]
-    if: needs.discover-release.outputs.ready == 'true'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.discover-release.outputs.ready == 'true'
+      )
     runs-on:
       group: packer-windows
       labels:
@@ -346,7 +423,18 @@ jobs:
   publish-chocolatey-new-install:
     name: Publish the ChaptarrNG Chocolatey identity
     needs: [discover-release, publisher-credentials, build-chocolatey-bridge]
-    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.chocolatey_new == 'true' && needs.publisher-credentials.outputs.chocolatey == 'true'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.chocolatey_new == 'true' && needs.publisher-credentials.outputs.chocolatey == 'true'
+      )
     runs-on:
       group: packer-windows
       labels:
@@ -388,7 +476,18 @@ jobs:
   publish-chocolatey-legacy-upgrade:
     name: Publish the existing BookshelfNG Chocolatey upgrade identity
     needs: [discover-release, publisher-credentials, build-chocolatey-bridge]
-    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.chocolatey_legacy == 'true' && needs.publisher-credentials.outputs.chocolatey == 'true'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.chocolatey_legacy == 'true' && needs.publisher-credentials.outputs.chocolatey == 'true'
+      )
     runs-on:
       group: packer-windows
       labels:
@@ -430,7 +529,18 @@ jobs:
   publish-helm-bridge:
     name: Publish the legacy Helm chart identity using the standard image
     needs: [discover-release]
-    if: needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.helm == 'true'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.helm == 'true'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-helm-bridge"]}}', github.run_id)) }}
     permissions:
       contents: write
@@ -533,7 +643,18 @@ jobs:
 
   bridge-summary:
     name: Report release bridge actions
-    if: always()
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always()
+      )
     needs:
       - discover-release
       - publisher-credentials
