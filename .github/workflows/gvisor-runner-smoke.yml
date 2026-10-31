@@ -1,6 +1,8 @@
 # ng-runner-policy: private-jit-only-v1
 name: gVisor runner smoke
 
+
+run-name: action:smoke:pool:private
 on:
   workflow_dispatch:
 

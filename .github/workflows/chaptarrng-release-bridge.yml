@@ -1,6 +1,13 @@
+# packer-windows-jit-v1
 # ng-runner-policy: private-jit-only-v1
 name: ChaptarrNG legacy distribution bridge
 
+
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/') &&
+      format('action:{0}:pool:{1}:tag:{2}', inputs.action || 'release', inputs.runner_pool || 'private', github.ref_name) ||
+      github.event_name == 'workflow_dispatch' &&
+      format('action:{0}:pool:{1}', inputs.action || 'release', inputs.runner_pool || 'private') || format('action:publish:pool:private') }}
 on:
   schedule:
     - cron: '17,47 * * * *'
@@ -365,15 +372,7 @@ jobs:
       (
         needs.discover-release.outputs.ready == 'true'
       )
-    runs-on:
-      group: packer-windows
-      labels:
-        - self-hosted
-        - Windows
-        - X64
-        - on-demand
-        - packer-windows
-        - bookshelfng
+    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","bookshelfng","gha-{0}-build-chocolatey-bridge"]}}', github.run_id)) }}
     permissions:
       contents: read
     steps:
@@ -419,7 +418,6 @@ jobs:
         path: ${{ runner.temp }}/chocolatey-bridge/*.nupkg
         retention-days: 1
         if-no-files-found: error
-
   publish-chocolatey-new-install:
     name: Publish the ChaptarrNG Chocolatey identity
     needs: [discover-release, publisher-credentials, build-chocolatey-bridge]
@@ -435,15 +433,7 @@ jobs:
       (
         needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.chocolatey_new == 'true' && needs.publisher-credentials.outputs.chocolatey == 'true'
       )
-    runs-on:
-      group: packer-windows
-      labels:
-        - self-hosted
-        - Windows
-        - X64
-        - on-demand
-        - packer-windows
-        - bookshelfng
+    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","bookshelfng","gha-{0}-publish-chocolatey-new-install"]}}', github.run_id)) }}
     permissions:
       contents: write
     steps:
@@ -472,7 +462,6 @@ jobs:
         git config user.email 'noreply@github.com'
         git tag $marker
         git push origin "refs/tags/$marker"
-
   publish-chocolatey-legacy-upgrade:
     name: Publish the existing BookshelfNG Chocolatey upgrade identity
     needs: [discover-release, publisher-credentials, build-chocolatey-bridge]
@@ -488,15 +477,7 @@ jobs:
       (
         needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.chocolatey_legacy == 'true' && needs.publisher-credentials.outputs.chocolatey == 'true'
       )
-    runs-on:
-      group: packer-windows
-      labels:
-        - self-hosted
-        - Windows
-        - X64
-        - on-demand
-        - packer-windows
-        - bookshelfng
+    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","bookshelfng","gha-{0}-publish-chocolatey-legacy-upgrade"]}}', github.run_id)) }}
     permissions:
       contents: write
     steps:
@@ -525,7 +506,6 @@ jobs:
         git config user.email 'noreply@github.com'
         git tag $marker
         git push origin "refs/tags/$marker"
-
   publish-helm-bridge:
     name: Publish the legacy Helm chart identity using the standard image
     needs: [discover-release]
