@@ -1,6 +1,48 @@
 # BookshelfNG to ChaptarrNG distribution bridge
 
-## Current status — 2026-10-23
+## Current status — 2026-10-30
+
+BookshelfNG `0.4.21.76` and ChaptarrNG `v0.9.977` remain the latest public
+application releases. ChaptarrNG `main` is `64689f1f`. ChaptarrNG PR
+[#183](https://github.com/snapetech-org/chaptarrng/pull/183) proposes the
+one-image BookshelfNG handoff and remains unmerged/unreleased. The previous
+exact-head Build
+[#41164597664](https://github.com/snapetech-org/chaptarrng/actions/runs/41164597664)
+was cancelled on older head `474a3541`. Its prior owner-PR dispatch
+[#41167825847](https://github.com/snapetech-org/chaptarrng/actions/runs/41167825847)
+was queued before the current private-JIT route was merged into PR #183; the
+updated exact-head checks have not started.
+
+The scheduled BookshelfNG bridge run
+[#41157387864](https://github.com/snapetech-org/bookshelfng/actions/runs/41157387864)
+is waiting behind 16 earlier bridge runs with no jobs started. No old package, mutable image tag, chart,
+installer, updater, or release identity has been redirected. The standard
+ChaptarrNG product remains the only target; the bridge must not introduce a
+second ChaptarrNG build or compatibility image.
+
+Chocolatey lists BookshelfNG `0.4.21.76` and standard ChaptarrNG `0.9.973`;
+the latter is behind `v0.9.977` and retains the ChaptarrNG package identity.
+Neither package entry redirects the existing BookshelfNG identity. The
+`.977` package update and old-identity bridge remain pending; the previous
+`.977` push returned HTTP 403.
+
+Keep all release and legacy-bridge gates closed until the BookshelfNG feature,
+data, rollback, and per-channel acceptance gates are complete. Candidate
+package transactions and synthetic migration evidence below are channel
+rehearsals, not permission to publish or cut over. Every build, test, scan,
+package, and release job must run on private ephemeral JIT capacity; hosted
+fallbacks are not permitted, and missing native-platform capacity blocks
+validation.
+
+The current main-to-main source-path audit is pinned to BookshelfNG `1bd7f2dc`
+and ChaptarrNG `64689f1f`; it leaves 530 paths undispositioned. ChaptarrNG PR
+#183 is not included. Those path counts
+do not establish missing features or package continuity. The [consolidation
+report](chaptarr-consolidation.md#exact-head-source-path-audit--2026-10-30)
+contains the full refs and dated review maps. Every channel still needs its own
+tested upgrade, rollback, identity, and publication route.
+
+## Historical status — 2026-10-23
 
 **Update (2026-10-23):** BookshelfNG `0.4.21.71` and ChaptarrNG `v0.9.977` remain the latest public releases; the owner authorized one final BookshelfNG `.72` security update, which is still unpublished. No compatibility package, image bridge, or migration release has been published. The current ChaptarrNG code pin is [`4b57b479`](https://github.com/snapetech-org/chaptarrng/commit/4b57b479d73c844db19278233e25efe94509e99b); its later documentation-only `main` commit and current upstream PR #114 head are [`4dfbbd2c`](https://github.com/snapetech-org/chaptarrng/commit/4dfbbd2c95f90674881bba7de480438877e39d65). On that exact PR head, Semgrep [run 39972778863](https://github.com/Chaptarr/chaptarr/actions/runs/39972778863) and Trivy [run 39972778743](https://github.com/Chaptarr/chaptarr/actions/runs/39972778743) completed as `action_required` without starting jobs; repository-admin approval is still required. The current path ledger records 393 open paths (261 semantic reviews, 128 unmapped, two source-deleted, and two identical); see the [consolidation report](chaptarr-consolidation.md). BookshelfNG issue #144 was closed by the maintainer on 2026-10-22, but its final body still requires BookshelfNG to remain in service and does not authorize publication or cutover. The populated SQLite rehearsal and local desktop/package candidates remain bounded evidence; representative feature, provider, rollback, and channel acceptance gates remain open. Maintainer/operator sign-off is recorded; technical acceptance remains incomplete.
 

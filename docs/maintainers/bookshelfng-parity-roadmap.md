@@ -1,8 +1,56 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
-**Execution order reassessed (2026-10-24):** Use the
+**Current status (2026-10-30)**
+
+BookshelfNG `0.4.21.76` and ChaptarrNG `v0.9.977` are the latest public
+releases. ChaptarrNG current `main` is `64689f1f`. PR
+[#183](https://github.com/snapetech-org/chaptarrng/pull/183) proposes the
+one-image migration handoff and is not merged or released. The prior Build
+[#41164597664](https://github.com/snapetech-org/chaptarrng/actions/runs/41164597664)
+was cancelled on older head `474a3541`. Its prior PR dispatch
+[#41167825847](https://github.com/snapetech-org/chaptarrng/actions/runs/41167825847)
+was queued before the latest private-JIT route was merged into the PR; the
+updated exact-head checks have not started. The BookshelfNG legacy
+bridge run
+[#41157387864](https://github.com/snapetech-org/bookshelfng/actions/runs/41157387864)
+is waiting behind 16 earlier bridge runs with no jobs started; no BookshelfNG package, image, installer,
+updater, or chart identity has been redirected.
+
+BookshelfNG remains in service until every enhanced capability, setting,
+identity, client contract, migration/data path, rollback path, and applicable
+installation channel is individually accepted. ChaptarrNG's later upstream
+retirement is a separate cumulative gate that also includes every maintained,
+active, and unreleased ChaptarrNG capability, including the localization and
+RTL work now in its source. Path dispositions do not close behavior or
+operator-acceptance gates.
+
+The organization requires all build, test, scan, package, and release jobs to
+use private ephemeral JIT runners, with no hosted fallback. Missing native
+platform capacity blocks validation. The dated inventories and candidate
+results below retain their original source pins and are not current acceptance
+evidence. See the
+[current consolidation status](chaptarr-consolidation.md#current-status--2026-10-30)
+and [ChaptarrNG's cumulative blocker matrix](https://github.com/snapetech-org/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-gates).
+
+The refreshed main-to-main path inventory compares BookshelfNG
+`1bd7f2dcac6e01a954f7f3401d2550d593960854` with ChaptarrNG
+`64689f1ff79dc1f56dda3aa54857e4298e99f6b0`: 967 post-fork commits, 1,174
+changed paths, 56 reviewed mappings, and 644 carried dispositions. The
+remaining 530 paths are open for review (326 semantic differences, 198 with
+no mapped target, two source-deleted paths, and four identical paths without
+disposition). These counts describe paths, not missing features. Decisions
+were carried only when the source and mapped target blobs were unchanged;
+basename matches were not used as mapping evidence. See the pinned
+[inventory](chaptarr-consolidation-inventory-20261030.json),
+[review map](chaptarr-consolidation-review-map-20261030.json), and
+[disposition map](chaptarr-consolidation-disposition-map-20261030.json). The
+unmerged changes in ChaptarrNG PR #183 are not included in this snapshot.
+Path review is separate from runtime behavior, migration/data, rollback, and
+installed-channel acceptance.
+
+**Historical execution order (2026-10-24):** The
 [ChaptarrNG replacement reassessment](https://github.com/snapetech-org/chaptarrng/blob/main/docs/maintainers/BOOKSHELFNG_REPLACEMENT_REASSESSMENT_2026-10-24.md)
-for the code-first 100% drop-in completion plan. It compares BookshelfNG
+recorded a code-first 100% drop-in completion plan. It compares BookshelfNG
 `d42ec2aba1e411f4fb538d4d7201f6930898a91e` with ChaptarrNG
 `9bf2cf654ce01dfb25d41a59525ce8e4dca39a29`, identifies unchanged-client API and
 unattended native-install handoff gaps, and separates those from semantic
@@ -14,7 +62,7 @@ revalidation. The linked reproducible snapshot is an overlay, not a new set
 of approved dispositions. The historical status and evidence below retain
 their original revision boundaries; release and cutover acceptance are unchanged.
 
-**Current status (2026-10-23)**
+**Historical status (2026-10-23)**
 
 BookshelfNG `0.4.21.71` and ChaptarrNG `v0.9.977` remain the latest public app releases; the owner authorized one final BookshelfNG `.72` security update, pending exact-head CI and publication. The current schema-v4 path audit pins BookshelfNG's pre-report source `685b31c93d7146258c02446b01cb34c6f5d962b5` to ChaptarrNG target `813b7ff13bdfe051843f2648fa32c2ace93cb2d6`: 875 post-fork commits (866 absent from upstream), 1,151 changed paths, 89 reviewed mappings, and 755 dispositions. It leaves 396 paths open (262 semantic review, 130 unmapped, two source-deleted paths, and two identical paths). The 91 reviewed path decisions and 753 earlier feature dispositions carry forward on unchanged source and target blobs; two new ported dispositions record the release-comparer and pending-queue paths. ChaptarrNG commit `3fe0a8f1` restores migrated audiobook release-candidate order, and `813b7ff1` restores migrated pending-audiobook queue selection order. The full Release Core suite passed 4,702 tests, skipped 25, and failed 0; the commit-hook Semgrep scan found zero findings and the push readiness gate passed. Exact-head Build [39902205271](https://github.com/snapetech-org/chaptarrng/actions/runs/39902205271), Security Analysis [39902205314](https://github.com/snapetech-org/chaptarrng/actions/runs/39902205314), CodeQL [39902205231](https://github.com/snapetech-org/chaptarrng/actions/runs/39902205231), Semgrep [39902205279](https://github.com/snapetech-org/chaptarrng/actions/runs/39902205279), Trivy [39902205315](https://github.com/snapetech-org/chaptarrng/actions/runs/39902205315), standalone-asset validation [39902205251](https://github.com/snapetech-org/chaptarrng/actions/runs/39902205251), and dependency submission [39902205730](https://github.com/snapetech-org/chaptarrng/actions/runs/39902205730) were queued at 04:49 UTC. Live provider/media behavior, representative-data rollback, PostgreSQL operator data, SeerrNG workflows, installed-channel handoff, and operator acceptance remain open; no runtime retirement or cutover is approved. See the [canonical audit](chaptarr-consolidation.md) and its generated inventory and disposition maps.
 On ChaptarrNG commit `813b7ff1`, eight focused M4B importer cases passed locally with the existing `chaptarrng-seerrng-smoke:local` image and its pinned m4b-tool 0.5.2. They cover merge and chapter behavior, Move/Copy source handling, and failure fallback; the input media are synthetic, so representative files and restart/resume acceptance remain open.

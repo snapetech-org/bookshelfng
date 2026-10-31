@@ -20,7 +20,6 @@ on:
 permissions:
   contents: read
   packages: read
-  security-events: write
 
 concurrency:
   group: ng-trivy-published-image-audit-${{ github.ref }}
@@ -76,15 +75,6 @@ jobs:
           ignore-unfixed: false
           exit-code: "1"
 
-      - name: Upload Softcover findings
-        id: softcover_upload
-        if: always() && hashFiles('trivy-softcover-full.sarif') != ''
-        continue-on-error: true
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
-        with:
-          sarif_file: trivy-softcover-full.sarif
-          category: trivy-softcover-full-severity
-
       - name: Scan Hardcover image
         id: hardcover_scan
         continue-on-error: true
@@ -98,26 +88,28 @@ jobs:
           ignore-unfixed: false
           exit-code: "1"
 
-      - name: Upload Hardcover findings
-        id: hardcover_upload
-        if: always() && hashFiles('trivy-hardcover-full.sarif') != ''
-        continue-on-error: true
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
+      - name: Retain full-severity scan reports for review
+        id: reports
+        if: always() && (hashFiles('trivy-softcover-full.sarif') != '' || hashFiles('trivy-hardcover-full.sarif') != '')
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          sarif_file: trivy-hardcover-full.sarif
-          category: trivy-hardcover-full-severity
+          name: trivy-published-image-audit-reports
+          path: |
+            trivy-softcover-full.sarif
+            trivy-hardcover-full.sarif
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Fail if either image has findings
         if: always()
         shell: bash
         env:
           SOFTCOVER_OUTCOME: ${{ steps.softcover_scan.outcome }}
-          SOFTCOVER_UPLOAD_OUTCOME: ${{ steps.softcover_upload.outcome }}
           HARDCOVER_OUTCOME: ${{ steps.hardcover_scan.outcome }}
-          HARDCOVER_UPLOAD_OUTCOME: ${{ steps.hardcover_upload.outcome }}
+          REPORTS_OUTCOME: ${{ steps.reports.outcome }}
         run: |
-          if [[ "$SOFTCOVER_OUTCOME" != success || "$SOFTCOVER_UPLOAD_OUTCOME" != success || \
-                "$HARDCOVER_OUTCOME" != success || "$HARDCOVER_UPLOAD_OUTCOME" != success ]]; then
-            echo "Full-severity Trivy findings or scan/report errors remain; inspect both SARIF uploads and logs." >&2
+          if [[ "$SOFTCOVER_OUTCOME" != success || "$HARDCOVER_OUTCOME" != success || \
+                "$REPORTS_OUTCOME" != success ]]; then
+            echo "Full-severity Trivy findings or scan/report errors remain; inspect both SARIF artifacts and logs." >&2
             exit 1
           fi

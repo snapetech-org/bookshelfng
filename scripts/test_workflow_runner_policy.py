@@ -276,8 +276,11 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
 
     def test_security_scans_use_private_jit_and_skip_public_fork_code(self) -> None:
         workflow_dir = WORKFLOW.parent
+        self.assertFalse((workflow_dir / "codeql.yml").exists())
+        self.assertFalse((workflow_dir.parent / "codeql").exists())
+        for workflow in workflow_dir.glob("*.yml"):
+            self.assertNotIn("github/codeql-action/", workflow.read_text(encoding="utf-8"), workflow.name)
         for workflow_name, job_name in (
-            ("codeql.yml", "analyze"),
             ("semgrep-community.yml", "semgrep"),
             ("trivy-filesystem.yml", "trivy"),
         ):
@@ -290,9 +293,16 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             self.assertIn('"ng-main-run-{0}"', runner.group("runner"))
             self.assertIn("github.event.pull_request.head.repo.full_name == github.repository", job)
             self.assertNotIn("ubuntu-latest", runner.group("runner"))
+        for workflow in workflow_dir.glob("*.yml"):
+            source = workflow.read_text(encoding="utf-8")
+            self.assertNotIn("github/codeql-action/", source, workflow.name)
+            self.assertNotIn("security-events: write", source, workflow.name)
         semgrep = (workflow_dir / "semgrep-community.yml").read_text(encoding="utf-8")
         self.assertIn("docker info", semgrep)
         self.assertIn("docker run", semgrep)
+        self.assertIn("semgrep-ce-reports", semgrep)
+        self.assertIn("full-severity-image-scan-reports", (workflow_dir / "build.yml").read_text(encoding="utf-8"))
+        self.assertIn("trivy-published-image-audit-reports", (workflow_dir / "trivy-published-image-audit.yml").read_text(encoding="utf-8"))
 
     def test_full_severity_trivy_audits_use_private_runners_and_include_unfixed_cves(self) -> None:
         workflow_dir = WORKFLOW.parent

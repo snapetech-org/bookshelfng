@@ -8,7 +8,7 @@ The installed pre-commit hook runs Semgrep on staged source/config files; Trivy 
 
 Local scans use Semgrep Community Edition and do not require a Semgrep SaaS account.
 
-Public Semgrep and Trivy workflows scan on pushes, pull requests, and weekly schedules. They use current scanner releases; any existing CodeQL workflow remains enabled.
+Public Semgrep and Trivy workflows scan on pushes, pull requests, and weekly schedules. They use current scanner releases and run on private JIT runners. CodeQL is disabled by organization policy. Semgrep and Trivy retain JSON/SARIF reports as workflow artifacts; they do not upload SARIF through the CodeQL action or GitHub code-scanning API.
 
 Local scans report findings without failing by default. Set `SEMGREP_FAIL_ON_FINDINGS=1` or `TRIVY_EXIT_CODE=1` to make a local scan fail on findings. The required Trivy workflow sets `TRIVY_EXIT_CODE=1`, requires Trivy to be installed, and fails closed if no supported files are detected. It excludes generated `bin`, `obj`, `_output`, `_artifacts`, and `_temp` directories. Its `security/trivy-exceptions.yaml` allowlist is limited to the legacy LinuxServer startup paths, has an expiration date, and records the reason. Trivy downloads its vulnerability and check databases automatically; use `TRIVY_OFFLINE=1` only after those databases are cached. The default timeout is 20 minutes for slow first downloads; set `TRIVY_TIMEOUT` to change it.
 

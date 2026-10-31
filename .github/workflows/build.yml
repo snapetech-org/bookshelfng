@@ -1057,10 +1057,10 @@ jobs:
     permissions:
       contents: read
       packages: read
-      security-events: write
     steps:
       - name: "Full severity scan: Softcover image"
         id: softcover_scan
+        continue-on-error: true
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           image-ref: ghcr.io/${{ github.repository }}@${{ needs.publish-images.outputs.softcover_digest }}
@@ -1071,15 +1071,9 @@ jobs:
           ignore-unfixed: false
           exit-code: "1"
 
-      - name: Upload Softcover findings
-        if: always() && hashFiles('trivy-softcover.sarif') != ''
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
-        with:
-          sarif_file: trivy-softcover.sarif
-          category: trivy-softcover
-
       - name: "Full severity scan: Hardcover image"
         id: hardcover_scan
+        continue-on-error: true
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           image-ref: ghcr.io/${{ github.repository }}@${{ needs.publish-images.outputs.hardcover_digest }}
@@ -1090,12 +1084,28 @@ jobs:
           ignore-unfixed: false
           exit-code: "1"
 
-      - name: Upload Hardcover findings
-        if: always() && hashFiles('trivy-hardcover.sarif') != ''
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
+      - name: Retain full-severity image scan reports
+        if: always() && (hashFiles('trivy-softcover.sarif') != '' || hashFiles('trivy-hardcover.sarif') != '')
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          sarif_file: trivy-hardcover.sarif
-          category: trivy-hardcover
+          name: full-severity-image-scan-reports
+          path: |
+            trivy-softcover.sarif
+            trivy-hardcover.sarif
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Fail if either image has findings
+        if: always()
+        shell: bash
+        env:
+          SOFTCOVER_OUTCOME: ${{ steps.softcover_scan.outcome }}
+          HARDCOVER_OUTCOME: ${{ steps.hardcover_scan.outcome }}
+        run: |
+          if [[ "$SOFTCOVER_OUTCOME" != success || "$HARDCOVER_OUTCOME" != success ]]; then
+            echo "Full-severity Trivy findings or scan errors remain; inspect both SARIF artifacts and scan logs." >&2
+            exit 1
+          fi
 
   release:
     name: Prepare release notes and draft
