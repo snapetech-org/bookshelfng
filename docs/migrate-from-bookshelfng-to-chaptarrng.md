@@ -2,8 +2,8 @@
 
 As of 2026-10-31, BookshelfNG `0.4.21.76` and ChaptarrNG `v0.9.977` remain
 the latest public releases. ChaptarrNG `main` is
-`4e5f895c5d30f2d1a775f76426e8d0ea176848cb`, with application source snapshot
-`bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`. PR
+`fa55ffabe632c7ee003791635ebe53fb1895d3df`, with latest application source
+snapshot `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`. PR
 [#183](https://github.com/snapetech-org/chaptarrng/pull/183) merged at
 `96c953b2`; the BookshelfNG handoff runs through the ordinary ChaptarrNG
 product and does not use a compatibility build. Follow-up main commits retain
@@ -25,7 +25,8 @@ gates pass.
 
 The current schema-v4 audit compares BookshelfNG source
 `1bd7f2dcac6e01a954f7f3401d2550d593960854` with ChaptarrNG application source
-snapshot `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`: 1,174 changed paths, 56
+main target `fa55ffabe632c7ee003791635ebe53fb1895d3df` (application source
+snapshot `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`): 1,174 changed paths, 56
 reviewed mappings, 587 dispositions, and 587 paths without a final disposition.
 The merged PR #183 changes are included in the target. Path counts are source-review
 records, not missing-feature or migration-acceptance counts. See the

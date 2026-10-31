@@ -3,8 +3,8 @@
 **Current status (2026-10-31)**
 
 BookshelfNG `0.4.21.76` and ChaptarrNG `v0.9.977` remain the latest public
-releases. ChaptarrNG `main` is `4e5f895c`; its application source snapshot is
-`bd589312`. PR
+releases. ChaptarrNG `main` is `fa55ffab`; its latest application source
+snapshot is `bd589312`. PR
 [#183](https://github.com/snapetech-org/chaptarrng/pull/183) merged at
 `96c953b2`; follow-up commits preserve the legacy Docker port contracts in
 the standard ChaptarrNG product. No compatibility image was added.
@@ -33,7 +33,8 @@ and [ChaptarrNG's cumulative blocker matrix](https://github.com/snapetech-org/ch
 
 The refreshed main-to-main path inventory compares BookshelfNG
 `1bd7f2dcac6e01a954f7f3401d2550d593960854` with ChaptarrNG application source
-snapshot `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`: 967 post-fork commits,
+`main` target `fa55ffabe632c7ee003791635ebe53fb1895d3df` (application source
+snapshot `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`): 967 post-fork commits,
 1,174 changed paths, 56 reviewed mappings, and 587 dispositions. The remaining
 587 paths are open for review (370 semantic differences, 211 with no mapped
 target, two source-deleted paths, and four identical paths without

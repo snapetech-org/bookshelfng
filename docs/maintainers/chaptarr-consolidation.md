@@ -4,8 +4,8 @@
 
 BookshelfNG `0.4.21.76` and ChaptarrNG `v0.9.977` remain the latest public
 application releases. ChaptarrNG `main` is
-`4e5f895c5d30f2d1a775f76426e8d0ea176848cb`; its application source snapshot
-is `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`. ChaptarrNG PR
+`fa55ffabe632c7ee003791635ebe53fb1895d3df`; its latest application source
+snapshot is `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`. ChaptarrNG PR
 [#183](https://github.com/snapetech-org/chaptarrng/pull/183) merged at
 `96c953b27e2b600eb9f70e23cf19b339c32dc3ad`. Follow-up main commit
 `5a6ebb6c` preserves the legacy Docker port contracts; the standard ChaptarrNG
@@ -46,7 +46,8 @@ parts. See the [BookshelfNG parity matrix](bookshelfng-parity-roadmap.md),
 
 The reproducible inventory compares BookshelfNG source
 `1bd7f2dcac6e01a954f7f3401d2550d593960854` with ChaptarrNG application source
-snapshot `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`, from fork base
+`main` target `fa55ffabe632c7ee003791635ebe53fb1895d3df` (application source
+snapshot `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`), from fork base
 `c21c4134fdb710481ed69db05bf943b0acdbbf60`, and pins the upstream `develop`
 comparison at `3ac41f7e31427684a37138e8e539b7e6c7b73869`. Its scope includes
 merged upstream work. It covers 967 reachable post-fork commits (958 are

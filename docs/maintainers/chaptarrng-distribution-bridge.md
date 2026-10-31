@@ -4,8 +4,8 @@
 
 BookshelfNG `0.4.21.76` and ChaptarrNG `v0.9.977` remain the latest public
 application releases. ChaptarrNG `main` is
-`4e5f895c5d30f2d1a775f76426e8d0ea176848cb`; its application source snapshot
-is `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`. ChaptarrNG PR
+`fa55ffabe632c7ee003791635ebe53fb1895d3df`; its latest application source
+snapshot is `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`. ChaptarrNG PR
 [#183](https://github.com/snapetech-org/chaptarrng/pull/183) merged at
 `96c953b2`; the standard ChaptarrNG product is the migration target, with no
 second build or compatibility image. Follow-up main commits preserve the old
@@ -32,7 +32,8 @@ scan, package, and release job must run on private ephemeral JIT capacity with
 no hosted fallback.
 
 The current source-path audit is pinned to BookshelfNG
-`1bd7f2dc` and ChaptarrNG application source `bd589312`; it leaves 587 paths
+`1bd7f2dc` and ChaptarrNG main target `fa55ffab` (application source
+`bd589312`); it leaves 587 paths
 undispositioned. The target snapshot includes merged ChaptarrNG PR #183 and
 later application-source changes. Those path counts
 do not establish missing features or package continuity. The
