@@ -1,7 +1,7 @@
 # ng-runner-policy: private-jit-only-v1
 name: Security analysis
 
-# CodeQL is managed by the repository's default setup; this workflow handles dependency review.
+# CodeQL analysis is disabled by organization policy; this workflow handles dependency review.
 on:
   pull_request:
 
