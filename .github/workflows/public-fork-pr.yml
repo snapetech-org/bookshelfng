@@ -19,5 +19,5 @@ jobs:
     permissions:
       contents: read
     # Run the fork-safe validation workflow at its reviewed immutable revision.
-    uses: snapetech-org/bookshelfng/.github/workflows/fork-safe-validation.yml@fb997228f02c0210ed89df2dd30da4e0f82a1319
+    uses: snapetech-org/bookshelfng/.github/workflows/fork-safe-validation.yml@9d91dbb25b7cd4356cdf2007a8a13f84d0acec16
 
