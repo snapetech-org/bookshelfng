@@ -1,0 +1,471 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "1bd7f2dcac6e01a954f7f3401d2550d593960854",
+  "targetCommit": "bd5893120c24ada8ea492edc1ce21cd5cdc24d8b",
+  "decisions": [
+    {
+      "sourcePath": "charts/bookshelfng/templates/NOTES.txt",
+      "decision": "map",
+      "targetPath": "charts/bookshelfng/templates/NOTES.txt",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "The same-path chart notes describe the destination chart. Their presence does not validate an upgrade or rollback between chart identities.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves charts/bookshelfng/templates/NOTES.txt to blob 2a1388eebde34120ea90db1f2aaf19c73b94abb1 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves charts/bookshelfng/templates/NOTES.txt to blob fc4d913409db0e3e47ba9603bfbf4064bad1f7b6 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "distribution/windows/installer-net/Readarr.Installer.csproj",
+      "decision": "map",
+      "targetPath": "distribution/windows/installer-net/ChaptarrNG.Installer.csproj",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "The installer project identity and assembly were renamed to ChaptarrNG while retaining the migration-only Windows installer role.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves distribution/windows/installer-net/Readarr.Installer.csproj to blob 77940fb100b7c2ecfa9f3a2c7d6a05c332cbfcc5 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves distribution/windows/installer-net/ChaptarrNG.Installer.csproj to blob 7686f38d1703df9e0fde3e29d9a38c4a8ddb5459 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "docs/audiobookshelf-metadata.md",
+      "decision": "map",
+      "targetPath": "docs/EXTERNAL_LIBRARY_INTEGRATIONS.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target external-integration guide covers AudioBookShelf sidecars and synchronization; the feature guide records narrator and metadata-profile behavior.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves docs/audiobookshelf-metadata.md to blob e3d335c59646112b9e2bba552d35a306602e90b3 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves docs/EXTERNAL_LIBRARY_INTEGRATIONS.md to blob c53e57f32220e34b939c6628aee0f8e2d32e1514 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "docs/author-metadata-refresh.md",
+      "decision": "map",
+      "targetPath": "docs/AUTHOR_METADATA_REFRESH.md",
+      "reviewedBy": "Codex documentation review (2026-10-21)",
+      "rationale": "The ChaptarrNG guide covers durable author identity and data, freshness rules, manual refresh, provider pacing, caches, and failure behavior. It states the different author storage model and current release limits; this is a documentation counterpart, not a runtime equivalence claim.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves docs/author-metadata-refresh.md to blob 2d27207a02a503b64e83356bf691a2035d075e15 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves docs/AUTHOR_METADATA_REFRESH.md to blob 7899dc10ce52b8fcd2b4761da258c1595d4304f3 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "docs/booklore-integration.md",
+      "decision": "map",
+      "targetPath": "docs/BOOKLORE_INTEGRATION.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The target guide covers BookLore BookDrop setup, canonical URLs, upload behavior, and the migration rule that saved BookLore settings are not silently reassigned to BookOrbit.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves docs/booklore-integration.md to blob 3cc7b122eba21f480bae342a0e8ceb3f1865e172 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves docs/BOOKLORE_INTEGRATION.md to blob e992967fa0fdb3fa455661e8dbe84d94b08fd3de (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "docs/catalog-metadata-and-unmapped-files.md",
+      "decision": "map",
+      "targetPath": "docs/SUPPLEMENTAL_METADATA.md",
+      "reviewedBy": "Codex documentation review (2026-10-21)",
+      "rationale": "The source guide covers supplemental catalog fields and retrying unmapped files. ChaptarrNG separates these into SUPPLEMENTAL_METADATA and UNMAPPED_FILES, including provider identity and safe retry behavior.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves docs/catalog-metadata-and-unmapped-files.md to blob 5c4192481ac1f071372408b4c59bc164fc0d9e86 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves docs/SUPPLEMENTAL_METADATA.md to blob 38a594d3f845dbbe3205162f009b081225686ce2 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "docs/encrypted-backups.md",
+      "decision": "map",
+      "targetPath": "docs/BOOKSHELFNG_ENCRYPTED_BACKUPS.md",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "The BookshelfNG guide documents its portable encrypted archive format and API; the ChaptarrNG guide documents that compatibility contract alongside ChaptarrNG backup behavior.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves docs/encrypted-backups.md to blob c7a42badf7f3b6acf727a0e8622aed6e0579583c (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves docs/BOOKSHELFNG_ENCRYPTED_BACKUPS.md to blob 52b1f74537e236a84eb39e014b76f8364263ba62 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "docs/integrations/snapetech-mcp.md",
+      "decision": "map",
+      "targetPath": "docs/integrations/snapetech-mcp.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The same-path ChaptarrNG guide documents the MCP tools, API access, and credential and data boundaries.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves docs/integrations/snapetech-mcp.md to blob 2c046e022cff24caa754a604935c8cef92a4b5e9 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves docs/integrations/snapetech-mcp.md to blob 6b96cdf9b43657bd9f392ab24f7be39104e1ef65 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "docs/maintainers/setup-experience-contract.md",
+      "decision": "map",
+      "targetPath": "docs/development/setup-experience-contract.md",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves docs/maintainers/setup-experience-contract.md to blob 279d71870c2d73eb8c1fa13d38f9620907fb1f7b (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves docs/development/setup-experience-contract.md to blob 4adc422e288dc1fb5e02be9de0f07d83c63cf3f3 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "docs/media-storage.md",
+      "decision": "map",
+      "targetPath": "docs/MEDIA_MOVES.md",
+      "reviewedBy": "Codex documentation review (2026-10-21)",
+      "rationale": "The ChaptarrNG media guide covers opt-in new-author path initialization, single and bulk moves, preview/start, registered sidecars, API and CLI use, conflicts, and partial failures. The migration guide and README cover the boundary between media moves and database consolidation; this is documentation coverage, not real-media acceptance.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves docs/media-storage.md to blob eaa088c7888a40d0ac4847f85e28c80dfbff131d (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves docs/MEDIA_MOVES.md to blob 93bb93ff06ba2d5c40e4a50c2d11235417785126 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "docs/reporting-issues.md",
+      "decision": "map",
+      "targetPath": "docs/REPORTING_ISSUES.md",
+      "reviewedBy": "Codex documentation review (2026-10-20)",
+      "rationale": "The ChaptarrNG guide adapts the request-correlation, log-location, environment-detail, SeerrNG, and migration-reporting guidance and adds ChaptarrNG-specific names and privacy advice.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves docs/reporting-issues.md to blob 7c83501bf8577905f4970987a3e5c1f7c3ab68f5 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves docs/REPORTING_ISSUES.md to blob 67c8ac9af81df405febcfd9fd9bf97c901be1754 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Author/Edit/EditAuthorModalContent.js",
+      "decision": "map",
+      "targetPath": "frontend/src/Author/Edit/EditAuthorModalContent.js",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "ChaptarrNG's author editor exposes a selected-format record and can reset its format profile overrides to the current defaults from the selected root folder. The row-to-editor regression checks the editor's requested media type for overview, poster, and table views; selector and service tests check nullable reset and current-root default application while preserving the other format. BookshelfNG stores both formats on one author, so this ports the user outcome through ChaptarrNG's separate-format model; representative operator acceptance remains open.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves frontend/src/Author/Edit/EditAuthorModalContent.js to blob ae5fded71e08dc36b9c1709f580f61b47e5c0da5 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves frontend/src/Author/Edit/EditAuthorModalContent.js to blob 1e230cf75a758cf8b02d5a260209226ac61fbbfa (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Author/Edit/EditAuthorModalContentConnector.js",
+      "decision": "map",
+      "targetPath": "frontend/src/Author/Edit/EditAuthorModalContentConnector.js",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "The ChaptarrNG editor connector loads the selected format's root folders and profiles, and the editor receives the book row's media type. Regression coverage verifies the row-to-editor handoff plus current-root profile reset and service application. This is a port into separate ChaptarrNG format records, not an identical combined-author data model; real-library and browser acceptance remain open.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves frontend/src/Author/Edit/EditAuthorModalContentConnector.js to blob d11d0149078334c80cdebc8a38495213087268b8 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves frontend/src/Author/Edit/EditAuthorModalContentConnector.js to blob 63a7d34a0add425725f7871fe689a7cb6a3aca4d (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Components/Form/MetadataProfileSelectInputConnector.js",
+      "decision": "map",
+      "targetPath": "frontend/src/Components/Form/MetadataProfileSelectInputConnector.js",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "The ChaptarrNG metadata selector retains profile and inheritance choices and adds an explicit selected-root-default option that saves as a nullable API value. Its focused regression covers the root-default value and ordinary profile selection. The control supports the migrated per-format editing outcome; provider/profile acceptance on operator data remains open.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves frontend/src/Components/Form/MetadataProfileSelectInputConnector.js to blob 8a42221a8e58921046aa75bf2af3f94775e6dcb7 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves frontend/src/Components/Form/MetadataProfileSelectInputConnector.js to blob 910e271e4cb7ddc7ee054a3caab74114bf1c90f6 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Components/Form/QualityProfileSelectInputConnector.js",
+      "decision": "map",
+      "targetPath": "frontend/src/Components/Form/QualityProfileSelectInputConnector.js",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "The ChaptarrNG quality selector preserves the existing no-change and none sentinel behavior while allowing an author format override to clear to null and use the selected root folder's current default. Focused tests cover nullable API values and existing selector behavior; representative operator acceptance remains open.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves frontend/src/Components/Form/QualityProfileSelectInputConnector.js to blob d9211cacf80a281ba920359745a5380e3487b1ab (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves frontend/src/Components/Form/QualityProfileSelectInputConnector.js to blob 9a344c009bce54ad269e58122b0ed681d5c323e4 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/Search/Book/AddNewBookSearchResult.js",
+      "decision": "map",
+      "targetPath": "frontend/src/Search/Book/AddNewBookSearchResult.js",
+      "reviewedBy": "Codex feature review (2026-10-21)",
+      "rationale": "ChaptarrNG retains the BookshelfNG search-result card and add-modal flow, makes add eligibility explicit when provider book and author IDs are available, and explains when a missing format cannot be added because an identity is unavailable. The focused helper tests cover missing IDs, existing formats, and the eligible case.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves frontend/src/Search/Book/AddNewBookSearchResult.js to blob da84a26c49e42bb0e8bf94784e1d7455cb3430b9 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves frontend/src/Search/Book/AddNewBookSearchResult.js to blob 35a28b3dfe2ada37dc0644e0597c5f0ea40a0678 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/UnmappedFiles/UnmappedFilesTable.js",
+      "decision": "map",
+      "targetPath": "frontend/src/UnmappedFiles/UnmappedFilesTable.js",
+      "reviewedBy": "Codex feature review (2026-10-21)",
+      "rationale": "The table retains BookshelfNG's unmapped-file list and selection actions while using ChaptarrNG's explicit all/selected selection model, separate audiobook/ebook filtering, range selection, refresh and retry actions, and review-log preview. It now reports initial-load failures with in-place retry, keeps file actions disabled until a successful nonempty load, and gives row controls accessible names.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves frontend/src/UnmappedFiles/UnmappedFilesTable.js to blob cf4eac2593d3a7b3822dfb7e6b47069db6abce4d (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves frontend/src/UnmappedFiles/UnmappedFilesTable.js to blob fb4def5075b51d521058b6403632c9457fbc8983 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "frontend/src/UnmappedFiles/UnmappedFilesTableConnector.js",
+      "decision": "map",
+      "targetPath": "frontend/src/UnmappedFiles/UnmappedFilesTable.js",
+      "reviewedBy": "Codex feature review (2026-10-21)",
+      "rationale": "The table retains BookshelfNG's unmapped-file list and selection actions while using ChaptarrNG's explicit all/selected selection model, separate audiobook/ebook filtering, range selection, refresh and retry actions, and review-log preview. It now reports initial-load failures with in-place retry, keeps file actions disabled until a successful nonempty load, and gives row controls accessible names.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves frontend/src/UnmappedFiles/UnmappedFilesTableConnector.js to blob cb93ff7417b14d7ac35156d5521c25a1f25db65a (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves frontend/src/UnmappedFiles/UnmappedFilesTable.js to blob fb4def5075b51d521058b6403632c9457fbc8983 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "packaging/chocolatey/bookshelfng.nuspec",
+      "decision": "map",
+      "targetPath": "packaging/legacy/chocolatey/bookshelfng.nuspec.in",
+      "reviewedBy": "Codex distribution review (2026-10-21)",
+      "rationale": "The target preserves the existing bookshelfng package ID and NSSM dependency, and identifies the package as a migration update to standard ChaptarrNG. The template is rendered with the verified release version and archive checksum.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves packaging/chocolatey/bookshelfng.nuspec to blob 3945668fca97c69aaea5e8277472b5851459625c (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves packaging/legacy/chocolatey/bookshelfng.nuspec.in to blob 509cb3504b23216a4658e75ea14cf467fa9654ec (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "packaging/chocolatey/tools/chocolateyuninstall.ps1",
+      "decision": "map",
+      "targetPath": "packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1",
+      "reviewedBy": "Codex distribution review (2026-10-21)",
+      "rationale": "The target removes the legacy service and application payload but preserves the BookshelfNG data directory and migration backup, matching the old package\u2019s data-retention behavior while protecting the rollback source.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves packaging/chocolatey/tools/chocolateyuninstall.ps1 to blob 8947e46c8f848ade46a0db068e7a1152494ff2e8 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves packaging/legacy/chocolatey/tools/chocolateyuninstall.ps1 to blob 718ea4ae562d6797eb175c707f5a8eb769f10c74 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "packaging/debian/changelog",
+      "decision": "retire",
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to complete BookshelfNG retirement and discard work proven irrelevant.",
+      "rationale": "This static source-package changelog contains only a 0.0.0-1 placeholder entry. The candidate binary bridge receives its version from the validated ChaptarrNG release VERSION and does not build a Debian source package. Retire this obsolete source-build metadata only; the BookshelfNG package identity remains available through the gated candidate bridge.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves packaging/debian/changelog to blob 0b88684eff16328b9d6e0f75ded9e549097c0974 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b has no target path claimed for this source-only disposition. Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "packaging/debian/copyright",
+      "decision": "map",
+      "targetPath": "LICENSE",
+      "reviewedBy": "Codex Debian packaging review (2026-10-21)",
+      "rationale": "The bridge installs the ChaptarrNG archive LICENSE as /usr/share/doc/bookshelfng/copyright when constructing the legacy-identity package. The package-level license payload is present; maintainer attribution text is not preserved as a separate Debian source-package file.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves packaging/debian/copyright to blob bbd58fd3abb15e89d6f311b4e69101e79336c833 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves LICENSE to blob 9cecc1d4669ee8af2ca727a5d8cde10cd8b2d7cc (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "packaging/debian/source/format",
+      "decision": "retire",
+      "approvedBy": "User (explicit BookshelfNG retirement direction, 2026-10-21)",
+      "approvalReference": "User instruction to complete BookshelfNG retirement and discard work proven irrelevant.",
+      "rationale": "This declaration applies only to the old Debian source-package build. The ChaptarrNG bridge constructs a binary package from a verified release archive and does not produce a quilt source package. Retire this build-only metadata; no runtime or package-channel behavior is claimed.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves packaging/debian/source/format to blob 163aaf8d82b6c54f23c45f32895dbdfdcc27b047 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b has no target path claimed for this source-only disposition. Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "packaging/systemd/bookshelfng.env",
+      "decision": "map",
+      "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.env",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "Both files describe the environment file used by the BookshelfNG package identity; link them for direct comparison without claiming the variables are equivalent.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves packaging/systemd/bookshelfng.env to blob 78cff13a4f75b09751a7ab50776606bcfce7c0d7 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.env to blob ae125a6a64870d2a33fae87b16236d82a6d95f7b (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "packaging/systemd/bookshelfng.sysusers",
+      "decision": "map",
+      "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.sysusers",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "Both files define the system user for the BookshelfNG package identity; link them for direct comparison without claiming account behavior is equivalent.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves packaging/systemd/bookshelfng.sysusers to blob af14a749df38a42a59fad4853b470a6a704c4d2f (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.sysusers to blob c2bac860d78fe05d07a6d7181276cc0bdb0efdae (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "packaging/systemd/bookshelfng.tmpfiles",
+      "decision": "map",
+      "targetPath": "packaging/legacy/aur/bookshelfng-bin/bookshelfng.tmpfiles",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "Both files define the appdata directory for the BookshelfNG package identity; link them for direct comparison without claiming the setup is equivalent.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves packaging/systemd/bookshelfng.tmpfiles to blob 4b71e32f31b4230eb4d3f94b3936e4083d4ac2bc (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves packaging/legacy/aur/bookshelfng-bin/bookshelfng.tmpfiles to blob e0d0e6a62dee56ae170946294f429fdee99b0ddd (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "patches/braces/PATCH.md",
+      "decision": "map",
+      "targetPath": "patches/braces/PATCH.md",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "Both files describe the maintained braces security patch. They differ in repository context, so the mapping is for direct source review and does not assert runtime equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves patches/braces/PATCH.md to blob 096b5cd550d0424c4fc83e578b23ca8ecab4691f (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves patches/braces/PATCH.md to blob fb119fff0fb93c0eb0c2ebec3f4a0e3e1d92bba1 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "scripts/bookshelf-bulk-move-media.sh",
+      "decision": "map",
+      "targetPath": "scripts/chaptarr-bulk-move-media.sh",
+      "reviewedBy": "Codex feature review (2026-10-21)",
+      "rationale": "The bulk helper is ported to ChaptarrNG with its product name and key-variable updated. It calls the existing guarded bulk preview/start endpoints; the new media-move guide documents its use.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves scripts/bookshelf-bulk-move-media.sh to blob 61f8aa666943aa2fc7853c81458972b8e0fbdcc3 (mode 100755). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves scripts/chaptarr-bulk-move-media.sh to blob 6fce0b7ab9d122a6122ef68db8f20c0e4717cd82 (mode 100755). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "scripts/bookshelf-move-media.sh",
+      "decision": "map",
+      "targetPath": "scripts/chaptarr-move-media.sh",
+      "reviewedBy": "Codex feature review (2026-10-21)",
+      "rationale": "The single-author helper is ported to ChaptarrNG with its product name and key-variable updated. It calls the existing guarded preview/start endpoints; the new media-move guide documents its use.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves scripts/bookshelf-move-media.sh to blob 2d26b62d2ba3bb11037338dad70af63ee0341af2 (mode 100755). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves scripts/chaptarr-move-media.sh to blob c73568696f8ac80082e2c6c41665a2d35c9ff176 (mode 100755). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "scripts/bookshelf-retry-unmapped.sh",
+      "decision": "map",
+      "targetPath": "scripts/chaptarr-retry-unmapped.sh",
+      "reviewedBy": "Codex feature review (2026-10-21)",
+      "rationale": "The single-author style command helper is ported to ChaptarrNG using its current RetryUnmappedMatch command and explicit all-format unmapped-file selection. It retains optional wait and JSON output.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves scripts/bookshelf-retry-unmapped.sh to blob f549bb7bd147e4f562496975c512edc2e925cca5 (mode 100755). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves scripts/chaptarr-retry-unmapped.sh to blob 05904000f6df044e08a89df60df5858b53a16959 (mode 100755). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "scripts/require-bookshelfng-release-ready.sh",
+      "decision": "map",
+      "targetPath": "packaging/scripts/require-release-readiness.sh",
+      "reviewedBy": "Codex release-readiness review (2026-10-21)",
+      "rationale": "Maps the legacy single-flag BookshelfNG publishing guard to ChaptarrNG\u2019s dual-readiness guard. The target also requires CHAPTARRNG_RELEASE_READY, keeping publication closed until both sides of retirement readiness are accepted.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves scripts/require-bookshelfng-release-ready.sh to blob 538d1abc50458e9116957c7325d5d56370a04034 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves packaging/scripts/require-release-readiness.sh to blob d9b361891f28e5aea308134f98178d909a818368 (mode 100755). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj",
+      "reviewedBy": "Codex implementation-and-fixture review (2026-10-21)",
+      "rationale": "The BookshelfNG diagnostics project is represented by ChaptarrNG\u2019s renamed diagnostics project, which references the Chaptarr Core project and builds the optional diagnostics assembly. Project-name and framework metadata are adapted to the destination repository.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/Bookshelf.Diagnostics/Bookshelf.Diagnostics.csproj to blob a8942209813aa20508739d887e4cbe60eee10123 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Diagnostics/Chaptarr.Diagnostics.csproj to blob 33a79b29c57dde82e4e6aa7357f0aff6bcaf3b37 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/Bookshelf.Diagnostics/DiagnosticsEventHandler.cs to blob fc0dca284e776666a78b08b2c43cc726fb5a2b92 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Diagnostics/DiagnosticsEventHandler.cs to blob 6f811aca3d651db095fac8b706cd0015df120854 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/Bookshelf.Diagnostics/DiagnosticsReporter.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Diagnostics/DiagnosticsReporter.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/Bookshelf.Diagnostics/DiagnosticsReporter.cs to blob c93e85d5a2aed7c22a582ba5bcaa8a4ed1862d08 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Diagnostics/DiagnosticsReporter.cs to blob f98d8380bee5b31da339e8f746ee33a50a3c35cf (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/Bookshelf.Diagnostics/README.md",
+      "decision": "map",
+      "targetPath": "docs/OPTIONAL_DIAGNOSTICS.md",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "The ChaptarrNG page documents its optional diagnostics module and privacy boundaries; this maps operator guidance and does not establish event parity.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/Bookshelf.Diagnostics/README.md to blob cd58ed2a9dfb9209a81d0b30096dda1ceb9ec7d4 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves docs/OPTIONAL_DIAGNOSTICS.md to blob 81a9bf497f5ba3b74f737c65cf4abe94ccd33783 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Api.Test/Books/BookLookupControllerFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Api/BookLookupControllerProviderLookupFixture.cs",
+      "reviewedBy": "Codex (2026-10-21)",
+      "rationale": "The target lookup controller and fixture preserve remote lookup author identity, edition identity, and monitored state in the returned resource.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Api.Test/Books/BookLookupControllerFixture.cs to blob f4ff3443ebe75e6fc4cef887c7057ac853baf117 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Core.Test/Api/BookLookupControllerProviderLookupFixture.cs to blob a4b5bebe7fb2f31e13bf4e3682fa1d1283342df6 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Common.Test/DiskTests/DiskTransferServiceFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Common.Test/DiskTests/DiskTransferServiceFixture.cs to blob 8015ff93cbe400f6620a964e3a9f08b98c6c6402 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Core.Test/Common/DiskTransferServiceFixture.cs to blob ea9b0cf4b7a4cc39e0d030a24d79e81a0727d644 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Common.Test/Http/HttpClientRedirectSecurityFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Http/HttpClientCrossOriginRedirectSecurityFixture.cs",
+      "reviewedBy": "Codex security parity review (2026-10-21)",
+      "rationale": "The fixture covers the BookshelfNG redirect-security contract and adds checks for destination URL credentials and same-origin handling.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Common.Test/Http/HttpClientRedirectSecurityFixture.cs to blob 481e6d3e6b704a18a836ebc69769678e17c17db0 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Core.Test/Http/HttpClientCrossOriginRedirectSecurityFixture.cs to blob 884ef731064f5ac9d4b24cf096692926cdf14865 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Common/Http/HttpClient.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Common/Http/HttpClient.cs",
+      "reviewedBy": "Codex security parity review (2026-10-21)",
+      "rationale": "ChaptarrNG now blocks cross-origin redirects when the outgoing request contains API keys or authentication headers, credentials, cookies, URL user info, or a body. Safe public redirects and unrelated custom headers remain supported; same-origin sensitive redirects remain allowed.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Common/Http/HttpClient.cs to blob 04ef31b51ae1e8e2b076c4849025edd7cc9027a0 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Common/Http/HttpClient.cs to blob 93b825eace0d0782fa666820bbffaf8f2a5c489b (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/Direct/DirectDownloadPlaywrightBrowserFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core.Test/Download/DownloadClientTests/Direct/DirectDownloadPlaywrightBrowserFixture.cs to blob ba861bb27821ec98bfcf50249507870fd8397b1f (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Core.Test/Download/DirectDownload/DirectDownloadPlaywrightBrowserFixture.cs to blob ece4f87621c5011a11cae4a73425ce790b8058bd (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core.Test/Download/DownloadClientTests/QBittorrentTests/QBittorrentProxyV2Fixture.cs to blob 0cf6f600593943ef1d6f7bf57fad4ddc85ea012a (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Core.Test/Download/QBittorrentProxyV2Fixture.cs to blob de27b7b979855803c2e8dc2ec9fb34bfdf4b333b (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core.Test/MetadataSource/Hardcover/HardcoverMetadataProxyFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs",
+      "reviewedBy": "Codex path mapping review (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core.Test/MetadataSource/Hardcover/HardcoverMetadataProxyFixture.cs to blob da74827257f34249a6794392f38ad83541eed4d8 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Core.Test/MetadataSource/HardcoverMetadataProxyFixture.cs to blob 44a641b87995e00a865d28ba6547496acbc29743 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core.Test/NotificationTests/BookLore/BookLoreProxyFixture.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core.Test/NotificationTests/BookLore/BookLoreProxyFixture.cs to blob 8be864c5003d13b1bbd1e035b97f69a1a5dec1a1 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Core.Test/Notifications/BookLoreProxyFixture.cs to blob 156abd6e060bd7cf2aeb90d78aa92eb9f0c1dd03 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Backup/EncryptedBackupService.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Backup/BookshelfEncryptedBackupService.cs",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "ChaptarrNG implements the BKSENC01 passphrase envelope in BookshelfEncryptedBackupService and routes encrypted restore through BackupController. The source backup fixture and ChaptarrNG compatibility fixture validate the legacy format; this is a path-level port record, while live representative restore acceptance remains separate.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/Backup/EncryptedBackupService.cs to blob 1237a124a6833682421ca6bc0a3bb5047519e1cf (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/Backup/BookshelfEncryptedBackupService.cs to blob acd68dcc5923e0bcb5b95bf52f67249ac8169277 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Model/SeriesBookLinkExtensions.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Books/BookSeriesLabel.cs",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "BookSeriesLabel.SelectDisplayLink applies preferred-series terms and primary-link preference, then stable position and title tie-breakers; it replaces the source helper role and additionally keeps a displayed title and position on one authoritative link. Focused tests cover preference and deterministic selection.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/Books/Model/SeriesBookLinkExtensions.cs to blob 92f42af69cd5f188fae57a97794a0e5ccb1d3d4a (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/Books/BookSeriesLabel.cs to blob 88d4cc21c1ec35c324b563307be96145c39fb90c (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Books/Utilities/AuthorLocationResolver.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Books/Utilities/AuthorPathBuilder.cs",
+      "reviewedBy": "Codex path review (2026-10-22)",
+      "rationale": "AuthorPathBuilder creates and repairs format-specific author paths under configured roots. Focused builder and startup-repair tests cover preserving distinct safe ebook and audiobook directories under one shared root; this path mapping does not claim full behavioral equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/Books/Utilities/AuthorLocationResolver.cs to blob 7f83499e1c193084fa7e7f1599aa3d796e7d38a5 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/Books/Utilities/AuthorPathBuilder.cs to blob a22cd6f2f03fde47b475d1451515e77c2c400860 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/Datastore/Migration/041_bookfile_last_remote_search.cs to blob c6bf05691302d6d3fbd8047f2d0d15d0e2ccb507 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/Datastore/BookshelfMigration/041_bookfile_last_remote_search.cs to blob 4306ca97e6635a6d70c1051b959010e890dae7b0 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/Datastore/Migration/042_preferred_edition_terms.cs to blob f171971c0a4190c3b79a007c2448bb2d01f25d02 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/Datastore/BookshelfMigration/042_preferred_edition_terms.cs to blob 6a50101accaa91067cda64f267bb2dd25aca7218 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/Datastore/Migration/043_preferred_series.cs to blob 5169a74f522134a8ce1d4b0a1a54bf9fbabd8589 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/Datastore/BookshelfMigration/043_preferred_series.cs to blob b4ec33b3af67fd6343dfa947111abe6ecd3c1a1e (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/Datastore/Migration/044_add_edition_narrator.cs to blob 83e2bf616c469a2e731ec1cb40dd1ea6a4a6d2ee (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/Datastore/BookshelfMigration/044_add_edition_narrator.cs to blob a1b316dd046a7446db92d839c23681521b17a64c (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/Datastore/Migration/045_add_author_format_paths.cs to blob 3d81aed6df3836af0acb64afbbdedf5402952a85 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/Datastore/BookshelfMigration/045_add_author_format_paths.cs to blob 951809e519155952248c094e9f532631a5162438 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/Datastore/Migration/046_add_author_format_profiles.cs to blob 5b050f9f00e6c4e62cec30b9e0f3e7946bd456fa (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/Datastore/BookshelfMigration/046_add_author_format_profiles.cs to blob 4565e63151b6a7495a039aa9c6e226c77a10743f (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/Extras/Metadata/Consumers/AudiobookshelfMetadata.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/Extras/Metadata/Consumers/LegacyAudiobookshelfMetadata.cs",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "ChaptarrNG carries the legacy Audiobookshelf OPF metadata behavior in LegacyAudiobookshelfMetadata and exercises it with the legacy OPF fixture. The distinct class name preserves an explicit legacy boundary.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/Extras/Metadata/Consumers/AudiobookshelfMetadata.cs to blob 5afa240bd12656b7e43b5f6c65b9c766b6ec1f3b (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/Extras/Metadata/Consumers/LegacyAudiobookshelfMetadata.cs to blob 582ee6208fea7bab444e9168f2e2573c4069f88e (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Host/SecurityHeadersMiddleware.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs",
+      "reviewedBy": "Codex path recheck (2026-10-20)",
+      "rationale": "The path/name identifies the likely counterpart and should be compared directly; the mapping does not assert behavioral or feature equivalence.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Host/SecurityHeadersMiddleware.cs to blob 00e7d808cfabad49319e11120f19140ecf899eee (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Http/Middleware/SecurityHeadersMiddleware.cs to blob 8431eed63d8597c037d48750a8d155eef4bec62e (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Api.V1/Books/PagedBookResource.cs",
+      "decision": "map",
+      "targetPath": "src/Chaptarr.Api.V1/Books/PagedBookApiResource.cs",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "ChaptarrNG exposes offset, page size, total count, and records through GET /api/v1/book/paged using PagedBookApiResource and BookController.GetBooksPaged. The restricted SeerrNG key permits this read route; integration and operator migration acceptance remain separate.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/Readarr.Api.V1/Books/PagedBookResource.cs to blob 4033b347ae232c63e01ee3b59c475c58c2a9f3db (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/Chaptarr.Api.V1/Books/PagedBookApiResource.cs to blob 13e5dd6aa33b8770094607da5df20f92a206a993 (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/Readarr.Http/Authentication/FirstRunAuthenticationSetup.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Host/FirstRunAuthenticationSetup.cs",
+      "reviewedBy": "Codex feature review (2026-10-21)",
+      "rationale": "ChaptarrNG now preserves BookshelfNG's first-run account recovery behavior: when authentication is configured but no local account exists, startup disables authentication so the existing first-run account setup can proceed. Existing users keep their configured mode, and a non-loopback listener gets a security warning.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/Readarr.Http/Authentication/FirstRunAuthenticationSetup.cs to blob e48358c33f8cbae598173db3a97321c92f2a87c3 (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Host/FirstRunAuthenticationSetup.cs to blob c076d5754e3b07fb214ddeb36ae9a42241aab52d (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/TagLibSharp/PATCHES.md",
+      "decision": "map",
+      "targetPath": "src/TagLibSharp/PATCHES.md",
+      "reviewedBy": "Codex path review (2026-10-20)",
+      "rationale": "Both files record local TagLib patch maintenance. Map for direct review only; the existing equivalent disposition carries the separate content review.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/TagLibSharp/PATCHES.md to blob b6406bfbf4d55af9feb3e46bdba122d991a91e7f (mode 100644). ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/TagLibSharp/PATCHES.md to blob 2846170980e58b2a1e6f87342878b7c9563c288b (mode 100644). Prior review is carried forward only where the pinned source and target blobs are unchanged; this is path-level evidence, not runtime or migration acceptance."
+    },
+    {
+      "sourcePath": "src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs",
+      "decision": "map",
+      "targetPath": "src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs",
+      "reviewedBy": "Codex focused behavior review (2026-10-23)",
+      "rationale": "This mapping is reviewed narrowly for the BookshelfNG RSS fuzzy-title parsing fallback. The rest of the source path remains subject to separate semantic review.",
+      "evidence": "Source 1bd7f2dcac6e01a954f7f3401d2550d593960854 resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 5b65f962b98aef14a76344f1ee7455a177f95eca. ChaptarrNG target bd5893120c24ada8ea492edc1ce21cd5cdc24d8b resolves src/NzbDrone.Core/DecisionEngine/DownloadDecisionMaker.cs to blob 78eb94965d0bffe5a3d8941c6c527cb0ed92c633; its focused regression fixture src/Chaptarr.Core.Test/DecisionEngine/DownloadDecisionMakerParsingFallbackFixture.cs is blob 123120540ea7deac43e1fe5d02be75d31df60eb4. The evidence supports this fallback behavior only, not whole-file parity."
+    }
+  ]
+}

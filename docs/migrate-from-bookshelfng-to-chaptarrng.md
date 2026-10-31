@@ -1,6 +1,36 @@
 # Move a BookshelfNG installation to ChaptarrNG
 
-BookshelfNG 0.4.21.71 and ChaptarrNG v0.9.977 remain the latest public releases; the owner authorized one final BookshelfNG .72 security-maintenance update, pending exact-head CI and publication. ChaptarrNG main is pinned at 7cf7a00019e5623645e4f9e5517c6b9510b0b415 and includes the shared-root author-path fix. The full Chaptarr.Core.Test suite passed locally: 4,607 passed, 0 failed, 19 skipped. Exact-head hosted validation is in progress. No release, package, image, installer, or migration bridge has been published.
+As of 2026-10-31, BookshelfNG `0.4.21.76` and ChaptarrNG `v0.9.977` remain
+the latest public releases. ChaptarrNG `main` is
+`4e5f895c5d30f2d1a775f76426e8d0ea176848cb`, with application source snapshot
+`bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`. PR
+[#183](https://github.com/snapetech-org/chaptarrng/pull/183) merged at
+`96c953b2`; the BookshelfNG handoff runs through the ordinary ChaptarrNG
+product and does not use a compatibility build. Follow-up main commits retain
+the legacy Docker port contracts.
+
+The visible PR Build [41168525352](https://github.com/snapetech-org/chaptarrng/actions/runs/41168525352)
+is waiting at `96c953b2`; the visible main private-JIT dispatch
+[41168115692](https://github.com/snapetech-org/chaptarrng/actions/runs/41168115692)
+is queued at older SHA `64689f1`; the macOS handoff and Helm jobs are also
+queued on older source, and ten platform/archive jobs in standalone-assets
+remain queued at that SHA. No exact-head pass for application source `bd589312`
+is recorded. No release, package, image, installer, or identity bridge has
+redirected BookshelfNG users. Migration apply remains frozen. The documented
+migration-158 SQLite path is bounded evidence; older schema lineages,
+PostgreSQL conversion, full settings/provider/credential mapping, populated
+operator data, installed rollback, and every distribution channel remain
+separate acceptance gates. Keep BookshelfNG running and backed up until those
+gates pass.
+
+The current schema-v4 audit compares BookshelfNG source
+`1bd7f2dcac6e01a954f7f3401d2550d593960854` with ChaptarrNG application source
+snapshot `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`: 1,174 changed paths, 56
+reviewed mappings, 587 dispositions, and 587 paths without a final disposition.
+The merged PR #183 changes are included in the target. Path counts are source-review
+records, not missing-feature or migration-acceptance counts. See the
+[consolidation report](docs/maintainers/chaptarr-consolidation.md) and its
+[dated inventory](docs/maintainers/chaptarr-consolidation-inventory-20261031.json).
 
 A Debian Trixie apt transaction upgraded the checksum-verified public BookshelfNG `.71` package to a local ChaptarrNG `.977` candidate and downgraded back with real dependency resolution, including `libicu76` and `ca-certificates`; apt installed the CA bundle. In a systemd-running Trixie container, an active `.71` service upgraded to the candidate, restarted, and passed `/ping`; after restoring the pre-upgrade data copy, downgrade to `.71` restarted and passed `/ping`. An edited environment conffile and data canary survived without an apt conffile prompt. The candidate ran against a fresh empty `.71` database; this is not populated-data migration or operator rollback evidence.
 

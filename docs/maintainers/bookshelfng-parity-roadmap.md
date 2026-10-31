@@ -1,50 +1,48 @@
 # BookshelfNG feature inventory and ChaptarrNG retirement matrix
 
-**Current status (2026-10-30)**
+**Current status (2026-10-31)**
 
-BookshelfNG `0.4.21.76` and ChaptarrNG `v0.9.977` are the latest public
-releases. ChaptarrNG current `main` is `64689f1f`. PR
-[#183](https://github.com/snapetech-org/chaptarrng/pull/183) proposes the
-one-image migration handoff and is not merged or released. The prior Build
-[#41164597664](https://github.com/snapetech-org/chaptarrng/actions/runs/41164597664)
-was cancelled on older head `474a3541`. Its prior PR dispatch
-[#41167825847](https://github.com/snapetech-org/chaptarrng/actions/runs/41167825847)
-was queued before the latest private-JIT route was merged into the PR; the
-updated exact-head checks have not started. The BookshelfNG legacy
-bridge run
-[#41157387864](https://github.com/snapetech-org/bookshelfng/actions/runs/41157387864)
-is waiting behind 16 earlier bridge runs with no jobs started; no BookshelfNG package, image, installer,
-updater, or chart identity has been redirected.
+BookshelfNG `0.4.21.76` and ChaptarrNG `v0.9.977` remain the latest public
+releases. ChaptarrNG `main` is `4e5f895c`; its application source snapshot is
+`bd589312`. PR
+[#183](https://github.com/snapetech-org/chaptarrng/pull/183) merged at
+`96c953b2`; follow-up commits preserve the legacy Docker port contracts in
+the standard ChaptarrNG product. No compatibility image was added.
 
-BookshelfNG remains in service until every enhanced capability, setting,
-identity, client contract, migration/data path, rollback path, and applicable
-installation channel is individually accepted. ChaptarrNG's later upstream
-retirement is a separate cumulative gate that also includes every maintained,
-active, and unreleased ChaptarrNG capability, including the localization and
-RTL work now in its source. Path dispositions do not close behavior or
-operator-acceptance gates.
+Build run [41168525352](https://github.com/snapetech-org/chaptarrng/actions/runs/41168525352)
+is waiting on the PR merge head `96c953b2`. The visible main private-JIT run
+[41168115692](https://github.com/snapetech-org/chaptarrng/actions/runs/41168115692)
+is queued at older head `64689f1`; the macOS handoff and Helm jobs are also
+queued on older source. Standalone-assets run
+[41168142569](https://github.com/snapetech-org/chaptarrng/actions/runs/41168142569)
+completed its frontend job, while ten platform/archive jobs remain queued at
+`64689f1`. No exact-head pass for application source `bd589312` is recorded.
+No BookshelfNG package, image, installer, updater, or chart
+identity has been redirected. Keep BookshelfNG in service until each enhanced
+capability, setting, identity, client contract, migration/data path, rollback
+path, and installation channel is individually accepted. The later ChaptarrNG
+upstream retirement gate is cumulative and also includes every maintained,
+active, and unreleased ChaptarrNG capability, including localization and RTL.
+Path dispositions do not close behavior or operator-acceptance gates.
 
-The organization requires all build, test, scan, package, and release jobs to
-use private ephemeral JIT runners, with no hosted fallback. Missing native
-platform capacity blocks validation. The dated inventories and candidate
-results below retain their original source pins and are not current acceptance
-evidence. See the
-[current consolidation status](chaptarr-consolidation.md#current-status--2026-10-30)
+All build, test, scan, package, and release jobs require private ephemeral JIT
+runners with no hosted fallback. Preserve the existing queued runs; do not
+claim validation from a merge head or older main SHA. See the
+[current consolidation status](chaptarr-consolidation.md#current-status--2026-10-31)
 and [ChaptarrNG's cumulative blocker matrix](https://github.com/snapetech-org/chaptarrng/blob/main/docs/FORK_FEATURES.md#chaptarrng-retirement-gates).
 
 The refreshed main-to-main path inventory compares BookshelfNG
-`1bd7f2dcac6e01a954f7f3401d2550d593960854` with ChaptarrNG
-`64689f1ff79dc1f56dda3aa54857e4298e99f6b0`: 967 post-fork commits, 1,174
-changed paths, 56 reviewed mappings, and 644 carried dispositions. The
-remaining 530 paths are open for review (326 semantic differences, 198 with
-no mapped target, two source-deleted paths, and four identical paths without
+`1bd7f2dcac6e01a954f7f3401d2550d593960854` with ChaptarrNG application source
+snapshot `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`: 967 post-fork commits,
+1,174 changed paths, 56 reviewed mappings, and 587 dispositions. The remaining
+587 paths are open for review (370 semantic differences, 211 with no mapped
+target, two source-deleted paths, and four identical paths without
 disposition). These counts describe paths, not missing features. Decisions
 were carried only when the source and mapped target blobs were unchanged;
-basename matches were not used as mapping evidence. See the pinned
-[inventory](chaptarr-consolidation-inventory-20261030.json),
-[review map](chaptarr-consolidation-review-map-20261030.json), and
-[disposition map](chaptarr-consolidation-disposition-map-20261030.json). The
-unmerged changes in ChaptarrNG PR #183 are not included in this snapshot.
+basename matches were not used as mapping evidence. PR #183 is included in the target snapshot.
+changes are included. See the pinned [inventory](chaptarr-consolidation-inventory-20261031.json),
+[review map](chaptarr-consolidation-review-map-20261031.json), and
+[disposition map](chaptarr-consolidation-disposition-map-20261031.json).
 Path review is separate from runtime behavior, migration/data, rollback, and
 installed-channel acceptance.
 

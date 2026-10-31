@@ -1,44 +1,42 @@
 # BookshelfNG to ChaptarrNG distribution bridge
 
-## Current status — 2026-10-30
+## Current status — 2026-10-31
 
 BookshelfNG `0.4.21.76` and ChaptarrNG `v0.9.977` remain the latest public
-application releases. ChaptarrNG `main` is `64689f1f`. ChaptarrNG PR
-[#183](https://github.com/snapetech-org/chaptarrng/pull/183) proposes the
-one-image BookshelfNG handoff and remains unmerged/unreleased. The previous
-exact-head Build
-[#41164597664](https://github.com/snapetech-org/chaptarrng/actions/runs/41164597664)
-was cancelled on older head `474a3541`. Its prior owner-PR dispatch
-[#41167825847](https://github.com/snapetech-org/chaptarrng/actions/runs/41167825847)
-was queued before the current private-JIT route was merged into PR #183; the
-updated exact-head checks have not started.
+application releases. ChaptarrNG `main` is
+`4e5f895c5d30f2d1a775f76426e8d0ea176848cb`; its application source snapshot
+is `bd5893120c24ada8ea492edc1ce21cd5cdc24d8b`. ChaptarrNG PR
+[#183](https://github.com/snapetech-org/chaptarrng/pull/183) merged at
+`96c953b2`; the standard ChaptarrNG product is the migration target, with no
+second build or compatibility image. Follow-up main commits preserve the old
+Docker port contracts.
 
-The scheduled BookshelfNG bridge run
-[#41157387864](https://github.com/snapetech-org/bookshelfng/actions/runs/41157387864)
-is waiting behind 16 earlier bridge runs with no jobs started. No old package, mutable image tag, chart,
-installer, updater, or release identity has been redirected. The standard
-ChaptarrNG product remains the only target; the bridge must not introduce a
-second ChaptarrNG build or compatibility image.
+Current exact-head validation is not established. Build run
+[#41168525352](https://github.com/snapetech-org/chaptarrng/actions/runs/41168525352)
+is waiting on PR merge-head validation at `96c953b2`. The visible private-JIT
+main dispatch [#41168115692](https://github.com/snapetech-org/chaptarrng/actions/runs/41168115692)
+is queued at older head `64689f1`; the macOS handoff and Helm jobs are also
+queued on older source. Standalone-assets run
+[#41168142569](https://github.com/snapetech-org/chaptarrng/actions/runs/41168142569)
+completed its frontend job, while ten platform/archive jobs remain queued at
+`64689f1`. No exact-head pass for application source `bd589312` is recorded.
+Preserve queued jobs and do not substitute local or hosted validation.
 
-Chocolatey lists BookshelfNG `0.4.21.76` and standard ChaptarrNG `0.9.973`;
-the latter is behind `v0.9.977` and retains the ChaptarrNG package identity.
-Neither package entry redirects the existing BookshelfNG identity. The
-`.977` package update and old-identity bridge remain pending; the previous
-`.977` push returned HTTP 403.
+No old package, mutable image tag, chart, installer, updater, or release
+identity has been redirected. Chocolatey lists standard ChaptarrNG `0.9.973`,
+behind the latest public app release `v0.9.977`; it does not redirect the
+BookshelfNG identity. The `.977` package update and the old-identity bridge
+remain pending. Keep release and legacy-bridge gates closed until feature,
+data, rollback, and per-channel acceptance are complete. Every build, test,
+scan, package, and release job must run on private ephemeral JIT capacity with
+no hosted fallback.
 
-Keep all release and legacy-bridge gates closed until the BookshelfNG feature,
-data, rollback, and per-channel acceptance gates are complete. Candidate
-package transactions and synthetic migration evidence below are channel
-rehearsals, not permission to publish or cut over. Every build, test, scan,
-package, and release job must run on private ephemeral JIT capacity; hosted
-fallbacks are not permitted, and missing native-platform capacity blocks
-validation.
-
-The current main-to-main source-path audit is pinned to BookshelfNG `1bd7f2dc`
-and ChaptarrNG `64689f1f`; it leaves 530 paths undispositioned. ChaptarrNG PR
-#183 is not included. Those path counts
-do not establish missing features or package continuity. The [consolidation
-report](chaptarr-consolidation.md#exact-head-source-path-audit--2026-10-30)
+The current source-path audit is pinned to BookshelfNG
+`1bd7f2dc` and ChaptarrNG application source `bd589312`; it leaves 587 paths
+undispositioned. The target snapshot includes merged ChaptarrNG PR #183 and
+later application-source changes. Those path counts
+do not establish missing features or package continuity. The
+[consolidation report](chaptarr-consolidation.md#exact-head-source-path-audit--2026-10-31)
 contains the full refs and dated review maps. Every channel still needs its own
 tested upgrade, rollback, identity, and publication route.
 
@@ -141,7 +139,7 @@ summaries report publisher outcomes, not completed retirement gates.
 | GHCR image tags | A separately scoped personal-account bridge retags the exact multi-architecture ChaptarrNG release image digest as `ghcr.io/snapetech/bookshelfng:latest`, `:hardcover`, and `:softcover`. | Bridge repository/App setup, package write access, pinned digests, other tags, registry caches, already-running containers, and a successful populated-library startup on each platform. |
 | Docker Hub image tags | Mirrors the standard ChaptarrNG image to `snapetech/chaptarrng:<version>` and updates the moving ChaptarrNG and BookshelfNG aliases when the existing Docker Hub credentials are configured. | Pinned digests, cached images, and existing containers until their operator pulls/recreates them. |
 | COPR `slskdn/bookshelfng` | Sends the ChaptarrNG tag to the existing package-scoped COPR webhook. COPR downloads and verifies the legacy `bookshelfng` source RPM built from the same ChaptarrNG archive. | The external COPR custom-source bootstrap must first accept `vMAJOR.MINOR.PATCH` tags. A successful webhook response does not prove that COPR built or published the package. |
-| Chocolatey `bookshelfng` | Builds both `chaptarrng` and `bookshelfng` packages from the checksummed standard Windows archive, then submits each identity with the existing Chocolatey credential. The legacy package keeps the existing service and `%ProgramData%\BookshelfNG\data` path while converting supported database data at normal startup. | Chocolatey moderation/approval, unsupported database inputs, and upgrade/rollback behavior outside the hosted Windows release test. |
+| Chocolatey `bookshelfng` | Builds both `chaptarrng` and `bookshelfng` packages from the checksummed standard Windows archive, then submits each identity with the existing Chocolatey credential. The legacy package keeps the existing service and `%ProgramData%\BookshelfNG\data` path while converting supported database data at normal startup. | Chocolatey moderation/approval, unsupported database inputs, and exact-head private-JIT Windows install/upgrade/rollback acceptance. The published `chaptarrng` package is still `0.9.973`; no legacy package has been pushed. |
 | BookshelfNG Helm OCI chart | Publishes a new chart version under the existing BookshelfNG OCI chart identity and pins it to the exact standard ChaptarrNG multi-architecture image digest while preserving the chart's resource names, PVC, labels, and port. | Existing releases do not upgrade themselves. Operators must apply a chart update, and pinned charts or image digests stay pinned. |
 | AUR `bookshelfng-bin` | The ChaptarrNG release workflow builds and submits both the new and legacy package identities using the ChaptarrNG AUR credential. | The synthetic active-systemd migration/restore rehearsal passed; representative operator data and host-specific service settings remain open. |
 | Unraid Community Apps | A running BookshelfNG template that pulls a mutable BookshelfNG GHCR tag can receive the standard ChaptarrNG image after that alias moves. | The catalog listing, pinned image references, cached tags, template-specific volume/environment compatibility, and automatic rollout. |
