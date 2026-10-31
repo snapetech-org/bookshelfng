@@ -1,7 +1,7 @@
 # ng-runner-policy: private-jit-only-v1
 name: Full-severity published image audit
 
-run-name: ${{ format('action:{0}:pool:{1}', inputs.action, inputs.runner_pool) }}
+run-name: ${{ format('action:{0}:pool:{1}:tag:{2}', inputs.action, inputs.runner_pool, inputs.release_tag) }}
 
 on:
   workflow_dispatch:

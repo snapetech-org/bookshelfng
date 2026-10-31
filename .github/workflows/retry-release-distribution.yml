@@ -1,8 +1,19 @@
 name: Retry Standalone Release Distribution
+run-name: ${{ format('action:{0}:pool:{1}:tag:{2}', inputs.action, inputs.runner_pool, inputs.tag) }}
 
 on:
   workflow_dispatch:
     inputs:
+      action:
+        description: Required manual retry action
+        required: true
+        type: choice
+        options: [retry]
+      runner_pool:
+        description: Required private JIT runner pool
+        required: true
+        type: choice
+        options: [private]
       tag:
         description: Previously published BookshelfNG release tag to retry
         required: true
@@ -86,6 +97,10 @@ cache-mode: none
 
 jobs:
   distribute:
+    if: >-
+      github.event_name != 'workflow_dispatch' ||
+      (github.ref == 'refs/heads/main' &&
+       inputs.action == 'retry' && inputs.runner_pool == 'private')
     name: Build and publish standalone release channels
     permissions:
       actions: read
