@@ -38,4 +38,3 @@ jobs:
           bash scripts/test-bookshelfng-to-chaptarrng.sh
       - name: Verify Unraid package sync stays off feature branches
         run: bash scripts/test-sync-unraid-package.sh
-

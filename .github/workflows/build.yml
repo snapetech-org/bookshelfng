@@ -1055,7 +1055,6 @@ jobs:
     permissions:
       contents: read
       packages: read
-      security-events: write
     steps:
       - name: "Full severity scan: Softcover image"
         id: softcover_scan
@@ -1069,13 +1068,15 @@ jobs:
           ignore-unfixed: false
           exit-code: "1"
 
-      - name: Upload Softcover findings
+      - name: Retain scan report (trivy-softcover)
         if: always() && hashFiles('trivy-softcover.sarif') != ''
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          sarif_file: trivy-softcover.sarif
-          category: trivy-softcover
-
+          name: scan-report-trivy-softcover-${{ github.job }}-${{ strategy.job-index }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            trivy-softcover.sarif
+          if-no-files-found: warn
+          retention-days: 14
       - name: "Full severity scan: Hardcover image"
         id: hardcover_scan
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
@@ -1088,13 +1089,15 @@ jobs:
           ignore-unfixed: false
           exit-code: "1"
 
-      - name: Upload Hardcover findings
+      - name: Retain scan report (trivy-hardcover)
         if: always() && hashFiles('trivy-hardcover.sarif') != ''
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          sarif_file: trivy-hardcover.sarif
-          category: trivy-hardcover
-
+          name: scan-report-trivy-hardcover-${{ github.job }}-${{ strategy.job-index }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            trivy-hardcover.sarif
+          if-no-files-found: warn
+          retention-days: 14
   release:
     name: Prepare release notes and draft
     if: >-
