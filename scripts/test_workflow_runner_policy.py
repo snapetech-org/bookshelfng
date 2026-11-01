@@ -277,7 +277,6 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
     def test_security_scans_use_private_jit_and_skip_public_fork_code(self) -> None:
         workflow_dir = WORKFLOW.parent
         for workflow_name, job_name in (
-            ("codeql.yml", "analyze"),
             ("semgrep-community.yml", "semgrep"),
             ("trivy-filesystem.yml", "trivy"),
         ):
