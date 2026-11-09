@@ -345,7 +345,6 @@ jobs:
             IdentityFile ~/.ssh/aur
             IdentitiesOnly yes
             StrictHostKeyChecking yes
-            ProxyCommand nc -X connect -x 10.0.2.100:3128 %h %p
             UserKnownHostsFile ~/.ssh/known_hosts
             GlobalKnownHostsFile /dev/null
             BatchMode yes
