@@ -20,3 +20,21 @@ The shared inventory continues to govern private JIT jobs. For a private route,
 verify source routing, broker policy, runner-group access and live capacity
 before relying on it.
 
+## Upstream source attribution
+
+When BookshelfNG gathers or adapts an idea, report, discussion, patch, rejected
+request, issue, or pull request from upstream Bookshelf/Readarr or Chaptarr,
+update `UPSTREAM_ATTRIBUTION.md` and the user-facing changelog in the same
+change. Record the originating upstream URL, the upstream author’s GitHub
+handle, the kind of source, and the behavior brought into BookshelfNG. Say that
+the person contributed or suggested it to the upstream project and that
+BookshelfNG independently adapted, integrated, or verified it. Never imply
+that the person contributed directly to, endorsed, or participated in this
+fork.
+
+Credit closed, unmerged, superseded, and rejected upstream records when their
+code or ideas materially informed the fork. Before a release, audit every new
+upstream reference in commits, release-note fragments, and changelog entries
+for an author link and originating issue, PR, or commit link. Missing source
+credit is a release-note defect and must be fixed before publication.
+
