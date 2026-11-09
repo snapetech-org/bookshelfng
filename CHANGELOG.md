@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.21.80](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.79..v0.4.21.80) - 2026-11-09
+
+### Security
+
+- Refresh the Alpine base and update the bundled .NET runtime to 10.0.14, resolving the fixable curl/libcurl and .NET runtime findings reported by the published-image release scan.
+
 ## [0.4.21.79](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.78..v0.4.21.79) - 2026-11-09
 
 ### Fixed
