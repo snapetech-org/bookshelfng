@@ -1,9 +1,9 @@
-# ng-runner-policy: private-jit-only-v1
+# ng-runner-policy: hosted-compatible-v1
 name: Release-note contract
 run-name: >-
   ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number != '' &&
       format('owner-pr:{0}:{1}:{2}:action:{3}:pool:{4}', inputs.pr_number, inputs.pr_sha, inputs.target_run_id, inputs.action_tag, inputs.runner_pool_tag) ||
-      format('action:{0}:pool:{1}', inputs.action_tag || 'ci', inputs.runner_pool_tag || 'private') }}
+      format('action:{0}:pool:{1}', inputs.action_tag || 'ci', inputs.runner_pool_tag || 'public') }}
 
 on:
   pull_request_target:
@@ -19,9 +19,9 @@ on:
         options: [ci]
         required: true
       runner_pool_tag:
-        description: Required private JIT runner pool tag
+        description: Compatible hosted runner pool tag
         type: choice
-        options: [private]
+        options: [public]
         required: true
       pr_number:
         description: Trusted owner PR number set by the metadata-only dispatcher
@@ -56,15 +56,15 @@ jobs:
     if: >-
       github.event_name == 'pull_request_target' &&
       github.event.action == 'labeled' &&
-      (github.event.label.name == 'action:ci' || github.event.label.name == 'pool:private') &&
+      (github.event.label.name == 'action:ci' || github.event.label.name == 'pool:public') &&
       contains(github.event.pull_request.labels.*.name, 'action:ci') &&
-      contains(github.event.pull_request.labels.*.name, 'pool:private') &&
+      contains(github.event.pull_request.labels.*.name, 'pool:public') &&
       github.actor == 'snapetech' &&
       github.event.pull_request.user.login == 'snapetech' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.event.pull_request.head.repo.id == github.repository_id &&
       github.event.pull_request.base.ref == 'main'
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-packer","ng-main-run-{0}","gha-{0}-owner-pr-dispatcher"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       actions: write
       contents: none
@@ -96,8 +96,8 @@ jobs:
           labels = json.loads(os.environ["PR_LABELS_JSON"])
           action_labels = [label for label in labels if isinstance(label, str) and label.startswith("action:")]
           pool_labels = [label for label in labels if isinstance(label, str) and label.startswith("pool:")]
-          if action_labels != ["action:ci"] or pool_labels != ["pool:private"]:
-              raise SystemExit("add exactly action:ci and pool:private labels")
+          if action_labels != ["action:ci"] or pool_labels != ["pool:public"]:
+              raise SystemExit("add exactly action:ci and pool:public labels")
           if repository != "snapetech-org/bookshelfng":
               raise SystemExit("unexpected repository")
           if pr_author != "snapetech" or pr_repository.lower() != repository.lower():
@@ -144,9 +144,9 @@ jobs:
       github.ref == 'refs/heads/main' &&
       inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' &&
       inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository &&
-      inputs.action_tag == 'ci' && inputs.runner_pool_tag == 'private' &&
+      inputs.action_tag == 'ci' && inputs.runner_pool_tag == 'public' &&
       github.actor == 'github-actions[bot]'
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-validate"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       pull-requests: read
@@ -248,9 +248,9 @@ jobs:
       always() && github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' &&
       inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' &&
       inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository &&
-      inputs.action_tag == 'ci' && inputs.runner_pool_tag == 'private' &&
+      inputs.action_tag == 'ci' && inputs.runner_pool_tag == 'public' &&
       github.actor == 'github-actions[bot]'
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-owner-pr-reporter"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       checks: write
       contents: none

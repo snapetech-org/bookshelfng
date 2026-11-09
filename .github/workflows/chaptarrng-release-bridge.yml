@@ -1,13 +1,12 @@
-# packer-windows-jit-v1
-# ng-runner-policy: private-jit-only-v1
+# ng-runner-policy: hosted-compatible-v1
 name: ChaptarrNG legacy distribution bridge
 
 
 run-name: >-
   ${{ github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/') &&
-      format('action:{0}:pool:{1}:tag:{2}', inputs.action || 'release', inputs.runner_pool || 'private', github.ref_name) ||
+      format('action:{0}:pool:{1}:tag:{2}', inputs.action || 'release', inputs.runner_pool || 'public', github.ref_name) ||
       github.event_name == 'workflow_dispatch' &&
-      format('action:{0}:pool:{1}', inputs.action || 'release', inputs.runner_pool || 'private') || format('action:publish:pool:private') }}
+      format('action:{0}:pool:{1}', inputs.action || 'release', inputs.runner_pool || 'public') || format('action:publish:pool:public') }}
 on:
   schedule:
     - cron: '17,47 * * * *'
@@ -19,9 +18,9 @@ on:
         options: [publish]
         required: true
       runner_pool:
-        description: Required private JIT runner pool
+        description: Compatible hosted runner pool
         type: choice
-        options: [private]
+        options: [public]
         required: true
 
 permissions:
@@ -41,13 +40,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         github.ref == 'refs/heads/main'
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-discover-release"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     outputs:
@@ -148,13 +147,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         github.ref == 'refs/heads/main' && needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true'
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publisher-credentials"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     outputs:
@@ -183,13 +182,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled != 'true'
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-disabled-preview"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
@@ -213,13 +212,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.dockerhub == 'true' && needs.publisher-credentials.outputs.dockerhub == 'true'
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-dockerhub-aliases"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
       packages: read
@@ -301,13 +300,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.copr == 'true' && needs.publisher-credentials.outputs.copr == 'true'
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-bookshelf-copr"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
@@ -366,13 +365,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         needs.discover-release.outputs.ready == 'true'
       )
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","bookshelfng","gha-{0}-build-chocolatey-bridge"]}}', github.run_id)) }}
+    runs-on: windows-2025
     permissions:
       contents: read
     steps:
@@ -427,13 +426,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.chocolatey_new == 'true' && needs.publisher-credentials.outputs.chocolatey == 'true'
       )
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","bookshelfng","gha-{0}-publish-chocolatey-new-install"]}}', github.run_id)) }}
+    runs-on: windows-2025
     permissions:
       contents: write
     steps:
@@ -471,13 +470,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.chocolatey_legacy == 'true' && needs.publisher-credentials.outputs.chocolatey == 'true'
       )
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","bookshelfng","gha-{0}-publish-chocolatey-legacy-upgrade"]}}', github.run_id)) }}
+    runs-on: windows-2025
     permissions:
       contents: write
     steps:
@@ -515,13 +514,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true' && needs.discover-release.outputs.helm == 'true'
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-helm-bridge"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
       packages: write
@@ -629,7 +628,7 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
@@ -645,7 +644,7 @@ jobs:
       - publish-chocolatey-new-install
       - publish-chocolatey-legacy-upgrade
       - publish-helm-bridge
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-bridge-summary"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
