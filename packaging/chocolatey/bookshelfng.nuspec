@@ -8,6 +8,7 @@
     <owners>Snapetech</owners>
     <copyright>Copyright (c) 2026 Snapetech</copyright>
     <projectUrl>https://github.com/snapetech-org/bookshelfng</projectUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/snapetech-org/bookshelfng@9fb3772c761381426ab516c2f7e91e288ba75df6/frontend/src/Content/Images/Icons/apple-touch-icon.png</iconUrl>
     <packageSourceUrl>https://github.com/snapetech-org/bookshelfng/tree/main/packaging/chocolatey</packageSourceUrl>
     <docsUrl>https://github.com/snapetech-org/bookshelfng#readme</docsUrl>
     <bugTrackerUrl>https://github.com/snapetech-org/bookshelfng/issues</bugTrackerUrl>
