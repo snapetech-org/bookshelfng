@@ -51,7 +51,7 @@ assert_job_checks_release_readiness() {
   fi
 }
 
-for job_name in build publish-images container-scan release publish-private-release; do
+for job_name in build publish-images container-scan release publish-release; do
   assert_job_checks_release_readiness "$job_name"
 done
 
