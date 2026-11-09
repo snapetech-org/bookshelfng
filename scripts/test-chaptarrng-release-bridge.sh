@@ -40,7 +40,7 @@ if grep -Fq 'actions/checkout' <<< "$discover_job"; then
   exit 1
 fi
 
-grep -Fq "if: github.ref == 'refs/heads/main' && needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true'" "$workflow"
+grep -Fq "github.ref == 'refs/heads/main' && needs.discover-release.outputs.ready == 'true' && needs.discover-release.outputs.enabled == 'true'" "$workflow"
 grep -Fq 'needs: [discover-release]' "$workflow"
 
 [[ "$(grep -Fc "PUBLISH_LEGACY_ALIASES: 'true'" "$workflow")" -eq 1 ]]
