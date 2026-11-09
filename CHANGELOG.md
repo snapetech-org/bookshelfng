@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.21.82](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.81..v0.4.21.82) - 2026-11-09
+
+### Fixed
+
+- Keep only the community-supplied Linux x86 and FreeBSD runtime archives on their available .NET 10.0.12 servicing packs while standard supported platforms continue using the patched 10.0.14 runtime.
+
 ## [0.4.21.81](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.80..v0.4.21.81) - 2026-11-09
 
 ### Fixed

@@ -22,8 +22,13 @@
       </Renamed>
 
       <!-- Transform RuntimeIdentifierForPublish items to project items to pass to MSBuild task -->
-      <ProjectToPublish Include="@(Renamed->'$(MSBuildProjectFullPath)')">
+      <ProjectToPublish Include="@(Renamed->'$(MSBuildProjectFullPath)')"
+                        Condition="'%(Renamed.Runtime)'!='linux-x86' And '%(Renamed.Runtime)'!='freebsd-x64'">
         <AdditionalProperties>RuntimeIdentifier=%(Renamed.Runtime);TargetFramework=%(Renamed.Framework)</AdditionalProperties>
+      </ProjectToPublish>
+      <ProjectToPublish Include="@(Renamed->'$(MSBuildProjectFullPath)')"
+                        Condition="'%(Renamed.Runtime)'=='linux-x86' Or '%(Renamed.Runtime)'=='freebsd-x64'">
+        <AdditionalProperties>RuntimeIdentifier=%(Renamed.Runtime);TargetFramework=%(Renamed.Framework);TargetLatestRuntimePatch=false;RuntimeFrameworkVersion=10.0.12</AdditionalProperties>
       </ProjectToPublish>
     </ItemGroup>
 
