@@ -111,7 +111,7 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn("hardcover_digest: ${{ inputs.hardcover_digest }}", retry)
         self.assertIn("Previously published BookshelfNG release tag to retry", retry)
 
-    def test_release_retry_has_an_owner_only_trusted_main_jit_entrypoint(self) -> None:
+    def test_release_retry_has_an_owner_only_trusted_main_hosted_entrypoint(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
         dispatch = event_block(source, "workflow_dispatch")
         for name in (
@@ -131,8 +131,7 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             "github.ref == 'refs/heads/main'",
             "inputs.release_tag != ''",
             "inputs.pr_number == ''",
-            "runs-on: ${{ fromJSON(format('",
-            '"gha-{0}-retry-release-distribution"',
+            "runs-on: ubuntu-24.04",
             "permissions:",
             "contents: read",
             "packages: write",
@@ -173,16 +172,13 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             with self.subTest(reusable_workflow_input=name):
                 self.assertIn(f"      {name}:", call)
 
-    def test_chocolatey_verifier_uses_the_private_windows_jit_group(self) -> None:
+    def test_chocolatey_verifier_uses_hosted_windows(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
         job = job_block(source, "test-chocolatey-package-verifier")
-        self.assertIn("group: packer-windows", job)
-        self.assertIn("- on-demand", job)
-        self.assertIn("- bookshelfng", job)
-        self.assertNotIn("windows-latest", job)
+        self.assertIn("runs-on: windows-2025", job)
         self.assertIn("inputs.release_tag == ''", job)
 
-    def test_new_release_build_and_publish_path_stays_on_private_jit(self) -> None:
+    def test_new_release_build_and_publish_path_uses_hosted_runners(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
         dispatch = event_block(source, "workflow_dispatch")
         self.assertIn("      release_build_tag:", dispatch)
@@ -191,10 +187,9 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             job = job_block(source, job_name)
             with self.subTest(job=job_name):
                 self.assertIn("inputs.release_build_tag", job)
-                self.assertIn('"group":"ng-shared-main-jit"', job)
-                self.assertIn('"ng-main-run-{0}"', job)
+                self.assertIn("runs-on: ubuntu-24.04", job)
 
-        publisher = job_block(source, "publish-private-release")
+        publisher = job_block(source, "publish-release")
         self.assertIn("github.ref == 'refs/heads/main'", publisher)
         self.assertIn("vars.BOOKSHELFNG_RELEASE_READY == 'true'", publisher)
         self.assertIn("uses: ./.github/workflows/release-publication.yml", publisher)
@@ -211,21 +206,19 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
             job = job_block(release_build, job_name)
             with self.subTest(release_job=job_name):
                 self.assertIn("inputs.tag != ''", job)
-                self.assertIn(f'"gha-{{0}}-{role}"', job)
-                self.assertNotIn(f"runs-on: ubuntu-22.04\n", job)
+                self.assertIn("runs-on: ubuntu-24.04", job)
 
         publication = (WORKFLOW.parent / "release-publication.yml").read_text(encoding="utf-8")
         self.assertIn("  workflow_call:", publication)
         self.assertIn("inputs.tag != ''", job_block(publication, "prepare"))
-        self.assertIn('"gha-{0}-release-prepare"', job_block(publication, "prepare"))
-        self.assertIn('"gha-{0}-publish-release-assets"', job_block(publication, "publish-assets"))
+        self.assertIn("runs-on: ubuntu-24.04", job_block(publication, "prepare"))
+        self.assertIn("runs-on: ubuntu-24.04", job_block(publication, "publish-assets"))
 
         distribution = (WORKFLOW.parent / "release-distribution.yml").read_text(encoding="utf-8")
         for job_name, role in (("publish-ppa", "publish-ppa"), ("publish-chocolatey", "publish-chocolatey")):
             job = job_block(distribution, job_name)
             with self.subTest(publisher=job_name):
-                self.assertIn(f'"gha-{{0}}-{role}"', job)
-                self.assertNotIn("runs-on: windows-latest", job)
+                self.assertIn("runs-on: ubuntu-24.04", job)
         chocolatey = job_block(distribution, "publish-chocolatey")
         self.assertIn("dotnet pack", chocolatey)
         self.assertIn("dotnet nuget push", chocolatey)
@@ -256,17 +249,14 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn("  pull_request:", source)
         self.assertNotIn("TRUSTED_MAIN_RUNNERS_ENABLED", source)
 
-    def test_release_jobs_route_to_private_jit_without_hosted_fallback(self) -> None:
+    def test_release_jobs_route_to_compatible_hosted_linux(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")
         for job_name in ("publish-images", "container-scan", "release"):
             with self.subTest(job=job_name):
                 job = job_block(source, job_name)
                 runner = re.search(r"(?m)^    runs-on: (?P<runner>[^\n]+)$", job)
                 self.assertIsNotNone(runner)
-                self.assertIn('"group":"ng-shared-main-jit"', runner.group("runner"))
-                self.assertIn('"ng-shared-main-bookshelfng"', runner.group("runner"))
-                self.assertIn('"ng-main-run-{0}"', runner.group("runner"))
-                self.assertNotIn("ubuntu-latest", runner.group("runner"))
+                self.assertEqual("ubuntu-24.04", runner.group("runner"))
 
     def test_playwright_installer_uses_linux_dependencies(self) -> None:
         source = WORKFLOW.read_text(encoding="utf-8")

@@ -4,4 +4,4 @@
 
 ### Upstream source attribution
 
-- Publicly credit nine Bookshelf and Chaptarr issues and pull requests whose upstream code, reports, or ideas were integrated or adapted in BookshelfNG. The [source ledger](UPSTREAM_ATTRIBUTION.md) links every originating record and upstream author while making clear that those people contributed to the upstream projects, not directly to this fork.
+- Publicly credit ten Bookshelf and Chaptarr issues and pull requests whose upstream code, reports, ideas, or validation records informed BookshelfNG behavior or maintained consolidation work. The [source ledger](UPSTREAM_ATTRIBUTION.md) separates implemented adaptations from reviewed-but-not-shipped provenance and makes clear that those people contributed upstream, not directly to this fork.

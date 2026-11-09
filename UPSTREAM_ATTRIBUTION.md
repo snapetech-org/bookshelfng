@@ -1,10 +1,10 @@
 # Upstream source attribution
 
-This ledger publicly credits 9 source records from [pennydreadful/bookshelf](https://github.com/pennydreadful/bookshelf) that informed, supplied, or were reconciled with behavior in this fork.
+This ledger publicly credits 10 source records from upstream Bookshelf and Chaptarr that informed implemented behavior or maintained consolidation work in this fork.
 
 The linked people made their reports, suggestions, discussions, or code contributions to the upstream project. This is source credit only: it does not claim that they contributed directly to this fork, endorsed it, or participated in the fork integration. Fork maintainers adapted, integrated, or verified the resulting behavior separately.
 
-The list covers the issue-driven features and upstream PR branches explicitly merged by BookshelfNG, plus one later Chaptarr performance adaptation recorded in commit history.
+The list covers issue-driven features and upstream PR branches explicitly merged by BookshelfNG, one later Chaptarr performance adaptation, and one Chaptarr record retained by the consolidation review without a shipping claim.
 
 ## Credited Bookshelf sources
 
@@ -25,4 +25,8 @@ This later Chaptarr contribution was also adapted into BookshelfNG.
 
 - [PR #218](https://github.com/Chaptarr/chaptarr/pull/218) — “perf(books): reuse the author book list and cache BuildWorkGroups per author (#163, #172),” opened upstream by [@jordanfelle](https://github.com/jordanfelle). BookshelfNG independently adapted the upstream Chaptarr contribution.
 
-_Attribution ledger refreshed 2026-11-09; 9 source records._
+## Reviewed Chaptarr source, not claimed as shipped
+
+- [PR #114](https://github.com/Chaptarr/chaptarr/pull/114) — “fix(api): preserve media type for scoped book lookup,” opened upstream by [@snapetech](https://github.com/snapetech). BookshelfNG’s maintained Chaptarr consolidation review cites this upstream validation record; the citation does not claim that PR #114 was implemented in or contributed directly to BookshelfNG.
+
+_Attribution ledger refreshed 2026-11-09; 10 source records._

@@ -38,3 +38,8 @@ upstream reference in commits, release-note fragments, and changelog entries
 for an author link and originating issue, PR, or commit link. Missing source
 credit is a release-note defect and must be fixed before publication.
 
+If an upstream record informs a maintained plan, migration/consolidation
+review, partial implementation, or unresolved investigation, add it to a
+clearly labeled planned/not-yet-shipped or reviewed-disposition section. Do
+not present review evidence or unfinished work as a released feature.
+

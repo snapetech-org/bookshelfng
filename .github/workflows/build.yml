@@ -1,17 +1,17 @@
 # packer-windows-jit-v1
-# ng-runner-policy: private-jit-only-v1
+# ng-runner-policy: hosted-compatible-v1
 name: CI
 run-name: >-
   ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') &&
-      format('action:publish:pool:private:tag:{0}:release-build', github.ref_name) ||
+      format('action:publish:pool:public:tag:{0}:release-build', github.ref_name) ||
       github.event_name == 'workflow_dispatch' && inputs.release_build_tag != '' &&
-      format('action:{0}:pool:{1}:tag:{2}:release-build', inputs.action || 'build', inputs.runner_pool || 'private', inputs.release_build_tag) ||
+      format('action:{0}:pool:{1}:tag:{2}:release-build', inputs.action || 'build', inputs.runner_pool || 'public', inputs.release_build_tag) ||
       github.event_name == 'workflow_dispatch' && inputs.release_tag != '' &&
-      format('action:{0}:pool:{1}:tag:{2}:release-retry', inputs.action || 'build', inputs.runner_pool || 'private', inputs.release_tag) ||
+      format('action:{0}:pool:{1}:tag:{2}:release-retry', inputs.action || 'build', inputs.runner_pool || 'public', inputs.release_tag) ||
       (github.event_name == 'pull_request_target' || github.event_name == 'pull_request') &&
       format('action:ci:pool:private:owner-pr:{0}:{1}:{2}', github.event.pull_request.number, github.event.pull_request.head.sha, github.run_id) ||
-      github.event_name == 'workflow_dispatch' && format('action:{0}:pool:{1}', inputs.action || 'build', inputs.runner_pool || 'private') ||
-      format('action:ci:pool:private') }}
+      github.event_name == 'workflow_dispatch' && format('action:{0}:pool:{1}', inputs.action || 'build', inputs.runner_pool || 'public') ||
+      format('action:ci:pool:public') }}
 permissions:
   contents: read
 
@@ -24,9 +24,9 @@ on:
         options: [publish]
         required: true
       runner_pool:
-        description: Required private JIT runner pool
+        description: Runner pool for trusted release work
         type: choice
-        options: [private]
+        options: [public]
         required: true
       pr_number:
         description: Trusted owner PR number (set only by the metadata dispatcher)
@@ -41,11 +41,11 @@ on:
         required: false
         type: string
       release_tag:
-        description: Previously published BookshelfNG release tag to retry through the trusted JIT route
+        description: Previously published BookshelfNG release tag to retry on compatible hosted runners
         required: false
         type: string
       release_build_tag:
-        description: New release tag to build from this trusted main commit using private JIT runners
+        description: New release tag to build from this trusted main commit using compatible hosted runners
         required: false
         type: string
       release_softcover_digest:
@@ -59,7 +59,7 @@ on:
         type: string
         default: ""
       release_channels:
-        description: Package publishers to run (all or a subset of aur,copr,ppa,chocolatey,helm; the private Linux retry handles aur,copr,helm)
+        description: Package publishers to run (all or a subset of aur,copr,ppa,chocolatey,helm)
         required: false
         type: string
         default: all
@@ -94,13 +94,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && (github.event_name != 'pull_request_target' && (github.event_name != 'pull_request' || github.actor != 'snapetech' || github.event.pull_request.user.login != 'snapetech' || github.event.pull_request.head.repo.full_name != github.repository || github.event.pull_request.head.repo.id != github.repository_id || github.event.pull_request.base.ref != 'main') && (github.event_name != 'workflow_dispatch' || (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.release_tag == '')))
       )
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","bookshelfng","gha-{0}-test-chocolatey-package-verifier"]}}', github.run_id)) }}
+    runs-on: windows-2025
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -110,9 +110,7 @@ jobs:
         shell: pwsh
         run: ./scripts/test-chocolatey-package-verifier.ps1
 
-  # Keep the no-hosted recovery route as a direct job in this trusted workflow.
-  # The JIT broker source-verifies the caller workflow; reusable publisher jobs
-  # do not expose their runner labels through that caller job.
+  # Keep recovery as a direct job so it can validate and reuse published assets.
   retry-release-distribution:
     if: >-
       (
@@ -120,7 +118,7 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
@@ -131,7 +129,7 @@ jobs:
       contents: read
       packages: write
       id-token: write
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-retry-release-distribution"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -140,7 +138,7 @@ jobs:
 
       - uses: snapetech-org/bookshelfng/.github/actions/setup-github-cli@8d2aef3cec245a9814eea4654244184f92f7c18e
 
-      - name: Validate published release and requested JIT channels
+      - name: Validate published release and requested channels
         id: preflight
         env:
           GH_TOKEN: ${{ github.token }}
@@ -155,7 +153,7 @@ jobs:
             exit 1
           fi
           if [[ "$CHOCOLATEY_USE_MAIN_PACKAGING" == true ]]; then
-            echo 'The private Linux recovery route does not publish Chocolatey packages.' >&2
+            echo 'This Linux recovery route does not publish Chocolatey packages.' >&2
             exit 2
           fi
           if [[ ! "$RELEASE_TAG" =~ ^v([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
@@ -190,7 +188,7 @@ jobs:
             seen=','
             IFS=, read -r -a selected <<< "$channels"
             ((${#selected[@]} > 0)) || {
-              echo 'Select at least one private Linux publisher: aur,copr,helm.' >&2
+              echo 'Select at least one Linux publisher: aur,copr,helm.' >&2
               exit 2
             }
             for channel in "${selected[@]}"; do
@@ -201,11 +199,11 @@ jobs:
               case "$channel" in
                 aur|copr|helm) ;;
                 ppa|chocolatey)
-              echo "$channel is not available on the private Linux recovery route; use the existing successful publication or retry it after that channel's private JIT route is restored." >&2
+              echo "$channel is not available on this Linux recovery route; use the existing successful publication or retry the compatible publisher workflow." >&2
                   exit 2
                   ;;
                 *)
-                  echo "Unsupported private Linux publisher: $channel" >&2
+                  echo "Unsupported Linux publisher: $channel" >&2
                   exit 2
                   ;;
               esac
@@ -230,7 +228,7 @@ jobs:
             echo "helm=$helm"
           } >> "$GITHUB_OUTPUT"
           {
-            echo 'This JIT recovery route publishes AUR, COPR, and Helm on a private Linux runner. PPA and Chocolatey are not retried here.'
+            echo 'This hosted recovery route publishes AUR, COPR, and Helm on Linux. PPA and Chocolatey are not retried here.'
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Verify Unraid package is synced
@@ -477,7 +475,7 @@ jobs:
           if (( ${#failed_publishers[@]} > 0 )); then
             channel_status="Some package uploads failed (${failed_publishers[*]}). See this workflow for details."
           else
-            channel_status='Selected private Linux publisher steps succeeded or were skipped; PPA and Chocolatey were not included in this retry.'
+            channel_status='Selected Linux publisher steps succeeded or were skipped; PPA and Chocolatey were not included in this retry.'
           fi
           release_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/tag/${TAG}"
           workflow_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
@@ -581,15 +579,14 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         ((github.event_name == 'workflow_dispatch' && (github.actor == 'snapetech' || github.actor == 'github-actions[bot]') && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && github.ref == 'refs/heads/main')) || ((github.event_name != 'pull_request_target' && (github.event_name != 'pull_request' || github.actor != 'snapetech' || github.event.pull_request.user.login != 'snapetech' || github.event.pull_request.head.repo.full_name != github.repository || github.event.pull_request.head.repo.id != github.repository_id || github.event.pull_request.base.ref != 'main') && (github.event_name != 'workflow_dispatch' || (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.release_tag == '' && (inputs.release_build_tag == '' || (github.actor == 'snapetech' && github.ref == 'refs/heads/main' && vars.BOOKSHELFNG_RELEASE_READY == 'true')))))) && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
       )
-    # Trusted main validation, private release builds, and the owner-only Linux
-    # release retry use the isolated shared runner pool.
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) }}
+    # Trusted main validation and release work use compatible hosted runners.
+    runs-on: ubuntu-24.04
     outputs:
       build_version: ${{ steps.variables.outputs.build_version }}
     steps:
@@ -621,7 +618,7 @@ jobs:
           BOOKSHELFNG_RELEASE_READY: ${{ vars.BOOKSHELFNG_RELEASE_READY || 'false' }}
         run: bash scripts/require-bookshelfng-release-ready.sh
 
-      - name: Test private JIT runner policy
+      - name: Test runner policy
         run: python3 scripts/test_workflow_runner_policy.py
 
       - name: Test consolidation inventory path hints
@@ -847,14 +844,14 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         (github.event_name != 'pull_request_target' && (github.event_name != 'pull_request' || github.actor != 'snapetech' || github.event.pull_request.user.login != 'snapetech' || github.event.pull_request.head.repo.full_name != github.repository || github.event.pull_request.head.repo.id != github.repository_id || github.event.pull_request.base.ref != 'main') && (github.event_name != 'workflow_dispatch' || (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == ''))) && (((github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) || (github.event_name == 'workflow_dispatch' && github.actor == 'snapetech' && github.ref == 'refs/heads/main' && inputs.release_build_tag != '')) && vars.BOOKSHELFNG_RELEASE_READY == 'true')
       )
     needs: build
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-publish-images"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: write
@@ -1042,7 +1039,7 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
@@ -1051,7 +1048,7 @@ jobs:
     needs: publish-images
     env:
       TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-container-scan"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: read
@@ -1106,14 +1103,14 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         (github.event_name != 'pull_request_target' && (github.event_name != 'pull_request' || github.actor != 'snapetech' || github.event.pull_request.user.login != 'snapetech' || github.event.pull_request.head.repo.full_name != github.repository || github.event.pull_request.head.repo.id != github.repository_id || github.event.pull_request.base.ref != 'main') && (github.event_name != 'workflow_dispatch' || (inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == ''))) && (((github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) || (github.event_name == 'workflow_dispatch' && github.actor == 'snapetech' && github.ref == 'refs/heads/main' && inputs.release_build_tag != '')) && vars.BOOKSHELFNG_RELEASE_READY == 'true')
       )
     needs: [build, publish-images, container-scan]
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-bookshelfng","ng-main-run-{0}","gha-{0}-release"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       actions: read
       contents: write
@@ -1252,14 +1249,14 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
-  publish-private-release:
+  publish-release:
     if: >-
       github.event_name == 'workflow_dispatch' &&
       github.actor == 'snapetech' &&
       github.ref == 'refs/heads/main' &&
       inputs.release_build_tag != '' &&
       vars.BOOKSHELFNG_RELEASE_READY == 'true'
-    name: Build release assets and publish all channels on private JIT
+    name: Build release assets and publish all channels on hosted runners
     needs: [release, publish-images]
     permissions:
       actions: read

@@ -10,10 +10,10 @@ on:
         type: choice
         options: [retry]
       runner_pool:
-        description: Required private JIT runner pool
+        description: Required compatible hosted runner pool
         required: true
         type: choice
-        options: [private]
+        options: [public]
       tag:
         description: Previously published BookshelfNG release tag to retry
         required: true
@@ -100,7 +100,7 @@ jobs:
     if: >-
       github.event_name != 'workflow_dispatch' ||
       (github.ref == 'refs/heads/main' &&
-       inputs.action == 'retry' && inputs.runner_pool == 'private')
+       inputs.action == 'retry' && inputs.runner_pool == 'public')
     name: Build and publish standalone release channels
     permissions:
       actions: read
