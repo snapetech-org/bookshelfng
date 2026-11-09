@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.21.79](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.78..v0.4.21.79) - 2026-11-09
+
+### Fixed
+
+- Align the ChaptarrNG bridge release gate with its hosted-compatible wrapper condition so the release source validates cleanly.
+
 ## [0.4.21.78](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.77..v0.4.21.78) - 2026-11-09
 
 ### Upstream source attribution
