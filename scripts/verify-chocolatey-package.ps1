@@ -57,6 +57,24 @@ try {
     throw "Chocolatey package '$PackageId' has an unresolved copyright placeholder."
   }
 
+  foreach ($field in @('packageSourceUrl', 'releaseNotes', 'docsUrl', 'bugTrackerUrl', 'projectSourceUrl')) {
+    $nodes = $metadata.SelectNodes("*[local-name()='$field']")
+    if ($nodes.Count -ne 1 -or [string]::IsNullOrWhiteSpace($nodes[0].InnerText)) {
+      throw "Chocolatey package '$PackageId' is missing a unique non-empty $field field."
+    }
+    if ($nodes[0].InnerText -match '__[A-Z0-9_]+__') {
+      throw "Chocolatey package '$PackageId' has an unresolved $field placeholder."
+    }
+  }
+  foreach ($field in @('packageSourceUrl', 'docsUrl', 'bugTrackerUrl', 'projectSourceUrl', 'mailingListUrl')) {
+    $nodes = $metadata.SelectNodes("*[local-name()='$field']")
+    if ($field -eq 'mailingListUrl' -and $nodes.Count -eq 0) { continue }
+    $uri = $null
+    if ($nodes.Count -ne 1 -or -not [Uri]::TryCreate($nodes[0].InnerText.Trim(), [UriKind]::Absolute, [ref]$uri) -or $uri.Scheme -notin @('https', 'http')) {
+      throw "Chocolatey package '$PackageId' has an invalid $field URL."
+    }
+  }
+
   $installer = Read-PackageEntryText -Archive $archive -Name 'tools/chocolateyinstall.ps1'
   if ($installer -match '__[A-Z0-9_]+__') {
     throw "Chocolatey package '$PackageId' contains an unresolved installer placeholder."

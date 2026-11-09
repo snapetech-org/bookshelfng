@@ -516,6 +516,17 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'NuGet could not pack the BookshelfNG Chocolatey package.' }
           $package = Get-Item -LiteralPath (Join-Path $packageDir "bookshelfng.$env:VERSION.nupkg") -ErrorAction SilentlyContinue
           if (-not $package) { throw 'Chocolatey package was not built.' }
+          # NuGet rewrites nuspec metadata; restore the rendered Chocolatey source before validation.
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $packageArchive = [System.IO.Compression.ZipFile]::Open($package.FullName, [System.IO.Compression.ZipArchiveMode]::Update)
+          try {
+            $packedNuspecs = @($packageArchive.Entries | Where-Object { $_.FullName -match '^[^/\\]+\.nuspec$' })
+            if ($packedNuspecs.Count -ne 1) { throw 'NuGet package must contain exactly one root nuspec.' }
+            $packedNuspecs[0].Delete()
+            [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($packageArchive, $nuspec, 'bookshelfng.nuspec') | Out-Null
+          } finally {
+            $packageArchive.Dispose()
+          }
           & ./scripts/verify-chocolatey-package.ps1 -PackagePath $package.FullName -PackageId bookshelfng -Version $env:VERSION -RequireBookshelfNGServiceUpgrade
 
       - name: Push Chocolatey package

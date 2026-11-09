@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $verifier = Join-Path $PSScriptRoot 'verify-chocolatey-package.ps1'
-$pwsh = [System.Diagnostics.Process]::GetCurrentProcess().MainModule.FileName
+$pwsh = [Environment]::ProcessPath
 $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("bookshelfng-package-verifier-{0}" -f [guid]::NewGuid().ToString('N'))
 
 if (-not (Test-Path -LiteralPath $verifier -PathType Leaf)) {
@@ -28,13 +28,26 @@ function New-TestPackage {
     [Parameter(Mandatory = $true)] [string] $Path,
     [Parameter(Mandatory = $true)] [string] $PackageId,
     [Parameter(Mandatory = $true)] [string] $Installer,
-    [Parameter(Mandatory = $true)] [bool] $IncludeCopyright
+    [Parameter(Mandatory = $true)] [bool] $IncludeCopyright,
+    [string] $MissingMetadata = '',
+    [string] $ProjectSourceUrl = 'https://example.test/source'
   )
 
   $copyright = if ($IncludeCopyright) { '<copyright>Test copyright.</copyright>' } else { '' }
+  $metadataLinks = [ordered]@{
+    packageSourceUrl = 'https://example.test/package'
+    releaseNotes = 'https://example.test/releases'
+    docsUrl = 'https://example.test/docs'
+    bugTrackerUrl = 'https://example.test/issues'
+    projectSourceUrl = $ProjectSourceUrl
+    mailingListUrl = 'https://example.test/discussions'
+  }
+  $discoveryMetadata = ($metadataLinks.GetEnumerator() | Where-Object { $_.Key -ne $MissingMetadata } | ForEach-Object {
+    "<$($_.Key)>$([System.Security.SecurityElement]::Escape($_.Value))</$($_.Key)>"
+  }) -join ''
   $nuspec = @"
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd"><metadata><id>$PackageId</id><version>1.2.3</version>$copyright</metadata></package>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd"><metadata><id>$PackageId</id><version>1.2.3</version>$copyright$discoveryMetadata</metadata></package>
 "@
 
   $archive = [System.IO.Compression.ZipFile]::Open($Path, [System.IO.Compression.ZipArchiveMode]::Create)
@@ -99,6 +112,20 @@ try {
   New-TestPackage -Path $missingCopyrightPackage -PackageId 'bookshelfng' -Installer $validInstaller -IncludeCopyright $false
   if ((Invoke-PackageVerifier -Path $missingCopyrightPackage -PackageId 'bookshelfng' -RequireServiceUpgrade -Quiet) -eq 0) {
     throw 'The verifier accepted a package without copyright metadata.'
+  }
+
+  foreach ($field in @('packageSourceUrl', 'releaseNotes', 'docsUrl', 'bugTrackerUrl', 'projectSourceUrl')) {
+    $missingMetadataPackage = Join-Path $tempRoot "missing-$field.nupkg"
+    New-TestPackage -Path $missingMetadataPackage -PackageId 'bookshelfng' -Installer $validInstaller -IncludeCopyright $true -MissingMetadata $field
+    if ((Invoke-PackageVerifier -Path $missingMetadataPackage -PackageId 'bookshelfng' -RequireServiceUpgrade -Quiet) -eq 0) {
+      throw "The verifier accepted a package without $field metadata."
+    }
+  }
+
+  $invalidUrlPackage = Join-Path $tempRoot 'invalid-project-source.nupkg'
+  New-TestPackage -Path $invalidUrlPackage -PackageId 'bookshelfng' -Installer $validInstaller -IncludeCopyright $true -ProjectSourceUrl 'file:///source'
+  if ((Invoke-PackageVerifier -Path $invalidUrlPackage -PackageId 'bookshelfng' -Quiet) -eq 0) {
+    throw 'The verifier accepted a non-web project source URL.'
   }
 
   $badUpgradePackage = Join-Path $tempRoot 'missing-service-upgrade.nupkg'
