@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.21.81](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.80..v0.4.21.81) - 2026-11-09
+
+### Fixed
+
+- Normalize the retained public-fork validation release note to the current audience, area, action, and breaking-change metadata contract.
+
 ## [0.4.21.80](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.79..v0.4.21.80) - 2026-11-09
 
 ### Security
