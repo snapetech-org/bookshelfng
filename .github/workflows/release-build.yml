@@ -175,7 +175,9 @@ jobs:
         run: |
           set -euo pipefail
           ./build.sh --backend --frontend --enable-extra-platforms \
-            --msbuild-arg=-p:SelfContained=true
+            --msbuild-arg=-p:SelfContained=true \
+            --msbuild-arg=-p:TargetLatestRuntimePatch=false \
+            --msbuild-arg=-p:RuntimeFrameworkVersion=10.0.12
 
       - name: Package all supported runtime identifiers
         env:

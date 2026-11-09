@@ -46,6 +46,11 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
                 self.assertNotIn('"group":"ng-shared-main-jit"', source)
                 self.assertNotIn("private-jit-only", source)
 
+    def test_extra_platform_release_restore_uses_available_runtime_patch(self) -> None:
+        source = (WORKFLOWS / "release-build.yml").read_text(encoding="utf-8")
+        self.assertIn("--msbuild-arg=-p:TargetLatestRuntimePatch=false", source)
+        self.assertIn("--msbuild-arg=-p:RuntimeFrameworkVersion=10.0.12", source)
+
     def test_ordinary_manual_workflows_do_not_require_private_capacity(self) -> None:
         for path in WORKFLOWS.glob("*.yml"):
             if path.name in {"build.yml", "fork-safe-validation.yml"}:

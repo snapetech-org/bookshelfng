@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.21.83](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.82..v0.4.21.83) - 2026-11-09
+
+### Fixed
+
+- Pin the complete self-contained release restore graph to .NET 10.0.12 when building the community Linux x86 and FreeBSD packs, because MSBuild resolves the full runtime matrix together; ordinary builds continue using the latest 10.0.x servicing patch.
+
 ## [0.4.21.82](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.81..v0.4.21.82) - 2026-11-09
 
 ### Fixed
