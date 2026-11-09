@@ -149,7 +149,7 @@
   "resolutions": {
     "@babel/plugin-transform-modules-systemjs": "7.29.8",
     "@babel/runtime": "7.29.7",
-    "**/typescript-estree/minimatch": "9.0.7",
+    "**/typescript-estree/minimatch": "11.0.1",
     "**/readdir-glob/minimatch": "5.1.8",
     "braces": "file:patches/braces",
     "colord": "2.9.4",
@@ -179,7 +179,9 @@
     "url-loader/**/ajv": "6.14.0",
     "webpack/**/ajv": "8.20.0",
     "worker-loader/**/ajv": "6.14.0",
-    "**/postcss": "8.5.28"
+    "**/postcss": "8.5.28",
+    "**/archiver-utils/**/minimatch": "11.0.1",
+    "glob/minimatch": "11.0.1"
   },
   "packageManager": "yarn@1.22.19+sha512.ff4579ab459bb25aa7c0ff75b62acebe576f6084b36aa842971cf250a5d8c6cd3bc9420b22ce63c7f93a0857bc6ef29291db39c3e7a23aab5adfd5a4dd6c5d71"
 }
