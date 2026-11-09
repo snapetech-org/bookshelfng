@@ -48,8 +48,10 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
 
     def test_extra_platform_release_restore_uses_available_runtime_patch(self) -> None:
         source = (WORKFLOWS / "release-build.yml").read_text(encoding="utf-8")
-        self.assertIn("--msbuild-arg=-p:TargetLatestRuntimePatch=false", source)
-        self.assertIn("--msbuild-arg=-p:RuntimeFrameworkVersion=10.0.12", source)
+        job = job_block(source, "build-release-assets")
+        self.assertIn("--msbuild-arg=-p:TargetLatestRuntimePatch=false", job)
+        self.assertIn("--msbuild-arg=-p:RuntimeFrameworkVersion=10.0.12", job)
+        self.assertNotIn("DOTNETVERSION:", job)
 
     def test_ordinary_manual_workflows_do_not_require_private_capacity(self) -> None:
         for path in WORKFLOWS.glob("*.yml"):

@@ -170,7 +170,6 @@ jobs:
         env:
           BUILD_SOURCEBRANCHNAME: main
           CUSTOM_RUNTIME_PACKS_DIR: ${{ github.workspace }}/_temp/platform-runtime-packs/packages
-          DOTNETVERSION: 10.0.401
           READARRVERSION: ${{ needs.validate.outputs.version }}
         run: |
           set -euo pipefail

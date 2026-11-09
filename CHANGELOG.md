@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.21.84](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.83..v0.4.21.84) - 2026-11-09
+
+### Fixed
+
+- Patch the active hosted .NET SDK's runtime metadata before restoring community Linux x86 and FreeBSD packs. The release job no longer patches an installed-but-inactive SDK servicing version.
+
 ## [0.4.21.83](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.82..v0.4.21.83) - 2026-11-09
 
 ### Fixed
