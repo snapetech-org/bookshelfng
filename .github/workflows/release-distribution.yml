@@ -499,6 +499,10 @@ jobs:
           $ErrorActionPreference = 'Stop'
           $archive = "BookshelfNG-$env:TAG-win-x64.zip"
           $archivePath = Join-Path $env:RUNNER_TEMP $archive
+          $archiveBytes = (Get-Item -LiteralPath $archivePath).Length
+          if ($archiveBytes -gt 190000000) {
+            throw "Chocolatey payload exceeds the 190000000-byte budget: $archive ($archiveBytes bytes)."
+          }
           $checksum = (Get-FileHash $archivePath -Algorithm SHA256).Hash.ToLowerInvariant()
           $packageDir = Join-Path $env:RUNNER_TEMP 'bookshelfng-choco'
           New-Item -ItemType Directory -Force -Path (Join-Path $packageDir 'tools') | Out-Null
