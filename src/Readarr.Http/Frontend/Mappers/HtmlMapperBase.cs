@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Net;
 using System.Text.RegularExpressions;
 using NLog;
 using NzbDrone.Common.Disk;
@@ -11,7 +12,9 @@ namespace Readarr.Http.Frontend.Mappers
     {
         private readonly IDiskProvider _diskProvider;
         private readonly Lazy<ICacheBreakerProvider> _cacheBreakProviderFactory;
-        private static readonly Regex ReplaceRegex = new Regex(@"(?:(?<attribute>href|src)=\"")(?<path>.*?(?<extension>css|js|png|ico|ics|svg|json))(?:\"")(?:\s(?<nohash>data-no-hash))?", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        // The production HTML minifier can omit quotes on root-relative asset URLs.
+        private static readonly Regex ReplaceRegex = new Regex(@"(?<=\s)(?<attribute>href|src)=(?<quote>[""'])?(?<path>/(?!/)[^""'<>\s?#]*\.(?:css|js|png|ico|ics|svg|json))(?(quote)\k<quote>)(?=\s|/?>)(?:\s+(?<nohash>data-no-hash)(?=\s|/?>))?", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         private string _generatedContent;
 
@@ -62,7 +65,7 @@ namespace Readarr.Http.Frontend.Mappers
                     url = cacheBreakProvider.AddCacheBreakerToPath(match.Groups["path"].Value);
                 }
 
-                return $"{match.Groups["attribute"].Value}=\"{UrlBase}{url}\"";
+                return $"{match.Groups["attribute"].Value}=\"{WebUtility.HtmlEncode($"{UrlBase}{url}")}\"";
             });
 
             // Serialize the configured path as a JavaScript string so quotes and

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.21.85](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.84..v0.4.21.85) - 2026-11-10
+
+### Fixed
+
+- Restore the web UI by updating the library and search selectors for Reselect 5.
+- Load JavaScript and CSS through the configured URL Base when the app is served from a path such as `/bookshelf`.
+
 ## [0.4.21.84](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.83..v0.4.21.84) - 2026-11-09
 
 ### Fixed

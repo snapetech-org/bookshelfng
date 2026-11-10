@@ -1,4 +1,4 @@
-import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
+import { createSelector, createSelectorCreator, lruMemoize } from 'reselect';
 import hasDifferentItemsOrOrder from 'Utilities/Object/hasDifferentItemsOrOrder';
 import createBooksClientSideCollectionSelector from './createBooksClientSideCollectionSelector';
 
@@ -35,7 +35,7 @@ function bookListEqual(a, b) {
 }
 
 const createBookEqualSelector = createSelectorCreator(
-  defaultMemoize,
+  lruMemoize,
   bookListEqual
 );
 
