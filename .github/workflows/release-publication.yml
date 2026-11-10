@@ -32,6 +32,8 @@ on:
         required: false
       DISCORD_RELEASE_WEBHOOK:
         required: true
+      DISCORD_CHANGELOG_WEBHOOK:
+        required: false
 
 permissions:
   actions: read
@@ -371,3 +373,4 @@ jobs:
       LAUNCHPAD_PPA: ${{ secrets.LAUNCHPAD_PPA }}
       CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
       DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+      DISCORD_CHANGELOG_WEBHOOK: ${{ secrets.DISCORD_CHANGELOG_WEBHOOK }}
