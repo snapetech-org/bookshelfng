@@ -67,7 +67,9 @@ The FreeBSD source phase clones a clean runtime tree, then applies a targeted
 condition that omits the Microsoft.NETCore.App.Crossgen2 SFX package.
 BookshelfNG does not publish ReadyToRun apps for this target, and the
 BookshelfNG .NET 10.0.15 cross-build cannot package that unused Crossgen2 SFX
-because framework dependencies are unresolved during the FreeBSD build.
+because framework dependencies are unresolved during the FreeBSD build. It also
+suppresses NU5118 for a duplicate `System.Private.CoreLib.pdb` entry already
+included by the FreeBSD runtime package.
 
 FreeBSD x64 packs and its runtime host are cross-compiled from the same
 Microsoft `dotnet/runtime` and `dotnet/aspnetcore` `v10.0.15` source tags. The

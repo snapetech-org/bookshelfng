@@ -186,6 +186,7 @@ from pathlib import Path
 import sys
 
 path = Path(sys.argv[1])
+root = path.parents[1]
 content = path.read_text()
 old = "Condition=\"'$(RuntimeFlavor)' != 'Mono' and ('$(TargetsMobile)' != 'true' and '$(TargetsLinuxBionic)' != 'true')\" Include=\"$(InstallerProjectRoot)pkg\\sfx\\Microsoft.NETCore.App\\Microsoft.NETCore.App.Crossgen2.sfxproj\""
 new = "Condition=\"'$(RuntimeFlavor)' != 'Mono' and '$(TargetOS)' != 'freebsd' and ('$(TargetsMobile)' != 'true' and '$(TargetsLinuxBionic)' != 'true')\" Include=\"$(InstallerProjectRoot)pkg\\sfx\\Microsoft.NETCore.App\\Microsoft.NETCore.App.Crossgen2.sfxproj\""
@@ -195,6 +196,22 @@ updated = content.replace(old, new, 1)
 if updated.count(new) != 1:
     raise SystemExit("Failed to exclude the unused Crossgen2 SFX package for the FreeBSD source build")
 path.write_text(updated)
+
+coreclr_project = root / "src/installer/pkg/sfx/Microsoft.NETCore.App/Microsoft.NETCore.App.Runtime.CoreCLR.sfxproj"
+project_content = coreclr_project.read_text()
+warning_group = (
+    '  <PropertyGroup Condition="\'$(TargetOS)\' == \'freebsd\'">\n'
+    '    <NoWarn>$(NoWarn);NU5118</NoWarn>\n'
+    '  </PropertyGroup>\n'
+)
+if warning_group.strip() in project_content:
+    raise SystemExit("The clean FreeBSD runtime project already contains the NU5118 suppression")
+if project_content.count("</Project>") != 1:
+    raise SystemExit("Expected exactly one project root in the clean FreeBSD CoreCLR SFX project")
+project_updated = project_content.replace("</Project>", warning_group + "</Project>", 1)
+if "TargetOS)' == 'freebsd'" not in project_updated or "$(NoWarn);NU5118" not in project_updated:
+    raise SystemExit("Failed to suppress duplicate PDB packaging warning NU5118 for FreeBSD")
+coreclr_project.write_text(project_updated)
 PY
 }
 
