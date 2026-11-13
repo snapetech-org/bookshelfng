@@ -19,6 +19,11 @@ on:
         description: Published Hardcover image digest
         required: true
         type: string
+      skip_announcement:
+        description: Skip Discord announcements for this release
+        required: false
+        type: boolean
+        default: false
     secrets:
       AUR_SSH_KEY:
         required: false
@@ -365,7 +370,7 @@ jobs:
       hardcover_digest: ${{ needs.prepare.outputs.hardcover_digest }}
       channels: all
       recovery_only: false
-      skip_announcement: false
+      skip_announcement: ${{ inputs.skip_announcement }}
     secrets:
       AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
       COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}

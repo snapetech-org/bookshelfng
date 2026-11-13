@@ -1203,6 +1203,7 @@ jobs:
       tag: ${{ inputs.release_build_tag }}
       softcover_digest: ${{ needs.publish-images.outputs.softcover_digest }}
       hardcover_digest: ${{ needs.publish-images.outputs.hardcover_digest }}
+      skip_announcement: ${{ inputs.release_skip_announcement }}
     secrets:
       AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
       COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
