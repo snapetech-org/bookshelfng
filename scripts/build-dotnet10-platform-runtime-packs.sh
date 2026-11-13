@@ -90,6 +90,21 @@ clone_sources() {
     git -C "$aspnet_repo" submodule update --init --depth 1
 }
 
+remove_source_checkouts() {
+    docker run --rm --user 0:0 \
+        --mount "type=bind,source=$work_root,target=/work" \
+        "$cross_image" \
+        bash -lc 'rm -rf /work/runtime /work/aspnetcore'
+}
+
+clear_previous_build_sources() {
+    mkdir -p "$work_root"
+    docker run --rm --user 0:0 \
+        --mount "type=bind,source=$work_root,target=/work" \
+        "$cross_image" \
+        bash -lc 'rm -rf /work/runtime /work/aspnetcore /work/aspnet-shared'
+}
+
 patch_runtime_package_version() {
     python3 - "$runtime_repo/eng/Versions.props" <<'PY'
 from pathlib import Path
@@ -344,7 +359,8 @@ command -v docker >/dev/null || die "Docker is required to cross-build the Linux
 command -v python3 >/dev/null || die "Python 3 is required to patch the pinned .NET build metadata"
 command -v unzip >/dev/null || die "unzip is required to assemble the ASP.NET shared runtime"
 
-rm -rf "$work_root" "$output_root"
+clear_previous_build_sources
+rm -rf "$output_root"
 clone_sources
 patch_sdk_runtime_ids "$runtime_sdk"
 patch_sdk_runtime_ids "$aspnet_sdk"
@@ -358,7 +374,7 @@ stage_platform_artifacts linux-x86 "$linux_x86_runtime_version"
 
 # Build FreeBSD from the same Microsoft servicing sources using the pinned
 # FreeBSD cross-build image. Keep this phase clean of the Linux x86 source edits.
-rm -rf "$runtime_repo" "$aspnet_repo"
+remove_source_checkouts
 clone_sources
 patch_runtime_package_version
 build_freebsd_runtime
