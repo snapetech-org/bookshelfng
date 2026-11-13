@@ -440,11 +440,11 @@
       },
       "MimeKit": {
         "type": "Transitive",
-        "resolved": "4.18.1",
-        "contentHash": "D8AfFVMFVJldWmhQWCziC9nWUN/zayFFBAKpyjVyCeh0tqBiI9jtUVuMrKgWw1EGnCp09msDZldbRvp2jfUehQ==",
+        "resolved": "4.18.2",
+        "contentHash": "aYnwCCq+ZgQIsnHSJd3TMeGqf/Rz/9jYEItXpOoG3E2REOCZtLishwBSDFl2wQ/W2SB5wBsvE38DgHZ0IEyz4Q==",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.7.0",
-          "System.Security.Cryptography.Pkcs": "10.0.0"
+          "System.Security.Cryptography.Pkcs": "10.0.13"
         }
       },
       "Mono.Cecil": {
@@ -469,8 +469,8 @@
       },
       "Polly.Core": {
         "type": "Transitive",
-        "resolved": "8.8.0",
-        "contentHash": "TewV9uNFsoRFggoFbTAGFwsMYPuckA+wTIpQPyhLL9BANRPQRENz2S4bwATrB3HBOakN5oKLFIllPiDnVecmJg=="
+        "resolved": "8.9.0",
+        "contentHash": "Imm3q+XvH+8fiOdCkp+GggDQuxN3e4VznbRxODjjJxCurmAIfUEO4dKcPx8RCwocTkvP6Udw2DyXtC+45tu3jA=="
       },
       "ReusableTasks": {
         "type": "Transitive",
@@ -518,13 +518,13 @@
       },
       "SkiaSharp.NativeAssets.macOS": {
         "type": "Transitive",
-        "resolved": "4.153.1",
-        "contentHash": "YTojWeWIhnpF7uC8vpMxB5wRONKkDB2t3r/nNPA3DL2pgj9fqMXRevA/rIanYazWnco4jo1ufgp3HkXuh1Tz8A=="
+        "resolved": "4.154.0",
+        "contentHash": "GgYL4ML3HT4CW33oXMHdp7BSRU87bPUfWBXdYgNduGlt4GAbAM/3eXcjjUdilS0H1r2R5iBhwvExCfSYGwFKlw=="
       },
       "SkiaSharp.NativeAssets.Win32": {
         "type": "Transitive",
-        "resolved": "4.153.1",
-        "contentHash": "Yqg6rChTVh0BUE8QQxtOA3uUBnihfgID4yex/AvDa0+os2bVcBjmI3Qj9tnOB+R1hd/Jry1Gwl8qw5JI9HZG8Q=="
+        "resolved": "4.154.0",
+        "contentHash": "GXgoY77GCXdPcveNAmy8o3gVit8sp6YtnI88h5camLPfihjulwJUajZXKhgVuZ8RhuwSTgfyt/00Dx8HRUSeAA=="
       },
       "Swashbuckle.AspNetCore.Swagger": {
         "type": "Transitive",
@@ -588,13 +588,13 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "[9.5.4, )",
-          "Ical.Net": "[5.2.3, )",
+          "Ical.Net": "[5.2.4, )",
           "NLog": "[6.2.2, )",
           "Readarr.Common": "[1.0.0, )",
           "Readarr.Core": "[1.0.0, )",
           "Readarr.Http": "[1.0.0, )",
           "Readarr.SignalR": "[1.0.0, )",
-          "Swashbuckle.AspNetCore.Annotations": "[10.3.0, )",
+          "Swashbuckle.AspNetCore.Annotations": "[10.3.1, )",
           "System.IO.Abstractions": "[22.3.0, )",
           "System.Reflection.TypeExtensions": "[4.7.0, )"
         }
@@ -625,7 +625,7 @@
           "Equ": "[2.3.0, )",
           "FluentValidation": "[9.5.4, )",
           "LazyCache": "[2.4.0, )",
-          "MailKit": "[4.18.1, )",
+          "MailKit": "[4.18.2, )",
           "Microsoft.Data.SqlClient": "[7.1.1, )",
           "Microsoft.Extensions.Caching.Memory": "[10.0.15, )",
           "Microsoft.Extensions.Configuration": "[10.0.15, )",
@@ -633,18 +633,18 @@
           "Microsoft.Extensions.Logging": "[10.0.15, )",
           "Microsoft.IdentityModel.JsonWebTokens": "[8.23.0, )",
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "[8.23.0, )",
-          "Microsoft.Playwright": "[1.63.0, )",
+          "Microsoft.Playwright": "[1.64.1, )",
           "MonoTorrent": "[3.0.2, )",
           "NLog": "[6.2.2, )",
           "NLog.Targets.Syslog": "[7.0.0, )",
           "Newtonsoft.Json": "[13.0.4, )",
           "Npgsql": "[10.0.3, )",
           "PDFsharp": "[6.5.0, )",
-          "Polly": "[8.8.0, )",
+          "Polly": "[8.9.0, )",
           "Readarr.Common": "[1.0.0, )",
           "Servarr.FluentMigrator.Runner.Postgres": "[5.2.0.10, )",
           "Servarr.FluentMigrator.Runner.SQLite": "[5.2.0.10, )",
-          "SkiaSharp": "[4.153.1, )",
+          "SkiaSharp": "[4.154.0, )",
           "System.IO.Abstractions": "[22.3.0, )",
           "System.IdentityModel.Tokens.Jwt": "[8.23.0, )",
           "TagLibSharp-Lidarr": "[2.4.0, )"
@@ -754,9 +754,9 @@
       },
       "Ical.Net": {
         "type": "CentralTransitive",
-        "requested": "[5.2.3, )",
-        "resolved": "5.2.3",
-        "contentHash": "zROvmrRPKqND0e0Bt/wSY+d8iYtL4+sP9mORyjT/ySBiIDfik4iovTjS+L9PFg+zoXfkJ5eBTHK2lX9c7lganw==",
+        "requested": "[5.2.4, )",
+        "resolved": "5.2.4",
+        "contentHash": "KpXaIEqe4TntybCRoa0TSwkXJu7kgnFsLRj3lKSaYLYRQuos1ujyzaS0Opk7g5QZKM1Igi/2h84+FBhbmGgNeg==",
         "dependencies": {
           "NodaTime": "3.2.2"
         }
@@ -788,11 +788,11 @@
       },
       "MailKit": {
         "type": "CentralTransitive",
-        "requested": "[4.18.1, )",
-        "resolved": "4.18.1",
-        "contentHash": "EssBsnKHvIcH1QpqqsVUEWAlAHI3dkGXJpKAzSNJ8PGjClNynSo9bRkT68jVZkxhREm0Z51Dwu3127f4WfIiRg==",
+        "requested": "[4.18.2, )",
+        "resolved": "4.18.2",
+        "contentHash": "ofqddpSbdrD00NqTD0ZyVfKvrl/ZZ70VFFEQ+DuR8r8CdbY3U02/sdb0CSQBNUqJifsXfVHIwRe1ToR2MvJJkw==",
         "dependencies": {
-          "MimeKit": "4.18.1"
+          "MimeKit": "4.18.2"
         }
       },
       "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
@@ -898,9 +898,9 @@
       },
       "Microsoft.Playwright": {
         "type": "CentralTransitive",
-        "requested": "[1.63.0, )",
-        "resolved": "1.63.0",
-        "contentHash": "O9F45Tt5vjauIo7mTTgQtahigL7cfRLvBMpErLJfdvgCnQ14yue5BmRASNnfNBWRBni4Mqp2YiD1eFGIO4nUUw==",
+        "requested": "[1.64.1, )",
+        "resolved": "1.64.1",
+        "contentHash": "DO8plHiCCUS/54XZxhsuzGtxI4RkyJ/5XOlVFoT0A0K1jNYdGhntry36ivkPjcCbv0uz6P/PmJ35gUgnAYGbiw==",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
           "System.ComponentModel.Annotations": "5.0.0"
@@ -979,11 +979,11 @@
       },
       "Polly": {
         "type": "CentralTransitive",
-        "requested": "[8.8.0, )",
-        "resolved": "8.8.0",
-        "contentHash": "1/jm0wQA0hjcY8OcGx2HLzj4Tx33IpmEWWPUcekt07V7VO8suAUmeDRD7VM5wy9614pJMI2M0TB1pwKVflh4CQ==",
+        "requested": "[8.9.0, )",
+        "resolved": "8.9.0",
+        "contentHash": "k/gux3e2R/kmXXVBPmaPi/MWMEsCu6gvWfKwWYRiOtEbDljg91iP8zH5LGPpiTNyoGrmw3hrK8wY1s9rs9nluA==",
         "dependencies": {
-          "Polly.Core": "8.8.0"
+          "Polly.Core": "8.9.0"
         }
       },
       "RestSharp": {
@@ -1021,21 +1021,21 @@
       },
       "SkiaSharp": {
         "type": "CentralTransitive",
-        "requested": "[4.153.1, )",
-        "resolved": "4.153.1",
-        "contentHash": "TghYLOUaP3q6rTjQw7U9uQaaXh8lEs9rfA1U7/VtmyAptVDtj/SmjtcWzFWmcC/VMWxe3QgbV9uyvqDL7ySFtQ==",
+        "requested": "[4.154.0, )",
+        "resolved": "4.154.0",
+        "contentHash": "R3BuszJ3tUFmni37nZIRawXL0yx+XHyx7xi1716/0TybuEQFhnBx48Ig3rFpeVFQVytpGpJZZ+NLW9d9UPG7EA==",
         "dependencies": {
-          "SkiaSharp.NativeAssets.Win32": "4.153.1",
-          "SkiaSharp.NativeAssets.macOS": "4.153.1"
+          "SkiaSharp.NativeAssets.Win32": "4.154.0",
+          "SkiaSharp.NativeAssets.macOS": "4.154.0"
         }
       },
       "Swashbuckle.AspNetCore.Annotations": {
         "type": "CentralTransitive",
-        "requested": "[10.3.0, )",
-        "resolved": "10.3.0",
-        "contentHash": "NRfr+iyBul75FquIhA/edU/vjLE41YPVNHq/bZoRxaWEieD1GWhrWXdaG8t7KHZDLAmoRhQMq7JpjigZ83Xehg==",
+        "requested": "[10.3.1, )",
+        "resolved": "10.3.1",
+        "contentHash": "sQgSmjgpwElR48bM6u3yAfYkJ4JcTyzAsrlepgWC+mG3gNStIBfyGkF0TDRWZ1GcQuZTJnZttxVg1ETYrAq9pg==",
         "dependencies": {
-          "Swashbuckle.AspNetCore.SwaggerGen": "10.3.0"
+          "Swashbuckle.AspNetCore.SwaggerGen": "10.3.1"
         }
       },
       "Swashbuckle.AspNetCore.SwaggerGen": {
@@ -1128,13 +1128,13 @@
       },
       "SkiaSharp.NativeAssets.macOS": {
         "type": "Transitive",
-        "resolved": "4.153.1",
-        "contentHash": "YTojWeWIhnpF7uC8vpMxB5wRONKkDB2t3r/nNPA3DL2pgj9fqMXRevA/rIanYazWnco4jo1ufgp3HkXuh1Tz8A=="
+        "resolved": "4.154.0",
+        "contentHash": "GgYL4ML3HT4CW33oXMHdp7BSRU87bPUfWBXdYgNduGlt4GAbAM/3eXcjjUdilS0H1r2R5iBhwvExCfSYGwFKlw=="
       },
       "SkiaSharp.NativeAssets.Win32": {
         "type": "Transitive",
-        "resolved": "4.153.1",
-        "contentHash": "Yqg6rChTVh0BUE8QQxtOA3uUBnihfgID4yex/AvDa0+os2bVcBjmI3Qj9tnOB+R1hd/Jry1Gwl8qw5JI9HZG8Q=="
+        "resolved": "4.154.0",
+        "contentHash": "GXgoY77GCXdPcveNAmy8o3gVit8sp6YtnI88h5camLPfihjulwJUajZXKhgVuZ8RhuwSTgfyt/00Dx8HRUSeAA=="
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
@@ -1190,13 +1190,13 @@
       },
       "SkiaSharp.NativeAssets.macOS": {
         "type": "Transitive",
-        "resolved": "4.153.1",
-        "contentHash": "YTojWeWIhnpF7uC8vpMxB5wRONKkDB2t3r/nNPA3DL2pgj9fqMXRevA/rIanYazWnco4jo1ufgp3HkXuh1Tz8A=="
+        "resolved": "4.154.0",
+        "contentHash": "GgYL4ML3HT4CW33oXMHdp7BSRU87bPUfWBXdYgNduGlt4GAbAM/3eXcjjUdilS0H1r2R5iBhwvExCfSYGwFKlw=="
       },
       "SkiaSharp.NativeAssets.Win32": {
         "type": "Transitive",
-        "resolved": "4.153.1",
-        "contentHash": "Yqg6rChTVh0BUE8QQxtOA3uUBnihfgID4yex/AvDa0+os2bVcBjmI3Qj9tnOB+R1hd/Jry1Gwl8qw5JI9HZG8Q=="
+        "resolved": "4.154.0",
+        "contentHash": "GXgoY77GCXdPcveNAmy8o3gVit8sp6YtnI88h5camLPfihjulwJUajZXKhgVuZ8RhuwSTgfyt/00Dx8HRUSeAA=="
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
@@ -1252,13 +1252,13 @@
       },
       "SkiaSharp.NativeAssets.macOS": {
         "type": "Transitive",
-        "resolved": "4.153.1",
-        "contentHash": "YTojWeWIhnpF7uC8vpMxB5wRONKkDB2t3r/nNPA3DL2pgj9fqMXRevA/rIanYazWnco4jo1ufgp3HkXuh1Tz8A=="
+        "resolved": "4.154.0",
+        "contentHash": "GgYL4ML3HT4CW33oXMHdp7BSRU87bPUfWBXdYgNduGlt4GAbAM/3eXcjjUdilS0H1r2R5iBhwvExCfSYGwFKlw=="
       },
       "SkiaSharp.NativeAssets.Win32": {
         "type": "Transitive",
-        "resolved": "4.153.1",
-        "contentHash": "Yqg6rChTVh0BUE8QQxtOA3uUBnihfgID4yex/AvDa0+os2bVcBjmI3Qj9tnOB+R1hd/Jry1Gwl8qw5JI9HZG8Q=="
+        "resolved": "4.154.0",
+        "contentHash": "GXgoY77GCXdPcveNAmy8o3gVit8sp6YtnI88h5camLPfihjulwJUajZXKhgVuZ8RhuwSTgfyt/00Dx8HRUSeAA=="
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
