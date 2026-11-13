@@ -51,6 +51,13 @@ The builder uses the SDK versions pinned by those source trees (10.0.111 and
 10.0.112) and produces the standard `Microsoft.NETCore.App` and
 `Microsoft.AspNetCore.App` NuGet packs at version 10.0.15.
 
+The component source tags retain package-version metadata from their individual
+source builds: the runtime tag declares patch 13, and the ASP.NET Core tag
+declares patch 14 and references runtime 10.0.14. The builder verifies those
+expected inputs and normalizes the runtime, ASP.NET Core, and ASP.NET runtime
+reference metadata to 10.0.15 before packaging. This keeps the custom RID packs
+aligned with the .NET 10.0.15 servicing release.
+
 BookshelfNG publishes without ReadyToRun or Native AOT. The Linux x86 source
 build therefore disables ReadyToRun, omits the crossgen package, and skips the
 ASP.NET composite ReadyToRun pack. This keeps the app's runtime output focused

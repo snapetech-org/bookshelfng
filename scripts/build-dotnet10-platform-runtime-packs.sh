@@ -90,6 +90,21 @@ clone_sources() {
     git -C "$aspnet_repo" submodule update --init --depth 1
 }
 
+patch_runtime_package_version() {
+    python3 - "$runtime_repo/eng/Versions.props" <<'PY'
+from pathlib import Path
+import sys
+
+path = Path(sys.argv[1])
+text = path.read_text()
+old = "<PatchVersion>13</PatchVersion>"
+new = "<PatchVersion>15</PatchVersion>"
+if text.count(old) != 1:
+    raise SystemExit("Expected the v10.0.15 runtime source tag to declare PatchVersion 13")
+path.write_text(text.replace(old, new, 1))
+PY
+}
+
 patch_runtime_sources() {
     python3 - "$runtime_repo" <<'PY'
 from pathlib import Path
@@ -173,16 +188,42 @@ build_freebsd_runtime() {
 }
 
 patch_aspnet_sources() {
-    python3 - "$aspnet_repo" <<'PY'
+    local rid="$1"
+    python3 - "$aspnet_repo" "$rid" <<'PY'
 from pathlib import Path
 import re
 import sys
 
 root = Path(sys.argv[1])
+rid = sys.argv[2]
+if rid not in ("linux-x86", "freebsd-x64"):
+    raise SystemExit(f"Unsupported ASP.NET Core runtime identifier: {rid}")
+
+versions = root / "eng/Versions.props"
+text = versions.read_text()
+old = "<AspNetCorePatchVersion>14</AspNetCorePatchVersion>"
+new = "<AspNetCorePatchVersion>15</AspNetCorePatchVersion>"
+if text.count(old) != 1:
+    raise SystemExit("Expected the v10.0.15 ASP.NET Core source tag to declare patch version 14")
+versions.write_text(text.replace(old, new, 1))
+
+details = root / "eng/Version.Details.props"
+text = details.read_text()
+old = "<MicrosoftNETCoreAppRefPackageVersion>10.0.14</MicrosoftNETCoreAppRefPackageVersion>"
+new = "<MicrosoftNETCoreAppRefPackageVersion>10.0.15</MicrosoftNETCoreAppRefPackageVersion>"
+if text.count(old) != 1:
+    raise SystemExit("Expected the v10.0.15 ASP.NET Core source tag to reference .NET runtime 10.0.14")
+details.write_text(text.replace(old, new, 1))
+
 props = root / "Directory.Build.props"
 text = props.read_text()
-text = re.sub(r'(<SupportedRuntimeIdentifiers>)([^<]*)(</SupportedRuntimeIdentifiers>)',
-              lambda m: m.group(1) + m.group(2) + ("" if "linux-x86" in m.group(2).split(";") else ";linux-x86") + m.group(3), text, count=1)
+supported = re.search(r'<SupportedRuntimeIdentifiers>([^<]*)</SupportedRuntimeIdentifiers>', text)
+if not supported:
+    raise SystemExit("Could not find ASP.NET Core supported runtime identifiers")
+values = supported.group(1).split(";")
+if rid not in values:
+    values.append(rid)
+text = text[:supported.start(1)] + ";".join(values) + text[supported.end(1):]
 props.write_text(text)
 
 dependencies = root / "eng/Dependencies.props"
@@ -190,8 +231,9 @@ text = dependencies.read_text()
 anchor = '<_LatestRuntimePackageReference Include="Microsoft.NETCore.App.Runtime.linux-x64" />'
 if anchor not in text:
     raise SystemExit("Could not find the linux-x64 runtime package in ASP.NET Core dependency metadata")
-if 'Microsoft.NETCore.App.Runtime.linux-x86' not in text:
-    text = text.replace(anchor, anchor + '\n    <_LatestRuntimePackageReference Include="Microsoft.NETCore.App.Runtime.linux-x86" />', 1)
+package = f'<_LatestRuntimePackageReference Include="Microsoft.NETCore.App.Runtime.{rid}" />'
+if package not in text:
+    text = text.replace(anchor, anchor + "\n    " + package, 1)
 dependencies.write_text(text)
 PY
     sed -i '/dnceng\/internal/d' "$aspnet_repo/NuGet.config"
@@ -307,9 +349,10 @@ clone_sources
 patch_sdk_runtime_ids "$runtime_sdk"
 patch_sdk_runtime_ids "$aspnet_sdk"
 patch_sdk_runtime_ids "$app_sdk"
+patch_runtime_package_version
 patch_runtime_sources
 build_linux_x86_runtime
-patch_aspnet_sources
+patch_aspnet_sources linux-x86
 build_linux_x86_aspnetcore
 stage_platform_artifacts linux-x86 "$linux_x86_runtime_version"
 
@@ -317,7 +360,9 @@ stage_platform_artifacts linux-x86 "$linux_x86_runtime_version"
 # FreeBSD cross-build image. Keep this phase clean of the Linux x86 source edits.
 rm -rf "$runtime_repo" "$aspnet_repo"
 clone_sources
+patch_runtime_package_version
 build_freebsd_runtime
+patch_aspnet_sources freebsd-x64
 build_freebsd_aspnetcore
 stage_platform_artifacts freebsd-x64 "$freebsd_runtime_version"
 collect_platform_artifacts
