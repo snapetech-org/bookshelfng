@@ -29,4 +29,8 @@ This later Chaptarr contribution was also adapted into BookshelfNG.
 
 - [PR #114](https://github.com/Chaptarr/chaptarr/pull/114) — “fix(api): preserve media type for scoped book lookup,” opened upstream by [@snapetech](https://github.com/snapetech). BookshelfNG’s maintained Chaptarr consolidation review cites this upstream validation record; the citation does not claim that PR #114 was implemented in or contributed directly to BookshelfNG.
 
-_Attribution ledger refreshed 2026-11-09; 10 source records._
+## Reviewed .NET runtime source and BookshelfNG disposition
+
+- [dotnet/runtime issue #104497](https://github.com/dotnet/runtime/issues/104497) — cross-built FreeBSD ILCompiler packaging, reported upstream by [@Thefrank](https://github.com/Thefrank), and resolved upstream by [PR #105004](https://github.com/dotnet/runtime/pull/105004) from [@am11](https://github.com/am11). BookshelfNG independently narrows its custom FreeBSD runtime-pack build by omitting the unused Crossgen2 SFX package after the .NET 10.0.15 packaging step failed on missing framework dependencies. This does not adopt the upstream two-stage ILCompiler build or claim either upstream author contributed directly to BookshelfNG.
+
+_Attribution ledger refreshed 2026-11-13; 12 source records._

@@ -150,9 +150,14 @@ def add_rid_attributes(content):
 
 edit("eng/targetingpacks.targets", add_rid_attributes)
 edit("eng/Subsets.props", lambda s: re.sub(r'^.*crossgen-corelib\.proj.*\n', "", s, flags=re.MULTILINE))
-edit("eng/Subsets.props", lambda s: s.replace(
-    "Condition=\"'$(RuntimeFlavor)' != 'Mono' and ('$(TargetsMobile)' != 'true' and '$(TargetsLinuxBionic)' != 'true')\" Include=\"$(InstallerProjectRoot)pkg\\sfx\\Microsoft.NETCore.App\\Microsoft.NETCore.App.Crossgen2.sfxproj\"",
-    "Condition=\"'$(RuntimeFlavor)' != 'Mono' and '$(TargetArchitecture)' != 'x86' and ('$(TargetsMobile)' != 'true' and '$(TargetsLinuxBionic)' != 'true')\" Include=\"$(InstallerProjectRoot)pkg\\sfx\\Microsoft.NETCore.App\\Microsoft.NETCore.App.Crossgen2.sfxproj\""))
+def skip_unused_crossgen2_pack(content):
+    old = "Condition=\"'$(RuntimeFlavor)' != 'Mono' and ('$(TargetsMobile)' != 'true' and '$(TargetsLinuxBionic)' != 'true')\" Include=\"$(InstallerProjectRoot)pkg\\sfx\\Microsoft.NETCore.App\\Microsoft.NETCore.App.Crossgen2.sfxproj\""
+    new = "Condition=\"'$(RuntimeFlavor)' != 'Mono' and '$(TargetArchitecture)' != 'x86' and '$(TargetOS)' != 'freebsd' and ('$(TargetsMobile)' != 'true' and '$(TargetsLinuxBionic)' != 'true')\" Include=\"$(InstallerProjectRoot)pkg\\sfx\\Microsoft.NETCore.App\\Microsoft.NETCore.App.Crossgen2.sfxproj\""
+    if content.count(old) != 1:
+        raise SystemExit("Expected exactly one Crossgen2 shared-framework package condition")
+    return content.replace(old, new, 1)
+
+edit("eng/Subsets.props", skip_unused_crossgen2_pack)
 for project in ("src/coreclr/tools/aot/crossgen2/crossgen2_publish.csproj", "src/coreclr/tools/aot/ILCompiler/ILCompiler_publish.csproj"):
     edit(project, lambda s: s.replace(
         '<RuntimeIdentifier>$(PortableOS)-$(TargetArchitecture)</RuntimeIdentifier>',
@@ -165,8 +170,12 @@ edit("src/installer/pkg/sfx/Microsoft.NETCore.App/Microsoft.NETCore.App.Runtime.
     "  <PropertyGroup Condition=\"'$(TargetArchitecture)' == 'x86'\">\n    <NoWarn>$(NoWarn);NU5118</NoWarn>\n  </PropertyGroup>\n</Project>", 1))
 
 subsets = (root / "eng/Subsets.props").read_text()
-if "TargetArchitecture)' != 'x86'" not in subsets or "crossgen-corelib.proj" in subsets:
-    raise SystemExit("Failed to apply the Linux x86 runtime subset adjustments")
+if (
+    "TargetArchitecture)' != 'x86'" not in subsets
+    or "TargetOS)' != 'freebsd'" not in subsets
+    or "crossgen-corelib.proj" in subsets
+):
+    raise SystemExit("Failed to apply the platform runtime subset adjustments")
 PY
     sed -i '/dnceng\/internal/d' "$runtime_repo/NuGet.config"
 }

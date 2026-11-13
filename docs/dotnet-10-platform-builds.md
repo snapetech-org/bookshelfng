@@ -63,6 +63,11 @@ build therefore disables ReadyToRun, omits the crossgen package, and skips the
 ASP.NET composite ReadyToRun pack. This keeps the app's runtime output focused
 on the runtime, apphost, and framework packs BookshelfNG consumes.
 
+The FreeBSD source build also omits the Microsoft.NETCore.App.Crossgen2 SFX
+package. BookshelfNG does not publish ReadyToRun apps for this target, and the
+BookshelfNG .NET 10.0.15 cross-build cannot package that unused Crossgen2 SFX
+because framework dependencies are unresolved during the FreeBSD build.
+
 FreeBSD x64 packs and its runtime host are cross-compiled from the same
 Microsoft `dotnet/runtime` and `dotnet/aspnetcore` `v10.0.15` source tags. The
 build uses the pinned Azure Linux 3.0 .NET 10 FreeBSD cross-build image

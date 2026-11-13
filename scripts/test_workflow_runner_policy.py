@@ -60,6 +60,7 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn('readonly runtime_tag="v10.0.15"', builder)
         self.assertIn('readonly linux_x86_runtime_version="10.0.15"', builder)
         self.assertIn('readonly freebsd_runtime_version="10.0.15"', builder)
+        self.assertIn("'$(TargetOS)' != 'freebsd'", builder)
         self.assertIn('<PatchVersion>13</PatchVersion>', builder)
         self.assertIn('<PatchVersion>15</PatchVersion>', builder)
         self.assertIn('<AspNetCorePatchVersion>14</AspNetCorePatchVersion>', builder)
