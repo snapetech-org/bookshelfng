@@ -180,6 +180,24 @@ PY
     sed -i '/dnceng\/internal/d' "$runtime_repo/NuGet.config"
 }
 
+patch_freebsd_runtime_sources() {
+    python3 - "$runtime_repo/eng/Subsets.props" <<'PY'
+from pathlib import Path
+import sys
+
+path = Path(sys.argv[1])
+content = path.read_text()
+old = "Condition=\"'$(RuntimeFlavor)' != 'Mono' and ('$(TargetsMobile)' != 'true' and '$(TargetsLinuxBionic)' != 'true')\" Include=\"$(InstallerProjectRoot)pkg\\sfx\\Microsoft.NETCore.App\\Microsoft.NETCore.App.Crossgen2.sfxproj\""
+new = "Condition=\"'$(RuntimeFlavor)' != 'Mono' and '$(TargetOS)' != 'freebsd' and ('$(TargetsMobile)' != 'true' and '$(TargetsLinuxBionic)' != 'true')\" Include=\"$(InstallerProjectRoot)pkg\\sfx\\Microsoft.NETCore.App\\Microsoft.NETCore.App.Crossgen2.sfxproj\""
+if content.count(old) != 1:
+    raise SystemExit("Expected exactly one Crossgen2 shared-framework package condition in the clean FreeBSD source tree")
+updated = content.replace(old, new, 1)
+if updated.count(new) != 1:
+    raise SystemExit("Failed to exclude the unused Crossgen2 SFX package for the FreeBSD source build")
+path.write_text(updated)
+PY
+}
+
 build_linux_x86_runtime() {
     local official_build_id
     official_build_id="$(get_official_build_id)"
@@ -386,6 +404,7 @@ stage_platform_artifacts linux-x86 "$linux_x86_runtime_version"
 remove_source_checkouts
 clone_sources
 patch_runtime_package_version
+patch_freebsd_runtime_sources
 build_freebsd_runtime
 patch_aspnet_sources freebsd-x64
 build_freebsd_aspnetcore

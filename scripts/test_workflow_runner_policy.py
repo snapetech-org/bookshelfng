@@ -69,6 +69,8 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         self.assertIn('<MicrosoftNETCoreAppRefPackageVersion>10.0.15</MicrosoftNETCoreAppRefPackageVersion>', builder)
         self.assertIn('patch_aspnet_sources linux-x86', builder)
         self.assertIn('patch_aspnet_sources freebsd-x64', builder)
+        freebsd_phase = builder.split("# Build FreeBSD from the same Microsoft servicing sources", 1)[1]
+        self.assertIn("patch_freebsd_runtime_sources\nbuild_freebsd_runtime", freebsd_phase)
         self.assertIn('docker run --rm --user 0:0', builder)
         self.assertIn('rm -rf /work/runtime /work/aspnetcore', builder)
         self.assertNotIn('rm -rf "$runtime_repo" "$aspnet_repo"', builder)
