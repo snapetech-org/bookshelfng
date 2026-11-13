@@ -42,9 +42,9 @@
       },
       "NunitXml.TestLogger": {
         "type": "Direct",
-        "requested": "[3.1.20, )",
-        "resolved": "3.1.20",
-        "contentHash": "Pd9EYPNsQGaKYW+F+l7vTuvDjp8tzTYLqqfLM1Sz5WwLHhvnaJArQZjw/93WF3i07Rxb50WFVu0kjrjKCVFHDg=="
+        "requested": "[8.1.0, )",
+        "resolved": "8.1.0",
+        "contentHash": "BkYY4LROS9WnexcCWIBsa8R2g9zZXVEF/SdcUiSptusGYfXfw7NGh2ZraaLUBVmPLru68A1/eaZ/TrcZEGLKXg=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -629,7 +629,7 @@
           "Microsoft.NET.Test.Sdk": "[18.11.0, )",
           "NUnit": "[5.0.0, )",
           "NUnit3TestAdapter": "[4.6.0, )",
-          "NunitXml.TestLogger": "[3.1.20, )",
+          "NunitXml.TestLogger": "[8.1.0, )",
           "Readarr.Host": "[1.0.0, )",
           "Readarr.Test.Common": "[1.0.0, )",
           "Readarr.Test.Dummy": "[1.0.0, )",
