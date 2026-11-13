@@ -5,4 +5,4 @@ area: runtime
 action: update
 breaking: false
 ---
-The standard .NET 10 runtime and package pins now use 10.0.15. Linux x86 and FreeBSD community runtime packs remain pinned to 10.0.12 and are not covered by this update; those platform releases need refreshed runtime packs before they can be considered remediated.
+This security release updates standard .NET 10 runtime and package pins to 10.0.15 and locks the frontend's glob dependency to a version fixed for CVE-2026-118773. Linux x86 and FreeBSD community runtime packs remain pinned to 10.0.12 and need refreshed packs before those platform releases can be considered remediated.
