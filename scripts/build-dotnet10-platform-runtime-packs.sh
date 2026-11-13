@@ -296,7 +296,7 @@ if package not in text:
 dependencies.write_text(text)
 PY
     sed -i '/dnceng\/internal/d' "$aspnet_repo/NuGet.config"
-    dotnet nuget add source "$runtime_shipping" --name bookshelf-linux-x86-runtime --configfile "$aspnet_repo/NuGet.config"
+    dotnet nuget add source "$runtime_shipping" --name "bookshelf-${rid}-runtime" --configfile "$aspnet_repo/NuGet.config"
 }
 
 build_linux_x86_aspnetcore() {
@@ -325,8 +325,6 @@ build_linux_x86_aspnetcore() {
 build_freebsd_aspnetcore() {
     local official_build_id
     official_build_id="$(get_official_build_id)"
-    sed -i '/dnceng\/internal/d' "$aspnet_repo/NuGet.config"
-    dotnet nuget add source "$runtime_shipping" --name bookshelf-freebsd-runtime --configfile "$aspnet_repo/NuGet.config"
     mkdir -p "$aspnet_repo/artifacts/obj/Microsoft.AspNetCore.App.Runtime"
     cp "$runtime_shipping/dotnet-runtime-$freebsd_runtime_version-freebsd-x64.tar.gz" \
         "$aspnet_repo/artifacts/obj/Microsoft.AspNetCore.App.Runtime/"
