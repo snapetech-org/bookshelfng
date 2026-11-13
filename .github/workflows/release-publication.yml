@@ -240,12 +240,12 @@ jobs:
             --name bookshelfng-platform-runtime-packs \
             --dir "$artifact_dir"
           for package in \
-            Microsoft.NETCore.App.Host.linux-x86.10.0.12.nupkg \
-            Microsoft.NETCore.App.Runtime.linux-x86.10.0.12.nupkg \
-            Microsoft.AspNetCore.App.Runtime.linux-x86.10.0.12.nupkg \
-            Microsoft.NETCore.App.Host.freebsd-x64.10.0.12.nupkg \
-            Microsoft.NETCore.App.Runtime.freebsd-x64.10.0.12.nupkg \
-            Microsoft.AspNetCore.App.Runtime.freebsd-x64.10.0.12.nupkg; do
+            Microsoft.NETCore.App.Host.linux-x86.10.0.15.nupkg \
+            Microsoft.NETCore.App.Runtime.linux-x86.10.0.15.nupkg \
+            Microsoft.AspNetCore.App.Runtime.linux-x86.10.0.15.nupkg \
+            Microsoft.NETCore.App.Host.freebsd-x64.10.0.15.nupkg \
+            Microsoft.NETCore.App.Runtime.freebsd-x64.10.0.15.nupkg \
+            Microsoft.AspNetCore.App.Runtime.freebsd-x64.10.0.15.nupkg; do
             test -s "$artifact_dir/packages/$package" || {
               echo "Validated runtime-pack artifact is missing $package." >&2
               exit 1

@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-readonly runtime_tag="v10.0.12"
-readonly runtime_sdk="10.0.110"
-readonly aspnet_sdk="10.0.111"
+readonly runtime_tag="v10.0.15"
+readonly runtime_sdk="10.0.111"
+readonly aspnet_sdk="10.0.112"
 readonly app_sdk="${DOTNETVERSION:-10.0.404}"
 readonly cross_image="mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-cross-x86@sha256:ecc9c107cd33f8303cba2280eb1537f045acaa88fc0f00780ea6232d19e942b8"
-readonly freebsd_archive_url="https://github.com/Thefrank/dotnet-freebsd-crossbuild/releases/download/v10.0.112-amd64-freebsd-14/Private.SourceBuilt.Artifacts.10.0.112-servicing.26422.108.freebsd-x64.tar.gz"
-readonly freebsd_archive_sha256="7e032c2024cfb17ac3bb27ab8d35234a6e74f5ede16e66ca8420bcf66028d978"
+readonly freebsd_cross_image="mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-cross-freebsd-14-amd64@sha256:4ca96ef731e1466924d62d0fb6d2649cfc117bd98faedede5879ba98530e219b"
+readonly linux_x86_runtime_version="10.0.15"
+readonly freebsd_runtime_version="10.0.15"
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 work_root="${PLATFORM_RUNTIME_WORK_DIR:-$repo_root/_temp/dotnet10-platform-runtime-build}"
@@ -66,16 +67,18 @@ def patch(match):
         attr = re.search(rf'{attribute}="([^"]*)"', block)
         if attr:
             values = attr.group(1).split(";")
-            if "linux-x86" not in values:
-                values.append("linux-x86")
-                block = block[:attr.start(1)] + ";".join(values) + block[attr.end(1):]
+            for rid in ("linux-x86", "freebsd-x64"):
+                if rid not in values:
+                    values.append(rid)
+            block = block[:attr.start(1)] + ";".join(values) + block[attr.end(1):]
     return block
 
 pattern = re.compile(r'<(?:KnownFrameworkReference|KnownAppHostPack)\s+Include="[^"]+"[\s\S]*?/>')
 updated = pattern.sub(patch, content)
 for framework in ("Microsoft.NETCore.App", "Microsoft.AspNetCore.App"):
-    if not re.search(rf'<KnownFrameworkReference\s+Include="{re.escape(framework)}"[\s\S]*?TargetFramework="net10\.0"[\s\S]*?RuntimePackRuntimeIdentifiers="[^"]*linux-x86', updated):
-        raise SystemExit(f"SDK metadata is missing the .NET 10 linux-x86 runtime identifier for {framework}")
+    for rid in ("linux-x86", "freebsd-x64"):
+        if not re.search(rf'<KnownFrameworkReference\s+Include="{re.escape(framework)}"[\s\S]*?TargetFramework="net10\.0"[\s\S]*?RuntimePackRuntimeIdentifiers="[^"]*{re.escape(rid)}', updated):
+            raise SystemExit(f"SDK metadata is missing the .NET 10 {rid} runtime identifier for {framework}")
 path.write_text(updated, encoding="utf-8")
 PY
 }
@@ -153,6 +156,22 @@ build_linux_x86_runtime() {
         bash -lc "export PATH=/usr/share/dotnet:\$PATH; ./eng/build.sh -ci -c Release -cross -os Linux -arch x86 /m:1 /p:OfficialBuildId=$official_build_id /p:SdkVersion=$runtime_sdk /p:AppHostSourcePath=/runtime/artifacts/obj/linux-x86.Release/apphost/standalone/apphost /p:SelfContained=false /p:UseAppHost=false /p:PublishTrimmed=false /p:UseNativeAotForComponents=false /p:PublishAot=false /p:PublishReadyToRun=false /p:PublishSingleFile=false /p:StabilizePackageVersion=true -subset clr.native+clr.corelib+libs.native+libs.sfx+libs.oob+host.native+host.pkg+packs.product -pack"
 }
 
+build_freebsd_runtime() {
+    local official_build_id
+    official_build_id="$(get_official_build_id)"
+    sed -i '/dnceng\/internal/d' "$runtime_repo/NuGet.config"
+    docker run --rm --init \
+        -e DOTNET_INSTALL_DIR=/usr/share/dotnet \
+        -e DOTNET_ROOT=/usr/share/dotnet \
+        -e DOTNET_SDK_VERSION="$runtime_sdk" \
+        -e ROOTFS_DIR=/crossrootfs/x64 \
+        -v "$dotnet_root:/usr/share/dotnet" \
+        -v "$runtime_repo:/runtime" \
+        -w /runtime \
+        "$freebsd_cross_image" \
+        bash -lc "export PATH=/usr/share/dotnet:\$PATH; ./build.sh -ci -c Release -cross -os freebsd -arch x64 /m:1 /p:OfficialBuildId=$official_build_id /p:SdkVersion=$runtime_sdk /p:SelfContained=false /p:UseAppHost=false /p:PublishTrimmed=false /p:UseNativeAotForComponents=false /p:PublishAot=false /p:PublishReadyToRun=false /p:PublishSingleFile=false /p:StabilizePackageVersion=true -subset clr.native+clr.corelib+libs.native+libs.sfx+libs.oob+host.native+host.pkg+packs.product -pack"
+}
+
 patch_aspnet_sources() {
     python3 - "$aspnet_repo" <<'PY'
 from pathlib import Path
@@ -202,90 +221,103 @@ build_linux_x86_aspnetcore() {
     )
 }
 
-verify_sha256() {
-    local expected="$1"
-    local file="$2"
-    if command -v sha256sum >/dev/null 2>&1; then
-        printf '%s  %s\n' "$expected" "$file" | sha256sum --check --status || die "SHA-256 verification failed for $file"
-    elif command -v shasum >/dev/null 2>&1; then
-        printf '%s  %s\n' "$expected" "$file" | shasum -a 256 --check --status || die "SHA-256 verification failed for $file"
-    else
-        die "No SHA-256 checksum utility is installed"
-    fi
+build_freebsd_aspnetcore() {
+    local official_build_id
+    official_build_id="$(get_official_build_id)"
+    sed -i '/dnceng\/internal/d' "$aspnet_repo/NuGet.config"
+    dotnet nuget add source "$runtime_shipping" --name bookshelf-freebsd-runtime --configfile "$aspnet_repo/NuGet.config"
+    mkdir -p "$aspnet_repo/artifacts/obj/Microsoft.AspNetCore.App.Runtime"
+    cp "$runtime_shipping/dotnet-runtime-$freebsd_runtime_version-freebsd-x64.tar.gz" \
+        "$aspnet_repo/artifacts/obj/Microsoft.AspNetCore.App.Runtime/"
+    (
+        cd "$aspnet_repo"
+        DOTNET_INSTALL_DIR="$dotnet_root" DOTNET_ROOT="$dotnet_root" DOTNET_SDK_VERSION="$aspnet_sdk" \
+            DOTNET_MULTILEVEL_LOOKUP=0 PATH="$dotnet_root:$PATH" ./eng/build.sh --only-build-repo-tasks \
+            "/p:SdkVersion=$aspnet_sdk"
+    )
+    patch_sdk_runtime_ids "$aspnet_sdk" "$aspnet_repo/.dotnet"
+    (
+        cd "$aspnet_repo"
+        DOTNET_INSTALL_DIR="$dotnet_root" DOTNET_ROOT="$dotnet_root" DOTNET_SDK_VERSION="$aspnet_sdk" \
+            DOTNET_MULTILEVEL_LOOKUP=0 PATH="$dotnet_root:$PATH" ./eng/build.sh -c Release -ci --os-name freebsd -pack \
+            --projects "$aspnet_repo/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.sfxproj" /m:1 \
+            "/p:OfficialBuildId=$official_build_id" \
+            "/p:SdkVersion=$aspnet_sdk" \
+            /p:StabilizePackageVersion=true \
+            /p:CrossgenOutput=false \
+            /p:PublishReadyToRun=false
+    )
 }
 
-collect_platform_artifacts() {
-    local freebsd_archive="$work_root/freebsd-source-built.tar.gz"
+stage_platform_artifacts() {
+    local rid="$1"
+    local runtime_version="$2"
     local runtime_archive
-    local freebsd_runtime_path
-    local freebsd_runtime_archive
+    local aspnet_package
+    local package
 
-    mkdir -p "$output_root/packages" "$output_root/runtimes" "$output_root/sdk/sdk" "$output_root/sdk/packs"
-
+    mkdir -p "$output_root/packages" "$output_root/runtimes"
     for package in \
-        Microsoft.NETCore.App.Host.linux-x86.10.0.12.nupkg \
-        Microsoft.NETCore.App.Runtime.linux-x86.10.0.12.nupkg; do
+        "Microsoft.NETCore.App.Host.$rid.$runtime_version.nupkg" \
+        "Microsoft.NETCore.App.Runtime.$rid.$runtime_version.nupkg"; do
         [ -s "$runtime_shipping/$package" ] || die "The .NET runtime build did not produce $package"
         cp "$runtime_shipping/$package" "$output_root/packages/"
     done
 
-    local aspnet_package
-    aspnet_package="$(find "$aspnet_repo/artifacts/packages/Release/Shipping" -maxdepth 1 -type f -name 'Microsoft.AspNetCore.App.Runtime.linux-x86.10.0.12.nupkg' -print -quit)"
-    [ -n "$aspnet_package" ] || die "ASP.NET Core did not produce the Linux x86 runtime pack"
+    aspnet_package="$(find "$aspnet_repo/artifacts/packages/Release/Shipping" -maxdepth 1 -type f -name "Microsoft.AspNetCore.App.Runtime.$rid.$runtime_version.nupkg" -print -quit)"
+    [ -n "$aspnet_package" ] || die "ASP.NET Core did not produce the $rid runtime pack"
     cp "$aspnet_package" "$output_root/packages/"
 
-    runtime_archive="$(find "$runtime_shipping" -maxdepth 1 -type f -name 'dotnet-runtime-10.0.12-linux-x86.tar.gz' -print -quit)"
-    [ -n "$runtime_archive" ] || die "The .NET runtime build did not produce the Linux x86 runtime archive"
-    cp "$runtime_archive" "$output_root/runtimes/linux-x86-runtime.tar.gz"
+    runtime_archive="$(find "$runtime_shipping" -maxdepth 1 -type f -name "dotnet-runtime-$runtime_version-$rid.tar.gz" -print -quit)"
+    [ -n "$runtime_archive" ] || die "The .NET runtime build did not produce the $rid runtime archive"
+    cp "$runtime_archive" "$output_root/runtimes/$rid-runtime.tar.gz"
 
-    curl --fail --location --retry 3 --silent --show-error --output "$freebsd_archive" "$freebsd_archive_url"
-    verify_sha256 "$freebsd_archive_sha256" "$freebsd_archive"
-    tar -xzf "$freebsd_archive" -C "$output_root/packages" \
-        Microsoft.NETCore.App.Host.freebsd-x64.10.0.12.nupkg \
-        Microsoft.NETCore.App.Runtime.freebsd-x64.10.0.12.nupkg \
-        Microsoft.AspNetCore.App.Runtime.freebsd-x64.10.0.12.nupkg
-    freebsd_runtime_path="$(tar -tzf "$freebsd_archive" | grep -E '^assets/Release/Runtime/[^/]+/dotnet-runtime-10\.0\.12-freebsd-x64\.tar\.gz$' | head -1)"
-    [ -n "$freebsd_runtime_path" ] || die "Pinned FreeBSD archive is missing its .NET runtime tarball"
-    tar -xzf "$freebsd_archive" -C "$work_root" "$freebsd_runtime_path"
-    freebsd_runtime_archive="$work_root/$freebsd_runtime_path"
-    cp "$freebsd_runtime_archive" "$output_root/runtimes/freebsd-x64-runtime.tar.gz"
+    local shared_folder="$work_root/aspnet-shared/$rid"
+    mkdir -p "$shared_folder"
+    unzip -q -j "$aspnet_package" "runtimes/$rid/lib/net10.0/*" -d "$shared_folder"
+    tar -czf "$output_root/runtimes/$rid-aspnetcore-shared.tar.gz" -C "$shared_folder" .
+}
 
-    for rid in linux-x86 freebsd-x64; do
-        local source_package="$output_root/packages/Microsoft.AspNetCore.App.Runtime.$rid.10.0.12.nupkg"
-        local shared_folder="$work_root/aspnet-shared/$rid"
-        mkdir -p "$shared_folder"
-        unzip -q -j "$source_package" "runtimes/$rid/lib/net10.0/*" -d "$shared_folder"
-        tar -czf "$output_root/runtimes/$rid-aspnetcore-shared.tar.gz" -C "$shared_folder" .
-    done
-
+collect_platform_artifacts() {
+    mkdir -p "$output_root/sdk/sdk" "$output_root/sdk/packs"
     cp -a "$dotnet_root/sdk/$app_sdk" "$output_root/sdk/sdk/"
     for pack in Microsoft.NETCore.App.Ref Microsoft.AspNetCore.App.Ref; do
-        [ -d "$dotnet_root/packs/$pack/10.0.12" ] || die "SDK $app_sdk is missing $pack/10.0.12"
+        [ -d "$dotnet_root/packs/$pack/$linux_x86_runtime_version" ] || die "SDK $app_sdk is missing $pack/$linux_x86_runtime_version"
         mkdir -p "$output_root/sdk/packs/$pack"
-        cp -a "$dotnet_root/packs/$pack/10.0.12" "$output_root/sdk/packs/$pack/"
+        cp -a "$dotnet_root/packs/$pack/$linux_x86_runtime_version" "$output_root/sdk/packs/$pack/"
     done
     if [ -d "$dotnet_root/sdk-manifests/10.0.400" ]; then
         mkdir -p "$output_root/sdk/sdk-manifests"
         cp -a "$dotnet_root/sdk-manifests/10.0.400" "$output_root/sdk/sdk-manifests/"
     fi
 
-    rm -f "$freebsd_archive"
-    printf 'Platform runtime packs built from .NET %s and ASP.NET Core %s.\n' "$runtime_tag" "$runtime_tag" > "$output_root/BUILD-INFO.txt"
+    printf 'Linux x86 and FreeBSD runtime packs built from .NET %s and ASP.NET Core %s sources.\n' "$runtime_tag" "$runtime_tag" > "$output_root/BUILD-INFO.txt"
     cp "$repo_root/scripts/install-dotnet10-platform-runtime.sh" "$output_root/"
 }
 
 require_sdk "$runtime_sdk"
 require_sdk "$aspnet_sdk"
 require_sdk "$app_sdk"
-command -v docker >/dev/null || die "Docker is required to build the Linux x86 runtime in the pinned cross-build image"
+command -v docker >/dev/null || die "Docker is required to cross-build the Linux x86 and FreeBSD runtimes"
 command -v python3 >/dev/null || die "Python 3 is required to patch the pinned .NET build metadata"
 command -v unzip >/dev/null || die "unzip is required to assemble the ASP.NET shared runtime"
 
 rm -rf "$work_root" "$output_root"
 clone_sources
 patch_sdk_runtime_ids "$runtime_sdk"
+patch_sdk_runtime_ids "$aspnet_sdk"
+patch_sdk_runtime_ids "$app_sdk"
 patch_runtime_sources
 build_linux_x86_runtime
 patch_aspnet_sources
 build_linux_x86_aspnetcore
+stage_platform_artifacts linux-x86 "$linux_x86_runtime_version"
+
+# Build FreeBSD from the same Microsoft servicing sources using the pinned
+# FreeBSD cross-build image. Keep this phase clean of the Linux x86 source edits.
+rm -rf "$runtime_repo" "$aspnet_repo"
+clone_sources
+build_freebsd_runtime
+build_freebsd_aspnetcore
+stage_platform_artifacts freebsd-x64 "$freebsd_runtime_version"
 collect_platform_artifacts

@@ -50,8 +50,21 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
         source = (WORKFLOWS / "release-build.yml").read_text(encoding="utf-8")
         job = job_block(source, "build-release-assets")
         self.assertIn("--msbuild-arg=-p:TargetLatestRuntimePatch=false", job)
-        self.assertIn("--msbuild-arg=-p:RuntimeFrameworkVersion=10.0.12", job)
+        self.assertIn("--msbuild-arg=-p:RuntimeFrameworkVersion=10.0.15", job)
+        props = (ROOT / "src/Targets/PublishAllRids.targets").read_text(encoding="utf-8")
+        self.assertEqual(props.count("RuntimeFrameworkVersion=10.0.15</AdditionalProperties>"), 2)
         self.assertNotIn("DOTNETVERSION:", job)
+
+    def test_extra_platform_runtime_packs_use_current_servicing_sources(self) -> None:
+        builder = (ROOT / "scripts/build-dotnet10-platform-runtime-packs.sh").read_text(encoding="utf-8")
+        self.assertIn('readonly runtime_tag="v10.0.15"', builder)
+        self.assertIn('readonly linux_x86_runtime_version="10.0.15"', builder)
+        self.assertIn('readonly freebsd_runtime_version="10.0.15"', builder)
+        self.assertIn("cross-freebsd-14-amd64@sha256:", builder)
+        self.assertNotIn("freebsd_archive_url", builder)
+        publication = (WORKFLOWS / "release-publication.yml").read_text(encoding="utf-8")
+        self.assertEqual(publication.count(".10.0.15.nupkg"), 6)
+        self.assertNotIn(".10.0.12.nupkg", publication)
 
     def test_ordinary_manual_workflows_do_not_require_private_capacity(self) -> None:
         for path in WORKFLOWS.glob("*.yml"):

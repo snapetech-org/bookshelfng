@@ -27,8 +27,12 @@
         <AdditionalProperties>RuntimeIdentifier=%(Renamed.Runtime);TargetFramework=%(Renamed.Framework)</AdditionalProperties>
       </ProjectToPublish>
       <ProjectToPublish Include="@(Renamed->'$(MSBuildProjectFullPath)')"
-                        Condition="'%(Renamed.Runtime)'=='linux-x86' Or '%(Renamed.Runtime)'=='freebsd-x64'">
-        <AdditionalProperties>RuntimeIdentifier=%(Renamed.Runtime);TargetFramework=%(Renamed.Framework);TargetLatestRuntimePatch=false;RuntimeFrameworkVersion=10.0.12</AdditionalProperties>
+                        Condition="'%(Renamed.Runtime)'=='linux-x86'">
+        <AdditionalProperties>RuntimeIdentifier=%(Renamed.Runtime);TargetFramework=%(Renamed.Framework);TargetLatestRuntimePatch=false;RuntimeFrameworkVersion=10.0.15</AdditionalProperties>
+      </ProjectToPublish>
+      <ProjectToPublish Include="@(Renamed->'$(MSBuildProjectFullPath)')"
+                        Condition="'%(Renamed.Runtime)'=='freebsd-x64'">
+        <AdditionalProperties>RuntimeIdentifier=%(Renamed.Runtime);TargetFramework=%(Renamed.Framework);TargetLatestRuntimePatch=false;RuntimeFrameworkVersion=10.0.15</AdditionalProperties>
       </ProjectToPublish>
     </ItemGroup>
 

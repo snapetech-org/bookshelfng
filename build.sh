@@ -162,12 +162,12 @@ PrepareExtraRuntimePacks()
     local nugetPackageFolder
     local nugetConfigFile
     local packages=(
-        "Microsoft.NETCore.App.Host.linux-x86.10.0.12.nupkg"
-        "Microsoft.NETCore.App.Runtime.linux-x86.10.0.12.nupkg"
-        "Microsoft.AspNetCore.App.Runtime.linux-x86.10.0.12.nupkg"
-        "Microsoft.NETCore.App.Host.freebsd-x64.10.0.12.nupkg"
-        "Microsoft.NETCore.App.Runtime.freebsd-x64.10.0.12.nupkg"
-        "Microsoft.AspNetCore.App.Runtime.freebsd-x64.10.0.12.nupkg"
+        "Microsoft.NETCore.App.Host.linux-x86.10.0.15.nupkg"
+        "Microsoft.NETCore.App.Runtime.linux-x86.10.0.15.nupkg"
+        "Microsoft.AspNetCore.App.Runtime.linux-x86.10.0.15.nupkg"
+        "Microsoft.NETCore.App.Host.freebsd-x64.10.0.15.nupkg"
+        "Microsoft.NETCore.App.Runtime.freebsd-x64.10.0.15.nupkg"
+        "Microsoft.AspNetCore.App.Runtime.freebsd-x64.10.0.15.nupkg"
     )
 
     if command -v cygpath >/dev/null 2>&1; then
@@ -211,7 +211,7 @@ if mapping is None:
     mapping = ET.SubElement(root, "packageSourceMapping")
 source = ET.SubElement(mapping, "packageSource", {"key": "bookshelf-platform-runtime-packs"})
 for package in packages:
-    package_id = package.removesuffix(".10.0.12.nupkg")
+    package_id = package.removesuffix(".10.0.15.nupkg")
     ET.SubElement(source, "package", {"pattern": package_id})
 ET.indent(tree, space="  ")
 tree.write(path, encoding="utf-8", xml_declaration=True)

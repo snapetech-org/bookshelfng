@@ -43,31 +43,33 @@ the page is blank, include the image tag, browser console error, and
 ## Pack sources
 
 Linux x86 runtime, apphost, and ASP.NET Core packs are cross-compiled from the
-Microsoft `dotnet/runtime` and `dotnet/aspnetcore` `v10.0.12` source tags. The
+Microsoft `dotnet/runtime` and `dotnet/aspnetcore` `v10.0.15` source tags. The
 runtime build uses Microsoft's Azure Linux 3.0 .NET 10 x86 cross-build image,
 pinned to digest
 `sha256:ecc9c107cd33f8303cba2280eb1537f045acaa88fc0f00780ea6232d19e942b8`.
-The builder uses the SDK versions pinned by those source trees (10.0.110 and
-10.0.111) and produces the standard `Microsoft.NETCore.App` and
-`Microsoft.AspNetCore.App` NuGet packs at version 10.0.12.
+The builder uses the SDK versions pinned by those source trees (10.0.111 and
+10.0.112) and produces the standard `Microsoft.NETCore.App` and
+`Microsoft.AspNetCore.App` NuGet packs at version 10.0.15.
 
 BookshelfNG publishes without ReadyToRun or Native AOT. The Linux x86 source
 build therefore disables ReadyToRun, omits the crossgen package, and skips the
 ASP.NET composite ReadyToRun pack. This keeps the app's runtime output focused
 on the runtime, apphost, and framework packs BookshelfNG consumes.
 
-FreeBSD x64 packs and its runtime host are taken from the
-`Thefrank/dotnet-freebsd-crossbuild` `v10.0.112-amd64-freebsd-14` release. The
-downloaded archive is SHA-256 checked against
-`7e032c2024cfb17ac3bb27ab8d35234a6e74f5ede16e66ca8420bcf66028d978` before
-any package or runtime files are extracted. This is a community source build,
-not a Microsoft-published FreeBSD SDK.
+FreeBSD x64 packs and its runtime host are cross-compiled from the same
+Microsoft `dotnet/runtime` and `dotnet/aspnetcore` `v10.0.15` source tags. The
+build uses the pinned Azure Linux 3.0 .NET 10 FreeBSD cross-build image
+`mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-cross-freebsd-14-amd64`
+at digest
+`sha256:4ca96ef731e1466924d62d0fb6d2649cfc117bd98faedede5879ba98530e219b`.
+FreeBSD remains a community-supported target rather than an officially
+supported Microsoft .NET distribution.
 
 The pinned inputs are declared in
 [`scripts/build-dotnet10-platform-runtime-packs.sh`](../scripts/build-dotnet10-platform-runtime-packs.sh).
-When updating .NET servicing versions, update both source tags, the FreeBSD
-release URL and checksum, expected NuGet package names, and the runtime SDK
-assembly performed by the pack builder together.
+When updating .NET servicing versions, update both source tags, the cross-build
+image digests, expected NuGet package names, and the runtime SDK assembly
+performed by the pack builder together.
 
 ## GitHub Actions release builds
 
@@ -149,8 +151,8 @@ The packaged app is under
 `_artifacts/linux-x64/net10.0/Readarr/`; it contains the `Readarr` executable
 and its `UI/` directory.
 
-To also build the Linux x86 and FreeBSD packages, install .NET SDKs 10.0.110,
-10.0.111, and 10.0.404 side by side under one `DOTNET_ROOT`. Docker, Git,
+To also build the Linux x86 and FreeBSD packages, install .NET SDKs 10.0.111,
+10.0.112, and 10.0.404 side by side under one `DOTNET_ROOT`. Docker, Git,
 Python 3, `curl`, `tar`, and `unzip` are also required; use Python 3.9 or later.
 Then run:
 
