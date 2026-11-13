@@ -1,5 +1,5 @@
 # Keep the platform index pinned; Dependabot updates the tag and digest together.
-FROM mcr.microsoft.com/dotnet/aspnet:10.0.14-alpine3.24@sha256:486297ae006e95ee2ee3112a2c03e3d26e41fbbc64b7a29e28e7a18cc36b12bb AS dotnet-runtime
+FROM mcr.microsoft.com/dotnet/aspnet:10.0.15-alpine3.24@sha256:21c3f9798416cba4c0576a947c286231cb71ea2884896cb968253f5c9668f930 AS dotnet-runtime
 
 FROM ghcr.io/linuxserver/baseimage-alpine:3.24@sha256:7315b19a32460a84b4474993ef33065483ffec792fbc70dbe12eab918aa2bbf4
 
@@ -26,8 +26,8 @@ RUN apk add -U --upgrade --no-cache \
     xmlstarlet
 
 RUN test -x /usr/share/dotnet/dotnet && \
-    test -d /usr/share/dotnet/shared/Microsoft.NETCore.App/10.0.14 && \
-    test -d /usr/share/dotnet/shared/Microsoft.AspNetCore.App/10.0.14
+    test -d /usr/share/dotnet/shared/Microsoft.NETCore.App/10.0.15 && \
+    test -d /usr/share/dotnet/shared/Microsoft.AspNetCore.App/10.0.15
 
 ARG GIT_BRANCH
 ARG COMMIT_HASH

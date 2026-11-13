@@ -43,7 +43,7 @@
   <!-- The pinned community FreeBSD/x86 platform packs currently stop at
        10.0.12. Keep only those explicitly unsupported RIDs on that servicing
        patch; standard supported RIDs continue to consume the latest 10.0.x
-       runtime selected by the SDK (currently 10.0.14). -->
+       runtime selected by the SDK (currently 10.0.15). -->
   <PropertyGroup Condition="'$(RuntimeIdentifier)'=='linux-x86' Or '$(RuntimeIdentifier)'=='freebsd-x64'">
     <TargetLatestRuntimePatch>false</TargetLatestRuntimePatch>
     <RuntimeFrameworkVersion>10.0.12</RuntimeFrameworkVersion>

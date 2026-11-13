@@ -4,7 +4,7 @@ set -euo pipefail
 rid="${1:?Usage: install-dotnet10-platform-runtime.sh <linux-x86|freebsd-x64> <artifact-root> [dotnet-root]}"
 artifact_root="${2:?Usage: install-dotnet10-platform-runtime.sh <linux-x86|freebsd-x64> <artifact-root> [dotnet-root]}"
 dotnet_root="${3:-${DOTNET_ROOT:-/opt/dotnet}}"
-sdk_version="10.0.401"
+sdk_version="10.0.404"
 
 case "$rid" in
     linux-x86|freebsd-x64) ;;

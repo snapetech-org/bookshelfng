@@ -115,5 +115,5 @@ Note: without the payload zip, the installer will build and launch but fail at e
 | Package | Version | Purpose |
 |---------|---------|---------|
 | WPF-UI | 4.3.0 | Fluent Design controls and Mica backdrop |
-| Microsoft.Data.Sqlite | 10.0.12 | SQLite integrity check on backed-up database |
-| System.ServiceProcess.ServiceController | 10.0.12 | Windows service stop/status polling |
+| Microsoft.Data.Sqlite | 10.0.15 | SQLite integrity check on backed-up database |
+| System.ServiceProcess.ServiceController | 10.0.15 | Windows service stop/status polling |

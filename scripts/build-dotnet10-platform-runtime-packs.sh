@@ -4,7 +4,7 @@ set -euo pipefail
 readonly runtime_tag="v10.0.12"
 readonly runtime_sdk="10.0.110"
 readonly aspnet_sdk="10.0.111"
-readonly app_sdk="${DOTNETVERSION:-10.0.401}"
+readonly app_sdk="${DOTNETVERSION:-10.0.404}"
 readonly cross_image="mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-cross-x86@sha256:ecc9c107cd33f8303cba2280eb1537f045acaa88fc0f00780ea6232d19e942b8"
 readonly freebsd_archive_url="https://github.com/Thefrank/dotnet-freebsd-crossbuild/releases/download/v10.0.112-amd64-freebsd-14/Private.SourceBuilt.Artifacts.10.0.112-servicing.26422.108.freebsd-x64.tar.gz"
 readonly freebsd_archive_sha256="7e032c2024cfb17ac3bb27ab8d35234a6e74f5ede16e66ca8420bcf66028d978"

@@ -21,8 +21,8 @@
 
   <ItemGroup>
     <PackageReference Include="WPF-UI" Version="4.3.0" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.12" />
-    <PackageReference Include="System.ServiceProcess.ServiceController" Version="10.0.12" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.15" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="10.0.15" />
   </ItemGroup>
 
   <ItemGroup>

@@ -88,7 +88,7 @@ publisher retry does not download or execute build artifacts. The publication
 workflow uploads only the platform archives, Linux packages, and Helm chart;
 the runtime-pack artifact stays an internal build input.
 
-The same artifact carries the architecture-independent .NET 10.0.401 SDK files
+The same artifact carries the architecture-independent .NET 10.0.404 SDK files
 used by `dotnet test`; the target platform's runtime host, Core runtime, and
 ASP.NET Core shared framework come from the platform packs. The workflow uses
 [`scripts/install-dotnet10-platform-runtime.sh`](../scripts/install-dotnet10-platform-runtime.sh)
@@ -150,13 +150,13 @@ The packaged app is under
 and its `UI/` directory.
 
 To also build the Linux x86 and FreeBSD packages, install .NET SDKs 10.0.110,
-10.0.111, and 10.0.401 side by side under one `DOTNET_ROOT`. Docker, Git,
+10.0.111, and 10.0.404 side by side under one `DOTNET_ROOT`. Docker, Git,
 Python 3, `curl`, `tar`, and `unzip` are also required; use Python 3.9 or later.
 Then run:
 
 ```bash
 export DOTNET_ROOT="$HOME/.dotnet"
-export DOTNETVERSION=10.0.401
+export DOTNETVERSION=10.0.404
 ./scripts/build-dotnet10-platform-runtime-packs.sh
 export CUSTOM_RUNTIME_PACKS_DIR="$(pwd)/_temp/platform-runtime-packs/packages"
 ./build.sh --backend --frontend --packages --enable-extra-platforms
