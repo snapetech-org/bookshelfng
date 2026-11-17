@@ -799,8 +799,9 @@ namespace NzbDrone.Common.Test.Http
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
             try
             {
-                // the date is bad in the below - should be 13-Jul-2026
-                var malformedCookie = @"__cfduid=d29e686a9d65800021c66faca0a29b4261436890790; expires=Mon, 13-Jul-26 16:19:50 GMT; path=/; HttpOnly";
+                // Keep the legacy two-digit year without allowing the fixture cookie to expire.
+                var expiry = DateTime.UtcNow.AddDays(30).ToString("ddd, dd-MMM-yy HH:mm:ss 'GMT'", CultureInfo.InvariantCulture);
+                var malformedCookie = $"__cfduid=d29e686a9d65800021c66faca0a29b4261436890790; expires={expiry}; path=/; HttpOnly";
                 var requestSet = new HttpRequestBuilder($"https://{_httpBinHost}/response-headers")
                     .AddQueryParam("Set-Cookie", malformedCookie)
                     .Build();
