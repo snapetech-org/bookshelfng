@@ -48,7 +48,7 @@
     <PackageVersion Include="Npgsql" Version="10.0.3" />
     <PackageVersion Include="NUnit3TestAdapter" Version="4.6.0" />
     <PackageVersion Include="NUnit" Version="5.0.0" />
-    <PackageVersion Include="NunitXml.TestLogger" Version="3.1.20" />
+    <PackageVersion Include="NunitXml.TestLogger" Version="8.1.0" />
     <PackageVersion Include="PDFsharp" Version="6.5.0" />
     <PackageVersion Include="RestSharp" Version="114.1.0" />
     <PackageVersion Include="Selenium.Support" Version="3.141.0" />
