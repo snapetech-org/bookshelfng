@@ -311,7 +311,7 @@ namespace NzbDrone.Core.Datastore
                          conversion.Method.ReturnType.GetGenericTypeDefinition() == typeof(ReadOnlySpan<>) &&
                          conversion.Arguments.Count == 1)
                 {
-                    // .NET 10's compiler represents array.Contains as MemoryExtensions.Contains
+                    // .NET 11's compiler represents array.Contains as MemoryExtensions.Contains
                     // over an implicit ReadOnlySpan conversion in expression trees.
                     list = conversion.Arguments[0];
                     item = body.Arguments[1];

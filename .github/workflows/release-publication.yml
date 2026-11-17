@@ -180,7 +180,7 @@ jobs:
             esac
             git merge-base --is-ancestor "$runtime_pack_sha" "$release_sha" || continue
             git diff --quiet "$runtime_pack_sha" "$release_sha" -- \
-              scripts/build-dotnet10-platform-runtime-packs.sh \
+              scripts/build-dotnet11-platform-runtime-packs.sh \
               src/Directory.Build.props src/NuGet.config || continue
 
             git show "$runtime_pack_sha:.github/workflows/release-build.yml" \
@@ -198,7 +198,7 @@ jobs:
             jobs_json="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=100")"
             if jq -e '
               any(.jobs[];
-                (.name | endswith("Build Linux x86 and FreeBSD .NET 10 runtime packs")) and
+                (.name | endswith("Build Linux x86 and FreeBSD .NET 11 runtime packs")) and
                 (
                   .conclusion == "success" or
                   (
@@ -245,12 +245,12 @@ jobs:
             --name bookshelfng-platform-runtime-packs \
             --dir "$artifact_dir"
           for package in \
-            Microsoft.NETCore.App.Host.linux-x86.10.0.15.nupkg \
-            Microsoft.NETCore.App.Runtime.linux-x86.10.0.15.nupkg \
-            Microsoft.AspNetCore.App.Runtime.linux-x86.10.0.15.nupkg \
-            Microsoft.NETCore.App.Host.freebsd-x64.10.0.15.nupkg \
-            Microsoft.NETCore.App.Runtime.freebsd-x64.10.0.15.nupkg \
-            Microsoft.AspNetCore.App.Runtime.freebsd-x64.10.0.15.nupkg; do
+            Microsoft.NETCore.App.Host.linux-x86.11.0.0.nupkg \
+            Microsoft.NETCore.App.Runtime.linux-x86.11.0.0.nupkg \
+            Microsoft.AspNetCore.App.Runtime.linux-x86.11.0.0.nupkg \
+            Microsoft.NETCore.App.Host.freebsd-x64.11.0.0.nupkg \
+            Microsoft.NETCore.App.Runtime.freebsd-x64.11.0.0.nupkg \
+            Microsoft.AspNetCore.App.Runtime.freebsd-x64.11.0.0.nupkg; do
             test -s "$artifact_dir/packages/$package" || {
               echo "Validated runtime-pack artifact is missing $package." >&2
               exit 1

@@ -33,8 +33,8 @@ for Docker and Kubernetes deployments.
 Each stable `v*` release publishes checksummed, self-contained archives for
 Windows x64 and x86, macOS x64 and ARM64, Linux x64, x86 and ARM, Linux ARM64,
 glibc and musl Linux variants, and FreeBSD x64. The platform pack workflow
-builds the Linux x86 and FreeBSD .NET 10 runtimes from the pinned sources
-documented in [the platform build notes](./dotnet-10-platform-builds.md).
+builds the Linux x86 and FreeBSD .NET 11 runtimes from the pinned sources
+documented in [the platform build notes](./dotnet-11-platform-builds.md).
 
 Archives contain the app, web UI, license, and this installation guide. They
 include the .NET runtime. Linux packages may still need the host's ICU, OpenSSL,

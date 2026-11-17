@@ -75,7 +75,7 @@ ChaptarrNG legacy bridge are also fail-closed. They require the
 `BOOKSHELFNG_RELEASE_READY=true` repository variable, which is unset. Keep it
 unset until migration, parity, rollback, and channel acceptance are complete.
 
-[![.NET 10 LTS](https://img.shields.io/badge/.NET-10%20LTS-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/en-us/platform/support/policy)
+[![.NET 11](https://img.shields.io/badge/.NET-11-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/en-us/platform/support/policy)
 
 BookshelfNG is a self-hosted ebook and audiobook library manager descended
 from Readarr. Follow authors and books, monitor indexers for new releases,
@@ -83,12 +83,12 @@ automatically grab downloads, and organize, rename, and upgrade files in your
 library. BookshelfNG is a complete app on its own. It does not require SeerrNG
 or a metadata proxy.
 
-BookshelfNG is built on .NET 10 LTS.
+BookshelfNG is built on .NET 11.
 
 Support BookshelfNG on [Ko-fi](https://ko-fi.com/snapetech).
 
 Published containers and native release
-archives include the required runtime; source builds require the .NET 10 SDK.
+archives include the required runtime; source builds require the .NET 11 SDK.
 
 BookshelfNG `0.4.21.71` was the previous source release; `0.4.21.72` is the
 one-time final security-maintenance release. Existing Unraid
@@ -716,7 +716,7 @@ you can also authenticate with package read access.
 - [Moving an existing library to Hardcover](#moving-an-existing-library-to-hardcover)
 - [Author metadata storage, refresh policy, and troubleshooting](docs/author-metadata-refresh.md)
 - [Reporting issues and collecting useful logs](docs/reporting-issues.md)
-- [.NET 10 source builds, including the UI and Linux x86/FreeBSD packages](docs/dotnet-10-platform-builds.md)
+- [.NET 11 source builds, including the UI and Linux x86/FreeBSD packages](docs/dotnet-11-platform-builds.md)
 - [Standalone installation and platform support](docs/standalone-install.md)
 - [Release distribution channels and publisher setup](docs/distribution.md)
 - [Optional diagnostics module](src/Bookshelf.Diagnostics/README.md)

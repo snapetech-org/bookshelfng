@@ -82,13 +82,13 @@ installer-net/
 The installer is built via `build.sh`:
 
 ```bash
-./build.sh --backend --frontend --framework net10.0 --runtime win-x64
-./build.sh --packages --framework net10.0 --runtime win-x64
+./build.sh --backend --frontend --framework net11.0 --runtime win-x64
+./build.sh --packages --framework net11.0 --runtime win-x64
 ./build.sh --installer
 ```
 
 This:
-1. Builds Readarr and packages it (`_artifacts/win-x64/net10.0/Readarr/`)
+1. Builds Readarr and packages it (`_artifacts/win-x64/net11.0/Readarr/`)
 2. Zips the payload (excluding `Readarr.Update`) into an embedded resource
 3. Publishes a single-file self-contained `BookshelfNG.Installer.exe` to `distribution/windows/setup/output/`
 
@@ -115,5 +115,5 @@ Note: without the payload zip, the installer will build and launch but fail at e
 | Package | Version | Purpose |
 |---------|---------|---------|
 | WPF-UI | 4.3.0 | Fluent Design controls and Mica backdrop |
-| Microsoft.Data.Sqlite | 10.0.15 | SQLite integrity check on backed-up database |
-| System.ServiceProcess.ServiceController | 10.0.15 | Windows service stop/status polling |
+| Microsoft.Data.Sqlite | 11.0.0 | SQLite integrity check on backed-up database |
+| System.ServiceProcess.ServiceController | 11.0.0 | Windows service stop/status polling |

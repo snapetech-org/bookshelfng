@@ -31,7 +31,7 @@ release_rids=(
 
 make_archive() {
   local rid="$1"
-  local source_dir="_artifacts/$rid/net10.0/Readarr"
+  local source_dir="_artifacts/$rid/net11.0/Readarr"
   local archive_base="BookshelfNG-${tag}-${rid}"
   local archive
   local staging
@@ -91,7 +91,7 @@ for rid in "${release_rids[@]}"; do
 done
 
 for rid in osx-x64 osx-arm64; do
-  app_dir="_artifacts/${rid}-app/net10.0/Readarr.app"
+  app_dir="_artifacts/${rid}-app/net11.0/Readarr.app"
   archive_base="BookshelfNG-${tag}-macos-${rid#osx-}.app"
   archive="$output_dir/$archive_base.zip"
   [[ -d "$app_dir" ]] || {

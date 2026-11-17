@@ -96,7 +96,7 @@ for channel requirements and open acceptance gates.
 
 | Channel | Distribution | Notes |
 | --- | --- | --- |
-| GitHub Releases | Self-contained Windows, macOS, Linux, and FreeBSD archives; Windows x64 setup installer | Every asset has a SHA-256 file. Linux x86 and FreeBSD use the pinned .NET 10 runtime pack process. |
+| GitHub Releases | Self-contained Windows, macOS, Linux, and FreeBSD archives; Windows x64 setup installer | Every asset has a SHA-256 file. Linux x86 and FreeBSD use the pinned .NET 11 runtime pack process. |
 | Debian / Ubuntu | `.deb` package | Installs a systemd service and `/var/lib/bookshelfng` data directory. |
 | Fedora / RPM | `.rpm` asset in the GitHub release; COPR repository `slskdn/bookshelfng` | The previous `.71` release includes a service RPM. Current COPR metadata has no package entries for Fedora 43, 44, 45, or Rawhide x86_64; the old-identity bridge has not been published. |
 | Arch Linux | `bookshelfng-bin` on AUR | Binary package with systemd service files. |

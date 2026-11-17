@@ -92,7 +92,7 @@ jobs:
           }
 
   build-platform-runtime-packs:
-    name: Build Linux x86 and FreeBSD .NET 10 runtime packs
+    name: Build Linux x86 and FreeBSD .NET 11 runtime packs
     if: inputs.reuse_runtime_packs != true
     needs: validate
     runs-on: ubuntu-24.04
@@ -107,16 +107,14 @@ jobs:
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: |
-            10.0.111
-            10.0.112
-            10.0.404
+            11.0.100
           dotnet-quality: ga
 
       - name: Build and verify platform packs
         env:
-          DOTNETVERSION: 10.0.404
+          DOTNETVERSION: 11.0.100
           PLATFORM_RUNTIME_PACKS_OUTPUT: ${{ github.workspace }}/_temp/platform-runtime-packs
-        run: ./scripts/build-dotnet10-platform-runtime-packs.sh
+        run: ./scripts/build-dotnet11-platform-runtime-packs.sh
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
@@ -149,7 +147,7 @@ jobs:
 
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
-          dotnet-version: 10.0.404
+          dotnet-version: 11.0.100
 
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
@@ -166,7 +164,7 @@ jobs:
           name: bookshelfng-platform-runtime-packs
           path: _temp/platform-runtime-packs
 
-      - name: Build all supported .NET 10 runtimes
+      - name: Build all supported .NET 11 runtimes
         env:
           BUILD_SOURCEBRANCHNAME: main
           CUSTOM_RUNTIME_PACKS_DIR: ${{ github.workspace }}/_temp/platform-runtime-packs/packages
@@ -176,7 +174,7 @@ jobs:
           ./build.sh --backend --frontend --enable-extra-platforms \
             --msbuild-arg=-p:SelfContained=true \
             --msbuild-arg=-p:TargetLatestRuntimePatch=false \
-            --msbuild-arg=-p:RuntimeFrameworkVersion=10.0.15
+            --msbuild-arg=-p:RuntimeFrameworkVersion=11.0.0
 
       - name: Package all supported runtime identifiers
         env:
@@ -186,7 +184,7 @@ jobs:
           set -euo pipefail
           IFS=';' read -r -a runtime_identifiers <<< "$BOOKSHELF_RUNTIME_IDENTIFIERS"
           for rid in "${runtime_identifiers[@]}"; do
-            ./build.sh --packages --framework net10.0 --runtime "$rid"
+            ./build.sh --packages --framework net11.0 --runtime "$rid"
           done
 
       - name: Create versioned archives and checksums

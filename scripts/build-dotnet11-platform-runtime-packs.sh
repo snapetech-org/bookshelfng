@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-readonly runtime_tag="v10.0.15"
-readonly runtime_sdk="10.0.111"
-readonly aspnet_sdk="10.0.112"
-readonly app_sdk="${DOTNETVERSION:-10.0.404}"
-readonly cross_image="mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-cross-x86@sha256:ecc9c107cd33f8303cba2280eb1537f045acaa88fc0f00780ea6232d19e942b8"
-readonly freebsd_cross_image="mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-cross-freebsd-14-amd64@sha256:4ca96ef731e1466924d62d0fb6d2649cfc117bd98faedede5879ba98530e219b"
-readonly linux_x86_runtime_version="10.0.15"
-readonly freebsd_runtime_version="10.0.15"
+readonly runtime_tag="v11.0.0"
+readonly runtime_commit="deae2e32bf0e018e09d64597b7c59b62b73bb3ce"
+readonly aspnet_commit="1def4cdc07dc10fc267136060e3ef5c1a96d4a99"
+readonly runtime_sdk="11.0.100"
+readonly aspnet_sdk="11.0.100"
+readonly app_sdk="${DOTNETVERSION:-11.0.100}"
+readonly cross_image="mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-cross-x86@sha256:efd21070248f3e6cd728b069e6708de2a5188162bd3a7e2fe357732f4f78b848"
+readonly freebsd_cross_image="mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-cross-freebsd-14-amd64@sha256:23c1ac03617c161b81db551669482fa78044627d061af34c2180b9b47b6c8542"
+readonly linux_x86_runtime_version="11.0.0"
+readonly freebsd_runtime_version="11.0.0"
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-work_root="${PLATFORM_RUNTIME_WORK_DIR:-$repo_root/_temp/dotnet10-platform-runtime-build}"
+work_root="${PLATFORM_RUNTIME_WORK_DIR:-$repo_root/_temp/dotnet11-platform-runtime-build}"
 output_root="${PLATFORM_RUNTIME_PACKS_OUTPUT:-${BUILD_ARTIFACTSTAGINGDIRECTORY:-$repo_root/_temp/platform-runtime-packs}}"
 dotnet_root="${DOTNET_ROOT:-$(dirname "$(readlink -f "$(command -v dotnet)")")}"
 runtime_repo="$work_root/runtime"
@@ -52,7 +54,7 @@ content = path.read_text(encoding="utf-8-sig")
 
 def patch(match):
     block = match.group(0)
-    if 'TargetFramework="net10.0"' not in block:
+    if 'TargetFramework="net11.0"' not in block:
         return block
     include = re.search(r'Include="([^"]+)"', block)
     if not include:
@@ -77,8 +79,8 @@ pattern = re.compile(r'<(?:KnownFrameworkReference|KnownAppHostPack)\s+Include="
 updated = pattern.sub(patch, content)
 for framework in ("Microsoft.NETCore.App", "Microsoft.AspNetCore.App"):
     for rid in ("linux-x86", "freebsd-x64"):
-        if not re.search(rf'<KnownFrameworkReference\s+Include="{re.escape(framework)}"[\s\S]*?TargetFramework="net10\.0"[\s\S]*?RuntimePackRuntimeIdentifiers="[^"]*{re.escape(rid)}', updated):
-            raise SystemExit(f"SDK metadata is missing the .NET 10 {rid} runtime identifier for {framework}")
+        if not re.search(rf'<KnownFrameworkReference\s+Include="{re.escape(framework)}"[\s\S]*?TargetFramework="net11\.0"[\s\S]*?RuntimePackRuntimeIdentifiers="[^"]*{re.escape(rid)}', updated):
+            raise SystemExit(f"SDK metadata is missing the .NET 11 {rid} runtime identifier for {framework}")
 path.write_text(updated, encoding="utf-8")
 PY
 }
@@ -87,6 +89,8 @@ clone_sources() {
     mkdir -p "$work_root"
     git clone --depth 1 --branch "$runtime_tag" https://github.com/dotnet/runtime.git "$runtime_repo"
     git clone --depth 1 --branch "$runtime_tag" --recurse-submodules https://github.com/dotnet/aspnetcore.git "$aspnet_repo"
+    [ "$(git -C "$runtime_repo" rev-parse HEAD)" = "$runtime_commit" ] || die "Unexpected .NET runtime source commit"
+    [ "$(git -C "$aspnet_repo" rev-parse HEAD)" = "$aspnet_commit" ] || die "Unexpected ASP.NET Core source commit"
     git -C "$aspnet_repo" submodule update --init --depth 1
 }
 
@@ -103,21 +107,6 @@ clear_previous_build_sources() {
         --mount "type=bind,source=$work_root,target=/work" \
         "$cross_image" \
         bash -lc 'rm -rf /work/runtime /work/aspnetcore /work/aspnet-shared'
-}
-
-patch_runtime_package_version() {
-    python3 - "$runtime_repo/eng/Versions.props" <<'PY'
-from pathlib import Path
-import sys
-
-path = Path(sys.argv[1])
-text = path.read_text()
-old = "<PatchVersion>13</PatchVersion>"
-new = "<PatchVersion>15</PatchVersion>"
-if text.count(old) != 1:
-    raise SystemExit("Expected the v10.0.15 runtime source tag to declare PatchVersion 13")
-path.write_text(text.replace(old, new, 1))
-PY
 }
 
 patch_runtime_sources() {
@@ -258,22 +247,6 @@ rid = sys.argv[2]
 if rid not in ("linux-x86", "freebsd-x64"):
     raise SystemExit(f"Unsupported ASP.NET Core runtime identifier: {rid}")
 
-versions = root / "eng/Versions.props"
-text = versions.read_text()
-old = "<AspNetCorePatchVersion>14</AspNetCorePatchVersion>"
-new = "<AspNetCorePatchVersion>15</AspNetCorePatchVersion>"
-if text.count(old) != 1:
-    raise SystemExit("Expected the v10.0.15 ASP.NET Core source tag to declare patch version 14")
-versions.write_text(text.replace(old, new, 1))
-
-details = root / "eng/Version.Details.props"
-text = details.read_text()
-old = "<MicrosoftNETCoreAppRefPackageVersion>10.0.14</MicrosoftNETCoreAppRefPackageVersion>"
-new = "<MicrosoftNETCoreAppRefPackageVersion>10.0.15</MicrosoftNETCoreAppRefPackageVersion>"
-if text.count(old) != 1:
-    raise SystemExit("Expected the v10.0.15 ASP.NET Core source tag to reference .NET runtime 10.0.14")
-details.write_text(text.replace(old, new, 1))
-
 props = root / "Directory.Build.props"
 text = props.read_text()
 supported = re.search(r'<SupportedRuntimeIdentifiers>([^<]*)</SupportedRuntimeIdentifiers>', text)
@@ -373,7 +346,7 @@ stage_platform_artifacts() {
 
     local shared_folder="$work_root/aspnet-shared/$rid"
     mkdir -p "$shared_folder"
-    unzip -q -j "$aspnet_package" "runtimes/$rid/lib/net10.0/*" -d "$shared_folder"
+    unzip -q -j "$aspnet_package" "runtimes/$rid/lib/net11.0/*" -d "$shared_folder"
     tar -czf "$output_root/runtimes/$rid-aspnetcore-shared.tar.gz" -C "$shared_folder" .
 }
 
@@ -385,13 +358,13 @@ collect_platform_artifacts() {
         mkdir -p "$output_root/sdk/packs/$pack"
         cp -a "$dotnet_root/packs/$pack/$linux_x86_runtime_version" "$output_root/sdk/packs/$pack/"
     done
-    if [ -d "$dotnet_root/sdk-manifests/10.0.400" ]; then
+    if [ -d "$dotnet_root/sdk-manifests/11.0.100" ]; then
         mkdir -p "$output_root/sdk/sdk-manifests"
-        cp -a "$dotnet_root/sdk-manifests/10.0.400" "$output_root/sdk/sdk-manifests/"
+        cp -a "$dotnet_root/sdk-manifests/11.0.100" "$output_root/sdk/sdk-manifests/"
     fi
 
     printf 'Linux x86 and FreeBSD runtime packs built from .NET %s and ASP.NET Core %s sources.\n' "$runtime_tag" "$runtime_tag" > "$output_root/BUILD-INFO.txt"
-    cp "$repo_root/scripts/install-dotnet10-platform-runtime.sh" "$output_root/"
+    cp "$repo_root/scripts/install-dotnet11-platform-runtime.sh" "$output_root/"
 }
 
 require_sdk "$runtime_sdk"
@@ -407,7 +380,6 @@ clone_sources
 patch_sdk_runtime_ids "$runtime_sdk"
 patch_sdk_runtime_ids "$aspnet_sdk"
 patch_sdk_runtime_ids "$app_sdk"
-patch_runtime_package_version
 patch_runtime_sources
 build_linux_x86_runtime
 patch_aspnet_sources linux-x86
@@ -418,7 +390,6 @@ stage_platform_artifacts linux-x86 "$linux_x86_runtime_version"
 # FreeBSD cross-build image. Keep this phase clean of the Linux x86 source edits.
 remove_source_checkouts
 clone_sources
-patch_runtime_package_version
 patch_freebsd_runtime_sources
 build_freebsd_runtime
 patch_aspnet_sources freebsd-x64

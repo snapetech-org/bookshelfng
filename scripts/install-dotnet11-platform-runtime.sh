@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-rid="${1:?Usage: install-dotnet10-platform-runtime.sh <linux-x86|freebsd-x64> <artifact-root> [dotnet-root]}"
-artifact_root="${2:?Usage: install-dotnet10-platform-runtime.sh <linux-x86|freebsd-x64> <artifact-root> [dotnet-root]}"
+rid="${1:?Usage: install-dotnet11-platform-runtime.sh <linux-x86|freebsd-x64> <artifact-root> [dotnet-root]}"
+artifact_root="${2:?Usage: install-dotnet11-platform-runtime.sh <linux-x86|freebsd-x64> <artifact-root> [dotnet-root]}"
 dotnet_root="${3:-${DOTNET_ROOT:-/opt/dotnet}}"
-sdk_version="10.0.404"
+sdk_version="11.0.100"
 
 case "$rid" in
-    linux-x86) runtime_version="10.0.15" ;;
-    freebsd-x64) runtime_version="10.0.15" ;;
+    linux-x86) runtime_version="11.0.0" ;;
+    freebsd-x64) runtime_version="11.0.0" ;;
     *) echo "Unsupported platform runtime: $rid" >&2; exit 2 ;;
 esac
 

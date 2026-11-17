@@ -39,7 +39,7 @@ metadata provider configuration.
 | [Move BookshelfNG to ChaptarrNG](migrate-from-bookshelfng-to-chaptarrng.md) | The final-release helper, complete appdata snapshots, preview/apply/rollback commands, media review, and supported migration limits |
 | [Standalone installation](standalone-install.md) | Native archives, Windows installer, packages, and platform setup |
 | [Distribution channels](distribution.md) | Published artifacts, release destinations, and publisher configuration |
-| [BookshelfNG .NET 10 source builds (archive)](dotnet-10-platform-builds.md) | Legacy BookshelfNG backend and UI build, including its Linux x86 and FreeBSD runtime packs; these are not ChaptarrNG targets |
+| [BookshelfNG .NET 11 source builds (archive)](dotnet-11-platform-builds.md) | Legacy BookshelfNG backend and UI build, including its Linux x86 and FreeBSD runtime packs; these are not ChaptarrNG targets |
 | [Release-note fragments](../release-notes/README.md) | User-facing release-note format and preview command |
 | [Legacy optional diagnostics module (archive)](https://github.com/snapetech-org/chaptarrng/blob/main/docs/OPTIONAL_DIAGNOSTICS.md) | ChaptarrNG's disabled-by-default replacement, aggregate events, explicit opt-in, and privacy limits |
 

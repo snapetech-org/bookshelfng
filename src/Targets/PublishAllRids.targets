@@ -28,11 +28,11 @@
       </ProjectToPublish>
       <ProjectToPublish Include="@(Renamed->'$(MSBuildProjectFullPath)')"
                         Condition="'%(Renamed.Runtime)'=='linux-x86'">
-        <AdditionalProperties>RuntimeIdentifier=%(Renamed.Runtime);TargetFramework=%(Renamed.Framework);TargetLatestRuntimePatch=false;RuntimeFrameworkVersion=10.0.15</AdditionalProperties>
+        <AdditionalProperties>RuntimeIdentifier=%(Renamed.Runtime);TargetFramework=%(Renamed.Framework);TargetLatestRuntimePatch=false;RuntimeFrameworkVersion=11.0.0</AdditionalProperties>
       </ProjectToPublish>
       <ProjectToPublish Include="@(Renamed->'$(MSBuildProjectFullPath)')"
                         Condition="'%(Renamed.Runtime)'=='freebsd-x64'">
-        <AdditionalProperties>RuntimeIdentifier=%(Renamed.Runtime);TargetFramework=%(Renamed.Framework);TargetLatestRuntimePatch=false;RuntimeFrameworkVersion=10.0.15</AdditionalProperties>
+        <AdditionalProperties>RuntimeIdentifier=%(Renamed.Runtime);TargetFramework=%(Renamed.Framework);TargetLatestRuntimePatch=false;RuntimeFrameworkVersion=11.0.0</AdditionalProperties>
       </ProjectToPublish>
     </ItemGroup>
 

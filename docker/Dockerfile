@@ -1,5 +1,5 @@
 # Keep the platform index pinned; Dependabot updates the tag and digest together.
-FROM mcr.microsoft.com/dotnet/aspnet:10.0.15-alpine3.24@sha256:21c3f9798416cba4c0576a947c286231cb71ea2884896cb968253f5c9668f930 AS dotnet-runtime
+FROM mcr.microsoft.com/dotnet/aspnet:11.0.0-alpine3.24@sha256:d39b72ad1534fa0faf52b488bffb0762df7ba269d120f0338713d4dda2a41bf5 AS dotnet-runtime
 
 FROM ghcr.io/linuxserver/baseimage-alpine:3.24@sha256:7315b19a32460a84b4474993ef33065483ffec792fbc70dbe12eab918aa2bbf4
 
@@ -26,8 +26,8 @@ RUN apk add -U --upgrade --no-cache \
     xmlstarlet
 
 RUN test -x /usr/share/dotnet/dotnet && \
-    test -d /usr/share/dotnet/shared/Microsoft.NETCore.App/10.0.15 && \
-    test -d /usr/share/dotnet/shared/Microsoft.AspNetCore.App/10.0.15
+    test -d /usr/share/dotnet/shared/Microsoft.NETCore.App/11.0.0 && \
+    test -d /usr/share/dotnet/shared/Microsoft.AspNetCore.App/11.0.0
 
 ARG GIT_BRANCH
 ARG COMMIT_HASH
@@ -58,11 +58,11 @@ RUN mkdir -p /app/readarr
 
 RUN --mount=type=bind,source=_output,target=_output \
     case "$TARGETPLATFORM" in \
-    "linux/amd64") cp -r /_output/net10.0/linux-musl-x64 /app/readarr/bin ;; \
-    "linux/arm64") cp -r /_output/net10.0/linux-musl-arm64 /app/readarr/bin ;; \
-    "darwin/amd64") cp -r /_output/net10.0/osx-x64 /app/readarr/bin ;; \
-    "darwin/arm64") cp -r /_output/net10.0/osx-arm64 /app/readarr/bin ;; \
-    "windows/amd64") cp -r /_output/net10.0/win-x64 /app/readarr/bin ;; \
+    "linux/amd64") cp -r /_output/net11.0/linux-musl-x64 /app/readarr/bin ;; \
+    "linux/arm64") cp -r /_output/net11.0/linux-musl-arm64 /app/readarr/bin ;; \
+    "darwin/amd64") cp -r /_output/net11.0/osx-x64 /app/readarr/bin ;; \
+    "darwin/arm64") cp -r /_output/net11.0/osx-arm64 /app/readarr/bin ;; \
+    "windows/amd64") cp -r /_output/net11.0/win-x64 /app/readarr/bin ;; \
     *) echo "Unknown platform: $TARGETPLATFORM" && exit 1 ;; \
     esac; \
     cp -r /_output/UI /app/readarr/bin/UI

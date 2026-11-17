@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.21.96] - 2026-11-18
+
+### Changed
+
+- Build BookshelfNG, its standalone archives, and the Windows installer with .NET 11. Docker images ship ASP.NET Core 11, and source builds use SDK 11.0.100.
+
 ## [0.4.21.85](https://github.com/snapetech-org/bookshelfng/compare/v0.4.21.84..v0.4.21.85) - 2026-11-10
 
 ### Fixed

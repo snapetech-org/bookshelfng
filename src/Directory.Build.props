@@ -41,15 +41,15 @@
   </PropertyGroup>
 
   <!-- Linux x86 and FreeBSD platform packs are cross-built from the matching
-       Microsoft .NET 10.0.15 servicing sources. -->
+       Microsoft .NET 11.0.0 servicing sources. -->
   <PropertyGroup Condition="'$(RuntimeIdentifier)'=='linux-x86'">
     <TargetLatestRuntimePatch>false</TargetLatestRuntimePatch>
-    <RuntimeFrameworkVersion>10.0.15</RuntimeFrameworkVersion>
+    <RuntimeFrameworkVersion>11.0.0</RuntimeFrameworkVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(RuntimeIdentifier)'=='freebsd-x64'">
     <TargetLatestRuntimePatch>false</TargetLatestRuntimePatch>
-    <RuntimeFrameworkVersion>10.0.15</RuntimeFrameworkVersion>
+    <RuntimeFrameworkVersion>11.0.0</RuntimeFrameworkVersion>
   </PropertyGroup>
 
   <PropertyGroup>

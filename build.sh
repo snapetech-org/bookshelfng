@@ -21,7 +21,7 @@ RunPython()
         fi
     done
 
-    echo "Python 3.9 or later is required to configure the .NET 10 platform runtime packs." >&2
+    echo "Python 3.9 or later is required to configure the .NET 11 platform runtime packs." >&2
     return 1
 }
 
@@ -92,7 +92,7 @@ changed = False
 def update_pack(match):
     global changed
     block = match.group(0)
-    if 'TargetFramework="net10.0"' not in block:
+    if 'TargetFramework="net11.0"' not in block:
         return block
     include = re.search(r'Include="([^"]+)"', block)
     if not include:
@@ -118,8 +118,8 @@ def update_pack(match):
 pattern = re.compile(r'<(?:KnownFrameworkReference|KnownAppHostPack)\s+Include="[^"]+"[\s\S]*?/>')
 updated = pattern.sub(update_pack, content)
 for framework in ("Microsoft.NETCore.App", "Microsoft.AspNetCore.App"):
-    if not re.search(rf'<KnownFrameworkReference\s+Include="{re.escape(framework)}"[\s\S]*?TargetFramework="net10\.0"[\s\S]*?RuntimePackRuntimeIdentifiers="[^"]*(?:linux-x86|freebsd-x64)', updated):
-        raise SystemExit(f"Could not enable .NET 10 runtime identifiers for {framework}")
+    if not re.search(rf'<KnownFrameworkReference\s+Include="{re.escape(framework)}"[\s\S]*?TargetFramework="net11\.0"[\s\S]*?RuntimePackRuntimeIdentifiers="[^"]*(?:linux-x86|freebsd-x64)', updated):
+        raise SystemExit(f"Could not enable .NET 11 runtime identifiers for {framework}")
 if changed:
     path.write_text(updated, encoding="utf-8")
 PY
@@ -162,12 +162,12 @@ PrepareExtraRuntimePacks()
     local nugetPackageFolder
     local nugetConfigFile
     local packages=(
-        "Microsoft.NETCore.App.Host.linux-x86.10.0.15.nupkg"
-        "Microsoft.NETCore.App.Runtime.linux-x86.10.0.15.nupkg"
-        "Microsoft.AspNetCore.App.Runtime.linux-x86.10.0.15.nupkg"
-        "Microsoft.NETCore.App.Host.freebsd-x64.10.0.15.nupkg"
-        "Microsoft.NETCore.App.Runtime.freebsd-x64.10.0.15.nupkg"
-        "Microsoft.AspNetCore.App.Runtime.freebsd-x64.10.0.15.nupkg"
+        "Microsoft.NETCore.App.Host.linux-x86.11.0.0.nupkg"
+        "Microsoft.NETCore.App.Runtime.linux-x86.11.0.0.nupkg"
+        "Microsoft.AspNetCore.App.Runtime.linux-x86.11.0.0.nupkg"
+        "Microsoft.NETCore.App.Host.freebsd-x64.11.0.0.nupkg"
+        "Microsoft.NETCore.App.Runtime.freebsd-x64.11.0.0.nupkg"
+        "Microsoft.AspNetCore.App.Runtime.freebsd-x64.11.0.0.nupkg"
     )
 
     if command -v cygpath >/dev/null 2>&1; then
@@ -183,7 +183,7 @@ PrepareExtraRuntimePacks()
         local sourcePackage
         sourcePackage="$(find "$sourceFolder" -type f -name "$package" -print -quit 2>/dev/null || true)"
         if [ -z "$sourcePackage" ]; then
-            echo "Missing .NET 10 platform package $package in $sourceFolder." >&2
+            echo "Missing .NET 11 platform package $package in $sourceFolder." >&2
             echo "Build or download the pinned platform packs first and set CUSTOM_RUNTIME_PACKS_DIR." >&2
             exit 1
         fi
@@ -211,7 +211,7 @@ if mapping is None:
     mapping = ET.SubElement(root, "packageSourceMapping")
 source = ET.SubElement(mapping, "packageSource", {"key": "bookshelf-platform-runtime-packs"})
 for package in packages:
-    package_id = package.removesuffix(".10.0.15.nupkg")
+    package_id = package.removesuffix(".11.0.0.nupkg")
     ET.SubElement(source, "package", {"pattern": package_id})
 ET.indent(tree, space="  ")
 tree.write(path, encoding="utf-8", xml_declaration=True)
@@ -328,7 +328,7 @@ PackageLinux()
 
     echo "Adding Readarr.Mono to UpdatePackage"
     cp $folder/Readarr.Mono.* $folder/Readarr.Update
-    if [ "$framework" = "net10.0" ]; then
+    if [ "$framework" = "net11.0" ]; then
         cp $folder/Mono.Posix.NETStandard.* $folder/Readarr.Update
         cp $folder/libMonoPosixHelper.* $folder/Readarr.Update
     fi
@@ -356,7 +356,7 @@ PackageMacOS()
 
     echo "Adding Readarr.Mono to UpdatePackage"
     cp $folder/Readarr.Mono.* $folder/Readarr.Update
-    if [ "$framework" = "net10.0" ]; then
+    if [ "$framework" = "net11.0" ]; then
         cp $folder/Mono.Posix.NETStandard.* $folder/Readarr.Update
         cp $folder/libMonoPosixHelper.* $folder/Readarr.Update
     fi
@@ -546,10 +546,10 @@ PackageTests()
 NormalizeFramework()
 {
     if [ "$FRAMEWORK" = "net6.0" ]; then
-        echo "[WARNING] This checkout targets net10.0; treating the obsolete -f net6.0 option as net10.0." >&2
-        FRAMEWORK="net10.0"
-    elif [ -n "$FRAMEWORK" ] && [ "$FRAMEWORK" != "net10.0" ]; then
-        echo "[ERROR] This checkout targets net10.0; unsupported framework: $FRAMEWORK" >&2
+        echo "[WARNING] This checkout targets net11.0; treating the obsolete -f net6.0 option as net11.0." >&2
+        FRAMEWORK="net11.0"
+    elif [ -n "$FRAMEWORK" ] && [ "$FRAMEWORK" != "net11.0" ]; then
+        echo "[ERROR] This checkout targets net11.0; unsupported framework: $FRAMEWORK" >&2
         return 2
     fi
 }
@@ -691,11 +691,11 @@ if [ "$BACKEND" = "YES" ];
 then
     if [[ -z "$RID" || -z "$FRAMEWORK" ]];
     then
-        PackageTests "net10.0" "linux-musl-x64"
+        PackageTests "net11.0" "linux-musl-x64"
         if [ "$ENABLE_EXTRA_PLATFORMS" = "YES" ];
         then
-            PackageTests "net10.0" "freebsd-x64"
-            PackageTests "net10.0" "linux-x86"
+            PackageTests "net11.0" "freebsd-x64"
+            PackageTests "net11.0" "linux-x86"
         fi
     else
         PackageTests "$FRAMEWORK" "$RID"
@@ -708,11 +708,11 @@ then
 
     if [[ -z "$RID" || -z "$FRAMEWORK" ]];
     then
-        Package "net10.0" "linux-musl-x64"
+        Package "net11.0" "linux-musl-x64"
         if [ "$ENABLE_EXTRA_PLATFORMS" = "YES" ];
         then
-            Package "net10.0" "freebsd-x64"
-            Package "net10.0" "linux-x86"
+            Package "net11.0" "freebsd-x64"
+            Package "net11.0" "linux-x86"
         fi
     else
         Package "$FRAMEWORK" "$RID"
@@ -721,5 +721,5 @@ fi
 
 if [ "$INSTALLER" = "YES" ];
 then
-    BuildInstallerNet "net10.0" "win-x64"
+    BuildInstallerNet "net11.0" "win-x64"
 fi

@@ -1,4 +1,4 @@
-# .NET 10 builds for Linux x86 and FreeBSD
+# .NET 11 builds for Linux x86 and FreeBSD
 
 > **BookshelfNG source-build notes.** The custom Linux x86 and FreeBSD runtime
 > packs described here are specific to BookshelfNG's source build. ChaptarrNG
@@ -7,10 +7,10 @@
 > [ChaptarrNG README](https://github.com/snapetech-org/chaptarrng#readme) for
 > the maintained destination's current platform and build information.
 
-BookshelfNG targets .NET 10 on the same platforms it packages: Windows x64 and
+BookshelfNG targets .NET 11 on the same platforms it packages: Windows x64 and
 x86, macOS x64, Linux x64 and x86, Linux musl x64 and ARM64, and FreeBSD x64.
 The standard .NET SDK supplies the packs for the mainstream targets. Linux x86
-and FreeBSD use additional runtime packs because matching .NET 10 packs are not
+and FreeBSD use additional runtime packs because matching .NET 11 packs are not
 available from the standard NuGet feeds used by this repository.
 
 ## Run the complete published Docker image (no build)
@@ -43,20 +43,13 @@ the page is blank, include the image tag, browser console error, and
 ## Pack sources
 
 Linux x86 runtime, apphost, and ASP.NET Core packs are cross-compiled from the
-Microsoft `dotnet/runtime` and `dotnet/aspnetcore` `v10.0.15` source tags. The
-runtime build uses Microsoft's Azure Linux 3.0 .NET 10 x86 cross-build image,
+Microsoft `dotnet/runtime` and `dotnet/aspnetcore` `v11.0.0` source tags. The
+runtime build uses Microsoft's Azure Linux 3.0 .NET 11 x86 cross-build image,
 pinned to digest
-`sha256:ecc9c107cd33f8303cba2280eb1537f045acaa88fc0f00780ea6232d19e942b8`.
-The builder uses the SDK versions pinned by those source trees (10.0.111 and
-10.0.112) and produces the standard `Microsoft.NETCore.App` and
-`Microsoft.AspNetCore.App` NuGet packs at version 10.0.15.
-
-The component source tags retain package-version metadata from their individual
-source builds: the runtime tag declares patch 13, and the ASP.NET Core tag
-declares patch 14 and references runtime 10.0.14. The builder verifies those
-expected inputs and normalizes the runtime, ASP.NET Core, and ASP.NET runtime
-reference metadata to 10.0.15 before packaging. This keeps the custom RID packs
-aligned with the .NET 10.0.15 servicing release.
+`sha256:efd21070248f3e6cd728b069e6708de2a5188162bd3a7e2fe357732f4f78b848`.
+The builder checks out the immutable source commits for these tags, uses SDK
+11.0.100, and produces the standard `Microsoft.NETCore.App` and
+`Microsoft.AspNetCore.App` NuGet packs at version 11.0.0.
 
 BookshelfNG publishes without ReadyToRun or Native AOT. The Linux x86 source
 build therefore disables ReadyToRun, omits the crossgen package, and skips the
@@ -66,22 +59,22 @@ on the runtime, apphost, and framework packs BookshelfNG consumes.
 The FreeBSD source phase clones a clean runtime tree, then applies a targeted
 condition that omits the Microsoft.NETCore.App.Crossgen2 SFX package.
 BookshelfNG does not publish ReadyToRun apps for this target, and the
-BookshelfNG .NET 10.0.15 cross-build cannot package that unused Crossgen2 SFX
+BookshelfNG .NET 11.0.0 cross-build cannot package that unused Crossgen2 SFX
 because framework dependencies are unresolved during the FreeBSD build. It also
 suppresses NU5118 for a duplicate `System.Private.CoreLib.pdb` entry already
 included by the FreeBSD runtime package.
 
 FreeBSD x64 packs and its runtime host are cross-compiled from the same
-Microsoft `dotnet/runtime` and `dotnet/aspnetcore` `v10.0.15` source tags. The
-build uses the pinned Azure Linux 3.0 .NET 10 FreeBSD cross-build image
-`mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-cross-freebsd-14-amd64`
+Microsoft `dotnet/runtime` and `dotnet/aspnetcore` `v11.0.0` source tags. The
+build uses the pinned Azure Linux 3.0 .NET 11 FreeBSD cross-build image
+`mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-cross-freebsd-14-amd64`
 at digest
-`sha256:4ca96ef731e1466924d62d0fb6d2649cfc117bd98faedede5879ba98530e219b`.
+`sha256:23c1ac03617c161b81db551669482fa78044627d061af34c2180b9b47b6c8542`.
 FreeBSD remains a community-supported target rather than an officially
 supported Microsoft .NET distribution.
 
 The pinned inputs are declared in
-[`scripts/build-dotnet10-platform-runtime-packs.sh`](../scripts/build-dotnet10-platform-runtime-packs.sh).
+[`scripts/build-dotnet11-platform-runtime-packs.sh`](../scripts/build-dotnet11-platform-runtime-packs.sh).
 When updating .NET servicing versions, update both source tags, the cross-build
 image digests, expected NuGet package names, and the runtime SDK assembly
 performed by the pack builder together.
@@ -105,10 +98,10 @@ publisher retry does not download or execute build artifacts. The publication
 workflow uploads only the platform archives, Linux packages, and Helm chart;
 the runtime-pack artifact stays an internal build input.
 
-The same artifact carries the architecture-independent .NET 10.0.404 SDK files
+The same artifact carries the architecture-independent .NET 11.0.100 SDK files
 used by `dotnet test`; the target platform's runtime host, Core runtime, and
 ASP.NET Core shared framework come from the platform packs. The workflow uses
-[`scripts/install-dotnet10-platform-runtime.sh`](../scripts/install-dotnet10-platform-runtime.sh)
+[`scripts/install-dotnet11-platform-runtime.sh`](../scripts/install-dotnet11-platform-runtime.sh)
 to assemble that test environment.
 
 ## Build a Docker image from source (local code; requires a build)
@@ -154,36 +147,36 @@ A backend-only build does not produce a runnable app with a web interface.
 For a standard Linux x64 build, use the SDK runtime packs:
 
 ```bash
-./build.sh --backend --frontend --packages --framework net10.0 --runtime linux-x64
+./build.sh --backend --frontend --packages --framework net11.0 --runtime linux-x64
 ```
 
-This checkout targets .NET 10. Older source-build guides may still show
+This checkout targets .NET 11. Older source-build guides may still show
 `--framework net6.0`; `build.sh` warns and maps that obsolete value to
-`net10.0` so the generated output stays under the correct framework directory.
-Use `net10.0` in new commands.
+`net11.0` so the generated output stays under the correct framework directory.
+Use `net11.0` in new commands.
 
 The packaged app is under
-`_artifacts/linux-x64/net10.0/Readarr/`; it contains the `Readarr` executable
+`_artifacts/linux-x64/net11.0/Readarr/`; it contains the `Readarr` executable
 and its `UI/` directory.
 
-To also build the Linux x86 and FreeBSD packages, install .NET SDKs 10.0.111,
-10.0.112, and 10.0.404 side by side under one `DOTNET_ROOT`. Docker, Git,
+To also build the Linux x86 and FreeBSD packages, install .NET SDKs 11.0.100,
+11.0.100, and 11.0.100 side by side under one `DOTNET_ROOT`. Docker, Git,
 Python 3, `curl`, `tar`, and `unzip` are also required; use Python 3.9 or later.
 Then run:
 
 ```bash
 export DOTNET_ROOT="$HOME/.dotnet"
-export DOTNETVERSION=10.0.404
-./scripts/build-dotnet10-platform-runtime-packs.sh
+export DOTNETVERSION=11.0.100
+./scripts/build-dotnet11-platform-runtime-packs.sh
 export CUSTOM_RUNTIME_PACKS_DIR="$(pwd)/_temp/platform-runtime-packs/packages"
 ./build.sh --backend --frontend --packages --enable-extra-platforms
 ```
 
 The pack builder writes the six platform NuGet packages under
 `_temp/platform-runtime-packs/packages`. `build.sh` adds Linux x86 and FreeBSD
-to the runtime identifier list, enables those identifiers in the .NET 10 SDK,
+to the runtime identifier list, enables those identifiers in the .NET 11 SDK,
 and uses the local packages during restore. The packaged apps, including the
-UI, are written under `_artifacts/<runtime>/net10.0/Readarr/`. The backend
+UI, are written under `_artifacts/<runtime>/net11.0/Readarr/`. The backend
 build fails with a specific missing-package message if the custom pack
 directory is absent or incomplete.
 

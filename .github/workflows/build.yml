@@ -74,7 +74,7 @@ on:
         default: true
 
 env:
-  DOTNET_VERSION: "10.0.404"
+  DOTNET_VERSION: "11.0.100"
   READARR_VERSION: 0.4.21
   OUTPUT_FOLDER: ./_output
   ARTIFACTS_FOLDER: ./_artifacts
@@ -728,12 +728,12 @@ jobs:
         if: runner.os == 'Linux'
         env:
           PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
-        run: pwsh ./_tests/net10.0/linux-x64/playwright.ps1 install --with-deps chromium
+        run: pwsh ./_tests/net11.0/linux-x64/playwright.ps1 install --with-deps chromium
 
       - name: Prepare tests
         run: |
           mkdir -p _tests/bin
-          cp _output/net10.0/linux-x64/publish/Readarr _tests/bin/
+          cp _output/net11.0/linux-x64/publish/Readarr _tests/bin/
           chmod +x _tests/bin/Readarr
           find _tests -name "Readarr.Test.Dummy" -exec chmod a+x {} \;
 
@@ -745,7 +745,7 @@ jobs:
         id: unit_tests
         shell: bash
         env:
-          TEST_DIR: ./_tests/net10.0/linux-x64
+          TEST_DIR: ./_tests/net11.0/linux-x64
           DIRECT_DOWNLOAD_REQUIRE_PLAYWRIGHT: "true"
           PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
         run: bash ./test.sh Linux Unit Test

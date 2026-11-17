@@ -1,12 +1,12 @@
 [tools]
-dotnet = "10.0.404"
+dotnet = "11.0.100"
 node = "20.19.4"
 
 [env]
 DOTNET_CLI_TELEMETRY_OPTOUT = "1"
 TESTSFOLDER = "_tests"
 OUTPUTFOLDER = "_output"
-TEST_DIR ="./_tests/net10.0/linux-x64"
+TEST_DIR ="./_tests/net11.0/linux-x64"
 
 [settings]
 experimental = true
