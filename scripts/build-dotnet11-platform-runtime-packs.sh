@@ -149,6 +149,30 @@ if tls_source.count(tls_call) != 1:
 tls_macros.write_text(tls_source.replace(tls_call, tls_call.replace(
     "    pop   eax", "    mov   edx, eax\n    pop   eax"), 1))
 
+# PInvokeImportWorker uses the Unix C calling convention. Discard its
+# stack argument before restoring registers and tail-jumping to the target.
+pinvoke = root / "src/coreclr/vm/i386/asmhelpers.S"
+pinvoke_source = pinvoke.read_text()
+pinvoke_call = "    call    C_FUNC(PInvokeImportWorker)\n"
+if pinvoke_source.count(pinvoke_call) != 1:
+    raise SystemExit("Unrecognized Unix x86 P/Invoke import thunk")
+pinvoke.write_text(pinvoke_source.replace(pinvoke_call, pinvoke_call + "    add     esp, 4\n", 1))
+
+# These QCalls return native MethodDesc pointers. A managed struct return
+# inserts a hidden return-buffer argument on Unix x86, shifting every argument.
+handles = root / "src/coreclr/System.Private.CoreLib/src/System/RuntimeHandles.cs"
+handle_source = handles.read_text()
+for name in ("GetInterfaceMethodImplementation", "GetStubIfNeededSlow", "ResolveMethod"):
+    signature = f"partial RuntimeMethodHandleInternal {name}("
+    wrapper = rf"(return |=> )({name}\([^;]+\));"
+    if handle_source.count(signature) != 1:
+        raise SystemExit(f"Unrecognized QCall return signature: {name}")
+    handle_source = handle_source.replace(signature, f"partial IntPtr {name}(", 1)
+    handle_source, count = re.subn(wrapper, r"\1new RuntimeMethodHandleInternal(\2);", handle_source)
+    if count != 1:
+        raise SystemExit(f"Unrecognized managed QCall wrapper: {name}")
+handles.write_text(handle_source)
+
 edit("eng/Subsets.props", lambda s: re.sub(r'^.*crossgen-corelib\.proj.*\n', "", s, flags=re.MULTILINE))
 def skip_unused_crossgen2_pack(content):
     old = "Condition=\"'$(RuntimeFlavor)' != 'Mono' and ('$(TargetsMobile)' != 'true' and '$(TargetsLinuxBionic)' != 'true')\" Include=\"$(InstallerProjectRoot)pkg\\sfx\\Microsoft.NETCore.App\\Microsoft.NETCore.App.Crossgen2.sfxproj\""
