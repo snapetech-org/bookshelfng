@@ -278,7 +278,8 @@ build_linux_x86_aspnetcore() {
     (
         cd "$aspnet_repo"
         DOTNET_INSTALL_DIR="$dotnet_root" DOTNET_ROOT="$dotnet_root" DOTNET_SDK_VERSION="$aspnet_sdk" \
-            DOTNET_MULTILEVEL_LOOKUP=0 PATH="$dotnet_root:$PATH" ./eng/build.sh --only-build-repo-tasks \
+            DOTNET_MULTILEVEL_LOOKUP=0 PATH="$dotnet_root:$PATH" ./eng/build.sh -c Release --restore --build --no-build-nodejs \
+            --projects "$aspnet_repo/eng/tools/RepoTasks/RepoTasks.csproj" \
             "/p:SdkVersion=$aspnet_sdk"
     )
     patch_sdk_runtime_ids "$aspnet_sdk" "$aspnet_repo/.dotnet"
@@ -304,7 +305,8 @@ build_freebsd_aspnetcore() {
     (
         cd "$aspnet_repo"
         DOTNET_INSTALL_DIR="$dotnet_root" DOTNET_ROOT="$dotnet_root" DOTNET_SDK_VERSION="$aspnet_sdk" \
-            DOTNET_MULTILEVEL_LOOKUP=0 PATH="$dotnet_root:$PATH" ./eng/build.sh --only-build-repo-tasks \
+            DOTNET_MULTILEVEL_LOOKUP=0 PATH="$dotnet_root:$PATH" ./eng/build.sh -c Release --restore --build --no-build-nodejs \
+            --projects "$aspnet_repo/eng/tools/RepoTasks/RepoTasks.csproj" \
             "/p:SdkVersion=$aspnet_sdk"
     )
     patch_sdk_runtime_ids "$aspnet_sdk" "$aspnet_repo/.dotnet"
