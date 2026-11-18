@@ -176,11 +176,19 @@ jobs:
             [[ "$runtime_pack_sha" == "$artifact_sha" ]] || continue
             case "$runtime_pack_workflow" in
               .github/workflows/release-publication.yml|.github/workflows/release-build.yml) ;;
+              .github/workflows/build.yml)
+                jq -e --arg repo "$GITHUB_REPOSITORY" '
+                  .head_repository.full_name == $repo and .head_branch == "main" and
+                  .event == "workflow_dispatch" and .actor.login == "snapetech" and
+                  (.display_title | test("^action:publish:pool:public:tag:v[0-9.]+:release-build$"))
+                ' <<<"$run_json" >/dev/null || continue
+                ;;
               *) continue ;;
             esac
             git merge-base --is-ancestor "$runtime_pack_sha" "$release_sha" || continue
             git diff --quiet "$runtime_pack_sha" "$release_sha" -- \
               scripts/build-dotnet11-platform-runtime-packs.sh \
+              scripts/dotnet-linux-x86.Dockerfile scripts/install-dotnet11-platform-runtime.sh \
               src/Directory.Build.props src/NuGet.config || continue
 
             git show "$runtime_pack_sha:.github/workflows/release-build.yml" \

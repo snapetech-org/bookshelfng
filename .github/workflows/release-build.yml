@@ -205,13 +205,23 @@ jobs:
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            libicu74:i386 libssl3t64:i386 libstdc++6:i386 zlib1g:i386 libgssapi-krb5-2:i386
+            libsqlite3-0:i386 libicu74:i386 libssl3t64:i386 libstdc++6:i386 zlib1g:i386 libgssapi-krb5-2:i386
           smoke_dir="$(mktemp -d "$RUNNER_TEMP/bookshelf-x86-smoke.XXXXXX")"
           mkdir "$smoke_dir/data"
           tar -xzf "dist-release/BookshelfNG-${TAG}-linux-x86.tar.gz" --strip-components=1 -C "$smoke_dir"
-          timeout 30 "$smoke_dir/Readarr" -help -exitimmediately "-data=$smoke_dir/data" \
-            | tee "$smoke_dir/startup.log"
-          grep -F 'Usage:' "$smoke_dir/startup.log"
+          echo '<Config><BindAddress>127.0.0.1</BindAddress><Port>39787</Port></Config>' > "$smoke_dir/data/config.xml"
+          "$smoke_dir/Readarr" -nobrowser "-data=$smoke_dir/data" > "$smoke_dir/startup.log" 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true; wait "$pid" 2>/dev/null || true' EXIT
+          for attempt in {1..90}; do
+            kill -0 "$pid" 2>/dev/null || break
+            if curl --silent --fail --max-time 2 http://127.0.0.1:39787/ping | jq -e '.status == "OK"' >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          tail -80 "$smoke_dir/startup.log"
+          exit 1
 
       - name: Build Windows x64 setup installer
         env:

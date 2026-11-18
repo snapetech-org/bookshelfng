@@ -13,6 +13,9 @@ The standard .NET SDK supplies the packs for the mainstream targets. Linux x86
 and FreeBSD use additional runtime packs because matching .NET 11 packs are not
 available from the standard NuGet feeds used by this repository.
 
+The Linux x86 standalone application requires 32-bit SQLite. On Ubuntu with
+i386 enabled, install `libsqlite3-0:i386` before starting BookshelfNG.
+
 ## Run the complete published Docker image (no build)
 
 If you want to run BookshelfNG or inspect the UI shipped with it, use the
