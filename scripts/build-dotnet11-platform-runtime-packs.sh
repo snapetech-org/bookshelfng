@@ -272,9 +272,7 @@ PY
     dotnet nuget add source "$runtime_shipping" --name "bookshelf-${rid}-runtime" --configfile "$aspnet_repo/NuGet.config"
 }
 
-build_linux_x86_aspnetcore() {
-    local official_build_id
-    official_build_id="$(get_official_build_id)"
+bootstrap_aspnetcore() {
     (
         cd "$aspnet_repo"
         DOTNET_INSTALL_DIR="$dotnet_root" DOTNET_ROOT="$dotnet_root" DOTNET_SDK_VERSION="$aspnet_sdk" \
@@ -282,7 +280,16 @@ build_linux_x86_aspnetcore() {
             --projects "$aspnet_repo/eng/tools/RepoTasks/RepoTasks.csproj" \
             "/p:SdkVersion=$aspnet_sdk"
     )
-    patch_sdk_runtime_ids "$aspnet_sdk" "$aspnet_repo/.dotnet"
+    local bootstrap_sdk
+    bootstrap_sdk="$(find "$aspnet_repo/.dotnet/sdk" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort -V | tail -n 1)"
+    [ -n "$bootstrap_sdk" ] || die "ASP.NET Core did not install its bootstrap SDK"
+    patch_sdk_runtime_ids "$bootstrap_sdk" "$aspnet_repo/.dotnet"
+}
+
+build_linux_x86_aspnetcore() {
+    local official_build_id
+    official_build_id="$(get_official_build_id)"
+    bootstrap_aspnetcore
     (
         cd "$aspnet_repo"
         DOTNET_INSTALL_DIR="$dotnet_root" DOTNET_ROOT="$dotnet_root" DOTNET_SDK_VERSION="$aspnet_sdk" \
@@ -290,6 +297,8 @@ build_linux_x86_aspnetcore() {
             --projects "$aspnet_repo/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.sfxproj" /m:1 \
             "/p:OfficialBuildId=$official_build_id" \
             "/p:SdkVersion=$aspnet_sdk" \
+            "/p:MicrosoftNETCoreAppRefVersion=$linux_x86_runtime_version" \
+            /p:RuntimeIdentifier=linux-x86 \
             /p:StabilizePackageVersion=true \
             /p:CrossgenOutput=false \
             /p:PublishReadyToRun=false
@@ -302,14 +311,7 @@ build_freebsd_aspnetcore() {
     mkdir -p "$aspnet_repo/artifacts/obj/Microsoft.AspNetCore.App.Runtime"
     cp "$runtime_shipping/dotnet-runtime-$freebsd_runtime_version-freebsd-x64.tar.gz" \
         "$aspnet_repo/artifacts/obj/Microsoft.AspNetCore.App.Runtime/"
-    (
-        cd "$aspnet_repo"
-        DOTNET_INSTALL_DIR="$dotnet_root" DOTNET_ROOT="$dotnet_root" DOTNET_SDK_VERSION="$aspnet_sdk" \
-            DOTNET_MULTILEVEL_LOOKUP=0 PATH="$dotnet_root:$PATH" ./eng/build.sh -c Release --restore --build --no-build-nodejs \
-            --projects "$aspnet_repo/eng/tools/RepoTasks/RepoTasks.csproj" \
-            "/p:SdkVersion=$aspnet_sdk"
-    )
-    patch_sdk_runtime_ids "$aspnet_sdk" "$aspnet_repo/.dotnet"
+    bootstrap_aspnetcore
     (
         cd "$aspnet_repo"
         DOTNET_INSTALL_DIR="$dotnet_root" DOTNET_ROOT="$dotnet_root" DOTNET_SDK_VERSION="$aspnet_sdk" \
@@ -317,6 +319,8 @@ build_freebsd_aspnetcore() {
             --projects "$aspnet_repo/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.sfxproj" /m:1 \
             "/p:OfficialBuildId=$official_build_id" \
             "/p:SdkVersion=$aspnet_sdk" \
+            "/p:MicrosoftNETCoreAppRefVersion=$freebsd_runtime_version" \
+            /p:RuntimeIdentifier=freebsd-x64 \
             /p:StabilizePackageVersion=true \
             /p:CrossgenOutput=false \
             /p:PublishReadyToRun=false
