@@ -157,6 +157,19 @@ if pinvoke_source.count(pinvoke_call) != 1:
     raise SystemExit("Unrecognized Unix x86 P/Invoke import thunk")
 pinvoke.write_text(pinvoke_source.replace(pinvoke_call, pinvoke_call + "    add     esp, 4\n", 1))
 
+# Managed transitions on Linux x86 can enter CoreCLR QCalls and native
+# library exports with four-byte alignment. Realign the native stack and
+# avoid aligned loads from incoming arguments on both sides of that boundary.
+compiler = root / "eng/native/configurecompiler.cmake"
+compiler_source = compiler.read_text()
+x86_target = '    set(ARCH_TARGET_NAME x86)\n    set(ARCH_SOURCES_DIR i386)\n'
+if compiler_source.count(x86_target) != 1:
+    raise SystemExit("Unrecognized Linux x86 native compiler configuration")
+compiler.write_text(compiler_source.replace(x86_target, x86_target +
+    '    if (CLR_CMAKE_TARGET_LINUX)\n'
+    '      add_compile_options($<$<COMPILE_LANGUAGE:C,CXX>:-mstackrealign>)\n'
+    '    endif ()\n', 1))
+
 # These QCalls return native MethodDesc pointers. A managed struct return
 # inserts a hidden return-buffer argument on Unix x86, shifting every argument.
 handles = root / "src/coreclr/System.Private.CoreLib/src/System/RuntimeHandles.cs"
@@ -172,6 +185,102 @@ for name in ("GetInterfaceMethodImplementation", "GetStubIfNeededSlow", "Resolve
         raise SystemExit(f"Unrecognized managed QCall wrapper: {name}")
 handles.write_text(handle_source)
 
+# Unix x86 uses ECX/EDX for managed this/return-buffer arguments, matching
+# i386/asmhelpers.asm. The upstream .S worker swaps callee-saved EDI/ESI,
+# corrupting closed static delegates that return structs (including nullable
+# doubles in compiled property accessors). Keep this patch scoped to the
+# version-pinned runtime source and qualify the resulting runtime by execution.
+worker = root / "src/coreclr/vm/i386/asmhelpers.S"
+old_worker = """//edi -This pointer
+//esi -ReturnBuffer
+LEAF_ENTRY ThisPtrRetBufPrecodeWorker, _TEXT
+    mov  eax, [eax + ThisPtrRetBufPrecodeData__Target]
+    // Use XOR swap technique to set avoid the need to spill to the stack
+    xor edi, esi
+    xor esi, edi
+    xor edi, esi
+    jmp eax
+LEAF_END ThisPtrRetBufPrecodeWorker, _TEXT"""
+new_worker = old_worker.replace("//edi -This pointer", "//ecx -This pointer").replace(
+    "//esi -ReturnBuffer", "//edx -ReturnBuffer").replace(
+    "xor edi, esi", "xor ecx, edx").replace("xor esi, edi", "xor edx, ecx")
+worker_source = worker.read_text()
+if worker_source.count(old_worker) != 1:
+    raise SystemExit("Unrecognized Unix x86 delegate return-buffer worker; review the runtime patch")
+worker.write_text(worker_source.replace(old_worker, new_worker, 1))
+
+# Unix x86 EH funclets can enumerate the same movable stack slot once from the
+# funclet and again from its parent. The promotion pass tolerates that duplicate,
+# but the relocation pass must update the slot only once. Keep the correction
+# architecture-scoped and fail closed if the pinned runtime source changes.
+gc_enum = root / "src/coreclr/vm/gcenv.ee.common.cpp"
+old_double_reporting = """void CheckDoubleReporting(GCCONTEXT *pCtx, Object **ppObj, uint32_t flags)
+{
+    if (((flags & GC_CALL_PINNED) == 0) && pCtx->sc->promotion)
+    {
+        if (pCtx->pScannedSlots == NULL)
+        {
+            pCtx->pScannedSlots = new (nothrow) SetSHash<Object**, PtrSetSHashTraits<Object**> >();
+            if (pCtx->pScannedSlots == NULL)
+            {
+                return;
+            }
+        }
+        _ASSERTE_ALL_BUILDS(pCtx->pScannedSlots->Lookup(ppObj) == NULL);
+        pCtx->pScannedSlots->AddNoThrow(ppObj);
+    }
+}"""
+new_double_reporting = """bool CheckDoubleReporting(GCCONTEXT *pCtx, Object **ppObj, uint32_t flags)
+{
+    bool shouldTrack = (flags & GC_CALL_PINNED) == 0;
+#if !defined(TARGET_UNIX) || !defined(TARGET_X86)
+    shouldTrack = shouldTrack && pCtx->sc->promotion;
+#endif
+    if (shouldTrack)
+    {
+        if (pCtx->pScannedSlots == NULL)
+        {
+            pCtx->pScannedSlots = new (nothrow) SetSHash<Object**, PtrSetSHashTraits<Object**> >();
+            if (pCtx->pScannedSlots == NULL)
+            {
+                return false;
+            }
+        }
+        bool isDuplicate = pCtx->pScannedSlots->Lookup(ppObj) != NULL;
+        if (g_pConfig->GetCheckDoubleReporting())
+        {
+            _ASSERTE_ALL_BUILDS(!isDuplicate);
+        }
+        if (isDuplicate)
+        {
+            return true;
+        }
+        pCtx->pScannedSlots->AddNoThrow(ppObj);
+    }
+
+    return false;
+}"""
+old_enum_call = """    if (g_pConfig->GetCheckDoubleReporting())
+    {
+        CheckDoubleReporting(pCtx, ppObj, flags);
+    }"""
+new_enum_call = """#if defined(TARGET_UNIX) && defined(TARGET_X86)
+    // Relocating a duplicate movable slot twice corrupts its updated reference.
+    if (CheckDoubleReporting(pCtx, ppObj, flags))
+    {
+        return;
+    }
+#else
+    if (g_pConfig->GetCheckDoubleReporting())
+    {
+        CheckDoubleReporting(pCtx, ppObj, flags);
+    }
+#endif"""
+gc_enum_source = gc_enum.read_text()
+if gc_enum_source.count(old_double_reporting) != 1 or gc_enum_source.count(old_enum_call) != 1:
+    raise SystemExit("Unrecognized GC root enumeration source; review the Unix x86 EH correction")
+gc_enum.write_text(gc_enum_source.replace(old_double_reporting, new_double_reporting, 1).replace(
+    old_enum_call, new_enum_call, 1))
 edit("eng/Subsets.props", lambda s: re.sub(r'^.*crossgen-corelib\.proj.*\n', "", s, flags=re.MULTILINE))
 def skip_unused_crossgen2_pack(content):
     old = "Condition=\"'$(RuntimeFlavor)' != 'Mono' and ('$(TargetsMobile)' != 'true' and '$(TargetsLinuxBionic)' != 'true')\" Include=\"$(InstallerProjectRoot)pkg\\sfx\\Microsoft.NETCore.App\\Microsoft.NETCore.App.Crossgen2.sfxproj\""
