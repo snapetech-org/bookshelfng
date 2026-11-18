@@ -201,6 +201,17 @@ project_updated = project_content.replace("</Project>", warning_group + "</Proje
 if "TargetOS)' == 'freebsd'" not in project_updated or "$(NoWarn);NU5118" not in project_updated:
     raise SystemExit("Failed to suppress duplicate PDB packaging warning NU5118 for FreeBSD")
 coreclr_project.write_text(project_updated)
+
+manifest_item = (
+    '  <ItemGroup Condition="\'$(TargetOS)\' == \'freebsd\'">\n'
+    '    <PlatformManifestFileEntry Include="libclrinterpreter.so" IsNative="true" />\n'
+    '  </ItemGroup>\n'
+)
+for project in (coreclr_project, coreclr_project.with_name("Microsoft.NETCore.App.Ref.sfxproj")):
+    project_content = project.read_text()
+    if project_content.count("</Project>") != 1:
+        raise SystemExit(f"Expected exactly one project root in {project}")
+    project.write_text(project_content.replace("</Project>", manifest_item + "</Project>", 1))
 PY
 }
 
