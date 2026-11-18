@@ -197,6 +197,22 @@ jobs:
           TAG: ${{ needs.validate.outputs.tag }}
         run: bash scripts/create-release-archives.sh "$TAG" dist-release
 
+      - name: Start the packaged Linux x86 application
+        env:
+          TAG: ${{ needs.validate.outputs.tag }}
+        run: |
+          set -euo pipefail
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libicu74:i386 libssl3t64:i386 libstdc++6:i386 zlib1g:i386 libgssapi-krb5-2:i386
+          smoke_dir="$(mktemp -d "$RUNNER_TEMP/bookshelf-x86-smoke.XXXXXX")"
+          mkdir "$smoke_dir/data"
+          tar -xzf "dist-release/BookshelfNG-${TAG}-linux-x86.tar.gz" --strip-components=1 -C "$smoke_dir"
+          timeout 30 "$smoke_dir/Readarr" -help -exitimmediately "-data=$smoke_dir/data" \
+            | tee "$smoke_dir/startup.log"
+          grep -F 'Usage:' "$smoke_dir/startup.log"
+
       - name: Build Windows x64 setup installer
         env:
           BUILD_SOURCEBRANCHNAME: main
