@@ -223,6 +223,17 @@ jobs:
           tail -80 "$smoke_dir/startup.log"
           exit 1
 
+      - name: Verify Linux x86 HTTP connection failure handling
+        run: |
+          set -euo pipefail
+          probe_dir="$(mktemp -d "$RUNNER_TEMP/bookshelf-x86-http.XXXXXX")"
+          dotnet new console --framework net11.0 --output "$probe_dir/probe" --no-restore
+          cp scripts/test-linux-x86-http.cs "$probe_dir/probe/Program.cs"
+          dotnet build "$probe_dir/probe" -c Release -p:UseAppHost=false -o "$probe_dir/out"
+          mkdir "$probe_dir/runtime"
+          tar -xzf _temp/platform-runtime-packs/runtimes/linux-x86-runtime.tar.gz -C "$probe_dir/runtime"
+          timeout 30 "$probe_dir/runtime/dotnet" "$probe_dir/out/probe.dll"
+
       - name: Build Windows x64 setup installer
         env:
           BUILD_SOURCEBRANCHNAME: main

@@ -361,6 +361,8 @@ PY
 build_linux_x86_runtime() {
     local official_build_id
     official_build_id="$(get_official_build_id)"
+    # Use compiler-generated async state machines on Linux x86 so a failed socket
+    # connection propagates to the caller without overflowing the runtime stack.
     docker run --rm --init \
         -e DOTNET_INSTALL_DIR=/usr/share/dotnet \
         -e DOTNET_ROOT=/usr/share/dotnet \
@@ -370,7 +372,7 @@ build_linux_x86_runtime() {
         -v "$runtime_repo:/runtime" \
         -w /runtime \
         "$cross_image" \
-        bash -lc "export PATH=/usr/share/dotnet:\$PATH; ./eng/build.sh -ci -c Release -cross -os Linux -arch x86 /m:1 /p:OfficialBuildId=$official_build_id /p:SdkVersion=$runtime_sdk /p:AppHostSourcePath=/runtime/artifacts/obj/linux-x86.Release/apphost/standalone/apphost /p:SelfContained=false /p:UseAppHost=false /p:PublishTrimmed=false /p:UseNativeAotForComponents=false /p:PublishAot=false /p:PublishReadyToRun=false /p:PublishSingleFile=false /p:StabilizePackageVersion=true -subset clr.runtime+clr.jit+clr.hosts+clr.iltools+clr.corelib+libs.native+libs.sfx+libs.oob+host.native+host.pkg+packs.product -pack"
+        bash -lc "export PATH=/usr/share/dotnet:\$PATH; ./eng/build.sh -ci -c Release -cross -os Linux -arch x86 /m:1 /p:OfficialBuildId=$official_build_id /p:SdkVersion=$runtime_sdk /p:AppHostSourcePath=/runtime/artifacts/obj/linux-x86.Release/apphost/standalone/apphost /p:SelfContained=false /p:UseAppHost=false /p:PublishTrimmed=false /p:UseNativeAotForComponents=false /p:PublishAot=false /p:PublishReadyToRun=false /p:PublishSingleFile=false /p:UseRuntimeAsync=false /p:StabilizePackageVersion=true -subset clr.runtime+clr.jit+clr.hosts+clr.iltools+clr.corelib+libs.native+libs.sfx+libs.oob+host.native+host.pkg+packs.product -pack"
 }
 
 build_freebsd_runtime() {
