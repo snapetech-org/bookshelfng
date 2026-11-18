@@ -275,6 +275,8 @@ PY
 bootstrap_aspnetcore() {
     (
         cd "$aspnet_repo"
+        npm ci --no-audit --no-fund
+        npm run build
         DOTNET_INSTALL_DIR="$dotnet_root" DOTNET_ROOT="$dotnet_root" DOTNET_SDK_VERSION="$aspnet_sdk" \
             DOTNET_MULTILEVEL_LOOKUP=0 PATH="$dotnet_root:$PATH" ./eng/build.sh -c Release --restore --build --no-build-nodejs \
             --projects "$aspnet_repo/eng/tools/RepoTasks/RepoTasks.csproj" \
@@ -378,6 +380,7 @@ require_sdk "$aspnet_sdk"
 require_sdk "$app_sdk"
 command -v docker >/dev/null || die "Docker is required to cross-build the Linux x86 and FreeBSD runtimes"
 command -v python3 >/dev/null || die "Python 3 is required to patch the pinned .NET build metadata"
+command -v npm >/dev/null || die "npm is required to build the ASP.NET Core shared framework assets"
 command -v unzip >/dev/null || die "unzip is required to assemble the ASP.NET shared runtime"
 
 clear_previous_build_sources
