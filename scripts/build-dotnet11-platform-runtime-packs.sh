@@ -301,7 +301,7 @@ build_linux_x86_aspnetcore() {
             "/p:SdkVersion=$aspnet_sdk" \
             "/p:MicrosoftNETCoreAppRefVersion=$linux_x86_runtime_version" \
             /p:RuntimeIdentifier=linux-x86 \
-            /p:StabilizePackageVersion=true \
+            /p:DotNetFinalVersionKind=release \
             /p:CrossgenOutput=false \
             /p:PublishReadyToRun=false
     )
@@ -323,7 +323,7 @@ build_freebsd_aspnetcore() {
             "/p:SdkVersion=$aspnet_sdk" \
             "/p:MicrosoftNETCoreAppRefVersion=$freebsd_runtime_version" \
             /p:RuntimeIdentifier=freebsd-x64 \
-            /p:StabilizePackageVersion=true \
+            /p:DotNetFinalVersionKind=release \
             /p:CrossgenOutput=false \
             /p:PublishReadyToRun=false
     )
