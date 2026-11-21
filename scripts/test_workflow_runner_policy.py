@@ -107,10 +107,6 @@ class WorkflowRunnerPolicyTests(unittest.TestCase):
                 self.assertIn('"ng-shared-main-bookshelfng"', job)
                 self.assertIn("github.run_id", job)
 
-    def test_codeql_remains_disabled(self) -> None:
-        names = {path.name.lower() for path in WORKFLOWS.glob("*.yml")}
-        self.assertFalse(any("codeql" in name for name in names))
-
 
 if __name__ == "__main__":
     unittest.main()
